@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class YHBaseViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -15,10 +16,4 @@ class YHBaseViewController: UIViewController {
 
         
     }
-    
-    
-    
-    
-    
-    
 }

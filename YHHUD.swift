@@ -27,10 +27,11 @@ struct YHHUD {
         return hud
     }
     
-    static func hideMBHUD(_ hud: MBProgressHUD?) -> Void {
+    static func hideMBHUD(_ hud: MBProgressHUD?, closure:(()->())? = nil) -> Void {
         guard let hud = hud else { return }
         DispatchQueue.main.async {
             hud.hide(animated: true)
+            hud.completionBlock = closure;
         }
     }
     

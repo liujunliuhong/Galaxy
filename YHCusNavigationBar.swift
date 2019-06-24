@@ -13,6 +13,8 @@ import UIKit
  1、耦合性要低。
  如果接手一个别人写的项目，那么就尽量不要去改动别人写的代码。如果别人接手我写的代码，那么别人可以在不改动我代码的情况下，加入自己的逻辑
  
+ 2、灵活
+ 
  */
 
 class YHCusNavigationBarItem: NSObject {
@@ -31,6 +33,7 @@ class YHCusNavigationToolItem: NSObject {
 
 /*
  继承自UIView
+ 对屏幕旋转已经做了适配
 */
 class YHCusNavigationBar: UIView {
     
@@ -105,6 +108,14 @@ class YHCusNavigationBar: UIView {
         }
     }
     
+    private var statusBarHeight: CGFloat {
+        if UIApplication.shared.isStatusBarHidden {
+            return 0.0
+        } else {
+            return UIApplication.shared.statusBarFrame.size.height
+        }
+    }
+    
     // If is nil, titleView will not be displayed.
     var titleView: UIView? {
         didSet {
@@ -124,10 +135,8 @@ class YHCusNavigationBar: UIView {
         }
     }
     
-    init(with naviBarWidth: CGFloat = UIScreen.main.bounds.size.width) {
+    init(with naviBarWidth: CGFloat = UIScreen.YH_Width()) {
         self.naviBarWidth = naviBarWidth
-        //self.isHideNaviBar = true
-        //self.isHideBar = false
         
         self.line = UIView()
         self.line.backgroundColor = lineColor
@@ -137,18 +146,40 @@ class YHCusNavigationBar: UIView {
         
         backgroundColor = .purple
         
-        setupBar()
-        setupItems()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.setupBar()
+            self.setupItems()
+        }
         
+        NotificationCenter.default.addObserver(self, selector: #selector(didChangeStatusBarFrame(noti:)), name: UIApplication.didChangeStatusBarFrameNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didChangeStatusBarOrientation(noti:)), name: UIApplication.didChangeStatusBarOrientationNotification, object: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    // MARK: - Notification
+    @objc
+    func didChangeStatusBarFrame(noti: Notification) {
+        // Why delay 0.1 seconds? If there is no delay, the height of the status bar is not correct.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.naviBarWidth = UIScreen.YH_Width()
+        }
+    }
+    
+    @objc
+    func didChangeStatusBarOrientation(noti: Notification) {
+        // Why delay 0.1 seconds? If there is no delay, the height of the status bar is not correct.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.naviBarWidth = UIScreen.YH_Width()
+        }
+    }
     
     
+    // MARK: - Methods
     func setupBar() {
-        self.isHidden = isHideNaviBar
+        isHidden = isHideNaviBar
         if isHideNaviBar {
             return
         }
@@ -156,7 +187,7 @@ class YHCusNavigationBar: UIView {
         let o_x: CGFloat = 0.0
         let o_y: CGFloat = 0.0
         let width: CGFloat = naviBarWidth
-        var height: CGFloat = UIApplication.shared.statusBarFrame.size.height + barHeight
+        var height: CGFloat = statusBarHeight + barHeight
         if let toolItem = toolItem {
             height += toolItem.height
         }

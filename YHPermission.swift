@@ -7,3 +7,15 @@
 //
 
 import Foundation
+
+enum YHPermission {
+    case camera
+    case alblum
+}
+
+extension YHPermission {
+    
+    static func say() {
+        
+    }
+}

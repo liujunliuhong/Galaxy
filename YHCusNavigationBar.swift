@@ -135,7 +135,7 @@ class YHCusNavigationBar: UIView {
         }
     }
     
-    init(with naviBarWidth: CGFloat = UIScreen.YH_Width()) {
+    init(with naviBarWidth: CGFloat = UIDevice.YH_Width()) {
         self.naviBarWidth = naviBarWidth
         
         self.line = UIView()
@@ -164,7 +164,7 @@ class YHCusNavigationBar: UIView {
     func didChangeStatusBarFrame(noti: Notification) {
         // Why delay 0.1 seconds? If there is no delay, the height of the status bar is not correct.
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            self.naviBarWidth = UIScreen.YH_Width()
+            self.naviBarWidth = UIDevice.YH_Width()
         }
     }
     
@@ -172,7 +172,7 @@ class YHCusNavigationBar: UIView {
     func didChangeStatusBarOrientation(noti: Notification) {
         // Why delay 0.1 seconds? If there is no delay, the height of the status bar is not correct.
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            self.naviBarWidth = UIScreen.YH_Width()
+            self.naviBarWidth = UIDevice.YH_Width()
         }
     }
     

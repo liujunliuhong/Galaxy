@@ -1,12 +1,11 @@
 //
-//  YHPermissionProtocol.swift
+//  YHConstant.swift
 //  SwiftTool
 //
-//  Created by 银河 on 2019/6/25.
+//  Created by apple on 2019/6/26.
 //  Copyright © 2019 yinhe. All rights reserved.
 //
 
 import Foundation
-
-
+import UIKit
 

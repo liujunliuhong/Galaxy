@@ -20,57 +20,77 @@ protocol YHRXAlamofireRequestProtocol {
     var path: String { get }
     var method: HTTPMethod { get }
     var headers: [String: String]? { get }
-    
+    var isShowHUD: Bool { get }
+    var parameters: Parameters? { get }
+    var encoding: ParameterEncoding { get }
+    var hudShowInView: UIView { get }
+    var timeOutInterval: TimeInterval { get }
 }
 
 
-
-
-
-
-struct sdasada: YHRXAlamofireRequestProtocol {
-    var baseURL: String {
-        return ""
-    }
-    
-    var path: String {
-        return ""
-    }
-    
-    var method: HTTPMethod {
-        return .get
-    }
-    
-    var headers: [String : String]? {
-        return nil
-    }
-    
-    
-}
-func sada() {
-    //SessionManager.default.rx
-    SessionManager.default.rx.yh_httpRequest(request: sdasada()).flatMap{ $0.rx.responseJSON() }.subscribe(onNext: { (json) in
-        
-    }, onError: { (error) in
-        
-    }, onCompleted: {
-        
-    }) {
-        
-    }.dispose()
-    
-    
-    request("", method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { (response) in
-        
-    }.validate(statusCode: [1,2,3])
-}
-
+//func sada() {
+//    //SessionManager.default.rx
+//    SessionManager.default.rx.yh_httpRequest(request: sdasada()).flatMap{ $0.rx.responseJSON() }.subscribe(onNext: { (json) in
+//
+//    }, onError: { (error) in
+//
+//    }, onCompleted: {
+//
+//    }) {
+//
+//    }.dispose()
+//
+//
+//    request("", method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { (response) in
+//
+//    }.validate(statusCode: [1,2,3])
+//}
+//
 
 
 
 
 extension SessionManager: ReactiveCompatible {}
 extension Request: ReactiveCompatible {}
+
+private let yh_rx_disposeBag = DisposeBag()
+
+struct YHRXAlamofire {
+    
+    static func requestJSON(request: YHRXAlamofireRequestProtocol) -> Observable<(JSON, Float)> {
+        return Observable<(JSON, Float)>.create({ (observer) -> Disposable in
+            
+            SessionManager.default.rx.yh_httpRequest(request: request).observeOn(MainScheduler.instance).flatMap({ (dataRequest) -> Observable<(JSON, Float)> in
+                
+                let progressPart = dataRequest.rx.yh_progress()
+                
+                let jsonPart = dataRequest.rx.yh_responseString()
+                
+                
+                
+                print("开始请求")
+                progressPart.observeOn(MainScheduler.instance).subscribe(onNext: { (p) in
+                    print("进度:\(p)")
+                }, onCompleted: {
+                    print("进度停止")
+                }).disposed(by: yh_rx_disposeBag)
+                
+                
+                return Observable<(JSON, Float)>.combineLatest(jsonPart, progressPart){ (JSON($0), $1) }
+            }).observeOn(MainScheduler.instance).subscribe(onNext: { (json, progress) in
+                observer.onNext((json, progress))
+            }, onError: { (error) in
+                observer.onError(error)
+            }, onCompleted: {
+                observer.onCompleted()
+            }).disposed(by: yh_rx_disposeBag)
+            
+            return Disposables.create()
+        })
+    }
+}
+
+
 
 
 
@@ -79,26 +99,30 @@ extension Reactive where Base: SessionManager {
     func yh_httpRequest(request: YHRXAlamofireRequestProtocol) -> Observable<DataRequest> {
         return Observable<DataRequest>.create({ (observer) -> Disposable in
             
-            let request = self.base.request("", method: HTTPMethod.get, parameters: nil, encoding: URLEncoding.default, headers: nil).downloadProgress(closure: { (progress) in
-                
-            }).validate(statusCode: [200, 300])
-            
+            let request = self.base.request(String(target: request), method: request.method, parameters: request.parameters, encoding: request.encoding, headers: request.headers)
             
             if !self.base.startRequestsImmediately {
                 request.resume()
             }
             
             observer.onNext(request)
-            observer.on(.completed)
+            observer.onCompleted()
             
             return Disposables.create {
-                request.cancel()
+//                request.cancel()
             }
         })
     }
-    
-    
-    
+}
+
+extension String {
+    init(target: YHRXAlamofireRequestProtocol) {
+        if target.path.isEmpty {
+            self = target.baseURL
+        } else {
+            self = "\(target.baseURL)\(target.path)"
+        }
+    }
 }
 
 
@@ -168,9 +192,9 @@ extension Reactive where Base: Request {
                 } else {
                     observer.onNext(Float(progress.completedUnitCount) / Float(progress.totalUnitCount))
                 }
-                if progress.completedUnitCount >= progress.totalUnitCount {
-                    observer.onCompleted()
-                }
+//                if progress.completedUnitCount >= progress.totalUnitCount {
+//                    observer.onCompleted()
+//                }
             }
             
             if let dataRequest = self.base as? DataRequest {

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+
 import RxSwift
 import RxCocoa
 import Alamofire
@@ -15,197 +16,120 @@ import UIKit
 
 
 
-protocol YHRXAlamofireRequestProtocol {
+
+public protocol YHAlamofireRequestProtocol {
     var baseURL: String { get }
     var path: String { get }
-    var method: HTTPMethod { get }
+    var method: Alamofire.HTTPMethod { get }
     var headers: [String: String]? { get }
     var isShowHUD: Bool { get }
-    var parameters: Parameters? { get }
-    var encoding: ParameterEncoding { get }
-    var hudShowInView: UIView { get }
-    var timeOutInterval: TimeInterval { get }
+    var parameters: Alamofire.Parameters? { get }
+    var encoding: Alamofire.ParameterEncoding { get }
+    var timeoutInterval: TimeInterval { get }
+    
+    var isForceShowHUDWhenRequest: Bool { get }
+    
+    var isPrintLog: Bool { get }
+    
+    func requestBegin()
+    func requestProgress(progress: Double)
+    func requestEnd()
 }
 
-
-//func sada() {
-//    //SessionManager.default.rx
-//    SessionManager.default.rx.yh_httpRequest(request: sdasada()).flatMap{ $0.rx.responseJSON() }.subscribe(onNext: { (json) in
-//
-//    }, onError: { (error) in
-//
-//    }, onCompleted: {
-//
-//    }) {
-//
-//    }.dispose()
-//
-//
-//    request("", method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { (response) in
-//
-//    }.validate(statusCode: [1,2,3])
-//}
-//
-
-
-
-
-extension SessionManager: ReactiveCompatible {}
-extension Request: ReactiveCompatible {}
-
-private let yh_rx_disposeBag = DisposeBag()
-
-struct YHRXAlamofire {
-    
-    static func requestJSON(request: YHRXAlamofireRequestProtocol) -> Observable<(JSON, Float)> {
-        return Observable<(JSON, Float)>.create({ (observer) -> Disposable in
-            
-            SessionManager.default.rx.yh_httpRequest(request: request).observeOn(MainScheduler.instance).flatMap({ (dataRequest) -> Observable<(JSON, Float)> in
-                
-                let progressPart = dataRequest.rx.yh_progress()
-                
-                let jsonPart = dataRequest.rx.yh_responseString()
-                
-                
-                
-                print("开始请求")
-                progressPart.observeOn(MainScheduler.instance).subscribe(onNext: { (p) in
-                    print("进度:\(p)")
-                }, onCompleted: {
-                    print("进度停止")
-                }).disposed(by: yh_rx_disposeBag)
-                
-                
-                return Observable<(JSON, Float)>.combineLatest(jsonPart, progressPart){ (JSON($0), $1) }
-            }).observeOn(MainScheduler.instance).subscribe(onNext: { (json, progress) in
-                observer.onNext((json, progress))
-            }, onError: { (error) in
-                observer.onError(error)
-            }, onCompleted: {
-                observer.onCompleted()
-            }).disposed(by: yh_rx_disposeBag)
-            
-            return Disposables.create()
-        })
+extension YHAlamofireRequestProtocol {
+    var timeoutInterval: TimeInterval {
+        return 60.0
+    }
+    var isPrintLog: Bool {
+        return true
     }
 }
 
 
 
-
-
-extension Reactive where Base: SessionManager {
-    
-    func yh_httpRequest(request: YHRXAlamofireRequestProtocol) -> Observable<DataRequest> {
-        return Observable<DataRequest>.create({ (observer) -> Disposable in
-            
-            let request = self.base.request(String(target: request), method: request.method, parameters: request.parameters, encoding: request.encoding, headers: request.headers)
-            
-            if !self.base.startRequestsImmediately {
-                request.resume()
-            }
-            
-            observer.onNext(request)
-            observer.onCompleted()
-            
-            return Disposables.create {
-//                request.cancel()
-            }
-        })
-    }
-}
-
-extension String {
-    init(target: YHRXAlamofireRequestProtocol) {
-        if target.path.isEmpty {
-            self = target.baseURL
-        } else {
-            self = "\(target.baseURL)\(target.path)"
+class YHAlamofire {
+    @discardableResult
+    static func request(request: YHAlamofireRequestProtocol, sessionManager: SessionManager = Alamofire.SessionManager.default, completion:@escaping (YHResult<JSON, Error>.result) -> Void) -> DataRequest {
+        var URL = request.baseURL
+        if !request.path.isEmpty {
+            URL = URL + request.path
         }
+        
+        request.requestBegin()
+        request.requestProgress(progress: 0.0)
+        
+        let dataRequest = sessionManager.request(URL, method: request.method, parameters: request.parameters, encoding: request.encoding, headers: request.headers)
+        
+        if let urlRequest = dataRequest.request {
+            var urlRequest = urlRequest
+            urlRequest.timeoutInterval = request.timeoutInterval
+        }
+        
+        dataRequest.downloadProgress(queue: DispatchQueue.main) { (progress) in
+            let totalUnitCount = progress.totalUnitCount
+            let completedUnitCount = progress.completedUnitCount
+            if totalUnitCount > 0 {
+                request.requestProgress(progress: Double(completedUnitCount / totalUnitCount))
+            } else {
+                request.requestProgress(progress: 0.0)
+            }
+            }.responseJSON { (response) in
+                request.requestEnd()
+                if request.isPrintLog {
+                    var log = "\n=============================================================================\n"
+                    log += "URL:               \(URL)\n"
+                    log += "Method:            \(request.method.rawValue)\n"
+                    log += "Headers:           \(request.headers ?? [:])\n"
+                    log += "Parameters:        \(request.parameters ?? [:])\n"
+                    log += "Encoding:          \(request.encoding)\n"
+                    log += "TimeoutInterval:   \(request.timeoutInterval)\n"
+                    log += "=============================================================================\n"
+                    log += "↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓\n"
+                    if let value = response.value {
+                        log += "\(value)\n"
+                    }
+                    if let error = response.error {
+                        log += "\(error)\n"
+                    }
+                    log += "↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑\n"
+                    YHDebugLog(log)
+                }
+                switch response.result {
+                case let .success(value):
+                    let json = JSON(value)
+                    request.requestProgress(progress: 1.0)
+                    completion(.success(json))
+                case let .failure(error):
+                    request.requestProgress(progress: 1.0)
+                    completion(.failure(error))
+                }
+            }
+        return dataRequest
     }
 }
 
 
 
-extension Reactive where Base: DataRequest {
-    func yh_responseJSON() -> Observable<JSON> {
-        return Observable.create({ (observer) -> Disposable  in
-            self.base.responseJSON(completionHandler: { (response) in
-                switch response.result {
-                case let .failure(error):
-                    observer.onError(error)
-                case let .success(value):
-                    observer.onNext(JSON(value))
-                }
-                observer.onCompleted()
-            })
-            return Disposables.create {
-                self.base.cancel()
-            }
-        })
-    }
-    
-    
-    func yh_responseString() -> Observable<String> {
-        return Observable<String>.create({ (observer) -> Disposable in
-            self.base.responseString(completionHandler: { (response) in
-                switch response.result {
-                case let .failure(error):
-                    observer.onError(error)
-                case let .success(value):
-                    observer.onNext(value)
-                }
-                observer.onCompleted()
-            })
-            return Disposables.create {
-                self.base.cancel()
-            }
-        })
-    }
-    
-    func yh_responseData() -> Observable<Data> {
-        return Observable<Data>.create({ (observer) -> Disposable in
-            self.base.responseData(completionHandler: { (response) in
-                switch response.result {
-                case let .failure(error):
-                    observer.onError(error)
-                case let .success(value):
-                    observer.onNext(value)
-                }
-                observer.onCompleted()
-            })
-            return Disposables.create {
-                self.base.cancel()
-            }
-        })
-    }
-}
 
+extension YHAlamofire: ReactiveCompatible {}
 
-extension Reactive where Base: Request {
-    func yh_progress() -> Observable<Float> {
-        return Observable<Float>.create({ (observer) -> Disposable in
+extension Reactive where Base: YHAlamofire {
+    static func requestJSON(request: YHAlamofireRequestProtocol, sessionManager: SessionManager = Alamofire.SessionManager.default) -> Observable<(JSON)> {
+        return Observable<(JSON)>.create({ (observer) -> Disposable in
             
-            let handler: Request.ProgressHandler = { progress in
-                if progress.totalUnitCount <= 0 {
-                    observer.onNext(0.0)
-                } else {
-                    observer.onNext(Float(progress.completedUnitCount) / Float(progress.totalUnitCount))
+            let dataRequest = YHAlamofire.request(request: request, sessionManager: sessionManager, completion: { (result) in
+                switch result.result {
+                case let .success(json):
+                    observer.onNext(json)
+                case let .failure(error):
+                    observer.onError(error)
                 }
-//                if progress.completedUnitCount >= progress.totalUnitCount {
-//                    observer.onCompleted()
-//                }
-            }
+                observer.onCompleted()
+            })
             
-            if let dataRequest = self.base as? DataRequest {
-                dataRequest.downloadProgress(closure: handler)
-            } else if let downloadRequest = self.base as? DownloadRequest {
-                downloadRequest.downloadProgress(closure: handler)
-            } else if let uploadRequest = self.base as? UploadRequest {
-                uploadRequest.uploadProgress(closure: handler)
+            return Disposables.create {
+                dataRequest.cancel()
             }
-            
-            return Disposables.create()
         })
     }
 }

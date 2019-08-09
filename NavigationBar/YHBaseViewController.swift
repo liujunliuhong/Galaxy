@@ -90,10 +90,8 @@ class YHBaseViewController: UIViewController {
     // Set the default status bar style based on the values in info. plist.
     override var preferredStatusBarStyle: UIStatusBarStyle{
         let infoDic = Bundle.main.infoDictionary
-        if let infoDic = infoDic,  let style = infoDic["UIStatusBarStyle"] as? String {
-            if style == "UIStatusBarStyleLightContent" {
-                return .lightContent
-            }
+        if let infoDic = infoDic, let style = infoDic["UIStatusBarStyle"] as? String, style == "UIStatusBarStyleLightContent" {
+            return .lightContent
         }
         return .default
     }

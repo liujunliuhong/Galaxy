@@ -12,13 +12,13 @@ import MBProgressHUD
 struct YHHUD {
     // MARK: - MBProgressHUD -- 针对MBProgressHUD的简单封装
     // must in main thread.
-    static func showMBHUD(_ message: String? = nil, in view: UIView = UIApplication.shared.keyWindow!) -> MBProgressHUD {
+    static func showMBHUD(_ message: String? = nil, _ hudColor: UIColor = .black, _ contentColor: UIColor = .white, in view: UIView = UIApplication.shared.keyWindow!) -> MBProgressHUD {
         assert(Thread.isMainThread, "MBProgressHUD must in main thread.")
         let hud = MBProgressHUD.showAdded(to: view, animated: true)
         hud.mode = .indeterminate
-        hud.contentColor = .white
+        hud.contentColor = contentColor
         hud.bezelView.style = .solidColor
-        hud.bezelView.color = UIColor.black.withAlphaComponent(1)
+        hud.bezelView.color = hudColor
         if let message = message, message.count > 0 {
             hud.label.text = message
             hud.label.numberOfLines = 0

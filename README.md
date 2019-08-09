@@ -4,11 +4,14 @@ Swift版本的开发工具，旨在帮助开发人员快速开发，未完，持
 ## 由于经常更新，不支持pod，请手动导入
 ## 使用到的三方库:
 ```
-pod 'Moya'
 pod 'MBProgressHUD'
 pod 'SnapKit'
 pod 'RxSwift'
 pod 'RxCocoa'
+pod 'Result'
+pod 'Then'
+pod 'SwiftyJSON'
+pod 'Alamofire'
 ```
 ## 请在自己项目的桥接文件里面引入`#import "YHSwiftTool_OC_Header.h"`
 ```

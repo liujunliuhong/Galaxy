@@ -43,7 +43,7 @@ class YHCusNavigationBar: UIView {
         // Remove observe.
         for (_, item) in leftItems.enumerated() {
             if let item = item as? YHCusNavigationBarItem {
-                item .removeObserver(self, forKeyPath: "width")
+                item.removeObserver(self, forKeyPath: "width")
             }
         }
         for (_, item) in rightItems.enumerated() {

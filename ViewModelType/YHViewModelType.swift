@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol YHViewModelType {
+public protocol YHViewModelType {
     associatedtype Input
     associatedtype Output
     func transform(input: Input) -> Output

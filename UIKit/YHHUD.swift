@@ -9,10 +9,10 @@
 import Foundation
 import MBProgressHUD
 
-struct YHHUD {
+struct YHMBHUD {
     // MARK: - MBProgressHUD -- 针对MBProgressHUD的简单封装
     // must in main thread.
-    static func showMBHUD(_ message: String? = nil, _ hudColor: UIColor = .black, _ contentColor: UIColor = .white, in view: UIView = UIApplication.shared.keyWindow!) -> MBProgressHUD {
+    static func showHUD(_ message: String? = nil, _ hudColor: UIColor = .black, _ contentColor: UIColor = .white, in view: UIView = UIApplication.shared.keyWindow!) -> MBProgressHUD {
         assert(Thread.isMainThread, "MBProgressHUD must in main thread.")
         let hud = MBProgressHUD.showAdded(to: view, animated: true)
         hud.mode = .indeterminate
@@ -27,7 +27,7 @@ struct YHHUD {
         return hud
     }
     
-    static func hideMBHUD(_ hud: MBProgressHUD?, closure:(()->())? = nil) -> Void {
+    static func hideHUD(_ hud: MBProgressHUD?, closure:(()->())? = nil) -> Void {
         guard let hud = hud else { return }
         DispatchQueue.main.async {
             hud.hide(animated: true)
@@ -35,7 +35,7 @@ struct YHHUD {
         }
     }
     
-    static func onlyShowMBHUD(_ message: String?, in view: UIView = UIApplication.shared.keyWindow!, afterDelay: TimeInterval = 1.0, closure:(()->())? = nil) -> Void {
+    static func onlyShowTextHUD(_ message: String?, in view: UIView = UIApplication.shared.keyWindow!, afterDelay: TimeInterval = 1.5, closure:(()->())? = nil) -> Void {
         guard let message = message else {
             return
         }
@@ -52,12 +52,5 @@ struct YHHUD {
             hud.completionBlock = closure
         }
     }
-    
-    // MARK: - <#Description#>
-    
-    
-    
-    
-    
 }
 

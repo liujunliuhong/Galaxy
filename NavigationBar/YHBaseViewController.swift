@@ -10,44 +10,33 @@ import UIKit
 import SnapKit
 
 
-/// 和YHCusNavigationBar耦合的一个BaseVC，包含一个cusNaviBar和safeAreaView，safeAreaView已经做了适配
+// 和YHCusNavigationBar耦合的一个BaseVC，包含一个cusNaviBar和safeAreaView，safeAreaView已经做了适配
+// 主要处理了屏幕旋转相关的问题
+// 也可以单独把YHCusNavigationBar拿出来用
 class YHBaseViewController: UIViewController {
-
-    //    let cusNaviBar: YHCusNavigationBar
-    //    let safeAreaView: UIView
-    //
-    //    init() {
-    //        self.cusNaviBar = YHCusNavigationBar()
-    //        self.cusNaviBar.isHideNaviBar = false
-    //
-    //        self.safeAreaView = UIView()
-    //
-    //        super.init(nibName: nil, bundle: nil)
-    //    }
-    
-    //    required init?(coder aDecoder: NSCoder) {
-    //        fatalError("init(coder:) has not been implemented")
-    //    }
-    
-    lazy var cusNaviBar: YHCusNavigationBar = {
-        let cusBar = YHCusNavigationBar()
-        cusBar.isHideNaviBar = true
-        return cusBar
+    public lazy var cusNaviBar: YHCusNavigationBar = {
+        let cusNaviBar = YHCusNavigationBar()
+        cusNaviBar.hideNaviBar = false
+        cusNaviBar.hideBar = false
+        cusNaviBar.hideToolBar = true
+        cusNaviBar.hideStatusBar = false
+        return cusNaviBar
     }()
     
-    lazy var safeAreaView: UIView = {
+    public lazy var safeAreaView: UIView = {
         let safeView = UIView()
         return safeView
     }()
     
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.view.addSubview(cusNaviBar)
-        
         self.view.addSubview(safeAreaView)
+        
+        self.cusNaviBar.reloadUI(origin: .zero, width: self.view.frame.size.width)
+        
         safeAreaView.snp.makeConstraints { (make) in
             make.top.equalTo(self.cusNaviBar.snp.bottom)
             if #available(iOS 11.0, *) {

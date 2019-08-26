@@ -7,277 +7,209 @@
 //
 
 import UIKit
-/*
- 自定义导航栏需要注意些什么？
- 
- 1、耦合性要低。
- 如果接手一个别人写的项目，那么就尽量不要去改动别人写的代码。如果别人接手我写的代码，那么别人可以在不改动我代码的情况下，加入自己的逻辑
- 
- 2、灵活
- 
- */
 
-class YHCusNavigationBarItem: NSObject {
+
+public struct YHCusNavigationBarItem {
     var view: UIView!
-    @objc dynamic var width: CGFloat = 50.0
+    var width: CGFloat = 50.0
 }
 
-class YHCusNavigationSpaceItem: NSObject {
+public struct YHCusNavigationSpaceItem {
     var space: CGFloat = 0.0
 }
 
-class YHCusNavigationToolItem: NSObject {
-    var item: UIView!
+public struct YHCusNavigationToolItem {
+    var view: UIView!
     var height: CGFloat = 0.0
 }
 
+private struct YHCusNavigationBarAssociatedKeys {
+    static var gradientKey = "com.yinhe.customNavigationBar.gradientLayer.key"
+}
+
 /*
- 继承自UIView
- 对屏幕旋转已经做了适配
+ 自定义导航栏，继承自UIView
+ 没有什么技术点，就是几个view的排版
 */
-class YHCusNavigationBar: UIView {
+public class YHCusNavigationBar: UIView {
     
     deinit {
         YHDebugLog("\(NSStringFromClass(YHCusNavigationBar.classForCoder())) deinit")
-        
-        // Remove observe.
-        for (_, item) in leftItems.enumerated() {
-            if let item = item as? YHCusNavigationBarItem {
-                item.removeObserver(self, forKeyPath: "width")
-            }
-        }
-        for (_, item) in rightItems.enumerated() {
-            if let item = item as? YHCusNavigationBarItem {
-                item .removeObserver(self, forKeyPath: "width")
-            }
-        }
-        if let toolItem = toolItem {
-            toolItem.removeObserver(self, forKeyPath: "height")
-        }
     }
     
+    private lazy var lineView: UIView = {
+        let lineView = UIView()
+        return lineView
+    }()
     
-    private let line: UIView!
+    public lazy var titleView: UIView = {
+        let titleView = UIView()
+        titleView.backgroundColor = UIColor.clear
+        return titleView
+    }()
     
-    var gradientLayer: CAGradientLayer? {
-        didSet {
-            setupItems()
-        }
-    }
+    public lazy var barView: UIView = {
+        let barView = UIView()
+        barView.backgroundColor = UIColor.clear
+        return barView
+    }()
     
-    // If is nil, toolItem will not be displayed.
-    var toolItem: YHCusNavigationToolItem? {
-        didSet {
-            setupBar()
-            setupItems()
-        }
-    }
+    public lazy var toolView: UIView = {
+        let toolView = UIView()
+        toolView.backgroundColor = UIColor.clear
+        return toolView
+    }()
     
     private let barHeight: CGFloat = 44.0
     
-    var naviBarWidth: CGFloat {
+    public var gradientLayer: CAGradientLayer?
+    public var hideNaviBar: Bool = true // 是否隐藏整个自定义导航栏
+    public var hideBar: Bool = false // 是否隐藏bar
+    public var hideStatusBar: Bool = false // 是否隐藏顶部statusBar空白
+    public var hideToolBar: Bool = false // 是否隐藏底部工具栏
+    public var leftItems: [Any] = []
+    public var rightItems: [Any] = []
+    public var toolItem: YHCusNavigationToolItem?
+    
+    public var lineColor: UIColor = UIColor.gray {
         didSet {
-            setupBar()
-            setupItems()
+            self.lineView.backgroundColor = lineColor
         }
     }
     
-    var isHideBar: Bool = false {
+    public var hideLine: Bool = false {
         didSet {
-            setupBar()
-            setupItems()
+            self.lineView.backgroundColor = UIColor.clear
         }
     }
     
-    var isHideNaviBar: Bool = true {
-        didSet {
-            setupBar()
-            setupItems()
-        }
-    }
-    
-    
-    var leftItems = [Any]() {
-        didSet {
-            setupItems()
-        }
-    }
-    var rightItems = [Any]() {
-        didSet {
-            setupItems()
-        }
-    }
-    
-    private var statusBarHeight: CGFloat {
-        if UIApplication.shared.isStatusBarHidden {
-            return 0.0
-        } else {
-            return UIApplication.shared.statusBarFrame.size.height
-        }
-    }
-    
-    // If is nil, titleView will not be displayed.
-    var titleView: UIView? {
-        didSet {
-            setupItems()
-        }
-    }
-    
-    var lineColor: UIColor = UIColor.YH_RGBA(R: 211, G: 210, B: 211) {
-        didSet {
-            self.line.backgroundColor = self.lineColor
-        }
-    }
-    
-    var isHideLine: Bool = false {
-        didSet {
-            self.line.isHidden = self.isHideLine
-        }
-    }
-    
-    init(with naviBarWidth: CGFloat = UIDevice.YH_Width()) {
-        self.naviBarWidth = naviBarWidth
+    init() {
+        super.init(frame: .zero)
+        self.backgroundColor = UIColor.white
+        self.barView.backgroundColor = UIColor.clear
         
-        self.line = UIView()
-        self.line.backgroundColor = lineColor
-        self.line.isHidden = isHideLine
-        
-        super.init(frame: .zero);
-        
-        backgroundColor = .purple
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            self.setupBar()
-            self.setupItems()
-        }
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(didChangeStatusBarFrame(noti:)), name: UIApplication.didChangeStatusBarFrameNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(didChangeStatusBarOrientation(noti:)), name: UIApplication.didChangeStatusBarOrientationNotification, object: nil)
+        addSubview(barView)
+        addSubview(toolView)
+        addSubview(lineView)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    // MARK: - Notification
-    @objc
-    func didChangeStatusBarFrame(noti: Notification) {
-        // Why delay 0.1 seconds? If there is no delay, the height of the status bar is not correct.
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            self.naviBarWidth = UIDevice.YH_Width()
-        }
+    
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        
     }
     
-    @objc
-    func didChangeStatusBarOrientation(noti: Notification) {
-        // Why delay 0.1 seconds? If there is no delay, the height of the status bar is not correct.
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            self.naviBarWidth = UIDevice.YH_Width()
-        }
-    }
-    
-    
-    // MARK: - Methods
-    func setupBar() {
-        isHidden = isHideNaviBar
-        if isHideNaviBar {
+    /// 各个属性设置完成之后，调用此方法进行布局更新
+    ///
+    /// - Parameters:
+    ///   - origin: 自定义导航栏的origin，默认zero，在VC中表示左上角
+    ///   - width: 自定义导航栏的宽度，默认屏幕宽度
+    public func reloadUI(origin: CGPoint = .zero, width: CGFloat = UIScreen.main.bounds.size.width) {
+        if self.hideNaviBar {
+            self.barView.isHidden = true
+            self.toolView.isHidden = true
+            self.lineView.isHidden = true
+            self.frame = .zero
+            self.barView.frame = .zero
+            self.toolView.frame = .zero
             return
         }
+        let ox: CGFloat = origin.x
+        let oy: CGFloat = origin.y
+        var height: CGFloat = 0.0
         
-        let o_x: CGFloat = 0.0
-        let o_y: CGFloat = 0.0
-        let width: CGFloat = naviBarWidth
-        var height: CGFloat = statusBarHeight + barHeight
-        if let toolItem = toolItem {
-            height += toolItem.height
+        if !self.hideStatusBar && !UIApplication.shared.isStatusBarHidden {
+            height = height + UIApplication.shared.statusBarFrame.size.height
         }
-
-        frame = CGRect(x: o_x, y: o_y, width: width, height: height)
-    }
-    
-    
-    func setupItems() {
-        // Remove.
-        for (_, view) in subviews.enumerated() {
+        
+        
+        
+        if !self.hideBar {
+            self.barView.isHidden = false
+            self.barView.frame = CGRect(x: ox, y: height, width: width, height: self.barHeight)
+            height = height + self.barHeight
+        } else {
+            self.barView.isHidden = true
+            self.barView.frame = .zero
+        }
+        
+        
+        self.toolView.subviews.forEach { (view) in
             view.removeFromSuperview()
         }
-        if let gradientLayer = gradientLayer {
-            gradientLayer.removeFromSuperlayer()
+        if let toolItem = self.toolItem, !self.hideToolBar, toolItem.height > 0.0 {
+            self.toolView.isHidden = false
+            self.toolView.frame = CGRect(x: ox, y: height, width: width, height: toolItem.height)
+            self.toolView.addSubview(toolItem.view)
+            toolItem.view.frame = self.toolView.bounds
+            height = height + toolItem.height
+        } else {
+            self.toolView.isHidden = true
+            self.toolView.frame = .zero
         }
         
-        // Add Tool Item.
-        if let toolItem = toolItem {
-            toolItem.addObserver(self, forKeyPath: "height", options: [.new, .old], context: nil)
-            addSubview(toolItem.item)
-            toolItem.item.frame = CGRect(x: 0.0, y: frame.size.height - toolItem.height, width: frame.size.width, height: toolItem.height)
+        
+        
+        
+        
+        
+        // frame
+        self.frame = CGRect(x: ox, y: oy, width: width, height: height)
+        
+        
+        
+        
+        self.barView.subviews.forEach { (view) in
+            view.removeFromSuperview()
+        }
+        var leftDistance: CGFloat = 0.0
+        for (_, item) in self.leftItems.enumerated() {
+            if let spaceItem = item as? YHCusNavigationSpaceItem {
+                leftDistance = leftDistance + spaceItem.space
+            } else if let item = item as? YHCusNavigationBarItem {
+                self.barView.addSubview(item.view)
+                item.view.frame = CGRect(x: leftDistance, y: 0, width: item.width, height: self.barHeight)
+                leftDistance = leftDistance + item.width
+            }
         }
         
-        // Add Bar Item.
-        if !isHideBar {
-            var leftWidth: CGFloat = 0.0
-            
-            var toolHeight: CGFloat = 0.0
-            if let toolItem = toolItem {
-                toolHeight = toolItem.height
-            }
-            
-            for (_, item) in leftItems.enumerated() {
-                if let spaceItem = item as? YHCusNavigationSpaceItem {
-                    leftWidth += spaceItem.space
-                } else if let item = item as? YHCusNavigationBarItem {
-                    item.addObserver(self, forKeyPath: "width", options: [.new, .old], context: nil)
-                    addSubview(item.view)
-                    
-                    item.view.frame = CGRect(x: leftWidth, y: frame.size.height - barHeight - toolHeight, width: item.width, height: barHeight)
-                    
-                    leftWidth += item.width
-                    
-                    item.view.backgroundColor = UIColor.YH_RandomColor()
-                }
-            }
-            
-            var rightWidth: CGFloat = 0.0
-            for (_, item) in rightItems.enumerated().reversed() {
-                if let spaceItem = item as? YHCusNavigationSpaceItem {
-                    rightWidth += spaceItem.space
-                } else if let item = item as? YHCusNavigationBarItem {
-                    item.addObserver(self, forKeyPath: "width", options: [.new, .old], context: nil)
-                    addSubview(item.view)
-                    
-                    item.view.frame = CGRect(x: naviBarWidth - rightWidth - item.width, y: frame.size.height - barHeight - toolHeight, width: item.width, height: barHeight)
-                    
-                    rightWidth += item.width
-                    
-                    item.view.backgroundColor = UIColor.YH_RandomColor()
-                }
-            }
-            
-            let titleWidth = (naviBarWidth / 2.0 - max(leftWidth, rightWidth)) * 2;
-            if titleWidth > 0, let titleView = titleView {
-                addSubview(titleView)
-                titleView.frame = CGRect(x: (naviBarWidth - titleWidth) / 2.0, y: frame.size.height - barHeight - toolHeight, width: titleWidth, height: barHeight)
+        var rightDistance: CGFloat = 0.0
+        for (_, item) in rightItems.enumerated().reversed() {
+            if let spaceItem = item as? YHCusNavigationSpaceItem {
+                rightDistance = rightDistance + spaceItem.space
+            } else if let item = item as? YHCusNavigationBarItem {
+                self.barView.addSubview(item.view)
+                item.view.frame = CGRect(x: width - rightDistance - item.width, y: 0, width: item.width, height: self.barHeight)
+                rightDistance = rightDistance + item.width
             }
         }
-        // Add Line.
-        addSubview(line)
-        line.frame = CGRect(x: 0, y: frame.size.height - 0.5, width: naviBarWidth, height: 0.5);
         
-        // Add GradientLayer.
-        if let gradientLayer = gradientLayer {
+        let titleWidth = (width / 2.0 - max(leftDistance, rightDistance)) * 2;
+        if titleWidth > 0 {
+            self.barView.addSubview(self.titleView)
+            titleView.frame = CGRect(x: (width - titleWidth) / 2.0, y: 0, width: titleWidth, height: self.barHeight)
+        }
+        
+        
+        if !self.hideBar {
+            self.lineView.frame = CGRect(x: ox, y: self.barView.frame.origin.y + self.barView.frame.size.height - 0.7, width: width, height: 0.7)
+        }
+        
+        
+        
+        
+        let tmpGradientLayer = objc_getAssociatedObject(self, &YHCusNavigationBarAssociatedKeys.gradientKey)
+        if let tmpGradientLayer = tmpGradientLayer as? CAGradientLayer {
+            tmpGradientLayer.removeFromSuperlayer()
+        }
+        if let gradientLayer = self.gradientLayer {
+            objc_setAssociatedObject(self, &YHCusNavigationBarAssociatedKeys.gradientKey, gradientLayer, .OBJC_ASSOCIATION_ASSIGN)
             gradientLayer.frame = self.bounds
-            layer.insertSublayer(gradientLayer, at: 0)
-        }
-    }
-
-    // KVO.
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if keyPath == "width", let item = object as? YHCusNavigationBarItem {
-            item.removeObserver(self, forKeyPath: keyPath!)
-            setupItems()
-        } else if keyPath == "height", let toolItem = object as? YHCusNavigationToolItem {
-            toolItem.removeObserver(self, forKeyPath: keyPath!)
-            setupBar()
-            setupItems()
+            self.layer.insertSublayer(gradientLayer, at: 0)
         }
     }
 }

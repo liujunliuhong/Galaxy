@@ -1,8 +1,8 @@
 //
-//  YHDeviceExtension.swift
-//  SwiftTool
+//  UIDevice+YHExtension.swift
+//  FNDating
 //
-//  Created by apple on 2019/6/26.
+//  Created by apple on 2019/8/26.
 //  Copyright © 2019 yinhe. All rights reserved.
 //
 
@@ -11,55 +11,44 @@ import UIKit
 
 
 extension UIDevice {
-    
-    static func YH_Width() -> CGFloat {
+    public static var YH_Width: CGFloat {
         return UIScreen.main.bounds.size.width
     }
     
-    static func YH_Height() -> CGFloat {
-        return UIScreen.main.bounds.size.height
+    public static var YH_Height: CGFloat {
+        return UIScreen.main.bounds.size.width
     }
     
-    
-    static var YH_IsIphoneX: Bool {
-        let orientation = UIApplication.shared.statusBarOrientation
-        switch orientation {
-        case .portrait, .portraitUpsideDown:
-            if (UIDevice.YH_Width() == 375.0 && UIDevice.YH_Height() == 812.0) || (UIDevice.YH_Width() == 414.0 || UIDevice.YH_Height() == 896.0) {
-                return true
-            } else {
-                return false
-            }
-        default:
-            if (UIDevice.YH_Width() == 812.0 && UIDevice.YH_Height() == 375.0) || (UIDevice.YH_Width() == 896.0 || UIDevice.YH_Height() == 414.0) {
-                return true
-            } else {
-                return false
-            }
+    // Get machine name, such as `iPhone 7 Plus`.
+    public static var YHMachineName: String {
+        let machine = UIDevice.YHMachine
+        
+        if let map = UIDevice.YHMachineMap[machine] {
+            return map.rawValue
+        } else {
+            return "Unknown Identifier: \(machine)"
         }
     }
     
-    var YH_BottomHeight: CGFloat {
-        if UIDevice.YH_IsIphoneX {
-            let orientation = UIApplication.shared.statusBarOrientation
-            switch orientation {
-            case .portrait, .portraitUpsideDown:
-                return 34.0
-            default:
-                return 21.0
-            }
+    // Print Device Info.
+    public static func YHPrintBasicDeviceInfo() {
+        YHDebugLog("\n*****************************************************************************************************************\nSysname:          \(UIDevice.YHSysname)\nRelease:          \(UIDevice.YHRelease)\nVersion:          \(UIDevice.YHVersion)\nMachine:          \(UIDevice.YHMachine)\nSystemVersion:    \(UIDevice.current.systemVersion)\nMachineName:      \(UIDevice.YHMachineName)\n*****************************************************************************************************************")
+    }
+    
+    public static var YH_Is_iPhoneX: Bool {
+        let machine = UIDevice.YHMachine
+        if let map = UIDevice.YHMachineMap[machine] {
+            return map == .iPhoneX || map == .iPhoneXR || map == .iPhoneXS || map == .iPhoneX_S_Max
         } else {
-            return 0.0
+            return false
         }
     }
 }
 
 
-
-
 // Example:https://www.theiphonewiki.com/wiki/Models#iPhone
 extension UIDevice {
-    enum YHDeviceMachineType: String {
+    public enum YHDeviceMachineType: String {
         // iPhone
         case iPhoneX_S_Max                                              = "iPhone XS Max"
         case iPhoneXS                                                   = "iPhone XS"
@@ -132,7 +121,7 @@ extension UIDevice {
         case simulator                                                  = "simulator"
     }
     
-    static var YHMachineMap: [String: YHDeviceMachineType] = [
+    public static var YHMachineMap: [String: YHDeviceMachineType] = [
         // iPhone
         "iPhone1,1"            :          .iPhone,
         "iPhone1,2"            :          .iPhone_3G,
@@ -257,68 +246,44 @@ extension UIDevice {
         "i386"                 :          .simulator,
         "x86_64"               :          .simulator
     ]
-    
-    
-    // Get utsname instance.
-    private static func YHSys() -> utsname {
+}
+
+
+extension UIDevice {
+    private static var YHSys: utsname {
         var sys: utsname = utsname()
         uname(&sys)
         return sys
     }
     
-    // Get utsname.machine.
-    static func YHMachine() -> String {
-        var sys = UIDevice.YHSys()
+    private static var YHMachine: String {
+        var sys = UIDevice.YHSys
         return withUnsafePointer(to: &sys.machine) {
             $0.withMemoryRebound(to: CChar.self, capacity: 1) { ptr in String(validatingUTF8: ptr) } ?? UIDevice.current.systemVersion
         }
     }
-    
-    // Get utsname.release.
-    static func YHRelease() -> String {
-        var sys = UIDevice.YHSys()
+    private static var YHRelease: String {
+        var sys = UIDevice.YHSys
         return withUnsafePointer(to: &sys.release) {
             $0.withMemoryRebound(to: CChar.self, capacity: 1) { ptr in String(validatingUTF8: ptr) } ?? UIDevice.current.systemVersion
         }
     }
-    
-    // Get utsname.version.
-    static func YHVersion() -> String {
-        var sys = UIDevice.YHSys()
+    private static var YHVersion: String {
+        var sys = UIDevice.YHSys
         return withUnsafePointer(to: &sys.version) {
             $0.withMemoryRebound(to: CChar.self, capacity: 1) { ptr in String(validatingUTF8: ptr) } ?? UIDevice.current.systemVersion
         }
     }
-    
-    // Get utsname.sysname.
-    static func YHSysname() -> String {
-        var sys = UIDevice.YHSys()
+    private static var YHSysname: String {
+        var sys = UIDevice.YHSys
         return withUnsafePointer(to: &sys.sysname) {
             $0.withMemoryRebound(to: CChar.self, capacity: 1) { ptr in String(validatingUTF8: ptr) } ?? UIDevice.current.systemVersion
         }
     }
-    
-    // Get utsname.nodename.
-    static func YHNodename() -> String {
-        var sys = UIDevice.YHSys()
+    private static var YHNodename: String {
+        var sys = UIDevice.YHSys
         return withUnsafePointer(to: &sys.nodename) {
             $0.withMemoryRebound(to: CChar.self, capacity: 1) { ptr in String(validatingUTF8: ptr) } ?? UIDevice.current.systemVersion
         }
-    }
-    
-    // Get machine name, such as `iPhone 7 Plus`.
-    static func YHMachineName() -> String {
-        let machine = UIDevice.YHMachine()
-
-        if let map = UIDevice.YHMachineMap[machine] {
-            return map.rawValue
-        } else {
-            return "Unknown Identifier: \(machine)"
-        }
-    }
-    
-    // Print basic info
-    static func YHPrintBasicInfo() {
-        YHDebugLog("\n*****************************************************************************************************************\nsysname:          \(UIDevice.YHSysname())\nrelease:          \(UIDevice.YHRelease())\nversion:          \(UIDevice.YHVersion())\nmachine:          \(UIDevice.YHMachine())\nsystemVersion:    \(UIDevice.current.systemVersion)\nmachineName:      \(UIDevice.YHMachineName())\n*****************************************************************************************************************")
     }
 }

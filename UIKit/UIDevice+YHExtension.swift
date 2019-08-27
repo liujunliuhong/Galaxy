@@ -54,6 +54,7 @@ extension UIDevice {
         case iPhoneXS                                                   = "iPhone XS"
         case iPhoneXR                                                   = "iPhone XR"
         case iPhoneX                                                    = "iPhone X"
+        
         case iPhone_8_Plus                                              = "iPhone 8 Plus"
         case iPhone_8                                                   = "iPhone 8"
         case iPhone_7_Plus                                              = "iPhone 7 Plus"

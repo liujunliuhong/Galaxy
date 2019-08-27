@@ -25,3 +25,92 @@ navi -> rootVC ->
 其中rootVC可以做很多事情，比如管理登录模块和home模块的切换；一些初始化方法，等等。。。
 
 
+extension UINavigationController {
+    open override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+        if let childVC = self.topViewController?.children.last {
+            return childVC.preferredStatusBarUpdateAnimation
+        }
+        return self.topViewController?.preferredStatusBarUpdateAnimation ?? .fade
+    }
+
+    open override var childForStatusBarHidden: UIViewController? {
+        if let childVC = self.topViewController?.children.last {
+            return childVC
+        }
+        return self.topViewController
+    }
+
+
+
+    open override var childForStatusBarStyle: UIViewController? {
+        if let childVC = self.topViewController?.children.last {
+            return childVC
+        }
+        return self.topViewController
+    }
+
+    open override var shouldAutorotate: Bool {
+        if let childVC = self.topViewController?.children.last {
+            return childVC.shouldAutorotate
+        }
+        return self.topViewController?.shouldAutorotate ?? false
+    }
+
+    open override var childForHomeIndicatorAutoHidden: UIViewController? {
+        if let childVC = self.topViewController?.children.last {
+            return childVC
+        }
+        return self.topViewController
+    }
+
+    open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        if let childVC = self.topViewController?.children.last {
+            return childVC.supportedInterfaceOrientations
+        }
+        return self.topViewController?.supportedInterfaceOrientations ?? .all
+    }
+
+    open override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
+        if let childVC = self.topViewController?.children.last {
+            return childVC.preferredInterfaceOrientationForPresentation
+        }
+        return self.topViewController?.preferredInterfaceOrientationForPresentation ?? .portrait
+        }
+    }
+
+extension UITabBarController {
+    open override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+        return self.selectedViewController?.preferredStatusBarUpdateAnimation ?? .none
+    }
+
+    open override var childForStatusBarStyle: UIViewController? {
+        return self.selectedViewController?.childForStatusBarStyle
+    }
+
+    open override var childForHomeIndicatorAutoHidden: UIViewController?{
+            return self.selectedViewController
+    }
+
+    open override var childForStatusBarHidden: UIViewController? {
+        return self.selectedViewController?.childForStatusBarHidden
+    }
+
+    open override var shouldAutorotate: Bool{
+        return self.selectedViewController?.shouldAutorotate ?? false
+    }
+
+    open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .all
+    }
+
+    open override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
+        return self.selectedViewController?.preferredInterfaceOrientationForPresentation ?? .portrait
+    }
+}
+
+func YH_ForcedToRotation(_ rotation: UIInterfaceOrientation) {
+    let unkown = NSNumber.init(value: UIInterfaceOrientation.unknown.rawValue)
+    UIDevice.current.setValue(unkown, forKey: "orientation")
+    let set = NSNumber.init(value: rotation.rawValue)
+    UIDevice.current.setValue(set, forKey: "orientation")
+}

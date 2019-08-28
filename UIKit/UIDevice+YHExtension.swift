@@ -50,10 +50,12 @@ extension UIDevice {
 extension UIDevice {
     public enum YHDeviceMachineType: String {
         // iPhone
+        /*********************************| iPhone X系列，有刘海屏 |**************************************/
         case iPhoneX_S_Max                                              = "iPhone XS Max"
         case iPhoneXS                                                   = "iPhone XS"
         case iPhoneXR                                                   = "iPhone XR"
         case iPhoneX                                                    = "iPhone X"
+        
         
         case iPhone_8_Plus                                              = "iPhone 8 Plus"
         case iPhone_8                                                   = "iPhone 8"

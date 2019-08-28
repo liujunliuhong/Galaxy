@@ -16,7 +16,7 @@ import SnapKit
 class YHBaseViewController: UIViewController {
     public lazy var cusNaviBar: YHCusNavigationBar = {
         let cusNaviBar = YHCusNavigationBar()
-        cusNaviBar.hideNaviBar = false
+        cusNaviBar.hideNaviBar = true // 默认隐藏整个导航栏，避免bug：如果设置为true，进入一个需要隐藏导航栏的界面时，导航栏会闪一下
         cusNaviBar.hideBar = false
         cusNaviBar.hideToolBar = true
         cusNaviBar.hideStatusBar = false

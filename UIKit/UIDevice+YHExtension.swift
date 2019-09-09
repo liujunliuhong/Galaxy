@@ -35,7 +35,9 @@ extension UIDevice {
         YHDebugLog("\n*****************************************************************************************************************\nSysname:          \(UIDevice.YHSysname)\nRelease:          \(UIDevice.YHRelease)\nVersion:          \(UIDevice.YHVersion)\nMachine:          \(UIDevice.YHMachine)\nSystemVersion:    \(UIDevice.current.systemVersion)\nMachineName:      \(UIDevice.YHMachineName)\n*****************************************************************************************************************")
     }
     
-    public static var YH_Is_iPhoneX: Bool {
+    
+    /// 是否是刘海屏手机
+    public static var YH_Is_Fringe: Bool {
         let machine = UIDevice.YHMachine
         if let map = UIDevice.YHMachineMap[machine] {
             return map == .iPhoneX || map == .iPhoneXR || map == .iPhoneXS || map == .iPhoneX_S_Max

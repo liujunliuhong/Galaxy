@@ -75,8 +75,8 @@ extension UINavigationController {
             return childVC.preferredInterfaceOrientationForPresentation
         }
         return self.topViewController?.preferredInterfaceOrientationForPresentation ?? .portrait
-        }
     }
+}
 
 extension UITabBarController {
     open override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {

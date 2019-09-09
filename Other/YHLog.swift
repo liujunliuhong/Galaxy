@@ -8,30 +8,30 @@
 
 import Foundation
 
+#if canImport(CocoaLumberjack)
+import CocoaLumberjack
+#endif
+
 enum YHDebugLogType {
     case info
     case warning
     case error
 }
 
-func YHDebugLog<T>(_ message: T, type: YHDebugLogType = .info, file: String = #file, line: Int = #line) {
+func YHDebugLog<T>(_ message: T, file: String = #file, line: Int = #line) {
+    #if canImport(CocoaLumberjack)
+    let filName = (file as NSString).lastPathComponent
+    let msg = "[\(filName)] [\(line)] \(message)"
+    DDLogDebug(msg)
+    #else
     #if DEBUG
     let dateFormatter: DateFormatter = DateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss";
     let time = dateFormatter.string(from: Date())
-    
-    let type = type
-    var typeFormat = "INFO"
-    switch type {
-    case .info:
-        typeFormat = "👉"
-    case .warning:
-        typeFormat = "❗️"
-    case .error:
-        typeFormat = "❌"
-    }
-    
     let filName = (file as NSString).lastPathComponent
-    print("[\(typeFormat)] [\(time)] [\(filName)] [\(line)] \(message)")
+    print("[👉] [\(time)] [\(filName)] [\(line)] \(message)")
+    #endif
     #endif
 }
+
+

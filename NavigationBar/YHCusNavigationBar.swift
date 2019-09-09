@@ -122,8 +122,21 @@ public class YHCusNavigationBar: UIView {
         let oy: CGFloat = origin.y
         var height: CGFloat = 0.0
         
+        /*
         if !self.hideStatusBar && !UIApplication.shared.isStatusBarHidden {
             height = height + UIApplication.shared.statusBarFrame.size.height
+        }
+        */
+        if !self.hideStatusBar {
+            if !UIApplication.shared.isStatusBarHidden {
+                height = height + UIApplication.shared.statusBarFrame.size.height
+            } else {
+                if UIDevice.YH_Is_Fringe {
+                    height = height + 44.0
+                } else {
+                    height = height + 20.0
+                }
+            }
         }
         
         

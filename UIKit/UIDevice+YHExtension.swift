@@ -36,13 +36,53 @@ extension UIDevice {
     }
     
     
-    /// 是否是刘海屏手机
+    /// 是否是刘海屏手机(兼容所有iPhone)
     public static var YH_Is_Fringe: Bool {
         let machine = UIDevice.YHMachine
         if let map = UIDevice.YHMachineMap[machine] {
             return map == .iPhoneX || map == .iPhoneXR || map == .iPhoneXS || map == .iPhoneX_S_Max
         } else {
             return false
+        }
+    }
+    
+    /// 刘海高度(其实就是StatusBar的高度,兼容所有iPhone)
+    public static var YH_Fringe_Height: CGFloat {
+        let machine = UIDevice.YHMachine
+        if let map = UIDevice.YHMachineMap[machine] {
+            if map == .iPhoneX || map == .iPhoneXR || map == .iPhoneXS || map == .iPhoneX_S_Max {
+                return 44.0
+            } else {
+                return 20.0
+            }
+        } else {
+            return 0.0
+        }
+    }
+    
+    
+    /// 是否有虚拟Home键(兼容所有iPhone)
+    public static var YH_Is_HomeIndicator: Bool {
+        let machine = UIDevice.YHMachine
+        if let map = UIDevice.YHMachineMap[machine] {
+            return map == .iPhoneX || map == .iPhoneXR || map == .iPhoneXS || map == .iPhoneX_S_Max
+        } else {
+            return false
+        }
+    }
+    
+    
+    /// 虚拟Home键高度(兼容所有iPhone)
+    public static var YH_HomeIndicator_Height: CGFloat {
+        let machine = UIDevice.YHMachine
+        if let map = UIDevice.YHMachineMap[machine] {
+            if map == .iPhoneX || map == .iPhoneXR || map == .iPhoneXS || map == .iPhoneX_S_Max {
+                return 34.0
+            } else {
+                return 0.0
+            }
+        } else {
+            return 0.0
         }
     }
 }

@@ -9,7 +9,7 @@
 目前APP中最常见的情况是：APP大部分界面都是竖屏的，只有个别界面是横屏的
 
 UITabbarViewController
-UINavigationBarController
+UINavigationController
 UIViewController
 
 要具体控制单个界面的旋转，就需要从跟视图控制器开始

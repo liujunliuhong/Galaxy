@@ -131,11 +131,7 @@ public class YHCusNavigationBar: UIView {
             if !UIApplication.shared.isStatusBarHidden {
                 height = height + UIApplication.shared.statusBarFrame.size.height
             } else {
-                if UIDevice.YH_Is_Fringe {
-                    height = height + 44.0
-                } else {
-                    height = height + 20.0
-                }
+                height += UIDevice.YH_Fringe_Height
             }
         }
         

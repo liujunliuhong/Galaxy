@@ -13,6 +13,9 @@ import Contacts
 import AddressBook
 import EventKit
 
+#if canImport(RxSwift)
+import RxSwift
+#endif
 
 
 // Types of request permissions.
@@ -97,7 +100,7 @@ protocol YHPermissionProtocol {
  */
 
 
-struct YHPermission {
+class YHPermission: NSObject {
     
     static func isAuthorized(for type: YHPermissionType) -> Bool {
         switch type {
@@ -142,6 +145,30 @@ extension YHPermission {
         type.requestAuthorization(hanlder: handler)
     }
 }
+
+#if canImport(RxSwift)
+extension Reactive where Base: YHPermission {
+    
+    static func requestAuthorization(for type: YHPermissionType) -> Observable<YHPermissionResult> {
+        return Observable<YHPermissionResult>.create({ (observable) -> Disposable in
+            YHPermission.requestAuthorization(for: type) { (result) in
+                observable.onNext(result)
+                observable.onCompleted()
+            }
+            return Disposables.create()
+        })
+    }
+    
+    static func isAuthorized(for type: YHPermissionType) -> Observable<Bool> {
+        return Observable<Bool>.create({ (observable) -> Disposable in
+            let isAuthorized = YHPermission.isAuthorized(for: type)
+            observable.onNext(isAuthorized)
+            observable.onCompleted()
+            return Disposables.create()
+        })
+    }
+}
+#endif
 
 
 struct YHMicrophonePermission: YHPermissionProtocol {

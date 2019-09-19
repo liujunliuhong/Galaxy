@@ -8,7 +8,9 @@
 
 import UIKit
 
-class YHTabBar: UITabBar {
-
- 
+class YHTabBar: NSObject {
+    
+    
 }
+
+

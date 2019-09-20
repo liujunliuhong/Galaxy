@@ -8,39 +8,39 @@
 
 import UIKit
 
-class YHTabBarItem: NSObject {
+class YHTabBarItem: UITabBarItem {
     
     var contentView: YHTabBatItemContentView?
     
-    var title: String? {
-        didSet {
-            
-        }
-    }
-    
-    var image: UIImage? {
-        didSet {
-            
-        }
-    }
-    
-    var selectImage: UIImage? {
-        didSet {
-            
-        }
-    }
-    
-    var badgeValue: AnyObject? {
-        didSet {
-            
-        }
-    }
-    
-    var badgeColor: UIColor? {
-        didSet {
-            
-        }
-    }
+//    var title: String? {
+//        didSet {
+//
+//        }
+//    }
+//
+//    var image: UIImage? {
+//        didSet {
+//
+//        }
+//    }
+//
+//    var selectImage: UIImage? {
+//        didSet {
+//
+//        }
+//    }
+//
+//    var badgeValue: AnyObject? {
+//        didSet {
+//
+//        }
+//    }
+//
+//    var badgeColor: UIColor? {
+//        didSet {
+//
+//        }
+//    }
     
     init(_ contentView: YHTabBatItemContentView = YHTabBatItemContentView(),
          title: String? = nil,
@@ -51,12 +51,16 @@ class YHTabBarItem: NSObject {
         
         self.contentView = contentView
     }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
 
 extension YHTabBarItem {
-    func set(title:String? = nil, image: UIImage? = nil, selectedImage: UIImage? = nil) {
-        self.title = title
-        self.image = image
-        self.selectImage = selectedImage
-    }
+//    func set(title:String? = nil, image: UIImage? = nil, selectedImage: UIImage? = nil) {
+//        self.title = title
+//        self.image = image
+//        self.selectImage = selectedImage
+//    }
 }

@@ -8,15 +8,13 @@
 
 import UIKit
 
-class YHTabBarItemBadgeView: UIView {
+open class YHTabBarItemBadgeView: UIView {
     public static let defaultBadgeColor = UIColor.YH_RGBA(R: 255, G: 59, B: 48)
     public static let dotSize = CGSize(width: 8, height: 8)
     
-    // 可以是String或者是UIImage
-    // "": 小圆点
-    // 具体字符串
-    // 图片
-    public var badgeValue: AnyObject? {
+    
+    /// 可以是String或者是UIImage。空字符串：小圆点
+    open var badgeValue: AnyObject? {
         didSet {
             guard let badgeValue = badgeValue else {
                 imageView.image = nil
@@ -36,20 +34,19 @@ class YHTabBarItemBadgeView: UIView {
         }
     }
     
-    public var badgeColor: UIColor? {
+    open var badgeColor: UIColor? = YHTabBarItemBadgeView.defaultBadgeColor{
         didSet {
             imageView.backgroundColor = badgeColor
         }
     }
     
-    
-    public lazy var imageView: UIImageView = {
+    open lazy var imageView: UIImageView = {
         let imageView = UIImageView.init(frame: CGRect.zero)
         imageView.backgroundColor = .clear
         return imageView
     }()
     
-    public lazy var badgeLabel: UILabel = {
+    open lazy var badgeLabel: UILabel = {
         let badgeLabel = UILabel.init(frame: CGRect.zero)
         badgeLabel.backgroundColor = .clear
         badgeLabel.textColor = .white
@@ -58,17 +55,17 @@ class YHTabBarItemBadgeView: UIView {
         return badgeLabel
     }()
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
     }
     
-    init() {
+    public init() {
         super.init(frame: .zero)
         setupUI()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
@@ -83,7 +80,7 @@ extension YHTabBarItemBadgeView {
 
 
 extension YHTabBarItemBadgeView {
-    override func layoutSubviews() {
+    open override func layoutSubviews() {
         super.layoutSubviews()
         
         imageView.isHidden = true
@@ -126,7 +123,7 @@ extension YHTabBarItemBadgeView {
     }
     
     
-    override func sizeThatFits(_ size: CGSize) -> CGSize {
+    open override func sizeThatFits(_ size: CGSize) -> CGSize {
         guard let badgeValue = badgeValue else {
             return CGSize(width: 18, height: 18)
         }

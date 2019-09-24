@@ -8,59 +8,77 @@
 
 import UIKit
 
-class YHTabBarItem: UITabBarItem {
+open class YHTabBarItem: UITabBarItem {
     
-    var contentView: YHTabBatItemContentView?
+    open var contentView: YHTabBatItemContentView?
     
-//    var title: String? {
-//        didSet {
-//
-//        }
-//    }
-//
-//    var image: UIImage? {
-//        didSet {
-//
-//        }
-//    }
-//
-//    var selectImage: UIImage? {
-//        didSet {
-//
-//        }
-//    }
-//
-//    var badgeValue: AnyObject? {
-//        didSet {
-//
-//        }
-//    }
-//
-//    var badgeColor: UIColor? {
-//        didSet {
-//
-//        }
-//    }
+    open override var title: String? {
+        didSet {
+            self.contentView?.title = title
+        }
+    }
     
-    init(_ contentView: YHTabBatItemContentView = YHTabBatItemContentView(),
+    open override var image: UIImage? {
+        didSet {
+            self.contentView?.normalImage = image
+        }
+    }
+    
+    open override var selectedImage: UIImage? {
+        didSet {
+            self.contentView?.selectedImage = selectedImage
+        }
+    }
+    
+    open override var badgeValue: String? {
+        didSet {
+            self.contentView?.badgeValue = badgeValue as AnyObject?
+        }
+    }
+    
+    open override var badgeColor: UIColor? {
+        get {
+            return contentView?.badgeColor
+        }
+        set(newValue) {
+            contentView?.badgeColor = newValue
+        }
+    }
+    
+    open override var tag: Int {
+        didSet {
+            self.contentView?.tag = tag
+        }
+    }
+    
+    @available(iOS, unavailable)
+    public override init() {
+        super.init()
+    }
+    
+    public init(_ contentView: YHTabBatItemContentView = YHTabBatItemContentView(),
          title: String? = nil,
          image: UIImage? = nil,
-         selectedImage: UIImage? = nil) {
+         selectedImage: UIImage? = nil,
+         tag: Int = 0) {
         
         super.init()
         
         self.contentView = contentView
+        
+        set(title: title, image: image, selectedImage: selectedImage, tag: tag)
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
 
 extension YHTabBarItem {
-//    func set(title:String? = nil, image: UIImage? = nil, selectedImage: UIImage? = nil) {
-//        self.title = title
-//        self.image = image
-//        self.selectImage = selectedImage
-//    }
+    open func set(title:String? = nil, image: UIImage? = nil, selectedImage: UIImage? = nil, tag: Int = 0) {
+        self.title = title
+        self.image = image
+        self.selectedImage = selectedImage
+        self.tag = tag
+    }
 }

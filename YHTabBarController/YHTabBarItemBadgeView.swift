@@ -12,7 +12,6 @@ open class YHTabBarItemBadgeView: UIView {
     public static let defaultBadgeColor = UIColor.YH_RGBA(R: 255, G: 59, B: 48)
     public static let dotSize = CGSize(width: 8, height: 8)
     
-    
     /// 可以是String或者是UIImage。空字符串：小圆点
     open var badgeValue: AnyObject? {
         didSet {
@@ -34,9 +33,19 @@ open class YHTabBarItemBadgeView: UIView {
         }
     }
     
+    
+    /// 角标颜色，当角标内容为图片时，默认为透明，此属性无效
     open var badgeColor: UIColor? = YHTabBarItemBadgeView.defaultBadgeColor{
         didSet {
             imageView.backgroundColor = badgeColor
+        }
+    }
+    
+    
+    /// 角标文本内容颜色
+    open var badgeContentColor: UIColor? = .white {
+        didSet {
+            badgeLabel.textColor = badgeContentColor
         }
     }
     
@@ -49,7 +58,6 @@ open class YHTabBarItemBadgeView: UIView {
     open lazy var badgeLabel: UILabel = {
         let badgeLabel = UILabel.init(frame: CGRect.zero)
         badgeLabel.backgroundColor = .clear
-        badgeLabel.textColor = .white
         badgeLabel.font = UIFont.systemFont(ofSize: 13.0)
         badgeLabel.textAlignment = .center
         return badgeLabel
@@ -74,7 +82,9 @@ extension YHTabBarItemBadgeView {
     func setupUI() {
         addSubview(imageView)
         addSubview(badgeLabel)
+        
         imageView.backgroundColor = YHTabBarItemBadgeView.defaultBadgeColor
+        badgeLabel.textColor = badgeContentColor
     }
 }
 
@@ -136,11 +146,11 @@ extension YHTabBarItemBadgeView {
         if let badgeImageValue = badgeValue as? UIImage {
             let ratio = badgeImageValue.size.width / badgeImageValue.size.height
             if ratio >= 1.0 {
-                let width = min(43.0, badgeImageValue.size.width)
+                let width = min(45.0, badgeImageValue.size.width)
                 let height = badgeImageValue.size.height / badgeImageValue.size.width * width
                 return CGSize(width: width, height: height)
             } else {
-                let height = min(43.0, badgeImageValue.size.height)
+                let height = min(45.0, badgeImageValue.size.height)
                 let width = badgeImageValue.size.width / badgeImageValue.size.height * height
                 return CGSize(width: width, height: height)
             }

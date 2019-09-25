@@ -148,3 +148,15 @@ extension UIView {
         }
     }
 }
+
+
+extension UIView {
+    open override func setValue(_ value: Any?, forUndefinedKey key: String) {
+        YHDebugLog("[KVC报错] [value: \(String(describing: value))] [key: \(key)]")
+    }
+    
+    open override func value(forUndefinedKey key: String) -> Any? {
+        YHDebugLog("[KVC报错] [key: \(key)]")
+        return nil
+    }
+}

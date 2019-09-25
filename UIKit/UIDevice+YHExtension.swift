@@ -40,7 +40,7 @@ extension UIDevice {
     public static var YH_Is_Fringe: Bool {
         let machine = UIDevice.YHMachine
         if let map = UIDevice.YHMachineMap[machine] {
-            return map == .iPhoneX || map == .iPhoneXR || map == .iPhoneXS || map == .iPhoneX_S_Max
+            return map == .iPhoneX || map == .iPhoneXR || map == .iPhoneXS || map == .iPhoneX_S_Max || map == .iPhone_11 || map == .iPhone_11_Pro || map == .iPhone_11_Pro_Max
         } else {
             return false
         }
@@ -50,7 +50,7 @@ extension UIDevice {
     public static var YH_Fringe_Height: CGFloat {
         let machine = UIDevice.YHMachine
         if let map = UIDevice.YHMachineMap[machine] {
-            if map == .iPhoneX || map == .iPhoneXR || map == .iPhoneXS || map == .iPhoneX_S_Max {
+            if map == .iPhoneX || map == .iPhoneXR || map == .iPhoneXS || map == .iPhoneX_S_Max || map == .iPhone_11 || map == .iPhone_11_Pro || map == .iPhone_11_Pro_Max {
                 return 44.0
             } else {
                 return 20.0
@@ -65,7 +65,7 @@ extension UIDevice {
     public static var YH_Is_HomeIndicator: Bool {
         let machine = UIDevice.YHMachine
         if let map = UIDevice.YHMachineMap[machine] {
-            return map == .iPhoneX || map == .iPhoneXR || map == .iPhoneXS || map == .iPhoneX_S_Max
+            return map == .iPhoneX || map == .iPhoneXR || map == .iPhoneXS || map == .iPhoneX_S_Max || map == .iPhone_11 || map == .iPhone_11_Pro || map == .iPhone_11_Pro_Max
         } else {
             return false
         }
@@ -76,7 +76,7 @@ extension UIDevice {
     public static var YH_HomeIndicator_Height: CGFloat {
         let machine = UIDevice.YHMachine
         if let map = UIDevice.YHMachineMap[machine] {
-            if map == .iPhoneX || map == .iPhoneXR || map == .iPhoneXS || map == .iPhoneX_S_Max {
+            if map == .iPhoneX || map == .iPhoneXR || map == .iPhoneXS || map == .iPhoneX_S_Max || map == .iPhone_11 || map == .iPhone_11_Pro || map == .iPhone_11_Pro_Max {
                 return 34.0
             } else {
                 return 0.0
@@ -97,6 +97,9 @@ extension UIDevice {
         case iPhoneXS                                                   = "iPhone XS"
         case iPhoneXR                                                   = "iPhone XR"
         case iPhoneX                                                    = "iPhone X"
+        case iPhone_11                                                  = "iPhone 11"
+        case iPhone_11_Pro                                              = "iPhone 11 Pro"
+        case iPhone_11_Pro_Max                                          = "iPhone 11 Pro Max"
         
         
         case iPhone_8_Plus                                              = "iPhone 8 Plus"
@@ -199,6 +202,9 @@ extension UIDevice {
         "iPhone11,8"           :          .iPhoneXR,
         "iPhone11,2"           :          .iPhoneXS,
         "iPhone11,6"           :          .iPhoneX_S_Max,
+        "iPhone12,1"           :          .iPhone_11,
+        "iPhone12,3"           :          .iPhone_11_Pro,
+        "iPhone12,5"           :          .iPhone_11_Pro_Max,
         // iPod touch
         "iPod1,1"              :          .iPod_touch_1st_generation,
         "iPod2,1"              :          .iPod_touch_2nd_generation,

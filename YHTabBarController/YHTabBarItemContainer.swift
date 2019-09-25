@@ -22,6 +22,7 @@ internal class YHTabBarItemContainer: UIControl {
         self.addTarget(target, action: #selector(YHTabBar.highlightAction(_:)), for: .touchDown)
         self.addTarget(target, action: #selector(YHTabBar.highlightAction(_:)), for: .touchDragEnter)
         self.addTarget(target, action: #selector(YHTabBar.dehighlightAction(_:)), for: .touchDragExit)
+        self.addTarget(target, action: #selector(YHTabBar.dehighlightAction(_:)), for: .touchUpOutside)
         backgroundColor = .clear
     }
     
@@ -38,6 +39,7 @@ internal extension YHTabBarItemContainer {
             if let _subView = subView as? YHTabBatItemContentView {
                 let inset = _subView.insets
                 _subView.frame = CGRect(x: inset.left, y: inset.top, width: bounds.size.width - inset.left - inset.right, height: bounds.size.height - inset.top - inset.bottom)
+                _subView.updateDisplay()
                 _subView.updateLayout()
             }
         }
@@ -45,7 +47,7 @@ internal extension YHTabBarItemContainer {
 }
 
 extension YHTabBarItemContainer {
-    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+    internal override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         var b = super.point(inside: point, with: event)
         if !b {
             for subView in subviews {

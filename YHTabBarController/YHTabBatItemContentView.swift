@@ -145,6 +145,13 @@ open class YHTabBatItemContentView: UIView {
         }
     }
     
+    /// 角标文本内容颜色
+    open var badgeContentColor: UIColor? {
+        didSet {
+            badgeView.badgeContentColor = badgeContentColor
+        }
+    }
+    
     /// 赋值角标View
     open var badgeView: YHTabBarItemBadgeView = YHTabBarItemBadgeView() {
         willSet {
@@ -159,6 +166,18 @@ open class YHTabBatItemContentView: UIView {
         }
     }
     
+    open var titlePositionAdjustment: UIOffset = UIOffset.zero {
+        didSet {
+            updateLayout()
+        }
+    }
+    
+    open var imagePositionAdjustment: UIOffset = UIOffset.zero {
+        didSet {
+            updateLayout()
+        }
+    }
+    
     open lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .clear
@@ -170,7 +189,7 @@ open class YHTabBatItemContentView: UIView {
         titleLabel.backgroundColor = .clear
         titleLabel.textColor = .clear
         titleLabel.textAlignment = .center
-        titleLabel.numberOfLines = 0
+        // titleLabel.numberOfLines = 0 // 不能设置numberOfLines为0，否则屏幕旋转时会出问题
         return titleLabel
     }()
     
@@ -198,20 +217,21 @@ extension YHTabBatItemContentView {
         imageView.tintColor = normalIconColor
         
         backgroundColor = .clear
+        isUserInteractionEnabled = false // 设置为false，否则点击无响应
     }
 }
 
 extension YHTabBatItemContentView {
-    open func updateDisplay() {
+    @objc open func updateDisplay() {
         imageView.image = (selected ? (selectedImage ?? normalImage) : normalImage)?.withRenderingMode(iconRenderingMode)
         imageView.tintColor = selected ? selectedIconColor : normalIconColor
         titleLabel.textColor = selected ? selectedTextColor : normalTextColor
-        //superview?.backgroundColor = selected ? selectedBackgroundColor : normalBackgroundColor
+        superview?.backgroundColor = selected ? selectedBackgroundColor : normalBackgroundColor
     }
 }
 
 extension YHTabBatItemContentView {
-    open func updateLayout() {
+    @objc open func updateLayout() {
         
         imageView.isHidden = (imageView.image == nil)
         titleLabel.isHidden = (titleLabel.text == nil)
@@ -222,11 +242,12 @@ extension YHTabBatItemContentView {
         
         let statusBarOrientation = UIApplication.shared.statusBarOrientation
         let isLandscape = statusBarOrientation == .landscapeLeft || statusBarOrientation == .landscapeRight
+        let isWide = isLandscape || traitCollection.horizontalSizeClass == .regular
         
         var imageWidth: CGFloat = 23.0
-        var fontSize: CGFloat = 12.0
+        var fontSize: CGFloat = 10.0
         
-        if #available(iOS 11.0, *), isLandscape {
+        if #available(iOS 11.0, *), isWide {
             imageWidth = UIScreen.main.scale == 3.0 ? 23.0 : 20.0
             fontSize = UIScreen.main.scale == 3.0 ? 13.0 : 12.0
         }
@@ -237,31 +258,31 @@ extension YHTabBatItemContentView {
             titleLabel.font = UIFont.systemFont(ofSize: fontSize)
             titleLabel.sizeToFit()
             
-            let titleWidth = min(titleLabel.bounds.size.width, w)
+            let titleWidth = titleLabel.bounds.size.width
             
-            if #available(iOS 11, *), isLandscape {
+            if #available(iOS 11, *), isWide {
                 // 如果是iOS11，并且是横屏(图标和文字水平排列)
-                titleLabel.frame = CGRect(x: (w - titleWidth) / 2.0 + (UIScreen.main.scale == 3.0 ? 14.25 : 12.25),
-                                          y: (h - titleLabel.bounds.size.height) / 2.0,
+                titleLabel.frame = CGRect(x: (w - titleWidth) / 2.0 + (UIScreen.main.scale == 3.0 ? 14.25 : 12.25) + titlePositionAdjustment.horizontal,
+                                          y: (h - titleLabel.bounds.size.height) / 2.0 + titlePositionAdjustment.vertical,
                                           width: titleWidth,
                                           height: titleLabel.bounds.size.height)
-                imageView.frame = CGRect(x: titleLabel.frame.origin.x - imageWidth - (UIScreen.main.scale == 3.0 ? 6.0 : 5.0),
-                                         y: (h - imageWidth) / 2.0,
+                imageView.frame = CGRect(x: titleLabel.frame.origin.x - imageWidth - (UIScreen.main.scale == 3.0 ? 6.0 : 5.0) + imagePositionAdjustment.horizontal,
+                                         y: (h - imageWidth) / 2.0 + imagePositionAdjustment.vertical,
                                          width: imageWidth,
                                          height: imageWidth)
             } else {
-                titleLabel.frame = CGRect(x: (w - titleWidth) / 2.0,
-                                          y: h - titleLabel.bounds.size.height,
+                titleLabel.frame = CGRect(x: (w - titleWidth) / 2.0 + titlePositionAdjustment.horizontal,
+                                          y: h - titleLabel.bounds.size.height + titlePositionAdjustment.vertical,
                                           width: titleWidth,
                                           height: titleLabel.bounds.size.height)
-                imageView.frame = CGRect(x: (w - imageWidth) / 2.0,
-                                         y: (h - imageWidth) / 2.0 - 6.0,
+                imageView.frame = CGRect(x: (w - imageWidth) / 2.0 + imagePositionAdjustment.horizontal,
+                                         y: (h - imageWidth) / 2.0 - 6.0 + imagePositionAdjustment.vertical,
                                          width: imageWidth,
                                          height: imageWidth)
             }
         } else if !imageView.isHidden {
-            imageView.frame = CGRect(x: (w - imageWidth) / 2.0,
-                                     y: (h - imageWidth) / 2.0,
+            imageView.frame = CGRect(x: (w - imageWidth) / 2.0 + imagePositionAdjustment.horizontal,
+                                     y: (h - imageWidth) / 2.0 + imagePositionAdjustment.vertical,
                                      width: imageWidth,
                                      height: imageWidth)
         } else if !titleLabel.isHidden {
@@ -270,8 +291,8 @@ extension YHTabBatItemContentView {
             
             let titleWidth = min(titleLabel.bounds.size.width, w)
             
-            titleLabel.frame = CGRect(x: (w - titleWidth) / 2.0,
-                                      y: (h - titleLabel.bounds.size.height) / 2.0,
+            titleLabel.frame = CGRect(x: (w - titleWidth) / 2.0 + titlePositionAdjustment.horizontal,
+                                      y: (h - titleLabel.bounds.size.height) / 2.0 + titlePositionAdjustment.vertical,
                                       width: titleWidth,
                                       height: titleLabel.bounds.size.height)
         }
@@ -281,7 +302,7 @@ extension YHTabBatItemContentView {
             
             let size = badgeView.sizeThatFits(self.frame.size)
             
-            if #available(iOS 11.0, *), isLandscape {
+            if #available(iOS 11.0, *), isWide {
                 badgeView.frame = CGRect(x: imageView.frame.midX - 3 + badgeOffset.horizontal,
                                          y: imageView.frame.midY + 3 + badgeOffset.vertical,
                                          width: size.width,
@@ -362,27 +383,27 @@ extension YHTabBatItemContentView {
 }
 
 extension YHTabBatItemContentView {
-    open func selectAnimation(animation: Bool, completion: (() -> ())?) {
+    @objc open func selectAnimation(animation: Bool, completion: (() -> ())?) {
         completion?()
     }
     
-    open func deselectAnimation(animated: Bool, completion: (() -> ())?) {
+    @objc open func deselectAnimation(animated: Bool, completion: (() -> ())?) {
         completion?()
     }
     
-    open func reselectAnimation(animated: Bool, completion: (() -> ())?) {
+    @objc open func reselectAnimation(animated: Bool, completion: (() -> ())?) {
         completion?()
     }
     
-    open func highlightAnimation(animated: Bool, completion: (() -> ())?) {
+    @objc open func highlightAnimation(animated: Bool, completion: (() -> ())?) {
         completion?()
     }
     
-    open func dehighlightAnimation(animated: Bool, completion: (() -> ())?) {
+    @objc open func dehighlightAnimation(animated: Bool, completion: (() -> ())?) {
         completion?()
     }
     
-    open func badgeChangedAnimation(animated: Bool, completion: (() -> ())?) {
+    @objc open func badgeChangedAnimation(animated: Bool, completion: (() -> ())?) {
         completion?()
     }
 }

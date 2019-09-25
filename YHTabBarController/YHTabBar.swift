@@ -19,7 +19,6 @@ open class YHTabBar: UITabBar {
     
     private let baseTag: Int = 1000
     
-    
     /// 填充方式。在系统的基础上新增加了fillUp模式
     public enum YHTabBarItemPosition {
         case automatic
@@ -34,6 +33,8 @@ open class YHTabBar: UITabBar {
     
     internal var containers: [YHTabBarItemContainer] = [YHTabBarItemContainer]()
     
+    
+    /// 当设置为fillUp时，最好设置下contentView的insets属性，否则在iPhone X系列手机上图标文字的具体过大
     open var itemCustomPositioning: YHTabBar.YHTabBarItemPosition? {
         didSet {
             if let _itemCustomPositioning = itemCustomPositioning {
@@ -51,6 +52,8 @@ open class YHTabBar: UITabBar {
         }
     }
     
+    
+    /// 偏移量，影响的是每个item对应的container的偏移量
     open var insets: UIEdgeInsets = UIEdgeInsets.zero {
         didSet {
             reload()
@@ -59,12 +62,27 @@ open class YHTabBar: UITabBar {
     
     open override var items: [UITabBarItem]? {
         didSet {
-            if let _items = items, _items.count > 5 {
-                fatalError("items数组数量不能超过5个")
-            }
             reload()
         }
     }
+    
+    
+    /// 阴影颜色
+    open var shadowColor: UIColor? {
+        didSet {
+            setNeedsLayout()
+            layoutIfNeeded()
+        }
+    }
+    
+    // 是否隐藏阴影
+    open var hideShadowImage: Bool = false {
+        didSet {
+            self.yh_shadowImageView()?.isHidden = hideShadowImage
+            
+        }
+    }
+    
     
     open override func setItems(_ items: [UITabBarItem]?, animated: Bool) {
         super.setItems(items, animated: animated)
@@ -82,9 +100,38 @@ open class YHTabBar: UITabBar {
 }
 
 extension YHTabBar {
+    open override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        var b = super.point(inside: point, with: event)
+        if !b {
+            for container in containers {
+                if container.point(inside: CGPoint(x: point.x - container.frame.origin.x, y: point.y - container.frame.origin.y), with: event) {
+                    b = true
+                }
+            }
+        }
+        return b
+    }
+}
+
+extension YHTabBar {
     open override func layoutSubviews() {
         super.layoutSubviews()
         updateLayout()
+        
+        if let _shadowColor = shadowColor {
+            self.yh_shadowImageView()?.backgroundColor = _shadowColor
+        }
+        
+//        subviews.forEach { (view) in
+//            if NSStringFromClass(view.classForCoder) == "_UIBarBackground" {
+//                view.subviews.forEach { (v) in
+//                    print(v)
+//                    if let imageView = v as? UIImageView {
+//                        imageView.backgroundColor = shadowColor
+//                    }
+//                }
+//            }
+//        }
     }
 }
 
@@ -96,7 +143,7 @@ extension YHTabBar {
             return
         }
         
-        // 获取系统的tabBarButton
+        // 获取系统的tabBarButton(核心，如果系统升级，苹果把属性已改或者层级结构一改，那么自定义tabBar可能会失效)
         let originTabBarButtons = subviews.filter { (subView) -> Bool in
             if let cls = NSClassFromString("UITabBarButton") {
                 return subView.isKind(of: cls)

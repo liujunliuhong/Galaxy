@@ -12,21 +12,21 @@ class YHPickerToolBar: UIView {
     
     private let buttonWidth: CGFloat = 70.0
     
-    lazy var cancelButton: UIButton = {
+    public lazy var cancelButton: UIButton = {
         let cancelButton = UIButton(type: .system)
         cancelButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
         cancelButton.setTitle("Cancel", for: .normal)
         return cancelButton
     }()
     
-    lazy var sureButton: UIButton = {
+    public lazy var sureButton: UIButton = {
         let sureButton = UIButton(type: .system)
         sureButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
         sureButton.setTitle("Done", for: .normal)
         return sureButton
     }()
     
-    lazy var titleLabel: UILabel = {
+    public lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.textAlignment = .center
         titleLabel.font = UIFont.systemFont(ofSize: 14)

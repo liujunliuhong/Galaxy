@@ -15,19 +15,25 @@ class YHDatePickerView: UIView {
         NotificationCenter.default.removeObserver(self, name: UIApplication.didChangeStatusBarOrientationNotification, object: nil)
     }
     
+    
+    /// toolBar高度
     private let toolBarHeight: CGFloat = 49.0
+    
+    /// picker高度
     private var pickerHeight: CGFloat = 0.0
     
+    /// 完成回调
     private var doneClosure: ((Date)->())?
     
     
+    /// toolBar.  请自行设置相关属性
     public lazy var toolBar: YHPickerToolBar = {
         let toolBar = YHPickerToolBar()
         return toolBar
     }()
     
     
-    /// date picker view.
+    /// datePickerView.  请自行设置相关属性
     public lazy var datePickerView: UIDatePicker = {
         let datePickerView = UIDatePicker()
         datePickerView.datePickerMode = UIDatePicker.Mode.date
@@ -50,6 +56,7 @@ class YHDatePickerView: UIView {
             self.layoutIfNeeded()
         }
     }
+    
     
     private lazy var gestureView: UIView = {
         let gestureView = UIView()
@@ -133,6 +140,26 @@ extension YHDatePickerView {
 }
 
 extension YHDatePickerView {
+    private func updateFrame() {
+        backgroundView.frame = UIScreen.main.bounds
+        gestureView.frame = UIScreen.main.bounds
+        
+        datePickerView.sizeToFit()
+        
+        let height = toolBarHeight + UIDevice.YH_HomeIndicator_Height + datePickerView.YH_Height
+        
+        self.pickerHeight = height
+        
+        self.frame = CGRect(x: 0, y: UIScreen.main.bounds.size.height - height, width: UIScreen.main.bounds.size.width, height: height)
+        toolBar.frame = CGRect(x: 0, y: 0, width: self.YH_Width, height: toolBarHeight)
+        datePickerView.frame = CGRect(x: 0, y: toolBarHeight, width: self.YH_Width, height: datePickerView.YH_Height)
+    }
+}
+
+extension YHDatePickerView {
+    
+    /// show
+    /// - Parameter doneClosure: 点击完成按钮之后的回调
     public func show(doneClosure: ((Date)->())?) {
         guard let window = UIApplication.shared.keyWindow else { return }
         
@@ -167,23 +194,7 @@ extension YHDatePickerView {
         toolBar.sureButton.addTarget(self, action: #selector(done), for: .touchUpInside)
     }
     
-    private func updateFrame() {
-        backgroundView.frame = UIScreen.main.bounds
-        gestureView.frame = UIScreen.main.bounds
-        
-        datePickerView.sizeToFit()
-        
-        let height = toolBarHeight + UIDevice.YH_HomeIndicator_Height + datePickerView.YH_Height
-        
-        self.pickerHeight = height
-        
-        self.frame = CGRect(x: 0, y: UIScreen.main.bounds.size.height - height, width: UIScreen.main.bounds.size.width, height: height)
-        toolBar.frame = CGRect(x: 0, y: 0, width: self.YH_Width, height: toolBarHeight)
-        datePickerView.frame = CGRect(x: 0, y: toolBarHeight, width: self.YH_Width, height: datePickerView.YH_Height)
-    }
-}
-
-extension YHDatePickerView {
+    /// dismiss
     @objc public func dismiss() {
         
         gestureView.isUserInteractionEnabled = false
@@ -203,8 +214,10 @@ extension YHDatePickerView {
             NotificationCenter.default.removeObserver(self, name: UIApplication.didChangeStatusBarOrientationNotification, object: nil)
         }
     }
-    
-    @objc public func done() {
+}
+
+extension YHDatePickerView {
+    @objc private func done() {
         self.doneClosure?(self.datePickerView.date)
         dismiss()
     }

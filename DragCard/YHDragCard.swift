@@ -87,15 +87,21 @@ struct YHDragCardDirection {
 }
 
 /// 存储卡片的位置信息
-class YHDragCardInfo: NSObject {
-    let card: UIView
+class YHDragCardStableInfo: NSObject {
     var transform: CGAffineTransform
     var frame: CGRect
-    init(card: UIView, transform: CGAffineTransform, frame: CGRect) {
-        self.card = card
+    init(transform: CGAffineTransform, frame: CGRect) {
         self.transform = transform
         self.frame = frame
         super.init()
+    }
+}
+
+class YHDragCardInfo: YHDragCardStableInfo {
+    let card: UIView
+    init(card: UIView, transform: CGAffineTransform, frame: CGRect) {
+        self.card = card
+        super.init(transform: transform, frame: frame)
     }
 }
 
@@ -120,20 +126,37 @@ enum YHDragCardRemoveDirection {
 }
 
 
+extension UIView {
+    private struct AssociatedKeys {
+        static var panGestureKey = "com.yinhe.yhdragcard.panGestureKey"
+        static var tapGestureKey = "com.yinhe.yhdragcard.tapGestureKey"
+    }
+    var yh_drag_card_panGesture: UIPanGestureRecognizer? {
+        get {
+            return objc_getAssociatedObject(self, &AssociatedKeys.panGestureKey) as? UIPanGestureRecognizer
+        }
+        set {
+            objc_setAssociatedObject(self, &AssociatedKeys.panGestureKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+    }
+    
+    var yh_drag_card_tapGesture: UITapGestureRecognizer? {
+        get {
+            return objc_getAssociatedObject(self, &AssociatedKeys.tapGestureKey) as? UITapGestureRecognizer
+        }
+        set {
+            objc_setAssociatedObject(self, &AssociatedKeys.tapGestureKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+    }
+}
+
 class YHDragCard: UIView {
     
     /// 数据源
-<<<<<<< HEAD
-    weak var dataSource: YHDragCardDataSource?
-    
-    /// 协议
-    weak var delegate: YHDragCardDelegate?
-=======
     public weak var dataSource: YHDragCardDataSource?
     
     /// 协议
     public weak var delegate: YHDragCardDelegate?
->>>>>>> 345d08be6996644e38870a428cc648b9b33dc027
 
     /// 可见卡片数量，默认3
     /// 取值范围:大于0
@@ -196,13 +219,32 @@ class YHDragCard: UIView {
     /// 如果垂直方向能够移除卡片，请把该值设置的大点
     public var demarcationAngle: CGFloat = 5.0
     
+    /// 是否禁用拖动
+    public var disableDrag: Bool = false {
+        didSet {
+            for (_, info) in self.infos.enumerated() {
+                if disableDrag {
+                    removePanGesture(for: info.card)
+                } else {
+                    addPanGesture(for: info.card)
+                }
+            }
+        }
+    }
     
-    
-    
-    
-    
-    
-    
+    /// 是否禁用卡片的点击事件
+    public var disableClick: Bool = false {
+        didSet {
+            for (_, info) in self.infos.enumerated() {
+                if disableClick {
+                    removeTapGesture(for: info.card)
+                } else {
+                    addTapGesture(for: info.card)
+                }
+            }
+        }
+    }
+
     /// 当前索引
     /// 顶层卡片的索引(直接与用户发生交互)
     private var currentIndex: Int = 0
@@ -213,6 +255,16 @@ class YHDragCard: UIView {
     /// 存储的卡片信息
     private var infos: [YHDragCardInfo] = [YHDragCardInfo]()
     
+    /// 存储卡片位置信息(一直存在的)
+    private var stableInfos: [YHDragCardStableInfo] = [YHDragCardStableInfo]()
+    
+    /// 是否正在撤销
+    /// 避免在短时间内多次调用revoke方法，必须等上一张卡片revoke完成，才能revoke下一张卡片
+    private var isRevoking: Bool = false
+    
+    /// 是否正在调用`nextCard`方法
+    /// 避免在短时间内多次调用nextCard方法，必须`nextCard`完成，才能继续下一次`nextCard`
+    private var isNexting: Bool = false
     
     /// 目前暂时只支持纯frame的方式初始化
     /// - Parameter frame: frame
@@ -238,11 +290,15 @@ class YHDragCard: UIView {
 }
 
 extension YHDragCard {
+    
+    /// 刷新整个卡片，回到初始状态
+    /// - Parameter animation: 是否动画
     public func reloadData(animation: Bool) {
         self.infos.forEach { (transform) in
             transform.card.removeFromSuperview()
         }
         self.infos.removeAll()
+        self.stableInfos.removeAll()
         self.currentIndex = 0
         
         // 纠正
@@ -288,7 +344,15 @@ extension YHDragCard {
                 let info = YHDragCardInfo(card: _card, transform: _card.transform, frame: _card.frame)
                 self.infos.append(info)
                 
-                addPanGesture(for: _card)
+                let stableInfo = YHDragCardStableInfo(transform: _card.transform, frame: _card.frame)
+                self.stableInfos.append(stableInfo)
+                
+                if !disableDrag {
+                    addPanGesture(for: _card)
+                }
+                if !disableClick {
+                    addTapGesture(for: _card)
+                }
                 
                 if index == 0 {
                     initialFirstCardCenter = _card.center
@@ -305,23 +369,175 @@ extension YHDragCard {
         }
     }
     
-    
-<<<<<<< HEAD
-    
-    func installNextCard() {
-=======
-    func nextCard() {
-        
+    /// 显示下一张卡片(与removeDirection相关联)
+    /// - Parameter direction: 方向
+    /// right  向右移除顶层卡片
+    /// left   向左移除顶层卡片
+    /// up     向上移除顶层卡片
+    /// down   向下移除顶层卡片
+    public func nextCard(direction: YHDragCardDirection.Direction) {
+        if isNexting { return }
+        switch direction {
+        case .right:
+            horizontalNextCard(isRight: true)
+        case .left:
+            horizontalNextCard(isRight: false)
+        case .up:
+            verticalNextCard(isUp: true)
+        case .down:
+            verticalNextCard(isUp: false)
+        default:
+            break
+        }
     }
     
     
-    
+    /// 撤销(与removeDirection相关联)
+    /// - Parameter card: 要撤销卡片
+    /// - Parameter direction: 从哪个方向撤销
+    /// right  从右撤销卡片
+    /// left   从左撤销卡片
+    /// up     从上撤销卡片
+    /// down   从下撤销卡片
+    public func revoke(with card: UIView, direction: YHDragCardDirection.Direction) {
+        if currentIndex <= 0 { return }
+        if direction == .default { return }
+        if isRevoking { return }
+        if removeDirection == .horizontal {
+            if direction == .up || direction == .down { return }
+        }
+        if removeDirection == .vertical {
+            if direction == .left || direction == .right { return }
+        }
+        guard let _topCard = infos.first?.card else { return }
+        
+        card.isUserInteractionEnabled = false
+        card.backgroundColor = UIColor.YH_RandomColor
+        card.layer.anchorPoint = CGPoint(x: 0.5, y: 1.0)
+        addSubview(card)
+        
+        if !disableDrag {
+            addPanGesture(for: card)
+        }
+        if !disableClick {
+            addTapGesture(for: card)
+        }
+        
+        card.transform = .identity
+        card.frame = _topCard.frame
+        
+        if removeDirection == .horizontal {
+            var flag: CGFloat = 1.0
+            if direction == .left {
+                flag = -1.0
+            } else if direction == .right {
+                flag = 1.0
+            }
+            card.transform = CGAffineTransform(rotationAngle: correctRemoveMaxAngleAndToRadius() * flag)
+        } else {
+            // 垂直方向不做处理
+            card.transform = .identity
+        }
+        
+        if removeDirection == .horizontal {
+            var flag: CGFloat = 2.0
+            if direction == .left {
+                flag = -0.5
+            } else if direction == .right {
+                flag = 1.5
+            }
+            let tmpWidth = UIScreen.main.bounds.size.width * flag
+            let tmpHeight = self.initialFirstCardCenter.y - 20.0
+            card.center = CGPoint(x: tmpWidth, y: tmpHeight)
+        } else {
+            var flag: CGFloat = 2.0
+            if direction == .up {
+                flag = -1.0
+            } else if direction == .down {
+                flag = 2.0
+            }
+            let tmpWidth = self.initialFirstCardCenter.x
+            let tmpHeight = UIScreen.main.bounds.size.height * flag
+            card.center = CGPoint(x: tmpWidth, y: tmpHeight)
+        }
+        
+        let info = YHDragCardInfo(card: card, transform: _topCard.transform, frame: _topCard.frame)
+        infos.insert(info, at: 0)
+        
+        isRevoking = true
+        
+        let animation = { [weak self] in
+            guard let _self = self else { return }
+            
+            card.center = _self.initialFirstCardCenter
+            card.transform = .identity
+            
+            for (index, info) in _self.infos.enumerated() {
+                if _self.infos.count <= _self.visibleCount {
+                    if index == 0 { continue }
+                } else {
+                    if index == _self.infos.count - 1 || index == 0 { continue }
+                }
+                
+                /**********************************************************************
+                                4 3  2 1 0
+                 stableInfos    🀫 🀫 🀫 🀫 🀫
+                                
+                                5 4 3  2 1 0
+                 infos          🀫 🀫 🀫 🀫 🀫 🀫👈这个卡片新添加的
+                 ***********************************************************************/
+                let willInfo = _self.stableInfos[index]
+                
+                info.card.transform = willInfo.transform
+                
+                var frame = info.card.frame
+                frame.origin.y = willInfo.frame.origin.y
+                info.card.frame = frame
+            }
+        }
+        
+        UIView.animate(withDuration: 0.4, animations: {
+            animation()
+        }) { [weak self] (isFinish) in
+            guard let _self = self else { return }
+            
+            for (index, info) in _self.infos.enumerated() {
+                if _self.infos.count <= _self.visibleCount {
+                    if index == 0 { continue }
+                } else {
+                    if index == _self.infos.count - 1 || index == 0 { continue }
+                }
+                let willInfo = _self.stableInfos[index]
+                
+                let willTransform = willInfo.transform
+                let willFrame = willInfo.frame
+                
+                info.transform = willTransform
+                info.frame = willFrame
+            }
+            
+            guard let _topCard = _self.infos.last?.card else { return }
+            
+            // 移除最底部的卡片
+            if _self.infos.count > _self.visibleCount {
+                _topCard.removeFromSuperview()
+                _self.infos.removeLast()
+            }
+            
+            _self.currentIndex = _self.currentIndex - 1
+            _topCard.isUserInteractionEnabled = true
+            
+            _self.isRevoking = false
+            
+            // 显示顶层卡片的回调
+            _self.delegate?.dragCard(_self, didDisplayCard: _topCard, withIndexAt: _self.currentIndex)
+        }
+    }
 }
 
 
 extension YHDragCard {
     private func installNextCard() {
->>>>>>> 345d08be6996644e38870a428cc648b9b33dc027
         let maxCount: Int = self.dataSource?.numberOfCount(self) ?? 0
         let showCount: Int = min(maxCount, visibleCount)
 
@@ -347,24 +563,60 @@ extension YHDragCard {
         let info = YHDragCardInfo(card: _card, transform: _card.transform, frame: _card.frame)
         self.infos.append(info)
 
-        addPanGesture(for: _card)
+        if !disableDrag {
+            addPanGesture(for: _card)
+        }
+        if !disableClick {
+            addTapGesture(for: _card)
+        }
     }
     
     
     /// 给卡片添加pan手势
     /// - Parameter card: 卡片
     private func addPanGesture(for card: UIView) {
+        removePanGesture(for: card)
         let pan = UIPanGestureRecognizer(target: self, action: #selector(panGestureRecognizer(panGesture:)))
         card.addGestureRecognizer(pan)
-        
+        card.yh_drag_card_panGesture = pan
+    }
+    
+    private func addTapGesture(for card: UIView) {
+        removeTapGesture(for: card)
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapGestureRecognizer(tapGesture:)))
         card.addGestureRecognizer(tap)
+        card.yh_drag_card_tapGesture = tap
+    }
+    
+    private func removePanGesture(for card: UIView) {
+        if let _pan = card.yh_drag_card_panGesture {
+            card.removeGestureRecognizer(_pan)
+        }
+    }
+    
+    private func removeTapGesture(for card: UIView) {
+        if let _tap = card.yh_drag_card_tapGesture {
+            card.removeGestureRecognizer(_tap)
+        }
+    }
+    
+    private func horizontalNextCard(isRight: Bool) {
+        if removeDirection == .vertical { return }
+        installNextCard()
+        let width: CGFloat = 150.0
+        isNexting = true
+        disappear(horizontalMoveDistance: (isRight ? width : -width), verticalMoveDistance: -10, isAuto: true, completion: nil)
+    }
+    
+    private func verticalNextCard(isUp: Bool) {
+        if removeDirection == .horizontal { return }
+        installNextCard()
+        isNexting = true
+        disappear(horizontalMoveDistance: 0.0, verticalMoveDistance: (isUp ? -30.0 : 30.0), isAuto: true, completion: nil)
     }
 }
 
-<<<<<<< HEAD
 
-=======
 extension YHDragCard {
     /// 纠正minScale   [0.1, 1.0]
     private func correctScale() -> CGFloat {
@@ -431,7 +683,6 @@ extension YHDragCard {
         return angle / 180.0 * CGFloat(Double.pi)
     }
 }
->>>>>>> 345d08be6996644e38870a428cc648b9b33dc027
 
 
 extension YHDragCard {
@@ -483,12 +734,17 @@ extension YHDragCard {
             
             // 设置手指拖住的那张卡牌的旋转角度
             let rotationAngle = horizontalRatio * correctRemoveMaxAngleAndToRadius()
-            
             cardView.transform = CGAffineTransform(rotationAngle: rotationAngle)
             // 复位
             panGesture.setTranslation(.zero, in: self)
-            // 卡牌变化
-            moving(ratio: abs(horizontalRatio))
+            
+            if removeDirection == .horizontal {
+                // 卡牌变化
+                moving(ratio: abs(horizontalRatio))
+            } else {
+                // 卡牌变化
+                moving(ratio: abs(verticalRatio))
+            }
             
             // 滑动过程中的方向设置
             var horizontal: YHDragCardDirection.Direction = .default
@@ -513,17 +769,17 @@ extension YHDragCard {
             let verticalMoveDistance: CGFloat = cardView.center.y - initialFirstCardCenter.y
             if removeDirection == .horizontal {
                 if (abs(horizontalMoveDistance) > horizontalRemoveDistance || abs(velocity.x) > horizontalRemoveVelocity) &&
-                    abs(verticalMoveDistance) > 10.0 && // 避免分母为0
+                    abs(verticalMoveDistance) > 0.1 && // 避免分母为0
                     abs(horizontalMoveDistance) / abs(verticalMoveDistance) >= tan(correctDemarcationAngle()){
-                    disappear(horizontalMoveDistance: horizontalMoveDistance, verticalMoveDistance: verticalMoveDistance, completion: nil)
+                    disappear(horizontalMoveDistance: horizontalMoveDistance, verticalMoveDistance: verticalMoveDistance, isAuto: false, completion: nil)
                 } else {
                     restore()
                 }
             } else {
                 if (abs(verticalMoveDistance) > horizontalRemoveDistance || abs(velocity.y) > verticalRemoveVelocity) &&
-                    abs(verticalMoveDistance) > 10.0 && // 避免分母为0
+                    abs(verticalMoveDistance) > 0.1 && // 避免分母为0
                     abs(horizontalMoveDistance) / abs(verticalMoveDistance) <= tan(correctDemarcationAngle()) {
-                    disappear(horizontalMoveDistance: horizontalMoveDistance, verticalMoveDistance: verticalMoveDistance, completion: nil)
+                    disappear(horizontalMoveDistance: horizontalMoveDistance, verticalMoveDistance: verticalMoveDistance, isAuto: false,completion: nil)
                 } else {
                     restore()
                 }
@@ -537,81 +793,9 @@ extension YHDragCard {
     }
 }
 
-<<<<<<< HEAD
-extension YHDragCard {
-    /// 纠正minScale   [0.1, 1.0]
-    private func correctScale() -> CGFloat {
-        var scale = self.minScale
-        if scale > 1.0 {
-            scale = 1.0
-        }
-        if scale <= 0.1 {
-            scale = 0.1
-        }
-        return scale
-    }
-    
-    /// 纠正cardSpacing  [0.0, bounds.size.height / 2.0]
-    func correctCardSpacing() -> CGFloat {
-        var spacing: CGFloat = 0.0
-        if cardSpacing < 0.0 {
-            spacing = 0.0
-        } else if cardSpacing > bounds.size.height / 2.0 {
-            spacing = bounds.size.height / 2.0
-        }
-        return spacing
-    }
-    
-    /// 纠正侧滑角度，并把侧滑角度转换为弧度  [0.0, 90.0]
-    private func correctRemoveMaxAngleAndToRadius() -> CGFloat {
-        var angle: CGFloat = removeMaxAngle
-        if angle < 0.0 {
-            angle = 0.0
-        } else if angle > 90.0 {
-            angle = 90.0
-        }
-        return angle / 180.0 * CGFloat(Double.pi)
-    }
-    
-    /// 纠正水平方向上的最大移除距离，内部做了判断 [10.0, ∞)
-    private func correctHorizontalRemoveDistance() -> CGFloat {
-        return horizontalRemoveDistance < 10.0 ? 10.0 : horizontalRemoveDistance
-    }
-    
-    /// 纠正水平方向上的最大移除速度  [100.0, ∞)
-    func correctHorizontalRemoveVelocity() -> CGFloat {
-        return horizontalRemoveVelocity < 100.0 ? 100.0 : horizontalRemoveVelocity
-    }
-    
-    /// 纠正垂直方向上的最大移距离  [50.0, ∞)
-    func correctVerticalRemoveDistance() -> CGFloat {
-        return verticalRemoveDistance < 50.0 ? 50.0 : verticalRemoveDistance
-    }
-    
-    /// 纠正垂直方向上的最大移除速度  [100.0, ∞)
-    func correctVerticalRemoveVelocity() -> CGFloat {
-        return verticalRemoveVelocity < 100.0 ? 100.0 : verticalRemoveVelocity
-    }
-    
-    /// 纠正卡片滑动方向和纵轴之间的角度，并且转换为弧度   [5.0, 85.0]
-    func correctDemarcationAngle() -> CGFloat {
-        var angle = demarcationAngle
-        if demarcationAngle < 5.0 {
-            angle = 5.0
-        } else if demarcationAngle > 85.0 {
-            angle = 85.0
-        }
-        return angle / 180.0 * CGFloat(Double.pi)
-    }
-}
-
-extension YHDragCard {
-    func moving(ratio: CGFloat) {
-=======
 
 extension YHDragCard {
     private func moving(ratio: CGFloat) {
->>>>>>> 345d08be6996644e38870a428cc648b9b33dc027
         // 1、infos数量小于等于visibleCount
         // 2、infos数量大于visibleCount（infos数量最多只比visibleCount多1）
         var ratio = ratio
@@ -644,12 +828,12 @@ extension YHDragCard {
     }
     
     
-    
-<<<<<<< HEAD
-    func disappear(horizontalMoveDistance: CGFloat, verticalMoveDistance: CGFloat, completion closure: (()->())?) {
-=======
-    private func disappear(horizontalMoveDistance: CGFloat, verticalMoveDistance: CGFloat, completion closure: (()->())?) {
->>>>>>> 345d08be6996644e38870a428cc648b9b33dc027
+    /// 顶层卡片消失
+    /// - Parameter horizontalMoveDistance: 水平移动距离(相对于initialFirstCardCenter)
+    /// - Parameter verticalMoveDistance: 垂直移动距离(相对于initialFirstCardCenter)
+    /// - Parameter isAuto: 是否是自动消失
+    /// - Parameter closure: 回调
+    private func disappear(horizontalMoveDistance: CGFloat, verticalMoveDistance: CGFloat, isAuto: Bool, completion closure: (()->())?) {
         let animation = { [weak self] in
             guard let _self = self else { return }
             // 顶层卡片位置设置
@@ -662,7 +846,7 @@ extension YHDragCard {
                         flag = -1 // 左边滑出
                     }
                     let tmpWidth = UIScreen.main.bounds.size.width * CGFloat(flag)
-                    let tmpHeight = verticalMoveDistance / horizontalMoveDistance * tmpWidth
+                    let tmpHeight = (verticalMoveDistance / horizontalMoveDistance * tmpWidth) + _self.initialFirstCardCenter.y
                     _topCard.center = CGPoint(x: tmpWidth, y: tmpHeight)
                 } else {
                     var flag: Int = 0
@@ -672,7 +856,7 @@ extension YHDragCard {
                         flag = -1 // 向上滑出
                     }
                     let tmpHeight = UIScreen.main.bounds.size.height * CGFloat(flag)
-                    let tmpWidth = horizontalMoveDistance / verticalMoveDistance * tmpHeight
+                    let tmpWidth = horizontalMoveDistance / verticalMoveDistance * tmpHeight + _self.initialFirstCardCenter.x
                     _topCard.center = CGPoint(x: tmpWidth, y: tmpHeight)
                 }
             }
@@ -729,6 +913,18 @@ extension YHDragCard {
                 _self.delegate?.dragCard(_self, currentCard: _topCard, withIndex: _self.currentIndex, currentCardDirection: direction, canRemove: true)
             }
         }
+        if isAuto {
+            UIView.animate(withDuration: 0.2) { [weak self] in
+                guard let _self = self else { return }
+                if let _topCard = _self.infos.first?.card {
+                    if _self.removeDirection == .horizontal {
+                        _topCard.transform = CGAffineTransform(rotationAngle: horizontalMoveDistance > 0 ? _self.correctRemoveMaxAngleAndToRadius() : -_self.correctRemoveMaxAngleAndToRadius())
+                    } else {
+                        // 垂直方向不做处理
+                    }
+                }
+            }
+        }
         UIView.animate(withDuration: 0.5,
                        animations: {
             animation()
@@ -750,6 +946,8 @@ extension YHDragCard {
                     info.transform = willTransform
                     info.frame = willFrame
                 }
+                
+                _self.isNexting = false
                 
                 guard let info = _self.infos.first else { return }
                 
@@ -783,10 +981,6 @@ extension YHDragCard {
         }
     }
     
-<<<<<<< HEAD
-    
-=======
->>>>>>> 345d08be6996644e38870a428cc648b9b33dc027
     /// 重置所有卡片位置信息
     private func restore() {
         UIView.animate(withDuration: 0.5,

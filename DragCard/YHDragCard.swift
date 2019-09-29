@@ -123,10 +123,17 @@ enum YHDragCardRemoveDirection {
 class YHDragCard: UIView {
     
     /// 数据源
+<<<<<<< HEAD
     weak var dataSource: YHDragCardDataSource?
     
     /// 协议
     weak var delegate: YHDragCardDelegate?
+=======
+    public weak var dataSource: YHDragCardDataSource?
+    
+    /// 协议
+    public weak var delegate: YHDragCardDelegate?
+>>>>>>> 345d08be6996644e38870a428cc648b9b33dc027
 
     /// 可见卡片数量，默认3
     /// 取值范围:大于0
@@ -299,8 +306,22 @@ extension YHDragCard {
     }
     
     
+<<<<<<< HEAD
     
     func installNextCard() {
+=======
+    func nextCard() {
+        
+    }
+    
+    
+    
+}
+
+
+extension YHDragCard {
+    private func installNextCard() {
+>>>>>>> 345d08be6996644e38870a428cc648b9b33dc027
         let maxCount: Int = self.dataSource?.numberOfCount(self) ?? 0
         let showCount: Int = min(maxCount, visibleCount)
 
@@ -341,7 +362,76 @@ extension YHDragCard {
     }
 }
 
+<<<<<<< HEAD
 
+=======
+extension YHDragCard {
+    /// 纠正minScale   [0.1, 1.0]
+    private func correctScale() -> CGFloat {
+        var scale = self.minScale
+        if scale > 1.0 {
+            scale = 1.0
+        }
+        if scale <= 0.1 {
+            scale = 0.1
+        }
+        return scale
+    }
+    
+    /// 纠正cardSpacing  [0.0, bounds.size.height / 2.0]
+    func correctCardSpacing() -> CGFloat {
+        var spacing: CGFloat = 0.0
+        if cardSpacing < 0.0 {
+            spacing = 0.0
+        } else if cardSpacing > bounds.size.height / 2.0 {
+            spacing = bounds.size.height / 2.0
+        }
+        return spacing
+    }
+    
+    /// 纠正侧滑角度，并把侧滑角度转换为弧度  [0.0, 90.0]
+    private func correctRemoveMaxAngleAndToRadius() -> CGFloat {
+        var angle: CGFloat = removeMaxAngle
+        if angle < 0.0 {
+            angle = 0.0
+        } else if angle > 90.0 {
+            angle = 90.0
+        }
+        return angle / 180.0 * CGFloat(Double.pi)
+    }
+    
+    /// 纠正水平方向上的最大移除距离，内部做了判断 [10.0, ∞)
+    private func correctHorizontalRemoveDistance() -> CGFloat {
+        return horizontalRemoveDistance < 10.0 ? 10.0 : horizontalRemoveDistance
+    }
+    
+    /// 纠正水平方向上的最大移除速度  [100.0, ∞)
+    func correctHorizontalRemoveVelocity() -> CGFloat {
+        return horizontalRemoveVelocity < 100.0 ? 100.0 : horizontalRemoveVelocity
+    }
+    
+    /// 纠正垂直方向上的最大移距离  [50.0, ∞)
+    func correctVerticalRemoveDistance() -> CGFloat {
+        return verticalRemoveDistance < 50.0 ? 50.0 : verticalRemoveDistance
+    }
+    
+    /// 纠正垂直方向上的最大移除速度  [100.0, ∞)
+    func correctVerticalRemoveVelocity() -> CGFloat {
+        return verticalRemoveVelocity < 100.0 ? 100.0 : verticalRemoveVelocity
+    }
+    
+    /// 纠正卡片滑动方向和纵轴之间的角度，并且转换为弧度   [5.0, 85.0]
+    func correctDemarcationAngle() -> CGFloat {
+        var angle = demarcationAngle
+        if demarcationAngle < 5.0 {
+            angle = 5.0
+        } else if demarcationAngle > 85.0 {
+            angle = 85.0
+        }
+        return angle / 180.0 * CGFloat(Double.pi)
+    }
+}
+>>>>>>> 345d08be6996644e38870a428cc648b9b33dc027
 
 
 extension YHDragCard {
@@ -447,6 +537,7 @@ extension YHDragCard {
     }
 }
 
+<<<<<<< HEAD
 extension YHDragCard {
     /// 纠正minScale   [0.1, 1.0]
     private func correctScale() -> CGFloat {
@@ -516,6 +607,11 @@ extension YHDragCard {
 
 extension YHDragCard {
     func moving(ratio: CGFloat) {
+=======
+
+extension YHDragCard {
+    private func moving(ratio: CGFloat) {
+>>>>>>> 345d08be6996644e38870a428cc648b9b33dc027
         // 1、infos数量小于等于visibleCount
         // 2、infos数量大于visibleCount（infos数量最多只比visibleCount多1）
         var ratio = ratio
@@ -549,7 +645,11 @@ extension YHDragCard {
     
     
     
+<<<<<<< HEAD
     func disappear(horizontalMoveDistance: CGFloat, verticalMoveDistance: CGFloat, completion closure: (()->())?) {
+=======
+    private func disappear(horizontalMoveDistance: CGFloat, verticalMoveDistance: CGFloat, completion closure: (()->())?) {
+>>>>>>> 345d08be6996644e38870a428cc648b9b33dc027
         let animation = { [weak self] in
             guard let _self = self else { return }
             // 顶层卡片位置设置
@@ -683,7 +783,10 @@ extension YHDragCard {
         }
     }
     
+<<<<<<< HEAD
     
+=======
+>>>>>>> 345d08be6996644e38870a428cc648b9b33dc027
     /// 重置所有卡片位置信息
     private func restore() {
         UIView.animate(withDuration: 0.5,

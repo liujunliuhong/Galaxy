@@ -19,7 +19,7 @@ protocol YHDragCardDataSource: NSObjectProtocol {
     /// 每个索引对应的卡片
     /// - Parameter dragCard: 容器
     /// - Parameter indexOfCard: 索引
-    func dragCard(_ dragCard: YHDragCard, indexOfCard: Int) -> UIView
+    func dragCard(_ dragCard: YHDragCard, indexOfCard index: Int) -> UIView
 }
 
 /// 代理
@@ -126,6 +126,7 @@ enum YHDragCardRemoveDirection {
 }
 
 
+/// runtime动态添加属性
 extension UIView {
     private struct AssociatedKeys {
         static var panGestureKey = "com.yinhe.yhdragcard.panGestureKey"
@@ -150,7 +151,16 @@ extension UIView {
     }
 }
 
+
+
+/// Swift版本卡牌滑动库
+/// 对比Swift和OC版本，个人还是更喜欢Swift
+/// 语法简洁
+/// 框架难点:如何在滑动的过程中动态的控制下面几张卡片的位置形变(很多其他三方库都未实现该功能)
 class YHDragCard: UIView {
+    deinit {
+        print("YHDragCard deinit")
+    }
     
     /// 数据源
     public weak var dataSource: YHDragCardDataSource?
@@ -219,6 +229,11 @@ class YHDragCard: UIView {
     /// 如果垂直方向能够移除卡片，请把该值设置的大点
     public var demarcationAngle: CGFloat = 5.0
     
+    
+    /// 是否无限滑动
+    public var infiniteLoop: Bool = false
+    
+    
     /// 是否禁用拖动
     public var disableDrag: Bool = false {
         didSet {
@@ -245,6 +260,13 @@ class YHDragCard: UIView {
         }
     }
 
+    
+    
+    
+    
+    
+    
+    
     /// 当前索引
     /// 顶层卡片的索引(直接与用户发生交互)
     private var currentIndex: Int = 0
@@ -294,6 +316,32 @@ extension YHDragCard {
     /// 刷新整个卡片，回到初始状态
     /// - Parameter animation: 是否动画
     public func reloadData(animation: Bool) {
+        _reloadData(animation: animation)
+    }
+    
+    /// 显示下一张卡片(与removeDirection相关联)
+    /// - Parameter direction: 方向
+    /// right  向右移除顶层卡片
+    /// left   向左移除顶层卡片
+    /// up     向上移除顶层卡片
+    /// down   向下移除顶层卡片
+    public func nextCard(direction: YHDragCardDirection.Direction) {
+        _nextCard(direction: direction)
+    }
+    
+    /// 撤销(与`removeDirection`相关联)，当`infiniteLoop`为`true`时，只能撤销当前循环的卡片
+    /// - Parameter direction: 从哪个方向撤销
+    /// right  从右撤销卡片
+    /// left   从左撤销卡片
+    /// up     从上撤销卡片
+    /// down   从下撤销卡片
+    public func revoke(direction: YHDragCardDirection.Direction) {
+        _revoke(direction: direction)
+    }
+}
+
+extension YHDragCard {
+    private func _reloadData(animation: Bool) {
         self.infos.forEach { (transform) in
             transform.card.removeFromSuperview()
         }
@@ -326,7 +374,6 @@ extension YHDragCard {
             
             if let _card = card {
                 _card.isUserInteractionEnabled = false
-                _card.backgroundColor = UIColor.YH_RandomColor
                 _card.layer.anchorPoint = CGPoint(x: 0.5, y: 1.0)
                 insertSubview(_card, at: 0)
 
@@ -369,13 +416,7 @@ extension YHDragCard {
         }
     }
     
-    /// 显示下一张卡片(与removeDirection相关联)
-    /// - Parameter direction: 方向
-    /// right  向右移除顶层卡片
-    /// left   向左移除顶层卡片
-    /// up     向上移除顶层卡片
-    /// down   向下移除顶层卡片
-    public func nextCard(direction: YHDragCardDirection.Direction) {
+    private func _nextCard(direction: YHDragCardDirection.Direction) {
         if isNexting { return }
         switch direction {
         case .right:
@@ -391,15 +432,7 @@ extension YHDragCard {
         }
     }
     
-    
-    /// 撤销(与removeDirection相关联)
-    /// - Parameter card: 要撤销卡片
-    /// - Parameter direction: 从哪个方向撤销
-    /// right  从右撤销卡片
-    /// left   从左撤销卡片
-    /// up     从上撤销卡片
-    /// down   从下撤销卡片
-    public func revoke(with card: UIView, direction: YHDragCardDirection.Direction) {
+    private func _revoke(direction: YHDragCardDirection.Direction) {
         if currentIndex <= 0 { return }
         if direction == .default { return }
         if isRevoking { return }
@@ -411,8 +444,11 @@ extension YHDragCard {
         }
         guard let _topCard = infos.first?.card else { return }
         
+        let tmpCard = self.dataSource?.dragCard(self, indexOfCard: currentIndex - 1)
+        
+        guard let card = tmpCard else { return }
+        
         card.isUserInteractionEnabled = false
-        card.backgroundColor = UIColor.YH_RandomColor
         card.layer.anchorPoint = CGPoint(x: 0.5, y: 1.0)
         addSubview(card)
         
@@ -460,6 +496,8 @@ extension YHDragCard {
             let tmpHeight = UIScreen.main.bounds.size.height * flag
             card.center = CGPoint(x: tmpWidth, y: tmpHeight)
         }
+        
+        infos.first?.card.isUserInteractionEnabled = false
         
         let info = YHDragCardInfo(card: card, transform: _topCard.transform, frame: _topCard.frame)
         infos.insert(info, at: 0)
@@ -516,21 +554,21 @@ extension YHDragCard {
                 info.frame = willFrame
             }
             
-            guard let _topCard = _self.infos.last?.card else { return }
+            guard let _bottomCard = _self.infos.last?.card else { return }
             
             // 移除最底部的卡片
             if _self.infos.count > _self.visibleCount {
-                _topCard.removeFromSuperview()
+                _bottomCard.removeFromSuperview()
                 _self.infos.removeLast()
             }
             
             _self.currentIndex = _self.currentIndex - 1
-            _topCard.isUserInteractionEnabled = true
+            card.isUserInteractionEnabled = true
             
             _self.isRevoking = false
             
             // 显示顶层卡片的回调
-            _self.delegate?.dragCard(_self, didDisplayCard: _topCard, withIndexAt: _self.currentIndex)
+            _self.delegate?.dragCard(_self, didDisplayCard: card, withIndexAt: _self.currentIndex)
         }
     }
 }
@@ -540,19 +578,35 @@ extension YHDragCard {
     private func installNextCard() {
         let maxCount: Int = self.dataSource?.numberOfCount(self) ?? 0
         let showCount: Int = min(maxCount, visibleCount)
-
-        // 判断
-        if self.currentIndex + showCount >= maxCount { return }
-        
         if showCount <= 0 { return }
         
-        let card = self.dataSource?.dragCard(self, indexOfCard: self.currentIndex + 1)
+        var card: UIView?
+        
+        
+        // 判断
+        if !infiniteLoop {
+            if self.currentIndex + showCount >= maxCount { return } // 无剩余卡片可滑,return
+            card = self.dataSource?.dragCard(self, indexOfCard: self.currentIndex + showCount)
+        } else {
+            if maxCount > showCount {
+                // 无剩余卡片可以滑动，把之前滑出去的，加在最下面
+                if self.currentIndex + showCount >= maxCount {
+                    card = self.dataSource?.dragCard(self, indexOfCard: self.currentIndex + showCount - maxCount)
+                } else {
+                    // 还有剩余卡片可以滑动
+                    card = self.dataSource?.dragCard(self, indexOfCard: self.currentIndex + showCount)
+                }
+            } else {
+                // 滑出去的那张，放在最下面
+                card = self.dataSource?.dragCard(self, indexOfCard: self.currentIndex)
+            }
+        }
+        
         
         guard let _card = card else { return }
         guard let bottomCard = infos.last?.card else { return }
         
         _card.isUserInteractionEnabled = false
-        _card.backgroundColor = UIColor.YH_RandomColor
         _card.layer.anchorPoint = CGPoint(x: 0.5, y: 1.0)
         insertSubview(_card, at: 0)
 
@@ -576,6 +630,7 @@ extension YHDragCard {
     /// - Parameter card: 卡片
     private func addPanGesture(for card: UIView) {
         removePanGesture(for: card)
+        if disableDrag { return }
         let pan = UIPanGestureRecognizer(target: self, action: #selector(panGestureRecognizer(panGesture:)))
         card.addGestureRecognizer(pan)
         card.yh_drag_card_panGesture = pan
@@ -583,6 +638,7 @@ extension YHDragCard {
     
     private func addTapGesture(for card: UIView) {
         removeTapGesture(for: card)
+        if disableClick { return }
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapGestureRecognizer(tapGesture:)))
         card.addGestureRecognizer(tap)
         card.yh_drag_card_tapGesture = tap
@@ -704,11 +760,11 @@ extension YHDragCard {
         
         switch panGesture.state {
         case .began:
-            print("begin")
+            //print("begin")
             // 把下一张卡片添加到最底部
             installNextCard()
         case .changed:
-            print("changed")
+            //print("changed")
             let currentPoint = CGPoint(x: cardView.center.x + movePoint.x, y: cardView.center.y + movePoint.y)
             // 设置手指拖住的那张卡牌的位置
             cardView.center = currentPoint
@@ -764,7 +820,7 @@ extension YHDragCard {
             self.delegate?.dragCard(self, currentCard: cardView, withIndex: self.currentIndex, currentCardDirection: direction, canRemove: false)
             
         case .ended:
-            print("ended")
+            //print("ended")
             let horizontalMoveDistance: CGFloat = cardView.center.x - initialFirstCardCenter.x
             let verticalMoveDistance: CGFloat = cardView.center.y - initialFirstCardCenter.y
             if removeDirection == .horizontal {
@@ -785,7 +841,7 @@ extension YHDragCard {
                 }
             }
         case .cancelled, .failed:
-            print("cancelled or failed")
+            //print("cancelled or failed")
             restore()
         default:
             break
@@ -966,6 +1022,12 @@ extension YHDragCard {
                     // 卡片只有最后一张了，此时闭包不回调出去
                     // 最后一张卡片移除出去的回调
                     _self.delegate?.dragCard(_self, didFinishRemoveLastCard: info.card)
+                    
+                    if _self.infiniteLoop {
+                        _self.currentIndex = 0 // 如果最后一个卡片滑出去了，且可以无限滑动，那么把索引置为0
+                        _self.infos.first?.card.isUserInteractionEnabled = true // 使顶层卡片可以响应事件
+                    }
+                    
                 } else {
                     // 如果不是最后一张卡片移出去，则把索引+1
                     _self.currentIndex = _self.currentIndex + 1

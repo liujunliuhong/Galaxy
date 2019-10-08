@@ -42,6 +42,10 @@ public class YHCusNavigationBar: UIView {
         return lineView
     }()
     
+    
+    /// titleView
+    /// 如果设置了宽度，将优先使用设置的宽度
+    /// 如果没有设置宽度，将根据左右item自动计算宽度
     public lazy var titleView: UIView = {
         let titleView = UIView()
         titleView.backgroundColor = UIColor.clear
@@ -197,7 +201,10 @@ public class YHCusNavigationBar: UIView {
             }
         }
         
-        let titleWidth = (width / 2.0 - max(leftDistance, rightDistance)) * 2;
+        var titleWidth = (width / 2.0 - max(leftDistance, rightDistance)) * 2;
+        if titleView.bounds.size.width > 0 {
+            titleWidth = titleView.bounds.size.width
+        }
         if titleWidth > 0 {
             self.barView.addSubview(self.titleView)
             titleView.frame = CGRect(x: (width - titleWidth) / 2.0, y: 0, width: titleWidth, height: self.barHeight)

@@ -65,6 +65,20 @@ open class YHTabBarItem: UITabBarItem {
         }
     }
     
+    /// 角标边框宽度
+    open var badgeBorderWidth: CGFloat = 0.0 {
+        didSet {
+            contentView?.badgeBorderWidth = badgeBorderWidth
+        }
+    }
+    
+    /// 角标边框颜色
+    open var badgeBorderColor: UIColor = .clear {
+        didSet {
+            contentView?.badgeBorderColor = badgeBorderColor
+        }
+    }
+    
     open var badgeContentColor: UIColor? {
         didSet {
             contentView?.badgeContentColor = badgeContentColor

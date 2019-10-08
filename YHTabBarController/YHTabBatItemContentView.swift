@@ -136,6 +136,20 @@ open class YHTabBatItemContentView: UIView {
         }
     }
     
+    /// 角标边框宽度
+    open var badgeBorderWidth: CGFloat = 0.0 {
+        didSet {
+            badgeView.badgeBorderWidth = badgeBorderWidth
+        }
+    }
+    
+    /// 角标边框颜色
+    open var badgeBorderColor: UIColor = .clear {
+        didSet {
+            badgeView.badgeBorderColor = badgeBorderColor
+        }
+    }
+    
     /// 角标偏移量
     open var badgeOffset: UIOffset = UIOffset(horizontal: 6.0, vertical: -22.0) {
         didSet {

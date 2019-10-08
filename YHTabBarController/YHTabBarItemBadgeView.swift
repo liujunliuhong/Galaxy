@@ -41,6 +41,29 @@ open class YHTabBarItemBadgeView: UIView {
         }
     }
     
+    /// 角标边框宽度
+    open var badgeBorderWidth: CGFloat = 0.0 {
+        didSet {
+            if let _ = badgeValue as? String {
+                imageView.layer.borderWidth = badgeBorderWidth
+            }
+            if let _ = badgeValue as? UIImage {
+                imageView.layer.borderWidth = 0.0
+            }
+        }
+    }
+    
+    /// 角标边框颜色
+    open var badgeBorderColor: UIColor = .clear {
+        didSet {
+            if let _ = badgeValue as? String {
+                imageView.layer.borderColor = badgeBorderColor.cgColor
+            }
+            if let _ = badgeValue as? UIImage {
+                imageView.layer.borderColor = UIColor.clear.cgColor
+            }
+        }
+    }
     
     /// 角标文本内容颜色
     open var badgeContentColor: UIColor? = .white {
@@ -109,11 +132,15 @@ extension YHTabBarItemBadgeView {
                 imageView.bounds = CGRect(x: 0, y: 0, width: YHTabBarItemBadgeView.dotSize.width, height: YHTabBarItemBadgeView.dotSize.height)
                 
                 imageView.layer.cornerRadius = YHTabBarItemBadgeView.dotSize.height / 2.0
+                imageView.layer.borderWidth = badgeBorderWidth
+                imageView.layer.borderColor = badgeBorderColor.cgColor
                 imageView.layer.masksToBounds = true
             } else {
                 imageView.frame = bounds
                 
                 imageView.layer.cornerRadius = imageView.YH_Height / 2.0
+                imageView.layer.borderWidth = badgeBorderWidth
+                imageView.layer.borderColor = badgeBorderColor.cgColor
                 imageView.layer.masksToBounds = true
             }
             badgeLabel.sizeToFit()
@@ -126,6 +153,8 @@ extension YHTabBarItemBadgeView {
             imageView.isHidden = false
             
             imageView.layer.cornerRadius = 0
+            imageView.layer.borderWidth = 0.0
+            imageView.layer.borderColor = UIColor.clear.cgColor
             imageView.layer.masksToBounds = false
             imageView.frame = bounds
             return

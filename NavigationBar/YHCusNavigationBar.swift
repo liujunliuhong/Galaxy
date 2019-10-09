@@ -43,14 +43,11 @@ public class YHCusNavigationBar: UIView {
     }()
     
     
-    /// titleView
+    /// titleView，可以为空
     /// 如果设置了宽度，将优先使用设置的宽度
     /// 如果没有设置宽度，将根据左右item自动计算宽度
-    public lazy var titleView: UIView = {
-        let titleView = UIView()
-        titleView.backgroundColor = UIColor.clear
-        return titleView
-    }()
+    /// 高度会自动适应
+    var titleView: UIView?
     
     public lazy var barView: UIView = {
         let barView = UIView()
@@ -179,6 +176,8 @@ public class YHCusNavigationBar: UIView {
         self.barView.subviews.forEach { (view) in
             view.removeFromSuperview()
         }
+        
+        
         var leftDistance: CGFloat = 0.0
         for (_, item) in self.leftItems.enumerated() {
             if let spaceItem = item as? YHCusNavigationSpaceItem {
@@ -201,14 +200,18 @@ public class YHCusNavigationBar: UIView {
             }
         }
         
-        var titleWidth = (width / 2.0 - max(leftDistance, rightDistance)) * 2;
-        if titleView.bounds.size.width > 0 {
-            titleWidth = titleView.bounds.size.width
+        
+        if let titleView = titleView {
+            var titleWidth = (width / 2.0 - max(leftDistance, rightDistance)) * 2;
+            if titleView.bounds.size.width > 0 {
+                titleWidth = titleView.bounds.size.width
+            }
+            if titleWidth > 0 {
+                self.barView.addSubview(titleView)
+                titleView.frame = CGRect(x: (width - titleWidth) / 2.0, y: 0, width: titleWidth, height: self.barHeight)
+            }
         }
-        if titleWidth > 0 {
-            self.barView.addSubview(self.titleView)
-            titleView.frame = CGRect(x: (width - titleWidth) / 2.0, y: 0, width: titleWidth, height: self.barHeight)
-        }
+        
         
         
         if !self.hideBar {

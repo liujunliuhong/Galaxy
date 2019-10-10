@@ -16,7 +16,7 @@ extension UIDevice {
     }
     
     public static var YH_Height: CGFloat {
-        return UIScreen.main.bounds.size.width
+        return UIScreen.main.bounds.size.height
     }
     
     // Get machine name, such as `iPhone 7 Plus`.

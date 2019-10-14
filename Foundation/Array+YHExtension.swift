@@ -10,6 +10,8 @@ import Foundation
 
 
 extension Array {
+    
+    /// json encode
     var yh_jsonEnCode: String? {
         let data = try? JSONSerialization.data(withJSONObject: self, options: [])
         guard let _data = data else { return nil }

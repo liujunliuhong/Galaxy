@@ -1,19 +1,32 @@
 //
-//  YHDatePickerView.swift
+//  YHPickerView.swift
 //  FNDating
 //
-//  Created by apple on 2019/9/11.
+//  Created by apple on 2019/10/14.
 //  Copyright © 2019 yinhe. All rights reserved.
 //
 
 import UIKit
 
-class YHDatePickerView: UIView {
+class YHPickerView: UIView {
 
     deinit {
         YHDebugLog("\(self.classForCoder) deinit")
         NotificationCenter.default.removeObserver(self, name: UIApplication.didChangeStatusBarOrientationNotification, object: nil)
     }
+    
+    
+    /// 数据源
+    public var titlesForComponents: [[String]]?
+    
+    /// 富文本数据源
+    public var attributeTitlesForComponents: [[NSAttributedString]]?
+    
+    /// 每列文字颜色(富文本数据源会覆盖此属性)
+    public var titleColor: UIColor = .black
+    
+    /// 每列文字字体(富文本数据源会覆盖此属性)
+    public var titleFont: UIFont = UIFont.boldSystemFont(ofSize: 20)
     
     /// 分割线颜色
     public var separatorLineColor: UIColor = UIColor.gray.withAlphaComponent(0.4) {
@@ -22,19 +35,15 @@ class YHDatePickerView: UIView {
             self.layoutIfNeeded()
         }
     }
-
+    
     /// toolBar.  请自行设置相关属性
     public lazy var toolBar: YHPickerToolBar = {
         let toolBar = YHPickerToolBar()
         return toolBar
     }()
     
-    /// datePickerView.  请自行设置相关属性
-    public lazy var datePickerView: UIDatePicker = {
-        let datePickerView = UIDatePicker()
-        datePickerView.datePickerMode = UIDatePicker.Mode.date
-        return datePickerView
-    }()
+    
+    
     
     
     
@@ -49,14 +58,21 @@ class YHDatePickerView: UIView {
     private var pickerHeight: CGFloat = 0.0
     
     /// 完成回调
-    private var doneClosure: ((Date)->())?
+    private var doneClosure: (([Int])->())?
     
-    /// 背景
+    private lazy var pickerView: UIPickerView = {
+        let pickerView = UIPickerView()
+        pickerView.dataSource = self
+        pickerView.delegate = self
+        return pickerView
+    }()
+    
     private lazy var backgroundView: UIView = {
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.clear
         return backgroundView
     }()
+    
     
     private lazy var gestureView: UIView = {
         let gestureView = UIView()
@@ -108,7 +124,7 @@ class YHDatePickerView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.datePickerView.subviews.forEach { (view) in
+        self.pickerView.subviews.forEach { (view) in
             if view.isKind(of: UIPickerView.classForCoder()) {
                 view.subviews.forEach({ (view1) in
                     if view1.YH_Height < 1 {
@@ -120,7 +136,8 @@ class YHDatePickerView: UIView {
     }
 }
 
-extension YHDatePickerView {
+
+extension YHPickerView {
     private func setup() {
         NotificationCenter.default.removeObserver(self, name: UIApplication.didChangeStatusBarOrientationNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(statusBarOrientationNotification), name: UIApplication.didChangeStatusBarOrientationNotification, object: nil)
@@ -129,12 +146,48 @@ extension YHDatePickerView {
     }
 }
 
-extension YHDatePickerView {
+
+extension YHPickerView {
+    
+    /// 刷新整个pickerView
+    public func reloadAllComponents() {
+        pickerView.reloadAllComponents()
+    }
+    
+    /// 刷新某列
+    /// - Parameter component: component
+    public func reload(component: Int) {
+        pickerView.reloadComponent(component)
+    }
+    
+    /// 设置选中的行
+    /// - Parameter indexs: indexs
+    /// - Parameter animation: animation
+    public func setSelect(indexs: [Int], animation: Bool) {
+        assert(indexs.count == pickerView.numberOfComponents, "indexs和pickerView的components数目不一致")
+        if let attributeTitlesForComponents = attributeTitlesForComponents {
+            for (component, index) in indexs.enumerated() {
+                let items = attributeTitlesForComponents[component]
+                assert(index > items.count - 1, "数组越界")
+                pickerView.selectRow(index, inComponent: component, animated: animation)
+            }
+        }
+        if let titlesForComponents = titlesForComponents {
+            for (component, index) in indexs.enumerated() {
+                let items = titlesForComponents[component]
+                assert(index > items.count - 1, "数组越界")
+                pickerView.selectRow(index, inComponent: component, animated: animation)
+            }
+        }
+    }
     
     /// show
     /// - Parameter doneClosure: 点击完成按钮之后的回调
-    public func show(doneClosure: ((Date)->())?) {
+    public func show(doneClosure: (([Int])->())?) {
         guard let window = UIApplication.shared.keyWindow else { return }
+        if titlesForComponents == nil && attributeTitlesForComponents == nil {
+            return
+        }
         
         self.doneClosure = doneClosure
         
@@ -142,9 +195,8 @@ extension YHDatePickerView {
         backgroundView.addSubview(gestureView)
         backgroundView.addSubview(self)
         addSubview(toolBar)
-        addSubview(datePickerView)
+        addSubview(pickerView)
         
-     
         updateFrame()
         
         
@@ -162,14 +214,15 @@ extension YHDatePickerView {
             self.isUserInteractionEnabled = true
         }
         
-        
         toolBar.cancelButton.addTarget(self, action: #selector(dismiss), for: .touchUpInside)
         toolBar.sureButton.addTarget(self, action: #selector(done), for: .touchUpInside)
     }
+}
+
+extension YHPickerView {
     
     /// dismiss
     @objc public func dismiss() {
-        
         gestureView.isUserInteractionEnabled = false
         self.isUserInteractionEnabled = false
         
@@ -188,13 +241,19 @@ extension YHDatePickerView {
         }
     }
     
+    /// done
     @objc public func done() {
-        self.doneClosure?(self.datePickerView.date)
+        var results: [Int] = []
+        for component in 0..<pickerView.numberOfComponents {
+            let selectRow = pickerView.selectedRow(inComponent: component)
+            results.append(selectRow)
+        }
+        self.doneClosure?(results)
         dismiss()
     }
 }
 
-extension YHDatePickerView {
+extension YHPickerView {
     @objc private func dismissTap() {
         dismiss()
     }
@@ -204,19 +263,64 @@ extension YHDatePickerView {
     }
 }
 
-extension YHDatePickerView {
+extension YHPickerView {
     private func updateFrame() {
         backgroundView.frame = UIScreen.main.bounds
         gestureView.frame = UIScreen.main.bounds
         
-        datePickerView.sizeToFit()
+        pickerView.sizeToFit()
         
-        let height = toolBarHeight + UIDevice.YH_HomeIndicator_Height + datePickerView.YH_Height
+        let height = toolBarHeight + UIDevice.YH_HomeIndicator_Height + pickerView.YH_Height
         
         self.pickerHeight = height
         
         self.frame = CGRect(x: 0, y: UIScreen.main.bounds.size.height - height, width: UIScreen.main.bounds.size.width, height: height)
         toolBar.frame = CGRect(x: 0, y: 0, width: self.YH_Width, height: toolBarHeight)
-        datePickerView.frame = CGRect(x: 0, y: toolBarHeight, width: self.YH_Width, height: datePickerView.YH_Height)
+        pickerView.frame = CGRect(x: 0, y: toolBarHeight, width: self.YH_Width, height: pickerView.YH_Height)
+    }
+}
+
+
+
+extension YHPickerView: UIPickerViewDataSource, UIPickerViewDelegate {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        if let titlesForComponents = titlesForComponents {
+            return titlesForComponents.count
+        }
+        if let attributeTitlesForComponents = attributeTitlesForComponents {
+            return attributeTitlesForComponents.count
+        }
+        return 0
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if let titlesForComponents = titlesForComponents {
+            return titlesForComponents[component].count
+        }
+        if let attributeTitlesForComponents = attributeTitlesForComponents {
+            return attributeTitlesForComponents[component].count
+        }
+        return 0
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let label = UILabel()
+        if let attributeTitlesForComponents = attributeTitlesForComponents {
+            let attributeString = attributeTitlesForComponents[component][row]
+            label.attributedText = attributeString
+        }
+        if let titlesForComponents = titlesForComponents {
+            let title = titlesForComponents[component][row]
+            label.textAlignment = .center
+            label.textColor = titleColor
+            label.font = titleFont
+            label.text = title
+            label.adjustsFontSizeToFitWidth = true
+        }
+        return label
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
     }
 }

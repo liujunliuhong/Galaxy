@@ -14,6 +14,10 @@ import SnapKit
 // 主要处理了屏幕旋转相关的问题
 // 也可以单独把YHCusNavigationBar拿出来用
 class YHBaseViewController: UIViewController {
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didChangeStatusBarOrientationNotification, object: nil)
+    }
+    
     public lazy var cusNaviBar: YHCusNavigationBar = {
         let cusNaviBar = YHCusNavigationBar()
         cusNaviBar.hideNaviBar = true // 默认隐藏整个导航栏，避免bug：如果设置为true，进入一个需要隐藏导航栏的界面时，导航栏会闪一下
@@ -49,6 +53,8 @@ class YHBaseViewController: UIViewController {
                 make.bottom.equalTo(self.view)
             }
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(deviceRotaion), name: UIApplication.didChangeStatusBarOrientationNotification, object: nil)
     }
     
     // The status bar is not hidden by default.
@@ -92,4 +98,8 @@ class YHBaseViewController: UIViewController {
 
 
 
-
+extension YHBaseViewController {
+    @objc func deviceRotaion() {
+        self.cusNaviBar.reloadUI(origin: .zero, width: self.view.frame.size.width)
+    }
+}

@@ -84,6 +84,12 @@ public class YHCusNavigationBar: UIView {
         }
     }
     
+    
+    private var _origin: CGPoint = .zero
+    private var _width: CGFloat = UIScreen.main.bounds.size.width
+    
+    
+    
     init() {
         super.init(frame: .zero)
         self.backgroundColor = UIColor.white
@@ -110,6 +116,9 @@ public class YHCusNavigationBar: UIView {
     ///   - origin: 自定义导航栏的origin，默认zero，在VC中表示左上角
     ///   - width: 自定义导航栏的宽度，默认屏幕宽度
     public func reloadUI(origin: CGPoint = .zero, width: CGFloat = UIScreen.main.bounds.size.width) {
+        _origin = origin
+        _width = width
+        
         if self.hideNaviBar {
             self.barView.isHidden = true
             self.toolView.isHidden = true

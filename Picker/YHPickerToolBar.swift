@@ -59,7 +59,7 @@ class YHPickerToolBar: UIView {
 
 
 extension YHPickerToolBar {
-    func makeUI() {
+    private func makeUI() {
         addSubview(cancelButton)
         addSubview(sureButton)
         addSubview(titleLabel)

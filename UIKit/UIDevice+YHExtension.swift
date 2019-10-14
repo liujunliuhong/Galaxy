@@ -51,6 +51,9 @@ extension UIDevice {
         let machine = UIDevice.YHMachine
         if let map = UIDevice.YHMachineMap[machine] {
             if map == .iPhoneX || map == .iPhoneXR || map == .iPhoneXS || map == .iPhoneX_S_Max || map == .iPhone_11 || map == .iPhone_11_Pro || map == .iPhone_11_Pro_Max {
+                if UIApplication.shared.statusBarOrientation == .landscapeLeft || UIApplication.shared.statusBarOrientation == .landscapeRight {
+                    return 0.0
+                }
                 return 44.0
             } else {
                 return 20.0
@@ -77,6 +80,9 @@ extension UIDevice {
         let machine = UIDevice.YHMachine
         if let map = UIDevice.YHMachineMap[machine] {
             if map == .iPhoneX || map == .iPhoneXR || map == .iPhoneXS || map == .iPhoneX_S_Max || map == .iPhone_11 || map == .iPhone_11_Pro || map == .iPhone_11_Pro_Max {
+                if UIApplication.shared.statusBarOrientation == .landscapeLeft || UIApplication.shared.statusBarOrientation == .landscapeRight {
+                    return 21.0
+                }
                 return 34.0
             } else {
                 return 0.0

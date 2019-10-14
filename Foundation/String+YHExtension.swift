@@ -10,6 +10,7 @@ import Foundation
 
 
 extension String {
+    /// json decode
     var yh_jsonDecode: Any? {
         let data = self.data(using: .utf8)
         guard let _data = data else { return nil }

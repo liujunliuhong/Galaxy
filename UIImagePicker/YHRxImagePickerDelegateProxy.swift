@@ -66,6 +66,7 @@ extension Reactive where Base: UIImagePickerController {
 extension Reactive where Base: UIImagePickerController {
     
     public static func yh_showImagePicker(parent: UIViewController, animated: Bool = true, configureImagePicker: @escaping (UIImagePickerController) throws -> Void) -> Observable<UIImagePickerController> {
+        
         return Observable<UIImagePickerController>.create({ [weak parent] (observer) -> Disposable in
             
             // 初始化一个图片选择控制器
@@ -80,6 +81,7 @@ extension Reactive where Base: UIImagePickerController {
                     }
                     dismissViewController(imagePicker, animated: animated)
                 })
+            
             
             // 设置图片选择控制器初始参数，参数不正确则发出.error事件
             do {

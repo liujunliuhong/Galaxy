@@ -34,7 +34,7 @@ open class YHTabBar: UITabBar {
     internal var containers: [YHTabBarItemContainer] = [YHTabBarItemContainer]()
     
     
-    /// 当设置为fillUp时，最好设置下contentView的insets属性，否则在iPhone X系列手机上图标文字的具体过大
+    /// 当设置为fillUp时，最好设置下contentView的insets属性，否则在iPhone X系列手机上图标文字的距离过大
     open var itemCustomPositioning: YHTabBar.YHTabBarItemPosition? {
         didSet {
             if let _itemCustomPositioning = itemCustomPositioning {

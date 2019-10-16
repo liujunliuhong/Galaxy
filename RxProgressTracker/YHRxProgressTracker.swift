@@ -12,6 +12,7 @@ import RxSwift
 import RxCocoa
 
 
+// 参考:https://github.com/InsectQY/RxActivityIndicator
 private struct YHRxProgressToken<O>: ObservableConvertibleType, Disposable {
     
     typealias Element = O

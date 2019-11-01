@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 // 参考了QMUI
+@objc
 extension UITabBar {
     
     func yh_backgroundView() -> UIView? {

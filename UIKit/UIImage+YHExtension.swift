@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+@objc
 extension UIImage {
     
     static func yh_image(color: UIColor, size: CGSize) -> UIImage? {

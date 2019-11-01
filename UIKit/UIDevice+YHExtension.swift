@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-
+@objc
 extension UIDevice {
     public static var YH_Width: CGFloat {
         return UIScreen.main.bounds.size.width
@@ -95,6 +95,7 @@ extension UIDevice {
 
 
 // Example:https://www.theiphonewiki.com/wiki/Models#iPhone
+@objc
 extension UIDevice {
     public enum YHDeviceMachineType: String {
         // iPhone
@@ -175,6 +176,7 @@ extension UIDevice {
         case simulator                                                  = "simulator"
     }
     
+    @nonobjc
     public static var YHMachineMap: [String: YHDeviceMachineType] = [
         // iPhone
         "iPhone1,1"            :          .iPhone,
@@ -305,7 +307,7 @@ extension UIDevice {
     ]
 }
 
-
+@objc
 extension UIDevice {
     private static var YHSys: utsname {
         var sys: utsname = utsname()

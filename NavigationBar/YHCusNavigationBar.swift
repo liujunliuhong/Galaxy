@@ -9,16 +9,16 @@
 import UIKit
 
 
-public struct YHCusNavigationBarItem {
+public class YHCusNavigationBarItem: NSObject {
     var view: UIView!
     var width: CGFloat = 50.0
 }
 
-public struct YHCusNavigationSpaceItem {
+public class YHCusNavigationSpaceItem: NSObject {
     var space: CGFloat = 0.0
 }
 
-public struct YHCusNavigationToolItem {
+public class YHCusNavigationToolItem: NSObject {
     var view: UIView!
     var height: CGFloat = 0.0
 }
@@ -31,6 +31,7 @@ private struct YHCusNavigationBarAssociatedKeys {
  自定义导航栏，继承自UIView
  没有什么技术点，就是几个view的排版
 */
+@objc
 public class YHCusNavigationBar: UIView {
     
     deinit {
@@ -63,26 +64,26 @@ public class YHCusNavigationBar: UIView {
     
     private let barHeight: CGFloat = 44.0
     
-    public var gradientLayer: CAGradientLayer?
-    public var hideNaviBar: Bool = true // 是否隐藏整个自定义导航栏
-    public var hideBar: Bool = false // 是否隐藏bar
-    public var hideStatusBar: Bool = false // 是否隐藏顶部statusBar空白
-    public var hideToolBar: Bool = false // 是否隐藏底部工具栏
-    public var leftItems: [Any] = []
-    public var rightItems: [Any] = []
-    public var toolItem: YHCusNavigationToolItem?
+    @objc public var gradientLayer: CAGradientLayer?
+    @objc public var hideNaviBar: Bool = true // 是否隐藏整个自定义导航栏
+    @objc public var hideBar: Bool = false // 是否隐藏bar
+    @objc public var hideStatusBar: Bool = false // 是否隐藏顶部statusBar空白
+    @objc public var hideToolBar: Bool = false // 是否隐藏底部工具栏
+    @objc public var leftItems: [Any] = []
+    @objc public var rightItems: [Any] = []
+    @objc public var toolItem: YHCusNavigationToolItem?
     
-    public var lineColor: UIColor = UIColor.gray {
+    @objc public var lineColor: UIColor = UIColor.gray {
         didSet {
             self.lineView.backgroundColor = lineColor
         }
     }
     
-    public var hideLine: Bool = false {
-        didSet {
-            self.lineView.backgroundColor = UIColor.clear
-        }
-    }
+//    public var hideLine: Bool = false {
+//        didSet {
+//            self.lineView.backgroundColor = UIColor.clear
+//        }
+//    }
     
     
     private var _origin: CGPoint = .zero
@@ -115,7 +116,7 @@ public class YHCusNavigationBar: UIView {
     /// - Parameters:
     ///   - origin: 自定义导航栏的origin，默认zero，在VC中表示左上角
     ///   - width: 自定义导航栏的宽度，默认屏幕宽度
-    public func reloadUI(origin: CGPoint = .zero, width: CGFloat = UIScreen.main.bounds.size.width) {
+    @objc public func reloadUI(origin: CGPoint = .zero, width: CGFloat = UIScreen.main.bounds.size.width) {
         _origin = origin
         _width = width
         
@@ -128,6 +129,8 @@ public class YHCusNavigationBar: UIView {
             self.toolView.frame = .zero
             return
         }
+        self.lineView.isHidden = false
+        
         let ox: CGFloat = origin.x
         let oy: CGFloat = origin.y
         var height: CGFloat = 0.0
@@ -224,7 +227,7 @@ public class YHCusNavigationBar: UIView {
         
         
         if !self.hideBar {
-            self.lineView.frame = CGRect(x: ox, y: self.barView.frame.origin.y + self.barView.frame.size.height - 0.7, width: width, height: 0.7)
+            self.lineView.frame = CGRect(x: ox, y: self.barView.frame.origin.y + self.barView.frame.size.height - 0.5, width: width, height: 0.5)
         }
         
         
@@ -239,5 +242,7 @@ public class YHCusNavigationBar: UIView {
             gradientLayer.frame = self.bounds
             self.layer.insertSublayer(gradientLayer, at: 0)
         }
+        
+        self.lineView.backgroundColor = lineColor
     }
 }

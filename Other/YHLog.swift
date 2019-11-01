@@ -34,4 +34,8 @@ func YHDebugLog<T>(_ message: T, file: String = #file, line: Int = #line) {
     #endif
 }
 
-
+class YHLogger: NSObject {
+    @objc static func log(message: String) {
+        YHDebugLog(message)
+    }
+}

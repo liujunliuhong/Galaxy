@@ -80,7 +80,7 @@ class YHDatePickerView: UIView {
             }
         }
         
-        init?(rawValue: FNRegisterSexView.colorType.RawValue) {
+        init?(rawValue: YHDatePickerView.colorType.RawValue) {
             switch rawValue {
             case colorType.clear.rawValue:
                 self = .clear

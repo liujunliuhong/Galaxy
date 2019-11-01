@@ -96,7 +96,7 @@ class YHPickerView: UIView {
             }
         }
         
-        init?(rawValue: FNRegisterSexView.colorType.RawValue) {
+        init?(rawValue: YHPickerView.colorType.RawValue) {
             switch rawValue {
             case colorType.clear.rawValue:
                 self = .clear

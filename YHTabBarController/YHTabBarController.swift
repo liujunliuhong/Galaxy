@@ -15,6 +15,7 @@ public typealias YHTabBarControllerShouldHijackHandler = ((_ tabBarController: U
 public typealias YHTabBarControllerDidHijackHandler = ((_ tabBarController: UITabBarController, _ viewController: UIViewController, _ index: Int) -> (Void))
 
 
+@objc
 open class YHTabBarController: UITabBarController {
     
     open var shouldHijackHandler: YHTabBarControllerShouldHijackHandler?

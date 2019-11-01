@@ -10,9 +10,10 @@ import Foundation
 import UIKit
 import SafariServices
 
-
-public struct YHGenerated {
+@objc
+public class YHGenerated: NSObject {
     // Open iphone setting.
+    @objc
     public static func openIphoneSettings() {
         DispatchQueue.main.async {
             if #available(iOS 10.0, *) {
@@ -24,6 +25,7 @@ public struct YHGenerated {
     }
     
     // Open App Store.
+    @objc
     public static func openAppStore(with appID: String) {
         DispatchQueue.main.async {
             let urlString = "https://itunes.apple.com/app/id\(appID)"
@@ -37,6 +39,7 @@ public struct YHGenerated {
     }
     
     // Open App Store Review.
+    @objc
     public static func openAppStoreReview(with appID: String) {
         DispatchQueue.main.async {
             let urlString = "https://itunes.apple.com/cn/app/id\(appID)?action=write-review"
@@ -50,6 +53,7 @@ public struct YHGenerated {
     }
     
     // Make call.
+    @objc
     public static func makeCall(with tel: String) {
         DispatchQueue.main.async {
             let urlString = "tel://\(tel)"
@@ -68,11 +72,13 @@ public struct YHGenerated {
     /// - Parameters:
     ///   - url: url
     ///   - autoCorrect: Whether to automatically correct the url, such as adding http://
+    @objc
     public static func openSafari(with url: String, autoCorrect: Bool = true) {
         
     }
     
     // Get local JSON file content.
+    @objc
     public static func getLocalJSONFile(file fileName: String) -> Data? {
         let path = Bundle.main.path(forResource: fileName, ofType: "json") ?? ""
         // 将错误转换为可选值
@@ -80,13 +86,13 @@ public struct YHGenerated {
     }
     
     // Get local Plist file content.
+    @objc
     public static func getLocalPlistFile(file fileName: String) -> Data? {
         let path = Bundle.main.path(forResource: fileName, ofType: "plist") ?? ""
         // 将错误转换为可选值
         return try? Data(contentsOf: URL(fileURLWithPath: path))
     }
 }
-
 
 
 extension YHGenerated {
@@ -97,7 +103,6 @@ extension YHGenerated {
         case appName             = "CFBundleDisplayName"
         case statusBarStyle      = "UIStatusBarStyle"
     }
-    
     public static func getBundleInfo(with type: bundleType) -> String {
         let bundleDic = Bundle.main.infoDictionary
         return bundleDic?[type.rawValue] as? String ?? ""

@@ -8,19 +8,21 @@
 
 import UIKit
 
-
+@objc
 public class YHCusNavigationBarItem: NSObject {
-    var view: UIView!
-    var width: CGFloat = 50.0
+    @objc var view: UIView!
+    @objc var width: CGFloat = 50.0
 }
 
+@objc
 public class YHCusNavigationSpaceItem: NSObject {
-    var space: CGFloat = 0.0
+    @objc var space: CGFloat = 0.0
 }
 
+@objc
 public class YHCusNavigationToolItem: NSObject {
-    var view: UIView!
-    var height: CGFloat = 0.0
+    @objc var view: UIView!
+    @objc var height: CGFloat = 0.0
 }
 
 private struct YHCusNavigationBarAssociatedKeys {

@@ -21,7 +21,7 @@ enum YHDebugLogType {
 func YHDebugLog<T>(_ message: T, file: String = #file, line: Int = #line) {
     #if canImport(CocoaLumberjack)
     let filName = (file as NSString).lastPathComponent
-    let msg = "[\(filName)] [\(line)] \(message)"
+    let msg = "[👉] [\(filName)] [\(line)] \(message)"
     DDLogDebug(msg)
     #else
     #if DEBUG

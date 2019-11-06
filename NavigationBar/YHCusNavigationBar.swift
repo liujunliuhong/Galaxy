@@ -50,15 +50,15 @@ public class YHCusNavigationBar: UIView {
     /// 如果设置了宽度，将优先使用设置的宽度
     /// 如果没有设置宽度，将根据左右item自动计算宽度
     /// 高度会自动适应
-    var titleView: UIView?
+    @objc public var titleView: UIView?
     
-    public lazy var barView: UIView = {
+    @objc public lazy var barView: UIView = {
         let barView = UIView()
         barView.backgroundColor = UIColor.clear
         return barView
     }()
     
-    public lazy var toolView: UIView = {
+    @objc public lazy var toolView: UIView = {
         let toolView = UIView()
         toolView.backgroundColor = UIColor.clear
         return toolView

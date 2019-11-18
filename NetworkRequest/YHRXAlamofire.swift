@@ -78,7 +78,7 @@ class YHAlamofire {
         
         var hud: MBProgressHUD? = nil
         if request.isShowHUD {
-            hud = YHMBHUD.showHUD()
+            hud = YHHUD.showHUD()
         }
         let dataRequest = sessionManager.request(URL, method: request.method, parameters: request.parameters, encoding: request.encoding, headers: request.headers)
         
@@ -96,7 +96,7 @@ class YHAlamofire {
                 request.requestProgress(progress: 0.0)
             }
             }.responseJSON { (response) in
-                YHMBHUD.hideHUD(hud)
+                YHHUD.hideHUD(hud)
                 request.requestEnd()
                 if request.isPrintLog {
                     var log = "\n=============================================================================\n"

@@ -168,14 +168,14 @@ extension YHPickerView {
         if let attributeTitlesForComponents = attributeTitlesForComponents {
             for (component, index) in indexs.enumerated() {
                 let items = attributeTitlesForComponents[component]
-                assert(index > items.count - 1, "数组越界")
+                assert(index <= items.count - 1, "数组越界")
                 pickerView.selectRow(index, inComponent: component, animated: animation)
             }
         }
         if let titlesForComponents = titlesForComponents {
             for (component, index) in indexs.enumerated() {
                 let items = titlesForComponents[component]
-                assert(index > items.count - 1, "数组越界")
+                assert(index <= items.count - 1, "数组越界")
                 pickerView.selectRow(index, inComponent: component, animated: animation)
             }
         }

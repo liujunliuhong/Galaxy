@@ -109,3 +109,16 @@ extension YHGenerated {
     }
 }
 
+extension YHGenerated {
+    @objc public static func fileSize(length: Int) -> String {
+        if (length < 1024) {
+            return "\(length)B"
+        }else if (length >= 1024 && length < (1024 * 1024)){
+            return "\(CGFloat(length) / 1024.0)KB"
+        } else if (length > (1024 * 1024) && length < (1024 * 1024 * 1024)) {
+            return "\(CGFloat(length) / (1024.0 * 1024.0))MB"
+        } else {
+            return "\(CGFloat(length) / (1024.0 * 1024.0 * 1024.0))GB"
+        }
+    }
+}

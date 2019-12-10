@@ -17,9 +17,13 @@ public class YHGenerated: NSObject {
     public static func openIphoneSettings() {
         DispatchQueue.main.async {
             if #available(iOS 10.0, *) {
-                UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
+                if let url = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                }
             } else {
-                UIApplication.shared.openURL(URL(string: UIApplication.openSettingsURLString)!)
+                if let url = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.openURL(url)
+                }
             }
         }
     }
@@ -29,11 +33,12 @@ public class YHGenerated: NSObject {
     public static func openAppStore(with appID: String) {
         DispatchQueue.main.async {
             let urlString = "https://itunes.apple.com/app/id\(appID)"
-            let url = URL(string: urlString)!
-            if #available(iOS 10.0, *) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            } else {
-                UIApplication.shared.openURL(url)
+            if let url = URL(string: urlString) {
+                if #available(iOS 10.0, *) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                } else {
+                    UIApplication.shared.openURL(url)
+                }
             }
         }
     }
@@ -43,11 +48,12 @@ public class YHGenerated: NSObject {
     public static func openAppStoreReview(with appID: String) {
         DispatchQueue.main.async {
             let urlString = "https://itunes.apple.com/cn/app/id\(appID)?action=write-review"
-            let url = URL(string: urlString)!
-            if #available(iOS 10.0, *) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            } else {
-                UIApplication.shared.openURL(url)
+            if let url = URL(string: urlString) {
+                if #available(iOS 10.0, *) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                } else {
+                    UIApplication.shared.openURL(url)
+                }
             }
         }
     }
@@ -57,11 +63,12 @@ public class YHGenerated: NSObject {
     public static func makeCall(with tel: String) {
         DispatchQueue.main.async {
             let urlString = "tel://\(tel)"
-            let url = URL(string: urlString)!
-            if #available(iOS 10.0, *) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            } else {
-                UIApplication.shared.openURL(url)
+            if let url = URL(string: urlString) {
+                if #available(iOS 10.0, *) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                } else {
+                    UIApplication.shared.openURL(url)
+                }
             }
         }
     }

@@ -75,6 +75,7 @@ extension YHQCloudCOSManager: QCloudCredentailFenceQueueDelegate {
 extension YHQCloudCOSManager {
     @objc public func upload(with path: String, bucketName: String, key: String, progressClosure: ((CGFloat)->())?, successClosure: ((QCloudUploadObjectResult)->())?, errorClosure: ((Error)->())?) {
         let uploadRequest = QCloudCOSXMLUploadObjectRequest<AnyObject>()
+        uploadRequest.customHeaders = ["content-type": ""]
         uploadRequest.body = URL(fileURLWithPath: path) as AnyObject
         uploadRequest.bucket = bucketName
         uploadRequest.object = key

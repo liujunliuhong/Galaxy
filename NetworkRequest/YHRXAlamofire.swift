@@ -7,7 +7,6 @@
 //
 
 import Foundation
-
 import MBProgressHUD
 import RxSwift
 import Alamofire
@@ -48,14 +47,12 @@ extension YHAlamofireRequestProtocol {
 
 
 
-// YHAlamofire.default.rx.request(...)
-// YHAlamofire.default.request(...)
 class YHAlamofire {
+    public static func `default`() -> YHAlamofire {
+        return YHAlamofire()
+    }
     
-    public static let `default` = YHAlamofire()
-    
-    @discardableResult
-    func request(request: YHAlamofireRequestProtocol, sessionManager: SessionManager = Alamofire.SessionManager.default, completion:@escaping (YHResult<JSON, Error>.result) -> Void) -> DataRequest {
+    @discardableResult func request(request: YHAlamofireRequestProtocol, sessionManager: SessionManager = Alamofire.SessionManager.default, completion:@escaping (YHResult<JSON, Error>.result) -> Void) -> DataRequest {
         var URL = request.baseURL
         if !request.path.isEmpty {
             URL = URL + request.path
@@ -139,8 +136,7 @@ extension YHAlamofire: ReactiveCompatible {}
 extension Reactive where Base: YHAlamofire {
     func requestJSON(request: YHAlamofireRequestProtocol, sessionManager: SessionManager = Alamofire.SessionManager.default) -> Observable<(JSON)> {
         return Observable<(JSON)>.create({ (observer) -> Disposable in
-            
-            let dataRequest = YHAlamofire.default.request(request: request, sessionManager: sessionManager, completion: { (result) in
+            let dataRequest = self.base.request(request: request, sessionManager: sessionManager, completion: { (result) in
                 switch result.result {
                 case let .success(json):
                     observer.onNext(json)
@@ -149,7 +145,6 @@ extension Reactive where Base: YHAlamofire {
                 }
                 observer.onCompleted()
             })
-            
             return Disposables.create {
                 dataRequest.cancel()
             }

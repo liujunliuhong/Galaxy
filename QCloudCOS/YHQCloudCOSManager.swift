@@ -15,7 +15,8 @@ import QCloudCOSXML
 #if (canImport(QCloudCore) && canImport(QCloudCOSXML))
 @objc public class YHQCloudCOSManager: NSObject {
     
-    let credentialFenceQueue: QCloudCredentailFenceQueue
+    private let credentialFenceQueue: QCloudCredentailFenceQueue
+    
     public override init() {
         self.credentialFenceQueue = QCloudCredentailFenceQueue()
         super.init()
@@ -26,7 +27,6 @@ import QCloudCOSXML
     
     private var secretID: String?
     private var secretKey: String?
-    
     
     @objc public func setup(appID: String, regionName: String, secretID: String, secretKey: String) {
         self.secretID = secretID
@@ -46,7 +46,6 @@ import QCloudCOSXML
         QCloudCOSTransferMangerService.registerDefaultCOSTransferManger(with: config)
         
         QCloudLogger.shared()?.logLevel = .none
-        
     }
 }
 

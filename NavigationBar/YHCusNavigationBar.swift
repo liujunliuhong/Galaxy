@@ -195,6 +195,11 @@ public class YHCusNavigationBar: UIView {
             if let spaceItem = item as? YHCusNavigationSpaceItem {
                 leftDistance = leftDistance + spaceItem.space
             } else if let item = item as? YHCusNavigationBarItem {
+                if let label = item.view as? UILabel {
+                    label.adjustsFontSizeToFitWidth = true
+                } else if let button = item.view as? UIButton {
+                    button.titleLabel?.adjustsFontSizeToFitWidth = true
+                }
                 self.barView.addSubview(item.view)
                 item.view.frame = CGRect(x: leftDistance, y: 0, width: item.width, height: self.barHeight)
                 leftDistance = leftDistance + item.width
@@ -206,6 +211,11 @@ public class YHCusNavigationBar: UIView {
             if let spaceItem = item as? YHCusNavigationSpaceItem {
                 rightDistance = rightDistance + spaceItem.space
             } else if let item = item as? YHCusNavigationBarItem {
+                if let label = item.view as? UILabel {
+                    label.adjustsFontSizeToFitWidth = true
+                } else if let button = item.view as? UIButton {
+                    button.titleLabel?.adjustsFontSizeToFitWidth = true
+                }
                 self.barView.addSubview(item.view)
                 item.view.frame = CGRect(x: width - rightDistance - item.width, y: 0, width: item.width, height: self.barHeight)
                 rightDistance = rightDistance + item.width

@@ -12,7 +12,7 @@ import UIKit
 @objc
 extension UIImage {
     
-    static func yh_image(color: UIColor, size: CGSize) -> UIImage? {
+    static func yh_image(color: UIColor, size: CGSize = CGSize(width: 1.0, height: 1.0)) -> UIImage? {
         let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         UIGraphicsBeginImageContext(size)
         let context = UIGraphicsGetCurrentContext()

@@ -10,5 +10,6 @@
 #define SwiftTool_OC_Header_h
 
 #import "YHSystemFaceView.h"
+#import "YHBMKLocaion.h"
 
 #endif /* SwiftTool_OC_Header_h */

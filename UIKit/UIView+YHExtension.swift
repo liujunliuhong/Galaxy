@@ -11,7 +11,7 @@ import UIKit
 
 @objc
 extension UIView {
-    var YH_Origin: CGPoint {
+    public var YH_Origin: CGPoint {
         get {
             return self.frame.origin
         }
@@ -22,7 +22,7 @@ extension UIView {
         }
     }
     
-    var YH_X: CGFloat {
+    public var YH_X: CGFloat {
         get {
             return self.frame.origin.x
         }
@@ -33,7 +33,7 @@ extension UIView {
         }
     }
     
-    var YH_Y: CGFloat {
+    public var YH_Y: CGFloat {
         get {
             return self.frame.origin.y
         }
@@ -44,7 +44,7 @@ extension UIView {
         }
     }
     
-    var YH_Size: CGSize {
+    public var YH_Size: CGSize {
         get {
             return self.frame.size
         }
@@ -55,7 +55,7 @@ extension UIView {
         }
     }
     
-    var YH_Width: CGFloat {
+    public var YH_Width: CGFloat {
         get {
             return self.frame.size.width
         }
@@ -66,7 +66,7 @@ extension UIView {
         }
     }
     
-    var YH_Height: CGFloat {
+    public var YH_Height: CGFloat {
         get {
             return self.frame.size.height
         }
@@ -77,7 +77,7 @@ extension UIView {
         }
     }
     
-    var YH_Center: CGPoint {
+    public var YH_Center: CGPoint {
         get {
             return self.center
         }
@@ -86,7 +86,7 @@ extension UIView {
         }
     }
     
-    var YH_CenterX: CGFloat {
+    public var YH_CenterX: CGFloat {
         get {
             return self.center.x
         }
@@ -95,7 +95,7 @@ extension UIView {
         }
     }
     
-    var YH_CenterY: CGFloat {
+    public var YH_CenterY: CGFloat {
         get {
             return self.center.y
         }
@@ -104,7 +104,7 @@ extension UIView {
         }
     }
     
-    var YH_Top: CGFloat {
+    public var YH_Top: CGFloat {
         get {
             return self.frame.origin.y
         }
@@ -115,7 +115,7 @@ extension UIView {
         }
     }
     
-    var YH_Bottom: CGFloat {
+    public var YH_Bottom: CGFloat {
         get {
             return self.frame.origin.y + self.frame.size.height
         }
@@ -126,7 +126,7 @@ extension UIView {
         }
     }
     
-    var YH_Left: CGFloat {
+    public var YH_Left: CGFloat {
         get {
             return self.frame.origin.x
         }
@@ -137,7 +137,7 @@ extension UIView {
         }
     }
     
-    var YH_Right: CGFloat {
+    public var YH_Right: CGFloat {
         get {
             return self.frame.origin.x + self.frame.size.width
         }
@@ -158,5 +158,30 @@ extension UIView {
     open override func value(forUndefinedKey key: String) -> Any? {
         YHDebugLog("[KVC报错] [key: \(key)]")
         return nil
+    }
+}
+
+
+extension UIView {
+    /// 截取view指定区域
+    /// - Parameter targetRect: 指定区域被裁剪
+    public func yh_snapshot(targetRect: CGRect) -> UIImage? {
+        let scale: CGFloat = UIScreen.main.scale // 设置屏幕倍率可以保证截图的质量
+        UIGraphicsBeginImageContextWithOptions(self.frame.size, true, scale)
+        guard let context = UIGraphicsGetCurrentContext() else { // 这段代码不能写在`UIGraphicsBeginImageContextWithOptions`的前面，否则`context`为nil
+            return nil
+        }
+        self.layer.render(in: context)
+        defer {
+            UIGraphicsEndImageContext()
+        }
+        let targetRect = CGRect(x: targetRect.origin.x * scale, y: targetRect.origin.y * scale, width: targetRect.width * scale, height: targetRect.height * scale)
+        guard let image = UIGraphicsGetImageFromCurrentImageContext() else {
+            return nil
+        }
+        guard let cgImage = image.cgImage?.cropping(to: targetRect) else {
+            return nil
+        }
+        return UIImage(cgImage: cgImage)
     }
 }

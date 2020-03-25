@@ -16,8 +16,10 @@ static char yh_bmk_register_completion_associated_key;
 
 static char yh_bmk_single_location_associated_key;
 
-
-@interface YHBMKLocaion() <BMKLocationAuthDelegate>
+@interface YHBMKLocaion()
+#if __has_include(<BMKLocationKit/BMKLocationComponent.h>)
+<BMKLocationAuthDelegate>
+#endif
 #if __has_include(<BMKLocationKit/BMKLocationComponent.h>)
 @property (nonatomic, strong) BMKLocationManager *locationManager;
 @property (nonatomic, strong) id target;

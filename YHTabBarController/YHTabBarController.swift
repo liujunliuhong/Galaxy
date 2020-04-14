@@ -85,6 +85,7 @@ extension YHTabBarController {
         if let vc = viewControllers?[idx] {
             flag = true
             selectedIndex = idx // 此处会调用set方法，因此把flag设置为YES，否则会造成死循环
+            flag = false // 重置
             delegate?.tabBarController?(self, didSelect: vc)
         }
     }

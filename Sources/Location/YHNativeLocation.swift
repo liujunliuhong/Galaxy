@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 public enum YHNativeLocationError: LocalizedError {
     case message(String)

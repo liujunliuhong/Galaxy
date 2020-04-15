@@ -10,6 +10,7 @@ import Foundation
 import MBProgressHUD
 
 class YHHUD: NSObject {
+    #if canImport(MBProgressHUD)
     // MARK: - MBProgressHUD -- 针对MBProgressHUD的简单封装
     // must in main thread.
     @objc static func showHUD(_ message: String? = nil, _ hudColor: UIColor = .black, _ contentColor: UIColor = .white, in view: UIView = UIApplication.shared.keyWindow!) -> MBProgressHUD {
@@ -52,4 +53,5 @@ class YHHUD: NSObject {
             hud.completionBlock = closure
         }
     }
+    #endif
 }

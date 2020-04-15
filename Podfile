@@ -17,6 +17,7 @@ target 'SwiftTool' do
   pod 'SnapKit'
   pod 'Texture'
   
+  pod 'QCloudCOSXML'
   # Pods for SwiftTool
 
 end

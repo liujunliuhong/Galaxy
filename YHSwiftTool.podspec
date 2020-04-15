@@ -5,11 +5,12 @@ Pod::Spec.new do |s|
   s.summary                    = 'Swift版本的开发工具，旨在帮助开发人员快速开发，持续更新中...'
   s.description                = 'Swift版本的开发工具，旨在帮助开发人员快速开发，持续更新中...'
   s.author                     = { 'liujunliuhong' => '1035841713@qq.com' }
-  s.version                    = '0.0.9'
+  s.version                    = '0.1.0'
   s.source                     = { :git => 'https://github.com/liujunliuhong/SwiftTool.git', :tag => s.version.to_s }
   s.platform                   = :ios, '9.0'
   s.license                    = { :type => 'MIT', :file => 'LICENSE' }
   s.module_name                = 'YHSwiftTool'
+  s.source_files               = 'Sources/SwiftToolDescription'
   s.swift_version              = '5.0'
   s.ios.deployment_target      = '9.0'
   s.requires_arc               = true
@@ -20,7 +21,7 @@ Pod::Spec.new do |s|
 
   # Core
   s.subspec 'Core' do |ss|
-    ss.source_files            = 'Sources/*', 'Sources/AsyncDisplayKit/*', 'Sources/Foundation/*', 'Sources/Location/*.swift', 'Sources/NavigationBar/*', 'Sources/NetworkRequest/*', 'Sources/Other/*', 'Sources/Picker/*', 'Sources/RxErrorTracker/*', 'Sources/System Face/*', 'Sources/Tag/*', 'Sources/UIImagePicker/*', 'Sources/UIKit/*', 'Sources/ViewModelType/*', 'Sources/YHTabBarController/*'
+  ss.source_files              = 'Sources/Core/*/*'
   ss.resource                  = 'Sources/System Face/YHSystemFace.bundle'
   ss.dependency 'RxSwift'
   ss.dependency 'RxCocoa'
@@ -36,13 +37,13 @@ Pod::Spec.new do |s|
 
   # 腾讯云存储
   s.subspec 'TencentUpload' do |ss|
-    ss.source_files = 'Sources/QCloudCOS/YHQCloudCOSManager.swift'
+    ss.source_files = 'Sources/TencentUpload/*'
     ss.dependency 'QCloudCOSXML'
   end
 
   # 百度定位
   s.subspec 'BaiDuLocation' do |ss|
-    ss.source_files = 'Sources/Location/*.{h,m}'
+    ss.source_files = 'Sources/BaiduLocation/*'
     ss.dependency 'BMKLocationKit'
   end
 

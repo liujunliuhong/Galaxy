@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.9.1)
+  - BMKLocationKit (1.8.5)
   - CocoaLumberjack/Core (3.6.1)
   - CocoaLumberjack/Swift (3.6.1):
     - CocoaLumberjack/Core
@@ -60,6 +61,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - BMKLocationKit
   - CocoaLumberjack/Swift
   - MBProgressHUD
   - "NSObject+Rx"
@@ -74,6 +76,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - BMKLocationKit
     - CocoaLumberjack
     - MBProgressHUD
     - "NSObject+Rx"
@@ -92,6 +95,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  BMKLocationKit: fd3d6b4a9a3a1a2763819f56b780bda5fc5b8726
   CocoaLumberjack: b17ae15142558d08bbacf69775fa10c4abbebcc9
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   "NSObject+Rx": 2eb2cf51fd1c554118449a7fbc36e4cd620b9e94
@@ -108,6 +112,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   Texture: 8ecf6984065a1e54f06bf97b349ecca28582acd7
 
-PODFILE CHECKSUM: 0915760c526f163bd8c9537685034cf53bca1e5a
+PODFILE CHECKSUM: db9a955aab6858436d15657e6b6ada9c8b1b1bcc
 
 COCOAPODS: 1.9.1

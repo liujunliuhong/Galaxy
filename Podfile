@@ -18,6 +18,7 @@ target 'SwiftTool' do
   pod 'Texture'
   
   pod 'QCloudCOSXML'
+  pod 'BMKLocationKit'
   # Pods for SwiftTool
 
 end

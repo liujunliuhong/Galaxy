@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.source                     = { :git => 'https://github.com/liujunliuhong/SwiftTool.git', :tag => s.version.to_s }
   s.platform                   = :ios, '9.0'
   s.license                    = { :type => 'MIT', :file => 'LICENSE' }
-  s.source_files               = 'Sources/*'
+  s.source_files               = 'Sources/**'
   s.module_name                = 'YHSwiftTool'
   s.swift_version              = '5.0'
   s.ios.deployment_target      = '9.0'

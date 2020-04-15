@@ -10,6 +10,7 @@ Pod::Spec.new do |s|
   s.platform                   = :ios, '9.0'
   s.license                    = { :type => 'MIT', :file => 'LICENSE' }
   s.source_files               = 'Sources/*','Sources/*/*'
+  s.resource                   = 'Sources/System Face/YHSystemFace.bundle'
   s.module_name                = 'YHSwiftTool'
   s.swift_version              = '5.0'
   s.ios.deployment_target      = '9.0'

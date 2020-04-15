@@ -88,8 +88,8 @@ private struct YHCusNavigationBarAssociatedKeys {
     private var _width: CGFloat = UIScreen.main.bounds.size.width
     
     
-    
-    init() {
+     
+    @objc public init() {
         super.init(frame: .zero)
         self.backgroundColor = UIColor.white
         self.barView.backgroundColor = UIColor.clear

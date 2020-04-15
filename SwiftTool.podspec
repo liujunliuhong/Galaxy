@@ -15,5 +15,14 @@ Pod::Spec.new do |s|
   s.ios.deployment_target      = '9.0'
   s.requires_arc               = true
 
-  s.dependency                 = 'RxSwift, RxCocoa, NSObject+Rx, Alamofire, SwiftyJSON, Result, CocoaLumberjack/Swift, MBProgressHUD, SnapKit'
+
+  s.dependency 'RxSwift'
+  s.dependency 'RxCocoa'
+  s.dependency 'NSObject+Rx'
+  s.dependency 'Alamofire'
+  s.dependency 'SwiftyJSON'
+  s.dependency 'Result'
+  s.dependency 'CocoaLumberjack/Swift'
+  s.dependency 'MBProgressHUD'
+  s.dependency 'SnapKit'
 end

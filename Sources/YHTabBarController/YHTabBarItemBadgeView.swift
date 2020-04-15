@@ -102,7 +102,7 @@ open class YHTabBarItemBadgeView: UIView {
 }
 
 extension YHTabBarItemBadgeView {
-    func setupUI() {
+    private func setupUI() {
         addSubview(imageView)
         addSubview(badgeLabel)
         

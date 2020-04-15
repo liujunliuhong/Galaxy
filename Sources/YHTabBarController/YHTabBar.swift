@@ -9,7 +9,7 @@
 import UIKit
 
 
-protocol YHTabBarProtocol: NSObjectProtocol {
+public protocol YHTabBarProtocol: NSObjectProtocol {
     func tabBar(_ tabBar: UITabBar, shouldSelect item: UITabBarItem, index: Int) -> Bool
     func tabBar(_ tabBar: UITabBar, shouldHijack item: UITabBarItem, index: Int) -> Bool
     func tabBar(_ tabBar: UITabBar, didHijack item: UITabBarItem, index: Int)
@@ -252,7 +252,7 @@ extension YHTabBar {
 
 
 extension YHTabBar {
-    @objc func highlightAction(_ sender: AnyObject?) {
+    @objc public func highlightAction(_ sender: AnyObject?) {
         guard let container = sender as? YHTabBarItemContainer else {
             return
         }
@@ -282,7 +282,7 @@ extension YHTabBar {
         }
     }
     
-    @objc func dehighlightAction(_ sender: AnyObject?) {
+    @objc public func dehighlightAction(_ sender: AnyObject?) {
         guard let container = sender as? YHTabBarItemContainer else {
             return
         }
@@ -311,7 +311,7 @@ extension YHTabBar {
         }
     }
     
-    @objc func selectAction(_ sender: AnyObject?) {
+    @objc public func selectAction(_ sender: AnyObject?) {
         guard let container = sender as? YHTabBarItemContainer else {
             return
         }
@@ -323,7 +323,7 @@ extension YHTabBar {
 }
 
 extension YHTabBar {
-    @objc func select(itemAtIndex index: Int, animation: Bool) {
+    @objc public func select(itemAtIndex index: Int, animation: Bool) {
         
         guard let _items = items else {
             return

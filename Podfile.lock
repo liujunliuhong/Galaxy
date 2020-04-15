@@ -6,6 +6,21 @@ PODS:
   - MBProgressHUD (1.2.0)
   - "NSObject+Rx (5.0.2)":
     - RxSwift (~> 5.0)
+  - PINCache (3.0.1-beta.6):
+    - PINCache/Arc-exception-safe (= 3.0.1-beta.6)
+    - PINCache/Core (= 3.0.1-beta.6)
+  - PINCache/Arc-exception-safe (3.0.1-beta.6):
+    - PINCache/Core
+  - PINCache/Core (3.0.1-beta.6):
+    - PINOperation (~> 1.1.0)
+  - PINOperation (1.1.2)
+  - PINRemoteImage/Core (3.0.0-beta.13):
+    - PINOperation
+  - PINRemoteImage/iOS (3.0.0-beta.13):
+    - PINRemoteImage/Core
+  - PINRemoteImage/PINCache (3.0.0-beta.13):
+    - PINCache (= 3.0.1-beta.6)
+    - PINRemoteImage/Core
   - Result (5.0.0)
   - RxCocoa (5.1.1):
     - RxRelay (~> 5)
@@ -15,6 +30,26 @@ PODS:
   - RxSwift (5.1.1)
   - SnapKit (4.2.0)
   - SwiftyJSON (5.0.0)
+  - Texture (2.8.1):
+    - Texture/AssetsLibrary (= 2.8.1)
+    - Texture/Core (= 2.8.1)
+    - Texture/MapKit (= 2.8.1)
+    - Texture/Photos (= 2.8.1)
+    - Texture/PINRemoteImage (= 2.8.1)
+    - Texture/Video (= 2.8.1)
+  - Texture/AssetsLibrary (2.8.1):
+    - Texture/Core
+  - Texture/Core (2.8.1)
+  - Texture/MapKit (2.8.1):
+    - Texture/Core
+  - Texture/Photos (2.8.1):
+    - Texture/Core
+  - Texture/PINRemoteImage (2.8.1):
+    - PINRemoteImage/iOS (= 3.0.0-beta.13)
+    - PINRemoteImage/PINCache
+    - Texture/Core
+  - Texture/Video (2.8.1):
+    - Texture/Core
 
 DEPENDENCIES:
   - Alamofire
@@ -26,6 +61,7 @@ DEPENDENCIES:
   - RxSwift
   - SnapKit
   - SwiftyJSON
+  - Texture
 
 SPEC REPOS:
   trunk:
@@ -33,25 +69,33 @@ SPEC REPOS:
     - CocoaLumberjack
     - MBProgressHUD
     - "NSObject+Rx"
+    - PINCache
+    - PINOperation
+    - PINRemoteImage
     - Result
     - RxCocoa
     - RxRelay
     - RxSwift
     - SnapKit
     - SwiftyJSON
+    - Texture
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   CocoaLumberjack: b17ae15142558d08bbacf69775fa10c4abbebcc9
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   "NSObject+Rx": 2eb2cf51fd1c554118449a7fbc36e4cd620b9e94
+  PINCache: d195fdba255283f7e9900a55e3cced377f431f9b
+  PINOperation: 24b774353ca248fcf87d67b2d61eef42087c125a
+  PINRemoteImage: d6d51c5d2adda55f1ce30c96e850b6c4ebd2856a
   Result: ed341d2f236af425b803e690e9bd8fd0a0cb7c5a
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
+  Texture: 8ecf6984065a1e54f06bf97b349ecca28582acd7
 
-PODFILE CHECKSUM: 7d6626d931f8ff176dd75c04d02a06c1ba6442b0
+PODFILE CHECKSUM: 37579df4b097aa44a40a92e1fb759389165eb2af
 
 COCOAPODS: 1.9.1

@@ -10,8 +10,7 @@ import Foundation
 import UIKit
 
 // 参考了QMUI
-@objc
-extension UITabBar {
+@objc public extension UITabBar {
     
     func yh_backgroundView() -> UIView? {
         if #available(iOS 10.0, *) {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class YHPickerToolBar: UIView {
+public class YHPickerToolBar: UIView {
     
     private let buttonWidth: CGFloat = 70.0
     
@@ -49,7 +49,7 @@ class YHPickerToolBar: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         self.cancelButton.frame = CGRect(x: 0, y: 0, width: buttonWidth, height: self.YH_Height)
         self.sureButton.frame = CGRect(x: self.YH_Width - buttonWidth, y: 0, width: buttonWidth, height: self.YH_Height)

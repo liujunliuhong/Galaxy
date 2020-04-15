@@ -13,12 +13,12 @@ import SnapKit
 // 和YHCusNavigationBar耦合的一个BaseVC，包含一个cusNaviBar和safeAreaView，safeAreaView已经做了适配
 // 主要处理了屏幕旋转相关的问题
 // 也可以单独把YHCusNavigationBar拿出来用
-class YHBaseViewController: UIViewController {
+@objc public class YHBaseViewController: UIViewController {
     deinit {
         NotificationCenter.default.removeObserver(self, name: UIApplication.didChangeStatusBarOrientationNotification, object: nil)
     }
     
-    public lazy var cusNaviBar: YHCusNavigationBar = {
+    @objc public lazy var cusNaviBar: YHCusNavigationBar = {
         let cusNaviBar = YHCusNavigationBar()
         cusNaviBar.hideNaviBar = true // 默认隐藏整个导航栏，避免bug：如果设置为true，进入一个需要隐藏导航栏的界面时，导航栏会闪一下
         cusNaviBar.hideBar = false
@@ -27,13 +27,13 @@ class YHBaseViewController: UIViewController {
         return cusNaviBar
     }()
     
-    public lazy var safeAreaView: UIView = {
+    @objc public lazy var safeAreaView: UIView = {
         let safeView = UIView()
         return safeView
     }()
     
 
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
 
         self.view.addSubview(cusNaviBar)
@@ -58,32 +58,32 @@ class YHBaseViewController: UIViewController {
     }
     
     // The status bar is not hidden by default.
-    override var prefersStatusBarHidden: Bool {
+    @objc override public var prefersStatusBarHidden: Bool {
         return false
     }
     
     // Screen default no rotation.
-    override var shouldAutorotate: Bool {
+    @objc override public var shouldAutorotate: Bool {
         return false
     }
     
     // Default supports all screen rotation directions.
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+    @objc override public var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .all
     }
     
     // Default Display Vertical Screen.
-    override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
+    @objc override public var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
         return .portrait
     }
     
     // Default does not hide virtual home indicator.
-    override var prefersHomeIndicatorAutoHidden: Bool{
+    @objc override public var prefersHomeIndicatorAutoHidden: Bool{
         return false
     }
 
     // Set the default status bar style based on the values in info. plist.
-    override var preferredStatusBarStyle: UIStatusBarStyle{
+    @objc override public var preferredStatusBarStyle: UIStatusBarStyle{
         let infoDic = Bundle.main.infoDictionary
         if let infoDic = infoDic, let style = infoDic["UIStatusBarStyle"] as? String, style == "UIStatusBarStyleLightContent" {
             return .lightContent
@@ -91,14 +91,14 @@ class YHBaseViewController: UIViewController {
         return .default
     }
     
-    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+    @objc override public var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
         return .fade
     }
 }
 
 
 
-extension YHBaseViewController {
+@objc public extension YHBaseViewController {
     @objc func deviceRotaion() {
         self.cusNaviBar.reloadUI(origin: .zero, width: self.view.frame.size.width)
     }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class YHDatePickerView: UIView {
+public class YHDatePickerView: UIView {
 
     deinit {
         YHDebugLog("\(self.classForCoder) deinit")
@@ -106,7 +106,7 @@ class YHDatePickerView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         self.datePickerView.subviews.forEach { (view) in
             if view.isKind(of: UIPickerView.classForCoder()) {

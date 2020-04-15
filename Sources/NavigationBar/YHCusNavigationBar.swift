@@ -8,19 +8,16 @@
 
 import UIKit
 
-@objc
-public class YHCusNavigationBarItem: NSObject {
+@objc public class YHCusNavigationBarItem: NSObject {
     @objc var view: UIView!
     @objc var width: CGFloat = 50.0
 }
 
-@objc
-public class YHCusNavigationSpaceItem: NSObject {
+@objc public class YHCusNavigationSpaceItem: NSObject {
     @objc var space: CGFloat = 0.0
 }
 
-@objc
-public class YHCusNavigationToolItem: NSObject {
+@objc public class YHCusNavigationToolItem: NSObject {
     @objc var view: UIView!
     @objc var height: CGFloat = 0.0
 }
@@ -33,8 +30,7 @@ private struct YHCusNavigationBarAssociatedKeys {
  自定义导航栏，继承自UIView
  没有什么技术点，就是几个view的排版
 */
-@objc
-public class YHCusNavigationBar: UIView {
+@objc public class YHCusNavigationBar: UIView {
     
     deinit {
         YHDebugLog("\(NSStringFromClass(YHCusNavigationBar.classForCoder())) deinit")
@@ -107,7 +103,7 @@ public class YHCusNavigationBar: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func layoutSubviews() {
+    @objc public override func layoutSubviews() {
         super.layoutSubviews()
     }
     

@@ -30,7 +30,7 @@ public protocol YHAlamofireRequestProtocol {
     func requestEnd()
 }
 
-extension YHAlamofireRequestProtocol {
+public extension YHAlamofireRequestProtocol {
     var timeoutInterval: TimeInterval {
         return 60.0
     }
@@ -47,12 +47,12 @@ extension YHAlamofireRequestProtocol {
 
 
 
-class YHAlamofire {
+public class YHAlamofire {
     public static func `default`() -> YHAlamofire {
         return YHAlamofire()
     }
     
-    @discardableResult func request(request: YHAlamofireRequestProtocol, sessionManager: SessionManager = Alamofire.SessionManager.default, completion:@escaping (YHResult<JSON, Error>.result) -> Void) -> DataRequest {
+    @discardableResult public func request(request: YHAlamofireRequestProtocol, sessionManager: SessionManager = Alamofire.SessionManager.default, completion:@escaping (YHResult<JSON, Error>.result) -> Void) -> DataRequest {
         var URL = request.baseURL
         if !request.path.isEmpty {
             URL = URL + request.path
@@ -134,7 +134,7 @@ class YHAlamofire {
 extension YHAlamofire: ReactiveCompatible {}
 
 extension Reactive where Base: YHAlamofire {
-    func requestJSON(request: YHAlamofireRequestProtocol, sessionManager: SessionManager = Alamofire.SessionManager.default) -> Observable<(JSON)> {
+    public func requestJSON(request: YHAlamofireRequestProtocol, sessionManager: SessionManager = Alamofire.SessionManager.default) -> Observable<(JSON)> {
         return Observable<(JSON)>.create({ (observer) -> Disposable in
             let dataRequest = self.base.request(request: request, sessionManager: sessionManager, completion: { (result) in
                 switch result.result {

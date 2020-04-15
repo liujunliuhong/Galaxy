@@ -9,18 +9,17 @@
 import Foundation
 import UIKit
 
-@objc
-extension UIDevice {
-    public static var YH_Width: CGFloat {
+@objc public extension UIDevice {
+    static var YH_Width: CGFloat {
         return UIScreen.main.bounds.size.width
     }
     
-    public static var YH_Height: CGFloat {
+    static var YH_Height: CGFloat {
         return UIScreen.main.bounds.size.height
     }
     
     // Get machine name, such as `iPhone 7 Plus`.
-    public static var YHMachineName: String {
+    static var YHMachineName: String {
         let machine = UIDevice.YHMachine
         
         if let map = UIDevice.YHMachineMap[machine] {
@@ -31,13 +30,13 @@ extension UIDevice {
     }
     
     // Print Device Info.
-    public static func YHPrintBasicDeviceInfo() {
+    static func YHPrintBasicDeviceInfo() {
         YHDebugLog("\n*****************************************************************************************************************\nSysname:          \(UIDevice.YHSysname)\nRelease:          \(UIDevice.YHRelease)\nVersion:          \(UIDevice.YHVersion)\nMachine:          \(UIDevice.YHMachine)\nSystemVersion:    \(UIDevice.current.systemVersion)\nMachineName:      \(UIDevice.YHMachineName)\n*****************************************************************************************************************")
     }
     
     
     /// 是否是刘海屏手机(兼容所有iPhone)
-    public static var YH_Is_Fringe: Bool {
+    static var YH_Is_Fringe: Bool {
         let machine = UIDevice.YHMachine
         if let map = UIDevice.YHMachineMap[machine] {
             return map == .iPhoneX || map == .iPhoneXR || map == .iPhoneXS || map == .iPhoneX_S_Max || map == .iPhone_11 || map == .iPhone_11_Pro || map == .iPhone_11_Pro_Max
@@ -47,7 +46,7 @@ extension UIDevice {
     }
     
     /// 刘海高度(其实就是StatusBar的高度,兼容所有iPhone)
-    public static var YH_Fringe_Height: CGFloat {
+    static var YH_Fringe_Height: CGFloat {
         let machine = UIDevice.YHMachine
         if let map = UIDevice.YHMachineMap[machine] {
             if map == .iPhoneX || map == .iPhoneXR || map == .iPhoneXS || map == .iPhoneX_S_Max || map == .iPhone_11 || map == .iPhone_11_Pro || map == .iPhone_11_Pro_Max {
@@ -65,7 +64,7 @@ extension UIDevice {
     
     
     /// 是否有虚拟Home键(兼容所有iPhone)
-    public static var YH_Is_HomeIndicator: Bool {
+    static var YH_Is_HomeIndicator: Bool {
         let machine = UIDevice.YHMachine
         if let map = UIDevice.YHMachineMap[machine] {
             return map == .iPhoneX || map == .iPhoneXR || map == .iPhoneXS || map == .iPhoneX_S_Max || map == .iPhone_11 || map == .iPhone_11_Pro || map == .iPhone_11_Pro_Max
@@ -76,7 +75,7 @@ extension UIDevice {
     
     
     /// 虚拟Home键高度(兼容所有iPhone)
-    public static var YH_HomeIndicator_Height: CGFloat {
+    static var YH_HomeIndicator_Height: CGFloat {
         let machine = UIDevice.YHMachine
         if let map = UIDevice.YHMachineMap[machine] {
             if map == .iPhoneX || map == .iPhoneXR || map == .iPhoneXS || map == .iPhoneX_S_Max || map == .iPhone_11 || map == .iPhone_11_Pro || map == .iPhone_11_Pro_Max {

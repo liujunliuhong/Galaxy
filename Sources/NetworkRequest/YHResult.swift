@@ -10,6 +10,6 @@ import Foundation
 import Result
 
 // https://github.com/antitypical/Result/issues/77
-struct YHResult<T, E: Swift.Error> {
-    typealias result = Result<T, E>
+public struct YHResult<T, E: Swift.Error> {
+    public typealias result = Result<T, E>
 }

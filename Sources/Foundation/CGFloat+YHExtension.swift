@@ -10,7 +10,7 @@ import Foundation
 import CoreGraphics
 
 
-extension CGFloat {
+public extension CGFloat {
     
     /// 角度转弧度
     var yh_degreesToRadius: CGFloat {
@@ -18,9 +18,6 @@ extension CGFloat {
             return self / 180.0 * CGFloat(Double.pi)
         }
     }
-    
-    
-    
 }
 
 

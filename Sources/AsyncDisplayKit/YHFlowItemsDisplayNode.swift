@@ -10,7 +10,7 @@ import UIKit
 #if canImport(AsyncDisplayKit)
 import AsyncDisplayKit
 
-open class YHFlowItemsAutoWidthDisplayNode: ASDisplayNode {
+@objc public class YHFlowItemsAutoWidthDisplayNode: ASDisplayNode {
     private var perRowCount: Int = 0
     private var nodeHeightRatio: CGFloat = 1.0
     private var horizontalSpacing: CGFloat = 0.0
@@ -25,8 +25,8 @@ open class YHFlowItemsAutoWidthDisplayNode: ASDisplayNode {
     }
 }
 
-extension YHFlowItemsAutoWidthDisplayNode {
-    override open func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+@objc public extension YHFlowItemsAutoWidthDisplayNode {
+    @objc override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         if self.perRowCount <= 0 {
             return ASLayoutSpec()
         }
@@ -55,7 +55,7 @@ extension YHFlowItemsAutoWidthDisplayNode {
     }
 }
 
-extension YHFlowItemsAutoWidthDisplayNode {
+@objc public extension YHFlowItemsAutoWidthDisplayNode {
     
     /// 给定nodes集合，排列方式为固定间距，动态宽度。
     /// - Parameters:
@@ -66,7 +66,7 @@ extension YHFlowItemsAutoWidthDisplayNode {
     ///   - horizontalSpacing: 水平方向上node之间的间距
     ///   - verticalEdgeInset: 垂直偏移量
     ///   - horizontalEdgeInset: 水平偏移量
-    public func setupAutoWidth(nodes: [ASDisplayNode],
+    @objc func setupAutoWidth(nodes: [ASDisplayNode],
                                nodeHeightRatio: CGFloat,
                                perRowCount: Int,
                                verticalSpacing: CGFloat,
@@ -102,7 +102,7 @@ extension YHFlowItemsAutoWidthDisplayNode {
 }
 
 
-open class YHFlowItemsAutoMarginDisplayNode: ASDisplayNode {
+@objc public class YHFlowItemsAutoMarginDisplayNode: ASDisplayNode {
     private var perRowCount: Int = 0
     private var nodeWidth: CGFloat = 0.0
     private var nodeHeight: CGFloat = 0.0
@@ -116,8 +116,8 @@ open class YHFlowItemsAutoMarginDisplayNode: ASDisplayNode {
     }
 }
 
-extension YHFlowItemsAutoMarginDisplayNode {
-    override open func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+@objc public extension YHFlowItemsAutoMarginDisplayNode {
+    @objc override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         if self.perRowCount <= 0 {
             return ASLayoutSpec()
         }
@@ -153,7 +153,7 @@ extension YHFlowItemsAutoMarginDisplayNode {
     }
 }
 
-extension YHFlowItemsAutoMarginDisplayNode {
+@objc public extension YHFlowItemsAutoMarginDisplayNode {
     
     /// 给定nodes集合，排列方式为固定宽度，动态间距。
     /// 当最后一行不足`perRowCount`，则会以一个透明的`ASDisplayNode`代替
@@ -165,7 +165,7 @@ extension YHFlowItemsAutoMarginDisplayNode {
     ///   - verticalSpacing: 行与行之间的间隙
     ///   - verticalEdgeInset: 垂直偏移量
     ///   - horizontalEdgeInset: 水平偏移量
-    public func setupAutoMargin(nodes: [ASDisplayNode],
+    @objc func setupAutoMargin(nodes: [ASDisplayNode],
                                 nodeWidth: CGFloat,
                                 nodeHeightRatio: CGFloat,
                                 perRowCount: Int,
@@ -194,7 +194,7 @@ extension YHFlowItemsAutoMarginDisplayNode {
     ///   - verticalSpacing: 行与行之间的间隙
     ///   - verticalEdgeInset: 垂直偏移量
     ///   - horizontalEdgeInset: 水平偏移量
-    public func setupAutoMargin(nodes: [ASDisplayNode],
+    @objc func setupAutoMargin(nodes: [ASDisplayNode],
                                 nodeWidth: CGFloat,
                                 nodeHeight: CGFloat,
                                 perRowCount: Int,

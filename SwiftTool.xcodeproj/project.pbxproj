@@ -248,8 +248,8 @@
 			isa = PBXGroup;
 			children = (
 				183111992446A5CE00155620 /* YHBMKLocaion.h */,
-				1831119A2446A5CE00155620 /* YHNativeLocation.swift */,
 				1831119B2446A5CE00155620 /* YHBMKLocaion.m */,
+				1831119A2446A5CE00155620 /* YHNativeLocation.swift */,
 			);
 			path = Location;
 			sourceTree = "<group>";

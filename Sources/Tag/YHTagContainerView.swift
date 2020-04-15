@@ -29,7 +29,7 @@ public class YHTagContainerView: UIView {
     /// - Parameter tagHeight: tag高度
     /// - Parameter lineSpace: 行间距
     /// - Parameter columnSpace: 列间距
-    @objc public required init(with containerWidth: CGFloat, tagHeight: CGFloat, lineSpace: CGFloat, columnSpace: CGFloat) {
+    public required init(with containerWidth: CGFloat, tagHeight: CGFloat, lineSpace: CGFloat, columnSpace: CGFloat) {
         self.containerWidth = containerWidth
         self.tagHeight = tagHeight
         self.lineSpace = lineSpace
@@ -43,12 +43,11 @@ public class YHTagContainerView: UIView {
 }
 
 
-extension YHTagContainerView {
+public extension YHTagContainerView {
     
     /// 刷新
     /// - Parameter tags: tags集合
-    @discardableResult
-    public func reload(with tags: [YHTagContainerProtocol]) -> CGFloat {
+    @discardableResult func reload(with tags: [YHTagContainerProtocol]) -> CGFloat {
         self.lastTags.forEach { (tagView) in
             tagView.removeFromSuperview()
         }
@@ -86,6 +85,6 @@ extension YHTagContainerView {
     }
 }
 
-extension YHTagContainerView {
+public extension YHTagContainerView {
     
 }

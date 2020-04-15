@@ -9,13 +9,12 @@
 import Foundation
 import UIKit
 
-@objc
-extension UIColor {
-    public static func YH_RGBA(R: Int, G: Int, B: Int, A: CGFloat = 1) -> UIColor {
+@objc public extension UIColor {
+    static func YH_RGBA(R: Int, G: Int, B: Int, A: CGFloat = 1) -> UIColor {
         return UIColor(red: (CGFloat(R) / 255.0), green: (CGFloat(G) / 255.0), blue: (CGFloat(B) / 255.0), alpha: A)
     }
     
-    public static var YH_RandomColor: UIColor {
+    static var YH_RandomColor: UIColor {
         let R: CGFloat = CGFloat(arc4random() % 255)
         let G: CGFloat = CGFloat(arc4random() % 255)
         let B: CGFloat = CGFloat(arc4random() % 255)

@@ -9,7 +9,7 @@
 import Foundation
 
 
-extension Array {
+public extension Array {
     /// json encode
     var yh_jsonEnCode: String? {
         let data = try? JSONSerialization.data(withJSONObject: self, options: [])
@@ -18,11 +18,11 @@ extension Array {
     }
 }
 
-extension Array {
+public extension Array {
     /// 一定数量的集合分组。集合里面的元素必须继承自`NSObject`。如果最后一行不足`perRowCount`，则用默认的初始化
     /// - Parameters:
     ///   - perRowCount: 每行多少个
-    public func yh_group<T: NSObject>(perRowCount: Int) -> [[T]] where Element: NSObject {
+    func yh_group<T: NSObject>(perRowCount: Int) -> [[T]] where Element: NSObject {
         var allValues: [T] = []
         //
         let remainCount = self.count % perRowCount // 剩余没有排满的数量
@@ -52,9 +52,9 @@ extension Array {
 }
 
 
-extension Array {
+public extension Array {
     /// 数组随机打乱顺序
-    public func yh_shuffle() -> Array<Element> {
+    func yh_shuffle() -> Array<Element> {
         var list = self
         for index in 0..<list.count {
             let newIndex = Int(arc4random_uniform(UInt32(list.count-index))) + index

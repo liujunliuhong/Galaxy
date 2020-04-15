@@ -9,11 +9,10 @@
 import Foundation
 import MBProgressHUD
 
-class YHHUD: NSObject {
-    #if canImport(MBProgressHUD)
+public class YHHUD: NSObject {
     // MARK: - MBProgressHUD -- 针对MBProgressHUD的简单封装
     // must in main thread.
-    @objc static func showHUD(_ message: String? = nil, _ hudColor: UIColor = .black, _ contentColor: UIColor = .white, in view: UIView = UIApplication.shared.keyWindow!) -> MBProgressHUD {
+    @objc public static func showHUD(_ message: String? = nil, _ hudColor: UIColor = .black, _ contentColor: UIColor = .white, in view: UIView = UIApplication.shared.keyWindow!) -> MBProgressHUD {
         assert(Thread.isMainThread, "MBProgressHUD must in main thread.")
         let hud = MBProgressHUD.showAdded(to: view, animated: true)
         hud.mode = .indeterminate
@@ -28,7 +27,7 @@ class YHHUD: NSObject {
         return hud
     }
     
-    @objc static func hideHUD(_ hud: MBProgressHUD?, closure:(()->())? = nil) -> Void {
+    @objc public static func hideHUD(_ hud: MBProgressHUD?, closure:(()->())? = nil) -> Void {
         guard let hud = hud else { return }
         DispatchQueue.main.async {
             hud.hide(animated: true)
@@ -36,7 +35,7 @@ class YHHUD: NSObject {
         }
     }
     
-    @objc static func onlyShowTextHUD(_ message: String?, in view: UIView = UIApplication.shared.keyWindow!, afterDelay: TimeInterval = 1.5, closure:(()->())? = nil) -> Void {
+    @objc public static func onlyShowTextHUD(_ message: String?, in view: UIView = UIApplication.shared.keyWindow!, afterDelay: TimeInterval = 1.5, closure:(()->())? = nil) -> Void {
         guard let message = message else {
             return
         }
@@ -53,5 +52,4 @@ class YHHUD: NSObject {
             hud.completionBlock = closure
         }
     }
-    #endif
 }

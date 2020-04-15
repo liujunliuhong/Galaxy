@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct YHRxError: LocalizedError {
-    var localizedDescription: String {
+public struct YHRxError: LocalizedError {
+    public var localizedDescription: String {
         return "Unkown Error"
     }
 }

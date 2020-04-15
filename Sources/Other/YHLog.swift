@@ -12,13 +12,13 @@ import Foundation
 import CocoaLumberjack
 #endif
 
-enum YHDebugLogType {
+public enum YHDebugLogType {
     case info
     case warning
     case error
 }
 
-func YHDebugLog<T>(_ message: T, file: String = #file, line: Int = #line) {
+public func YHDebugLog<T>(_ message: T, file: String = #file, line: Int = #line) {
     #if canImport(CocoaLumberjack)
     let filName = (file as NSString).lastPathComponent
     let msg = "[👉] [\(filName)] [\(line)] \(message)"
@@ -34,8 +34,7 @@ func YHDebugLog<T>(_ message: T, file: String = #file, line: Int = #line) {
     #endif
 }
 
-@objc
-class YHLogger: NSObject {
+@objc public class YHLogger: NSObject {
     @objc public static func log(message: String) {
         YHDebugLog(message)
     }

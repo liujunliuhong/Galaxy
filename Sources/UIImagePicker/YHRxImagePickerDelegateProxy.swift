@@ -11,35 +11,35 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class YHRxImagePickerDelegateProxy:
+public class YHRxImagePickerDelegateProxy:
     DelegateProxy<UIImagePickerController, UIImagePickerControllerDelegate&UINavigationControllerDelegate>, DelegateProxyType, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    init(imagePicker: UIImagePickerController) {
+    public init(imagePicker: UIImagePickerController) {
         super.init(parentObject: imagePicker, delegateProxy: YHRxImagePickerDelegateProxy.self)
     }
     
-    static func registerKnownImplementations() {
+    public static func registerKnownImplementations() {
         self.register { (p) -> YHRxImagePickerDelegateProxy in
             return YHRxImagePickerDelegateProxy(imagePicker: p)
         }
     }
     
-    static func currentDelegate(for object: UIImagePickerController) -> (UIImagePickerControllerDelegate & UINavigationControllerDelegate)? {
+    public static func currentDelegate(for object: UIImagePickerController) -> (UIImagePickerControllerDelegate & UINavigationControllerDelegate)? {
         return object.delegate
     }
 
-    static func setCurrentDelegate(_ delegate: (UIImagePickerControllerDelegate & UINavigationControllerDelegate)?, to object: UIImagePickerController) {
+    public static func setCurrentDelegate(_ delegate: (UIImagePickerControllerDelegate & UINavigationControllerDelegate)?, to object: UIImagePickerController) {
         object.delegate = delegate
     }
 }
 
 
-extension Reactive where Base: UIImagePickerController {
-    public var yh_pickerDelegate: DelegateProxy<UIImagePickerController, UIImagePickerControllerDelegate&UINavigationControllerDelegate> {
+public extension Reactive where Base: UIImagePickerController {
+    var yh_pickerDelegate: DelegateProxy<UIImagePickerController, UIImagePickerControllerDelegate&UINavigationControllerDelegate> {
         return YHRxImagePickerDelegateProxy.proxy(for: base)
     }
     
-    public var yh_didFinishPickingMediaWithInfo: Observable<[String: AnyObject]> {
+    var yh_didFinishPickingMediaWithInfo: Observable<[String: AnyObject]> {
         return yh_pickerDelegate.methodInvoked(#selector(UIImagePickerControllerDelegate.imagePickerController(_:didFinishPickingMediaWithInfo:)))
             .map({ (a) -> Dictionary<String, AnyObject> in
                 /*
@@ -57,15 +57,15 @@ extension Reactive where Base: UIImagePickerController {
             })
     }
     
-    public var yh_didCancel: Observable<Void> {
+    var yh_didCancel: Observable<Void> {
         return yh_pickerDelegate.methodInvoked(#selector(UIImagePickerControllerDelegate.imagePickerControllerDidCancel(_:))).map{_ in }
     }
 }
 
 
-extension Reactive where Base: UIImagePickerController {
+public extension Reactive where Base: UIImagePickerController {
     
-    public static func yh_showImagePicker(parent: UIViewController, animated: Bool = true, configureImagePicker: @escaping (UIImagePickerController) throws -> Void) -> Observable<UIImagePickerController> {
+    static func yh_showImagePicker(parent: UIViewController, animated: Bool = true, configureImagePicker: @escaping (UIImagePickerController) throws -> Void) -> Observable<UIImagePickerController> {
         
         return Observable<UIImagePickerController>.create({ [weak parent] (observer) -> Disposable in
             

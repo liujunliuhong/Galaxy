@@ -9,7 +9,7 @@
 import Foundation
 
 
-extension Dictionary {
+public extension Dictionary {
     /// json encode
     var yh_jsonEnCode: String? {
         let data = try? JSONSerialization.data(withJSONObject: self, options: [])

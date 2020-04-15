@@ -15,8 +15,7 @@ public typealias YHTabBarControllerShouldHijackHandler = ((_ tabBarController: U
 public typealias YHTabBarControllerDidHijackHandler = ((_ tabBarController: UITabBarController, _ viewController: UIViewController, _ index: Int) -> (Void))
 
 
-@objc
-open class YHTabBarController: UITabBarController {
+@objc open class YHTabBarController: UITabBarController {
     
     open var shouldHijackHandler: YHTabBarControllerShouldHijackHandler?
     open var didHijackHandler: YHTabBarControllerDidHijackHandler?
@@ -103,21 +102,21 @@ extension YHTabBarController {
 }
 
 extension YHTabBarController: YHTabBarProtocol {
-    internal func tabBar(_ tabBar: UITabBar, shouldSelect item: UITabBarItem, index: Int) -> Bool {
+    public func tabBar(_ tabBar: UITabBar, shouldSelect item: UITabBarItem, index: Int) -> Bool {
         if let vc = viewControllers?[index] {
             return delegate?.tabBarController?(self, shouldSelect: vc) ?? true
         }
         return true
     }
     
-    internal func tabBar(_ tabBar: UITabBar, shouldHijack item: UITabBarItem, index: Int) -> Bool {
+    public func tabBar(_ tabBar: UITabBar, shouldHijack item: UITabBarItem, index: Int) -> Bool {
         if let vc = viewControllers?[index] {
             return shouldHijackHandler?(self, vc, index) ?? false
         }
         return false
     }
     
-    internal func tabBar(_ tabBar: UITabBar, didHijack item: UITabBarItem, index: Int) {
+    public func tabBar(_ tabBar: UITabBar, didHijack item: UITabBarItem, index: Int) {
         if let vc = viewControllers?[index] {
             didHijackHandler?(self, vc, index)
         }

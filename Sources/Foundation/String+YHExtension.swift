@@ -9,7 +9,7 @@
 import Foundation
 
 
-extension String {
+public extension String {
     /// json decode
     var yh_jsonDecode: Any? {
         let data = self.data(using: .utf8)

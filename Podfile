@@ -15,6 +15,7 @@ target 'SwiftTool' do
   pod 'CocoaLumberjack/Swift'
   pod 'MBProgressHUD'
   pod 'SnapKit'
+  pod 'Texture'
   
   # Pods for SwiftTool
 

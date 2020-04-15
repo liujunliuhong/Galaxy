@@ -39,13 +39,13 @@ public class YHNativeLocation: NSObject {
 }
 
 
-extension YHNativeLocation {
+public extension YHNativeLocation {
     
     /// 苹果原生获取定位权限(when in use)
     /// - Parameters:
     ///   - target: target
     ///   - closure: 回调
-    public static func requestAuthorizationStatusWhenInUse(target: AnyObject, closure: requestAuthorizationStatusWhenInUseClosure?) {
+    static func requestAuthorizationStatusWhenInUse(target: AnyObject, closure: requestAuthorizationStatusWhenInUseClosure?) {
         if !CLLocationManager.locationServicesEnabled() {
             print("location services not enabled")
             let error = YHNativeLocationError.message("location services not enabled")

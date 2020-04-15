@@ -8,7 +8,7 @@
 
 import UIKit
 
-class YHPickerView: UIView {
+public class YHPickerView: UIView {
 
     deinit {
         YHDebugLog("\(self.classForCoder) deinit")
@@ -122,7 +122,7 @@ class YHPickerView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         self.pickerView.subviews.forEach { (view) in
             if view.isKind(of: UIPickerView.classForCoder()) {
@@ -283,7 +283,7 @@ extension YHPickerView {
 
 
 extension YHPickerView: UIPickerViewDataSource, UIPickerViewDelegate {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         if let titlesForComponents = titlesForComponents {
             return titlesForComponents.count
         }
@@ -293,7 +293,7 @@ extension YHPickerView: UIPickerViewDataSource, UIPickerViewDelegate {
         return 0
     }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if let titlesForComponents = titlesForComponents {
             return titlesForComponents[component].count
         }
@@ -303,7 +303,7 @@ extension YHPickerView: UIPickerViewDataSource, UIPickerViewDelegate {
         return 0
     }
     
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+    public func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let label = UILabel()
         if let attributeTitlesForComponents = attributeTitlesForComponents {
             let attributeString = attributeTitlesForComponents[component][row]
@@ -320,7 +320,7 @@ extension YHPickerView: UIPickerViewDataSource, UIPickerViewDelegate {
         return label
     }
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
     }
 }

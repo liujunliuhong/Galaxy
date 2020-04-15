@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.swift_version              = '5.0'
   s.ios.deployment_target      = '9.0'
   s.requires_arc               = true
-
+  s.static_framework = true
   s.source_files               = 'Sources/*', 'Sources/AsyncDisplayKit/*', 'Sources/Foundation/*', 'Sources/Location/*.swift', 'Sources/NavigationBar/*', 'Sources/NetworkRequest/*', 'Sources/Other/*', 'Sources/Picker/*', 'Sources/RxErrorTracker/*', 'Sources/System Face/*', 'Sources/Tag/*', 'Sources/UIImagePicker/*', 'Sources/UIKit/*', 'Sources/ViewModelType/*', 'Sources/YHTabBarController/*'
 
   s.resource                   = 'Sources/System Face/YHSystemFace.bundle'
@@ -34,14 +34,12 @@ Pod::Spec.new do |s|
   s.subspec 'TencentUpload' do |ss|
     ss.source_files = 'Sources/QCloudCOS/YHQCloudCOSManager.swift'
     ss.dependency 'QCloudCOSXML'
-    ss.static_framework = true
   end
 
   # 百度定位
   s.subspec 'BaiDuLocation' do |ss|
     ss.source_files = 'Sources/Location/*.{h,m}'
     ss.dependency 'BMKLocationKit'
-    ss.static_framework = true
   end
 
 end

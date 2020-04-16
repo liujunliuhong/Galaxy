@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
   # Core
   s.subspec 'Core' do |ss|
   ss.source_files              = 'Sources/Core/SwiftToolDescription', 'Sources/Core/*/*'
-  ss.resource                  = 'Sources/System Face/YHSystemFace.bundle'
+  ss.resource                  = 'Sources/Core/System Face/YHSystemFace.bundle'
   ss.dependency 'RxSwift'
   ss.dependency 'RxCocoa'
   ss.dependency 'NSObject+Rx'

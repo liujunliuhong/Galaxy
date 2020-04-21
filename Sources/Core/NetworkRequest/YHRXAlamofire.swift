@@ -126,6 +126,113 @@ public class YHAlamofire {
             }
         return dataRequest
     }
+    
+    
+    @discardableResult public func requestString(request: YHAlamofireRequestProtocol, sessionManager: SessionManager = Alamofire.SessionManager.default, completion:@escaping (YHResult<JSON, Error>.result) -> Void) -> DataRequest {
+        var URL = request.baseURL
+        if !request.path.isEmpty {
+            URL = URL + request.path
+        }
+        
+        /*
+         HTTPS配置
+         let configuration = URLSessionConfiguration.default
+         configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
+         let policies:[String: ServerTrustPolicy] = ["https://www.baidu.com":.disableEvaluation,
+                                                     "https://www.baidu.com":.disableEvaluation]
+         let httpsManager = SessionManager(configuration: configuration, serverTrustPolicyManager: ServerTrustPolicyManager(policies: policies))
+         httpsManager.startRequestsImmediately = false
+         return httpsManager
+         */
+        
+        
+        request.requestBegin()
+        request.requestProgress(progress: 0.0)
+        
+        var hud: MBProgressHUD? = nil
+        if request.isShowHUD {
+            hud = YHHUD.showHUD()
+        }
+        let dataRequest = sessionManager.request(URL, method: request.method, parameters: request.parameters, encoding: request.encoding, headers: request.headers)
+        
+        if let urlRequest = dataRequest.request {
+            var urlRequest = urlRequest
+            urlRequest.timeoutInterval = request.timeoutInterval
+        }
+        
+        dataRequest.downloadProgress(queue: DispatchQueue.main) { (progress) in
+            let totalUnitCount = progress.totalUnitCount
+            let completedUnitCount = progress.completedUnitCount
+            if totalUnitCount > 0 {
+                request.requestProgress(progress: Double(completedUnitCount / totalUnitCount))
+            } else {
+                request.requestProgress(progress: 0.0)
+            }
+            }.responseJSON { (response) in
+                YHHUD.hideHUD(hud)
+                request.requestEnd()
+                if request.isPrintLog {
+                    var log = "\n=============================================================================\n"
+                    log += "URL:               \(URL)\n"
+                    log += "Method:            \(request.method.rawValue)\n"
+                    log += "Headers:           \(request.headers ?? [:])\n"
+                    log += "Parameters:        \(request.parameters ?? [:])\n"
+                    log += "Encoding:          \(request.encoding)\n"
+                    log += "TimeoutInterval:   \(request.timeoutInterval)\n"
+                    log += "=============================================================================\n"
+                    log += "↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓\n"
+                    if let value = response.value {
+                        log += "\(value)\n"
+                    }
+                    if let error = response.error {
+                        log += "\(error)\n"
+                    }
+                    log += "↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑\n"
+                    YHDebugLog(log)
+                }
+                switch response.result {
+                case let .success(value):
+                    let json = JSON(value)
+                    request.requestProgress(progress: 1.0)
+                    completion(.success(json))
+                case let .failure(error):
+                    request.requestProgress(progress: 1.0)
+                    completion(.failure(error))
+                }
+        }.responseString { (response) in
+            YHHUD.hideHUD(hud)
+            request.requestEnd()
+            if request.isPrintLog {
+                var log = "\n=============================================================================\n"
+                log += "URL:               \(URL)\n"
+                log += "Method:            \(request.method.rawValue)\n"
+                log += "Headers:           \(request.headers ?? [:])\n"
+                log += "Parameters:        \(request.parameters ?? [:])\n"
+                log += "Encoding:          \(request.encoding)\n"
+                log += "TimeoutInterval:   \(request.timeoutInterval)\n"
+                log += "=============================================================================\n"
+                log += "↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓\n"
+                if let value = response.value {
+                    log += "\(value)\n"
+                }
+                if let error = response.error {
+                    log += "\(error)\n"
+                }
+                log += "↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑\n"
+                YHDebugLog(log)
+            }
+            switch response.result {
+            case let .success(value):
+                let json = JSON(value)
+                request.requestProgress(progress: 1.0)
+                completion(.success(json))
+            case let .failure(error):
+                request.requestProgress(progress: 1.0)
+                completion(.failure(error))
+            }
+        }
+        return dataRequest
+    }
 }
 
 
@@ -145,6 +252,23 @@ extension Reactive where Base: YHAlamofire {
                 }
                 observer.onCompleted()
             })
+            return Disposables.create {
+                dataRequest.cancel()
+            }
+        })
+    }
+    
+    public func requestString(request: YHAlamofireRequestProtocol, sessionManager: SessionManager = Alamofire.SessionManager.default) -> Observable<(JSON)> {
+        return Observable<(JSON)>.create({ (observer) -> Disposable in
+            let dataRequest = self.base.requestString(request: request, sessionManager: sessionManager) { (result) in
+                switch result.result {
+                case let .success(json):
+                    observer.onNext(json)
+                case let .failure(error):
+                    observer.onError(error)
+                }
+                observer.onCompleted()
+            }
             return Disposables.create {
                 dataRequest.cancel()
             }

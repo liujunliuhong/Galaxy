@@ -168,37 +168,6 @@ public class YHAlamofire {
             } else {
                 request.requestProgress(progress: 0.0)
             }
-            }.responseJSON { (response) in
-                YHHUD.hideHUD(hud)
-                request.requestEnd()
-                if request.isPrintLog {
-                    var log = "\n=============================================================================\n"
-                    log += "URL:               \(URL)\n"
-                    log += "Method:            \(request.method.rawValue)\n"
-                    log += "Headers:           \(request.headers ?? [:])\n"
-                    log += "Parameters:        \(request.parameters ?? [:])\n"
-                    log += "Encoding:          \(request.encoding)\n"
-                    log += "TimeoutInterval:   \(request.timeoutInterval)\n"
-                    log += "=============================================================================\n"
-                    log += "↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓\n"
-                    if let value = response.value {
-                        log += "\(value)\n"
-                    }
-                    if let error = response.error {
-                        log += "\(error)\n"
-                    }
-                    log += "↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑\n"
-                    YHDebugLog(log)
-                }
-                switch response.result {
-                case let .success(value):
-                    let json = JSON(value)
-                    request.requestProgress(progress: 1.0)
-                    completion(.success(json))
-                case let .failure(error):
-                    request.requestProgress(progress: 1.0)
-                    completion(.failure(error))
-                }
         }.responseString { (response) in
             YHHUD.hideHUD(hud)
             request.requestEnd()

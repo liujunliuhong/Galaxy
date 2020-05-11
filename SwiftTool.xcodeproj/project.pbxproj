@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		180E6EC42468EBB3001B069C /* SwiftyHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 180E6EC32468EBB3001B069C /* SwiftyHUD.bundle */; };
+		180E6EC62468EC5C001B069C /* SwiftyMBHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180E6EC52468EC5C001B069C /* SwiftyMBHUD.swift */; };
 		1831114B24469EB700155620 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1831114A24469EB700155620 /* AppDelegate.swift */; };
 		1831114F24469EB700155620 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1831114E24469EB700155620 /* ViewController.swift */; };
 		1831115224469EB700155620 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1831115024469EB700155620 /* Main.storyboard */; };
@@ -61,6 +63,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		180E6EC32468EBB3001B069C /* SwiftyHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SwiftyHUD.bundle; sourceTree = "<group>"; };
+		180E6EC52468EC5C001B069C /* SwiftyMBHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyMBHUD.swift; sourceTree = "<group>"; };
 		1831114724469EB700155620 /* SwiftTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1831114A24469EB700155620 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1831114E24469EB700155620 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -137,6 +141,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		180E6EC22468EB51001B069C /* HUD */ = {
+			isa = PBXGroup;
+			children = (
+				180E6EC52468EC5C001B069C /* SwiftyMBHUD.swift */,
+				180E6EC32468EBB3001B069C /* SwiftyHUD.bundle */,
+			);
+			path = HUD;
+			sourceTree = "<group>";
+		};
 		1831113E24469EB700155620 = {
 			isa = PBXGroup;
 			children = (
@@ -186,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				1831126C2446FBB200155620 /* SwiftToolDescription */,
+				180E6EC22468EB51001B069C /* HUD */,
 				183111FE2446F8F100155620 /* NetworkRequest */,
 				183112012446F8F100155620 /* Picker */,
 				183112052446F8F100155620 /* ViewModelType */,
@@ -454,6 +468,7 @@
 				1831115424469EB900155620 /* Assets.xcassets in Resources */,
 				1831126D2446FBB200155620 /* SwiftToolDescription in Resources */,
 				1831115224469EB700155620 /* Main.storyboard in Resources */,
+				180E6EC42468EBB3001B069C /* SwiftyHUD.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,6 +547,7 @@
 				183112562446F8F200155620 /* String+YHExtension.swift in Sources */,
 				1831124F2446F8F200155620 /* YHGenerated.swift in Sources */,
 				1831124D2446F8F200155620 /* YHRxErrorTracker.swift in Sources */,
+				180E6EC62468EC5C001B069C /* SwiftyMBHUD.swift in Sources */,
 				183111FA2446A8D400155620 /* Test.m in Sources */,
 				183112452446F8F200155620 /* YHViewModelType.swift in Sources */,
 				1831124B2446F8F200155620 /* UIDevice+YHExtension.swift in Sources */,

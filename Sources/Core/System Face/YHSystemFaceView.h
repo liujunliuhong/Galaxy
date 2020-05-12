@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)systemFaceViewDidClickDelete;
 @end
 
-/// 系统表情键盘
+/// System Emoji Keyboard
 @interface YHSystemFaceView : UIView
 @property (nonatomic, strong, readonly) UIPageControl *pageControl;
 @property (nonatomic, strong, readonly) UIScrollView *scrollView;

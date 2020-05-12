@@ -11,7 +11,7 @@ import UIKit
 public class YHPickerView: UIView {
 
     deinit {
-        YHDebugLog("\(self.classForCoder) deinit")
+        print("\(self.classForCoder) deinit")
         NotificationCenter.default.removeObserver(self, name: UIApplication.didChangeStatusBarOrientationNotification, object: nil)
     }
     

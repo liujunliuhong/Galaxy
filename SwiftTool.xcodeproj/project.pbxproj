@@ -31,8 +31,6 @@
 		1831124D2446F8F200155620 /* YHRxErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183112102446F8F100155620 /* YHRxErrorTracker.swift */; };
 		1831124E2446F8F200155620 /* YHPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183112122446F8F100155620 /* YHPermission.swift */; };
 		1831124F2446F8F200155620 /* YHGenerated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183112132446F8F100155620 /* YHGenerated.swift */; };
-		183112502446F8F200155620 /* YHHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183112142446F8F100155620 /* YHHUD.swift */; };
-		183112512446F8F200155620 /* YHLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183112152446F8F100155620 /* YHLog.swift */; };
 		183112522446F8F200155620 /* Array+YHExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183112172446F8F100155620 /* Array+YHExtension.swift */; };
 		183112532446F8F200155620 /* CGFloat+YHExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183112182446F8F100155620 /* CGFloat+YHExtension.swift */; };
 		183112542446F8F200155620 /* NSObject+YHExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183112192446F8F100155620 /* NSObject+YHExtension.swift */; };
@@ -59,6 +57,8 @@
 		183112692446F8F200155620 /* YHQCloudCOSManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1831123B2446F8F100155620 /* YHQCloudCOSManager.swift */; };
 		1831126B2446F8F200155620 /* YHBMKLocaion.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831123F2446F8F100155620 /* YHBMKLocaion.m */; };
 		1831126D2446FBB200155620 /* SwiftToolDescription in Resources */ = {isa = PBXBuildFile; fileRef = 1831126C2446FBB200155620 /* SwiftToolDescription */; };
+		1870F4B2246A2E1D0016D596 /* SwiftyMBHUDTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870F4B1246A2E1D0016D596 /* SwiftyMBHUDTestViewController.swift */; };
+		1870F4B5246A389E0016D596 /* SwiftyLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870F4B4246A389E0016D596 /* SwiftyLog.swift */; };
 		7ED1CA540CCEE052DF44FE7A /* Pods_SwiftTool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4806E0A8EE8767510EF2FD61 /* Pods_SwiftTool.framework */; };
 /* End PBXBuildFile section */
 
@@ -91,8 +91,6 @@
 		183112102446F8F100155620 /* YHRxErrorTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YHRxErrorTracker.swift; sourceTree = "<group>"; };
 		183112122446F8F100155620 /* YHPermission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YHPermission.swift; sourceTree = "<group>"; };
 		183112132446F8F100155620 /* YHGenerated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YHGenerated.swift; sourceTree = "<group>"; };
-		183112142446F8F100155620 /* YHHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YHHUD.swift; sourceTree = "<group>"; };
-		183112152446F8F100155620 /* YHLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YHLog.swift; sourceTree = "<group>"; };
 		183112172446F8F100155620 /* Array+YHExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+YHExtension.swift"; sourceTree = "<group>"; };
 		183112182446F8F100155620 /* CGFloat+YHExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+YHExtension.swift"; sourceTree = "<group>"; };
 		183112192446F8F100155620 /* NSObject+YHExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+YHExtension.swift"; sourceTree = "<group>"; };
@@ -124,6 +122,8 @@
 		1831123E2446F8F100155620 /* YHBMKLocaion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHBMKLocaion.h; sourceTree = "<group>"; };
 		1831123F2446F8F100155620 /* YHBMKLocaion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHBMKLocaion.m; sourceTree = "<group>"; };
 		1831126C2446FBB200155620 /* SwiftToolDescription */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SwiftToolDescription; sourceTree = "<group>"; };
+		1870F4B1246A2E1D0016D596 /* SwiftyMBHUDTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyMBHUDTestViewController.swift; sourceTree = "<group>"; };
+		1870F4B4246A389E0016D596 /* SwiftyLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyLog.swift; sourceTree = "<group>"; };
 		425C6511002199BBE0183C7D /* Pods-SwiftTool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftTool.release.xcconfig"; path = "Target Support Files/Pods-SwiftTool/Pods-SwiftTool.release.xcconfig"; sourceTree = "<group>"; };
 		4806E0A8EE8767510EF2FD61 /* Pods_SwiftTool.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftTool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4B9793D1D5B9C59651E2DBB /* Pods-SwiftTool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftTool.debug.xcconfig"; path = "Target Support Files/Pods-SwiftTool/Pods-SwiftTool.debug.xcconfig"; sourceTree = "<group>"; };
@@ -145,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				180E6EC52468EC5C001B069C /* SwiftyMBHUD.swift */,
+				1870F4B1246A2E1D0016D596 /* SwiftyMBHUDTestViewController.swift */,
 				180E6EC32468EBB3001B069C /* SwiftyHUD.bundle */,
 			);
 			path = HUD;
@@ -199,6 +200,8 @@
 			isa = PBXGroup;
 			children = (
 				1831126C2446FBB200155620 /* SwiftToolDescription */,
+				1870F4BA246A678E0016D596 /* Permission */,
+				1870F4B3246A387A0016D596 /* Log */,
 				180E6EC22468EB51001B069C /* HUD */,
 				183111FE2446F8F100155620 /* NetworkRequest */,
 				183112012446F8F100155620 /* Picker */,
@@ -271,10 +274,7 @@
 		183112112446F8F100155620 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				183112122446F8F100155620 /* YHPermission.swift */,
 				183112132446F8F100155620 /* YHGenerated.swift */,
-				183112142446F8F100155620 /* YHHUD.swift */,
-				183112152446F8F100155620 /* YHLog.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -319,14 +319,14 @@
 		183112232446F8F100155620 /* System Face */ = {
 			isa = PBXGroup;
 			children = (
-				183112242446F8F100155620 /* YHSystemFaceHelper.h */,
-				183112252446F8F100155620 /* YHSystemFacePageView.h */,
-				183112262446F8F100155620 /* YHSystemFace.m */,
 				183112272446F8F100155620 /* YHSystemFaceView.h */,
-				183112282446F8F100155620 /* YHSystemFaceHelper.m */,
-				183112292446F8F100155620 /* YHSystemFace.h */,
-				1831122A2446F8F100155620 /* YHSystemFacePageView.m */,
 				1831122B2446F8F100155620 /* YHSystemFaceView.m */,
+				183112292446F8F100155620 /* YHSystemFace.h */,
+				183112262446F8F100155620 /* YHSystemFace.m */,
+				183112242446F8F100155620 /* YHSystemFaceHelper.h */,
+				183112282446F8F100155620 /* YHSystemFaceHelper.m */,
+				183112252446F8F100155620 /* YHSystemFacePageView.h */,
+				1831122A2446F8F100155620 /* YHSystemFacePageView.m */,
 				1831122C2446F8F100155620 /* YHSystemFace.bundle */,
 			);
 			path = "System Face";
@@ -384,6 +384,22 @@
 				1831123F2446F8F100155620 /* YHBMKLocaion.m */,
 			);
 			path = BaiduLocation;
+			sourceTree = "<group>";
+		};
+		1870F4B3246A387A0016D596 /* Log */ = {
+			isa = PBXGroup;
+			children = (
+				1870F4B4246A389E0016D596 /* SwiftyLog.swift */,
+			);
+			path = Log;
+			sourceTree = "<group>";
+		};
+		1870F4BA246A678E0016D596 /* Permission */ = {
+			isa = PBXGroup;
+			children = (
+				183112122446F8F100155620 /* YHPermission.swift */,
+			);
+			path = Permission;
 			sourceTree = "<group>";
 		};
 		21C11EE9CC175856C82472D7 /* Pods */ = {
@@ -521,7 +537,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				183112502446F8F200155620 /* YHHUD.swift in Sources */,
 				183112462446F8F200155620 /* UIImage+YHExtension.swift in Sources */,
 				183112482446F8F200155620 /* UIView+YHExtension.swift in Sources */,
 				183112432446F8F200155620 /* YHPickerToolBar.swift in Sources */,
@@ -532,12 +547,12 @@
 				183112522446F8F200155620 /* Array+YHExtension.swift in Sources */,
 				1831124A2446F8F200155620 /* YHViewControllerExtension.swift in Sources */,
 				1831125D2446F8F200155620 /* YHSystemFacePageView.m in Sources */,
+				1870F4B5246A389E0016D596 /* SwiftyLog.swift in Sources */,
 				183112612446F8F200155620 /* YHTagContainerView.swift in Sources */,
 				183112582446F8F200155620 /* YHBaseViewController.swift in Sources */,
 				1831125E2446F8F200155620 /* YHSystemFaceView.m in Sources */,
 				183112492446F8F200155620 /* UITabBar+YHExtension.swift in Sources */,
 				1831124E2446F8F200155620 /* YHPermission.swift in Sources */,
-				183112512446F8F200155620 /* YHLog.swift in Sources */,
 				183112642446F8F200155620 /* YHTabBarItemContainer.swift in Sources */,
 				183112592446F8F200155620 /* YHCusNavigationBar.swift in Sources */,
 				183112402446F8F200155620 /* YHRXAlamofire.swift in Sources */,
@@ -555,6 +570,7 @@
 				183112412446F8F200155620 /* YHResult.swift in Sources */,
 				183112672446F8F200155620 /* YHTabBatItemContentView.swift in Sources */,
 				183112472446F8F200155620 /* UIColor+YHExtension.swift in Sources */,
+				1870F4B2246A2E1D0016D596 /* SwiftyMBHUDTestViewController.swift in Sources */,
 				183112572446F8F200155620 /* YHRxProgressTracker.swift in Sources */,
 				1831125A2446F8F200155620 /* YHFlowItemsDisplayNode.swift in Sources */,
 				183112532446F8F200155620 /* CGFloat+YHExtension.swift in Sources */,
@@ -712,13 +728,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W642XAJPP4;
 				INFOPLIST_FILE = SwiftTool/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yinhe.SwiftTool;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yinhe.SwiftTool1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SwiftTool/SwiftTool-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -732,13 +749,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W642XAJPP4;
 				INFOPLIST_FILE = SwiftTool/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yinhe.SwiftTool;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yinhe.SwiftTool1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SwiftTool/SwiftTool-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

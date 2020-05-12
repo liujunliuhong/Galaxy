@@ -15,16 +15,17 @@ fileprivate let errorImage: UIImage? = SwiftyMBHUD.image(name: "SwiftyMBHUD_Erro
 fileprivate let infoImage: UIImage? = SwiftyMBHUD.image(name: "SwiftyMBHUD_Info")
 fileprivate let warnImage: UIImage? = SwiftyMBHUD.image(name: "SwiftyMBHUD_Warn")
 
-@objc public enum SwiftyMBHUDType: Int {
+public enum SwiftyMBHUDType {
     case success
     case error
     case info
     case warn
+    case custom(image: UIImage?)
 }
 
-public typealias SwiftyMBHUDHideCompletionClosure = ()->()
+public typealias SwiftyMBHUDHideCompletionClosure = () -> ()
 
-@objc public class SwiftyMBHUD: NSObject {
+public class SwiftyMBHUD: NSObject {
     
 }
 
@@ -60,9 +61,36 @@ extension SwiftyMBHUD {
     /// - Parameters:
     ///   - message: message
     ///   - view: view
-    @discardableResult @objc public static func showLoading(message: String?, view: UIView? = nil) -> MBProgressHUD? {
+    @discardableResult public static func showLoading(message: String?, view: UIView? = nil) -> MBProgressHUD? {
         assert(Thread.isMainThread, "MBProgressHUD must in main thread.")
         return SwiftyMBHUD.getHUD(message: message, view: view)
+    }
+    
+    
+    /// hide hud on main thread
+    /// - Parameter hud: hud
+    public static func hide(hud: MBProgressHUD?) {
+        DispatchQueue.main.async {
+            hud?.hide(animated: true)
+        }
+    }
+    
+    /// hide hud on main thread
+    /// - Parameter view: view
+    public static func hide(in view: UIView? = nil) {
+        DispatchQueue.main.async {
+            var view = view
+            if view == nil {
+                view = UIApplication.shared.keyWindow
+                if view == nil {
+                    view = UIApplication.shared.windows.first
+                }
+            }
+            if view == nil {
+                return
+            }
+            MBProgressHUD.hide(for: view!, animated: true)
+        }
     }
     
     /// show image hud
@@ -72,7 +100,7 @@ extension SwiftyMBHUD {
     ///   - view: view
     ///   - afterDelay: after delay hide
     ///   - hideCompletionClosure: closure
-    @objc public static func showImageHUD(message: String?, type: SwiftyMBHUDType, view: UIView? = nil, afterDelay: TimeInterval = 1.5, hideCompletionClosure: SwiftyMBHUDHideCompletionClosure? = nil) {
+    public static func showImageHUD(message: String?, type: SwiftyMBHUDType, view: UIView? = nil, afterDelay: TimeInterval = 1.5, hideCompletionClosure: SwiftyMBHUDHideCompletionClosure? = nil) {
         DispatchQueue.main.async {
             var image: UIImage?
             switch type {
@@ -84,6 +112,8 @@ extension SwiftyMBHUD {
                 image = infoImage
             case .warn:
                 image = warnImage
+            case .custom(let customImage):
+                image = customImage
             }
             
             let hud = SwiftyMBHUD.getHUD(message: message, view: view)
@@ -102,7 +132,7 @@ extension SwiftyMBHUD {
     ///   - view: view
     ///   - afterDelay: after delay hide
     ///   - hideCompletionClosure: closure
-    @objc public static func showTips(message: String?, view: UIView? = nil, afterDelay: TimeInterval = 1.5, hideCompletionClosure: SwiftyMBHUDHideCompletionClosure? = nil) {
+    public static func showTips(message: String?, view: UIView? = nil, afterDelay: TimeInterval = 1.5, hideCompletionClosure: SwiftyMBHUDHideCompletionClosure? = nil) {
         DispatchQueue.main.async {
             let hud = SwiftyMBHUD.getHUD(message: message, view: view)
             hud?.mode = .text
@@ -120,6 +150,9 @@ extension SwiftyMBHUD {
         var view = view
         if view == nil {
             view = UIApplication.shared.keyWindow
+            if view == nil {
+                view = UIApplication.shared.windows.first
+            }
         }
         if view == nil {
             return nil

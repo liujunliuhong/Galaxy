@@ -57,7 +57,7 @@
         
         __block NSMutableArray *tmpFaceAry = [NSMutableArray array];
         
-        //插入delete和face
+        // insert `delete` and `face`
         [faceAry enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             
             YHSystemFace *face = [[YHSystemFace alloc] init];
@@ -74,7 +74,7 @@
             [tmpFaceAry addObject:delete];
         }
         
-        //插入empty
+        // insert `empty`
         NSInteger emptyCount = pageFaceSize - (tmpFaceAry.count % pageFaceSize);
         if (emptyCount > 0) {
             for (int i = 0; i < emptyCount; i ++) {
@@ -82,14 +82,14 @@
             }
         }
         
-        //最终数据源获取
+        // final data source acquisition
         NSInteger repeatCount = tmpFaceAry.count / pageFaceSize;
-        NSInteger remainCount = tmpFaceAry.count % pageFaceSize;//按道理来说，remainCount应该为0
+        NSInteger remainCount = tmpFaceAry.count % pageFaceSize;// logically speaking, the `remainingCount` should be 0
         for (int i = 0; i < repeatCount; i ++) {
             NSArray *ary = [tmpFaceAry subarrayWithRange:NSMakeRange(i * pageFaceSize, pageFaceSize)];
             [finalSystemFaceDataSource addObject:ary];
         }
-        if (remainCount > 0) {//这儿做这个判断，主要是为了便面Bug
+        if (remainCount > 0) {// this judgment is made mainly to avoid bugs
             NSArray *ary = [tmpFaceAry subarrayWithRange:NSMakeRange(repeatCount * pageFaceSize, remainCount)];
             [finalSystemFaceDataSource addObject:ary];
         }

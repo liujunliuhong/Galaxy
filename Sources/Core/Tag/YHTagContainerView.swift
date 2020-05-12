@@ -24,11 +24,11 @@ public class YHTagContainerView: UIView {
     private var lastTags: [UIView] = []
     
     
-    /// 初始化方法
-    /// - Parameter containerWidth: 容易宽度
-    /// - Parameter tagHeight: tag高度
-    /// - Parameter lineSpace: 行间距
-    /// - Parameter columnSpace: 列间距
+    /// init
+    /// - Parameter containerWidth: container width
+    /// - Parameter tagHeight: tag height
+    /// - Parameter lineSpace: line space
+    /// - Parameter columnSpace: column space
     public required init(with containerWidth: CGFloat, tagHeight: CGFloat, lineSpace: CGFloat, columnSpace: CGFloat) {
         self.containerWidth = containerWidth
         self.tagHeight = tagHeight
@@ -45,8 +45,8 @@ public class YHTagContainerView: UIView {
 
 public extension YHTagContainerView {
     
-    /// 刷新
-    /// - Parameter tags: tags集合
+    /// reload
+    /// - Parameter tags: tags
     @discardableResult func reload(with tags: [YHTagContainerProtocol]) -> CGFloat {
         self.lastTags.forEach { (tagView) in
             tagView.removeFromSuperview()
@@ -62,15 +62,15 @@ public extension YHTagContainerView {
             self.lastTags.append(tagView)
             
             if lastTagView == nil {
-                // 第一个
+                // first
                 tagView.frame = CGRect(x: 0, y: 0, width: tagWidth, height: self.tagHeight)
             } else {
-                // 判断需不需要换行
+                // judge if need new line
                 if lastTagView!.frame.origin.x + lastTagView!.frame.size.width + self.columnSpace + tagWidth > self.containerWidth {
-                    // 需要换行
+                    // need new line
                     tagView.frame = CGRect(x: 0, y: lastTagView!.frame.origin.y + lastTagView!.frame.size.height + self.lineSpace, width: tagWidth, height: self.tagHeight)
                 } else {
-                    // 不需要换行
+                    // not need new line
                     tagView.frame = CGRect(x: lastTagView!.frame.origin.x + lastTagView!.frame.size.width + self.columnSpace, y: lastTagView!.frame.origin.y, width: tagWidth, height: self.tagHeight)
                 }
             }
@@ -83,8 +83,4 @@ public extension YHTagContainerView {
             return 0.0
         }
     }
-}
-
-public extension YHTagContainerView {
-    
 }

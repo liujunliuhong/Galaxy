@@ -18,6 +18,12 @@ import RxSwift
 #endif
 
 
+// Protocol.
+public protocol YHPermissionProtocol {
+    var status: YHPermissionStatus { get }
+    func requestAuthorization(hanlder: @escaping YHPermissionHanlder)
+}
+
 // Types of request permissions.
 public enum YHPermissionType {
     case camera
@@ -67,15 +73,11 @@ extension YHPermissionResult: CustomDebugStringConvertible, CustomStringConverti
     }
 }
 
+
+
+
 // Callback of request authorization result.
 public typealias YHPermissionHanlder = (YHPermissionResult) -> ()
-
-
-// Protocol.
-public protocol YHPermissionProtocol {
-    var status: YHPermissionStatus { get }
-    func requestAuthorization(hanlder: @escaping YHPermissionHanlder)
-}
 
 
 
@@ -83,23 +85,20 @@ public protocol YHPermissionProtocol {
   👉👉👉👉👉Please add these keys in info. plist.👈👈👈👈👈
  
  <key>NSRemindersUsageDescription</key>
- <string>将要访问Reminder</string>
+ <string>xxxxx</string>
  <key>NSCalendarsUsageDescription</key>
- <string>将要访问Calendar</string>
+ <string>xxxxx</string>
  <key>NSMicrophoneUsageDescription</key>
- <string>将要访问麦克风</string>
+ <string>xxxxx</string>
  <key>NSContactsUsageDescription</key>
- <string>将要访问通讯录</string>
+ <string>xxxxx</string>
  <key>NSPhotoLibraryUsageDescription</key>
- <string>将要访问相册</string>
+ <string>xxxxx</string>
  <key>NSPhotoLibraryAddUsageDescription</key>
- <string>将要访问相册</string>
+ <string>xxxxx</string>
  <key>NSCameraUsageDescription</key>
- <string>将要访问相机</string>
- 
+ <string>xxxxx</string>
  */
-
-
 public class YHPermission: NSObject {
     
     public static func isAuthorized(for type: YHPermissionType) -> Bool {
@@ -171,6 +170,7 @@ public extension Reactive where Base: YHPermission {
 #endif
 
 
+// MARK: - Microphone
 public struct YHMicrophonePermission: YHPermissionProtocol {
     public var status: YHPermissionStatus {
         let status = AVCaptureDevice.authorizationStatus(for: .audio)
@@ -213,7 +213,7 @@ public struct YHMicrophonePermission: YHPermissionProtocol {
 }
 
 
-
+// MARK: - Camera
 public struct YHCameraPermission: YHPermissionProtocol {
     public var status: YHPermissionStatus {
         let status = AVCaptureDevice.authorizationStatus(for: .video)
@@ -256,6 +256,7 @@ public struct YHCameraPermission: YHPermissionProtocol {
     }
 }
 
+// MARK: - Photo
 public struct YHPhotoPermission: YHPermissionProtocol {
     public var status: YHPermissionStatus {
         let status = PHPhotoLibrary.authorizationStatus()
@@ -316,7 +317,7 @@ public struct YHPhotoPermission: YHPermissionProtocol {
     }
 }
 
-
+// MARK: - Contacts
 public struct YHContactsPermission: YHPermissionProtocol {
     public var status: YHPermissionStatus {
         if #available(iOS 9.0, *) {
@@ -383,6 +384,7 @@ public struct YHContactsPermission: YHPermissionProtocol {
     }
 }
 
+// MARK: - Reminder
 public struct YHReminderPerssion: YHPermissionProtocol {
     public var status: YHPermissionStatus {
         let status = EKEventStore.authorizationStatus(for: .reminder)
@@ -424,6 +426,7 @@ public struct YHReminderPerssion: YHPermissionProtocol {
     }
 }
 
+// MARK: - Calendar
 public struct YHCalendarPerssion: YHPermissionProtocol {
     public var status: YHPermissionStatus {
         let status = EKEventStore.authorizationStatus(for: .event)

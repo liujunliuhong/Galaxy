@@ -45,6 +45,6 @@ public func SwiftyLog<T>(_ message: T, file: String = #file, line: Int = #line) 
     /// OC compatible log printing
     /// - Parameter message: message
     @objc public static func log(message: String) {
-        YHDebugLog(message)
+        SwiftyLog(message)
     }
 }

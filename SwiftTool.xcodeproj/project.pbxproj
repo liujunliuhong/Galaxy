@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		180E6EC42468EBB3001B069C /* SwiftyHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 180E6EC32468EBB3001B069C /* SwiftyHUD.bundle */; };
 		180E6EC62468EC5C001B069C /* SwiftyMBHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180E6EC52468EC5C001B069C /* SwiftyMBHUD.swift */; };
+		182B7BB9246B873D000A95D0 /* SwiftyPickerTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182B7BB8246B873D000A95D0 /* SwiftyPickerTestViewController.swift */; };
 		1831114B24469EB700155620 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1831114A24469EB700155620 /* AppDelegate.swift */; };
 		1831114F24469EB700155620 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1831114E24469EB700155620 /* ViewController.swift */; };
 		1831115224469EB700155620 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1831115024469EB700155620 /* Main.storyboard */; };
@@ -65,6 +66,7 @@
 /* Begin PBXFileReference section */
 		180E6EC32468EBB3001B069C /* SwiftyHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SwiftyHUD.bundle; sourceTree = "<group>"; };
 		180E6EC52468EC5C001B069C /* SwiftyMBHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyMBHUD.swift; sourceTree = "<group>"; };
+		182B7BB8246B873D000A95D0 /* SwiftyPickerTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyPickerTestViewController.swift; sourceTree = "<group>"; };
 		1831114724469EB700155620 /* SwiftTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1831114A24469EB700155620 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1831114E24469EB700155620 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -234,9 +236,10 @@
 		183112012446F8F100155620 /* Picker */ = {
 			isa = PBXGroup;
 			children = (
+				183112042446F8F100155620 /* YHDatePickerView.swift */,
 				183112022446F8F100155620 /* YHPickerView.swift */,
 				183112032446F8F100155620 /* YHPickerToolBar.swift */,
-				183112042446F8F100155620 /* YHDatePickerView.swift */,
+				182B7BB8246B873D000A95D0 /* SwiftyPickerTestViewController.swift */,
 			);
 			path = Picker;
 			sourceTree = "<group>";
@@ -573,6 +576,7 @@
 				1870F4B2246A2E1D0016D596 /* SwiftyMBHUDTestViewController.swift in Sources */,
 				183112572446F8F200155620 /* YHRxProgressTracker.swift in Sources */,
 				1831125A2446F8F200155620 /* YHFlowItemsDisplayNode.swift in Sources */,
+				182B7BB9246B873D000A95D0 /* SwiftyPickerTestViewController.swift in Sources */,
 				183112532446F8F200155620 /* CGFloat+YHExtension.swift in Sources */,
 				183112422446F8F200155620 /* YHPickerView.swift in Sources */,
 				183112632446F8F200155620 /* YHTabBarItem.swift in Sources */,

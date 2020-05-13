@@ -13,15 +13,11 @@ import Contacts
 import AddressBook
 import EventKit
 
-#if canImport(RxSwift)
-import RxSwift
-#endif
-
 
 // Protocol.
-public protocol YHPermissionProtocol {
+fileprivate protocol YHPermissionProtocol {
     var status: YHPermissionStatus { get }
-    func requestAuthorization(hanlder: @escaping YHPermissionHanlder)
+    func requestAuthorization(hanlder: @escaping YHPermissionHandler)
 }
 
 // Types of request permissions.
@@ -49,40 +45,15 @@ public enum YHPermissionResult {
     case restricted
 }
 
-extension YHPermissionResult: CustomDebugStringConvertible, CustomStringConvertible {
-    public var debugDescription: String {
-        switch self {
-        case .denied:
-            return "授权被拒绝"
-        case .authorized:
-            return "同意授权"
-        case .restricted:
-            return "权限访问受限制"
-        }
-    }
-    
-    public var description: String {
-        switch self {
-        case .denied:
-            return "授权被拒绝"
-        case .authorized:
-            return "同意授权"
-        case .restricted:
-            return "权限访问受限制"
-        }
-    }
-}
-
-
 
 
 // Callback of request authorization result.
-public typealias YHPermissionHanlder = (YHPermissionResult) -> ()
+public typealias YHPermissionHandler = (YHPermissionResult) -> ()
 
 
 
 /*
-  👉👉👉👉👉Please add these keys in info. plist.👈👈👈👈👈
+ 👉👉👉👉👉Please add these keys in info. plist.👈👈👈👈👈
  
  <key>NSRemindersUsageDescription</key>
  <string>xxxxx</string>
@@ -99,8 +70,12 @@ public typealias YHPermissionHanlder = (YHPermissionResult) -> ()
  <key>NSCameraUsageDescription</key>
  <string>xxxxx</string>
  */
-public class YHPermission: NSObject {
+
+// MARK: - Public
+public struct YHPermission {
     
+    /// is authorized
+    /// - Parameter type: type
     public static func isAuthorized(for type: YHPermissionType) -> Bool {
         switch type {
         case .microphone:
@@ -118,7 +93,11 @@ public class YHPermission: NSObject {
         }
     }
     
-    public static func requestAuthorization(for type: YHPermissionType, handler: @escaping YHPermissionHanlder) {
+    /// request authorization
+    /// - Parameters:
+    ///   - type: type
+    ///   - handler: handler
+    public static func requestAuthorization(for type: YHPermissionType, handler: @escaping YHPermissionHandler) {
         switch type {
         case .microphone:
             YHPermission.requestAuthorization(for: YHMicrophonePermission(), handler: handler)
@@ -136,43 +115,23 @@ public class YHPermission: NSObject {
     }
 }
 
-public extension YHPermission {
+
+
+
+fileprivate extension YHPermission {
     static func isAuthorized(for type: YHPermissionProtocol) -> Bool {
         return type.status == .authorized
     }
-    static func requestAuthorization(for type: YHPermissionProtocol, handler: @escaping YHPermissionHanlder) {
+    
+    static func requestAuthorization(for type: YHPermissionProtocol, handler: @escaping YHPermissionHandler) {
         type.requestAuthorization(hanlder: handler)
     }
 }
 
-#if canImport(RxSwift)
-public extension Reactive where Base: YHPermission {
-    
-    static func requestAuthorization(for type: YHPermissionType) -> Observable<YHPermissionResult> {
-        return Observable<YHPermissionResult>.create({ (observable) -> Disposable in
-            YHPermission.requestAuthorization(for: type) { (result) in
-                observable.onNext(result)
-                observable.onCompleted()
-            }
-            return Disposables.create()
-        })
-    }
-    
-    static func isAuthorized(for type: YHPermissionType) -> Observable<Bool> {
-        return Observable<Bool>.create({ (observable) -> Disposable in
-            let isAuthorized = YHPermission.isAuthorized(for: type)
-            observable.onNext(isAuthorized)
-            observable.onCompleted()
-            return Disposables.create()
-        })
-    }
-}
-#endif
-
 
 // MARK: - Microphone
-public struct YHMicrophonePermission: YHPermissionProtocol {
-    public var status: YHPermissionStatus {
+fileprivate struct YHMicrophonePermission: YHPermissionProtocol {
+    var status: YHPermissionStatus {
         let status = AVCaptureDevice.authorizationStatus(for: .audio)
         switch status {
         case .authorized:
@@ -188,7 +147,7 @@ public struct YHMicrophonePermission: YHPermissionProtocol {
         }
     }
     
-    public func requestAuthorization(hanlder: @escaping YHPermissionHanlder) {
+    func requestAuthorization(hanlder: @escaping YHPermissionHandler) {
         switch self.status {
         case .authorized:
             DispatchQueue.main.async {
@@ -214,8 +173,8 @@ public struct YHMicrophonePermission: YHPermissionProtocol {
 
 
 // MARK: - Camera
-public struct YHCameraPermission: YHPermissionProtocol {
-    public var status: YHPermissionStatus {
+fileprivate struct YHCameraPermission: YHPermissionProtocol {
+    var status: YHPermissionStatus {
         let status = AVCaptureDevice.authorizationStatus(for: .video)
         switch status {
         case .authorized:
@@ -232,7 +191,7 @@ public struct YHCameraPermission: YHPermissionProtocol {
     }
     
     
-    public func requestAuthorization(hanlder: @escaping YHPermissionHanlder) {
+    func requestAuthorization(hanlder: @escaping YHPermissionHandler) {
         switch self.status {
         case .authorized:
             DispatchQueue.main.async {
@@ -257,8 +216,8 @@ public struct YHCameraPermission: YHPermissionProtocol {
 }
 
 // MARK: - Photo
-public struct YHPhotoPermission: YHPermissionProtocol {
-    public var status: YHPermissionStatus {
+fileprivate struct YHPhotoPermission: YHPermissionProtocol {
+    var status: YHPermissionStatus {
         let status = PHPhotoLibrary.authorizationStatus()
         switch status {
         case .authorized:
@@ -274,7 +233,7 @@ public struct YHPhotoPermission: YHPermissionProtocol {
         }
     }
     
-    public func requestAuthorization(hanlder: @escaping YHPermissionHanlder) {
+    func requestAuthorization(hanlder: @escaping YHPermissionHandler) {
         switch self.status {
         case .authorized:
             DispatchQueue.main.async {
@@ -318,8 +277,8 @@ public struct YHPhotoPermission: YHPermissionProtocol {
 }
 
 // MARK: - Contacts
-public struct YHContactsPermission: YHPermissionProtocol {
-    public var status: YHPermissionStatus {
+fileprivate struct YHContactsPermission: YHPermissionProtocol {
+    var status: YHPermissionStatus {
         if #available(iOS 9.0, *) {
             let status = CNContactStore.authorizationStatus(for: .contacts)
             switch status {
@@ -351,7 +310,7 @@ public struct YHContactsPermission: YHPermissionProtocol {
         }
     }
     
-    public func requestAuthorization(hanlder: @escaping YHPermissionHanlder) {
+    func requestAuthorization(hanlder: @escaping YHPermissionHandler) {
         switch self.status {
         case .authorized:
             DispatchQueue.main.async {
@@ -385,8 +344,8 @@ public struct YHContactsPermission: YHPermissionProtocol {
 }
 
 // MARK: - Reminder
-public struct YHReminderPerssion: YHPermissionProtocol {
-    public var status: YHPermissionStatus {
+fileprivate struct YHReminderPerssion: YHPermissionProtocol {
+    var status: YHPermissionStatus {
         let status = EKEventStore.authorizationStatus(for: .reminder)
         switch status {
         case .authorized:
@@ -402,7 +361,7 @@ public struct YHReminderPerssion: YHPermissionProtocol {
         }
     }
     
-    public func requestAuthorization(hanlder: @escaping YHPermissionHanlder) {
+    func requestAuthorization(hanlder: @escaping YHPermissionHandler) {
         switch self.status {
         case .authorized:
             DispatchQueue.main.async {
@@ -427,8 +386,8 @@ public struct YHReminderPerssion: YHPermissionProtocol {
 }
 
 // MARK: - Calendar
-public struct YHCalendarPerssion: YHPermissionProtocol {
-    public var status: YHPermissionStatus {
+fileprivate struct YHCalendarPerssion: YHPermissionProtocol {
+    var status: YHPermissionStatus {
         let status = EKEventStore.authorizationStatus(for: .event)
         switch status {
         case .authorized:
@@ -444,7 +403,7 @@ public struct YHCalendarPerssion: YHPermissionProtocol {
         }
     }
     
-    public func requestAuthorization(hanlder: @escaping YHPermissionHanlder) {
+    func requestAuthorization(hanlder: @escaping YHPermissionHandler) {
         switch self.status {
         case .authorized:
             DispatchQueue.main.async {
@@ -464,6 +423,33 @@ public struct YHCalendarPerssion: YHPermissionProtocol {
                     hanlder(granted ? .authorized : .denied)
                 }
             }
+        }
+    }
+}
+
+
+
+
+extension YHPermissionResult: CustomDebugStringConvertible, CustomStringConvertible {
+    public var debugDescription: String {
+        switch self {
+        case .denied:
+            return "授权被拒绝"
+        case .authorized:
+            return "同意授权"
+        case .restricted:
+            return "权限访问受限制"
+        }
+    }
+    
+    public var description: String {
+        switch self {
+        case .denied:
+            return "授权被拒绝"
+        case .authorized:
+            return "同意授权"
+        case .restricted:
+            return "权限访问受限制"
         }
     }
 }

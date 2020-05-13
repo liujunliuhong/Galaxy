@@ -11,7 +11,9 @@ import UIKit
 public class YHDatePickerView: UIView {
 
     deinit {
-        YHDebugLog("\(self.classForCoder) deinit")
+        #if DEBUG
+        print("\(NSStringFromClass(self.classForCoder)) deinit")
+        #endif
         NotificationCenter.default.removeObserver(self, name: UIApplication.didChangeStatusBarOrientationNotification, object: nil)
     }
     
@@ -65,7 +67,7 @@ public class YHDatePickerView: UIView {
         return gestureView
     }()
     
-    private enum colorType: RawRepresentable {
+    private enum ColorType: RawRepresentable {
         case clear
         case blackTransparent
         
@@ -80,17 +82,19 @@ public class YHDatePickerView: UIView {
             }
         }
         
-        init?(rawValue: YHDatePickerView.colorType.RawValue) {
+        init?(rawValue: YHDatePickerView.ColorType.RawValue) {
             switch rawValue {
-            case colorType.clear.rawValue:
+            case ColorType.clear.rawValue:
                 self = .clear
-            case colorType.blackTransparent.rawValue:
+            case ColorType.blackTransparent.rawValue:
                 self = .blackTransparent
             default:
                 return nil
             }
         }
     }
+    
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -111,7 +115,7 @@ public class YHDatePickerView: UIView {
         self.datePickerView.subviews.forEach { (view) in
             if view.isKind(of: UIPickerView.classForCoder()) {
                 view.subviews.forEach({ (view1) in
-                    if view1.YH_Height < 1 {
+                    if view1.frame.height.isLessThanOrEqualTo(1.0) {
                         view1.backgroundColor = self.separatorLineColor
                     }
                 })
@@ -127,6 +131,14 @@ extension YHDatePickerView {
         
         backgroundColor = .white
     }
+    
+    private func addNotification() {
+        
+    }
+    
+    private func removeNotification() {
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didChangeStatusBarOrientationNotification, object: nil)
+    }
 }
 
 extension YHDatePickerView {
@@ -138,45 +150,44 @@ extension YHDatePickerView {
         
         self.doneClosure = doneClosure
         
-        window.addSubview(backgroundView)
-        backgroundView.addSubview(gestureView)
-        backgroundView.addSubview(self)
-        addSubview(toolBar)
-        addSubview(datePickerView)
+        window.addSubview(self.backgroundView)
+        self.backgroundView.addSubview(self.gestureView)
+        self.backgroundView.addSubview(self)
+        self.addSubview(toolBar)
+        self.addSubview(datePickerView)
         
      
-        updateFrame()
+        self.updateFrame()
         
         
-        gestureView.isUserInteractionEnabled = false
+        self.gestureView.isUserInteractionEnabled = false
         self.isUserInteractionEnabled = false
         
-        self.gestureView.backgroundColor = colorType.clear.rawValue
+        self.gestureView.backgroundColor = ColorType.clear.rawValue
         self.transform = CGAffineTransform(translationX: 0, y: self.pickerHeight)
 
         UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
             self.transform = CGAffineTransform.identity
-            self.gestureView.backgroundColor = colorType.blackTransparent.rawValue
+            self.gestureView.backgroundColor = ColorType.blackTransparent.rawValue
         }) { (_) in
             self.gestureView.isUserInteractionEnabled = true
             self.isUserInteractionEnabled = true
         }
         
-        
-        toolBar.cancelButton.addTarget(self, action: #selector(dismiss), for: .touchUpInside)
-        toolBar.sureButton.addTarget(self, action: #selector(done), for: .touchUpInside)
+        self.toolBar.cancelButton.addTarget(self, action: #selector(dismiss), for: .touchUpInside)
+        self.toolBar.sureButton.addTarget(self, action: #selector(done), for: .touchUpInside)
     }
     
     /// dismiss
     @objc public func dismiss() {
         
-        gestureView.isUserInteractionEnabled = false
+        self.gestureView.isUserInteractionEnabled = false
         self.isUserInteractionEnabled = false
         
-        self.gestureView.backgroundColor = colorType.blackTransparent.rawValue
+        self.gestureView.backgroundColor = ColorType.blackTransparent.rawValue
         UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
             self.transform = CGAffineTransform(translationX: 0, y: self.pickerHeight)
-            self.gestureView.backgroundColor = colorType.clear.rawValue
+            self.gestureView.backgroundColor = ColorType.clear.rawValue
         }) { (_) in
             self.gestureView.isUserInteractionEnabled = true
             self.isUserInteractionEnabled = true
@@ -190,33 +201,33 @@ extension YHDatePickerView {
     
     @objc public func done() {
         self.doneClosure?(self.datePickerView.date)
-        dismiss()
+        self.dismiss()
     }
 }
 
 extension YHDatePickerView {
     @objc private func dismissTap() {
-        dismiss()
+        self.dismiss()
     }
     
     @objc private func statusBarOrientationNotification() {
-        updateFrame()
+        self.updateFrame()
     }
 }
 
 extension YHDatePickerView {
     private func updateFrame() {
-        backgroundView.frame = UIScreen.main.bounds
-        gestureView.frame = UIScreen.main.bounds
+        self.backgroundView.frame = UIScreen.main.bounds
+        self.gestureView.frame = UIScreen.main.bounds
         
-        datePickerView.sizeToFit()
+        self.datePickerView.sizeToFit()
         
-        let height = toolBarHeight + UIDevice.YH_HomeIndicator_Height + datePickerView.YH_Height
+        let height = self.toolBarHeight + UIDevice.YH_HomeIndicator_Height + self.datePickerView.frame.height
         
         self.pickerHeight = height
         
         self.frame = CGRect(x: 0, y: UIScreen.main.bounds.size.height - height, width: UIScreen.main.bounds.size.width, height: height)
-        toolBar.frame = CGRect(x: 0, y: 0, width: self.YH_Width, height: toolBarHeight)
-        datePickerView.frame = CGRect(x: 0, y: toolBarHeight, width: self.YH_Width, height: datePickerView.YH_Height)
+        self.toolBar.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: toolBarHeight)
+        self.datePickerView.frame = CGRect(x: 0, y: self.toolBarHeight, width: self.frame.width, height: self.datePickerView.frame.height)
     }
 }

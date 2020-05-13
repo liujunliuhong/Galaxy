@@ -9,9 +9,11 @@
 import UIKit
 
 public class YHPickerView: UIView {
-
+    
     deinit {
-        print("\(self.classForCoder) deinit")
+        #if DEBUG
+        print("\(NSStringFromClass(self.classForCoder)) deinit")
+        #endif
         NotificationCenter.default.removeObserver(self, name: UIApplication.didChangeStatusBarOrientationNotification, object: nil)
     }
     

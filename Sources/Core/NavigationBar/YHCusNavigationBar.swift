@@ -33,7 +33,7 @@ private struct YHCusNavigationBarAssociatedKeys {
 @objc public class YHCusNavigationBar: UIView {
     
     deinit {
-        YHDebugLog("\(NSStringFromClass(YHCusNavigationBar.classForCoder())) deinit")
+        SwiftyLog("\(NSStringFromClass(YHCusNavigationBar.classForCoder())) deinit")
     }
     
     private lazy var lineView: UIView = {

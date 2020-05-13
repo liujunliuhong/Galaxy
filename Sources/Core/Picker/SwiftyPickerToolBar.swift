@@ -1,15 +1,15 @@
 //
-//  YHPickerToolBar.swift
-//  FNDating
+//  SwiftyPickerToolBar.swift
+//  SwiftTool
 //
-//  Created by apple on 2019/9/11.
-//  Copyright © 2019 yinhe. All rights reserved.
+//  Created by 刘军 on 2020/5/13.
+//  Copyright © 2020 yinhe. All rights reserved.
 //
 
 import UIKit
 
 // Can be inherited
-open class YHPickerToolBar: UIView {
+open class SwiftyPickerToolBar: UIView {
     
     deinit {
         #if DEBUG
@@ -57,7 +57,7 @@ open class YHPickerToolBar: UIView {
     }
     
     // You can override this method to change the layout
-    override public func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
         self.cancelButton.frame = CGRect(x: 0, y: 0, width: self.buttonWidth, height: self.frame.height)
         self.sureButton.frame = CGRect(x: self.frame.width - self.buttonWidth, y: 0, width: self.buttonWidth, height: self.frame.height)
@@ -66,7 +66,7 @@ open class YHPickerToolBar: UIView {
 }
 
 
-extension YHPickerToolBar {
+extension SwiftyPickerToolBar {
     private func makeUI() {
         addSubview(cancelButton)
         addSubview(sureButton)

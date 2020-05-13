@@ -51,14 +51,53 @@ public class SwiftyPickerTestViewController: UIViewController {
 
 extension SwiftyPickerTestViewController {
     @objc func commonPickerAction() {
+        let pickerView = SwiftyPickerView()
         
+        let toolBar = pickerView.toolBar
+        toolBar.cancelButton.setTitle("Cancel", for: .normal)
+        toolBar.sureButton.setTitle("Done", for: .normal)
+        
+        let titles: [[String]] = [["0 - 0",
+                                   "0 - 1",
+                                   "0 - 2",
+                                   "0 - 3",
+                                   "0 - 4",
+                                   "0 - 5"],
+                                  ["1 - 0",
+                                   "1 - 1",
+                                   "1 - 2",
+                                   "1 - 3"]]
+        pickerView.titlesForComponents = titles
+        pickerView.setSelect(indexs: [1, 2], animation: true)
+        pickerView.show { (selectIndexs) in
+            print("selectIndexs:\(selectIndexs)")
+        }
     }
     
     @objc func datePickerAction() {
+        let datePickerView = SwiftyDatePickerView()
         
-    }
-    
-    public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        //datePickerView.toolBarHeight = 100.0
         
+        
+        let toolBar = datePickerView.toolBar
+        toolBar.cancelButton.setTitle("Cancel", for: .normal)
+        toolBar.sureButton.setTitle("Done", for: .normal)
+        
+        /*
+         let toolBar = SwiftyPickerToolBar()
+         toolBar.cancelButton.setTitle("Cancel", for: .normal)
+         toolBar.sureButton.setTitle("Done", for: .normal)
+         datePickerView.toolBar = toolBar
+         */
+        
+        let datePicker = datePickerView.datePickerView
+        datePicker.datePickerMode = .date
+        datePicker.maximumDate = Date()
+        datePicker.minimumDate = Date(timeIntervalSinceNow: -7 * 24 * 60 * 60) // 7 days
+        
+        datePickerView.show { (selectDate) in
+            print("selectDate:\(selectDate)")
+        }
     }
 }

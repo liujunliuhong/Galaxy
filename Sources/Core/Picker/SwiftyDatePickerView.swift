@@ -1,59 +1,57 @@
 //
-//  YHDatePickerView.swift
-//  FNDating
+//  SwiftyDatePickerView.swift
+//  SwiftTool
 //
-//  Created by apple on 2019/9/11.
-//  Copyright © 2019 yinhe. All rights reserved.
+//  Created by 刘军 on 2020/5/13.
+//  Copyright © 2020 yinhe. All rights reserved.
 //
 
 import UIKit
 
-public class YHDatePickerView: UIView {
+public typealias SwiftyDatePickerDoneClosure = (Date) -> ()
 
+public class SwiftyDatePickerView: UIView {
+    
     deinit {
         #if DEBUG
         print("\(NSStringFromClass(self.classForCoder)) deinit")
         #endif
-        NotificationCenter.default.removeObserver(self, name: UIApplication.didChangeStatusBarOrientationNotification, object: nil)
+        self.removeNotification()
     }
     
-    /// 分割线颜色
+    /// separator line color
     public var separatorLineColor: UIColor = UIColor.gray.withAlphaComponent(0.4) {
         didSet {
             self.setNeedsLayout()
             self.layoutIfNeeded()
         }
     }
-
-    /// toolBar.  请自行设置相关属性
-    public lazy var toolBar: YHPickerToolBar = {
-        let toolBar = YHPickerToolBar()
+    
+    /// toolBar.   Please set relevant attributes yourself
+    public lazy var toolBar: SwiftyPickerToolBar = {
+        let toolBar = SwiftyPickerToolBar()
         return toolBar
     }()
     
-    /// datePickerView.  请自行设置相关属性
-    public lazy var datePickerView: UIDatePicker = {
+    /// datePickerView.  Please set relevant attributes yourself
+    public lazy private(set) var datePickerView: UIDatePicker = {
         let datePickerView = UIDatePicker()
         datePickerView.datePickerMode = UIDatePicker.Mode.date
         return datePickerView
     }()
     
+    /// toolBar height
+    public var toolBarHeight: CGFloat = 49.0
     
     
     
     
     
     
-    /// toolBar高度
-    private let toolBarHeight: CGFloat = 49.0
     
-    /// picker高度
-    private var pickerHeight: CGFloat = 0.0
+    private var sumHeight: CGFloat = 0.0
+    private var doneClosure: SwiftyDatePickerDoneClosure?
     
-    /// 完成回调
-    private var doneClosure: ((Date)->())?
-    
-    /// 背景
     private lazy var backgroundView: UIView = {
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.clear
@@ -82,7 +80,7 @@ public class YHDatePickerView: UIView {
             }
         }
         
-        init?(rawValue: YHDatePickerView.ColorType.RawValue) {
+        init?(rawValue: SwiftyDatePickerView.ColorType.RawValue) {
             switch rawValue {
             case ColorType.clear.rawValue:
                 self = .clear
@@ -95,15 +93,14 @@ public class YHDatePickerView: UIView {
     }
     
     
-    
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
-        setup()
+        self.setup()
     }
     
-    init() {
+    public init() {
         super.init(frame: .zero)
-        setup()
+        self.setup()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -124,16 +121,15 @@ public class YHDatePickerView: UIView {
     }
 }
 
-extension YHDatePickerView {
+extension SwiftyDatePickerView {
     private func setup() {
-        NotificationCenter.default.removeObserver(self, name: UIApplication.didChangeStatusBarOrientationNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(statusBarOrientationNotification), name: UIApplication.didChangeStatusBarOrientationNotification, object: nil)
-        
-        backgroundColor = .white
+        self.backgroundColor = .white
+        self.removeNotification()
+        self.addNotification()
     }
     
     private func addNotification() {
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(statusBarOrientationNotification), name: UIApplication.didChangeStatusBarOrientationNotification, object: nil)
     }
     
     private func removeNotification() {
@@ -141,11 +137,11 @@ extension YHDatePickerView {
     }
 }
 
-extension YHDatePickerView {
+extension SwiftyDatePickerView {
     
     /// show
     /// - Parameter doneClosure: 点击完成按钮之后的回调
-    public func show(doneClosure: ((Date)->())?) {
+    public func show(doneClosure: SwiftyDatePickerDoneClosure?) {
         guard let window = UIApplication.shared.keyWindow else { return }
         
         self.doneClosure = doneClosure
@@ -156,16 +152,14 @@ extension YHDatePickerView {
         self.addSubview(toolBar)
         self.addSubview(datePickerView)
         
-     
         self.updateFrame()
-        
         
         self.gestureView.isUserInteractionEnabled = false
         self.isUserInteractionEnabled = false
         
         self.gestureView.backgroundColor = ColorType.clear.rawValue
-        self.transform = CGAffineTransform(translationX: 0, y: self.pickerHeight)
-
+        self.transform = CGAffineTransform(translationX: 0, y: self.sumHeight)
+        
         UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
             self.transform = CGAffineTransform.identity
             self.gestureView.backgroundColor = ColorType.blackTransparent.rawValue
@@ -177,8 +171,10 @@ extension YHDatePickerView {
         self.toolBar.cancelButton.addTarget(self, action: #selector(dismiss), for: .touchUpInside)
         self.toolBar.sureButton.addTarget(self, action: #selector(done), for: .touchUpInside)
     }
-    
-    /// dismiss
+}
+
+// MARK: - action
+extension SwiftyDatePickerView {
     @objc public func dismiss() {
         
         self.gestureView.isUserInteractionEnabled = false
@@ -186,7 +182,7 @@ extension YHDatePickerView {
         
         self.gestureView.backgroundColor = ColorType.blackTransparent.rawValue
         UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
-            self.transform = CGAffineTransform(translationX: 0, y: self.pickerHeight)
+            self.transform = CGAffineTransform(translationX: 0, y: self.sumHeight)
             self.gestureView.backgroundColor = ColorType.clear.rawValue
         }) { (_) in
             self.gestureView.isUserInteractionEnabled = true
@@ -195,7 +191,7 @@ extension YHDatePickerView {
             self.removeFromSuperview()
             self.gestureView.removeFromSuperview()
             self.backgroundView.removeFromSuperview()
-            NotificationCenter.default.removeObserver(self, name: UIApplication.didChangeStatusBarOrientationNotification, object: nil)
+            self.removeNotification()
         }
     }
     
@@ -203,31 +199,41 @@ extension YHDatePickerView {
         self.doneClosure?(self.datePickerView.date)
         self.dismiss()
     }
-}
-
-extension YHDatePickerView {
+    
     @objc private func dismissTap() {
         self.dismiss()
     }
-    
+}
+
+// MARK: - notification action
+extension SwiftyDatePickerView {
     @objc private func statusBarOrientationNotification() {
         self.updateFrame()
     }
 }
 
-extension YHDatePickerView {
+extension SwiftyDatePickerView {
     private func updateFrame() {
         self.backgroundView.frame = UIScreen.main.bounds
         self.gestureView.frame = UIScreen.main.bounds
         
         self.datePickerView.sizeToFit()
         
-        let height = self.toolBarHeight + UIDevice.YH_HomeIndicator_Height + self.datePickerView.frame.height
+        let sumHeight = self.toolBarHeight + self.datePickerView.frame.height
         
-        self.pickerHeight = height
+        self.sumHeight = sumHeight
         
-        self.frame = CGRect(x: 0, y: UIScreen.main.bounds.size.height - height, width: UIScreen.main.bounds.size.width, height: height)
-        self.toolBar.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: toolBarHeight)
-        self.datePickerView.frame = CGRect(x: 0, y: self.toolBarHeight, width: self.frame.width, height: self.datePickerView.frame.height)
+        self.frame = CGRect(x: 0,
+                            y: UIScreen.main.bounds.size.height - sumHeight,
+                            width: UIScreen.main.bounds.size.width,
+                            height: sumHeight)
+        self.toolBar.frame = CGRect(x: 0,
+                                    y: 0,
+                                    width: self.frame.width,
+                                    height: self.toolBarHeight)
+        self.datePickerView.frame = CGRect(x: 0,
+                                           y: self.toolBarHeight,
+                                           width: self.frame.width,
+                                           height: self.datePickerView.frame.height)
     }
 }

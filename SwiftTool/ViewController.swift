@@ -20,7 +20,7 @@ class ViewController: UIViewController {
 
 extension ViewController {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let vc = SwiftyMBHUDTestViewController()
+        let vc = SwiftyPickerTestViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -151,11 +151,12 @@ import UIKit
 
 public extension UIView {
     override func setValue(_ value: Any?, forUndefinedKey key: String) {
-        YHDebugLog("[KVC报错] [value: \(String(describing: value))] [key: \(key)]")
+        
+        SwiftyLog("[KVC报错] [value: \(String(describing: value))] [key: \(key)]")
     }
     
     override func value(forUndefinedKey key: String) -> Any? {
-        YHDebugLog("[KVC报错] [key: \(key)]")
+        SwiftyLog("[KVC报错] [key: \(key)]")
         return nil
     }
 }

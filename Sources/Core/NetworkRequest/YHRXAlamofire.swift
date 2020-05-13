@@ -75,7 +75,8 @@ public class YHAlamofire {
         
         var hud: MBProgressHUD? = nil
         if request.isShowHUD {
-            hud = YHHUD.showHUD()
+            
+            hud = SwiftyMBHUD.showLoading(message: nil)
         }
         let dataRequest = sessionManager.request(URL, method: request.method, parameters: request.parameters, encoding: request.encoding, headers: request.headers)
         
@@ -93,7 +94,7 @@ public class YHAlamofire {
                 request.requestProgress(progress: 0.0)
             }
             }.responseJSON { (response) in
-                YHHUD.hideHUD(hud)
+                SwiftyMBHUD.hide(hud: hud)
                 request.requestEnd()
                 if request.isPrintLog {
                     var log = "\n=============================================================================\n"
@@ -112,7 +113,7 @@ public class YHAlamofire {
                         log += "\(error)\n"
                     }
                     log += "↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑\n"
-                    YHDebugLog(log)
+                    SwiftyLog(log)
                 }
                 switch response.result {
                 case let .success(value):
@@ -151,7 +152,7 @@ public class YHAlamofire {
         
         var hud: MBProgressHUD? = nil
         if request.isShowHUD {
-            hud = YHHUD.showHUD()
+            hud = SwiftyMBHUD.showLoading(message: nil)
         }
         let dataRequest = sessionManager.request(URL, method: request.method, parameters: request.parameters, encoding: request.encoding, headers: request.headers)
         
@@ -169,7 +170,7 @@ public class YHAlamofire {
                 request.requestProgress(progress: 0.0)
             }
         }.responseString { (response) in
-            YHHUD.hideHUD(hud)
+            SwiftyMBHUD.hide(hud: hud)
             request.requestEnd()
             if request.isPrintLog {
                 var log = "\n=============================================================================\n"
@@ -188,7 +189,7 @@ public class YHAlamofire {
                     log += "\(error)\n"
                 }
                 log += "↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑\n"
-                YHDebugLog(log)
+                SwiftyLog(log)
             }
             switch response.result {
             case let .success(value):

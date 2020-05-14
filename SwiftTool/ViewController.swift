@@ -8,19 +8,28 @@
 
 import UIKit
 
+fileprivate class Model: NSObject {
+    
+}
 
 class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Demo"
         self.view.backgroundColor = .white
+        
+        
+        
+        let sort = SwiftyWordsSort<Model>()
+        let result = SwiftyWordsSort.getEnglishFirstWords(string: " ,.,;'!@#$%^&*() 嘻嘻哈哈啦啦abc ")
+        print("\(result)")
     }
 }
 
 
 extension ViewController {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let vc = SwiftyPickerTestViewController()
+        let vc = SwiftyLogTestViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -11,4 +11,6 @@
 
 #import "Test.h"
 
+#import "yh_chinese_letters.h"
+
 #endif /* SwiftTool_Bridging_Header_h */

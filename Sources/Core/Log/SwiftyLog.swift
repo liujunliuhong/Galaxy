@@ -15,10 +15,16 @@ import CocoaLumberjack
 public func SwiftyLogSetup(saveToSandbox: Bool) {
     #if DEBUG
     // only debug
-    if let logger = DDTTYLogger.sharedInstance {
+    if #available(iOS 10.0, *) {
+        let logger = DDOSLogger(subsystem: nil, category: nil)
         DDLog.add(logger)
+    } else {
+        if let logger = DDTTYLogger.sharedInstance {
+            DDLog.add(logger)
+        }
     }
     #endif
+    
     if saveToSandbox {
         let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last
         let logFileManager = DDLogFileManagerDefault(logsDirectory: documentDirectory)

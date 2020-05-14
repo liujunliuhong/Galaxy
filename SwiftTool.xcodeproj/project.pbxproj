@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		180E6EC42468EBB3001B069C /* SwiftyHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 180E6EC32468EBB3001B069C /* SwiftyHUD.bundle */; };
 		180E6EC62468EC5C001B069C /* SwiftyMBHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180E6EC52468EC5C001B069C /* SwiftyMBHUD.swift */; };
+		1827D02D246D1B7500429B36 /* SwiftyLogTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1827D02C246D1B7500429B36 /* SwiftyLogTestViewController.swift */; };
+		1827D035246D1EB600429B36 /* YHChineseSortModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1827D031246D1EB600429B36 /* YHChineseSortModel.m */; };
+		1827D036246D1EB600429B36 /* yh_chinese_letters.c in Sources */ = {isa = PBXBuildFile; fileRef = 1827D033246D1EB600429B36 /* yh_chinese_letters.c */; };
+		1827D037246D1EB600429B36 /* YHChineseSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 1827D034246D1EB600429B36 /* YHChineseSort.m */; };
+		1827D03B246D223A00429B36 /* SwiftyWordsSortTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1827D03A246D223A00429B36 /* SwiftyWordsSortTestViewController.swift */; };
+		1827D03D246D23EA00429B36 /* SwiftyWordsSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1827D03C246D23EA00429B36 /* SwiftyWordsSort.swift */; };
 		182B7BB9246B873D000A95D0 /* SwiftyPickerTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182B7BB8246B873D000A95D0 /* SwiftyPickerTestViewController.swift */; };
 		1831114B24469EB700155620 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1831114A24469EB700155620 /* AppDelegate.swift */; };
 		1831114F24469EB700155620 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1831114E24469EB700155620 /* ViewController.swift */; };
@@ -67,6 +73,15 @@
 /* Begin PBXFileReference section */
 		180E6EC32468EBB3001B069C /* SwiftyHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SwiftyHUD.bundle; sourceTree = "<group>"; };
 		180E6EC52468EC5C001B069C /* SwiftyMBHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyMBHUD.swift; sourceTree = "<group>"; };
+		1827D02C246D1B7500429B36 /* SwiftyLogTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyLogTestViewController.swift; sourceTree = "<group>"; };
+		1827D02F246D1EB600429B36 /* YHChineseSort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHChineseSort.h; sourceTree = "<group>"; };
+		1827D030246D1EB600429B36 /* YHChineseSortModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHChineseSortModel.h; sourceTree = "<group>"; };
+		1827D031246D1EB600429B36 /* YHChineseSortModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHChineseSortModel.m; sourceTree = "<group>"; };
+		1827D032246D1EB600429B36 /* yh_chinese_letters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yh_chinese_letters.h; sourceTree = "<group>"; };
+		1827D033246D1EB600429B36 /* yh_chinese_letters.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = yh_chinese_letters.c; sourceTree = "<group>"; };
+		1827D034246D1EB600429B36 /* YHChineseSort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHChineseSort.m; sourceTree = "<group>"; };
+		1827D03A246D223A00429B36 /* SwiftyWordsSortTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyWordsSortTestViewController.swift; sourceTree = "<group>"; };
+		1827D03C246D23EA00429B36 /* SwiftyWordsSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyWordsSort.swift; sourceTree = "<group>"; };
 		182B7BB8246B873D000A95D0 /* SwiftyPickerTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyPickerTestViewController.swift; sourceTree = "<group>"; };
 		1831114724469EB700155620 /* SwiftTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1831114A24469EB700155620 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -155,6 +170,21 @@
 			path = HUD;
 			sourceTree = "<group>";
 		};
+		1827D02E246D1E6800429B36 /* Words Sort */ = {
+			isa = PBXGroup;
+			children = (
+				1827D02F246D1EB600429B36 /* YHChineseSort.h */,
+				1827D034246D1EB600429B36 /* YHChineseSort.m */,
+				1827D032246D1EB600429B36 /* yh_chinese_letters.h */,
+				1827D033246D1EB600429B36 /* yh_chinese_letters.c */,
+				1827D030246D1EB600429B36 /* YHChineseSortModel.h */,
+				1827D031246D1EB600429B36 /* YHChineseSortModel.m */,
+				1827D03C246D23EA00429B36 /* SwiftyWordsSort.swift */,
+				1827D03A246D223A00429B36 /* SwiftyWordsSortTestViewController.swift */,
+			);
+			path = "Words Sort";
+			sourceTree = "<group>";
+		};
 		1831113E24469EB700155620 = {
 			isa = PBXGroup;
 			children = (
@@ -204,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				1831126C2446FBB200155620 /* SwiftToolDescription */,
+				1827D02E246D1E6800429B36 /* Words Sort */,
 				1870F4BA246A678E0016D596 /* Permission */,
 				1870F4B3246A387A0016D596 /* Log */,
 				180E6EC22468EB51001B069C /* HUD */,
@@ -395,6 +426,7 @@
 			isa = PBXGroup;
 			children = (
 				1870F4B4246A389E0016D596 /* SwiftyLog.swift */,
+				1827D02C246D1B7500429B36 /* SwiftyLogTestViewController.swift */,
 			);
 			path = Log;
 			sourceTree = "<group>";
@@ -555,6 +587,7 @@
 				1870F4B5246A389E0016D596 /* SwiftyLog.swift in Sources */,
 				8544C6C9246C3CAE00361C08 /* SwiftyPickerToolBar.swift in Sources */,
 				183112612446F8F200155620 /* YHTagContainerView.swift in Sources */,
+				1827D035246D1EB600429B36 /* YHChineseSortModel.m in Sources */,
 				183112582446F8F200155620 /* YHBaseViewController.swift in Sources */,
 				1831125E2446F8F200155620 /* YHSystemFaceView.m in Sources */,
 				183112492446F8F200155620 /* UITabBar+YHExtension.swift in Sources */,
@@ -565,11 +598,16 @@
 				183112402446F8F200155620 /* YHRXAlamofire.swift in Sources */,
 				183112692446F8F200155620 /* YHQCloudCOSManager.swift in Sources */,
 				1831114B24469EB700155620 /* AppDelegate.swift in Sources */,
+				1827D03D246D23EA00429B36 /* SwiftyWordsSort.swift in Sources */,
+				1827D02D246D1B7500429B36 /* SwiftyLogTestViewController.swift in Sources */,
 				183112622446F8F200155620 /* YHTabBarItemBadgeView.swift in Sources */,
 				183112562446F8F200155620 /* String+YHExtension.swift in Sources */,
 				1831124F2446F8F200155620 /* YHGenerated.swift in Sources */,
 				1831124D2446F8F200155620 /* YHRxErrorTracker.swift in Sources */,
 				180E6EC62468EC5C001B069C /* SwiftyMBHUD.swift in Sources */,
+				1827D036246D1EB600429B36 /* yh_chinese_letters.c in Sources */,
+				1827D03B246D223A00429B36 /* SwiftyWordsSortTestViewController.swift in Sources */,
+				1827D037246D1EB600429B36 /* YHChineseSort.m in Sources */,
 				183111FA2446A8D400155620 /* Test.m in Sources */,
 				183112452446F8F200155620 /* YHViewModelType.swift in Sources */,
 				1831124B2446F8F200155620 /* UIDevice+YHExtension.swift in Sources */,

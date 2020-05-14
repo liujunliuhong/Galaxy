@@ -18,18 +18,18 @@ class ViewController: UIViewController {
         self.navigationItem.title = "Demo"
         self.view.backgroundColor = .white
         
-        
-        
-        let sort = SwiftyWordsSort<Model>()
-        let result = SwiftyWordsSort.getEnglishFirstWords(string: " ,.,;'!@#$%^&*() 嘻嘻哈哈啦啦abc ")
-        print("\(result)")
+//
+//
+//        let sort = SwiftyWordsSort<Model>()
+//        let result = SwiftyWordsSort.getFirstEnglishWords(string: " ,.,;'!@#$%^&*() 嘻嘻哈哈啦啦abc ")
+//        print("\(result)")
     }
 }
 
 
 extension ViewController {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let vc = SwiftyLogTestViewController()
+        let vc = SwiftyWordsSortTestViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

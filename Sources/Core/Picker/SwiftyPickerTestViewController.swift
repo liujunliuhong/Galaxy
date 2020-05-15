@@ -69,6 +69,13 @@ extension SwiftyPickerTestViewController {
                                    "1 - 3"]]
         pickerView.titlesForComponents = titles
         pickerView.setSelect(indexs: [1, 2], animation: true)
+        pickerView.didSelectRowClosure = { [weak pickerView] (component, row) in
+            if component == 0 {
+                pickerView?.titlesForComponents?[1] = ["00", "11", "22", "33", "44", "55"]
+                pickerView?.reload(component: 1)
+                pickerView?.selectRow(0, inComponent: 1, animated: true)
+            }
+        }
         pickerView.show { (selectIndexs) in
             print("selectIndexs:\(selectIndexs)")
         }

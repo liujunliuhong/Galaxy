@@ -66,6 +66,9 @@
 		8544C6CD246C3ED100361C08 /* SwiftyPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8544C6CC246C3ED100361C08 /* SwiftyPickerView.swift */; };
 		8544C6CF246C4AAC00361C08 /* SwiftyPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8544C6CE246C4AAC00361C08 /* SwiftyPermission.swift */; };
 		8544C6D1246C4B7F00361C08 /* SwiftyPermissionTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8544C6D0246C4B7F00361C08 /* SwiftyPermissionTestViewController.swift */; };
+		859A7D7A246EF00B008F7A4F /* SwiftyCity.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 859A7D79246EF00B008F7A4F /* SwiftyCity.bundle */; };
+		859A7D7E246EF0AA008F7A4F /* city.json in Resources */ = {isa = PBXBuildFile; fileRef = 859A7D7D246EF0AA008F7A4F /* city.json */; };
+		859A7D80246EF7F7008F7A4F /* SwiftyCityPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859A7D7F246EF7F7008F7A4F /* SwiftyCityPickerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -138,6 +141,9 @@
 		8544C6CC246C3ED100361C08 /* SwiftyPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyPickerView.swift; sourceTree = "<group>"; };
 		8544C6CE246C4AAC00361C08 /* SwiftyPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyPermission.swift; sourceTree = "<group>"; };
 		8544C6D0246C4B7F00361C08 /* SwiftyPermissionTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyPermissionTestViewController.swift; sourceTree = "<group>"; };
+		859A7D79246EF00B008F7A4F /* SwiftyCity.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SwiftyCity.bundle; sourceTree = "<group>"; };
+		859A7D7D246EF0AA008F7A4F /* city.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = city.json; sourceTree = "<group>"; };
+		859A7D7F246EF7F7008F7A4F /* SwiftyCityPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCityPickerView.swift; sourceTree = "<group>"; };
 		B4B9793D1D5B9C59651E2DBB /* Pods-SwiftTool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftTool.debug.xcconfig"; path = "Target Support Files/Pods-SwiftTool/Pods-SwiftTool.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -222,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				1831126C2446FBB200155620 /* SwiftToolDescription */,
+				859A7D78246EEFB8008F7A4F /* City Picker */,
 				1827D02E246D1E6800429B36 /* Words Sort */,
 				1870F4BA246A678E0016D596 /* Permission */,
 				1870F4B3246A387A0016D596 /* Log */,
@@ -445,6 +452,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		859A7D78246EEFB8008F7A4F /* City Picker */ = {
+			isa = PBXGroup;
+			children = (
+				859A7D7D246EF0AA008F7A4F /* city.json */,
+				859A7D7F246EF7F7008F7A4F /* SwiftyCityPickerView.swift */,
+				859A7D79246EF00B008F7A4F /* SwiftyCity.bundle */,
+			);
+			path = "City Picker";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -507,6 +524,8 @@
 			files = (
 				1831125F2446F8F200155620 /* YHSystemFace.bundle in Resources */,
 				1831115724469EB900155620 /* LaunchScreen.storyboard in Resources */,
+				859A7D7E246EF0AA008F7A4F /* city.json in Resources */,
+				859A7D7A246EF00B008F7A4F /* SwiftyCity.bundle in Resources */,
 				1831115424469EB900155620 /* Assets.xcassets in Resources */,
 				1831126D2446FBB200155620 /* SwiftToolDescription in Resources */,
 				1831115224469EB700155620 /* Main.storyboard in Resources */,
@@ -591,6 +610,7 @@
 				183112562446F8F200155620 /* String+YHExtension.swift in Sources */,
 				1831124F2446F8F200155620 /* YHGenerated.swift in Sources */,
 				1831124D2446F8F200155620 /* YHRxErrorTracker.swift in Sources */,
+				859A7D80246EF7F7008F7A4F /* SwiftyCityPickerView.swift in Sources */,
 				180E6EC62468EC5C001B069C /* SwiftyMBHUD.swift in Sources */,
 				1827D03B246D223A00429B36 /* SwiftyWordsSortTestViewController.swift in Sources */,
 				183111FA2446A8D400155620 /* Test.m in Sources */,

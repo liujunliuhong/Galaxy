@@ -10,7 +10,7 @@ import UIKit
 
 public typealias SwiftyPickerDoneClosure = ([Int])->()
 
-public class SwiftyPickerView: UIView {
+open class SwiftyPickerView: UIView {
     
     deinit {
         #if DEBUG
@@ -20,19 +20,19 @@ public class SwiftyPickerView: UIView {
     }
     
     /// data source
-    public var titlesForComponents: [[String]]?
+    open var titlesForComponents: [[String]]?
     
     /// rich text data source
-    public var attributeTitlesForComponents: [[NSAttributedString]]?
+    open var attributeTitlesForComponents: [[NSAttributedString]]?
     
     /// text color for each column (rich text data sources will override this property)
-    public var titleColor: UIColor = .black
+    open var titleColor: UIColor = .black
     
     /// text font for each column (rich text data sources will override this property)
-    public var titleFont: UIFont = UIFont.boldSystemFont(ofSize: 20)
+    open var titleFont: UIFont = UIFont.boldSystemFont(ofSize: 20)
     
     /// separator line color
-    public var separatorLineColor: UIColor = UIColor.gray.withAlphaComponent(0.4) {
+    open var separatorLineColor: UIColor = UIColor.gray.withAlphaComponent(0.4) {
         didSet {
             self.setNeedsLayout()
             self.layoutIfNeeded()
@@ -40,16 +40,16 @@ public class SwiftyPickerView: UIView {
     }
     
     /// toolBar.  Please set relevant attributes yourself
-    public lazy var toolBar: SwiftyPickerToolBar = {
+    open lazy var toolBar: SwiftyPickerToolBar = {
         let toolBar = SwiftyPickerToolBar()
         return toolBar
     }()
     
     /// toolBar height
-    public var toolBarHeight: CGFloat = 49.0
+    open var toolBarHeight: CGFloat = 49.0
     
     /// picker
-    public lazy private(set) var pickerView: UIPickerView = {
+    open lazy private(set) var pickerView: UIPickerView = {
         let pickerView = UIPickerView()
         pickerView.dataSource = self
         pickerView.delegate = self
@@ -57,8 +57,8 @@ public class SwiftyPickerView: UIView {
     }()
     
     
-    
-    
+    /// did select row closure
+    open var didSelectRowClosure: ((Int, Int) ->())?
     
     
     
@@ -106,7 +106,7 @@ public class SwiftyPickerView: UIView {
         }
     }
     
-    public override init(frame: CGRect) {
+    private override init(frame: CGRect) {
         super.init(frame: frame)
         self.setup()
     }
@@ -116,7 +116,7 @@ public class SwiftyPickerView: UIView {
         self.setup()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -155,21 +155,21 @@ extension SwiftyPickerView {
 extension SwiftyPickerView {
     
     /// reload pickerView
-    public func reloadAllComponents() {
+    @objc open func reloadAllComponents() {
         self.pickerView.reloadAllComponents()
     }
     
     /// reload component
     /// - Parameter component: component
-    public func reload(component: Int) {
+    @objc open func reload(component: Int) {
         pickerView.reloadComponent(component)
     }
     
-    /// set selected rows
+    /// set selected rows. does not trigger the `didSelectRow` method
     /// - Parameters:
     ///   - indexs: indexs
     ///   - animation: animation
-    public func setSelect(indexs: [Int], animation: Bool) {
+    @objc open func setSelect(indexs: [Int], animation: Bool) {
         assert(indexs.count == pickerView.numberOfComponents, "`indexes` and `pickerView` have different numbers of components")
         
         if let titlesForComponents = titlesForComponents {
@@ -187,26 +187,27 @@ extension SwiftyPickerView {
         }
     }
     
-    /// Selects a row in a specified component of the picker view.
+    /// Selects a row in a specified component of the picker view. does not trigger the `didSelectRow` method
     /// - Parameters:
     ///   - row: row
     ///   - component: component
     ///   - animated: animated
-    public func selectRow(_ row: Int, inComponent component: Int, animated: Bool) {
+    @objc open func selectRow(_ row: Int, inComponent component: Int, animated: Bool) {
         self.pickerView.selectRow(row, inComponent: component, animated: animated)
     }
     
     
     /// show
     /// - Parameter doneClosure: doneClosure
-    public func show(doneClosure: SwiftyPickerDoneClosure?) {
-        guard let window = UIApplication.shared.keyWindow else { return }
+    /// - Returns: show result
+    @discardableResult @objc open func show(doneClosure: SwiftyPickerDoneClosure?) -> Bool {
+        guard let window = UIApplication.shared.keyWindow else { return false }
         
         if titlesForComponents == nil && attributeTitlesForComponents == nil {
             #if DEBUG
             print("no data source")
             #endif
-            return
+            return false
         }
         
         self.doneClosure = doneClosure
@@ -236,12 +237,13 @@ extension SwiftyPickerView {
         
         self.toolBar.cancelButton.addTarget(self, action: #selector(dismiss), for: .touchUpInside)
         self.toolBar.sureButton.addTarget(self, action: #selector(done), for: .touchUpInside)
+        
+        return true
     }
-}
-
-// MARK: - action
-extension SwiftyPickerView {
-    @objc public func dismiss() {
+    
+    
+    /// dismiss
+    @objc open func dismiss() {
         self.gestureView.isUserInteractionEnabled = false
         self.isUserInteractionEnabled = false
         
@@ -259,8 +261,11 @@ extension SwiftyPickerView {
             self.removeNotification()
         }
     }
-    
-    @objc public func done() {
+}
+
+// MARK: - action
+extension SwiftyPickerView {
+    @objc private func done() {
         var results: [Int] = []
         for component in 0..<self.pickerView.numberOfComponents {
             let selectRow = self.pickerView.selectedRow(inComponent: component)
@@ -350,6 +355,7 @@ extension SwiftyPickerView: UIPickerViewDataSource, UIPickerViewDelegate {
     
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         //print(" component:\(component) -- row: \(row)")
+        self.didSelectRowClosure?(component, row)
     }
 }
 

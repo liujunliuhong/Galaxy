@@ -43,13 +43,10 @@ public class SwiftyDatePickerView: UIView {
     /// toolBar height
     public var toolBarHeight: CGFloat = 49.0
     
+    /// sum height
+    public private(set) var sumHeight: CGFloat = 0.0
     
     
-    
-    
-    
-    
-    private var sumHeight: CGFloat = 0.0
     private var doneClosure: SwiftyDatePickerDoneClosure?
     
     private lazy var backgroundView: UIView = {

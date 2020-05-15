@@ -8,7 +8,7 @@
 
 import UIKit
 
-public struct SwiftyWordsSortResult<T: NSObject> {
+public struct SwiftyWordsSortResult<T> {
     public let key: String
     public let models: [T]
     init(key: String, models: [T]) {
@@ -17,24 +17,13 @@ public struct SwiftyWordsSortResult<T: NSObject> {
     }
 }
 
-fileprivate extension String {
-    func isIncludeChinese() -> Bool {
-        for ch in self.unicodeScalars {
-            if (0x4e00 < ch.value  && ch.value < 0x9fff) {
-                return true
-            } // Chinese character range：0x4e00 ~ 0x9fff
-        }
-        return false
-    }
-}
-
-public class SwiftyWordsSort<T: NSObject> {
+public class SwiftyWordsSort<T> {
     
-    /// sepecial title, default `#`
-    public var specialTitle: String = "#"
+    /// sepecial section title, default `#`
+    public var specialSectionTitle: String = "#"
     
-    /// special title insert at first, default `true`
-    public var specialTitleInsertAtFirst: Bool = true
+    /// special section title insert at first, default `true`
+    public var specialSectionTitleInsertAtFirst: Bool = true
     
     /// extra polyphonic map
     public var extraPolyphonicMap: [String: String] = [:] {
@@ -66,34 +55,59 @@ public class SwiftyWordsSort<T: NSObject> {
 
 extension SwiftyWordsSort {
     
-}
-
-extension SwiftyWordsSort {
-    
     /// get first english words
     /// - Parameter string: string
     /// - Returns: string
     public static func getFirstEnglishWords(string: String) -> String {
         let string = string.uppercased()
         var result: String = ""
-        for ch in string {
-            let subString = String(ch)
-            if subString.isIncludeChinese() {
-                let ocString = subString as NSString
-                if ocString.length > 0 {
-                    let ch: unichar = ocString.character(at: 0)
-                    let letter = NSString(format: "%c", yh_get_chinese_first_letters(ch)) as String
-                    result.append(letter)
-                } else {
-                    result.append(subString)
-                }
+        
+        for scalar in string.unicodeScalars {
+            if !String(scalar).isIncludeChinese() {
+                result.append(String(scalar))
+                continue
+            }
+            let code = Int(scalar.value)
+            let index = code - 19968
+            if index >= 0 && index < firstLetterArray.count {
+                let s = firstLetterArray[index]
+                result.append(s)
             } else {
-                result.append(subString)
+                result.append(String(scalar))
             }
         }
+        /*
+        for scalar in string.unicodeScalars {
+            let code = Int(scalar.value)
+            if code >= 65 && code <= 90 {
+                result.append(String(scalar))
+            } else if code >= 97 && code <= 122 {
+                result.append(String(scalar))
+            } else {
+                let index = code - 19968
+                if index >= 0 && index < firstLetterArray.count {
+                    let s = firstLetterArray[index]
+                    result.append(s)
+                } else {
+                    result.append(String(scalar))
+                }
+            }
+        }
+        */
         return result.uppercased()
     }
     
+    /// get full english words
+    /// - Parameter string: string
+    public static func getFullEnglishWords(string: String) -> String? {
+        let str = NSMutableString(string: string) as CFMutableString
+        if CFStringTransform(str, nil, kCFStringTransformMandarinLatin, false) {
+            if CFStringTransform(str, nil, kCFStringTransformStripDiacritics, false) {
+                return str as String
+            }
+        }
+        return nil
+    }
     
     /// models sort
     /// - Parameters:
@@ -101,43 +115,70 @@ extension SwiftyWordsSort {
     ///   - keyPath: keyPath
     ///   - closure: closure
     /// - Returns: none
-    public func sort(models: [T], keyPath: String, closure: (([SwiftyWordsSortResult<T>]) -> ())?) {
+    public func sort(models: [T], keyPath: String?, closure: (([SwiftyWordsSortResult<T>]) -> ())?) {
         DispatchQueue.global().async {
             // check
-            var isContainKey: Bool = false
-            var count: UInt32 = 0
-            guard let properties = class_copyPropertyList(T.classForCoder(), &count) else { return }
-            for i in 0..<count {
-                let property = properties[Int(i)]
-                let name = property_getName(property)
-                if let propertyName = String(utf8String: name),
-                    propertyName == keyPath {
-                    isContainKey = true
-                    break
-                }
-            }
-            if isContainKey == false {
-                print("\(T.classForCoder()) not contain key:\(keyPath)")
+            if models.count <= 0 {
+                #if DEBUG
+                print("models is empty.")
+                #endif
                 DispatchQueue.main.async {
                     closure?([])
                 }
                 return
             }
+            if let keyPath = keyPath {
+                var isContainKey: Bool = false
+                let firstModel = models.first!
+                let mirror = Mirror(reflecting: firstModel)
+                for (label, _) in mirror.children {
+                    if let label = label, label == keyPath {
+                        isContainKey = true
+                        break
+                    }
+                }
+                if isContainKey == false {
+                    #if DEBUG
+                    print("\(T.self) not contain key:\(keyPath).")
+                    #endif
+                    DispatchQueue.main.async {
+                        closure?([])
+                    }
+                    return
+                }
+            }
             
+            //
             let startTime = CFAbsoluteTimeGetCurrent()
-            
             //
             var sortResult: [String: [T]] = [:]
             var specialModels: [T] = []
             for (_, model) in models.enumerated() {
-                guard var value = model.value(forKeyPath: keyPath) as? String else {
+                var modelValue: String?
+                
+                if let keyPath = keyPath {
+                    let mirror = Mirror(reflecting: model)
+                    for (label, value) in mirror.children {
+                        if let label = label, label == keyPath, let v = value as? String{
+                            modelValue = v
+                            break
+                        }
+                    }
+                } else if let modelString = model as? String {
+                    modelValue = modelString
+                }
+                
+                if modelValue == nil {
                     continue
                 }
-                value = (value as NSString).trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
                 
-                var englishFirstLetters: String = SwiftyWordsSort.getFirstEnglishWords(string: value)
-                if self.polyphonicMap.keys.contains(value) {
-                    englishFirstLetters = self.polyphonicMap[value]!
+                modelValue = modelValue!.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
+                
+                
+                
+                var englishFirstLetters: String = SwiftyWordsSort.getFirstEnglishWords(string: modelValue!)
+                if self.polyphonicMap.keys.contains(modelValue!) {
+                    englishFirstLetters = self.polyphonicMap[modelValue!]!
                 }
                 print("\(englishFirstLetters)")
                 
@@ -174,9 +215,9 @@ extension SwiftyWordsSort {
                 results.append(m)
             }
             
-            let specialResultModel = SwiftyWordsSortResult<T>(key: self.specialTitle, models: specialModels)
+            let specialResultModel = SwiftyWordsSortResult<T>(key: self.specialSectionTitle, models: specialModels)
             
-            if self.specialTitleInsertAtFirst {
+            if self.specialSectionTitleInsertAtFirst {
                 results.insert(specialResultModel, at: 0)
             } else {
                 results.append(specialResultModel)

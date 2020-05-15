@@ -9,7 +9,10 @@
 import UIKit
 
 class SwiftyLogTestViewController: UIViewController {
-
+    deinit {
+        print("\(NSStringFromClass(self.classForCoder)) deinit")
+    }
+    
     private lazy var logButton: UIButton = {
         let logButton = UIButton(type: .system)
         logButton.setTitle("Start Print Log", for: .normal)

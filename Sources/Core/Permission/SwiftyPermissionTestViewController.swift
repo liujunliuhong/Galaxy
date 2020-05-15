@@ -19,6 +19,10 @@ fileprivate struct Model {
 
 class SwiftyPermissionTestViewController: UIViewController {
     
+    deinit {
+        print("\(NSStringFromClass(self.classForCoder)) deinit")
+    }
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: self.view.bounds, style: .plain)
         tableView.dataSource = self

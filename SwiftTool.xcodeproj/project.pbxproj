@@ -10,9 +10,6 @@
 		180E6EC42468EBB3001B069C /* SwiftyHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 180E6EC32468EBB3001B069C /* SwiftyHUD.bundle */; };
 		180E6EC62468EC5C001B069C /* SwiftyMBHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180E6EC52468EC5C001B069C /* SwiftyMBHUD.swift */; };
 		1827D02D246D1B7500429B36 /* SwiftyLogTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1827D02C246D1B7500429B36 /* SwiftyLogTestViewController.swift */; };
-		1827D035246D1EB600429B36 /* YHChineseSortModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1827D031246D1EB600429B36 /* YHChineseSortModel.m */; };
-		1827D036246D1EB600429B36 /* yh_chinese_letters.c in Sources */ = {isa = PBXBuildFile; fileRef = 1827D033246D1EB600429B36 /* yh_chinese_letters.c */; };
-		1827D037246D1EB600429B36 /* YHChineseSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 1827D034246D1EB600429B36 /* YHChineseSort.m */; };
 		1827D03B246D223A00429B36 /* SwiftyWordsSortTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1827D03A246D223A00429B36 /* SwiftyWordsSortTestViewController.swift */; };
 		1827D03D246D23EA00429B36 /* SwiftyWordsSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1827D03C246D23EA00429B36 /* SwiftyWordsSort.swift */; };
 		182B7BB9246B873D000A95D0 /* SwiftyPickerTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182B7BB8246B873D000A95D0 /* SwiftyPickerTestViewController.swift */; };
@@ -62,6 +59,7 @@
 		1831126D2446FBB200155620 /* SwiftToolDescription in Resources */ = {isa = PBXBuildFile; fileRef = 1831126C2446FBB200155620 /* SwiftToolDescription */; };
 		1870F4B2246A2E1D0016D596 /* SwiftyMBHUDTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870F4B1246A2E1D0016D596 /* SwiftyMBHUDTestViewController.swift */; };
 		1870F4B5246A389E0016D596 /* SwiftyLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870F4B4246A389E0016D596 /* SwiftyLog.swift */; };
+		18998DB7246E300400EE72F0 /* String+Words.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18998DB6246E300400EE72F0 /* String+Words.swift */; };
 		7ED1CA540CCEE052DF44FE7A /* Pods_SwiftTool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4806E0A8EE8767510EF2FD61 /* Pods_SwiftTool.framework */; };
 		8544C6C9246C3CAE00361C08 /* SwiftyPickerToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8544C6C8246C3CAE00361C08 /* SwiftyPickerToolBar.swift */; };
 		8544C6CB246C3D2D00361C08 /* SwiftyDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8544C6CA246C3D2D00361C08 /* SwiftyDatePickerView.swift */; };
@@ -74,12 +72,6 @@
 		180E6EC32468EBB3001B069C /* SwiftyHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SwiftyHUD.bundle; sourceTree = "<group>"; };
 		180E6EC52468EC5C001B069C /* SwiftyMBHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyMBHUD.swift; sourceTree = "<group>"; };
 		1827D02C246D1B7500429B36 /* SwiftyLogTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyLogTestViewController.swift; sourceTree = "<group>"; };
-		1827D02F246D1EB600429B36 /* YHChineseSort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHChineseSort.h; sourceTree = "<group>"; };
-		1827D030246D1EB600429B36 /* YHChineseSortModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHChineseSortModel.h; sourceTree = "<group>"; };
-		1827D031246D1EB600429B36 /* YHChineseSortModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHChineseSortModel.m; sourceTree = "<group>"; };
-		1827D032246D1EB600429B36 /* yh_chinese_letters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yh_chinese_letters.h; sourceTree = "<group>"; };
-		1827D033246D1EB600429B36 /* yh_chinese_letters.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = yh_chinese_letters.c; sourceTree = "<group>"; };
-		1827D034246D1EB600429B36 /* YHChineseSort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHChineseSort.m; sourceTree = "<group>"; };
 		1827D03A246D223A00429B36 /* SwiftyWordsSortTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyWordsSortTestViewController.swift; sourceTree = "<group>"; };
 		1827D03C246D23EA00429B36 /* SwiftyWordsSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyWordsSort.swift; sourceTree = "<group>"; };
 		182B7BB8246B873D000A95D0 /* SwiftyPickerTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyPickerTestViewController.swift; sourceTree = "<group>"; };
@@ -138,6 +130,7 @@
 		1831126C2446FBB200155620 /* SwiftToolDescription */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SwiftToolDescription; sourceTree = "<group>"; };
 		1870F4B1246A2E1D0016D596 /* SwiftyMBHUDTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyMBHUDTestViewController.swift; sourceTree = "<group>"; };
 		1870F4B4246A389E0016D596 /* SwiftyLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyLog.swift; sourceTree = "<group>"; };
+		18998DB6246E300400EE72F0 /* String+Words.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Words.swift"; sourceTree = "<group>"; };
 		425C6511002199BBE0183C7D /* Pods-SwiftTool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftTool.release.xcconfig"; path = "Target Support Files/Pods-SwiftTool/Pods-SwiftTool.release.xcconfig"; sourceTree = "<group>"; };
 		4806E0A8EE8767510EF2FD61 /* Pods_SwiftTool.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftTool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8544C6C8246C3CAE00361C08 /* SwiftyPickerToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyPickerToolBar.swift; sourceTree = "<group>"; };
@@ -173,13 +166,8 @@
 		1827D02E246D1E6800429B36 /* Words Sort */ = {
 			isa = PBXGroup;
 			children = (
-				1827D02F246D1EB600429B36 /* YHChineseSort.h */,
-				1827D034246D1EB600429B36 /* YHChineseSort.m */,
-				1827D032246D1EB600429B36 /* yh_chinese_letters.h */,
-				1827D033246D1EB600429B36 /* yh_chinese_letters.c */,
-				1827D030246D1EB600429B36 /* YHChineseSortModel.h */,
-				1827D031246D1EB600429B36 /* YHChineseSortModel.m */,
 				1827D03C246D23EA00429B36 /* SwiftyWordsSort.swift */,
+				18998DB6246E300400EE72F0 /* String+Words.swift */,
 				1827D03A246D223A00429B36 /* SwiftyWordsSortTestViewController.swift */,
 			);
 			path = "Words Sort";
@@ -587,7 +575,6 @@
 				1870F4B5246A389E0016D596 /* SwiftyLog.swift in Sources */,
 				8544C6C9246C3CAE00361C08 /* SwiftyPickerToolBar.swift in Sources */,
 				183112612446F8F200155620 /* YHTagContainerView.swift in Sources */,
-				1827D035246D1EB600429B36 /* YHChineseSortModel.m in Sources */,
 				183112582446F8F200155620 /* YHBaseViewController.swift in Sources */,
 				1831125E2446F8F200155620 /* YHSystemFaceView.m in Sources */,
 				183112492446F8F200155620 /* UITabBar+YHExtension.swift in Sources */,
@@ -605,9 +592,7 @@
 				1831124F2446F8F200155620 /* YHGenerated.swift in Sources */,
 				1831124D2446F8F200155620 /* YHRxErrorTracker.swift in Sources */,
 				180E6EC62468EC5C001B069C /* SwiftyMBHUD.swift in Sources */,
-				1827D036246D1EB600429B36 /* yh_chinese_letters.c in Sources */,
 				1827D03B246D223A00429B36 /* SwiftyWordsSortTestViewController.swift in Sources */,
-				1827D037246D1EB600429B36 /* YHChineseSort.m in Sources */,
 				183111FA2446A8D400155620 /* Test.m in Sources */,
 				183112452446F8F200155620 /* YHViewModelType.swift in Sources */,
 				1831124B2446F8F200155620 /* UIDevice+YHExtension.swift in Sources */,
@@ -619,6 +604,7 @@
 				1870F4B2246A2E1D0016D596 /* SwiftyMBHUDTestViewController.swift in Sources */,
 				183112572446F8F200155620 /* YHRxProgressTracker.swift in Sources */,
 				1831125A2446F8F200155620 /* YHFlowItemsDisplayNode.swift in Sources */,
+				18998DB7246E300400EE72F0 /* String+Words.swift in Sources */,
 				182B7BB9246B873D000A95D0 /* SwiftyPickerTestViewController.swift in Sources */,
 				183112532446F8F200155620 /* CGFloat+YHExtension.swift in Sources */,
 				183112632446F8F200155620 /* YHTabBarItem.swift in Sources */,

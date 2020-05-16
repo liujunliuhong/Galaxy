@@ -7,6 +7,49 @@
 //
 
 import UIKit
+import SwiftyJSON
+
+public func SwiftyCityPickerLoadCityData(closure: ((Bool, Any?)->())?) {
+    DispatchQueue.global().async {
+        guard let path = Bundle(for: SwiftyCityPickerView.classForCoder()).path(forResource: "SwiftyCity", ofType: "bundle") else {
+            DispatchQueue.main.async {
+                closure?(false, nil)
+            }
+            return
+        }
+        guard let bundle = Bundle(path: path) else {
+            DispatchQueue.main.async {
+                closure?(false, nil)
+            }
+            return
+        }
+        guard let cityPath = bundle.path(forResource: "city", ofType: "json") else {
+            DispatchQueue.main.async {
+                closure?(false, nil)
+            }
+            return
+        }
+        let fileURLWithPath = URL(fileURLWithPath: cityPath)
+        
+        guard let cityData = try? Data(contentsOf: fileURLWithPath) else {
+            DispatchQueue.main.async {
+                closure?(false, nil)
+            }
+            return
+        }
+        
+        guard let cityDatas = try? JSONSerialization.jsonObject(with: cityData, options: .mutableContainers) else {
+            DispatchQueue.main.async {
+                closure?(false, nil)
+            }
+            return
+        }
+        DispatchQueue.main.async {
+            closure?(true, cityDatas)
+        }
+    }
+}
+
 
 class SwiftyCityPickerView: SwiftyPickerView {
     
@@ -19,11 +62,18 @@ class SwiftyCityPickerView: SwiftyPickerView {
     
     override init() {
         super.init()
+        
     }
     
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+
+
+extension SwiftyCityPickerView {
+    
 }
 
 
@@ -37,6 +87,11 @@ extension SwiftyCityPickerView {
         self.addSubview(self.loadingView)
         self.loadingView.frame = self.bounds
         self.loadingView.startAnimating()
+        
+        SwiftyCityPickerLoadCityData { (isSuccess, cityData) in
+            
+        }
+        
         
         return true
     }

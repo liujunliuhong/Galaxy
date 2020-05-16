@@ -61,13 +61,14 @@
 		1870F4B5246A389E0016D596 /* SwiftyLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870F4B4246A389E0016D596 /* SwiftyLog.swift */; };
 		18998DB7246E300400EE72F0 /* String+Words.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18998DB6246E300400EE72F0 /* String+Words.swift */; };
 		7ED1CA540CCEE052DF44FE7A /* Pods_SwiftTool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4806E0A8EE8767510EF2FD61 /* Pods_SwiftTool.framework */; };
+		852C23FE246F9091003746E7 /* SwiftyCityPickerTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C23FD246F9091003746E7 /* SwiftyCityPickerTestViewController.swift */; };
+		852C2400247043A2003746E7 /* SwiftyCityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C23FF247043A2003746E7 /* SwiftyCityModel.swift */; };
 		8544C6C9246C3CAE00361C08 /* SwiftyPickerToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8544C6C8246C3CAE00361C08 /* SwiftyPickerToolBar.swift */; };
 		8544C6CB246C3D2D00361C08 /* SwiftyDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8544C6CA246C3D2D00361C08 /* SwiftyDatePickerView.swift */; };
 		8544C6CD246C3ED100361C08 /* SwiftyPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8544C6CC246C3ED100361C08 /* SwiftyPickerView.swift */; };
 		8544C6CF246C4AAC00361C08 /* SwiftyPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8544C6CE246C4AAC00361C08 /* SwiftyPermission.swift */; };
 		8544C6D1246C4B7F00361C08 /* SwiftyPermissionTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8544C6D0246C4B7F00361C08 /* SwiftyPermissionTestViewController.swift */; };
 		859A7D7A246EF00B008F7A4F /* SwiftyCity.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 859A7D79246EF00B008F7A4F /* SwiftyCity.bundle */; };
-		859A7D7E246EF0AA008F7A4F /* city.json in Resources */ = {isa = PBXBuildFile; fileRef = 859A7D7D246EF0AA008F7A4F /* city.json */; };
 		859A7D80246EF7F7008F7A4F /* SwiftyCityPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859A7D7F246EF7F7008F7A4F /* SwiftyCityPickerView.swift */; };
 /* End PBXBuildFile section */
 
@@ -136,13 +137,14 @@
 		18998DB6246E300400EE72F0 /* String+Words.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Words.swift"; sourceTree = "<group>"; };
 		425C6511002199BBE0183C7D /* Pods-SwiftTool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftTool.release.xcconfig"; path = "Target Support Files/Pods-SwiftTool/Pods-SwiftTool.release.xcconfig"; sourceTree = "<group>"; };
 		4806E0A8EE8767510EF2FD61 /* Pods_SwiftTool.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftTool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		852C23FD246F9091003746E7 /* SwiftyCityPickerTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCityPickerTestViewController.swift; sourceTree = "<group>"; };
+		852C23FF247043A2003746E7 /* SwiftyCityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCityModel.swift; sourceTree = "<group>"; };
 		8544C6C8246C3CAE00361C08 /* SwiftyPickerToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyPickerToolBar.swift; sourceTree = "<group>"; };
 		8544C6CA246C3D2D00361C08 /* SwiftyDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyDatePickerView.swift; sourceTree = "<group>"; };
 		8544C6CC246C3ED100361C08 /* SwiftyPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyPickerView.swift; sourceTree = "<group>"; };
 		8544C6CE246C4AAC00361C08 /* SwiftyPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyPermission.swift; sourceTree = "<group>"; };
 		8544C6D0246C4B7F00361C08 /* SwiftyPermissionTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyPermissionTestViewController.swift; sourceTree = "<group>"; };
 		859A7D79246EF00B008F7A4F /* SwiftyCity.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SwiftyCity.bundle; sourceTree = "<group>"; };
-		859A7D7D246EF0AA008F7A4F /* city.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = city.json; sourceTree = "<group>"; };
 		859A7D7F246EF7F7008F7A4F /* SwiftyCityPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCityPickerView.swift; sourceTree = "<group>"; };
 		B4B9793D1D5B9C59651E2DBB /* Pods-SwiftTool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftTool.debug.xcconfig"; path = "Target Support Files/Pods-SwiftTool/Pods-SwiftTool.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -455,8 +457,9 @@
 		859A7D78246EEFB8008F7A4F /* City Picker */ = {
 			isa = PBXGroup;
 			children = (
-				859A7D7D246EF0AA008F7A4F /* city.json */,
 				859A7D7F246EF7F7008F7A4F /* SwiftyCityPickerView.swift */,
+				852C23FF247043A2003746E7 /* SwiftyCityModel.swift */,
+				852C23FD246F9091003746E7 /* SwiftyCityPickerTestViewController.swift */,
 				859A7D79246EF00B008F7A4F /* SwiftyCity.bundle */,
 			);
 			path = "City Picker";
@@ -524,7 +527,6 @@
 			files = (
 				1831125F2446F8F200155620 /* YHSystemFace.bundle in Resources */,
 				1831115724469EB900155620 /* LaunchScreen.storyboard in Resources */,
-				859A7D7E246EF0AA008F7A4F /* city.json in Resources */,
 				859A7D7A246EF00B008F7A4F /* SwiftyCity.bundle in Resources */,
 				1831115424469EB900155620 /* Assets.xcassets in Resources */,
 				1831126D2446FBB200155620 /* SwiftToolDescription in Resources */,
@@ -597,6 +599,7 @@
 				183112582446F8F200155620 /* YHBaseViewController.swift in Sources */,
 				1831125E2446F8F200155620 /* YHSystemFaceView.m in Sources */,
 				183112492446F8F200155620 /* UITabBar+YHExtension.swift in Sources */,
+				852C2400247043A2003746E7 /* SwiftyCityModel.swift in Sources */,
 				183112642446F8F200155620 /* YHTabBarItemContainer.swift in Sources */,
 				183112592446F8F200155620 /* YHCusNavigationBar.swift in Sources */,
 				8544C6D1246C4B7F00361C08 /* SwiftyPermissionTestViewController.swift in Sources */,
@@ -619,6 +622,7 @@
 				1831125B2446F8F200155620 /* YHSystemFace.m in Sources */,
 				183112412446F8F200155620 /* YHResult.swift in Sources */,
 				183112672446F8F200155620 /* YHTabBatItemContentView.swift in Sources */,
+				852C23FE246F9091003746E7 /* SwiftyCityPickerTestViewController.swift in Sources */,
 				8544C6CD246C3ED100361C08 /* SwiftyPickerView.swift in Sources */,
 				183112472446F8F200155620 /* UIColor+YHExtension.swift in Sources */,
 				1870F4B2246A2E1D0016D596 /* SwiftyMBHUDTestViewController.swift in Sources */,

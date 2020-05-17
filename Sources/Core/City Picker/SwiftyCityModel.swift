@@ -24,9 +24,11 @@ public class SwiftyCityModel {
         
         var nextModels: [SwiftyCityModel] = []
         let nexts = json[kNexts].arrayValue
-        nexts.forEach { (j) in
-            let m = SwiftyCityModel(with: j)
-            nextModels.append(m)
+        if nexts.count > 0 {
+            nexts.forEach { (j) in
+                let m = SwiftyCityModel(with: j)
+                nextModels.append(m)
+            }
         }
         
         self.areaId = areaId
@@ -48,32 +50,18 @@ extension SwiftyCityModel: CustomDebugStringConvertible, CustomStringConvertible
         var infoDic: [String: Any] = [:]
         infoDic[kAreaId] = self.areaId
         infoDic[kAreaName] = self.areaName
-        
-        var infos: [[String: Any]] = []
-        self.nexts.forEach { (n) in
-            var _infoDic: [String: Any] = [:]
-            _infoDic[kAreaId] = n.areaId
-            _infoDic[kAreaName] = n.areaName
-            if n.nexts.count > 0 {
-                _infoDic[kNexts] = n.nextsInfo()
-            } else {
-                _infoDic[kNexts] = []
-            }
-            infos.append(_infoDic)
-        }
-        infoDic[kNexts] = infos
-        
+        infoDic[kNexts] = self.nextsInfo(nexts: self.nexts)
         return infoDic
     }
     
-    private func nextsInfo() -> [[String: Any]] {
+    private func nextsInfo(nexts: [SwiftyCityModel]) -> [[String: Any]] {
         var infos: [[String: Any]] = []
-        self.nexts.forEach { (n) in
+        nexts.forEach { (n) in
             var infoDic: [String: Any] = [:]
             infoDic[kAreaId] = n.areaId
             infoDic[kAreaName] = n.areaName
             if n.nexts.count > 0 {
-                infoDic[kNexts] = self.nextsInfo()
+                infoDic[kNexts] = self.nextsInfo(nexts: n.nexts)
             } else {
                 infoDic[kNexts] = []
             }

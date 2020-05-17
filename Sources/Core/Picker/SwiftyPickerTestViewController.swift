@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftyJSON
 
 public class SwiftyPickerTestViewController: UIViewController {
     
@@ -46,26 +45,6 @@ public class SwiftyPickerTestViewController: UIViewController {
         self.datePickerButton.frame = CGRect(x: leftMargin, y: self.commonPickerButton.frame.maxY + 50.0, width: width, height: height)
         self.view.addSubview(self.commonPickerButton)
         self.view.addSubview(self.datePickerButton)
-        
-        
-        SwiftyCityPickerLoadCityData { (isSuccess, data) in
-            print("\(isSuccess)")
-            if let dataDic = data as? [[String: Any]] {
-                //print("\(dataDic)")
-                let ary = JSON(dataDic).arrayValue
-                var models: [SwiftyCityModel] = []
-                ary.forEach { (d) in
-                    let model = SwiftyCityModel(with: d)
-                    models.append(model)
-                }
-                
-                
-                models.forEach { (m) in
-                    print(m.debugDescription)
-                    print("\n")
-                }
-            }
-        }
     }
 }
 
@@ -73,11 +52,11 @@ public class SwiftyPickerTestViewController: UIViewController {
 extension SwiftyPickerTestViewController {
     @objc func commonPickerAction() {
         let pickerView = SwiftyPickerView()
-        
+
         let toolBar = pickerView.toolBar
         toolBar.cancelButton.setTitle("Cancel", for: .normal)
         toolBar.sureButton.setTitle("Done", for: .normal)
-        
+
         let titles: [[String]] = [["0 - 0",
                                    "0 - 1",
                                    "0 - 2",

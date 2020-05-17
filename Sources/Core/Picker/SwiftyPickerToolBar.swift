@@ -17,7 +17,7 @@ open class SwiftyPickerToolBar: UIView {
         #endif
     }
     
-    private let buttonWidth: CGFloat = 70.0
+    //private let buttonWidth: CGFloat = 70.0
     
     open lazy var cancelButton: UIButton = {
         let cancelButton = UIButton(type: .system)
@@ -59,9 +59,18 @@ open class SwiftyPickerToolBar: UIView {
     // You can override this method to change the layout
     public override func layoutSubviews() {
         super.layoutSubviews()
-        self.cancelButton.frame = CGRect(x: 0, y: 0, width: self.buttonWidth, height: self.frame.height)
-        self.sureButton.frame = CGRect(x: self.frame.width - self.buttonWidth, y: 0, width: self.buttonWidth, height: self.frame.height)
-        self.titleLabel.frame = CGRect(x: self.cancelButton.frame.maxX, y: 0, width: self.frame.width - self.cancelButton.frame.width - self.sureButton.frame.width, height: self.frame.height)
+        self.cancelButton.sizeToFit()
+        self.sureButton.sizeToFit()
+        
+        let cancelButtonWidth = self.cancelButton.frame.width
+        let sureButtonWidth = self.sureButton.frame.width
+        
+        self.cancelButton.frame = CGRect(x: 5, y: 0, width: cancelButtonWidth, height: self.frame.height)
+        self.sureButton.frame = CGRect(x: self.frame.width - sureButtonWidth - 5, y: 0, width: sureButtonWidth, height: self.frame.height)
+        
+        let distance = max((self.frame.width - self.sureButton.frame.minX), self.cancelButton.frame.maxX)
+        let titleWidth = self.frame.width - 2.0 * distance
+        self.titleLabel.frame = CGRect(x: distance, y: 0, width: titleWidth, height: self.frame.height)
     }
 }
 

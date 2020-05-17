@@ -29,7 +29,7 @@ open class SwiftyPickerView: UIView {
     open var titleColor: UIColor = .black
     
     /// text font for each column (rich text data sources will override this property)
-    open var titleFont: UIFont = UIFont.boldSystemFont(ofSize: 20)
+    open var titleFont: UIFont = UIFont.boldSystemFont(ofSize: 17)
     
     /// separator line color
     open var separatorLineColor: UIColor = UIColor.gray.withAlphaComponent(0.4) {
@@ -203,12 +203,12 @@ extension SwiftyPickerView {
     @discardableResult @objc open func show(doneClosure: SwiftyPickerDoneClosure?) -> Bool {
         guard let window = UIApplication.shared.keyWindow else { return false }
         
-        if titlesForComponents == nil && attributeTitlesForComponents == nil {
-            #if DEBUG
-            print("no data source")
-            #endif
-            return false
-        }
+//        if titlesForComponents == nil && attributeTitlesForComponents == nil {
+//            #if DEBUG
+//            print("no data source")
+//            #endif
+//            return false
+//        }
         
         self.doneClosure = doneClosure
         

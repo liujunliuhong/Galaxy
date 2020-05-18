@@ -1,16 +1,54 @@
 //
-//  YHFlowItemsDisplayNode.swift
-//  FNDating
+//  SwiftyFlowItemsDisplayNode.swift
+//  SwiftTool
 //
-//  Created by apple on 2020/3/23.
+//  Created by apple on 2020/5/18.
 //  Copyright © 2020 yinhe. All rights reserved.
 //
 
-import UIKit
+import Foundation
 #if canImport(AsyncDisplayKit)
 import AsyncDisplayKit
 
-@objc public class YHFlowItemsAutoWidthDisplayNode: ASDisplayNode {
+fileprivate extension Array where Element: ASDisplayNode {
+    /// A certain number of collections are grouped. The elements in the collection must inherit from `NSObject`. If the last line is less than `perRowCount`, use the default initialization
+    /// - Parameter perRowCount: perRowCount
+    /// - Returns: grouped
+    func group(perRowCount: Int) -> [[Element]] {
+        var allValues: [Element] = []
+        //
+        let remainCount = self.count % perRowCount // The remaining amount is not full
+        for (_, value) in self.enumerated() {
+            allValues.append(value)
+        }
+        // Remaining fill
+        if remainCount > 0 {
+            for _ in 0..<(perRowCount - remainCount) {
+                allValues.append(Element.init())
+            }
+        }
+        //
+        var finalAllValues: [[Element]] = []
+        // Now the number of `allValues` must be an integer multiple of `perRowCount`
+        let rowCount = allValues.count / perRowCount // Rows full
+        for i in 0..<rowCount {
+            var subValues: [Element] = []
+            for j in 0..<perRowCount {
+                let index = i * perRowCount + j
+                subValues.append(allValues[index])
+            }
+            finalAllValues.append(subValues)
+        }
+        return finalAllValues
+    }
+}
+
+
+
+
+
+// MARK: - AutoWidth
+@objc public class SwiftyFlowItemsAutoWidthDisplayNode: ASDisplayNode {
     private var perRowCount: Int = 0
     private var nodeHeightRatio: CGFloat = 1.0
     private var horizontalSpacing: CGFloat = 0.0
@@ -25,7 +63,7 @@ import AsyncDisplayKit
     }
 }
 
-@objc public extension YHFlowItemsAutoWidthDisplayNode {
+@objc public extension SwiftyFlowItemsAutoWidthDisplayNode {
     @objc override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         if self.perRowCount <= 0 {
             return ASLayoutSpec()
@@ -35,7 +73,9 @@ import AsyncDisplayKit
             return ASLayoutSpec()
         }
         if nodeWidth.isLessThanOrEqualTo(.zero) {
-            print("item宽度小于等于0，请检查参数配置")
+            #if DEBUG
+            print("⚠️ item width is less than or equal to 0, please check the parameter configuration")
+            #endif
             return ASLayoutSpec()
         }
         let nodeHeight = self.nodeHeightRatio * nodeWidth
@@ -55,24 +95,23 @@ import AsyncDisplayKit
     }
 }
 
-@objc public extension YHFlowItemsAutoWidthDisplayNode {
-    
-    /// 给定nodes集合，排列方式为固定间距，动态宽度。
+@objc public extension SwiftyFlowItemsAutoWidthDisplayNode {
+    /// Given a set of nodes, the arrangement is fixed pitch, dynamic width.
     /// - Parameters:
-    ///   - nodes: nodes集合
-    ///   - nodeHeightRatio: 高宽比(用于确定高度)
-    ///   - perRowCount: 每行多少个
-    ///   - verticalSpacing: 行与行之间的间距
-    ///   - horizontalSpacing: 水平方向上node之间的间距
-    ///   - verticalEdgeInset: 垂直偏移量
-    ///   - horizontalEdgeInset: 水平偏移量
+    ///   - nodes: nodes
+    ///   - nodeHeightRatio: Aspect ratio (used to determine height)
+    ///   - perRowCount: How many per line
+    ///   - verticalSpacing: Line-to-line spacing
+    ///   - horizontalSpacing: The spacing between nodes in the horizontal direction
+    ///   - verticalEdgeInset: Vertical offset
+    ///   - horizontalEdgeInset: Horizontal offset
     @objc func setupAutoWidth(nodes: [ASDisplayNode],
-                               nodeHeightRatio: CGFloat,
-                               perRowCount: Int,
-                               verticalSpacing: CGFloat,
-                               horizontalSpacing: CGFloat,
-                               verticalEdgeInset: CGFloat,
-                               horizontalEdgeInset: CGFloat) {
+                              nodeHeightRatio: CGFloat,
+                              perRowCount: Int,
+                              verticalSpacing: CGFloat,
+                              horizontalSpacing: CGFloat,
+                              verticalEdgeInset: CGFloat,
+                              horizontalEdgeInset: CGFloat) {
         //
         for (_, nodes) in self.allNodes.enumerated() {
             for (_, node) in nodes.enumerated() {
@@ -89,11 +128,9 @@ import AsyncDisplayKit
         self.verticalEdgeInset = verticalEdgeInset
         self.horizontalEdgeInset = horizontalEdgeInset
         //
-        self.allNodes = nodes.yh_group(perRowCount: perRowCount)
-        for (_, nodes) in self.allNodes.enumerated() {
-            for (_, node) in nodes.enumerated() {
-                self.addSubnode(node)
-            }
+        self.allNodes = nodes.group(perRowCount: perRowCount)
+        for (_, node) in (self.allNodes.flatMap{ $0 }).enumerated() {
+            self.addSubnode(node)
         }
         //
         self.setNeedsLayout()
@@ -102,7 +139,14 @@ import AsyncDisplayKit
 }
 
 
-@objc public class YHFlowItemsAutoMarginDisplayNode: ASDisplayNode {
+
+
+
+
+
+
+// MARK: - AutoMargin
+@objc public class SwiftyFlowItemsAutoMarginDisplayNode: ASDisplayNode {
     private var perRowCount: Int = 0
     private var nodeWidth: CGFloat = 0.0
     private var nodeHeight: CGFloat = 0.0
@@ -116,24 +160,30 @@ import AsyncDisplayKit
     }
 }
 
-@objc public extension YHFlowItemsAutoMarginDisplayNode {
+@objc public extension SwiftyFlowItemsAutoMarginDisplayNode {
     @objc override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         if self.perRowCount <= 0 {
             return ASLayoutSpec()
         }
         if self.nodeWidth.isLessThanOrEqualTo(.zero) {
-            print("item宽度小于等于0，请检查参数配置")
+            #if DEBUG
+            print("⚠️ item width is less than or equal to 0, please check the parameter configuration")
+            #endif
             return ASLayoutSpec()
         }
         if self.nodeHeight.isLessThanOrEqualTo(.zero) {
-            print("item高度小于等于0，请检查参数配置")
+            #if DEBUG
+            print("⚠️ item height is less than or equal to 0, please check the parameter configuration")
+            #endif
             return ASLayoutSpec()
         }
         if constrainedSize.max.width.isInfinite {
             return ASLayoutSpec()
         }
         if self.nodeWidth > constrainedSize.max.width {
-            print("item宽度大于容器宽度，请检查参数配置")
+            #if DEBUG
+            print("⚠️ item width is greater than container width, please check parameter configuration")
+            #endif
             return ASLayoutSpec()
         }
         
@@ -153,27 +203,23 @@ import AsyncDisplayKit
     }
 }
 
-@objc public extension YHFlowItemsAutoMarginDisplayNode {
-    
-    /// 给定nodes集合，排列方式为固定宽度，动态间距。
-    /// 当最后一行不足`perRowCount`，则会以一个透明的`ASDisplayNode`代替
+@objc public extension SwiftyFlowItemsAutoMarginDisplayNode {
+    /// Given a set of nodes, the arrangement is fixed width and dynamic spacing. When the last line is less than `perRowCount`, it will be replaced by a transparent `ASDisplayNode`
     /// - Parameters:
-    ///   - nodes: nodes集合
-    ///   - nodeWidth: 宽
-    ///   - nodeHeightRatio: 高宽比
-    ///   - perRowCount: 每行多少个
-    ///   - verticalSpacing: 行与行之间的间隙
-    ///   - verticalEdgeInset: 垂直偏移量
-    ///   - horizontalEdgeInset: 水平偏移量
+    ///   - nodes: Nodes
+    ///   - nodeWidth: Node width
+    ///   - nodeHeightRatio: Aspect Ratio
+    ///   - perRowCount: How many per line
+    ///   - verticalSpacing: Line-to-line gap
+    ///   - verticalEdgeInset: Vertical offset
+    ///   - horizontalEdgeInset: Horizontal offset
     @objc func setupAutoMargin(nodes: [ASDisplayNode],
-                                nodeWidth: CGFloat,
-                                nodeHeightRatio: CGFloat,
-                                perRowCount: Int,
-                                verticalSpacing: CGFloat,
-                                verticalEdgeInset: CGFloat,
-                                horizontalEdgeInset: CGFloat) {
-        
-        
+                               nodeWidth: CGFloat,
+                               nodeHeightRatio: CGFloat,
+                               perRowCount: Int,
+                               verticalSpacing: CGFloat,
+                               verticalEdgeInset: CGFloat,
+                               horizontalEdgeInset: CGFloat) {
         let nodeHeight = nodeWidth * nodeHeightRatio
         self.setupAutoMargin(nodes: nodes,
                              nodeWidth: nodeWidth,
@@ -184,23 +230,22 @@ import AsyncDisplayKit
                              horizontalEdgeInset: horizontalEdgeInset)
     }
     
-    /// 给定nodes集合，排列方式为固定宽度，动态间距。
-    /// 当最后一行不足`perRowCount`，则会以一个透明的`ASDisplayNode`代替
+    /// Given a set of nodes, the arrangement is fixed width and dynamic spacing. When the last line is less than `perRowCount`, it will be replaced by a transparent `ASDisplayNode`
     /// - Parameters:
-    ///   - nodes: nodes集合
-    ///   - nodeWidth: 宽
-    ///   - nodeHeight: 高
-    ///   - perRowCount: 每行多少个
-    ///   - verticalSpacing: 行与行之间的间隙
-    ///   - verticalEdgeInset: 垂直偏移量
-    ///   - horizontalEdgeInset: 水平偏移量
+    ///   - nodes: Nodes
+    ///   - nodeWidth: Node width
+    ///   - nodeHeight: Node height
+    ///   - perRowCount: How many per line
+    ///   - verticalSpacing: Line-to-line gap
+    ///   - verticalEdgeInset: Vertical offset
+    ///   - horizontalEdgeInset: Horizontal offset
     @objc func setupAutoMargin(nodes: [ASDisplayNode],
-                                nodeWidth: CGFloat,
-                                nodeHeight: CGFloat,
-                                perRowCount: Int,
-                                verticalSpacing: CGFloat,
-                                verticalEdgeInset: CGFloat,
-                                horizontalEdgeInset: CGFloat) {
+                               nodeWidth: CGFloat,
+                               nodeHeight: CGFloat,
+                               perRowCount: Int,
+                               verticalSpacing: CGFloat,
+                               verticalEdgeInset: CGFloat,
+                               horizontalEdgeInset: CGFloat) {
         //
         for (_, nodes) in self.allNodes.enumerated() {
             for (_, node) in nodes.enumerated() {
@@ -216,17 +261,13 @@ import AsyncDisplayKit
         self.verticalEdgeInset = verticalEdgeInset
         self.horizontalEdgeInset = horizontalEdgeInset
         //
-        self.allNodes = nodes.yh_group(perRowCount: perRowCount)
-        for (_, nodes) in self.allNodes.enumerated() {
-            for (_, node) in nodes.enumerated() {
-                self.addSubnode(node)
-            }
+        self.allNodes = nodes.group(perRowCount: perRowCount)
+        for (_, node) in (self.allNodes.flatMap{ $0 }).enumerated() {
+            self.addSubnode(node)
         }
         //
         self.setNeedsLayout()
         self.layoutIfNeeded()
     }
 }
-
-
 #endif

@@ -1,15 +1,15 @@
 //
-//  UIView+YHExtension.swift
-//  FNDating
+//  UIView+SwiftyExtensionForFrame.swift
+//  SwiftTool
 //
-//  Created by apple on 2019/8/26.
-//  Copyright © 2019 yinhe. All rights reserved.
+//  Created by apple on 2020/5/18.
+//  Copyright © 2020 yinhe. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-@objc public extension UIView {
+public extension UIView {
     var YH_Origin: CGPoint {
         get {
             return self.frame.origin
@@ -145,43 +145,5 @@ import UIKit
             frame.origin.x = newValue - self.frame.size.width
             self.frame = frame
         }
-    }
-}
-
-
-public extension UIView {
-    override func setValue(_ value: Any?, forUndefinedKey key: String) {
-        
-        SwiftyLog("[KVC报错] [value: \(String(describing: value))] [key: \(key)]")
-    }
-    
-    override func value(forUndefinedKey key: String) -> Any? {
-        SwiftyLog("[KVC报错] [key: \(key)]")
-        return nil
-    }
-}
-
-
-public extension UIView {
-    /// 截取view指定区域
-    /// - Parameter targetRect: 指定区域被裁剪
-    func yh_snapshot(targetRect: CGRect) -> UIImage? {
-        let scale: CGFloat = UIScreen.main.scale // 设置屏幕倍率可以保证截图的质量
-        UIGraphicsBeginImageContextWithOptions(self.frame.size, true, scale)
-        guard let context = UIGraphicsGetCurrentContext() else { // 这段代码不能写在`UIGraphicsBeginImageContextWithOptions`的前面，否则`context`为nil
-            return nil
-        }
-        self.layer.render(in: context)
-        defer {
-            UIGraphicsEndImageContext()
-        }
-        let targetRect = CGRect(x: targetRect.origin.x * scale, y: targetRect.origin.y * scale, width: targetRect.width * scale, height: targetRect.height * scale)
-        guard let image = UIGraphicsGetImageFromCurrentImageContext() else {
-            return nil
-        }
-        guard let cgImage = image.cgImage?.cropping(to: targetRect) else {
-            return nil
-        }
-        return UIImage(cgImage: cgImage)
     }
 }

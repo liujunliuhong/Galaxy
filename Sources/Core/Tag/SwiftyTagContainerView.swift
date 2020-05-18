@@ -1,21 +1,25 @@
 //
-//  YHTagContainerView.swift
-//  TMM
+//  SwiftyTagContainerView.swift
+//  SwiftTool
 //
-//  Created by apple on 2019/11/28.
-//  Copyright © 2019 yinhe. All rights reserved.
+//  Created by apple on 2020/5/18.
+//  Copyright © 2020 yinhe. All rights reserved.
 //
 
 import UIKit
 
-
-public protocol YHTagContainerProtocol {
+public protocol SwiftyTagContainerProtocol {
     func tagView() -> UIView
     func tagWidth() -> CGFloat
 }
 
 
-public class YHTagContainerView: UIView {
+public class SwiftyTagContainerView: UIView {
+    deinit {
+        #if DEBUG
+        print("\(self.classForCoder) deinit")
+        #endif
+    }
     
     private let containerWidth: CGFloat
     private let tagHeight: CGFloat
@@ -25,10 +29,11 @@ public class YHTagContainerView: UIView {
     
     
     /// init
-    /// - Parameter containerWidth: container width
-    /// - Parameter tagHeight: tag height
-    /// - Parameter lineSpace: line space
-    /// - Parameter columnSpace: column space
+    /// - Parameters:
+    ///   - containerWidth: container width
+    ///   - tagHeight: tag height
+    ///   - lineSpace: line space
+    ///   - columnSpace: column space
     public required init(with containerWidth: CGFloat, tagHeight: CGFloat, lineSpace: CGFloat, columnSpace: CGFloat) {
         self.containerWidth = containerWidth
         self.tagHeight = tagHeight
@@ -43,21 +48,22 @@ public class YHTagContainerView: UIView {
 }
 
 
-public extension YHTagContainerView {
+public extension SwiftyTagContainerView {
     
     /// reload
     /// - Parameter tags: tags
-    @discardableResult func reload(with tags: [YHTagContainerProtocol]) -> CGFloat {
+    /// - Returns: container height
+    @discardableResult func reload(with tags: [SwiftyTagContainerProtocol]) -> CGFloat {
         self.lastTags.forEach { (tagView) in
             tagView.removeFromSuperview()
         }
         self.lastTags.removeAll()
-
+        
         var lastTagView: UIView?
         
         for (_, tag) in tags.enumerated() {
             let tagView = tag.tagView()
-            let tagWidth = tag.tagWidth() > self.containerWidth ? self.containerWidth : tag.tagWidth() // 宽度限制
+            let tagWidth = tag.tagWidth() > self.containerWidth ? self.containerWidth : tag.tagWidth() // limit width
             self.addSubview(tagView)
             self.lastTags.append(tagView)
             

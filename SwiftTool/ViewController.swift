@@ -29,7 +29,7 @@ class ViewController: UIViewController {
 
 extension ViewController {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let vc = SwiftyCityPickerTestViewController()
+        let vc = SwiftyTagContainerTestViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -1,19 +1,50 @@
 //
-//  UIDevice+YHExtension.swift
-//  FNDating
+//  UIDevice+SwiftyExtension.swift
+//  SwiftTool
 //
-//  Created by apple on 2019/8/26.
-//  Copyright © 2019 yinhe. All rights reserved.
+//  Created by apple on 2020/5/18.
+//  Copyright © 2020 yinhe. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-@objc public extension UIDevice {
+/*
+ iPhone SE 2nd:       375 x 667             2x
+ 
+ iPhone 11:           414 x 896             2x
+ iPhone 11 Pro:       375 x 812             3x
+ iPhone 11 Pro Max:   414 x 896             3x
+ 
+ iPhone XR:           414 x 896             2x
+ iPhone Xs Max:       414 x 896             3x
+ iPhone Xs:           375 x 812             3x
+ iPhone X:            375 x 812             3x
+ 
+ iPhone 8:            375 x 667             2x
+ iPhone 8 Plus:       414 x 736             3x
+ 
+ iPhone 7:            375 x 667             2x
+ iPhone 7 plus:       414 x 736             3x
+ 
+ iPhone 6:            375 x 667             2x
+ iPhone 6s:           375 x 667             2x  (UI design drawings are generally based on 6s, if not, then hammer him)
+ iPhone 6 Plus:       414 x 736             3x
+ iPhone 6s plus:      414 x 736             3x
+ 
+ iPhone SE:           320 x 568             2x
+ 
+ iPhone 5:            320 x 568             2x
+ iPhone 5s:           320 x 568             2x
+ */
+public extension UIDevice {
+    
+    /// UIDevice Width
     static var YH_Width: CGFloat {
         return UIScreen.main.bounds.size.width
     }
     
+    /// UIDevice Height
     static var YH_Height: CGFloat {
         return UIScreen.main.bounds.size.height
     }
@@ -21,7 +52,6 @@ import UIKit
     // Get machine name, such as `iPhone 7 Plus`.
     static var YHMachineName: String {
         let machine = UIDevice.YHMachine
-        
         if let map = UIDevice.YHMachineMap[machine] {
             return map.rawValue
         } else {
@@ -29,76 +59,148 @@ import UIKit
         }
     }
     
-    // Print Device Info.
-    static func YHPrintBasicDeviceInfo() {
-        SwiftyLog("\n*****************************************************************************************************************\nSysname:          \(UIDevice.YHSysname)\nRelease:          \(UIDevice.YHRelease)\nVersion:          \(UIDevice.YHVersion)\nMachine:          \(UIDevice.YHMachine)\nSystemVersion:    \(UIDevice.current.systemVersion)\nMachineName:      \(UIDevice.YHMachineName)\n*****************************************************************************************************************")
+    // Get Base Device Info.
+    static func YHBasicDeviceInfo() -> String {
+        let info = "*****************************************************************************************************************\nSysname:          \(UIDevice.YHSysname)\nRelease:          \(UIDevice.YHRelease)\nVersion:          \(UIDevice.YHVersion)\nMachine:          \(UIDevice.YHMachine)\nSystemVersion:    \(UIDevice.current.systemVersion)\nMachineName:      \(UIDevice.YHMachineName)\n*****************************************************************************************************************"
+        return info
     }
     
     
-    /// 是否是刘海屏手机(兼容所有iPhone)
+    /// Whether it is a bangs screen phone (compatible with all iPhones)
     static var YH_Is_Fringe: Bool {
         let machine = UIDevice.YHMachine
-        if let map = UIDevice.YHMachineMap[machine] {
-            return map == .iPhoneX || map == .iPhoneXR || map == .iPhoneXS || map == .iPhoneX_S_Max || map == .iPhone_11 || map == .iPhone_11_Pro || map == .iPhone_11_Pro_Max
+        guard let map = UIDevice.YHMachineMap[machine] else { return false }
+        var result: Bool = false
+        if map == .iPhoneX ||
+            map == .iPhoneXR ||
+            map == .iPhoneXS ||
+            map == .iPhoneX_S_Max ||
+            map == .iPhone_11 ||
+            map == .iPhone_11_Pro ||
+            map == .iPhone_11_Pro_Max {
+            result = true
         } else {
-            return false
+            if UIDevice.YH_SimulatorIsiPhoneX {
+                result = true
+            }
         }
+        return result
     }
     
-    /// 刘海高度(其实就是StatusBar的高度,兼容所有iPhone)
+    /// Liu Hai height (in fact, the height of StatusBar, compatible with all iPhones)
     static var YH_Fringe_Height: CGFloat {
         let machine = UIDevice.YHMachine
-        if let map = UIDevice.YHMachineMap[machine] {
-            if map == .iPhoneX || map == .iPhoneXR || map == .iPhoneXS || map == .iPhoneX_S_Max || map == .iPhone_11 || map == .iPhone_11_Pro || map == .iPhone_11_Pro_Max {
-                if UIApplication.shared.statusBarOrientation == .landscapeLeft || UIApplication.shared.statusBarOrientation == .landscapeRight {
-                    return 0.0
-                }
-                return 44.0
+        guard let map = UIDevice.YHMachineMap[machine] else { return .zero }
+        var value: CGFloat = .zero
+        if map == .iPhoneX ||
+            map == .iPhoneXR ||
+            map == .iPhoneXS ||
+            map == .iPhoneX_S_Max ||
+            map == .iPhone_11 ||
+            map == .iPhone_11_Pro ||
+            map == .iPhone_11_Pro_Max {
+            if UIApplication.shared.statusBarOrientation == .landscapeLeft || UIApplication.shared.statusBarOrientation == .landscapeRight {
+                value = 0.0
             } else {
-                return 20.0
+                value = 44.0
             }
         } else {
-            return 0.0
+            if UIDevice.YH_SimulatorIsiPhoneX {
+                if UIApplication.shared.statusBarOrientation == .landscapeLeft || UIApplication.shared.statusBarOrientation == .landscapeRight {
+                    value = 0.0
+                } else {
+                    value = 44.0
+                }
+            } else {
+                value = 20.0
+            }
         }
+        return value
     }
     
     
-    /// 是否有虚拟Home键(兼容所有iPhone)
+    /// Is there a virtual Home button (compatible with all iPhones)
     static var YH_Is_HomeIndicator: Bool {
         let machine = UIDevice.YHMachine
-        if let map = UIDevice.YHMachineMap[machine] {
-            return map == .iPhoneX || map == .iPhoneXR || map == .iPhoneXS || map == .iPhoneX_S_Max || map == .iPhone_11 || map == .iPhone_11_Pro || map == .iPhone_11_Pro_Max
+        guard let map = UIDevice.YHMachineMap[machine] else { return false }
+        var result: Bool = false
+        if map == .iPhoneX ||
+            map == .iPhoneXR ||
+            map == .iPhoneXS ||
+            map == .iPhoneX_S_Max ||
+            map == .iPhone_11 ||
+            map == .iPhone_11_Pro ||
+            map == .iPhone_11_Pro_Max {
+            result = true
         } else {
-            return false
+            if UIDevice.YH_SimulatorIsiPhoneX {
+                result = true
+            }
         }
+        return result
     }
     
     
-    /// 虚拟Home键高度(兼容所有iPhone)
+    /// Virtual Home button height (compatible with all iPhones)
     static var YH_HomeIndicator_Height: CGFloat {
         let machine = UIDevice.YHMachine
-        if let map = UIDevice.YHMachineMap[machine] {
-            if map == .iPhoneX || map == .iPhoneXR || map == .iPhoneXS || map == .iPhoneX_S_Max || map == .iPhone_11 || map == .iPhone_11_Pro || map == .iPhone_11_Pro_Max {
-                if UIApplication.shared.statusBarOrientation == .landscapeLeft || UIApplication.shared.statusBarOrientation == .landscapeRight {
-                    return 21.0
-                }
-                return 34.0
+        guard let map = UIDevice.YHMachineMap[machine] else { return .zero }
+        var value: CGFloat = .zero
+        if map == .iPhoneX
+            || map == .iPhoneXR
+            || map == .iPhoneXS
+            || map == .iPhoneX_S_Max
+            || map == .iPhone_11
+            || map == .iPhone_11_Pro
+            || map == .iPhone_11_Pro_Max {
+            if UIApplication.shared.statusBarOrientation == .landscapeLeft || UIApplication.shared.statusBarOrientation == .landscapeRight {
+                value = 21.0
             } else {
-                return 0.0
+                value = 34.0
             }
         } else {
-            return 0.0
+            if map == .simulator {
+                if UIDevice.YH_SimulatorIsiPhoneX {
+                    if UIApplication.shared.statusBarOrientation == .landscapeLeft || UIApplication.shared.statusBarOrientation == .landscapeRight {
+                        value = 21.0
+                    } else {
+                        value = 34.0
+                    }
+                }
+            }
         }
+        return value
+    }
+    
+    /// Is the simulator iPhone X
+    static var YH_SimulatorIsiPhoneX: Bool {
+        let machine = UIDevice.YHMachine
+        guard let map = UIDevice.YHMachineMap[machine] else { return false }
+        if map != .simulator {
+            return false
+        }
+        var result: Bool = false
+        let width = UIDevice.YH_Width
+        let height = UIDevice.YH_Height
+        if UIApplication.shared.statusBarOrientation == .portrait || UIApplication.shared.statusBarOrientation == .portraitUpsideDown {
+            if (width == 375.0 && height == 812.0) || (width == 414.0 && height == 896.0) {
+                result = true
+            }
+        } else {
+            if (width == 812.0 && height == 375.0) || (width == 896.0 && height == 414.0) {
+                result = true
+            }
+        }
+        return result
     }
 }
 
 
 // Example:https://www.theiphonewiki.com/wiki/Models#iPhone
-@objc
-extension UIDevice {
-    public enum YHDeviceMachineType: String {
+public extension UIDevice {
+    enum YHDeviceMachineType: String {
         // iPhone
-        /*********************************| iPhone X系列，有刘海屏 |**************************************/
+        case iPhone_SE_2nd                                              = "iPhone SE (2nd generation)" // 2020.05.18
         case iPhoneX_S_Max                                              = "iPhone XS Max"
         case iPhoneXS                                                   = "iPhone XS"
         case iPhoneXR                                                   = "iPhone XR"
@@ -106,8 +208,6 @@ extension UIDevice {
         case iPhone_11                                                  = "iPhone 11"
         case iPhone_11_Pro                                              = "iPhone 11 Pro"
         case iPhone_11_Pro_Max                                          = "iPhone 11 Pro Max"
-        
-        
         case iPhone_8_Plus                                              = "iPhone 8 Plus"
         case iPhone_8                                                   = "iPhone 8"
         case iPhone_7_Plus                                              = "iPhone 7 Plus"
@@ -175,8 +275,7 @@ extension UIDevice {
         case simulator                                                  = "simulator"
     }
     
-    @nonobjc
-    public static var YHMachineMap: [String: YHDeviceMachineType] = [
+    static var YHMachineMap: [String: YHDeviceMachineType] = [
         // iPhone
         "iPhone1,1"            :          .iPhone,
         "iPhone1,2"            :          .iPhone_3G,
@@ -212,6 +311,7 @@ extension UIDevice {
         "iPhone12,1"           :          .iPhone_11,
         "iPhone12,3"           :          .iPhone_11_Pro,
         "iPhone12,5"           :          .iPhone_11_Pro_Max,
+        "iPhone12,8"           :          .iPhone_SE_2nd,
         // iPod touch
         "iPod1,1"              :          .iPod_touch_1st_generation,
         "iPod2,1"              :          .iPod_touch_2nd_generation,
@@ -306,7 +406,6 @@ extension UIDevice {
     ]
 }
 
-@objc
 extension UIDevice {
     private static var YHSys: utsname {
         var sys: utsname = utsname()

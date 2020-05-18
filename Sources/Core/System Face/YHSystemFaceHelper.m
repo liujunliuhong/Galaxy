@@ -18,7 +18,7 @@
     static NSBundle *bundle = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        bundle = [NSBundle bundleWithPath:[[NSBundle bundleForClass:[self class]] pathForResource:@"YHSystemFace" ofType:@"bundle"]];
+        bundle = [NSBundle bundleWithPath:[[NSBundle bundleForClass:[YHSystemFaceHelper class]] pathForResource:@"YHSystemFace" ofType:@"bundle"]];
     });
     return bundle;
 }

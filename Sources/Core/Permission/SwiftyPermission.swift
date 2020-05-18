@@ -76,6 +76,7 @@ public struct SwiftyPermission {
     
     /// is authorized
     /// - Parameter type: type
+    /// - Returns: is authorized
     public static func isAuthorized(for type: SwiftyPermissionType) -> Bool {
         switch type {
         case .microphone:

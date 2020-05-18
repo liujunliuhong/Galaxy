@@ -28,7 +28,9 @@
 @implementation YHSystemFaceView
 
 - (void)dealloc{
+#ifdef DEBUG
     NSLog(@"%@ dealloc",NSStringFromClass([self class]));
+#endif
 }
 
 - (instancetype)initWithFrame:(CGRect)frame row:(int)row col:(int)col

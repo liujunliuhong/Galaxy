@@ -11,72 +11,7 @@ import UIKit
 import SafariServices
 
 @objc public class YHGenerated: NSObject {
-    // Open iphone setting.
-    @objc public static func openIphoneSettings() {
-        DispatchQueue.main.async {
-            if #available(iOS 10.0, *) {
-                if let url = URL(string: UIApplication.openSettingsURLString) {
-                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                }
-            } else {
-                if let url = URL(string: UIApplication.openSettingsURLString) {
-                    UIApplication.shared.openURL(url)
-                }
-            }
-        }
-    }
     
-    // Open App Store.
-    @objc public static func openAppStore(with appID: String) {
-        DispatchQueue.main.async {
-            let urlString = "https://itunes.apple.com/app/id\(appID)"
-            if let url = URL(string: urlString) {
-                if #available(iOS 10.0, *) {
-                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                } else {
-                    UIApplication.shared.openURL(url)
-                }
-            }
-        }
-    }
-    
-    // Open App Store Review.
-    @objc public static func openAppStoreReview(with appID: String) {
-        DispatchQueue.main.async {
-            let urlString = "https://itunes.apple.com/cn/app/id\(appID)?action=write-review"
-            if let url = URL(string: urlString) {
-                if #available(iOS 10.0, *) {
-                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                } else {
-                    UIApplication.shared.openURL(url)
-                }
-            }
-        }
-    }
-    
-    // Make call.
-    @objc public static func makeCall(with tel: String) {
-        DispatchQueue.main.async {
-            let urlString = "tel://\(tel)"
-            if let url = URL(string: urlString) {
-                if #available(iOS 10.0, *) {
-                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                } else {
-                    UIApplication.shared.openURL(url)
-                }
-            }
-        }
-    }
-    
-    
-    /// Open Safari
-    ///
-    /// - Parameters:
-    ///   - url: url
-    ///   - autoCorrect: Whether to automatically correct the url, such as adding http://
-    @objc public static func openSafari(with url: String, autoCorrect: Bool = true) {
-        
-    }
     
     // Get local JSON file content.
     @objc public static func getLocalJSONFile(file fileName: String) -> Data? {

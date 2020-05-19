@@ -62,6 +62,10 @@
 		1870F4B2246A2E1D0016D596 /* SwiftyMBHUDTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870F4B1246A2E1D0016D596 /* SwiftyMBHUDTestViewController.swift */; };
 		1870F4B5246A389E0016D596 /* SwiftyLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870F4B4246A389E0016D596 /* SwiftyLog.swift */; };
 		18998DB7246E300400EE72F0 /* String+Words.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18998DB6246E300400EE72F0 /* String+Words.swift */; };
+		18EBB731247372DC0080CC2B /* SwiftyFlowItemsAutoMarginTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EBB730247372DC0080CC2B /* SwiftyFlowItemsAutoMarginTestViewController.swift */; };
+		18EBB7332473B6B30080CC2B /* SwiftyFlowItemsAutoWidthTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EBB7322473B6B30080CC2B /* SwiftyFlowItemsAutoWidthTestViewController.swift */; };
+		18EBB7352473BA350080CC2B /* UIApplication+SwiftyExtensionForURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EBB7342473BA350080CC2B /* UIApplication+SwiftyExtensionForURL.swift */; };
+		18EBB7382473CB670080CC2B /* SwiftyFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EBB7372473CB670080CC2B /* SwiftyFileManager.swift */; };
 		7ED1CA540CCEE052DF44FE7A /* Pods_SwiftTool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4806E0A8EE8767510EF2FD61 /* Pods_SwiftTool.framework */; };
 		852C23FE246F9091003746E7 /* SwiftyCityPickerTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C23FD246F9091003746E7 /* SwiftyCityPickerTestViewController.swift */; };
 		852C2400247043A2003746E7 /* SwiftyCityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C23FF247043A2003746E7 /* SwiftyCityModel.swift */; };
@@ -139,6 +143,10 @@
 		1870F4B1246A2E1D0016D596 /* SwiftyMBHUDTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyMBHUDTestViewController.swift; sourceTree = "<group>"; };
 		1870F4B4246A389E0016D596 /* SwiftyLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyLog.swift; sourceTree = "<group>"; };
 		18998DB6246E300400EE72F0 /* String+Words.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Words.swift"; sourceTree = "<group>"; };
+		18EBB730247372DC0080CC2B /* SwiftyFlowItemsAutoMarginTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyFlowItemsAutoMarginTestViewController.swift; sourceTree = "<group>"; };
+		18EBB7322473B6B30080CC2B /* SwiftyFlowItemsAutoWidthTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyFlowItemsAutoWidthTestViewController.swift; sourceTree = "<group>"; };
+		18EBB7342473BA350080CC2B /* UIApplication+SwiftyExtensionForURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+SwiftyExtensionForURL.swift"; sourceTree = "<group>"; };
+		18EBB7372473CB670080CC2B /* SwiftyFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyFileManager.swift; sourceTree = "<group>"; };
 		425C6511002199BBE0183C7D /* Pods-SwiftTool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftTool.release.xcconfig"; path = "Target Support Files/Pods-SwiftTool/Pods-SwiftTool.release.xcconfig"; sourceTree = "<group>"; };
 		4806E0A8EE8767510EF2FD61 /* Pods_SwiftTool.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftTool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		852C23FD246F9091003746E7 /* SwiftyCityPickerTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCityPickerTestViewController.swift; sourceTree = "<group>"; };
@@ -234,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				1831126C2446FBB200155620 /* SwiftToolDescription */,
+				18EBB7362473CB390080CC2B /* File */,
 				859A7D78246EEFB8008F7A4F /* City Picker */,
 				1827D02E246D1E6800429B36 /* Words Sort */,
 				1870F4BA246A678E0016D596 /* Permission */,
@@ -293,8 +302,8 @@
 				182805D42472394700A3D228 /* UIColor+SwiftyExtension.swift */,
 				182805D824723C9B00A3D228 /* UIView+SwiftyExtensionForFrame.swift */,
 				182805DA24723CE200A3D228 /* UIView+SwiftyExtensionForSnapshot.swift */,
-				1831120B2446F8F100155620 /* UITabBar+YHExtension.swift */,
 				182805DC24726E6800A3D228 /* UIDevice+SwiftyExtension.swift */,
+				18EBB7342473BA350080CC2B /* UIApplication+SwiftyExtensionForURL.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -350,6 +359,8 @@
 			children = (
 				182805E224727B1800A3D228 /* SwiftyFlowItemsDisplayNode.swift */,
 				182805E4247282E600A3D228 /* SwiftyFlowItemsTestViewController.swift */,
+				18EBB730247372DC0080CC2B /* SwiftyFlowItemsAutoMarginTestViewController.swift */,
+				18EBB7322473B6B30080CC2B /* SwiftyFlowItemsAutoWidthTestViewController.swift */,
 			);
 			path = AsyncDisplayKit;
 			sourceTree = "<group>";
@@ -390,6 +401,7 @@
 		183112312446F8F100155620 /* YHTabBarController */ = {
 			isa = PBXGroup;
 			children = (
+				1831120B2446F8F100155620 /* UITabBar+YHExtension.swift */,
 				183112322446F8F100155620 /* YHTabBarItemBadgeView.swift */,
 				183112332446F8F100155620 /* YHTabBarItem.swift */,
 				183112342446F8F100155620 /* YHTabBarItemContainer.swift */,
@@ -441,6 +453,14 @@
 				8544C6D0246C4B7F00361C08 /* SwiftyPermissionTestViewController.swift */,
 			);
 			path = Permission;
+			sourceTree = "<group>";
+		};
+		18EBB7362473CB390080CC2B /* File */ = {
+			isa = PBXGroup;
+			children = (
+				18EBB7372473CB670080CC2B /* SwiftyFileManager.swift */,
+			);
+			path = File;
 			sourceTree = "<group>";
 		};
 		21C11EE9CC175856C82472D7 /* Pods */ = {
@@ -592,6 +612,7 @@
 			files = (
 				8544C6CF246C4AAC00361C08 /* SwiftyPermission.swift in Sources */,
 				182805E324727B1800A3D228 /* SwiftyFlowItemsDisplayNode.swift in Sources */,
+				18EBB7332473B6B30080CC2B /* SwiftyFlowItemsAutoWidthTestViewController.swift in Sources */,
 				183112662446F8F200155620 /* YHTabBar.swift in Sources */,
 				1831125C2446F8F200155620 /* YHSystemFaceHelper.m in Sources */,
 				1831114F24469EB700155620 /* ViewController.swift in Sources */,
@@ -614,6 +635,7 @@
 				183112402446F8F200155620 /* YHRXAlamofire.swift in Sources */,
 				183112692446F8F200155620 /* YHQCloudCOSManager.swift in Sources */,
 				1831114B24469EB700155620 /* AppDelegate.swift in Sources */,
+				18EBB731247372DC0080CC2B /* SwiftyFlowItemsAutoMarginTestViewController.swift in Sources */,
 				1827D03D246D23EA00429B36 /* SwiftyWordsSort.swift in Sources */,
 				1827D02D246D1B7500429B36 /* SwiftyLogTestViewController.swift in Sources */,
 				183112622446F8F200155620 /* YHTabBarItemBadgeView.swift in Sources */,
@@ -638,7 +660,9 @@
 				182805E5247282E600A3D228 /* SwiftyFlowItemsTestViewController.swift in Sources */,
 				18998DB7246E300400EE72F0 /* String+Words.swift in Sources */,
 				182B7BB9246B873D000A95D0 /* SwiftyPickerTestViewController.swift in Sources */,
+				18EBB7352473BA350080CC2B /* UIApplication+SwiftyExtensionForURL.swift in Sources */,
 				183112532446F8F200155620 /* CGFloat+YHExtension.swift in Sources */,
+				18EBB7382473CB670080CC2B /* SwiftyFileManager.swift in Sources */,
 				183112632446F8F200155620 /* YHTabBarItem.swift in Sources */,
 				183112682446F8F200155620 /* YHNativeLocation.swift in Sources */,
 				183112552446F8F200155620 /* Dictionary+YHExtension.swift in Sources */,

@@ -11,7 +11,7 @@ import Foundation
 import AsyncDisplayKit
 
 fileprivate extension Array where Element: ASDisplayNode {
-    /// A certain number of collections are grouped. The elements in the collection must inherit from `NSObject`. If the last line is less than `perRowCount`, use the default initialization
+    /// A certain number of collections are grouped. The elements in the collection must inherit from `ASDisplayNode`. If the last line is less than `perRowCount`, use the default initialization
     /// - Parameter perRowCount: perRowCount
     /// - Returns: grouped
     func group(perRowCount: Int) -> [[Element]] {

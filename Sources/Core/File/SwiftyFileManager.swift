@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import UIKit
 
-let SwiftyDocumentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last
-let SwiftyLibraryDirectory = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true).last
-let SwiftyCachesDirectory = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).last
+public let SwiftyDocumentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last
+public let SwiftyLibraryDirectory = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true).last
+public let SwiftyCachesDirectory = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).last
 
 
 public enum SwiftyFileType: String {
@@ -39,6 +40,21 @@ extension SwiftyFileManager {
             }
         }
         return true
+    }
+    
+    /// caculate file size
+    /// - Parameter length: length
+    /// - Returns: format size
+    public func caculateFileSize(length: Int) -> String {
+        if (length < 1024) {
+            return "\(length)B"
+        }else if (length >= 1024 && length < (1024 * 1024)){
+            return "\(CGFloat(length) / 1024.0)KB"
+        } else if (length > (1024 * 1024) && length < (1024 * 1024 * 1024)) {
+            return "\(CGFloat(length) / (1024.0 * 1024.0))MB"
+        } else {
+            return "\(CGFloat(length) / (1024.0 * 1024.0 * 1024.0))GB"
+        }
     }
 }
 

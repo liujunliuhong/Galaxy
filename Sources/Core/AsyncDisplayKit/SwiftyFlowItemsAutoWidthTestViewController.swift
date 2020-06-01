@@ -8,7 +8,6 @@
 
 import UIKit
 import AsyncDisplayKit
-import SnapKit
 
 public class SwiftyFlowItemsAutoWidthTestViewController: UIViewController {
     deinit {
@@ -27,10 +26,7 @@ public class SwiftyFlowItemsAutoWidthTestViewController: UIViewController {
         self.view.backgroundColor = .white
         
         self.view.addSubnode(self.scrollNode)
-        self.scrollNode.view.snp.makeConstraints { (make) in
-            make.left.right.bottom.equalToSuperview()
-            make.top.equalToSuperview().offset(UIApplication.shared.statusBarFrame.height + 44.0)
-        }
+        self.scrollNode.frame = CGRect(x: 0, y: 150, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height - 150 - 100)
         self.scrollNode.reload()
     }
 }

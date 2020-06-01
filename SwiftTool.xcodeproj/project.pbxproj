@@ -47,7 +47,6 @@
 		183112652446F8F200155620 /* YHTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183112352446F8F100155620 /* YHTabBarController.swift */; };
 		183112662446F8F200155620 /* YHTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183112362446F8F100155620 /* YHTabBar.swift */; };
 		183112672446F8F200155620 /* YHTabBatItemContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183112372446F8F100155620 /* YHTabBatItemContentView.swift */; };
-		183112682446F8F200155620 /* YHNativeLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183112392446F8F100155620 /* YHNativeLocation.swift */; };
 		183112692446F8F200155620 /* YHQCloudCOSManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1831123B2446F8F100155620 /* YHQCloudCOSManager.swift */; };
 		1831126B2446F8F200155620 /* YHBMKLocaion.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831123F2446F8F100155620 /* YHBMKLocaion.m */; };
 		1831126D2446FBB200155620 /* SwiftToolDescription in Resources */ = {isa = PBXBuildFile; fileRef = 1831126C2446FBB200155620 /* SwiftToolDescription */; };
@@ -73,6 +72,8 @@
 		8544C6D1246C4B7F00361C08 /* SwiftyPermissionTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8544C6D0246C4B7F00361C08 /* SwiftyPermissionTestViewController.swift */; };
 		859A7D7A246EF00B008F7A4F /* SwiftyCity.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 859A7D79246EF00B008F7A4F /* SwiftyCity.bundle */; };
 		859A7D80246EF7F7008F7A4F /* SwiftyCityPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859A7D7F246EF7F7008F7A4F /* SwiftyCityPickerView.swift */; };
+		85C3234224853772007D2B73 /* SwiftyNativeLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C3234124853772007D2B73 /* SwiftyNativeLocation.swift */; };
+		85C3234424853CF6007D2B73 /* SwiftyNativeLocationTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C3234324853CF6007D2B73 /* SwiftyNativeLocationTestViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -124,7 +125,6 @@
 		183112352446F8F100155620 /* YHTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YHTabBarController.swift; sourceTree = "<group>"; };
 		183112362446F8F100155620 /* YHTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YHTabBar.swift; sourceTree = "<group>"; };
 		183112372446F8F100155620 /* YHTabBatItemContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YHTabBatItemContentView.swift; sourceTree = "<group>"; };
-		183112392446F8F100155620 /* YHNativeLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YHNativeLocation.swift; sourceTree = "<group>"; };
 		1831123B2446F8F100155620 /* YHQCloudCOSManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YHQCloudCOSManager.swift; sourceTree = "<group>"; };
 		1831123E2446F8F100155620 /* YHBMKLocaion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHBMKLocaion.h; sourceTree = "<group>"; };
 		1831123F2446F8F100155620 /* YHBMKLocaion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHBMKLocaion.m; sourceTree = "<group>"; };
@@ -152,6 +152,8 @@
 		8544C6D0246C4B7F00361C08 /* SwiftyPermissionTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyPermissionTestViewController.swift; sourceTree = "<group>"; };
 		859A7D79246EF00B008F7A4F /* SwiftyCity.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SwiftyCity.bundle; sourceTree = "<group>"; };
 		859A7D7F246EF7F7008F7A4F /* SwiftyCityPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCityPickerView.swift; sourceTree = "<group>"; };
+		85C3234124853772007D2B73 /* SwiftyNativeLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyNativeLocation.swift; sourceTree = "<group>"; };
+		85C3234324853CF6007D2B73 /* SwiftyNativeLocationTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyNativeLocationTestViewController.swift; sourceTree = "<group>"; };
 		B4B9793D1D5B9C59651E2DBB /* Pods-SwiftTool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftTool.debug.xcconfig"; path = "Target Support Files/Pods-SwiftTool/Pods-SwiftTool.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -390,7 +392,8 @@
 		183112382446F8F100155620 /* NativeLocation */ = {
 			isa = PBXGroup;
 			children = (
-				183112392446F8F100155620 /* YHNativeLocation.swift */,
+				85C3234124853772007D2B73 /* SwiftyNativeLocation.swift */,
+				85C3234324853CF6007D2B73 /* SwiftyNativeLocationTestViewController.swift */,
 			);
 			path = NativeLocation;
 			sourceTree = "<group>";
@@ -616,6 +619,7 @@
 				1827D03D246D23EA00429B36 /* SwiftyWordsSort.swift in Sources */,
 				1827D02D246D1B7500429B36 /* SwiftyLogTestViewController.swift in Sources */,
 				183112622446F8F200155620 /* YHTabBarItemBadgeView.swift in Sources */,
+				85C3234224853772007D2B73 /* SwiftyNativeLocation.swift in Sources */,
 				182805DB24723CE200A3D228 /* UIView+SwiftyExtensionForSnapshot.swift in Sources */,
 				859A7D80246EF7F7008F7A4F /* SwiftyCityPickerView.swift in Sources */,
 				182805DF2472710000A3D228 /* SwiftyTagContainerView.swift in Sources */,
@@ -629,6 +633,7 @@
 				852C23FE246F9091003746E7 /* SwiftyCityPickerTestViewController.swift in Sources */,
 				8544C6CD246C3ED100361C08 /* SwiftyPickerView.swift in Sources */,
 				1870F4B2246A2E1D0016D596 /* SwiftyMBHUDTestViewController.swift in Sources */,
+				85C3234424853CF6007D2B73 /* SwiftyNativeLocationTestViewController.swift in Sources */,
 				183112572446F8F200155620 /* YHRxProgressTracker.swift in Sources */,
 				1869FCDA2475020A00798729 /* Dictionary+SwiftyExtension.swift in Sources */,
 				182805D52472394700A3D228 /* UIColor+SwiftyExtension.swift in Sources */,
@@ -638,7 +643,6 @@
 				18EBB7352473BA350080CC2B /* UIApplication+SwiftyExtensionForURL.swift in Sources */,
 				18EBB7382473CB670080CC2B /* SwiftyFileManager.swift in Sources */,
 				183112632446F8F200155620 /* YHTabBarItem.swift in Sources */,
-				183112682446F8F200155620 /* YHNativeLocation.swift in Sources */,
 				183112652446F8F200155620 /* YHTabBarController.swift in Sources */,
 				1831126B2446F8F200155620 /* YHBMKLocaion.m in Sources */,
 				1869FCDE2475044C00798729 /* CGFloat+SwiftyExtension.swift in Sources */,

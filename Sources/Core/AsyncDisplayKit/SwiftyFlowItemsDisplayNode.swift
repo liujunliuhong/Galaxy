@@ -7,7 +7,6 @@
 //
 
 import Foundation
-#if canImport(AsyncDisplayKit)
 import AsyncDisplayKit
 
 fileprivate extension Array where Element: ASDisplayNode {
@@ -270,4 +269,4 @@ fileprivate extension Array where Element: ASDisplayNode {
         self.layoutIfNeeded()
     }
 }
-#endif
+

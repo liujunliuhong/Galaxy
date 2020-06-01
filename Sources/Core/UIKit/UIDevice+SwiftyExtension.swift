@@ -38,16 +38,11 @@ import UIKit
  iPhone 5s:           320 x 568             2x
  */
 public extension UIDevice {
-    
     /// UIDevice Width
-    static var YH_Width: CGFloat {
-        return UIScreen.main.bounds.size.width
-    }
+    static let YH_Width = UIScreen.main.bounds.size.width
     
     /// UIDevice Height
-    static var YH_Height: CGFloat {
-        return UIScreen.main.bounds.size.height
-    }
+    static let YH_Height: CGFloat = UIScreen.main.bounds.size.height
     
     // Get machine name, such as `iPhone 7 Plus`.
     static var YHMachineName: String {
@@ -196,7 +191,7 @@ public extension UIDevice {
 }
 
 
-// Example:https://www.theiphonewiki.com/wiki/Models#iPhone
+// Example: https://www.theiphonewiki.com/wiki/Models#iPhone
 public extension UIDevice {
     enum YHDeviceMachineType: String {
         // iPhone

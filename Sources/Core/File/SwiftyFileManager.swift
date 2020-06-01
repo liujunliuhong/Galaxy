@@ -67,7 +67,7 @@ extension SwiftyFileManager {
     ///   - type: type
     ///   - options: options
     /// - Returns: array or dictionary
-    public func localFile(bundle: Bundle, fileName: String, type: SwiftyFileType, options: JSONSerialization.ReadingOptions = [.mutableContainers]) -> Any? {
+    public func getLocalFile(bundle: Bundle, fileName: String, type: SwiftyFileType, options: JSONSerialization.ReadingOptions = [.mutableContainers]) -> Any? {
         guard let path = bundle.path(forResource: fileName, ofType: type.rawValue) else { return nil }
         guard let data = try? Data(contentsOf: URL(fileURLWithPath: path)) else { return nil }
         let resultData = try? JSONSerialization.jsonObject(with: data, options: options)

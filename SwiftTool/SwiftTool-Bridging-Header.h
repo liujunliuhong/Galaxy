@@ -11,5 +11,6 @@
 
 #import "Test.h"
 
+#import "SwiftyBMKLocation.h"
 
 #endif /* SwiftTool_Bridging_Header_h */

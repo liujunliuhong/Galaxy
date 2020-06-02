@@ -101,7 +101,7 @@ extension SwiftyNativeLocationTestViewController {
                 print("\(error.localizedDescription)")
             } else {
                 placemarks.forEach { (p) in
-                    print("=============================")
+                    print("========================================")
                     print("latitude:\(p.location?.coordinate.latitude ?? 0)")
                     print("longitude:\(p.location?.coordinate.longitude ?? 0)")
                     print("name:\(p.name ?? "")")
@@ -117,7 +117,7 @@ extension SwiftyNativeLocationTestViewController {
                     print("inlandWater:\(p.inlandWater ?? "")")
                     print("ocean:\(p.ocean ?? "")")
                     print("areasOfInterest:\(p.areasOfInterest ?? [])")
-                    print("=============================")
+                    print("========================================")
                 }
             }
         }

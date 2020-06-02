@@ -31,6 +31,10 @@ fileprivate func myPrint(_ items: Any...) {
 
 /// Native positioning package
 public class SwiftyNativeLocation: NSObject {
+    deinit {
+        myPrint("\(self.classForCoder) deinit")
+    }
+    
     private var target: AnyObject?
     private var locationManager: CLLocationManager?
     
@@ -66,8 +70,10 @@ public extension SwiftyNativeLocation {
     static func requestAuthorizationStatusWhenInUse(target: AnyObject, closure: requestAuthorizationStatusWhenInUseClosure?) {
         if !CLLocationManager.locationServicesEnabled() {
             myPrint("location services not enabled.")
-            let error = SwiftyNativeLocationError.message("location services not enabled")
-            closure?(false, error)
+            DispatchQueue.main.async {
+                let error = SwiftyNativeLocationError.message("location services not enabled")
+                closure?(false, error)
+            }
             return
         }
         myPrint("location services enabled.")
@@ -84,15 +90,21 @@ public extension SwiftyNativeLocation {
             objc_setAssociatedObject(location, &SwiftyNativeLocation.AssociatedKeys.requestAuthorizationStatusWhenInUseClosureKey, closure, .OBJC_ASSOCIATION_COPY_NONATOMIC)
         case .restricted:
             myPrint("location restricted.")
-            let error = SwiftyNativeLocationError.message("location restricted")
-            closure?(false, error)
+            DispatchQueue.main.async {
+                let error = SwiftyNativeLocationError.message("location restricted")
+                closure?(false, error)
+            }
         case .denied:
             myPrint("location denied.")
-            let error = SwiftyNativeLocationError.message("location denied")
-            closure?(false, error)
+            DispatchQueue.main.async {
+                let error = SwiftyNativeLocationError.message("location denied")
+                closure?(false, error)
+            }
         default:
             myPrint("request location authorization status ok.")
-            closure?(true, nil)
+            DispatchQueue.main.async {
+                closure?(true, nil)
+            }
         }
     }
     
@@ -101,6 +113,12 @@ public extension SwiftyNativeLocation {
     ///   - target: target
     ///   - closure: closure
     static func singleLocation(target: AnyObject, closure: singleLocationClosure?) {
+        if SwiftyNativeLocation.currentLocationAuthorizationStatus() == .notDetermined {
+            DispatchQueue.main.async {
+                closure?([], SwiftyNativeLocationError.message("Please get location permission first"))
+            }
+            return
+        }
         let location = SwiftyNativeLocation()
         location.target = target
         location.locationManager = CLLocationManager()
@@ -124,16 +142,22 @@ extension SwiftyNativeLocation: CLLocationManagerDelegate {
         case .restricted:
             myPrint("location restricted.")
             let error = SwiftyNativeLocationError.message("location restricted")
-            closure(false, error)
+            DispatchQueue.main.async {
+                closure(false, error)
+            }
             self.releaseAuthorizationStatus()
         case .denied:
             myPrint("location denied.")
             let error = SwiftyNativeLocationError.message("location denied")
-            closure(false, error)
+            DispatchQueue.main.async {
+                closure(false, error)
+            }
             self.releaseAuthorizationStatus()
         default:
             myPrint("request location authorization status ok.")
-            closure(true, nil)
+            DispatchQueue.main.async {
+                closure(true, nil)
+            }
             self.releaseAuthorizationStatus()
         }
     }
@@ -147,7 +171,9 @@ extension SwiftyNativeLocation: CLLocationManagerDelegate {
         manager.stopUpdatingLocation() // stop
         //
         if locations.count <= 0 {
-            closure([], SwiftyNativeLocationError.message("Can't get current location"))
+            DispatchQueue.main.async {
+                closure([], SwiftyNativeLocationError.message("Can't get current location"))
+            }
             self.releaseLocation()
             return
         }
@@ -155,12 +181,14 @@ extension SwiftyNativeLocation: CLLocationManagerDelegate {
         let geoCoder = CLGeocoder()
         geoCoder.reverseGeocodeLocation(currentLocation) { [weak self] (placemarks, error) in
             guard let self = self else { return }
-            if error != nil {
-                closure([], SwiftyNativeLocationError.message(error!.localizedDescription))
-                self.releaseLocation()
-            } else {
-                closure(placemarks ?? [], nil)
-                self.releaseLocation()
+            DispatchQueue.main.async {
+                if error != nil {
+                    closure([], SwiftyNativeLocationError.message(error!.localizedDescription))
+                    self.releaseLocation()
+                } else {
+                    closure(placemarks ?? [], nil)
+                    self.releaseLocation()
+                }
             }
         }
     }
@@ -168,7 +196,9 @@ extension SwiftyNativeLocation: CLLocationManagerDelegate {
     public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         guard let closure = objc_getAssociatedObject(self, &SwiftyNativeLocation.AssociatedKeys.singleLocationClosureKey) as? singleLocationClosure else { return }
         myPrint("single location fail: \(error)")
-        closure([], SwiftyNativeLocationError.message(error.localizedDescription))
+        DispatchQueue.main.async {
+            closure([], SwiftyNativeLocationError.message(error.localizedDescription))
+        }
         self.releaseLocation()
     }
 }
@@ -179,7 +209,6 @@ extension SwiftyNativeLocation {
             objc_setAssociatedObject(target, &SwiftyNativeLocation.AssociatedKeys.requestAuthorizationStatusWhenInUseLocationKey, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
         objc_setAssociatedObject(self, &SwiftyNativeLocation.AssociatedKeys.requestAuthorizationStatusWhenInUseClosureKey, nil, .OBJC_ASSOCIATION_COPY_NONATOMIC)
-        self.locationManager = nil
     }
     
     private func releaseLocation() {
@@ -187,6 +216,5 @@ extension SwiftyNativeLocation {
             objc_setAssociatedObject(target, &SwiftyNativeLocation.AssociatedKeys.singleLocationKey, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
         objc_setAssociatedObject(self, &SwiftyNativeLocation.AssociatedKeys.singleLocationClosureKey, nil, .OBJC_ASSOCIATION_COPY_NONATOMIC)
-        self.locationManager = nil
     }
 }

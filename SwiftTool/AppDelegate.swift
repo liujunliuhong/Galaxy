@@ -16,6 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        SwiftyAMapLocation.register(withKey: amap_key)
+        
         SwiftyLogSetup(saveToSandbox: true)
         
         self.window = UIWindow(frame: UIScreen.main.bounds)

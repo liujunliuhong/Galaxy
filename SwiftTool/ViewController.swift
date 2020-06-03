@@ -29,7 +29,10 @@ class ViewController: UIViewController {
 
 extension ViewController {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let vc = SwiftyBMKLocationTestViewController(bmk_key: bmk_key)
+        //let vc = SwiftyBMKLocationTestViewController(bmk_key: bmk_key)
+        //let vc = SwiftyNativeLocationTestViewController()
+        
+        let vc = SwiftyAMapLocationTestViewController(amap_key: amap_key)
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

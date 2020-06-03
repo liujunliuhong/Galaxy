@@ -23,5 +23,7 @@ target 'SwiftTool' do
   # 百度定位
   pod 'BMKLocationKit'
   
+  # 高德定位
+  pod 'AMapLocation'
 
 end

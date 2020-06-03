@@ -58,29 +58,31 @@ static char swifty_bmk_register_completion_associated_key;
     objc_setAssociatedObject(self.target, &swifty_bmk_register_associated_key, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     objc_setAssociatedObject(self, &swifty_bmk_register_completion_associated_key, nil, OBJC_ASSOCIATION_COPY_NONATOMIC);
     
-    /*
-     [BMKLocationAuth sharedInstance] is a singleton that strongly holds the delegate, so after the authorization is over, set the delegate to nil.
-     */
-    NSMutableDictionary<NSString *, NSString *> *propertyNames = [NSMutableDictionary dictionary];
-    unsigned int count = 0;
-    Ivar *property = class_copyIvarList([BMKLocationAuth sharedInstance].class, &count);
-    for (unsigned i = 0; i < count; i ++) {
-        Ivar p = property[i];
-        const char *name = ivar_getName(p);
-        NSString *propertyName = [NSString stringWithCString:name encoding:NSUTF8StringEncoding];
-        NSString *value = [[BMKLocationAuth sharedInstance] valueForKey:propertyName];
-        [propertyNames setObject:value ? value : @"" forKey:propertyName];
-    }
-    #if DEBUG
-            NSLog(@"%@", propertyNames);
-    #endif
-    
-    for (NSString *propertyName in [propertyNames allKeys]) {
-        if ([propertyName containsString:@"delegate"]) {
-            [[BMKLocationAuth sharedInstance] setValue:nil forKey:propertyName];
-            break;
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        /*
+         [BMKLocationAuth sharedInstance] is a singleton that strongly holds the delegate, so after the authorization is over, set the delegate to nil.
+         */
+        NSMutableDictionary<NSString *, NSString *> *propertyNames = [NSMutableDictionary dictionary];
+        unsigned int count = 0;
+        Ivar *property = class_copyIvarList([BMKLocationAuth sharedInstance].class, &count);
+        for (unsigned i = 0; i < count; i ++) {
+            Ivar p = property[i];
+            const char *name = ivar_getName(p);
+            NSString *propertyName = [NSString stringWithCString:name encoding:NSUTF8StringEncoding];
+            NSString *value = [[BMKLocationAuth sharedInstance] valueForKey:propertyName];
+            [propertyNames setObject:value ? value : @"" forKey:propertyName];
         }
-    }
+        #if DEBUG
+                NSLog(@"%@", propertyNames);
+        #endif
+        
+        for (NSString *propertyName in [propertyNames allKeys]) {
+            if ([propertyName containsString:@"delegate"]) {
+                [[BMKLocationAuth sharedInstance] setValue:nil forKey:propertyName];
+                break;
+            }
+        }
+    });
 }
 
 #pragma mark BMKLocationAuthDelegate

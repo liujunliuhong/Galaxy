@@ -20,11 +20,9 @@ public enum SwiftyNativeLocationError: LocalizedError {
     }
 }
 
-fileprivate func myPrint(_ items: Any...) {
+fileprivate func myPrint<T>(_ items: T) {
     #if DEBUG
-    items.forEach { (i) in
-        print(i)
-    }
+    print(items)
     #endif
 }
 

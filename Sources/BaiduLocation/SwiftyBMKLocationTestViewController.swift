@@ -10,6 +10,10 @@ import UIKit
 
 public class SwiftyBMKLocationTestViewController: UIViewController {
 
+    deinit {
+        print("\(self.classForCoder) deinit")
+    }
+    
     private let bmk_key: String
     public init(bmk_key: String) {
         self.bmk_key = bmk_key
@@ -22,7 +26,7 @@ public class SwiftyBMKLocationTestViewController: UIViewController {
     
     private lazy var registerButton: UIButton = {
         let registerButton = UIButton(type: .system)
-        registerButton.setTitle("Register", for: .normal)
+        registerButton.setTitle("BMK Register", for: .normal)
         registerButton.setTitleColor(.white, for: .normal)
         registerButton.backgroundColor = .gray
         registerButton.addTarget(self, action: #selector(registerAction), for: .touchUpInside)
@@ -31,7 +35,7 @@ public class SwiftyBMKLocationTestViewController: UIViewController {
     
     private lazy var singleLocationButton: UIButton = {
         let singleLocationButton = UIButton(type: .system)
-        singleLocationButton.setTitle("Single Location", for: .normal)
+        singleLocationButton.setTitle("BMK Single Location", for: .normal)
         singleLocationButton.setTitleColor(.white, for: .normal)
         singleLocationButton.backgroundColor = .gray
         singleLocationButton.addTarget(self, action: #selector(singleLocationAction), for: .touchUpInside)
@@ -65,13 +69,13 @@ public class SwiftyBMKLocationTestViewController: UIViewController {
         SwiftyBMKLocation.register(withTarget: self, key: self.bmk_key) { (code) in
             switch code {
             case .unknown:
-                print("BMKLocationAuthErrorUnknown")
+                self.showAlert(message: "BMKLocationAuthErrorUnknown")
             case .success:
-                print("BMKLocationAuthErrorSuccess")
+                self.showAlert(message: "BMKLocationAuthErrorSuccess")
             case .networkFailed:
-                print("BMKLocationAuthErrorNetworkFailed")
+                self.showAlert(message: "BMKLocationAuthErrorNetworkFailed")
             case .failed:
-                print("BMKLocationAuthErrorFailed")
+                self.showAlert(message: "BMKLocationAuthErrorFailed")
             @unknown default:
                 break
             }
@@ -82,32 +86,31 @@ public class SwiftyBMKLocationTestViewController: UIViewController {
     @objc func singleLocationAction() {
         SwiftyBMKLocation.singleLocation(configuration: { (locationManager) in
             locationManager.coordinateType = .WGS84
-        }) { (location, error) in
+        }) { [weak self] (location, error) in
+            guard let self = self else { return }
             if let error = error {
-                print("\(error.localizedDescription)")
+                self.showAlert(message: "\(error.localizedDescription)")
             } else if let location = location {
-                print("========================================")
-                print("latitude:\(location.location?.coordinate.latitude ?? 0)")
-                print("longitude:\(location.location?.coordinate.longitude ?? 0)")
-                print("provider:\(location.provider == .IOS ? "BMKLocationProviderIOS" : "BMKLocationProviderOther")")
-                print("locationID:\(location.locationID ?? "")")
-                print("floorString:\(location.floorString ?? "")")
-                print("buildingID:\(location.buildingID ?? "")")
-                print("buildingName:\(location.buildingName ?? "")")
-                print("extraInfo:\(location.extraInfo ?? [:])")
-                
-                print("rgcData.country:\(location.rgcData?.country ?? "")")
-                print("rgcData.countryCode:\(location.rgcData?.countryCode ?? "")")
-                print("rgcData.province:\(location.rgcData?.province ?? "")")
-                print("rgcData.city:\(location.rgcData?.city ?? "")")
-                print("rgcData.district:\(location.rgcData?.district ?? "")")
-                print("rgcData.town:\(location.rgcData?.town ?? "")")
-                print("rgcData.street:\(location.rgcData?.street ?? "")")
-                print("rgcData.streetNumber:\(location.rgcData?.streetNumber ?? "")")
-                print("rgcData.cityCode:\(location.rgcData?.cityCode ?? "")")
-                print("rgcData.adCode:\(location.rgcData?.adCode ?? "")")
-                print("rgcData.locationDescribe:\(location.rgcData?.locationDescribe ?? "")")
-                
+                var dic: [String: Any] = [:]
+                dic["location.latitude"] = location.location?.coordinate.latitude ?? 0
+                dic["location.longitude"] = location.location?.coordinate.longitude ?? 0
+                dic["location.provider"] = location.provider == .IOS ? "BMKLocationProviderIOS" : "BMKLocationProviderOther"
+                dic["location.locationID"] = location.locationID ?? ""
+                dic["location.floorString"] = location.floorString ?? ""
+                dic["location.buildingID"] = location.buildingID ?? ""
+                dic["location.buildingName"] = location.buildingName ?? ""
+                dic["location.extraInfo"] = location.extraInfo ?? [:]
+                dic["location.rgcData.country"] = location.rgcData?.country ?? ""
+                dic["location.rgcData.countryCode"] = location.rgcData?.countryCode ?? ""
+                dic["location.rgcData.province"] = location.rgcData?.province ?? ""
+                dic["location.rgcData.city"] = location.rgcData?.city ?? ""
+                dic["location.rgcData.district"] = location.rgcData?.district ?? ""
+                dic["location.rgcData.town"] = location.rgcData?.town ?? ""
+                dic["location.rgcData.street"] = location.rgcData?.street ?? ""
+                dic["location.rgcData.streetNumber"] = location.rgcData?.streetNumber ?? ""
+                dic["location.rgcData.cityCode"] = location.rgcData?.cityCode ?? ""
+                dic["location.rgcData.adCode"] = location.rgcData?.adCode ?? ""
+                dic["location.rgcData.locationDescribe"] = location.rgcData?.locationDescribe ?? ""
                 var poiList: [Any] = []
                 for poi in (location.rgcData?.poiList ?? []) {
                     var poiDic: [String: Any] = [:]
@@ -118,10 +121,46 @@ public class SwiftyBMKLocationTestViewController: UIViewController {
                     poiDic["poi.relaiability"] = poi.relaiability
                     poiList.append(poiDic)
                 }
-                print("poiList:\(poiList as NSArray)")
+                dic["location.rgcData.poiList"] = poiList
                 
-                print("========================================")
+                let vc = SwiftyBMKLocationTestInfoViewController()
+                vc.textView.text = self.formatString(value: dic)
+                self.navigationController?.pushViewController(vc, animated: true)
             }
         }
+    }
+}
+
+extension SwiftyBMKLocationTestViewController {
+    func formatString<T>(value: T) -> String? {
+        guard let data = (NSString(format: "%@", value as! CVarArg) as String).data(using: .utf8) else { return nil }
+        guard let utf8 = String(data: data, encoding: .nonLossyASCII)?.utf8 else { return nil }
+        return "\(utf8)"
+    }
+    
+    private func showAlert(message: String?) {
+        let alert = UIAlertController(title: "Infomation", message: message, preferredStyle: .alert)
+        let sureAction = UIAlertAction(title: "Sure", style: .default, handler: nil)
+        alert.addAction(sureAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+}
+
+
+
+fileprivate class SwiftyBMKLocationTestInfoViewController: UIViewController {
+    deinit {
+        print("\(self.classForCoder) deinit")
+    }
+    lazy var textView: UITextView = {
+        let textView = UITextView()
+        textView.isEditable = false
+        return textView
+    }()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.backgroundColor = .white
+        self.view.addSubview(self.textView)
+        self.textView.frame = CGRect(x: 0, y: UIApplication.shared.statusBarFrame.height + 44, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - (UIApplication.shared.statusBarFrame.height + 44))
     }
 }

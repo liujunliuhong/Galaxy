@@ -13,4 +13,6 @@
 
 #import "SwiftyBMKLocation.h"
 
+#import "SwiftyAMapLocation.h"
+
 #endif /* SwiftTool_Bridging_Header_h */

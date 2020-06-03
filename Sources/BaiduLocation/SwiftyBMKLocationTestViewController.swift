@@ -86,6 +86,7 @@ public class SwiftyBMKLocationTestViewController: UIViewController {
     @objc func singleLocationAction() {
         SwiftyBMKLocation.singleLocation(configuration: { (locationManager) in
             locationManager.coordinateType = .WGS84
+            locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         }) { [weak self] (location, error) in
             guard let self = self else { return }
             if let error = error {

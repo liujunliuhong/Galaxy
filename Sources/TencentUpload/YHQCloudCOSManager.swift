@@ -7,12 +7,9 @@
 //
 
 import UIKit
-#if (canImport(QCloudCore) && canImport(QCloudCOSXML))
 import QCloudCore
 import QCloudCOSXML
-#endif
 
-#if (canImport(QCloudCore) && canImport(QCloudCOSXML))
 @objc public class YHQCloudCOSManager: NSObject {
     
     private let credentialFenceQueue: QCloudCredentailFenceQueue
@@ -108,4 +105,3 @@ extension YHQCloudCOSManager {
         QCloudCOSTransferMangerService.defaultCOSTransferManager().uploadObject(uploadRequest)
     }
 }
-#endif

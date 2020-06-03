@@ -16,7 +16,7 @@ public class SwiftyNativeLocationTestViewController: UIViewController {
     
     private lazy var currentAuthorizationStatusButton: UIButton = {
         let currentAuthorizationStatusButton = UIButton(type: .system)
-        currentAuthorizationStatusButton.setTitle("native Current Authorization Status", for: .normal)
+        currentAuthorizationStatusButton.setTitle("Native Current Authorization Status", for: .normal)
         currentAuthorizationStatusButton.setTitleColor(.white, for: .normal)
         currentAuthorizationStatusButton.backgroundColor = .gray
         currentAuthorizationStatusButton.addTarget(self, action: #selector(currentAuthorizationStatusAction), for: .touchUpInside)
@@ -25,7 +25,7 @@ public class SwiftyNativeLocationTestViewController: UIViewController {
     
     private lazy var requestLocationAuthorizationStatusButton: UIButton = {
         let requestLocationAuthorizationStatusButton = UIButton(type: .system)
-        requestLocationAuthorizationStatusButton.setTitle("native Request Location Authorization Status", for: .normal)
+        requestLocationAuthorizationStatusButton.setTitle("Native Request Location Authorization Status", for: .normal)
         requestLocationAuthorizationStatusButton.setTitleColor(.white, for: .normal)
         requestLocationAuthorizationStatusButton.backgroundColor = .gray
         requestLocationAuthorizationStatusButton.addTarget(self, action: #selector(requestLocationAuthorizationStatusAction), for: .touchUpInside)
@@ -34,7 +34,7 @@ public class SwiftyNativeLocationTestViewController: UIViewController {
     
     private lazy var singleLocationButton: UIButton = {
         let singleLocationButton = UIButton(type: .system)
-        singleLocationButton.setTitle("native Single Location", for: .normal)
+        singleLocationButton.setTitle("Native Single Location", for: .normal)
         singleLocationButton.setTitleColor(.white, for: .normal)
         singleLocationButton.backgroundColor = .gray
         singleLocationButton.addTarget(self, action: #selector(singleLocationAction), for: .touchUpInside)

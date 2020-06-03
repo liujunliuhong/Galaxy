@@ -30,7 +30,6 @@
 		183111FA2446A8D400155620 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 183111F92446A8D400155620 /* Test.m */; };
 		183112402446F8F200155620 /* YHRXAlamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183111FF2446F8F100155620 /* YHRXAlamofire.swift */; };
 		183112412446F8F200155620 /* YHResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183112002446F8F100155620 /* YHResult.swift */; };
-		183112452446F8F200155620 /* YHViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183112062446F8F100155620 /* YHViewModelType.swift */; };
 		183112492446F8F200155620 /* UITabBar+YHExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1831120B2446F8F100155620 /* UITabBar+YHExtension.swift */; };
 		183112572446F8F200155620 /* YHRxProgressTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1831121D2446F8F100155620 /* YHRxProgressTracker.swift */; };
 		183112582446F8F200155620 /* YHBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1831121F2446F8F100155620 /* YHBaseViewController.swift */; };
@@ -61,7 +60,6 @@
 		18998DB7246E300400EE72F0 /* String+Words.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18998DB6246E300400EE72F0 /* String+Words.swift */; };
 		18D9E67F248675C200CFDC27 /* SwiftyBMKLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D9E67E248675C200CFDC27 /* SwiftyBMKLocation.m */; };
 		18D9E68124867E2400CFDC27 /* SwiftyBMKLocationTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D9E68024867E2400CFDC27 /* SwiftyBMKLocationTestViewController.swift */; };
-		18D9E68324867E5100CFDC27 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D9E68224867E5100CFDC27 /* Keys.swift */; };
 		18EBB731247372DC0080CC2B /* SwiftyFlowItemsAutoMarginTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EBB730247372DC0080CC2B /* SwiftyFlowItemsAutoMarginTestViewController.swift */; };
 		18EBB7332473B6B30080CC2B /* SwiftyFlowItemsAutoWidthTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EBB7322473B6B30080CC2B /* SwiftyFlowItemsAutoWidthTestViewController.swift */; };
 		18EBB7352473BA350080CC2B /* UIApplication+SwiftyExtensionForURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EBB7342473BA350080CC2B /* UIApplication+SwiftyExtensionForURL.swift */; };
@@ -78,6 +76,8 @@
 		859A7D80246EF7F7008F7A4F /* SwiftyCityPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859A7D7F246EF7F7008F7A4F /* SwiftyCityPickerView.swift */; };
 		85C3234224853772007D2B73 /* SwiftyNativeLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C3234124853772007D2B73 /* SwiftyNativeLocation.swift */; };
 		85C3234424853CF6007D2B73 /* SwiftyNativeLocationTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C3234324853CF6007D2B73 /* SwiftyNativeLocationTestViewController.swift */; };
+		85CD1E452487E0D900149C71 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD1E442487E0D900149C71 /* Keys.swift */; };
+		85CD1E472487F52300149C71 /* SwiftyViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD1E462487F52300149C71 /* SwiftyViewModelType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,7 +108,6 @@
 		183111FB2446A8FF00155620 /* SwiftTool-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwiftTool-Bridging-Header.h"; sourceTree = "<group>"; };
 		183111FF2446F8F100155620 /* YHRXAlamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YHRXAlamofire.swift; sourceTree = "<group>"; };
 		183112002446F8F100155620 /* YHResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YHResult.swift; sourceTree = "<group>"; };
-		183112062446F8F100155620 /* YHViewModelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YHViewModelType.swift; sourceTree = "<group>"; };
 		1831120B2446F8F100155620 /* UITabBar+YHExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITabBar+YHExtension.swift"; sourceTree = "<group>"; };
 		1831121D2446F8F100155620 /* YHRxProgressTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YHRxProgressTracker.swift; sourceTree = "<group>"; };
 		1831121F2446F8F100155620 /* YHBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YHBaseViewController.swift; sourceTree = "<group>"; };
@@ -145,7 +144,6 @@
 		18D9E67D248675C200CFDC27 /* SwiftyBMKLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftyBMKLocation.h; sourceTree = "<group>"; };
 		18D9E67E248675C200CFDC27 /* SwiftyBMKLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwiftyBMKLocation.m; sourceTree = "<group>"; };
 		18D9E68024867E2400CFDC27 /* SwiftyBMKLocationTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyBMKLocationTestViewController.swift; sourceTree = "<group>"; };
-		18D9E68224867E5100CFDC27 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		18EBB730247372DC0080CC2B /* SwiftyFlowItemsAutoMarginTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyFlowItemsAutoMarginTestViewController.swift; sourceTree = "<group>"; };
 		18EBB7322473B6B30080CC2B /* SwiftyFlowItemsAutoWidthTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyFlowItemsAutoWidthTestViewController.swift; sourceTree = "<group>"; };
 		18EBB7342473BA350080CC2B /* UIApplication+SwiftyExtensionForURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+SwiftyExtensionForURL.swift"; sourceTree = "<group>"; };
@@ -163,6 +161,8 @@
 		859A7D7F246EF7F7008F7A4F /* SwiftyCityPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCityPickerView.swift; sourceTree = "<group>"; };
 		85C3234124853772007D2B73 /* SwiftyNativeLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyNativeLocation.swift; sourceTree = "<group>"; };
 		85C3234324853CF6007D2B73 /* SwiftyNativeLocationTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyNativeLocationTestViewController.swift; sourceTree = "<group>"; };
+		85CD1E442487E0D900149C71 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
+		85CD1E462487F52300149C71 /* SwiftyViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyViewModelType.swift; sourceTree = "<group>"; };
 		B4B9793D1D5B9C59651E2DBB /* Pods-SwiftTool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftTool.debug.xcconfig"; path = "Target Support Files/Pods-SwiftTool/Pods-SwiftTool.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -224,8 +224,8 @@
 				1831114E24469EB700155620 /* ViewController.swift */,
 				183111F82446A8D400155620 /* Test.h */,
 				183111F92446A8D400155620 /* Test.m */,
+				85CD1E442487E0D900149C71 /* Keys.swift */,
 				183111FB2446A8FF00155620 /* SwiftTool-Bridging-Header.h */,
-				18D9E68224867E5100CFDC27 /* Keys.swift */,
 				1831115024469EB700155620 /* Main.storyboard */,
 				1831115324469EB900155620 /* Assets.xcassets */,
 				1831115524469EB900155620 /* LaunchScreen.storyboard */,
@@ -287,7 +287,7 @@
 		183112052446F8F100155620 /* ViewModelType */ = {
 			isa = PBXGroup;
 			children = (
-				183112062446F8F100155620 /* YHViewModelType.swift */,
+				85CD1E462487F52300149C71 /* SwiftyViewModelType.swift */,
 			);
 			path = ViewModelType;
 			sourceTree = "<group>";
@@ -616,7 +616,6 @@
 				8544C6C9246C3CAE00361C08 /* SwiftyPickerToolBar.swift in Sources */,
 				183112582446F8F200155620 /* YHBaseViewController.swift in Sources */,
 				182805E12472715C00A3D228 /* SwiftyTagContainerTestViewController.swift in Sources */,
-				18D9E68324867E5100CFDC27 /* Keys.swift in Sources */,
 				182805D724723C4700A3D228 /* UIImage+SwiftyExtensionForColor.swift in Sources */,
 				1831125E2446F8F200155620 /* YHSystemFaceView.m in Sources */,
 				1869FCDC2475023300798729 /* Array+SwiftyExtension.swift in Sources */,
@@ -628,6 +627,7 @@
 				1869FCD62474FF7F00798729 /* Bundle+SwiftyExtension.swift in Sources */,
 				183112592446F8F200155620 /* YHCusNavigationBar.swift in Sources */,
 				8544C6D1246C4B7F00361C08 /* SwiftyPermissionTestViewController.swift in Sources */,
+				85CD1E452487E0D900149C71 /* Keys.swift in Sources */,
 				8544C6CB246C3D2D00361C08 /* SwiftyDatePickerView.swift in Sources */,
 				183112402446F8F200155620 /* YHRXAlamofire.swift in Sources */,
 				183112692446F8F200155620 /* YHQCloudCOSManager.swift in Sources */,
@@ -642,8 +642,8 @@
 				182805DF2472710000A3D228 /* SwiftyTagContainerView.swift in Sources */,
 				180E6EC62468EC5C001B069C /* SwiftyMBHUD.swift in Sources */,
 				1827D03B246D223A00429B36 /* SwiftyWordsSortTestViewController.swift in Sources */,
+				85CD1E472487F52300149C71 /* SwiftyViewModelType.swift in Sources */,
 				183111FA2446A8D400155620 /* Test.m in Sources */,
-				183112452446F8F200155620 /* YHViewModelType.swift in Sources */,
 				1831125B2446F8F200155620 /* YHSystemFace.m in Sources */,
 				183112412446F8F200155620 /* YHResult.swift in Sources */,
 				183112672446F8F200155620 /* YHTabBatItemContentView.swift in Sources */,

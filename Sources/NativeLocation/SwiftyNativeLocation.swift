@@ -66,11 +66,12 @@ public extension SwiftyNativeLocation {
     ///   - target: target
     ///   - closure: closure
     static func requestAuthorizationStatusWhenInUse(target: AnyObject, closure: requestAuthorizationStatusWhenInUseClosure?) {
+        guard let closure = closure else { return }
         if !CLLocationManager.locationServicesEnabled() {
             myPrint("location services not enabled.")
             DispatchQueue.main.async {
                 let error = SwiftyNativeLocationError.message("location services not enabled")
-                closure?(false, error)
+                closure(false, error)
             }
             return
         }
@@ -90,18 +91,18 @@ public extension SwiftyNativeLocation {
             myPrint("location restricted.")
             DispatchQueue.main.async {
                 let error = SwiftyNativeLocationError.message("location restricted")
-                closure?(false, error)
+                closure(false, error)
             }
         case .denied:
             myPrint("location denied.")
             DispatchQueue.main.async {
                 let error = SwiftyNativeLocationError.message("location denied")
-                closure?(false, error)
+                closure(false, error)
             }
         default:
             myPrint("request location authorization status ok.")
             DispatchQueue.main.async {
-                closure?(true, nil)
+                closure(true, nil)
             }
         }
     }
@@ -111,9 +112,10 @@ public extension SwiftyNativeLocation {
     ///   - target: target
     ///   - closure: closure
     static func singleLocation(target: AnyObject, closure: singleLocationClosure?) {
+        guard let closure = closure else { return }
         if SwiftyNativeLocation.currentLocationAuthorizationStatus() == .notDetermined {
             DispatchQueue.main.async {
-                closure?([], SwiftyNativeLocationError.message("Please get location permission first"))
+                closure([], SwiftyNativeLocationError.message("Please get location permission first"))
             }
             return
         }

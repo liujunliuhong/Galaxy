@@ -24,11 +24,6 @@ public class SwiftyAMapLocationTestViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    lazy var locationManager: AMapLocationManager = {
-        let locationManager = AMapLocationManager()
-        return locationManager
-    }()
-    
     private lazy var registerButton: UIButton = {
         let registerButton = UIButton(type: .system)
         registerButton.setTitle("Amap Register", for: .normal)
@@ -71,18 +66,10 @@ extension SwiftyAMapLocationTestViewController {
     
     
     @objc func singleLocationAction() {
-        /*
-        AMapLocationManager *locationManager = [[AMapLocationManager alloc] init];
-        configuration(locationManager);
-        [locationManager requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (completionBlock) {
-                    completionBlock(location, regeocode, error);
-                }
-            });
-        }];
-        */
-        self.locationManager.requestLocation(withReGeocode: true) { [weak self] (location, regeocode, error) in
+        SwiftyAMapLocation.singleLocation(withTarget: self, configuration: { (locationManager) in
+            // configuration
+            locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        }) { [weak self] (location, regeocode, error) in
             guard let self = self else { return }
             if let error = error {
                 self.showAlert(message: error.localizedDescription)
@@ -110,36 +97,6 @@ extension SwiftyAMapLocationTestViewController {
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }
-        
-//        SwiftyAMapLocation.singleLocation(configuration: { (locationManager) in
-//            // configuration
-//        }) { [weak self] (location, regeocode, error) in
-//            guard let self = self else { return }
-//            if let error = error {
-//                self.showAlert(message: error.localizedDescription)
-//            } else {
-//                var dic: [String: Any] = [:]
-//                if let location = location {
-//                    dic["location.latitude"] = location.coordinate.latitude
-//                    dic["location.longitude"] = location.coordinate.longitude
-//                } else if let regeocode = regeocode {
-//                    dic["regeocode.formattedAddress"] = regeocode.formattedAddress
-//                    dic["regeocode.country"] = regeocode.country
-//                    dic["regeocode.province"] = regeocode.province
-//                    dic["regeocode.city"] = regeocode.city
-//                    dic["regeocode.district"] = regeocode.district
-//                    dic["regeocode.citycode"] = regeocode.citycode
-//                    dic["regeocode.adcode"] = regeocode.adcode
-//                    dic["regeocode.street"] = regeocode.street
-//                    dic["regeocode.number"] = regeocode.number
-//                    dic["regeocode.POIName"] = regeocode.poiName
-//                    dic["regeocode.AOIName"] = regeocode.aoiName
-//                }
-//                let vc = SwiftyAMapLocationTestInfoViewController()
-//                vc.textView.text = self.formatString(value: dic)
-//                self.navigationController?.pushViewController(vc, animated: true)
-//            }
-//        }
     }
 }
 extension SwiftyAMapLocationTestViewController {

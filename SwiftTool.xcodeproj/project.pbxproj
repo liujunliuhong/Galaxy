@@ -57,6 +57,7 @@
 		1869FCDE2475044C00798729 /* CGFloat+SwiftyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1869FCDD2475044C00798729 /* CGFloat+SwiftyExtension.swift */; };
 		1870F4B2246A2E1D0016D596 /* SwiftyMBHUDTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870F4B1246A2E1D0016D596 /* SwiftyMBHUDTestViewController.swift */; };
 		1870F4B5246A389E0016D596 /* SwiftyLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870F4B4246A389E0016D596 /* SwiftyLog.swift */; };
+		189404E82488A5DC005D9C29 /* SwiftyQCloudCOSManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189404E72488A5DC005D9C29 /* SwiftyQCloudCOSManager.swift */; };
 		18998DB7246E300400EE72F0 /* String+Words.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18998DB6246E300400EE72F0 /* String+Words.swift */; };
 		18D9E67F248675C200CFDC27 /* SwiftyBMKLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D9E67E248675C200CFDC27 /* SwiftyBMKLocation.m */; };
 		18D9E68124867E2400CFDC27 /* SwiftyBMKLocationTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D9E68024867E2400CFDC27 /* SwiftyBMKLocationTestViewController.swift */; };
@@ -140,6 +141,7 @@
 		1869FCDD2475044C00798729 /* CGFloat+SwiftyExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+SwiftyExtension.swift"; sourceTree = "<group>"; };
 		1870F4B1246A2E1D0016D596 /* SwiftyMBHUDTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyMBHUDTestViewController.swift; sourceTree = "<group>"; };
 		1870F4B4246A389E0016D596 /* SwiftyLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyLog.swift; sourceTree = "<group>"; };
+		189404E72488A5DC005D9C29 /* SwiftyQCloudCOSManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyQCloudCOSManager.swift; sourceTree = "<group>"; };
 		18998DB6246E300400EE72F0 /* String+Words.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Words.swift"; sourceTree = "<group>"; };
 		18D9E67D248675C200CFDC27 /* SwiftyBMKLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftyBMKLocation.h; sourceTree = "<group>"; };
 		18D9E67E248675C200CFDC27 /* SwiftyBMKLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwiftyBMKLocation.m; sourceTree = "<group>"; };
@@ -405,6 +407,7 @@
 			isa = PBXGroup;
 			children = (
 				1831123B2446F8F100155620 /* YHQCloudCOSManager.swift */,
+				189404E72488A5DC005D9C29 /* SwiftyQCloudCOSManager.swift */,
 			);
 			path = TencentUpload;
 			sourceTree = "<group>";
@@ -639,6 +642,7 @@
 				85C3234224853772007D2B73 /* SwiftyNativeLocation.swift in Sources */,
 				182805DB24723CE200A3D228 /* UIView+SwiftyExtensionForSnapshot.swift in Sources */,
 				859A7D80246EF7F7008F7A4F /* SwiftyCityPickerView.swift in Sources */,
+				189404E82488A5DC005D9C29 /* SwiftyQCloudCOSManager.swift in Sources */,
 				182805DF2472710000A3D228 /* SwiftyTagContainerView.swift in Sources */,
 				180E6EC62468EC5C001B069C /* SwiftyMBHUD.swift in Sources */,
 				1827D03B246D223A00429B36 /* SwiftyWordsSortTestViewController.swift in Sources */,

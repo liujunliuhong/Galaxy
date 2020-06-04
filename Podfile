@@ -17,8 +17,8 @@ target 'SwiftTool' do
   pod 'SnapKit'
   pod 'Texture'
   
+  # 腾讯云对象存储
   pod 'QCloudCOSXML'
-  
   
   # 百度定位
   pod 'BMKLocationKit'

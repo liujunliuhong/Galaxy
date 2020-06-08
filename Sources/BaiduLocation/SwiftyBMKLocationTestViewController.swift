@@ -134,7 +134,7 @@ public class SwiftyBMKLocationTestViewController: UIViewController {
 
 extension SwiftyBMKLocationTestViewController {
     func formatString<T>(value: T) -> String? {
-        guard let data = (NSString(format: "%@", value as! CVarArg) as String).data(using: .utf8) else { return nil }
+        guard let data = String(format: "%@", value as! CVarArg).data(using: .utf8) else { return nil }
         guard let utf8 = String(data: data, encoding: .nonLossyASCII)?.utf8 else { return nil }
         return "\(utf8)"
     }

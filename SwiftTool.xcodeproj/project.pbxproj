@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		180E6EC42468EBB3001B069C /* SwiftyHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 180E6EC32468EBB3001B069C /* SwiftyHUD.bundle */; };
 		180E6EC62468EC5C001B069C /* SwiftyMBHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180E6EC52468EC5C001B069C /* SwiftyMBHUD.swift */; };
+		1818101C248E0A9700BB4D03 /* SwiftyQCloudCOSManagerTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1818101B248E0A9700BB4D03 /* SwiftyQCloudCOSManagerTestViewController.swift */; };
+		1818101E248E10F200BB4D03 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 1818101D248E10F200BB4D03 /* test.png */; };
 		1827D02D246D1B7500429B36 /* SwiftyLogTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1827D02C246D1B7500429B36 /* SwiftyLogTestViewController.swift */; };
 		1827D03B246D223A00429B36 /* SwiftyWordsSortTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1827D03A246D223A00429B36 /* SwiftyWordsSortTestViewController.swift */; };
 		1827D03D246D23EA00429B36 /* SwiftyWordsSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1827D03C246D23EA00429B36 /* SwiftyWordsSort.swift */; };
@@ -46,7 +48,6 @@
 		183112652446F8F200155620 /* YHTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183112352446F8F100155620 /* YHTabBarController.swift */; };
 		183112662446F8F200155620 /* YHTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183112362446F8F100155620 /* YHTabBar.swift */; };
 		183112672446F8F200155620 /* YHTabBatItemContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183112372446F8F100155620 /* YHTabBatItemContentView.swift */; };
-		183112692446F8F200155620 /* YHQCloudCOSManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1831123B2446F8F100155620 /* YHQCloudCOSManager.swift */; };
 		1831126D2446FBB200155620 /* SwiftToolDescription in Resources */ = {isa = PBXBuildFile; fileRef = 1831126C2446FBB200155620 /* SwiftToolDescription */; };
 		18485278248774E400BD6A25 /* SwiftyAMapLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 18485277248774E400BD6A25 /* SwiftyAMapLocation.m */; };
 		1848527D2487AC4900BD6A25 /* SwiftyAMapLocationTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1848527C2487AC4900BD6A25 /* SwiftyAMapLocationTestViewController.swift */; };
@@ -84,6 +85,8 @@
 /* Begin PBXFileReference section */
 		180E6EC32468EBB3001B069C /* SwiftyHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SwiftyHUD.bundle; sourceTree = "<group>"; };
 		180E6EC52468EC5C001B069C /* SwiftyMBHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyMBHUD.swift; sourceTree = "<group>"; };
+		1818101B248E0A9700BB4D03 /* SwiftyQCloudCOSManagerTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyQCloudCOSManagerTestViewController.swift; sourceTree = "<group>"; };
+		1818101D248E10F200BB4D03 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 		1827D02C246D1B7500429B36 /* SwiftyLogTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyLogTestViewController.swift; sourceTree = "<group>"; };
 		1827D03A246D223A00429B36 /* SwiftyWordsSortTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyWordsSortTestViewController.swift; sourceTree = "<group>"; };
 		1827D03C246D23EA00429B36 /* SwiftyWordsSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyWordsSort.swift; sourceTree = "<group>"; };
@@ -129,7 +132,6 @@
 		183112352446F8F100155620 /* YHTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YHTabBarController.swift; sourceTree = "<group>"; };
 		183112362446F8F100155620 /* YHTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YHTabBar.swift; sourceTree = "<group>"; };
 		183112372446F8F100155620 /* YHTabBatItemContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YHTabBatItemContentView.swift; sourceTree = "<group>"; };
-		1831123B2446F8F100155620 /* YHQCloudCOSManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YHQCloudCOSManager.swift; sourceTree = "<group>"; };
 		1831126C2446FBB200155620 /* SwiftToolDescription */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SwiftToolDescription; sourceTree = "<group>"; };
 		18485276248774E400BD6A25 /* SwiftyAMapLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftyAMapLocation.h; sourceTree = "<group>"; };
 		18485277248774E400BD6A25 /* SwiftyAMapLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwiftyAMapLocation.m; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				183111F82446A8D400155620 /* Test.h */,
 				183111F92446A8D400155620 /* Test.m */,
 				85CD1E442487E0D900149C71 /* Keys.swift */,
+				1818101D248E10F200BB4D03 /* test.png */,
 				183111FB2446A8FF00155620 /* SwiftTool-Bridging-Header.h */,
 				1831115024469EB700155620 /* Main.storyboard */,
 				1831115324469EB900155620 /* Assets.xcassets */,
@@ -406,8 +409,8 @@
 		1831123A2446F8F100155620 /* TencentUpload */ = {
 			isa = PBXGroup;
 			children = (
-				1831123B2446F8F100155620 /* YHQCloudCOSManager.swift */,
 				189404E72488A5DC005D9C29 /* SwiftyQCloudCOSManager.swift */,
+				1818101B248E0A9700BB4D03 /* SwiftyQCloudCOSManagerTestViewController.swift */,
 			);
 			path = TencentUpload;
 			sourceTree = "<group>";
@@ -548,6 +551,7 @@
 			files = (
 				1831125F2446F8F200155620 /* YHSystemFace.bundle in Resources */,
 				1831115724469EB900155620 /* LaunchScreen.storyboard in Resources */,
+				1818101E248E10F200BB4D03 /* test.png in Resources */,
 				859A7D7A246EF00B008F7A4F /* SwiftyCity.bundle in Resources */,
 				1831115424469EB900155620 /* Assets.xcassets in Resources */,
 				1831126D2446FBB200155620 /* SwiftToolDescription in Resources */,
@@ -628,12 +632,12 @@
 				182805D924723C9B00A3D228 /* UIView+SwiftyExtensionForFrame.swift in Sources */,
 				183112642446F8F200155620 /* YHTabBarItemContainer.swift in Sources */,
 				1869FCD62474FF7F00798729 /* Bundle+SwiftyExtension.swift in Sources */,
+				1818101C248E0A9700BB4D03 /* SwiftyQCloudCOSManagerTestViewController.swift in Sources */,
 				183112592446F8F200155620 /* YHCusNavigationBar.swift in Sources */,
 				8544C6D1246C4B7F00361C08 /* SwiftyPermissionTestViewController.swift in Sources */,
 				85CD1E452487E0D900149C71 /* Keys.swift in Sources */,
 				8544C6CB246C3D2D00361C08 /* SwiftyDatePickerView.swift in Sources */,
 				183112402446F8F200155620 /* YHRXAlamofire.swift in Sources */,
-				183112692446F8F200155620 /* YHQCloudCOSManager.swift in Sources */,
 				1831114B24469EB700155620 /* AppDelegate.swift in Sources */,
 				18EBB731247372DC0080CC2B /* SwiftyFlowItemsAutoMarginTestViewController.swift in Sources */,
 				1827D03D246D23EA00429B36 /* SwiftyWordsSort.swift in Sources */,

@@ -72,9 +72,9 @@ static char swifty_bmk_register_completion_associated_key;
             NSString *value = [[BMKLocationAuth sharedInstance] valueForKey:propertyName];
             [propertyNames setObject:value ? value : @"" forKey:propertyName];
         }
-        #if DEBUG
-                NSLog(@"%@", propertyNames);
-        #endif
+#if DEBUG
+        NSLog(@"%@", propertyNames);
+#endif
         
         for (NSString *propertyName in [propertyNames allKeys]) {
             if ([propertyName containsString:@"delegate"]) {

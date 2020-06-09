@@ -10,13 +10,13 @@ import Foundation
 
 extension Array {
     /// json encode
-    public var yh_jsonEnCode: String? {
+    public var YH_jsonEnCode: String? {
         guard let data = try? JSONSerialization.data(withJSONObject: self, options: []) else { return nil }
         return String(data: data, encoding: .utf8)
     }
     
     /// The array is randomly shuffled
-    public var yh_shuffle: Array<Element> {
+    public var YH_shuffle: Array<Element> {
         var list = self
         for index in 0..<list.count {
             let newIndex = Int(arc4random_uniform(UInt32(list.count-index))) + index
@@ -32,7 +32,7 @@ public extension Array where Element: NSObject {
     /// A certain number of collections are grouped. The elements in the collection must inherit from `NSObject`. If the last line is less than `perRowCount`, use the default initialization
     /// - Parameter perRowCount: perRowCount
     /// - Returns: grouped
-    func yh_group(perRowCount: Int) -> [[Element]] {
+    func YH_group(perRowCount: Int) -> [[Element]] {
         var allValues: [Element] = []
         //
         let remainCount = self.count % perRowCount // The remaining amount is not full

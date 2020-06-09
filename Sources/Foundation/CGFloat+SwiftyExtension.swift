@@ -11,12 +11,12 @@ import UIKit
 
 extension CGFloat {
     /// Angle to radian
-    public var yh_degreesToRadius: CGFloat {
+    public var YH_degreesToRadius: CGFloat {
         return self * CGFloat(Double.pi) / 180.0
     }
     
     /// Radian to angle
-    public var yh_radiusToDegrees: CGFloat {
+    public var YH_radiusToDegrees: CGFloat {
         return (self * 180.0) / CGFloat(Double.pi)
     }
 }

@@ -203,12 +203,12 @@ extension SwiftyPickerView {
     @discardableResult @objc open func show(doneClosure: SwiftyPickerDoneClosure?) -> Bool {
         guard let window = UIApplication.shared.keyWindow else { return false }
         
-//        if titlesForComponents == nil && attributeTitlesForComponents == nil {
-//            #if DEBUG
-//            print("no data source")
-//            #endif
-//            return false
-//        }
+        //        if titlesForComponents == nil && attributeTitlesForComponents == nil {
+        //            #if DEBUG
+        //            print("no data source")
+        //            #endif
+        //            return false
+        //        }
         
         self.doneClosure = doneClosure
         

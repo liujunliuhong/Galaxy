@@ -9,7 +9,7 @@
 import UIKit
 
 public class SwiftyBMKLocationTestViewController: UIViewController {
-
+    
     deinit {
         print("\(self.classForCoder) deinit")
     }
@@ -57,7 +57,7 @@ public class SwiftyBMKLocationTestViewController: UIViewController {
         self.view.addSubview(self.singleLocationButton)
     }
     
-
+    
     
     @objc func registerAction() {
         /*

@@ -11,7 +11,7 @@ import Foundation
 
 extension Dictionary {
     /// json encode
-    public var yh_jsonEnCode: String? {
+    public var YH_jsonEnCode: String? {
         guard let data = try? JSONSerialization.data(withJSONObject: self, options: []) else { return nil }
         return String(data: data, encoding: .utf8)
     }

@@ -47,7 +47,7 @@ static char swifty_amap_single_location_completion_key;
     }];
 }
 
-    
+
 
 
 @end

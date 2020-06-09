@@ -39,10 +39,14 @@ import UIKit
  */
 public extension UIDevice {
     /// UIDevice Width
-    static let YH_Width = UIScreen.main.bounds.size.width
+    static var YH_Width: CGFloat {
+        return UIScreen.main.bounds.size.width
+    }
     
     /// UIDevice Height
-    static let YH_Height: CGFloat = UIScreen.main.bounds.size.height
+    static var YH_Height: CGFloat {
+        return UIScreen.main.bounds.size.height
+    }
     
     // Get machine name, such as `iPhone 7 Plus`.
     static var YHMachineName: String {
@@ -175,8 +179,8 @@ public extension UIDevice {
             return false
         }
         var result: Bool = false
-        let width = UIDevice.YH_Width
-        let height = UIDevice.YH_Height
+        let width = YH_Width
+        let height = YH_Height
         if UIApplication.shared.statusBarOrientation == .portrait || UIApplication.shared.statusBarOrientation == .portraitUpsideDown {
             if (width == 375.0 && height == 812.0) || (width == 414.0 && height == 896.0) {
                 result = true

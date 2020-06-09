@@ -40,6 +40,10 @@ extension TagButton: SwiftyTagContainerProtocol {
 
 public class SwiftyTagContainerTestViewController: UIViewController {
     
+    deinit {
+        print("\(NSStringFromClass(self.classForCoder)) deinit")
+    }
+    
     
     private lazy var dataSource: [String] = {
         return ["123",

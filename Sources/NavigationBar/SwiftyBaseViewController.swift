@@ -1,26 +1,22 @@
 //
-//  YHBaseViewController.swift
+//  SwiftyBaseViewController.swift
 //  SwiftTool
 //
-//  Created by apple on 2019/5/9.
-//  Copyright © 2019 yinhe. All rights reserved.
+//  Created by apple on 2020/6/10.
+//  Copyright © 2020 yinhe. All rights reserved.
 //
 
 import UIKit
 import SnapKit
 
-
-// 和YHCusNavigationBar耦合的一个BaseVC，包含一个cusNaviBar和safeAreaView，safeAreaView已经做了适配
-// 主要处理了屏幕旋转相关的问题
-// 也可以单独把YHCusNavigationBar拿出来用
-@objc public class YHBaseViewController: UIViewController {
+@objc public class SwiftyBaseViewController: UIViewController {
     deinit {
         NotificationCenter.default.removeObserver(self, name: UIApplication.didChangeStatusBarOrientationNotification, object: nil)
     }
     
-    @objc public lazy var cusNaviBar: YHCusNavigationBar = {
-        let cusNaviBar = YHCusNavigationBar()
-        cusNaviBar.hideNaviBar = true // 默认隐藏整个导航栏，避免bug：如果设置为true，进入一个需要隐藏导航栏的界面时，导航栏会闪一下
+    @objc public lazy var cusNaviBar: SwiftyCusNavigationBar = {
+        let cusNaviBar = SwiftyCusNavigationBar()
+        cusNaviBar.hideNavigationBar = true // By default, the entire navigation bar is hidden to avoid bugs. if set to true, the navigation bar will flash when entering an interface that needs to hide the navigation bar
         cusNaviBar.hideBar = false
         cusNaviBar.hideToolBar = true
         cusNaviBar.hideStatusBar = false
@@ -39,9 +35,11 @@ import SnapKit
         self.view.addSubview(cusNaviBar)
         self.view.addSubview(safeAreaView)
         
-        self.cusNaviBar.reloadUI(origin: .zero, width: self.view.frame.size.width)
+        // reload
+        self.cusNaviBar.reload(origin: .zero, barWidth: UIDevice.YH_Width)
         
-        safeAreaView.snp.makeConstraints { (make) in
+        // safeAreaView
+        self.safeAreaView.snp.makeConstraints { (make) in
             make.top.equalTo(self.cusNaviBar.snp.bottom)
             if #available(iOS 11.0, *) {
                 make.right.equalTo(self.view.safeAreaLayoutGuide)
@@ -55,6 +53,11 @@ import SnapKit
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(deviceRotaion), name: UIApplication.didChangeStatusBarOrientationNotification, object: nil)
+        
+        self.initData()
+        self.setupUI()
+        self.bindViewModel()
+        self.other()
     }
     
     // The status bar is not hidden by default.
@@ -96,10 +99,28 @@ import SnapKit
     }
 }
 
+extension SwiftyBaseViewController {
+    public func initData() {
+        
+    }
+    
+    public func setupUI() {
+        
+    }
+    
+    public func bindViewModel() {
+        
+    }
+    
+    public func other() {
+        
+    }
+}
 
 
-@objc public extension YHBaseViewController {
+
+@objc public extension SwiftyBaseViewController {
     @objc func deviceRotaion() {
-        self.cusNaviBar.reloadUI(origin: .zero, width: self.view.frame.size.width)
+        self.cusNaviBar.reload(origin: .zero, barWidth: UIDevice.YH_Width)
     }
 }

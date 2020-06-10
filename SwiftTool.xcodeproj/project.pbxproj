@@ -24,6 +24,8 @@
 		182805E324727B1800A3D228 /* SwiftyFlowItemsDisplayNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182805E224727B1800A3D228 /* SwiftyFlowItemsDisplayNode.swift */; };
 		182805E5247282E600A3D228 /* SwiftyFlowItemsTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182805E4247282E600A3D228 /* SwiftyFlowItemsTestViewController.swift */; };
 		182B7BB9246B873D000A95D0 /* SwiftyPickerTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182B7BB8246B873D000A95D0 /* SwiftyPickerTestViewController.swift */; };
+		183091B22490D89C007EA52C /* SwiftyCusNavigationBarTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183091B12490D89C007EA52C /* SwiftyCusNavigationBarTestViewController.swift */; };
+		183091B42490D950007EA52C /* SwiftyBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183091B32490D950007EA52C /* SwiftyBaseViewController.swift */; };
 		1831114B24469EB700155620 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1831114A24469EB700155620 /* AppDelegate.swift */; };
 		1831114F24469EB700155620 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1831114E24469EB700155620 /* ViewController.swift */; };
 		1831115224469EB700155620 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1831115024469EB700155620 /* Main.storyboard */; };
@@ -34,7 +36,6 @@
 		183112412446F8F200155620 /* YHResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183112002446F8F100155620 /* YHResult.swift */; };
 		183112492446F8F200155620 /* UITabBar+YHExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1831120B2446F8F100155620 /* UITabBar+YHExtension.swift */; };
 		183112572446F8F200155620 /* YHRxProgressTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1831121D2446F8F100155620 /* YHRxProgressTracker.swift */; };
-		183112582446F8F200155620 /* YHBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1831121F2446F8F100155620 /* YHBaseViewController.swift */; };
 		183112592446F8F200155620 /* YHCusNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183112202446F8F100155620 /* YHCusNavigationBar.swift */; };
 		1831125B2446F8F200155620 /* YHSystemFace.m in Sources */ = {isa = PBXBuildFile; fileRef = 183112262446F8F100155620 /* YHSystemFace.m */; };
 		1831125C2446F8F200155620 /* YHSystemFaceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 183112282446F8F100155620 /* YHSystemFaceHelper.m */; };
@@ -101,6 +102,8 @@
 		182805E224727B1800A3D228 /* SwiftyFlowItemsDisplayNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyFlowItemsDisplayNode.swift; sourceTree = "<group>"; };
 		182805E4247282E600A3D228 /* SwiftyFlowItemsTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyFlowItemsTestViewController.swift; sourceTree = "<group>"; };
 		182B7BB8246B873D000A95D0 /* SwiftyPickerTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyPickerTestViewController.swift; sourceTree = "<group>"; };
+		183091B12490D89C007EA52C /* SwiftyCusNavigationBarTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCusNavigationBarTestViewController.swift; sourceTree = "<group>"; };
+		183091B32490D950007EA52C /* SwiftyBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyBaseViewController.swift; sourceTree = "<group>"; };
 		1831114724469EB700155620 /* SwiftTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1831114A24469EB700155620 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1831114E24469EB700155620 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -115,7 +118,6 @@
 		183112002446F8F100155620 /* YHResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YHResult.swift; sourceTree = "<group>"; };
 		1831120B2446F8F100155620 /* UITabBar+YHExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITabBar+YHExtension.swift"; sourceTree = "<group>"; };
 		1831121D2446F8F100155620 /* YHRxProgressTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YHRxProgressTracker.swift; sourceTree = "<group>"; };
-		1831121F2446F8F100155620 /* YHBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YHBaseViewController.swift; sourceTree = "<group>"; };
 		183112202446F8F100155620 /* YHCusNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YHCusNavigationBar.swift; sourceTree = "<group>"; };
 		183112242446F8F100155620 /* YHSystemFaceHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSystemFaceHelper.h; sourceTree = "<group>"; };
 		183112252446F8F100155620 /* YHSystemFacePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSystemFacePageView.h; sourceTree = "<group>"; };
@@ -335,9 +337,10 @@
 		1831121E2446F8F100155620 /* NavigationBar */ = {
 			isa = PBXGroup;
 			children = (
-				1831121F2446F8F100155620 /* YHBaseViewController.swift */,
 				183112202446F8F100155620 /* YHCusNavigationBar.swift */,
 				854E899E248FC56700D1994B /* SwiftyCusNavigationBar.swift */,
+				183091B32490D950007EA52C /* SwiftyBaseViewController.swift */,
+				183091B12490D89C007EA52C /* SwiftyCusNavigationBarTestViewController.swift */,
 			);
 			path = NavigationBar;
 			sourceTree = "<group>";
@@ -625,7 +628,6 @@
 				1870F4B5246A389E0016D596 /* SwiftyLog.swift in Sources */,
 				18D9E68124867E2400CFDC27 /* SwiftyBMKLocationTestViewController.swift in Sources */,
 				8544C6C9246C3CAE00361C08 /* SwiftyPickerToolBar.swift in Sources */,
-				183112582446F8F200155620 /* YHBaseViewController.swift in Sources */,
 				182805E12472715C00A3D228 /* SwiftyTagContainerTestViewController.swift in Sources */,
 				182805D724723C4700A3D228 /* UIImage+SwiftyExtensionForColor.swift in Sources */,
 				1831125E2446F8F200155620 /* YHSystemFaceView.m in Sources */,
@@ -650,6 +652,7 @@
 				85C3234224853772007D2B73 /* SwiftyNativeLocation.swift in Sources */,
 				182805DB24723CE200A3D228 /* UIView+SwiftyExtensionForSnapshot.swift in Sources */,
 				859A7D80246EF7F7008F7A4F /* SwiftyCityPickerView.swift in Sources */,
+				183091B22490D89C007EA52C /* SwiftyCusNavigationBarTestViewController.swift in Sources */,
 				189404E82488A5DC005D9C29 /* SwiftyQCloudCOSManager.swift in Sources */,
 				182805DF2472710000A3D228 /* SwiftyTagContainerView.swift in Sources */,
 				180E6EC62468EC5C001B069C /* SwiftyMBHUD.swift in Sources */,
@@ -666,6 +669,7 @@
 				183112572446F8F200155620 /* YHRxProgressTracker.swift in Sources */,
 				1869FCDA2475020A00798729 /* Dictionary+SwiftyExtension.swift in Sources */,
 				182805D52472394700A3D228 /* UIColor+SwiftyExtension.swift in Sources */,
+				183091B42490D950007EA52C /* SwiftyBaseViewController.swift in Sources */,
 				182805E5247282E600A3D228 /* SwiftyFlowItemsTestViewController.swift in Sources */,
 				18998DB7246E300400EE72F0 /* String+Words.swift in Sources */,
 				18485278248774E400BD6A25 /* SwiftyAMapLocation.m in Sources */,

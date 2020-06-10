@@ -9,7 +9,8 @@
 import UIKit
 
 // bar button item type
-// auto: 
+// auto: Get the size of the control itself by calling `sizeToFit`
+// custom: Custom width and height
 public enum SwiftyNavigationBarButtonItemType {
     case button(button: UIButton, layoutType: SwiftyNavigationBarButtonItemLayoutType)
     case imageView(imageView: UIImageView, layoutType: SwiftyNavigationBarButtonItemLayoutType)
@@ -102,7 +103,7 @@ public class SwiftyCusNavigationBar: UIView {
     public var hideBar: Bool = false
     public var hideToolBar: Bool = false
     
-    public var lineColor: UIColor = UIColor.gray {
+    public var lineColor: UIColor = UIColor(red: 162.0/255.0, green: 168.0/255.0, blue: 195.0/255.0, alpha: 0.7) {
         didSet {
             self.lineView.backgroundColor = lineColor
         }
@@ -315,15 +316,13 @@ extension SwiftyCusNavigationBar {
                 case .auto:
                     let h: CGFloat = self.barHeight
                     let w: CGFloat = titleWidth
-                    let o_y: CGFloat = .zero
-                    let o_x: CGFloat = max(leftDistance, rightDistance)
-                    label.frame = CGRect(x: o_x, y: o_y, width: w, height: h)
+                    label.center = CGPoint(x: self.barView.frame.width / 2.0, y: self.barHeight / 2.0)
+                    label.bounds = CGRect(x: 0, y: 0, width: w, height: h)
                 case .custom(let y, let width, let height):
                     let h: CGFloat = height
                     let w: CGFloat = width
-                    let o_y: CGFloat = y
-                    let o_x: CGFloat = (barWidth - width) / 2.0
-                    label.frame = CGRect(x: o_x, y: o_y, width: w, height: h)
+                    label.center = CGPoint(x: self.barView.frame.width / 2.0, y: (self.barHeight / 2.0 + (y / 2.0)))
+                    label.bounds = CGRect(x: 0, y: 0, width: w, height: h)
                 }
             case .imageView(let imageView, let layoutType):
                 self.barView.addSubview(imageView)
@@ -331,15 +330,13 @@ extension SwiftyCusNavigationBar {
                 case .auto:
                     let h: CGFloat = self.barHeight
                     let w: CGFloat = titleWidth
-                    let o_y: CGFloat = .zero
-                    let o_x: CGFloat = max(leftDistance, rightDistance)
-                    imageView.frame = CGRect(x: o_x, y: o_y, width: w, height: h)
+                    imageView.center = CGPoint(x: self.barView.frame.width / 2.0, y: self.barHeight / 2.0)
+                    imageView.bounds = CGRect(x: 0, y: 0, width: w, height: h)
                 case .custom(let y, let width, let height):
                     let h: CGFloat = height
                     let w: CGFloat = width
-                    let o_y: CGFloat = y
-                    let o_x: CGFloat = (barWidth - width) / 2.0
-                    imageView.frame = CGRect(x: o_x, y: o_y, width: w, height: h)
+                    imageView.center = CGPoint(x: self.barView.frame.width / 2.0, y: (self.barHeight / 2.0 + (y / 2.0)))
+                    imageView.bounds = CGRect(x: 0, y: 0, width: w, height: h)
                 }
             case .customView(let view, let layoutType):
                 self.barView.addSubview(view)
@@ -347,15 +344,13 @@ extension SwiftyCusNavigationBar {
                 case .auto:
                     let h: CGFloat = self.barHeight
                     let w: CGFloat = titleWidth
-                    let o_y: CGFloat = .zero
-                    let o_x: CGFloat = max(leftDistance, rightDistance)
-                    view.frame = CGRect(x: o_x, y: o_y, width: w, height: h)
+                    view.center = CGPoint(x: self.barView.frame.width / 2.0, y: self.barHeight / 2.0)
+                    view.bounds = CGRect(x: 0, y: 0, width: w, height: h)
                 case .custom(let y, let width, let height):
                     let h: CGFloat = height
                     let w: CGFloat = width
-                    let o_y: CGFloat = y
-                    let o_x: CGFloat = (barWidth - width) / 2.0
-                    view.frame = CGRect(x: o_x, y: o_y, width: w, height: h)
+                    view.center = CGPoint(x: self.barView.frame.width / 2.0, y: (self.barHeight / 2.0 + (y / 2.0)))
+                    view.bounds = CGRect(x: 0, y: 0, width: w, height: h)
                 }
             }
         }

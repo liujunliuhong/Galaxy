@@ -26,7 +26,7 @@ public class SwiftyCusNavigationBarTestViewController: SwiftyBaseViewController 
         
         
         let button = UIButton(type: .custom)
-        button.setTitle("11", for: .normal)
+        button.setTitle("Button", for: .normal)
         button.backgroundColor = .cyan
         let item1 = SwiftyNavigationBarButtonItem(itemType: .button(button: button, layoutType: .auto))
         
@@ -42,22 +42,44 @@ public class SwiftyCusNavigationBarTestViewController: SwiftyBaseViewController 
         let title = SwiftyNavigationBarTitle(titleType: titleType)
         
         
+        let button4 = UIButton(type: .custom)
+        button4.setTitle("44444444", for: .normal)
+        button4.backgroundColor = .cyan
+        let item4 = SwiftyNavigationBarButtonItem(itemType: .button(button: button4, layoutType: .auto))
+        
+        let item5 = SwiftyNavigationBarButtonItem(itemType: .space(space: 10))
+        
+        
+        let label = UILabel()
+        label.text = "55"
+        label.backgroundColor = .red
+        let item6 = SwiftyNavigationBarButtonItem(itemType: .customView(view: label, layoutType: .auto))
+        
         self.cusNaviBar.hideNavigationBar = false
-        self.cusNaviBar.hideToolBar = false
         self.cusNaviBar.title = title
-        self.cusNaviBar.toolHeight = 120
+        //self.cusNaviBar.hideToolBar = false
+        //self.cusNaviBar.toolHeight = 120
         self.cusNaviBar.toolView.backgroundColor = .purple
         self.cusNaviBar.leftItems = [item1, item2, item3]
+        self.cusNaviBar.rightItems = [item6, item5, item4]
         self.cusNaviBar.reload(origin: .zero, barWidth: UIDevice.YH_Width)
-        
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            UIView.animate(withDuration: 1) {
-                self.cusNaviBar.barHeight = 100
-                self.cusNaviBar.reload(origin: .zero, barWidth: UIDevice.YH_Width)
-            }
-            
-        }
-        
+    }
+}
+
+extension SwiftyCusNavigationBarTestViewController {
+    public override func initData() {
+        super.initData()
+    }
+    
+    public override func setupUI() {
+        super.setupUI()
+    }
+    
+    public override func bindViewModel() {
+        super.bindViewModel()
+    }
+    
+    public override func other() {
+        super.other()
     }
 }

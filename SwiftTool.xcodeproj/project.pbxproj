@@ -36,7 +36,6 @@
 		183112412446F8F200155620 /* YHResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183112002446F8F100155620 /* YHResult.swift */; };
 		183112492446F8F200155620 /* UITabBar+YHExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1831120B2446F8F100155620 /* UITabBar+YHExtension.swift */; };
 		183112572446F8F200155620 /* YHRxProgressTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1831121D2446F8F100155620 /* YHRxProgressTracker.swift */; };
-		183112592446F8F200155620 /* YHCusNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183112202446F8F100155620 /* YHCusNavigationBar.swift */; };
 		1831125B2446F8F200155620 /* YHSystemFace.m in Sources */ = {isa = PBXBuildFile; fileRef = 183112262446F8F100155620 /* YHSystemFace.m */; };
 		1831125C2446F8F200155620 /* YHSystemFaceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 183112282446F8F100155620 /* YHSystemFaceHelper.m */; };
 		1831125D2446F8F200155620 /* YHSystemFacePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831122A2446F8F100155620 /* YHSystemFacePageView.m */; };
@@ -118,7 +117,6 @@
 		183112002446F8F100155620 /* YHResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YHResult.swift; sourceTree = "<group>"; };
 		1831120B2446F8F100155620 /* UITabBar+YHExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITabBar+YHExtension.swift"; sourceTree = "<group>"; };
 		1831121D2446F8F100155620 /* YHRxProgressTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YHRxProgressTracker.swift; sourceTree = "<group>"; };
-		183112202446F8F100155620 /* YHCusNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YHCusNavigationBar.swift; sourceTree = "<group>"; };
 		183112242446F8F100155620 /* YHSystemFaceHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSystemFaceHelper.h; sourceTree = "<group>"; };
 		183112252446F8F100155620 /* YHSystemFacePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHSystemFacePageView.h; sourceTree = "<group>"; };
 		183112262446F8F100155620 /* YHSystemFace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHSystemFace.m; sourceTree = "<group>"; };
@@ -337,7 +335,6 @@
 		1831121E2446F8F100155620 /* NavigationBar */ = {
 			isa = PBXGroup;
 			children = (
-				183112202446F8F100155620 /* YHCusNavigationBar.swift */,
 				854E899E248FC56700D1994B /* SwiftyCusNavigationBar.swift */,
 				183091B32490D950007EA52C /* SwiftyBaseViewController.swift */,
 				183091B12490D89C007EA52C /* SwiftyCusNavigationBarTestViewController.swift */,
@@ -639,7 +636,6 @@
 				183112642446F8F200155620 /* YHTabBarItemContainer.swift in Sources */,
 				1869FCD62474FF7F00798729 /* Bundle+SwiftyExtension.swift in Sources */,
 				1818101C248E0A9700BB4D03 /* SwiftyQCloudCOSManagerTestViewController.swift in Sources */,
-				183112592446F8F200155620 /* YHCusNavigationBar.swift in Sources */,
 				8544C6D1246C4B7F00361C08 /* SwiftyPermissionTestViewController.swift in Sources */,
 				85CD1E452487E0D900149C71 /* Keys.swift in Sources */,
 				8544C6CB246C3D2D00361C08 /* SwiftyDatePickerView.swift in Sources */,

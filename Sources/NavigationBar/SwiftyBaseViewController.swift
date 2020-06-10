@@ -100,19 +100,19 @@ import SnapKit
 }
 
 extension SwiftyBaseViewController {
-    public func initData() {
+    @objc public func initData() {
         
     }
     
-    public func setupUI() {
+    @objc public func setupUI() {
         
     }
     
-    public func bindViewModel() {
+    @objc public func bindViewModel() {
         
     }
     
-    public func other() {
+    @objc public func other() {
         
     }
 }

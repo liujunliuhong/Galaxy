@@ -60,6 +60,7 @@
 		1870F4B5246A389E0016D596 /* SwiftyLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870F4B4246A389E0016D596 /* SwiftyLog.swift */; };
 		189404E82488A5DC005D9C29 /* SwiftyQCloudCOSManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189404E72488A5DC005D9C29 /* SwiftyQCloudCOSManager.swift */; };
 		18998DB7246E300400EE72F0 /* String+Words.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18998DB6246E300400EE72F0 /* String+Words.swift */; };
+		18AD961724920C3900500C78 /* SwiftyTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AD961624920C3900500C78 /* SwiftyTabBarController.swift */; };
 		18D9E67F248675C200CFDC27 /* SwiftyBMKLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D9E67E248675C200CFDC27 /* SwiftyBMKLocation.m */; };
 		18D9E68124867E2400CFDC27 /* SwiftyBMKLocationTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D9E68024867E2400CFDC27 /* SwiftyBMKLocationTestViewController.swift */; };
 		18EBB731247372DC0080CC2B /* SwiftyFlowItemsAutoMarginTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EBB730247372DC0080CC2B /* SwiftyFlowItemsAutoMarginTestViewController.swift */; };
@@ -146,6 +147,7 @@
 		1870F4B4246A389E0016D596 /* SwiftyLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyLog.swift; sourceTree = "<group>"; };
 		189404E72488A5DC005D9C29 /* SwiftyQCloudCOSManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyQCloudCOSManager.swift; sourceTree = "<group>"; };
 		18998DB6246E300400EE72F0 /* String+Words.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Words.swift"; sourceTree = "<group>"; };
+		18AD961624920C3900500C78 /* SwiftyTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyTabBarController.swift; sourceTree = "<group>"; };
 		18D9E67D248675C200CFDC27 /* SwiftyBMKLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftyBMKLocation.h; sourceTree = "<group>"; };
 		18D9E67E248675C200CFDC27 /* SwiftyBMKLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwiftyBMKLocation.m; sourceTree = "<group>"; };
 		18D9E68024867E2400CFDC27 /* SwiftyBMKLocationTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyBMKLocationTestViewController.swift; sourceTree = "<group>"; };
@@ -396,6 +398,7 @@
 				183112352446F8F100155620 /* YHTabBarController.swift */,
 				183112362446F8F100155620 /* YHTabBar.swift */,
 				183112372446F8F100155620 /* YHTabBatItemContentView.swift */,
+				18AD961624920C3900500C78 /* SwiftyTabBarController.swift */,
 			);
 			path = YHTabBarController;
 			sourceTree = "<group>";
@@ -669,6 +672,7 @@
 				182805E5247282E600A3D228 /* SwiftyFlowItemsTestViewController.swift in Sources */,
 				18998DB7246E300400EE72F0 /* String+Words.swift in Sources */,
 				18485278248774E400BD6A25 /* SwiftyAMapLocation.m in Sources */,
+				18AD961724920C3900500C78 /* SwiftyTabBarController.swift in Sources */,
 				182B7BB9246B873D000A95D0 /* SwiftyPickerTestViewController.swift in Sources */,
 				18EBB7352473BA350080CC2B /* UIApplication+SwiftyExtensionForURL.swift in Sources */,
 				18EBB7382473CB670080CC2B /* SwiftyFileManager.swift in Sources */,

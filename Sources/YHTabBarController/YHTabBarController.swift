@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 /// 是否需要自定义点击事件回调类型
 public typealias YHTabBarControllerShouldHijackHandler = ((_ tabBarController: UITabBarController, _ viewController: UIViewController, _ index: Int) -> (Bool))
 /// 自定义点击事件的回调

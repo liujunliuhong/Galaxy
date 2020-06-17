@@ -13,7 +13,7 @@ import UIKit
  */
 public class SwiftyTabBarItem: UITabBarItem {
     
-    public var containerView: SwiftyTabBarItemContainer?
+    public private(set) var containerView: SwiftyTabBarItemContainer?
     
     public override var title: String? {
         didSet {
@@ -34,13 +34,19 @@ public class SwiftyTabBarItem: UITabBarItem {
     }
     
     public override var badgeValue: String? {
-        didSet {
+        get {
+            
+        }
+        set {
             
         }
     }
     
     public override var badgeColor: UIColor? {
-        didSet {
+        get {
+            
+        }
+        set {
             
         }
     }

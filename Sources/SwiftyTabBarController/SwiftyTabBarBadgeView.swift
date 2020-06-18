@@ -17,19 +17,19 @@ internal let defaultBadgeHeight: CGFloat = 18.0
 
 open class SwiftyTabBarBadgeView: UIView {
     
-    open var badgeValue: String? {
+    internal var badgeValue: String? {
         didSet {
             self.badgeLabel.text = badgeValue
         }
     }
     
-    open var badgeColor: UIColor = defaultBadgeColor{
+    open var badgeColor: UIColor? = defaultBadgeColor {
         didSet {
             self.backgroundColor = badgeColor
         }
     }
     
-    open var badgeContentColor: UIColor = .white {
+    open var badgeContentColor: UIColor? = .white {
         didSet {
             self.badgeLabel.textColor = badgeContentColor
         }
@@ -51,7 +51,7 @@ open class SwiftyTabBarBadgeView: UIView {
         }
     }
     
-    public lazy var badgeLabel: UILabel = {
+    open lazy var badgeLabel: UILabel = {
         let badgeLabel = UILabel.init(frame: CGRect.zero)
         badgeLabel.backgroundColor = .clear
         badgeLabel.font = UIFont.systemFont(ofSize: 13.0)
@@ -68,7 +68,7 @@ open class SwiftyTabBarBadgeView: UIView {
         self.backgroundColor = self.badgeColor
         self.badgeLabel.textColor = self.badgeContentColor
         self.layer.borderWidth = self.badgeBorderWidth
-        self.layer.borderColor = self.badgeContentColor.cgColor
+        self.layer.borderColor = self.badgeBorderColor.cgColor
     }
     
     required public init?(coder: NSCoder) {

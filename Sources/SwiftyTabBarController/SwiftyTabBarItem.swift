@@ -35,19 +35,19 @@ public class SwiftyTabBarItem: UITabBarItem {
     
     public override var badgeValue: String? {
         get {
-            
+            self.containerView?.badgeValue
         }
         set {
-            
+            self.containerView?.badgeValue = newValue
         }
     }
     
     public override var badgeColor: UIColor? {
         get {
-            
+            return self.containerView?.badgeView.badgeColor
         }
         set {
-            
+            self.containerView?.badgeView.badgeColor = newValue
         }
     }
     

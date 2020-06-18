@@ -46,8 +46,9 @@ public class SwiftyTabBar: UITabBar {
     
     public var shadowColor: UIColor? {
         didSet {
-            setNeedsLayout()
-            layoutIfNeeded()
+            self.setNeedsLayout()
+            self.layoutIfNeeded()
+            self.updateShadowColor(view: self)
         }
     }
     
@@ -74,8 +75,6 @@ public class SwiftyTabBar: UITabBar {
         super.layoutSubviews()
         //
         self.updateLayout()
-        //
-        self.shadowImageView()?.backgroundColor = self.shadowColor
     }
     
     public override func value(forUndefinedKey key: String) -> Any? {
@@ -95,42 +94,25 @@ public class SwiftyTabBar: UITabBar {
     }
 }
 
-extension SwiftyTabBar {
-    private func backgroundView() -> UIView? {
-        if #available(iOS 10.0, *) {
-            return self.value(forKey: "_backgroundView") as? UIView
-        }
-        return self.value(forKey: "_UITabBarBackgroundView") as? UIView
-    }
-    
-    private func shadowImageView() -> UIImageView? {
-        if #available(iOS 13, *) {
-            // after 13.0
-            var shadowImageView = self.backgroundView()?.value(forKey: "_shadowView1") as? UIImageView
-            if shadowImageView == nil {
-                setNeedsLayout()
-                layoutIfNeeded()
-                shadowImageView = self.backgroundView()?.value(forKey: "_shadowView1") as? UIImageView
+fileprivate extension SwiftyTabBar {
+    func updateShadowColor(view: UIView) {
+        for (_, v) in view.subviews.enumerated() {
+            if v.frame.height.isLessThanOrEqualTo(1.0) {
+                v.backgroundColor = self.shadowColor
+                if let c = self.shadowColor {
+                    if c == UIColor.clear {
+                        v.isHidden = true
+                    } else {
+                        v.isHidden = false
+                    }
+                } else {
+                    v.isHidden = true
+                }
+            } else {
+                if v.subviews.count > 0 {
+                    self.updateShadowColor(view: v)
+                }
             }
-            return shadowImageView
-        } else if #available(iOS 10, *) {
-            // 10.0 - 13.0
-            var shadowImageView = self.backgroundView()?.value(forKey: "_shadowView") as? UIImageView
-            if shadowImageView == nil {
-                setNeedsLayout()
-                layoutIfNeeded()
-                shadowImageView = self.backgroundView()?.value(forKey: "_shadowView") as? UIImageView
-            }
-            return shadowImageView
-        } else {
-            // before 10.0
-            var shadowImageView = value(forKey: "_shadowView")
-            if shadowImageView == nil {
-                setNeedsLayout()
-                layoutIfNeeded()
-                shadowImageView = value(forKey: "_shadowView")
-            }
-            return shadowImageView as? UIImageView
         }
     }
 }

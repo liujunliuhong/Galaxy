@@ -143,7 +143,7 @@ open class SwiftyTabBarItemContainer: UIView {
     
     open var itemContentMode: SwiftyTabBarItemContentMode = .alwaysTemplate {
         didSet {
-            self.updateDisplay()
+            self.updateLayout()
         }
     }
     
@@ -167,17 +167,49 @@ open class SwiftyTabBarItemContainer: UIView {
         }
     }
     
+    // SwiftyTabBarItemContentMode = .alwaysTemplate
     open var imageWidth: CGFloat = 23.0 {
         didSet {
             self.updateLayout()
         }
     }
     
-    open var fontSize: CGFloat = 12.0 {
+    // SwiftyTabBarItemContentMode = .alwaysTemplate
+    open var fontSize: CGFloat = 10.0 {
         didSet {
             self.updateLayout()
         }
     }
+    
+    open var badgeValue: String? {
+        didSet {
+            if let _ = badgeValue {
+                self.badgeView.badgeValue = badgeValue
+                self.addSubview(badgeView)
+                self.updateLayout()
+            } else {
+                // Remove when nil.
+                self.badgeView.removeFromSuperview()
+            }
+            self.badgeChanged(animated: true, completion: nil)
+        }
+    }
+    
+    open var badgeView: SwiftyTabBarBadgeView = SwiftyTabBarBadgeView() {
+        willSet {
+            if let _ = badgeView.superview {
+                badgeView.removeFromSuperview()
+            }
+        }
+        didSet {
+            if let _ = badgeView.superview {
+                self.updateLayout()
+            }
+        }
+    }
+    
+    
+    
     
     public lazy var imageView: UIImageView = {
         let imageView = UIImageView()
@@ -193,19 +225,12 @@ open class SwiftyTabBarItemContainer: UIView {
         return titleLabel
     }()
     
-    public lazy var badgeView: SwiftyTabBarBadgeView = {
-        let badgeView = SwiftyTabBarBadgeView()
-        return badgeView
-    }()
-    
-    
     public override init(frame: CGRect) {
         super.init(frame: frame)
         self.isUserInteractionEnabled = false
         
         self.addSubview(self.imageView)
         self.addSubview(self.titleLabel)
-        self.addSubview(self.badgeView)
         
         self.updateDisplay()
     }
@@ -217,14 +242,14 @@ open class SwiftyTabBarItemContainer: UIView {
 
 
 extension SwiftyTabBarItemContainer {
-    open func updateDisplay() {
+    @objc open func updateDisplay() {
         self.imageView.image = (self.isSelected ? (self.selectedImage ?? self.normalImage) : self.normalImage)?.withRenderingMode(self.iconRenderingMode)
         self.imageView.tintColor = self.isSelected ? self.selectedIconColor : self.normalIconColor
         self.titleLabel.textColor = self.isSelected ? self.selectedTextColor : self.normalTextColor
         self.backgroundColor = self.isSelected ? self.selectedBackgroundColor : self.normalBackgroundColor
     }
     
-    open func updateLayout() {
+    @objc open func updateLayout() {
         self.imageView.isHidden = (imageView.image == nil)
         self.titleLabel.isHidden = (titleLabel.text == nil)
         
@@ -245,7 +270,7 @@ extension SwiftyTabBarItemContainer {
                 var titleWidth = self.titleLabel.bounds.size.width
                 
                 if #available(iOS 11, *), isWide {
-                    // 如果是iOS11，并且是横屏(图标和文字水平排列)
+                    // If it is iOS 11, and it is horizontal screen (icons and text are arranged horizontally)
                     let space: CGFloat = 5.0 // image and title space
                     
                     titleWidth = min(titleWidth, (w - self.imageWidth - space))
@@ -257,7 +282,7 @@ extension SwiftyTabBarItemContainer {
                                                   width: self.imageWidth,
                                                   height: self.imageWidth)
                     
-                    self.titleLabel.frame = CGRect(x: self.imageView.frame.maxX + space + self.titlePositionAdjustment.horizontal,
+                    self.titleLabel.frame = CGRect(x: w - (w - sumWidth) / 2.0 - titleWidth + self.titlePositionAdjustment.horizontal,
                                                    y: (h - self.titleLabel.bounds.height) / 2.0 + self.titlePositionAdjustment.vertical,
                                                    width: titleWidth,
                                                    height: self.titleLabel.bounds.height)
@@ -293,26 +318,66 @@ extension SwiftyTabBarItemContainer {
                                           height: self.titleLabel.bounds.size.height)
             }
             
-            
-            
+            // badgeView layout
+            if let _ = badgeView.superview {
+                self.badgeView.sizeToFit()
+                let size = self.badgeView.frame.size
+                
+                if #available(iOS 11.0, *), isWide {
+                    self.badgeView.frame = CGRect(x: self.imageView.frame.midX - 3 + self.badgeOffset.horizontal,
+                                                  y: self.imageView.frame.midY + 3 + self.badgeOffset.vertical,
+                                                  width: size.width,
+                                                  height: size.height)
+                } else {
+                    self.badgeView.frame = CGRect(x: w / 2.0 + self.badgeOffset.horizontal,
+                                                  y: h / 2.0 + self.badgeOffset.vertical,
+                                                  width: size.width,
+                                                  height: size.height)
+                }
+                self.badgeView.setNeedsLayout()
+            }
+        } else {
+            if !imageView.isHidden && !titleLabel.isHidden {
+                self.titleLabel.sizeToFit()
+                self.imageView.sizeToFit()
+                
+                var titleWidth = self.titleLabel.bounds.size.width
+                titleWidth = min(titleWidth, w)
+                
+                self.titleLabel.frame = CGRect(x: (w - titleWidth) / 2.0 + self.titlePositionAdjustment.horizontal,
+                                               y: h - self.titleLabel.bounds.height + self.titlePositionAdjustment.vertical,
+                                               width: titleWidth,
+                                               height: self.titleLabel.bounds.height)
+                
+                self.imageView.frame = CGRect(x: (w - self.imageView.frame.width) / 2.0 + self.imagePositionAdjustment.horizontal,
+                                              y: (h - self.imageView.frame.height) / 2.0 - 6.0 + self.imagePositionAdjustment.vertical,
+                                              width: self.imageView.frame.width,
+                                              height: self.imageView.frame.height)
+                
+            } else if !self.imageView.isHidden {
+                self.imageView.sizeToFit()
+                self.imageView.center = CGPoint(x: w / 2.0, y: h / 2.0)
+            } else if !self.titleLabel.isHidden {
+                self.titleLabel.sizeToFit()
+                self.titleLabel.center = CGPoint(x: w / 2.0, y: h / 2.0)
+                
+                var titleWidth = self.titleLabel.bounds.size.width
+                titleWidth = min(titleWidth, w)
+                var f = self.titleLabel.frame
+                f.size.width = titleWidth
+                self.titleLabel.frame = f
+            }
             
             // badgeView layout
             if let _ = badgeView.superview {
+                self.badgeView.sizeToFit()
+                let size = self.badgeView.frame.size
+                self.badgeView.frame = CGRect(x: w / 2.0 + self.badgeOffset.horizontal,
+                                              y: h / 2.0 + self.badgeOffset.vertical,
+                                              width: size.width,
+                                              height: size.height)
                 
-                let size = badgeView.sizeThatFits(self.frame.size)
-                
-                if #available(iOS 11.0, *), isWide {
-                    badgeView.frame = CGRect(x: imageView.frame.midX - 3 + badgeOffset.horizontal,
-                                             y: imageView.frame.midY + 3 + badgeOffset.vertical,
-                                             width: size.width,
-                                             height: size.height)
-                } else {
-                    badgeView.frame = CGRect(x: w / 2.0 + badgeOffset.horizontal,
-                                             y: h / 2.0 + badgeOffset.vertical,
-                                             width: size.width,
-                                             height: size.height)
-                }
-                badgeView.setNeedsLayout()
+                self.badgeView.setNeedsLayout()
             }
         }
     }
@@ -342,9 +407,9 @@ extension SwiftyTabBarItemContainer {
     internal func badgeChanged(animated: Bool, completion: (() -> ())?) {
         self.badgeChangedAnimation(animated: animated, completion: completion)
     }
-    
-    
-    
+}
+
+extension SwiftyTabBarItemContainer {
     open func selectAnimation(animated: Bool, completion: (() -> ())?) {
         completion?()
     }

@@ -33,10 +33,27 @@ extension ViewController {
         //let vc = SwiftyNativeLocationTestViewController()
         //let vc = SwiftyAMapLocationTestViewController(amap_key: amap_key)
 //        let vc = SwiftyQCloudCOSManagerTestViewController(appID: tencent_uplaod_appID, regionName: tencent_uplaod_regionName, secretID: tencent_uplaod_secretID, secretKey: tencent_uplaod_secretKey, bucketName: tencent_upload_bucketName)
-        let vc = SwiftyCusNavigationBarTestViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
+        //let vc = SwiftyCusNavigationBarTestViewController(testImage: UIImage(named: "item_Image_1"))
+        //self.navigationController?.pushViewController(vc, animated: true)
         
         
         //print("\(UIDevice.YH_Width)")
+        
+        let normalImages: [UIImage?] = [UIImage(named: "chats_normal"),
+                                        UIImage(named: "contacts_normal"),
+                                        UIImage(named: "discover_normal"),
+                                        UIImage(named: "me_normal")]
+        
+        let selectImages: [UIImage?] = [UIImage(named: "chats_selected"),
+                                        UIImage(named: "contacts_selected"),
+                                        UIImage(named: "discover_selected"),
+                                        UIImage(named: "me_selected")]
+        let titles: [String] = ["聊天",
+                                "联系人",
+                                "发现",
+                                "我的"]
+        
+        let vc = SwiftyTabBarDemoViewController(images: normalImages, selectImages: selectImages, titles: titles)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

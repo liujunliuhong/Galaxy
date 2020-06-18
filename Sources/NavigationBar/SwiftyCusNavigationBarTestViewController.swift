@@ -20,6 +20,16 @@ public class SwiftyCusNavigationBarTestViewController: SwiftyBaseViewController 
         self.navigationController?.navigationBar.isHidden = false
     }
     
+    let testImage: UIImage?
+    init(testImage: UIImage?) {
+        self.testImage = testImage
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
@@ -33,7 +43,7 @@ public class SwiftyCusNavigationBarTestViewController: SwiftyBaseViewController 
         let item2 = SwiftyNavigationBarButtonItem(itemType: .space(space: 10))
         
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "item_Image_1")
+        imageView.image = self.testImage
         imageView.contentMode = .scaleAspectFit
         let item3 = SwiftyNavigationBarButtonItem(itemType: .imageView(imageView: imageView, layoutType: .auto))
         

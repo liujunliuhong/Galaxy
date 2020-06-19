@@ -31,7 +31,7 @@ internal class _SwiftyTabBarItemWrapView: UIControl {
             if let subView = subView as? SwiftyTabBarItemContainer {
                 let inset = subView.insets
                 subView.frame = CGRect(x: inset.left, y: inset.top, width: bounds.size.width - inset.left - inset.right, height: bounds.size.height - inset.top - inset.bottom)
-                subView.updateDisplay()
+//                subView.updateDisplay()
                 subView.updateLayout()
             }
         }
@@ -135,7 +135,7 @@ open class SwiftyTabBarItemContainer: UIView {
         }
     }
     
-    open var iconRenderingMode: UIImage.RenderingMode = UIImage.RenderingMode.alwaysOriginal {
+    open var iconRenderingMode: UIImage.RenderingMode = UIImage.RenderingMode.alwaysTemplate {
         didSet {
             self.updateDisplay()
         }
@@ -168,7 +168,7 @@ open class SwiftyTabBarItemContainer: UIView {
     }
     
     // SwiftyTabBarItemContentMode = .alwaysTemplate
-    open var imageWidth: CGFloat = 23.0 {
+    open var imageWidth: CGFloat = 20.0 {
         didSet {
             self.updateLayout()
         }
@@ -213,6 +213,7 @@ open class SwiftyTabBarItemContainer: UIView {
     
     public lazy var imageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
@@ -291,7 +292,7 @@ extension SwiftyTabBarItemContainer {
                     titleWidth = min(titleWidth, w)
                     
                     self.titleLabel.frame = CGRect(x: (w - titleWidth) / 2.0 + self.titlePositionAdjustment.horizontal,
-                                                   y: h - self.titleLabel.bounds.height + self.titlePositionAdjustment.vertical,
+                                                   y: h - self.titleLabel.bounds.height - 2.0 + self.titlePositionAdjustment.vertical,
                                                    width: titleWidth,
                                                    height: self.titleLabel.bounds.height)
                     

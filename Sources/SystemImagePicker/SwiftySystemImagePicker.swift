@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 
-public typealias SwiftySystemImagePickerClosure = (_ image: UIImage?, _ info: [UIImagePickerController.InfoKey : Any]) -> ()
+public typealias SwiftySystemImagePickerClosure = (UIImage?, [UIImagePickerController.InfoKey : Any]) -> ()
 
 public class SwiftySystemImagePicker: NSObject {
 
@@ -24,7 +24,18 @@ public class SwiftySystemImagePicker: NSObject {
 
 
 extension SwiftySystemImagePicker {
-    public static func show(targetViewController: UIViewController?, title: String?, message: String?, preferredStyle: UIAlertController.Style, albumTitle: String?, cameraTitle: String?, closure: SwiftySystemImagePickerClosure?) {
+    
+    /// Convenient method to display system album
+    /// - Parameters:
+    ///   - targetViewController: targetViewController
+    ///   - title: alert title
+    ///   - message: alert message
+    ///   - preferredStyle: alert style
+    ///   - albumTitle: albumTitle
+    ///   - cameraTitle: cameraTitle
+    ///   - cancelTitle: cancelTitle
+    ///   - closure: closure
+    public static func show(targetViewController: UIViewController?, title: String?, message: String?, preferredStyle: UIAlertController.Style, albumTitle: String?, cameraTitle: String?, cancelTitle: String?, closure: SwiftySystemImagePickerClosure?) {
         guard let targetViewController = targetViewController else { return }
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
         if let albumTitle = albumTitle {
@@ -40,6 +51,9 @@ extension SwiftySystemImagePicker {
             alertVC.addAction(cameraAction)
         }
         
+        let cancelAction = UIAlertAction(title: cancelTitle, style: .cancel, handler: nil)
+        alertVC.addAction(cancelAction)
+        
         targetViewController.present(alertVC, animated: true, completion: nil)
     }
 }
@@ -52,8 +66,8 @@ extension SwiftySystemImagePicker {
         let imagePicker = SwiftySystemImagePicker()
         imagePicker.targetViewController = targetViewController
         
-        objc_setAssociatedObject(targetViewController, SwiftySystemImagePicker.AssociatedKeys.pickerKey, imagePicker, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        objc_setAssociatedObject(imagePicker, SwiftySystemImagePicker.AssociatedKeys.pickerClosureKey, closure, .OBJC_ASSOCIATION_COPY_NONATOMIC)
+        objc_setAssociatedObject(targetViewController, &SwiftySystemImagePicker.AssociatedKeys.pickerKey, imagePicker, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        objc_setAssociatedObject(imagePicker, &SwiftySystemImagePicker.AssociatedKeys.pickerClosureKey, closure, .OBJC_ASSOCIATION_COPY_NONATOMIC)
         
         let picker = UIImagePickerController()
         picker.allowsEditing = true
@@ -67,24 +81,24 @@ extension SwiftySystemImagePicker {
 extension SwiftySystemImagePicker: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
+        objc_setAssociatedObject(self, &SwiftySystemImagePicker.AssociatedKeys.pickerClosureKey, nil, .OBJC_ASSOCIATION_COPY_NONATOMIC)
         if let targetViewController = self.targetViewController {
-            objc_setAssociatedObject(targetViewController, SwiftySystemImagePicker.AssociatedKeys.pickerKey, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(targetViewController, &SwiftySystemImagePicker.AssociatedKeys.pickerKey, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
-        objc_setAssociatedObject(self, SwiftySystemImagePicker.AssociatedKeys.pickerClosureKey, nil, .OBJC_ASSOCIATION_COPY_NONATOMIC)
     }
     
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        //
         picker.dismiss(animated: true, completion: nil)
-        
+        //
         let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
-        
-        let closure = objc_getAssociatedObject(self, SwiftySystemImagePicker.AssociatedKeys.pickerClosureKey) as? SwiftySystemImagePickerClosure
+        let closure = objc_getAssociatedObject(self, &SwiftySystemImagePicker.AssociatedKeys.pickerClosureKey) as? SwiftySystemImagePickerClosure
         
         closure?(image, info)
         
+        objc_setAssociatedObject(self, &SwiftySystemImagePicker.AssociatedKeys.pickerClosureKey, nil, .OBJC_ASSOCIATION_COPY_NONATOMIC)
         if let targetViewController = self.targetViewController {
-            objc_setAssociatedObject(targetViewController, SwiftySystemImagePicker.AssociatedKeys.pickerKey, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(targetViewController, &SwiftySystemImagePicker.AssociatedKeys.pickerKey, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
-        objc_setAssociatedObject(self, SwiftySystemImagePicker.AssociatedKeys.pickerClosureKey, nil, .OBJC_ASSOCIATION_COPY_NONATOMIC)
     }
 }

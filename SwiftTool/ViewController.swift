@@ -39,21 +39,29 @@ extension ViewController {
         
         //print("\(UIDevice.YH_Width)")
         
-        let normalImages: [UIImage?] = [UIImage(named: "chats_normal"),
-                                        UIImage(named: "photo_big"),
-                                        UIImage(named: "discover_normal"),
-                                        UIImage(named: "me_normal")]
         
-        let selectImages: [UIImage?] = [UIImage(named: "chats_selected"),
-                                        UIImage(named: "photo_big"),
-                                        UIImage(named: "discover_selected"),
-                                        UIImage(named: "me_selected")]
-        let titles: [String] = ["聊天",
-                                "联系人",
-                                "发现",
-                                "我的"]
         
-        let vc = SwiftyTabBarDemoProvider.demo(images: normalImages, selectImages: selectImages, titles: titles)
+        
+        /*
+         let normalImages: [UIImage?] = [UIImage(named: "chats_normal"),
+         UIImage(named: "photo_big"),
+         UIImage(named: "discover_normal"),
+         UIImage(named: "me_normal")]
+         
+         let selectImages: [UIImage?] = [UIImage(named: "chats_selected"),
+         UIImage(named: "photo_big"),
+         UIImage(named: "discover_selected"),
+         UIImage(named: "me_selected")]
+         let titles: [String] = ["聊天",
+         "联系人",
+         "发现",
+         "我的"]
+         
+         let vc = SwiftyTabBarDemoProvider.demo(images: normalImages, selectImages: selectImages, titles: titles)
+         self.navigationController?.pushViewController(vc, animated: true)
+         */
+        
+        let vc = SwiftySystemImagePickerTestViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

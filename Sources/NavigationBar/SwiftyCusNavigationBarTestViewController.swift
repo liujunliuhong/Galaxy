@@ -10,6 +10,10 @@ import UIKit
 
 public class SwiftyCusNavigationBarTestViewController: SwiftyBaseViewController {
 
+    deinit {
+        print("\(NSStringFromClass(self.classForCoder)) deinit")
+    }
+    
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true

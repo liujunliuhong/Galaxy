@@ -15,7 +15,7 @@ static char swifty_bmk_register_completion_associated_key;
 
 @interface SwiftyBMKLocation() <BMKLocationAuthDelegate>
 @property (nonatomic, strong, nullable) BMKLocationManager *locationManager;
-@property (nonatomic, strong) id target;
+@property (nonatomic, weak) id target;
 @end
 
 

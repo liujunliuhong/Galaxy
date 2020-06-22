@@ -33,7 +33,7 @@ public class SwiftyNativeLocation: NSObject {
         myPrint("\(self.classForCoder) deinit")
     }
     
-    private var target: AnyObject?
+    private weak var target: AnyObject?
     private var locationManager: CLLocationManager?
     
     public typealias requestAuthorizationStatusWhenInUseClosure = ((Bool, SwiftyNativeLocationError?)->())

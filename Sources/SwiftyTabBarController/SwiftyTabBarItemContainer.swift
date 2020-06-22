@@ -31,7 +31,7 @@ internal class _SwiftyTabBarItemWrapView: UIControl {
             if let subView = subView as? SwiftyTabBarItemContainer {
                 let inset = subView.insets
                 subView.frame = CGRect(x: inset.left, y: inset.top, width: bounds.size.width - inset.left - inset.right, height: bounds.size.height - inset.top - inset.bottom)
-//                subView.updateDisplay()
+                //subView.updateDisplay()
                 subView.updateLayout()
             }
         }
@@ -135,7 +135,7 @@ open class SwiftyTabBarItemContainer: UIView {
         }
     }
     
-    open var iconRenderingMode: UIImage.RenderingMode = UIImage.RenderingMode.alwaysTemplate {
+    open var iconRenderingMode: UIImage.RenderingMode = UIImage.RenderingMode.alwaysOriginal {
         didSet {
             self.updateDisplay()
         }

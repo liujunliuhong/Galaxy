@@ -51,6 +51,7 @@
 		1869FCDE2475044C00798729 /* CGFloat+SwiftyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1869FCDD2475044C00798729 /* CGFloat+SwiftyExtension.swift */; };
 		1870F4B2246A2E1D0016D596 /* SwiftyMBHUDTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870F4B1246A2E1D0016D596 /* SwiftyMBHUDTestViewController.swift */; };
 		1870F4B5246A389E0016D596 /* SwiftyLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870F4B4246A389E0016D596 /* SwiftyLog.swift */; };
+		187FCD8A24A0845200B423EB /* SwiftySystemImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187FCD8924A0845200B423EB /* SwiftySystemImagePicker.swift */; };
 		189404E82488A5DC005D9C29 /* SwiftyQCloudCOSManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189404E72488A5DC005D9C29 /* SwiftyQCloudCOSManager.swift */; };
 		18998DB7246E300400EE72F0 /* String+Words.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18998DB6246E300400EE72F0 /* String+Words.swift */; };
 		18AD961724920C3900500C78 /* SwiftyTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AD961624920C3900500C78 /* SwiftyTabBarController.swift */; };
@@ -136,6 +137,7 @@
 		1869FCDD2475044C00798729 /* CGFloat+SwiftyExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+SwiftyExtension.swift"; sourceTree = "<group>"; };
 		1870F4B1246A2E1D0016D596 /* SwiftyMBHUDTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyMBHUDTestViewController.swift; sourceTree = "<group>"; };
 		1870F4B4246A389E0016D596 /* SwiftyLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyLog.swift; sourceTree = "<group>"; };
+		187FCD8924A0845200B423EB /* SwiftySystemImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftySystemImagePicker.swift; sourceTree = "<group>"; };
 		189404E72488A5DC005D9C29 /* SwiftyQCloudCOSManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyQCloudCOSManager.swift; sourceTree = "<group>"; };
 		18998DB6246E300400EE72F0 /* String+Words.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Words.swift"; sourceTree = "<group>"; };
 		18AD961624920C3900500C78 /* SwiftyTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyTabBarController.swift; sourceTree = "<group>"; };
@@ -258,7 +260,7 @@
 				1831121E2446F8F100155620 /* NavigationBar */,
 				183112212446F8F100155620 /* AsyncDisplayKit */,
 				183112232446F8F100155620 /* System Face */,
-				1831122D2446F8F100155620 /* UIImagePicker */,
+				1831122D2446F8F100155620 /* SystemImagePicker */,
 				1831122F2446F8F100155620 /* Tag */,
 				183112312446F8F100155620 /* SwiftyTabBarController */,
 				183112382446F8F100155620 /* NativeLocation */,
@@ -367,12 +369,13 @@
 			path = "System Face";
 			sourceTree = "<group>";
 		};
-		1831122D2446F8F100155620 /* UIImagePicker */ = {
+		1831122D2446F8F100155620 /* SystemImagePicker */ = {
 			isa = PBXGroup;
 			children = (
 				1831122E2446F8F100155620 /* YHRxImagePickerDelegateProxy.swift */,
+				187FCD8924A0845200B423EB /* SwiftySystemImagePicker.swift */,
 			);
-			path = UIImagePicker;
+			path = SystemImagePicker;
 			sourceTree = "<group>";
 		};
 		1831122F2446F8F100155620 /* Tag */ = {
@@ -617,6 +620,7 @@
 				1848527D2487AC4900BD6A25 /* SwiftyAMapLocationTestViewController.swift in Sources */,
 				1831114F24469EB700155620 /* ViewController.swift in Sources */,
 				1831125D2446F8F200155620 /* YHSystemFacePageView.m in Sources */,
+				187FCD8A24A0845200B423EB /* SwiftySystemImagePicker.swift in Sources */,
 				1869FCD8247501D700798729 /* String+SwiftyExtension.swift in Sources */,
 				1870F4B5246A389E0016D596 /* SwiftyLog.swift in Sources */,
 				18D9E68124867E2400CFDC27 /* SwiftyBMKLocationTestViewController.swift in Sources */,

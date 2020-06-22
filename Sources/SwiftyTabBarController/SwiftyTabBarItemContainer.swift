@@ -212,13 +212,13 @@ open class SwiftyTabBarItemContainer: UIView {
     
     
     public lazy var imageView: UIImageView = {
-        let imageView = UIImageView()
+        let imageView = UIImageView(frame: .zero)
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
     public lazy var titleLabel: UILabel = {
-        let titleLabel = UILabel()
+        let titleLabel = UILabel(frame: .zero)
         titleLabel.backgroundColor = .clear
         titleLabel.textColor = .clear
         titleLabel.textAlignment = .center

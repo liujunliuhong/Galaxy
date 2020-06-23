@@ -2,7 +2,7 @@
 //  SwiftyCityPickerView.swift
 //  SwiftTool
 //
-//  Created by 刘军 on 2020/5/16.
+//  Created by liujun on 2020/5/16.
 //  Copyright © 2020 yinhe. All rights reserved.
 //
 
@@ -58,6 +58,9 @@ public enum SwiftyCityPickerType {
 }
 
 
+
+/// ⚠️pod 'SwiftyJSON'
+/// ⚠️dependency 'Picker'
 class SwiftyCityPickerView: SwiftyPickerView {
     
     /// type

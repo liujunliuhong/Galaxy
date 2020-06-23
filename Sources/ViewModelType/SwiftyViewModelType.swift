@@ -2,7 +2,7 @@
 //  SwiftyViewModelType.swift
 //  SwiftTool
 //
-//  Created by 刘军 on 2020/6/3.
+//  Created by liujun on 2020/6/3.
 //  Copyright © 2020 yinhe. All rights reserved.
 //
 

@@ -18,7 +18,8 @@ typedef void(^SwiftyBMKRegisterBlock)(BMKLocationAuthErrorCode status);
 typedef void(^SwiftyBMKSingleLocationConfiguration)(BMKLocationManager *bmkLocationManager);
 typedef void(^SwiftyBMKSingleLocationCompletionBlock)(BMKLocation *_Nullable location, NSError * _Nullable error);
 
-/// pod 'BMKLocationKit'
+/// ⚠️http://lbsyun.baidu.com/index.php?title=ios-locsdk/guide/get-location/once
+/// ⚠️pod 'BMKLocationKit'
 @interface SwiftyBMKLocation : NSObject
 
 /// register bmk

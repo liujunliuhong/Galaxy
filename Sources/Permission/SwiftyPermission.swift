@@ -2,7 +2,7 @@
 //  SwiftyPermission.swift
 //  SwiftTool
 //
-//  Created by 刘军 on 2020/5/13.
+//  Created by liujun on 2020/5/13.
 //  Copyright © 2020 yinhe. All rights reserved.
 //
 

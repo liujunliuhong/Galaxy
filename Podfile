@@ -9,12 +9,21 @@ target 'SwiftTool' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'NSObject+Rx'
+  
   pod 'Alamofire'
+  pod 'Moya'
+  #pod 'Moya/RxSwift'
+  
   pod 'SwiftyJSON'
+  
   pod 'Result'
+  
   pod 'CocoaLumberjack/Swift'
+  
   pod 'MBProgressHUD'
+  
   pod 'SnapKit'
+  
   pod 'Texture'
   
   # 腾讯云对象存储

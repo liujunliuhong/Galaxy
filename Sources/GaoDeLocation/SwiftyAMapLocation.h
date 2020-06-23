@@ -17,7 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 typedef void(^SwiftyAMapSingleLocationConfiguration)(AMapLocationManager *amapLocationManager);
 typedef void(^SwiftyAMapLocatingCompletionBlock)(CLLocation *_Nullable location, AMapLocationReGeocode *_Nullable regeocode, NSError *_Nullable error);
 
-/// pod 'AMapLocation'
+/// ⚠️https://lbs.amap.com/api/ios-location-sdk/guide/get-location/singlelocation
+/// ⚠️pod 'AMapLocation'
 @interface SwiftyAMapLocation : NSObject
 
 /// register

@@ -10,6 +10,9 @@ import Foundation
 import CocoaLumberjack
 
 
+/// ⚠️pod 'CocoaLumberjack'
+
+
 /// `CocoaLumberjack` set up
 /// - Parameter saveToSandbox: Whether the log can be saved to the sandbox. One situation is: DEBUG mode can be saved to sandbox, RELEASE mode can not be saved to sandbox. There is another situation: no matter what the situation, it can be saved to the sandbox
 public func SwiftyLogSetup(saveToSandbox: Bool) {
@@ -32,7 +35,17 @@ public func SwiftyLogSetup(saveToSandbox: Bool) {
         fileLogger.rollingFrequency = 60 * 60 * 24
         fileLogger.logFileManager.maximumNumberOfLogFiles = 7
         DDLog.add(fileLogger)
+        
+        #if DEBUG
+        print("CocoaLumberjack Log File Path:\(formatString(value: logFileManager.sortedLogFilePaths) ?? "")")
+        #endif
     }
+}
+
+fileprivate func formatString<T>(value: T) -> String? {
+    guard let data = String(format: "%@", value as! CVarArg).data(using: .utf8) else { return nil }
+    guard let utf8 = String(data: data, encoding: .nonLossyASCII)?.utf8 else { return nil }
+    return "\(utf8)"
 }
 
 /// Log

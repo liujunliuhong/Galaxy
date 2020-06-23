@@ -25,7 +25,8 @@ public enum SwiftyQCloudCOSAuthentationType {
     case forever(secretID: String?, secretKey: String?)
 }
 
-/// pod 'QCloudCOSXML'
+/// ⚠️https://cloud.tencent.com/document/product/436/11280
+/// ⚠️pod 'QCloudCOSXML'
 public class SwiftyQCloudCOSManager: NSObject {
     public static let `default` = SwiftyQCloudCOSManager()
     

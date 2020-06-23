@@ -2,7 +2,7 @@
 //  SwiftyNativeLocationTestViewController.swift
 //  SwiftTool
 //
-//  Created by 刘军 on 2020/6/1.
+//  Created by liujun on 2020/6/1.
 //  Copyright © 2020 yinhe. All rights reserved.
 //
 

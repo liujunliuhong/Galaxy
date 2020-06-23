@@ -15,6 +15,7 @@ fileprivate let errorImage: UIImage? = SwiftyMBHUD.image(name: "SwiftyMBHUD_Erro
 fileprivate let infoImage: UIImage? = SwiftyMBHUD.image(name: "SwiftyMBHUD_Info")
 fileprivate let warnImage: UIImage? = SwiftyMBHUD.image(name: "SwiftyMBHUD_Warn")
 
+/// ⚠️pod 'MBProgressHUD'
 public enum SwiftyMBHUDType {
     case success
     case error
@@ -60,10 +61,11 @@ extension SwiftyMBHUD {
     /// show loading
     /// - Parameters:
     ///   - message: message
+    ///   - configuration: configuration
     ///   - view: view
-    @discardableResult public static func showLoading(message: String?, view: UIView? = nil) -> MBProgressHUD? {
+    @discardableResult public static func showLoading(message: String?, configuration:((MBProgressHUD?)->())? = nil, view: UIView? = nil) -> MBProgressHUD? {
         assert(Thread.isMainThread, "MBProgressHUD must in main thread.")
-        return SwiftyMBHUD.getHUD(message: message, view: view)
+        return SwiftyMBHUD.getHUD(message: message, configuration: configuration, view: view)
     }
     
     
@@ -96,11 +98,12 @@ extension SwiftyMBHUD {
     /// show image hud
     /// - Parameters:
     ///   - message: message
+    ///   - configuration: configuration
     ///   - type: type
     ///   - view: view
     ///   - afterDelay: after delay hide
     ///   - hideCompletionClosure: closure
-    public static func showImageHUD(message: String?, type: SwiftyMBHUDType, view: UIView? = nil, afterDelay: TimeInterval = 1.5, hideCompletionClosure: SwiftyMBHUDHideCompletionClosure? = nil) {
+    public static func showImageHUD(message: String?, configuration:((MBProgressHUD?)->())? = nil, type: SwiftyMBHUDType, view: UIView? = nil, afterDelay: TimeInterval = 1.5, hideCompletionClosure: SwiftyMBHUDHideCompletionClosure? = nil) {
         DispatchQueue.main.async {
             var image: UIImage?
             switch type {
@@ -122,6 +125,7 @@ extension SwiftyMBHUD {
             hud?.customView = imageView
             hud?.hide(animated: true, afterDelay: afterDelay)
             hud?.completionBlock = hideCompletionClosure
+            configuration?(hud)
         }
     }
     
@@ -129,24 +133,25 @@ extension SwiftyMBHUD {
     /// show tips
     /// - Parameters:
     ///   - message: message
+    ///   - configuration: configuration
     ///   - view: view
     ///   - afterDelay: after delay hide
     ///   - hideCompletionClosure: closure
-    public static func showTips(message: String?, view: UIView? = nil, afterDelay: TimeInterval = 1.5, hideCompletionClosure: SwiftyMBHUDHideCompletionClosure? = nil) {
+    public static func showTips(message: String?, configuration:((MBProgressHUD?)->())? = nil, view: UIView? = nil, afterDelay: TimeInterval = 1.5, hideCompletionClosure: SwiftyMBHUDHideCompletionClosure? = nil) {
         DispatchQueue.main.async {
             let hud = SwiftyMBHUD.getHUD(message: message, view: view)
             hud?.mode = .text
             hud?.margin = 15.0
             hud?.hide(animated: true, afterDelay: afterDelay)
             hud?.completionBlock = hideCompletionClosure
+            configuration?(hud)
         }
     }
 }
 
 
 extension SwiftyMBHUD {
-    @discardableResult
-    private static func getHUD(message: String?, view: UIView?) -> MBProgressHUD? {
+    @discardableResult private static func getHUD(message: String?, configuration:((MBProgressHUD?)->())? = nil, view: UIView?) -> MBProgressHUD? {
         var view = view
         if view == nil {
             view = UIApplication.shared.keyWindow
@@ -169,6 +174,7 @@ extension SwiftyMBHUD {
         hud.bezelView.color = UIColor(white: 0, alpha: 0.8)
         hud.removeFromSuperViewOnHide = true
         hud.contentColor = .white
+        configuration?(hud)
         return hud
     }
 }

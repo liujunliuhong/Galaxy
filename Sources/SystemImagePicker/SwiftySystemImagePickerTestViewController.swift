@@ -2,7 +2,7 @@
 //  SwiftySystemImagePickerTestViewController.swift
 //  SwiftTool
 //
-//  Created by 刘军 on 2020/6/22.
+//  Created by liujun on 2020/6/22.
 //  Copyright © 2020 yinhe. All rights reserved.
 //
 
@@ -32,7 +32,7 @@ public class SwiftySystemImagePickerTestViewController: UIViewController {
         self.pickerButton.bounds = CGRect(x: 0, y: 0, width: 150, height: 50)
     }
     
-    func formatString<T>(value: T) -> String? {
+    private func formatString<T>(value: T) -> String? {
         guard let data = String(format: "%@", value as! CVarArg).data(using: .utf8) else { return nil }
         guard let utf8 = String(data: data, encoding: .nonLossyASCII)?.utf8 else { return nil }
         return "\(utf8)"

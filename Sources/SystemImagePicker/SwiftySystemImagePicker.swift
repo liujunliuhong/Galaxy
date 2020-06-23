@@ -14,6 +14,12 @@ public typealias SwiftySystemImagePickerClosure = (UIImage?, [UIImagePickerContr
 
 public class SwiftySystemImagePicker: NSObject {
 
+    deinit {
+        #if DEBUG
+        print("\(self.classForCoder) deinit")
+        #endif
+    }
+    
     private weak var targetViewController: UIViewController?
     
     private struct AssociatedKeys {
@@ -81,21 +87,24 @@ extension SwiftySystemImagePicker {
 extension SwiftySystemImagePicker: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
-        objc_setAssociatedObject(self, &SwiftySystemImagePicker.AssociatedKeys.pickerClosureKey, nil, .OBJC_ASSOCIATION_COPY_NONATOMIC)
-        if let targetViewController = self.targetViewController {
-            objc_setAssociatedObject(targetViewController, &SwiftySystemImagePicker.AssociatedKeys.pickerKey, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        }
+        self.releaseImagePicker()
     }
     
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         //
         picker.dismiss(animated: true, completion: nil)
         //
-        let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
+        let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage // edit image
         let closure = objc_getAssociatedObject(self, &SwiftySystemImagePicker.AssociatedKeys.pickerClosureKey) as? SwiftySystemImagePickerClosure
         
         closure?(image, info)
         
+        self.releaseImagePicker()
+    }
+}
+
+extension SwiftySystemImagePicker {
+    private func releaseImagePicker() {
         objc_setAssociatedObject(self, &SwiftySystemImagePicker.AssociatedKeys.pickerClosureKey, nil, .OBJC_ASSOCIATION_COPY_NONATOMIC)
         if let targetViewController = self.targetViewController {
             objc_setAssociatedObject(targetViewController, &SwiftySystemImagePicker.AssociatedKeys.pickerKey, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)

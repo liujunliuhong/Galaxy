@@ -2,14 +2,14 @@
 //  SwiftyCusNavigationBar.swift
 //  SwiftTool
 //
-//  Created by 刘军 on 2020/6/9.
+//  Created by liujun on 2020/6/9.
 //  Copyright © 2020 yinhe. All rights reserved.
 //
 
 import UIKit
 
 // bar button item type
-// auto: Get the size of the control itself by calling `sizeToFit`
+// auto: Get the width of the control itself by calling `sizeToFit`
 // custom: Custom width and height
 public enum SwiftyNavigationBarButtonItemType {
     case button(button: UIButton, layoutType: SwiftyNavigationBarButtonItemLayoutType)
@@ -66,7 +66,7 @@ private struct SwiftyCusNavigationBarAssociatedKeys {
     static var gradientKey = "com.yinhe.SwiftyCusNavigationBar.gradientLayer.key"
 }
 
-// dependency 'UIKit'、'SnapKit'
+// ⚠️pod 'SnapKit'
 public class SwiftyCusNavigationBar: UIView {
     deinit {
         #if DEBUG

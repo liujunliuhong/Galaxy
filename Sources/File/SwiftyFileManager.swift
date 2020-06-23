@@ -36,6 +36,9 @@ extension SwiftyFileManager {
                 try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
                 return true
             } catch {
+                #if DEBUG
+                print("Creat Directory Error: \(error.localizedDescription)")
+                #endif
                 return false
             }
         }

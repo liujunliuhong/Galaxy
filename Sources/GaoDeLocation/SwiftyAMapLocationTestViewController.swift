@@ -61,11 +61,14 @@ public class SwiftyAMapLocationTestViewController: UIViewController {
 
 extension SwiftyAMapLocationTestViewController {
     @objc func registerAction() {
+        /*
         SwiftyAMapLocation.register(withKey: self.amap_key)
+ */
     }
     
     
     @objc func singleLocationAction() {
+        /*
         SwiftyAMapLocation.singleLocation(withTarget: self, configuration: { (locationManager) in
             // configuration
             guard let locationManager = locationManager as? AMapLocationManager else { return }
@@ -98,6 +101,7 @@ extension SwiftyAMapLocationTestViewController {
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }
+        */
     }
 }
 extension SwiftyAMapLocationTestViewController {

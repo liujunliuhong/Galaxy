@@ -66,6 +66,7 @@ public class SwiftyBMKLocationTestViewController: UIViewController {
          BMKLocationAuthErrorNetworkFailed
          BMKLocationAuthErrorFailed
          */
+        /*
         SwiftyBMKLocation.register(withTarget: self, key: self.bmk_key) { (code) in
             switch code {
             case .unknown:
@@ -80,10 +81,12 @@ public class SwiftyBMKLocationTestViewController: UIViewController {
                 break
             }
         }
+ */
     }
     
     
     @objc func singleLocationAction() {
+        /*
         SwiftyBMKLocation.singleLocation(configuration: { (locationManager) in
             guard let locationManager = locationManager as? BMKLocationManager else { return }
             locationManager.coordinateType = .WGS84
@@ -130,6 +133,7 @@ public class SwiftyBMKLocationTestViewController: UIViewController {
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }
+ */
     }
 }
 

@@ -8,17 +8,6 @@
 
 ### 导入子模块
 
-- 核心模块
+请查看·podspec·文件，根据自己需要导入自己需要的模块
 
-`pod "YHSwiftTool/Core", :git => "https://github.com/liujunliuhong/SwiftTool.git"`
-
-- 腾讯云存储
-
-`pod "YHSwiftTool/TencentUpload", :git => "https://github.com/liujunliuhong/SwiftTool.git"`
-
-- 百度定位
-
-`pod "YHSwiftTool/BaiDuLocation", :git => "https://github.com/liujunliuhong/SwiftTool.git"`
-
-# 文档
-文档暂时没写，后面会加上
+### 文档后续会补上

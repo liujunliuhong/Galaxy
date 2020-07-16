@@ -58,6 +58,7 @@ Pod::Spec.new do |s|
   s.subspec 'NavigationBar' do |ss|
     ss.source_files = 'Sources/NavigationBar/*'
     ss.dependency 'SnapKit'
+    ss.dependency 'SwiftyTool/UIKit'
   end
 
 

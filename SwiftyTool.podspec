@@ -62,10 +62,10 @@ Pod::Spec.new do |s|
 
 
 
-  # AsyncDisplayKit
+  # Texture
   s.subspec 'AsyncDisplayKit' do |ss|
     ss.source_files = 'Sources/AsyncDisplayKit/*'
-    ss.dependency 'AsyncDisplayKit'
+    ss.dependency 'Texture'
   end
 
 

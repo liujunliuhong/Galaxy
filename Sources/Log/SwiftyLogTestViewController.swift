@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SwiftyLogTestViewController: UIViewController {
+public class SwiftyLogTestViewController: UIViewController {
     deinit {
         print("\(NSStringFromClass(self.classForCoder)) deinit")
     }
@@ -22,7 +22,7 @@ class SwiftyLogTestViewController: UIViewController {
         return logButton
     }()
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         

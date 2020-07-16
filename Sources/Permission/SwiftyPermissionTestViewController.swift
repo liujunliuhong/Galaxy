@@ -17,7 +17,7 @@ fileprivate struct Model {
     }
 }
 
-class SwiftyPermissionTestViewController: UIViewController {
+public class SwiftyPermissionTestViewController: UIViewController {
     
     deinit {
         print("\(NSStringFromClass(self.classForCoder)) deinit")
@@ -35,7 +35,7 @@ class SwiftyPermissionTestViewController: UIViewController {
     private var dataSource: [Model] = []
     
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         
         let model1 = Model(title: "Camera Authorization Status", selector: #selector(getCameraAuthorizationStatus))
@@ -157,10 +157,10 @@ extension SwiftyPermissionTestViewController {
 
 
 extension SwiftyPermissionTestViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.dataSource.count
     }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ID")
         let model = self.dataSource[indexPath.row]
         cell?.textLabel?.text = model.title
@@ -169,7 +169,7 @@ extension SwiftyPermissionTestViewController: UITableViewDataSource {
 }
 
 extension SwiftyPermissionTestViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let model = self.dataSource[indexPath.row]
         self.perform(model.selector)

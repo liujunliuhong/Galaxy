@@ -85,13 +85,14 @@ public class SwiftyBMKLocationTestViewController: UIViewController {
     
     @objc func singleLocationAction() {
         SwiftyBMKLocation.singleLocation(configuration: { (locationManager) in
+            guard let locationManager = locationManager as? BMKLocationManager else { return }
             locationManager.coordinateType = .WGS84
             locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         }) { [weak self] (location, error) in
             guard let self = self else { return }
             if let error = error {
                 self.showAlert(message: "\(error.localizedDescription)")
-            } else if let location = location {
+            } else if let location = location as? BMKLocation {
                 var dic: [String: Any] = [:]
                 dic["location.latitude"] = location.location?.coordinate.latitude ?? 0
                 dic["location.longitude"] = location.location?.coordinate.longitude ?? 0

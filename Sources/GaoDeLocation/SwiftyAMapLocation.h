@@ -9,13 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <objc/message.h>
 #import <UIKit/UIKit.h>
-#import <AMapFoundationKit/AMapFoundationKit.h>
-#import <AMapLocationKit/AMapLocationKit.h>
+#import <CoreLocation/CoreLocation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^SwiftyAMapSingleLocationConfiguration)(AMapLocationManager *amapLocationManager);
-typedef void(^SwiftyAMapLocatingCompletionBlock)(CLLocation *_Nullable location, AMapLocationReGeocode *_Nullable regeocode, NSError *_Nullable error);
+typedef void(^SwiftyAMapSingleLocationConfiguration)(id amapLocationManager);
+typedef void(^SwiftyAMapLocatingCompletionBlock)(CLLocation *_Nullable location, id _Nullable regeocode, NSError *_Nullable error);
 
 /// ⚠️https://lbs.amap.com/api/ios-location-sdk/guide/get-location/singlelocation
 /// ⚠️pod 'AMapLocation'

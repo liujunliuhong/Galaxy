@@ -68,6 +68,7 @@ extension SwiftyAMapLocationTestViewController {
     @objc func singleLocationAction() {
         SwiftyAMapLocation.singleLocation(withTarget: self, configuration: { (locationManager) in
             // configuration
+            guard let locationManager = locationManager as? AMapLocationManager else { return }
             locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         }) { [weak self] (location, regeocode, error) in
             guard let self = self else { return }
@@ -79,7 +80,7 @@ extension SwiftyAMapLocationTestViewController {
                     dic["location.latitude"] = location.coordinate.latitude
                     dic["location.longitude"] = location.coordinate.longitude
                 }
-                if let regeocode = regeocode {
+                if let regeocode = regeocode as? AMapLocationReGeocode {
                     dic["regeocode.formattedAddress"] = regeocode.formattedAddress
                     dic["regeocode.country"] = regeocode.country
                     dic["regeocode.province"] = regeocode.province

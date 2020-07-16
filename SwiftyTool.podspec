@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
   end
 
   # Words Sort
-  s.subspec 'Words Sort' do |ss|
+  s.subspec 'WordsSort' do |ss|
     ss.source_files = 'Sources/Words Sort/*'
   end
 
@@ -70,7 +70,7 @@ Pod::Spec.new do |s|
 
 
   # System Face
-  s.subspec 'System Face' do |ss|
+  s.subspec 'SystemFace' do |ss|
     ss.source_files = 'Sources/System Face/*'
     ss.resource = 'Sources/System Face/YHSystemFace.bundle'
   end
@@ -126,7 +126,7 @@ Pod::Spec.new do |s|
   end
 
   # City Picker
-  s.subspec 'City Picker' do |ss|
+  s.subspec 'CityPicker' do |ss|
     ss.source_files = 'Sources/City Picker/*'
     ss.resource = 'Sources/City Picker/SwiftyCity.bundle'
     ss.dependency 'SwiftyTool/Picker'

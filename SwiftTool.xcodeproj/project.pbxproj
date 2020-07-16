@@ -809,6 +809,7 @@
 			baseConfigurationReference = B4B9793D1D5B9C59651E2DBB /* Pods-SwiftTool.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W642XAJPP4;
 				INFOPLIST_FILE = SwiftTool/Info.plist;
@@ -830,6 +831,7 @@
 			baseConfigurationReference = 425C6511002199BBE0183C7D /* Pods-SwiftTool.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W642XAJPP4;
 				INFOPLIST_FILE = SwiftTool/Info.plist;

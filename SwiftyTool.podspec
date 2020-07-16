@@ -129,7 +129,7 @@ Pod::Spec.new do |s|
   s.subspec 'City Picker' do |ss|
     ss.source_files = 'Sources/City Picker/*'
     ss.resource = 'Sources/City Picker/SwiftyCity.bundle'
-    ss.dependency = 'SwiftyTool/Picker'
+    ss.dependency 'SwiftyTool/Picker'
   end
 
 end

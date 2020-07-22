@@ -4,7 +4,7 @@
 # 导入方式
 
 ### 全部模块导入
-`pod "YHSwiftTool", :git => "https://github.com/liujunliuhong/SwiftTool.git"`
+`pod "SwiftyTool", :git => "https://github.com/liujunliuhong/SwiftTool.git"`
 
 ### 导入子模块
 

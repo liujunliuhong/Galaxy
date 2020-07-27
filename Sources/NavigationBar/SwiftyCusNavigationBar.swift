@@ -67,6 +67,7 @@ private struct SwiftyCusNavigationBarAssociatedKeys {
 }
 
 // ⚠️pod 'SnapKit'
+// dependency 'UIKit'
 public class SwiftyCusNavigationBar: UIView {
     deinit {
         #if DEBUG

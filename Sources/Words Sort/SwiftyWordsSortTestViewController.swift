@@ -15,7 +15,7 @@ fileprivate struct Model {
     }
 }
 
-class SwiftyWordsSortTestViewController: UIViewController {
+public class SwiftyWordsSortTestViewController: UIViewController {
     deinit {
         print("\(NSStringFromClass(self.classForCoder)) deinit")
     }
@@ -41,7 +41,7 @@ class SwiftyWordsSortTestViewController: UIViewController {
     private var modelsDataSource: [Model] = []
     private var stringsDataSource: [String] = []
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         

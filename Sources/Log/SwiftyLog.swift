@@ -10,7 +10,7 @@ import Foundation
 import CocoaLumberjack
 
 
-/// ⚠️pod 'CocoaLumberjack'
+/// ⚠️pod 'CocoaLumberjack/Swift'
 
 
 /// `CocoaLumberjack` set up

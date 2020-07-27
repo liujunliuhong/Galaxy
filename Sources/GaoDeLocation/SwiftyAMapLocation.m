@@ -7,6 +7,8 @@
 //
 
 #import "SwiftyAMapLocation.h"
+#import <AMapFoundationKit/AMapFoundationKit.h>
+#import <AMapLocationKit/AMapLocationKit.h>
 
 static char swifty_amap_single_location_key;
 static char swifty_amap_single_location_completion_key;

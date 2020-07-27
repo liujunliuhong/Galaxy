@@ -10,13 +10,18 @@
 #import <UIKit/UIKit.h>
 #import <objc/message.h>
 
-#import <BMKLocationKit/BMKLocationComponent.h>
-
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^SwiftyBMKRegisterBlock)(BMKLocationAuthErrorCode status);
-typedef void(^SwiftyBMKSingleLocationConfiguration)(BMKLocationManager *bmkLocationManager);
-typedef void(^SwiftyBMKSingleLocationCompletionBlock)(BMKLocation *_Nullable location, NSError * _Nullable error);
+typedef NS_ENUM(NSInteger, SwiftyBMKLocationAuthErrorCode) {
+    SwiftyBMKLocationAuthErrorUnknown = -1,
+    SwiftyBMKLocationAuthErrorSuccess = 0,
+    SwiftyBMKLocationAuthErrorNetworkFailed = 1,
+    SwiftyBMKLocationAuthErrorFailed  = 2,
+};
+
+typedef void(^SwiftyBMKRegisterBlock)(SwiftyBMKLocationAuthErrorCode status);
+typedef void(^SwiftyBMKSingleLocationConfiguration)(id bmkLocationManager);
+typedef void(^SwiftyBMKSingleLocationCompletionBlock)(id _Nullable location, NSError * _Nullable error);
 
 /// ⚠️http://lbsyun.baidu.com/index.php?title=ios-locsdk/guide/get-location/once
 /// ⚠️pod 'BMKLocationKit'

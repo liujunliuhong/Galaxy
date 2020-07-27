@@ -7,11 +7,11 @@
 //
 
 #import "SwiftyBMKLocation.h"
+#import <BMKLocationKit/BMKLocationComponent.h>
 
 // register
 static char swifty_bmk_register_associated_key;
 static char swifty_bmk_register_completion_associated_key;
-
 
 @interface SwiftyBMKLocation() <BMKLocationAuthDelegate>
 @property (nonatomic, strong, nullable) BMKLocationManager *locationManager;
@@ -89,7 +89,23 @@ static char swifty_bmk_register_completion_associated_key;
 - (void)onCheckPermissionState:(BMKLocationAuthErrorCode)iError{
     SwiftyBMKRegisterBlock blobk = objc_getAssociatedObject(self, &swifty_bmk_register_completion_associated_key);
     if (blobk) {
-        blobk(iError);
+        switch (iError) {
+            case BMKLocationAuthErrorUnknown:
+                blobk(SwiftyBMKLocationAuthErrorUnknown);
+                break;
+            case BMKLocationAuthErrorSuccess:
+                blobk(SwiftyBMKLocationAuthErrorSuccess);
+                break;
+            case BMKLocationAuthErrorNetworkFailed:
+                blobk(SwiftyBMKLocationAuthErrorNetworkFailed);
+                break;
+            case BMKLocationAuthErrorFailed:
+                blobk(SwiftyBMKLocationAuthErrorFailed);
+                break;
+            default:
+                blobk(SwiftyBMKLocationAuthErrorUnknown);
+                break;
+        }
     }
     [self releaseRegister];
 }

@@ -34,10 +34,11 @@ public func SwiftyLogSetup(saveToSandbox: Bool) {
         let fileLogger = DDFileLogger(logFileManager: logFileManager)
         fileLogger.rollingFrequency = 60 * 60 * 24
         fileLogger.logFileManager.maximumNumberOfLogFiles = 7
+        fileLogger.maximumFileSize = UInt64(1024 * 1024 * 0.5) // 512KB
         DDLog.add(fileLogger)
         
         #if DEBUG
-        print("CocoaLumberjack Log File Path:\(formatString(value: logFileManager.sortedLogFilePaths) ?? "")")
+        print("CocoaLumberjack Log File Paths:\(formatString(value: logFileManager.sortedLogFilePaths) ?? "")")
         #endif
     }
 }

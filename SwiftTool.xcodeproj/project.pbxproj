@@ -249,7 +249,7 @@
 				1870F4BA246A678E0016D596 /* Permission */,
 				1870F4B3246A387A0016D596 /* Log */,
 				180E6EC22468EB51001B069C /* HUD */,
-				183111FE2446F8F100155620 /* NetworkRequest */,
+				183111FE2446F8F100155620 /* Moya+Alamofire */,
 				183112012446F8F100155620 /* Picker */,
 				183112052446F8F100155620 /* ViewModelType */,
 				183112072446F8F100155620 /* UIKit */,
@@ -268,13 +268,13 @@
 			path = Sources;
 			sourceTree = SOURCE_ROOT;
 		};
-		183111FE2446F8F100155620 /* NetworkRequest */ = {
+		183111FE2446F8F100155620 /* Moya+Alamofire */ = {
 			isa = PBXGroup;
 			children = (
 				183111FF2446F8F100155620 /* YHRXAlamofire.swift */,
 				183112002446F8F100155620 /* YHResult.swift */,
 			);
-			path = NetworkRequest;
+			path = "Moya+Alamofire";
 			sourceTree = "<group>";
 		};
 		183112012446F8F100155620 /* Picker */ = {

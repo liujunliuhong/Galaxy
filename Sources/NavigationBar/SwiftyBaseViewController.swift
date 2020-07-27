@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-@objc public class SwiftyBaseViewController: UIViewController {
+@objc open class SwiftyBaseViewController: UIViewController {
     deinit {
         NotificationCenter.default.removeObserver(self, name: UIApplication.didChangeStatusBarOrientationNotification, object: nil)
     }
@@ -29,7 +29,7 @@ import SnapKit
     }()
     
 
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
 
         self.view.addSubview(cusNaviBar)
@@ -61,32 +61,32 @@ import SnapKit
     }
     
     // The status bar is not hidden by default.
-    @objc override public var prefersStatusBarHidden: Bool {
+    @objc override open var prefersStatusBarHidden: Bool {
         return false
     }
     
     // Screen default no rotation.
-    @objc override public var shouldAutorotate: Bool {
+    @objc override open var shouldAutorotate: Bool {
         return false
     }
     
     // Default supports all screen rotation directions.
-    @objc override public var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+    @objc override open var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .all
     }
     
     // Default Display Vertical Screen.
-    @objc override public var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
+    @objc override open var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
         return .portrait
     }
     
     // Default does not hide virtual home indicator.
-    @objc override public var prefersHomeIndicatorAutoHidden: Bool{
+    @objc override open var prefersHomeIndicatorAutoHidden: Bool{
         return false
     }
 
     // Set the default status bar style based on the values in info. plist.
-    @objc override public var preferredStatusBarStyle: UIStatusBarStyle{
+    @objc override open var preferredStatusBarStyle: UIStatusBarStyle{
         let infoDic = Bundle.main.infoDictionary
         if let infoDic = infoDic, let style = infoDic["UIStatusBarStyle"] as? String, style == "UIStatusBarStyleLightContent" {
             return .lightContent
@@ -94,26 +94,26 @@ import SnapKit
         return .default
     }
     
-    @objc override public var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+    @objc override open var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
         return .fade
     }
 }
 
 // MARK: - Override
 extension SwiftyBaseViewController {
-    @objc public func initData() {
+    @objc open func initData() {
         
     }
     
-    @objc public func setupUI() {
+    @objc open func setupUI() {
         
     }
     
-    @objc public func bindViewModel() {
+    @objc open func bindViewModel() {
         
     }
     
-    @objc public func other() {
+    @objc open func other() {
         
     }
 }

@@ -50,6 +50,8 @@
 		1870F4B2246A2E1D0016D596 /* SwiftyMBHUDTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870F4B1246A2E1D0016D596 /* SwiftyMBHUDTestViewController.swift */; };
 		1870F4B5246A389E0016D596 /* SwiftyLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870F4B4246A389E0016D596 /* SwiftyLog.swift */; };
 		187FCD8A24A0845200B423EB /* SwiftySystemImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187FCD8924A0845200B423EB /* SwiftySystemImagePicker.swift */; };
+		1890ED9824DA5A3400C7CEBB /* SwiftyMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1890ED9724DA5A3400C7CEBB /* SwiftyMap.swift */; };
+		1890ED9A24DA702800C7CEBB /* SwiftyMapTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1890ED9924DA702800C7CEBB /* SwiftyMapTestViewController.swift */; };
 		189404E82488A5DC005D9C29 /* SwiftyQCloudCOSManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189404E72488A5DC005D9C29 /* SwiftyQCloudCOSManager.swift */; };
 		18998DB7246E300400EE72F0 /* String+Words.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18998DB6246E300400EE72F0 /* String+Words.swift */; };
 		18AD961724920C3900500C78 /* SwiftyTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AD961624920C3900500C78 /* SwiftyTabBarController.swift */; };
@@ -135,6 +137,8 @@
 		1870F4B1246A2E1D0016D596 /* SwiftyMBHUDTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyMBHUDTestViewController.swift; sourceTree = "<group>"; };
 		1870F4B4246A389E0016D596 /* SwiftyLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyLog.swift; sourceTree = "<group>"; };
 		187FCD8924A0845200B423EB /* SwiftySystemImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftySystemImagePicker.swift; sourceTree = "<group>"; };
+		1890ED9724DA5A3400C7CEBB /* SwiftyMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyMap.swift; sourceTree = "<group>"; };
+		1890ED9924DA702800C7CEBB /* SwiftyMapTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyMapTestViewController.swift; sourceTree = "<group>"; };
 		189404E72488A5DC005D9C29 /* SwiftyQCloudCOSManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyQCloudCOSManager.swift; sourceTree = "<group>"; };
 		18998DB6246E300400EE72F0 /* String+Words.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Words.swift"; sourceTree = "<group>"; };
 		18AD961624920C3900500C78 /* SwiftyTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyTabBarController.swift; sourceTree = "<group>"; };
@@ -243,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				1831126C2446FBB200155620 /* SwiftToolDescription */,
+				1890ED9424DA52F900C7CEBB /* Map */,
 				18EBB7362473CB390080CC2B /* File */,
 				859A7D78246EEFB8008F7A4F /* City Picker */,
 				1827D02E246D1E6800429B36 /* Words Sort */,
@@ -445,6 +450,15 @@
 			path = Permission;
 			sourceTree = "<group>";
 		};
+		1890ED9424DA52F900C7CEBB /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				1890ED9724DA5A3400C7CEBB /* SwiftyMap.swift */,
+				1890ED9924DA702800C7CEBB /* SwiftyMapTestViewController.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
 		18EBB7362473CB390080CC2B /* File */ = {
 			isa = PBXGroup;
 			children = (
@@ -602,11 +616,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8544C6CF246C4AAC00361C08 /* SwiftyPermission.swift in Sources */,
+				1890ED9A24DA702800C7CEBB /* SwiftyMapTestViewController.swift in Sources */,
 				182805E324727B1800A3D228 /* SwiftyFlowItemsDisplayNode.swift in Sources */,
 				18EBB7332473B6B30080CC2B /* SwiftyFlowItemsAutoWidthTestViewController.swift in Sources */,
 				854E899F248FC56700D1994B /* SwiftyCusNavigationBar.swift in Sources */,
 				1831125C2446F8F200155620 /* YHSystemFaceHelper.m in Sources */,
 				1848527D2487AC4900BD6A25 /* SwiftyAMapLocationTestViewController.swift in Sources */,
+				1890ED9824DA5A3400C7CEBB /* SwiftyMap.swift in Sources */,
 				1831114F24469EB700155620 /* ViewController.swift in Sources */,
 				1831125D2446F8F200155620 /* YHSystemFacePageView.m in Sources */,
 				187FCD8A24A0845200B423EB /* SwiftySystemImagePicker.swift in Sources */,

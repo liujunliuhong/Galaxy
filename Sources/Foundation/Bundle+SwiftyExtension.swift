@@ -13,7 +13,7 @@ extension Bundle {
         case appVersion          = "CFBundleShortVersionString"
         case buildID             = "CFBundleVersion"
         case bundleID            = "CFBundleIdentifier"
-        case appName             = "CFBundleDisplayName"
+        case appName             = "CFBundleName"
         case statusBarStyle      = "UIStatusBarStyle"
     }
     

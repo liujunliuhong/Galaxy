@@ -61,7 +61,7 @@ extension ViewController {
          self.navigationController?.pushViewController(vc, animated: true)
          */
         
-        let vc = SwiftySystemImagePickerTestViewController()
+        let vc = SwiftyMapTestViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

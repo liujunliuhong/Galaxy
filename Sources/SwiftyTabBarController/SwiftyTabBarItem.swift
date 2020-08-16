@@ -3,7 +3,7 @@
 //  SwiftTool
 //
 //  Created by apple on 2020/6/16.
-//  Copyright © 2020 yinhe. All rights reserved.
+//  Copyright © 2020 galaxy. All rights reserved.
 //
 
 import UIKit

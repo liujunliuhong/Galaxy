@@ -75,6 +75,9 @@
 		8544C6CF246C4AAC00361C08 /* SwiftyPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8544C6CE246C4AAC00361C08 /* SwiftyPermission.swift */; };
 		8544C6D1246C4B7F00361C08 /* SwiftyPermissionTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8544C6D0246C4B7F00361C08 /* SwiftyPermissionTestViewController.swift */; };
 		854E899F248FC56700D1994B /* SwiftyCusNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E899E248FC56700D1994B /* SwiftyCusNavigationBar.swift */; };
+		858E538224E8BE9C00A67F0C /* SwiftyCusNavigationBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858E538124E8BE9C00A67F0C /* SwiftyCusNavigationBarButtonItem.swift */; };
+		858E538424E8C2C200A67F0C /* SwiftyCusNavigationBarTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858E538324E8C2C200A67F0C /* SwiftyCusNavigationBarTitle.swift */; };
+		858E538624E8C43C00A67F0C /* SwiftyCusNavigationBarSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858E538524E8C43C00A67F0C /* SwiftyCusNavigationBarSpace.swift */; };
 		859A7D7A246EF00B008F7A4F /* SwiftyCity.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 859A7D79246EF00B008F7A4F /* SwiftyCity.bundle */; };
 		859A7D80246EF7F7008F7A4F /* SwiftyCityPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859A7D7F246EF7F7008F7A4F /* SwiftyCityPickerView.swift */; };
 		85ADF41724A0DB34003B5C10 /* SwiftySystemImagePickerTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85ADF41624A0DB34003B5C10 /* SwiftySystemImagePickerTestViewController.swift */; };
@@ -164,6 +167,9 @@
 		8544C6CE246C4AAC00361C08 /* SwiftyPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyPermission.swift; sourceTree = "<group>"; };
 		8544C6D0246C4B7F00361C08 /* SwiftyPermissionTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyPermissionTestViewController.swift; sourceTree = "<group>"; };
 		854E899E248FC56700D1994B /* SwiftyCusNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCusNavigationBar.swift; sourceTree = "<group>"; };
+		858E538124E8BE9C00A67F0C /* SwiftyCusNavigationBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCusNavigationBarButtonItem.swift; sourceTree = "<group>"; };
+		858E538324E8C2C200A67F0C /* SwiftyCusNavigationBarTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCusNavigationBarTitle.swift; sourceTree = "<group>"; };
+		858E538524E8C43C00A67F0C /* SwiftyCusNavigationBarSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCusNavigationBarSpace.swift; sourceTree = "<group>"; };
 		859A7D79246EF00B008F7A4F /* SwiftyCity.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SwiftyCity.bundle; sourceTree = "<group>"; };
 		859A7D7F246EF7F7008F7A4F /* SwiftyCityPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCityPickerView.swift; sourceTree = "<group>"; };
 		85ADF41624A0DB34003B5C10 /* SwiftySystemImagePickerTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftySystemImagePickerTestViewController.swift; sourceTree = "<group>"; };
@@ -330,6 +336,9 @@
 			isa = PBXGroup;
 			children = (
 				854E899E248FC56700D1994B /* SwiftyCusNavigationBar.swift */,
+				858E538124E8BE9C00A67F0C /* SwiftyCusNavigationBarButtonItem.swift */,
+				858E538324E8C2C200A67F0C /* SwiftyCusNavigationBarTitle.swift */,
+				858E538524E8C43C00A67F0C /* SwiftyCusNavigationBarSpace.swift */,
 				183091B32490D950007EA52C /* SwiftyBaseViewController.swift */,
 				183091B12490D89C007EA52C /* SwiftyCusNavigationBarTestViewController.swift */,
 			);
@@ -643,10 +652,13 @@
 				8544C6D1246C4B7F00361C08 /* SwiftyPermissionTestViewController.swift in Sources */,
 				85CD1E452487E0D900149C71 /* Keys.swift in Sources */,
 				8544C6CB246C3D2D00361C08 /* SwiftyDatePickerView.swift in Sources */,
+				858E538424E8C2C200A67F0C /* SwiftyCusNavigationBarTitle.swift in Sources */,
 				183112402446F8F200155620 /* YHRXAlamofire.swift in Sources */,
 				18EDB3902498A6790083395C /* SwiftyTabBarBadgeView.swift in Sources */,
+				858E538624E8C43C00A67F0C /* SwiftyCusNavigationBarSpace.swift in Sources */,
 				1831114B24469EB700155620 /* AppDelegate.swift in Sources */,
 				18EBB731247372DC0080CC2B /* SwiftyFlowItemsAutoMarginTestViewController.swift in Sources */,
+				858E538224E8BE9C00A67F0C /* SwiftyCusNavigationBarButtonItem.swift in Sources */,
 				1827D03D246D23EA00429B36 /* SwiftyWordsSort.swift in Sources */,
 				1827D02D246D1B7500429B36 /* SwiftyLogTestViewController.swift in Sources */,
 				85C3234224853772007D2B73 /* SwiftyNativeLocation.swift in Sources */,

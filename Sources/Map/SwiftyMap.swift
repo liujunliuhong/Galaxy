@@ -3,7 +3,7 @@
 //  SwiftTool
 //
 //  Created by apple on 2020/8/5.
-//  Copyright © 2020 yinhe. All rights reserved.
+//  Copyright © 2020 galaxy. All rights reserved.
 //
 
 import Foundation
@@ -72,6 +72,9 @@ public func SwiftyOpenMapNavigation(type: SwiftyMapNavigationType, destination: 
             d = "&destination=\(destination.latitude),\(destination.longitude)"
         }
         var url = "baidumap://map/direction" + "?origin={{我的位置}}" + d + "&coord_type=\(coordinateType.rawValue)" + "&mode=\(navigationType.rawValue)" + "&src=\(bundleID)"
+        #if DEBUG
+        print("map url: \(url)")
+        #endif
         url = (url as NSString).addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
         UIApplication.YH_OpenSafari(with: url)
     case .gaode(let navigationType):
@@ -83,6 +86,9 @@ public func SwiftyOpenMapNavigation(type: SwiftyMapNavigationType, destination: 
             d = "&dlat=\(destination.latitude)&dlon=\(destination.longitude)"
         }
         var url = "iosamap://path" + "?sourceApplication=\(appName)" + d + "&dev=0" + "&t=\(navigationType.rawValue)"
+        #if DEBUG
+        print("map url: \(url)")
+        #endif
         url = (url as NSString).addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
         UIApplication.YH_OpenSafari(with: url)
     case .`self`(let directionsMode, let mapType, let showsTrafficKey):

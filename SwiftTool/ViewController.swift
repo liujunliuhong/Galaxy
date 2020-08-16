@@ -3,7 +3,7 @@
 //  SwiftTool
 //
 //  Created by apple on 2020/4/15.
-//  Copyright © 2020 yinhe. All rights reserved.
+//  Copyright © 2020 galaxy. All rights reserved.
 //
 
 import UIKit
@@ -61,7 +61,7 @@ extension ViewController {
          self.navigationController?.pushViewController(vc, animated: true)
          */
         
-        let vc = SwiftyMapTestViewController()
+        let vc = SwiftyCusNavigationBarTestViewController(testImage: UIImage(named: "item_Image_1"))
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

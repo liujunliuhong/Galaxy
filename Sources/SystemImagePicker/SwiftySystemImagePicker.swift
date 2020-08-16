@@ -3,7 +3,7 @@
 //  SwiftTool
 //
 //  Created by apple on 2020/6/22.
-//  Copyright © 2020 yinhe. All rights reserved.
+//  Copyright © 2020 galaxy. All rights reserved.
 //
 
 import Foundation
@@ -23,8 +23,8 @@ public class SwiftySystemImagePicker: NSObject {
     private weak var targetViewController: UIViewController?
     
     private struct AssociatedKeys {
-        static var pickerKey = "com.yinhe.SwiftySystemImagePicker.pickerKey"
-        static var pickerClosureKey = "com.yinhe.SwiftySystemImagePicker.pickerClosureKey"
+        static var pickerKey = "com.galaxy.SwiftySystemImagePicker.pickerKey"
+        static var pickerClosureKey = "com.galaxy.SwiftySystemImagePicker.pickerClosureKey"
     }
 }
 

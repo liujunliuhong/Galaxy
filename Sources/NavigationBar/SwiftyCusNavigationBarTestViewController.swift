@@ -3,7 +3,7 @@
 //  SwiftTool
 //
 //  Created by apple on 2020/6/10.
-//  Copyright © 2020 yinhe. All rights reserved.
+//  Copyright © 2020 galaxy. All rights reserved.
 //
 
 import UIKit
@@ -42,40 +42,59 @@ public class SwiftyCusNavigationBarTestViewController: SwiftyBaseViewController 
         let button = UIButton(type: .custom)
         button.setTitle("Button", for: .normal)
         button.backgroundColor = .cyan
-        let item1 = SwiftyNavigationBarButtonItem(itemType: .button(button: button, layoutType: .auto))
+        let item1 = SwiftyCusNavigationBarButtonItem()
+        item1.layoutType = .auto
+        item1.view = button
         
-        let item2 = SwiftyNavigationBarButtonItem(itemType: .space(space: 10))
+        let space1 = SwiftyCusNavigationBarSpace(space: 10.0)
         
         let imageView = UIImageView()
         imageView.image = self.testImage
         imageView.contentMode = .scaleAspectFit
-        let item3 = SwiftyNavigationBarButtonItem(itemType: .imageView(imageView: imageView, layoutType: .auto))
+        let item2 = SwiftyCusNavigationBarButtonItem()
+        item2.layoutType = .auto
+        item2.view = imageView
         
         
-        let titleType = SwiftyNavigationBarTitleType.title(title: "Title", font: UIFont.systemFont(ofSize: 20), color: .orange, adjustsFontSizeToFitWidth: true, layoutType: .auto)
-        let title = SwiftyNavigationBarTitle(titleType: titleType)
+        let label = UILabel()
+        label.text = "Title"
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.textColor = .orange
+        label.textAlignment = .center
+        label.adjustsFontSizeToFitWidth = true
+        let titleView = SwiftyCusNavigationBarTitle()
+        titleView.view = label
+        titleView.layoutType = .fill
         
         
         let button4 = UIButton(type: .custom)
         button4.setTitle("44444444", for: .normal)
         button4.backgroundColor = .cyan
-        let item4 = SwiftyNavigationBarButtonItem(itemType: .button(button: button4, layoutType: .auto))
+        let item3 = SwiftyCusNavigationBarButtonItem()
+        item3.layoutType = .auto
+        item3.view = button4
         
-        let item5 = SwiftyNavigationBarButtonItem(itemType: .space(space: 10))
+        let space2 = SwiftyCusNavigationBarSpace(space: 10.0)
         
         
-        let label = UILabel()
-        label.text = "55"
-        label.backgroundColor = .red
-        let item6 = SwiftyNavigationBarButtonItem(itemType: .customView(view: label, layoutType: .auto))
+        let label2 = UILabel()
+        label2.text = "55"
+        label2.font = UIFont.systemFont(ofSize: 20)
+        label2.textColor = .orange
+        label2.textAlignment = .center
+        label2.adjustsFontSizeToFitWidth = true
+        label2.backgroundColor = .red
+        let item4 = SwiftyCusNavigationBarButtonItem()
+        item4.layoutType = .auto
+        item4.view = label2
         
         self.cusNaviBar.hideNavigationBar = false
-        self.cusNaviBar.title = title
+        self.cusNaviBar.title = titleView
         //self.cusNaviBar.hideToolBar = false
         //self.cusNaviBar.toolHeight = 120
         self.cusNaviBar.toolView.backgroundColor = .purple
-        self.cusNaviBar.leftItems = [item1, item2, item3]
-        self.cusNaviBar.rightItems = [item6, item5, item4]
+        self.cusNaviBar.leftItems = [item1, space1, item2]
+        self.cusNaviBar.rightItems = [item3, item4, space2]
         self.cusNaviBar.reload(origin: .zero, barWidth: UIDevice.YH_Width)
     }
 }

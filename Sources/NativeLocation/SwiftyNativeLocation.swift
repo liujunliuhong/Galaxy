@@ -3,7 +3,7 @@
 //  SwiftTool
 //
 //  Created by liujun on 2020/6/1.
-//  Copyright © 2020 yinhe. All rights reserved.
+//  Copyright © 2020 galaxy. All rights reserved.
 //
 
 import Foundation
@@ -40,11 +40,11 @@ public class SwiftyNativeLocation: NSObject {
     public typealias singleLocationClosure = (([CLPlacemark], SwiftyNativeLocationError?)->())
     
     private struct AssociatedKeys {
-        static var requestAuthorizationStatusWhenInUseLocationKey = "com.yinhe.Swiftylocation.requestAuthorizationStatusWhenInUseLocationKey"
-        static var requestAuthorizationStatusWhenInUseClosureKey = "com.yinhe.Swiftylocation.requestAuthorizationStatusWhenInUseClosureKey"
+        static var requestAuthorizationStatusWhenInUseLocationKey = "com.galaxy.Swiftylocation.requestAuthorizationStatusWhenInUseLocationKey"
+        static var requestAuthorizationStatusWhenInUseClosureKey = "com.galaxy.Swiftylocation.requestAuthorizationStatusWhenInUseClosureKey"
         
-        static var singleLocationKey = "com.yinhe.Swiftylocation.singleLocationKey"
-        static var singleLocationClosureKey = "com.yinhe.Swiftylocation.singleLocationClosureKey"
+        static var singleLocationKey = "com.galaxy.Swiftylocation.singleLocationKey"
+        static var singleLocationClosureKey = "com.galaxy.Swiftylocation.singleLocationClosureKey"
     }
     
     private override init() {

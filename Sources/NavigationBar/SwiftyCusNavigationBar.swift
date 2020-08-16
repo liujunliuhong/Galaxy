@@ -3,67 +3,14 @@
 //  SwiftTool
 //
 //  Created by liujun on 2020/6/9.
-//  Copyright © 2020 yinhe. All rights reserved.
+//  Copyright © 2020 galaxy. All rights reserved.
 //
 
 import UIKit
 
-// bar button item type
-// auto: Get the width of the control itself by calling `sizeToFit`
-// custom: Custom width and height
-public enum SwiftyNavigationBarButtonItemType {
-    case button(button: UIButton, layoutType: SwiftyNavigationBarButtonItemLayoutType)
-    case imageView(imageView: UIImageView, layoutType: SwiftyNavigationBarButtonItemLayoutType)
-    case customView(view: UIView, layoutType: SwiftyNavigationBarButtonItemLayoutType)
-    case space(space: CGFloat)
-}
-
-// title type
-// auto: Fill the remaining space
-// custom: Custom width and height
-public enum SwiftyNavigationBarTitleType {
-    case title(title: String?, font: UIFont?, color: UIColor, adjustsFontSizeToFitWidth: Bool, layoutType: SwiftyNavigationBarButtonItemLayoutType)
-    case imageView(imageView: UIImageView, layoutType: SwiftyNavigationBarButtonItemLayoutType)
-    case customView(view: UIView, layoutType: SwiftyNavigationBarButtonItemLayoutType)
-}
-
-// layout type
-public enum SwiftyNavigationBarButtonItemLayoutType {
-    case custom(y: CGFloat, width: CGFloat, height: CGFloat)
-    case auto
-}
-
-// bar button item
-public class SwiftyNavigationBarButtonItem: NSObject {
-    public var itemType: SwiftyNavigationBarButtonItemType?
-    
-    public override init() {
-        super.init()
-    }
-    
-    public convenience init(itemType: SwiftyNavigationBarButtonItemType) {
-        self.init()
-        self.itemType = itemType
-    }
-}
-
-// title
-public class SwiftyNavigationBarTitle: NSObject {
-    public var titleType: SwiftyNavigationBarTitleType?
-    
-    public override init() {
-        super.init()
-    }
-    
-    public convenience init(titleType: SwiftyNavigationBarTitleType) {
-        self.init()
-        self.titleType = titleType
-    }
-}
-
-
 private struct SwiftyCusNavigationBarAssociatedKeys {
-    static var gradientKey = "com.yinhe.SwiftyCusNavigationBar.gradientLayer.key"
+    static var layerKey = "com.galaxy.cusNavigationBar.backgroundLayer.key"
+    static var viewKey = "com.galaxy.cusNavigationBar.backgroundView.key"
 }
 
 // ⚠️pod 'SnapKit'
@@ -95,11 +42,12 @@ open class SwiftyCusNavigationBar: UIView {
     
     public var barHeight: CGFloat = 44.0
     public var toolHeight: CGFloat = 0.0
-    public var leftItems: [SwiftyNavigationBarButtonItem]?
-    public var rightItems: [SwiftyNavigationBarButtonItem]?
-    public var title: SwiftyNavigationBarTitle?
-    public var gradientLayer: CAGradientLayer?
-    public var hideNavigationBar: Bool = true
+    public var leftItems: [AnyObject]?
+    public var rightItems: [AnyObject]?
+    public var title: SwiftyCusNavigationBarTitle?
+    public var backgroundLayer: CALayer?
+    public var backgroundView: UIView?
+    public var hideNavigationBar: Bool = true // contains all
     public var hideStatusBar: Bool = false
     public var hideBar: Bool = false
     public var hideToolBar: Bool = false
@@ -112,12 +60,12 @@ open class SwiftyCusNavigationBar: UIView {
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        self.setup()
+        self.setupUI()
     }
     
     public init() {
         super.init(frame: .zero)
-        self.setup()
+        self.setupUI()
     }
     
     required public init?(coder: NSCoder) {
@@ -126,9 +74,9 @@ open class SwiftyCusNavigationBar: UIView {
 }
 
 extension SwiftyCusNavigationBar {
-    private func setup() {
-        self.addSubview(self.barView)
+    private func setupUI() {
         self.addSubview(self.lineView)
+        self.addSubview(self.barView)
         self.addSubview(self.toolView)
     }
 }
@@ -141,11 +89,12 @@ extension SwiftyCusNavigationBar {
 }
 
 
-
-
 extension SwiftyCusNavigationBar {
     public func reload(origin: CGPoint, barWidth: CGFloat) {
         if self.hideNavigationBar {
+            self.barView.subviews.forEach { (v) in
+                v.removeFromSuperview()
+            }
             self.barView.isHidden = true
             self.toolView.isHidden = true
             self.lineView.isHidden = true
@@ -175,7 +124,7 @@ extension SwiftyCusNavigationBar {
         
         // bar view
         self.barView.subviews.forEach { (view) in
-            view.removeFromSuperview()
+            view.removeFromSuperview() // remove
         }
         if !self.hideBar {
             self.barView.isHidden = false
@@ -189,7 +138,7 @@ extension SwiftyCusNavigationBar {
         
         // tool view
         self.toolView.subviews.forEach { (view) in
-            view.removeFromSuperview()
+            view.removeFromSuperview() // remove
         }
         if !self.hideToolBar {
             self.toolView.isHidden = false
@@ -208,47 +157,22 @@ extension SwiftyCusNavigationBar {
         // left items
         var leftDistance: CGFloat = .zero
         for (_, item) in (self.leftItems ?? []).enumerated() {
-            switch item.itemType {
-            case .space(let space):
-                leftDistance += space
-            case .button(let button, let layoutType):
-                switch layoutType {
-                case .auto:
-                    button.sizeToFit()
-                    let w = button.frame.width
-                    button.frame = CGRect(x: leftDistance, y: 0, width: w, height: self.barHeight)
-                    leftDistance += w
+            if let item = item as? SwiftyCusNavigationBarButtonItem {
+                switch item.layoutType {
                 case .custom(let y, let width, let height):
-                    button.frame = CGRect(x: leftDistance, y: y, width: width, height: height)
+                    item.view?.frame = CGRect(x: leftDistance, y: y, width: width, height: height)
                     leftDistance += width
-                }
-                self.barView.addSubview(button)
-            case .imageView(let imageView, let layoutType):
-                switch layoutType {
                 case .auto:
-                    imageView.sizeToFit()
-                    let w = imageView.frame.width
-                    imageView.frame = CGRect(x: leftDistance, y: 0, width: w, height: self.barHeight)
+                    item.view?.sizeToFit() // size to fit
+                    let w = item.view?.frame.width ?? 0.0
+                    item.view?.frame = CGRect(x: leftDistance, y: 0, width: w, height: self.barHeight)
                     leftDistance += w
-                case .custom(let y, let width, let height):
-                    imageView.frame = CGRect(x: leftDistance, y: y, width: width, height: height)
-                    leftDistance += width
                 }
-                self.barView.addSubview(imageView)
-            case .customView(let view, let layoutType):
-                switch layoutType {
-                case .auto:
-                    view.sizeToFit()
-                    let w = view.frame.width
-                    view.frame = CGRect(x: leftDistance, y: 0, width: w, height: self.barHeight)
-                    leftDistance += w
-                case .custom(let y, let width, let height):
-                    view.frame = CGRect(x: leftDistance, y: y, width: width, height: height)
-                    leftDistance += width
+                if let view = item.view {
+                    self.barView.addSubview(view)
                 }
-                self.barView.addSubview(view)
-            case .none:
-                break
+            } else if let item = item as? SwiftyCusNavigationBarSpace {
+                leftDistance += item.space
             }
         }
         
@@ -256,103 +180,43 @@ extension SwiftyCusNavigationBar {
         // right items
         var rightDistance: CGFloat = .zero
         for (_, item) in (self.rightItems ?? []).enumerated().reversed() {
-            switch item.itemType {
-            case .space(let space):
-                rightDistance += space
-            case .button(let button, let layoutType):
-                switch layoutType {
-                case .auto:
-                    button.sizeToFit()
-                    let w = button.frame.width
-                    button.frame = CGRect(x: barWidth - rightDistance - w, y: 0, width: w, height: self.barHeight)
-                    rightDistance += w
+            if let item = item as? SwiftyCusNavigationBarButtonItem {
+                switch item.layoutType {
                 case .custom(let y, let width, let height):
-                    button.frame = CGRect(x: barWidth - rightDistance - width, y: y, width: width, height: height)
+                    item.view?.frame = CGRect(x: barWidth - rightDistance - width, y: y, width: width, height: height)
                     rightDistance += width
-                }
-                self.barView.addSubview(button)
-            case .imageView(let imageView, let layoutType):
-                switch layoutType {
                 case .auto:
-                    imageView.sizeToFit()
-                    let w = imageView.frame.width
-                    imageView.frame = CGRect(x: barWidth - rightDistance - w, y: 0, width: w, height: self.barHeight)
+                    item.view?.sizeToFit() // size to fit
+                    let w = item.view?.frame.width ?? 0.0
+                    item.view?.frame = CGRect(x: barWidth - rightDistance - w, y: 0, width: w, height: self.barHeight)
                     rightDistance += w
-                case .custom(let y, let width, let height):
-                    imageView.frame = CGRect(x: barWidth - rightDistance - width, y: y, width: width, height: height)
-                    rightDistance += width
                 }
-                self.barView.addSubview(imageView)
-            case .customView(let view, let layoutType):
-                switch layoutType {
-                case .auto:
-                    view.sizeToFit()
-                    let w = view.frame.width
-                    view.frame = CGRect(x: barWidth - rightDistance - w, y: 0, width: w, height: self.barHeight)
-                    rightDistance += w
-                case .custom(let y, let width, let height):
-                    view.frame = CGRect(x: barWidth - rightDistance - width, y: y, width: width, height: height)
-                    rightDistance += width
+                if let view = item.view {
+                    self.barView.addSubview(view)
                 }
-                self.barView.addSubview(view)
-            case .none:
-                break
+            } else if let item = item as? SwiftyCusNavigationBarSpace {
+                rightDistance += item.space
             }
         }
         
         
         // title view
-        let titleWidth: CGFloat = (barWidth / 2.0 - max(leftDistance, rightDistance)) * 2.0;
-        if let title = self.title, let titleType = title.titleType {
-            switch titleType {
-            case .title(let title, let font, let color, let adjustsFontSizeToFitWidth, let layoutType):
-                let label = UILabel()
-                label.text = title
-                label.font = font
-                label.textColor = color
-                label.textAlignment = .center
-                label.adjustsFontSizeToFitWidth = adjustsFontSizeToFitWidth
-                self.barView.addSubview(label)
-                switch layoutType {
-                case .auto:
-                    let h: CGFloat = self.barHeight
-                    let w: CGFloat = titleWidth
-                    label.center = CGPoint(x: self.barView.frame.width / 2.0, y: self.barHeight / 2.0)
-                    label.bounds = CGRect(x: 0, y: 0, width: w, height: h)
-                case .custom(let y, let width, let height):
-                    let h: CGFloat = height
-                    let w: CGFloat = width
-                    label.center = CGPoint(x: self.barView.frame.width / 2.0, y: (self.barHeight / 2.0 + (y / 2.0)))
-                    label.bounds = CGRect(x: 0, y: 0, width: w, height: h)
-                }
-            case .imageView(let imageView, let layoutType):
-                self.barView.addSubview(imageView)
-                switch layoutType {
-                case .auto:
-                    let h: CGFloat = self.barHeight
-                    let w: CGFloat = titleWidth
-                    imageView.center = CGPoint(x: self.barView.frame.width / 2.0, y: self.barHeight / 2.0)
-                    imageView.bounds = CGRect(x: 0, y: 0, width: w, height: h)
-                case .custom(let y, let width, let height):
-                    let h: CGFloat = height
-                    let w: CGFloat = width
-                    imageView.center = CGPoint(x: self.barView.frame.width / 2.0, y: (self.barHeight / 2.0 + (y / 2.0)))
-                    imageView.bounds = CGRect(x: 0, y: 0, width: w, height: h)
-                }
-            case .customView(let view, let layoutType):
-                self.barView.addSubview(view)
-                switch layoutType {
-                case .auto:
-                    let h: CGFloat = self.barHeight
-                    let w: CGFloat = titleWidth
-                    view.center = CGPoint(x: self.barView.frame.width / 2.0, y: self.barHeight / 2.0)
-                    view.bounds = CGRect(x: 0, y: 0, width: w, height: h)
-                case .custom(let y, let width, let height):
-                    let h: CGFloat = height
-                    let w: CGFloat = width
-                    view.center = CGPoint(x: self.barView.frame.width / 2.0, y: (self.barHeight / 2.0 + (y / 2.0)))
-                    view.bounds = CGRect(x: 0, y: 0, width: w, height: h)
-                }
+        let maxTitleWidth: CGFloat = (barWidth / 2.0 - max(leftDistance, rightDistance)) * 2.0;
+        if let title = self.title {
+            switch title.layoutType {
+            case .custom(let y, let width, let height):
+                let h: CGFloat = height
+                let w: CGFloat = width
+                title.view?.center = CGPoint(x: self.barView.frame.width / 2.0, y: (self.barHeight / 2.0 + (y / 2.0)))
+                title.view?.bounds = CGRect(x: 0, y: 0, width: w, height: h)
+            case .fill:
+                let h: CGFloat = self.barHeight
+                let w: CGFloat = maxTitleWidth
+                title.view?.center = CGPoint(x: self.barView.frame.width / 2.0, y: self.barHeight / 2.0)
+                title.view?.bounds = CGRect(x: 0, y: 0, width: w, height: h)
+            }
+            if let titleView = title.view {
+                self.barView.addSubview(titleView)
             }
         }
         
@@ -361,16 +225,21 @@ extension SwiftyCusNavigationBar {
         self.lineView.frame = CGRect(x: o_x, y: self.barView.frame.origin.y + self.barView.frame.size.height - 0.5, width: barWidth, height: 0.5)
         self.lineView.backgroundColor = self.lineColor
         
-        
-        // CAGradientLayer
-        let tmpGradientLayer = objc_getAssociatedObject(self, &SwiftyCusNavigationBarAssociatedKeys.gradientKey)
-        if let tmpGradientLayer = tmpGradientLayer as? CAGradientLayer {
-            tmpGradientLayer.removeFromSuperlayer()
+        // backgroundView
+        let tmpBackgroundView = objc_getAssociatedObject(self, &SwiftyCusNavigationBarAssociatedKeys.viewKey) as? UIView
+        tmpBackgroundView?.removeFromSuperview()
+        if let backgroundView = self.backgroundView {
+            objc_setAssociatedObject(self, &SwiftyCusNavigationBarAssociatedKeys.viewKey, backgroundView, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            backgroundView.frame = self.bounds
+            self.insertSubview(backgroundView, at: 0)
         }
-        if let gradientLayer = self.gradientLayer {
-            objc_setAssociatedObject(self, &SwiftyCusNavigationBarAssociatedKeys.gradientKey, gradientLayer, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            gradientLayer.frame = self.bounds
-            self.layer.insertSublayer(gradientLayer, at: 0)
+        // backgroundLayer
+        let tmpBackgroundLayer = objc_getAssociatedObject(self, &SwiftyCusNavigationBarAssociatedKeys.layerKey) as? CALayer
+        tmpBackgroundLayer?.removeFromSuperlayer()
+        if let backgroundLayer = self.backgroundLayer {
+            objc_setAssociatedObject(self, &SwiftyCusNavigationBarAssociatedKeys.layerKey, backgroundLayer, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            backgroundLayer.frame = self.bounds
+            self.layer.insertSublayer(backgroundLayer, at: 0)
         }
     }
 }

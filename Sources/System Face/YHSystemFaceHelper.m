@@ -3,7 +3,7 @@
 //  TMM
 //
 //  Created by apple on 2019/12/2.
-//  Copyright © 2019 yinhe. All rights reserved.
+//  Copyright © 2019 galaxy. All rights reserved.
 //
 
 #import "YHSystemFaceHelper.h"

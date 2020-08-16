@@ -3,7 +3,7 @@
 //  SwiftTool
 //
 //  Created by apple on 2020/6/10.
-//  Copyright © 2020 yinhe. All rights reserved.
+//  Copyright © 2020 galaxy. All rights reserved.
 //
 
 import UIKit
@@ -16,7 +16,8 @@ import SnapKit
     
     @objc public lazy var cusNaviBar: SwiftyCusNavigationBar = {
         let cusNaviBar = SwiftyCusNavigationBar()
-        cusNaviBar.hideNavigationBar = true // By default, the entire navigation bar is hidden to avoid bugs. if set to true, the navigation bar will flash when entering an interface that needs to hide the navigation bar
+        // By default, the entire navigation bar is hidden to avoid bugs. if set to true, the navigation bar will flash when entering an interface that needs to hide the navigation bar
+        cusNaviBar.hideNavigationBar = true
         cusNaviBar.hideBar = false
         cusNaviBar.hideToolBar = true
         cusNaviBar.hideStatusBar = false

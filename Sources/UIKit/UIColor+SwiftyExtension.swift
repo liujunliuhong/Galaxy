@@ -3,7 +3,7 @@
 //  SwiftTool
 //
 //  Created by apple on 2020/5/18.
-//  Copyright © 2020 yinhe. All rights reserved.
+//  Copyright © 2020 galaxy. All rights reserved.
 //
 
 import Foundation
@@ -36,11 +36,11 @@ public extension UIColor {
     ///   - hex: hex. 0xFFFFFF，0xffffff
     ///   - alpha: alpha
     /// - Returns: UIColor
-    static func YH_HexColor(hex: Int, alpha: CGFloat = 1.0) -> UIColor? {
+    static func YH_HexColor(hex: Int, alpha: CGFloat = 1.0) -> UIColor {
         let red = CGFloat((Double((hex >> 16) & 0xFF)) / 255.0)
         let green = CGFloat((Double((hex >> 8) & 0xFF)) / 255.0)
         let blue = CGFloat((Double(hex & 0xFF)) / 255.0)
-        return UIColor.init(red: red, green: green, blue: blue, alpha: alpha)
+        return UIColor(red: red, green: green, blue: blue, alpha: alpha)
     }
     
     /// String -> UIColor

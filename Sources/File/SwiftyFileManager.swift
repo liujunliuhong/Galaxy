@@ -20,7 +20,7 @@ public enum SwiftyFileType: String {
 }
 
 public class SwiftyFileManager {
-    public let `default` = SwiftyFileManager()
+    public static let `default` = SwiftyFileManager()
 }
 
 extension SwiftyFileManager {

@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
                                  Swift版本的开发工具，旨在帮助开发人员快速开发，持续更新中...
                                  DESC
   s.author                     = { 'liujunliuhong' => '1035841713@qq.com' }
-  s.version                    = '1.0.3'
+  s.version                    = '1.0.4'
   s.source                     = { :git => 'https://github.com/liujunliuhong/SwiftTool.git', :tag => s.version.to_s }
   s.platform                   = :ios, '9.0'
   s.license                    = { :type => 'MIT', :file => 'LICENSE' }

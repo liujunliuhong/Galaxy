@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		180E6EC42468EBB3001B069C /* SwiftyHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 180E6EC32468EBB3001B069C /* SwiftyHUD.bundle */; };
 		180E6EC62468EC5C001B069C /* SwiftyMBHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180E6EC52468EC5C001B069C /* SwiftyMBHUD.swift */; };
+		181454EF25009A390006C227 /* SwiftyEnlargeTouchAreaControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181454EE25009A390006C227 /* SwiftyEnlargeTouchAreaControl.swift */; };
 		1818101C248E0A9700BB4D03 /* SwiftyQCloudCOSManagerTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1818101B248E0A9700BB4D03 /* SwiftyQCloudCOSManagerTestViewController.swift */; };
 		1818101E248E10F200BB4D03 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 1818101D248E10F200BB4D03 /* test.png */; };
 		1827D02D246D1B7500429B36 /* SwiftyLogTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1827D02C246D1B7500429B36 /* SwiftyLogTestViewController.swift */; };
@@ -90,6 +91,7 @@
 /* Begin PBXFileReference section */
 		180E6EC32468EBB3001B069C /* SwiftyHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SwiftyHUD.bundle; sourceTree = "<group>"; };
 		180E6EC52468EC5C001B069C /* SwiftyMBHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyMBHUD.swift; sourceTree = "<group>"; };
+		181454EE25009A390006C227 /* SwiftyEnlargeTouchAreaControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyEnlargeTouchAreaControl.swift; sourceTree = "<group>"; };
 		1818101B248E0A9700BB4D03 /* SwiftyQCloudCOSManagerTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyQCloudCOSManagerTestViewController.swift; sourceTree = "<group>"; };
 		1818101D248E10F200BB4D03 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 		1827D02C246D1B7500429B36 /* SwiftyLogTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyLogTestViewController.swift; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 				182805DA24723CE200A3D228 /* UIView+SwiftyExtensionForSnapshot.swift */,
 				182805DC24726E6800A3D228 /* UIDevice+SwiftyExtension.swift */,
 				18EBB7342473BA350080CC2B /* UIApplication+SwiftyExtensionForURL.swift */,
+				181454EE25009A390006C227 /* SwiftyEnlargeTouchAreaControl.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -678,6 +681,7 @@
 				1870F4B2246A2E1D0016D596 /* SwiftyMBHUDTestViewController.swift in Sources */,
 				85ADF41724A0DB34003B5C10 /* SwiftySystemImagePickerTestViewController.swift in Sources */,
 				85C3234424853CF6007D2B73 /* SwiftyNativeLocationTestViewController.swift in Sources */,
+				181454EF25009A390006C227 /* SwiftyEnlargeTouchAreaControl.swift in Sources */,
 				1869FCDA2475020A00798729 /* Dictionary+SwiftyExtension.swift in Sources */,
 				182805D52472394700A3D228 /* UIColor+SwiftyExtension.swift in Sources */,
 				183091B42490D950007EA52C /* SwiftyBaseViewController.swift in Sources */,

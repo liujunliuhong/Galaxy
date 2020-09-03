@@ -10,6 +10,7 @@
 		180E6EC42468EBB3001B069C /* SwiftyHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 180E6EC32468EBB3001B069C /* SwiftyHUD.bundle */; };
 		180E6EC62468EC5C001B069C /* SwiftyMBHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180E6EC52468EC5C001B069C /* SwiftyMBHUD.swift */; };
 		181454EF25009A390006C227 /* SwiftyEnlargeTouchAreaControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181454EE25009A390006C227 /* SwiftyEnlargeTouchAreaControl.swift */; };
+		181454F425009FC10006C227 /* SwiftyEnlargeTouchAreaButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181454F325009FC10006C227 /* SwiftyEnlargeTouchAreaButton.swift */; };
 		1818101C248E0A9700BB4D03 /* SwiftyQCloudCOSManagerTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1818101B248E0A9700BB4D03 /* SwiftyQCloudCOSManagerTestViewController.swift */; };
 		1818101E248E10F200BB4D03 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 1818101D248E10F200BB4D03 /* test.png */; };
 		1827D02D246D1B7500429B36 /* SwiftyLogTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1827D02C246D1B7500429B36 /* SwiftyLogTestViewController.swift */; };
@@ -92,6 +93,7 @@
 		180E6EC32468EBB3001B069C /* SwiftyHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SwiftyHUD.bundle; sourceTree = "<group>"; };
 		180E6EC52468EC5C001B069C /* SwiftyMBHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyMBHUD.swift; sourceTree = "<group>"; };
 		181454EE25009A390006C227 /* SwiftyEnlargeTouchAreaControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyEnlargeTouchAreaControl.swift; sourceTree = "<group>"; };
+		181454F325009FC10006C227 /* SwiftyEnlargeTouchAreaButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyEnlargeTouchAreaButton.swift; sourceTree = "<group>"; };
 		1818101B248E0A9700BB4D03 /* SwiftyQCloudCOSManagerTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyQCloudCOSManagerTestViewController.swift; sourceTree = "<group>"; };
 		1818101D248E10F200BB4D03 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 		1827D02C246D1B7500429B36 /* SwiftyLogTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyLogTestViewController.swift; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 				182805DC24726E6800A3D228 /* UIDevice+SwiftyExtension.swift */,
 				18EBB7342473BA350080CC2B /* UIApplication+SwiftyExtensionForURL.swift */,
 				181454EE25009A390006C227 /* SwiftyEnlargeTouchAreaControl.swift */,
+				181454F325009FC10006C227 /* SwiftyEnlargeTouchAreaButton.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -655,6 +658,7 @@
 				8544C6D1246C4B7F00361C08 /* SwiftyPermissionTestViewController.swift in Sources */,
 				85CD1E452487E0D900149C71 /* Keys.swift in Sources */,
 				8544C6CB246C3D2D00361C08 /* SwiftyDatePickerView.swift in Sources */,
+				181454F425009FC10006C227 /* SwiftyEnlargeTouchAreaButton.swift in Sources */,
 				858E538424E8C2C200A67F0C /* SwiftyCusNavigationBarTitle.swift in Sources */,
 				183112402446F8F200155620 /* YHRXAlamofire.swift in Sources */,
 				18EDB3902498A6790083395C /* SwiftyTabBarBadgeView.swift in Sources */,

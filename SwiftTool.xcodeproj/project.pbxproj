@@ -69,6 +69,10 @@
 		18EDB3902498A6790083395C /* SwiftyTabBarBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EDB38F2498A6790083395C /* SwiftyTabBarBadgeView.swift */; };
 		18EDB3922498B24F0083395C /* SwiftyTabBarItemContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EDB3912498B24F0083395C /* SwiftyTabBarItemContainer.swift */; };
 		7ED1CA540CCEE052DF44FE7A /* Pods_SwiftTool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4806E0A8EE8767510EF2FD61 /* Pods_SwiftTool.framework */; };
+		851EA250253B16DB0073C235 /* UIImage+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851EA24F253B16DB0073C235 /* UIImage+GLExtension.swift */; };
+		851EA291253B18590073C235 /* UIColor+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851EA290253B18590073C235 /* UIColor+GLExtension.swift */; };
+		851EA294253B1C8F0073C235 /* UIView+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851EA293253B1C8F0073C235 /* UIView+GLExtension.swift */; };
+		851EA297253B1DFA0073C235 /* UIDevice+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851EA296253B1DFA0073C235 /* UIDevice+GLExtension.swift */; };
 		852C23FE246F9091003746E7 /* SwiftyCityPickerTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C23FD246F9091003746E7 /* SwiftyCityPickerTestViewController.swift */; };
 		852C2400247043A2003746E7 /* SwiftyCityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C23FF247043A2003746E7 /* SwiftyCityModel.swift */; };
 		8544C6C9246C3CAE00361C08 /* SwiftyPickerToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8544C6C8246C3CAE00361C08 /* SwiftyPickerToolBar.swift */; };
@@ -163,6 +167,10 @@
 		18EDB3912498B24F0083395C /* SwiftyTabBarItemContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyTabBarItemContainer.swift; sourceTree = "<group>"; };
 		425C6511002199BBE0183C7D /* Pods-SwiftTool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftTool.release.xcconfig"; path = "Target Support Files/Pods-SwiftTool/Pods-SwiftTool.release.xcconfig"; sourceTree = "<group>"; };
 		4806E0A8EE8767510EF2FD61 /* Pods_SwiftTool.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftTool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		851EA24F253B16DB0073C235 /* UIImage+GLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+GLExtension.swift"; sourceTree = "<group>"; };
+		851EA290253B18590073C235 /* UIColor+GLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+GLExtension.swift"; sourceTree = "<group>"; };
+		851EA293253B1C8F0073C235 /* UIView+GLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+GLExtension.swift"; sourceTree = "<group>"; };
+		851EA296253B1DFA0073C235 /* UIDevice+GLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+GLExtension.swift"; sourceTree = "<group>"; };
 		852C23FD246F9091003746E7 /* SwiftyCityPickerTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCityPickerTestViewController.swift; sourceTree = "<group>"; };
 		852C23FF247043A2003746E7 /* SwiftyCityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCityModel.swift; sourceTree = "<group>"; };
 		8544C6C8246C3CAE00361C08 /* SwiftyPickerToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyPickerToolBar.swift; sourceTree = "<group>"; };
@@ -237,6 +245,7 @@
 		1831114924469EB700155620 /* SwiftTool */ = {
 			isa = PBXGroup;
 			children = (
+				851EA24D253B15880073C235 /* New Sources */,
 				183111FC2446F8F100155620 /* Sources */,
 				1831114A24469EB700155620 /* AppDelegate.swift */,
 				1831114E24469EB700155620 /* ViewController.swift */,
@@ -499,6 +508,25 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		851EA24D253B15880073C235 /* New Sources */ = {
+			isa = PBXGroup;
+			children = (
+				851EA24E253B15EF0073C235 /* UIKit */,
+			);
+			path = "New Sources";
+			sourceTree = "<group>";
+		};
+		851EA24E253B15EF0073C235 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				851EA24F253B16DB0073C235 /* UIImage+GLExtension.swift */,
+				851EA290253B18590073C235 /* UIColor+GLExtension.swift */,
+				851EA293253B1C8F0073C235 /* UIView+GLExtension.swift */,
+				851EA296253B1DFA0073C235 /* UIDevice+GLExtension.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
 		859A7D78246EEFB8008F7A4F /* City Picker */ = {
 			isa = PBXGroup;
 			children = (
@@ -662,6 +690,7 @@
 				858E538424E8C2C200A67F0C /* SwiftyCusNavigationBarTitle.swift in Sources */,
 				183112402446F8F200155620 /* YHRXAlamofire.swift in Sources */,
 				18EDB3902498A6790083395C /* SwiftyTabBarBadgeView.swift in Sources */,
+				851EA250253B16DB0073C235 /* UIImage+GLExtension.swift in Sources */,
 				858E538624E8C43C00A67F0C /* SwiftyCusNavigationBarSpace.swift in Sources */,
 				1831114B24469EB700155620 /* AppDelegate.swift in Sources */,
 				18EBB731247372DC0080CC2B /* SwiftyFlowItemsAutoMarginTestViewController.swift in Sources */,
@@ -684,9 +713,12 @@
 				8544C6CD246C3ED100361C08 /* SwiftyPickerView.swift in Sources */,
 				1870F4B2246A2E1D0016D596 /* SwiftyMBHUDTestViewController.swift in Sources */,
 				85ADF41724A0DB34003B5C10 /* SwiftySystemImagePickerTestViewController.swift in Sources */,
+				851EA291253B18590073C235 /* UIColor+GLExtension.swift in Sources */,
 				85C3234424853CF6007D2B73 /* SwiftyNativeLocationTestViewController.swift in Sources */,
 				181454EF25009A390006C227 /* SwiftyEnlargeTouchAreaControl.swift in Sources */,
+				851EA297253B1DFA0073C235 /* UIDevice+GLExtension.swift in Sources */,
 				1869FCDA2475020A00798729 /* Dictionary+SwiftyExtension.swift in Sources */,
+				851EA294253B1C8F0073C235 /* UIView+GLExtension.swift in Sources */,
 				182805D52472394700A3D228 /* UIColor+SwiftyExtension.swift in Sources */,
 				183091B42490D950007EA52C /* SwiftyBaseViewController.swift in Sources */,
 				182805E5247282E600A3D228 /* SwiftyFlowItemsTestViewController.swift in Sources */,

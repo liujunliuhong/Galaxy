@@ -73,6 +73,7 @@
 		851EA291253B18590073C235 /* UIColor+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851EA290253B18590073C235 /* UIColor+GLExtension.swift */; };
 		851EA294253B1C8F0073C235 /* UIView+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851EA293253B1C8F0073C235 /* UIView+GLExtension.swift */; };
 		851EA297253B1DFA0073C235 /* UIDevice+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851EA296253B1DFA0073C235 /* UIDevice+GLExtension.swift */; };
+		8525039B253C7B8000E7673A /* CGFloat+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8525039A253C7B8000E7673A /* CGFloat+GLExtension.swift */; };
 		852C23FE246F9091003746E7 /* SwiftyCityPickerTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C23FD246F9091003746E7 /* SwiftyCityPickerTestViewController.swift */; };
 		852C2400247043A2003746E7 /* SwiftyCityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C23FF247043A2003746E7 /* SwiftyCityModel.swift */; };
 		8544C6C9246C3CAE00361C08 /* SwiftyPickerToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8544C6C8246C3CAE00361C08 /* SwiftyPickerToolBar.swift */; };
@@ -171,6 +172,7 @@
 		851EA290253B18590073C235 /* UIColor+GLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+GLExtension.swift"; sourceTree = "<group>"; };
 		851EA293253B1C8F0073C235 /* UIView+GLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+GLExtension.swift"; sourceTree = "<group>"; };
 		851EA296253B1DFA0073C235 /* UIDevice+GLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+GLExtension.swift"; sourceTree = "<group>"; };
+		8525039A253C7B8000E7673A /* CGFloat+GLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+GLExtension.swift"; sourceTree = "<group>"; };
 		852C23FD246F9091003746E7 /* SwiftyCityPickerTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCityPickerTestViewController.swift; sourceTree = "<group>"; };
 		852C23FF247043A2003746E7 /* SwiftyCityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCityModel.swift; sourceTree = "<group>"; };
 		8544C6C8246C3CAE00361C08 /* SwiftyPickerToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyPickerToolBar.swift; sourceTree = "<group>"; };
@@ -511,6 +513,7 @@
 		851EA24D253B15880073C235 /* New Sources */ = {
 			isa = PBXGroup;
 			children = (
+				85250399253C7B6600E7673A /* Foundation */,
 				851EA24E253B15EF0073C235 /* UIKit */,
 			);
 			path = "New Sources";
@@ -525,6 +528,14 @@
 				851EA296253B1DFA0073C235 /* UIDevice+GLExtension.swift */,
 			);
 			path = UIKit;
+			sourceTree = "<group>";
+		};
+		85250399253C7B6600E7673A /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				8525039A253C7B8000E7673A /* CGFloat+GLExtension.swift */,
+			);
+			path = Foundation;
 			sourceTree = "<group>";
 		};
 		859A7D78246EEFB8008F7A4F /* City Picker */ = {
@@ -697,6 +708,7 @@
 				858E538224E8BE9C00A67F0C /* SwiftyCusNavigationBarButtonItem.swift in Sources */,
 				1827D03D246D23EA00429B36 /* SwiftyWordsSort.swift in Sources */,
 				1827D02D246D1B7500429B36 /* SwiftyLogTestViewController.swift in Sources */,
+				8525039B253C7B8000E7673A /* CGFloat+GLExtension.swift in Sources */,
 				85C3234224853772007D2B73 /* SwiftyNativeLocation.swift in Sources */,
 				182805DB24723CE200A3D228 /* UIView+SwiftyExtensionForSnapshot.swift in Sources */,
 				859A7D80246EF7F7008F7A4F /* SwiftyCityPickerView.swift in Sources */,

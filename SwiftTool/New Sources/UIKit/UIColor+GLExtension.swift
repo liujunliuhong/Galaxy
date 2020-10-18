@@ -11,11 +11,11 @@ import UIKit
 
 extension UIColor {
     
-    public static func GL_RGBA(R: Int, G: Int, B: Int, A: CGFloat = 1.0) -> UIColor {
+    public static func gl_rgba(R: Int, G: Int, B: Int, A: CGFloat = 1.0) -> UIColor {
         return UIColor(red: (CGFloat(R) / 255.0), green: (CGFloat(G) / 255.0), blue: (CGFloat(B) / 255.0), alpha: A)
     }
     
-    public static func GL_RandomColor() -> UIColor {
+    public static func gl_randomColor() -> UIColor {
         let R: CGFloat = CGFloat(arc4random() % 255)
         let G: CGFloat = CGFloat(arc4random() % 255)
         let B: CGFloat = CGFloat(arc4random() % 255)
@@ -24,7 +24,7 @@ extension UIColor {
     }
     
     // 0xFFFFFF，0xffffff
-    static func GL_HexColor(hex: Int, alpha: CGFloat = 1.0) -> UIColor {
+    static func gl_hexColor(hex: Int, alpha: CGFloat = 1.0) -> UIColor {
         let red = CGFloat((Double((hex >> 16) & 0xFF)) / 255.0)
         let green = CGFloat((Double((hex >> 8) & 0xFF)) / 255.0)
         let blue = CGFloat((Double(hex & 0xFF)) / 255.0)
@@ -32,7 +32,7 @@ extension UIColor {
     }
     
     // "#ffffff", "#FFFFFF", "#fff", "255, 255, 255", "255,255,255", "0xFFFFFF"
-    static func GL_Color(string: String?) -> UIColor? {
+    static func gl_color(string: String?) -> UIColor? {
         guard var string = string else { return nil }
         
         string = string.uppercased()

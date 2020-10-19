@@ -92,6 +92,18 @@
 		85C3234424853CF6007D2B73 /* SwiftyNativeLocationTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C3234324853CF6007D2B73 /* SwiftyNativeLocationTestViewController.swift */; };
 		85CD1E452487E0D900149C71 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD1E442487E0D900149C71 /* Keys.swift */; };
 		85CD1E472487F52300149C71 /* SwiftyViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD1E462487F52300149C71 /* SwiftyViewModelType.swift */; };
+		F9967903253D2DAB00240D11 /* Array+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9967902253D2DAB00240D11 /* Array+GLExtension.swift */; };
+		F9967906253D34AB00240D11 /* String+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9967905253D34AB00240D11 /* String+GLExtension.swift */; };
+		F9967909253D351C00240D11 /* Bundle+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9967908253D351C00240D11 /* Bundle+GLExtension.swift */; };
+		F996790C253D376B00240D11 /* Dictionary+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F996790B253D376B00240D11 /* Dictionary+GLExtension.swift */; };
+		F996790F253D446900240D11 /* UIApplication+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F996790E253D446900240D11 /* UIApplication+GLExtension.swift */; };
+		F9967916253D57BB00240D11 /* GLEnlargeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9967915253D57BB00240D11 /* GLEnlargeButton.swift */; };
+		F9967919253D57D700240D11 /* GLEnlargeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9967918253D57D700240D11 /* GLEnlargeControl.swift */; };
+		F996791D253D589500240D11 /* GLPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = F996791C253D589500240D11 /* GLPermission.swift */; };
+		F9967921253D5AF000240D11 /* GLMicrophonePermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9967920253D5AF000240D11 /* GLMicrophonePermission.swift */; };
+		F9967924253D5FBE00240D11 /* GLCameraPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9967923253D5FBE00240D11 /* GLCameraPermission.swift */; };
+		F9967927253D607B00240D11 /* GLPhotoPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9967926253D607B00240D11 /* GLPhotoPermission.swift */; };
+		F996792A253D618400240D11 /* GLContactsPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9967929253D618400240D11 /* GLContactsPermission.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -192,6 +204,18 @@
 		85CD1E442487E0D900149C71 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		85CD1E462487F52300149C71 /* SwiftyViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyViewModelType.swift; sourceTree = "<group>"; };
 		B4B9793D1D5B9C59651E2DBB /* Pods-SwiftTool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftTool.debug.xcconfig"; path = "Target Support Files/Pods-SwiftTool/Pods-SwiftTool.debug.xcconfig"; sourceTree = "<group>"; };
+		F9967902253D2DAB00240D11 /* Array+GLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+GLExtension.swift"; sourceTree = "<group>"; };
+		F9967905253D34AB00240D11 /* String+GLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+GLExtension.swift"; sourceTree = "<group>"; };
+		F9967908253D351C00240D11 /* Bundle+GLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+GLExtension.swift"; sourceTree = "<group>"; };
+		F996790B253D376B00240D11 /* Dictionary+GLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+GLExtension.swift"; sourceTree = "<group>"; };
+		F996790E253D446900240D11 /* UIApplication+GLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+GLExtension.swift"; sourceTree = "<group>"; };
+		F9967915253D57BB00240D11 /* GLEnlargeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLEnlargeButton.swift; sourceTree = "<group>"; };
+		F9967918253D57D700240D11 /* GLEnlargeControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLEnlargeControl.swift; sourceTree = "<group>"; };
+		F996791C253D589500240D11 /* GLPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLPermission.swift; sourceTree = "<group>"; };
+		F9967920253D5AF000240D11 /* GLMicrophonePermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLMicrophonePermission.swift; sourceTree = "<group>"; };
+		F9967923253D5FBE00240D11 /* GLCameraPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLCameraPermission.swift; sourceTree = "<group>"; };
+		F9967926253D607B00240D11 /* GLPhotoPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLPhotoPermission.swift; sourceTree = "<group>"; };
+		F9967929253D618400240D11 /* GLContactsPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLContactsPermission.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -513,6 +537,7 @@
 		851EA24D253B15880073C235 /* New Sources */ = {
 			isa = PBXGroup;
 			children = (
+				F996791B253D587700240D11 /* Permission */,
 				85250399253C7B6600E7673A /* Foundation */,
 				851EA24E253B15EF0073C235 /* UIKit */,
 			);
@@ -526,6 +551,9 @@
 				851EA290253B18590073C235 /* UIColor+GLExtension.swift */,
 				851EA293253B1C8F0073C235 /* UIView+GLExtension.swift */,
 				851EA296253B1DFA0073C235 /* UIDevice+GLExtension.swift */,
+				F996790E253D446900240D11 /* UIApplication+GLExtension.swift */,
+				F9967915253D57BB00240D11 /* GLEnlargeButton.swift */,
+				F9967918253D57D700240D11 /* GLEnlargeControl.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -534,6 +562,10 @@
 			isa = PBXGroup;
 			children = (
 				8525039A253C7B8000E7673A /* CGFloat+GLExtension.swift */,
+				F9967902253D2DAB00240D11 /* Array+GLExtension.swift */,
+				F9967905253D34AB00240D11 /* String+GLExtension.swift */,
+				F9967908253D351C00240D11 /* Bundle+GLExtension.swift */,
+				F996790B253D376B00240D11 /* Dictionary+GLExtension.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -547,6 +579,18 @@
 				859A7D79246EF00B008F7A4F /* SwiftyCity.bundle */,
 			);
 			path = "City Picker";
+			sourceTree = "<group>";
+		};
+		F996791B253D587700240D11 /* Permission */ = {
+			isa = PBXGroup;
+			children = (
+				F996791C253D589500240D11 /* GLPermission.swift */,
+				F9967920253D5AF000240D11 /* GLMicrophonePermission.swift */,
+				F9967923253D5FBE00240D11 /* GLCameraPermission.swift */,
+				F9967926253D607B00240D11 /* GLPhotoPermission.swift */,
+				F9967929253D618400240D11 /* GLContactsPermission.swift */,
+			);
+			path = Permission;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -682,14 +726,20 @@
 				187FCD8A24A0845200B423EB /* SwiftySystemImagePicker.swift in Sources */,
 				1869FCD8247501D700798729 /* String+SwiftyExtension.swift in Sources */,
 				1870F4B5246A389E0016D596 /* SwiftyLog.swift in Sources */,
+				F996791D253D589500240D11 /* GLPermission.swift in Sources */,
 				18D9E68124867E2400CFDC27 /* SwiftyBMKLocationTestViewController.swift in Sources */,
 				8544C6C9246C3CAE00361C08 /* SwiftyPickerToolBar.swift in Sources */,
+				F9967903253D2DAB00240D11 /* Array+GLExtension.swift in Sources */,
 				182805E12472715C00A3D228 /* SwiftyTagContainerTestViewController.swift in Sources */,
 				182805D724723C4700A3D228 /* UIImage+SwiftyExtensionForColor.swift in Sources */,
+				F996790F253D446900240D11 /* UIApplication+GLExtension.swift in Sources */,
 				1831125E2446F8F200155620 /* YHSystemFaceView.m in Sources */,
 				1869FCDC2475023300798729 /* Array+SwiftyExtension.swift in Sources */,
+				F9967924253D5FBE00240D11 /* GLCameraPermission.swift in Sources */,
 				18DD746C249B6D950012B8D6 /* SwiftyTabBarDemoViewController.swift in Sources */,
+				F996792A253D618400240D11 /* GLContactsPermission.swift in Sources */,
 				182805DD24726E6800A3D228 /* UIDevice+SwiftyExtension.swift in Sources */,
+				F9967916253D57BB00240D11 /* GLEnlargeButton.swift in Sources */,
 				852C2400247043A2003746E7 /* SwiftyCityModel.swift in Sources */,
 				182805D924723C9B00A3D228 /* UIView+SwiftyExtensionForFrame.swift in Sources */,
 				1869FCD62474FF7F00798729 /* Bundle+SwiftyExtension.swift in Sources */,
@@ -699,6 +749,7 @@
 				8544C6CB246C3D2D00361C08 /* SwiftyDatePickerView.swift in Sources */,
 				181454F425009FC10006C227 /* SwiftyEnlargeTouchAreaButton.swift in Sources */,
 				858E538424E8C2C200A67F0C /* SwiftyCusNavigationBarTitle.swift in Sources */,
+				F9967906253D34AB00240D11 /* String+GLExtension.swift in Sources */,
 				183112402446F8F200155620 /* YHRXAlamofire.swift in Sources */,
 				18EDB3902498A6790083395C /* SwiftyTabBarBadgeView.swift in Sources */,
 				851EA250253B16DB0073C235 /* UIImage+GLExtension.swift in Sources */,
@@ -716,8 +767,12 @@
 				189404E82488A5DC005D9C29 /* SwiftyQCloudCOSManager.swift in Sources */,
 				182805DF2472710000A3D228 /* SwiftyTagContainerView.swift in Sources */,
 				180E6EC62468EC5C001B069C /* SwiftyMBHUD.swift in Sources */,
+				F9967919253D57D700240D11 /* GLEnlargeControl.swift in Sources */,
 				1827D03B246D223A00429B36 /* SwiftyWordsSortTestViewController.swift in Sources */,
+				F9967921253D5AF000240D11 /* GLMicrophonePermission.swift in Sources */,
 				85CD1E472487F52300149C71 /* SwiftyViewModelType.swift in Sources */,
+				F9967909253D351C00240D11 /* Bundle+GLExtension.swift in Sources */,
+				F9967927253D607B00240D11 /* GLPhotoPermission.swift in Sources */,
 				183111FA2446A8D400155620 /* Test.m in Sources */,
 				1831125B2446F8F200155620 /* YHSystemFace.m in Sources */,
 				183112412446F8F200155620 /* YHResult.swift in Sources */,
@@ -738,6 +793,7 @@
 				18EDB38E2498998D0083395C /* SwiftyTabBarItem.swift in Sources */,
 				18EDB3922498B24F0083395C /* SwiftyTabBarItemContainer.swift in Sources */,
 				18485278248774E400BD6A25 /* SwiftyAMapLocation.m in Sources */,
+				F996790C253D376B00240D11 /* Dictionary+GLExtension.swift in Sources */,
 				18AD961724920C3900500C78 /* SwiftyTabBarController.swift in Sources */,
 				182B7BB9246B873D000A95D0 /* SwiftyPickerTestViewController.swift in Sources */,
 				18EDB38C249897A30083395C /* SwiftyTabBar.swift in Sources */,

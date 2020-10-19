@@ -147,3 +147,26 @@ extension UIView {
         }
     }
 }
+
+
+extension UIView {
+    public func gl_snapshot(targetRect: CGRect) -> UIImage? {
+        let scale: CGFloat = UIScreen.main.scale // Setting the screen magnification can guarantee the quality of screenshots
+        UIGraphicsBeginImageContextWithOptions(self.frame.size, true, scale)
+        guard let context = UIGraphicsGetCurrentContext() else { // This code cannot be written in front of `UIGraphicsBeginImageContextWithOptions`, otherwise `context` is nil
+            return nil
+        }
+        self.layer.render(in: context)
+        defer {
+            UIGraphicsEndImageContext()
+        }
+        let targetRect = CGRect(x: targetRect.origin.x * scale, y: targetRect.origin.y * scale, width: targetRect.width * scale, height: targetRect.height * scale)
+        guard let image = UIGraphicsGetImageFromCurrentImageContext() else {
+            return nil
+        }
+        guard let cgImage = image.cgImage?.cropping(to: targetRect) else {
+            return nil
+        }
+        return UIImage(cgImage: cgImage)
+    }
+}

@@ -74,6 +74,8 @@
 		851EA294253B1C8F0073C235 /* UIView+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851EA293253B1C8F0073C235 /* UIView+GLExtension.swift */; };
 		851EA297253B1DFA0073C235 /* UIDevice+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851EA296253B1DFA0073C235 /* UIDevice+GLExtension.swift */; };
 		8525039B253C7B8000E7673A /* CGFloat+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8525039A253C7B8000E7673A /* CGFloat+GLExtension.swift */; };
+		852ACEB4253DE15C00A0B44C /* GLReminderPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852ACEB3253DE15C00A0B44C /* GLReminderPermission.swift */; };
+		852ACEB7253DE23E00A0B44C /* GLCalendarPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852ACEB6253DE23E00A0B44C /* GLCalendarPermission.swift */; };
 		852C23FE246F9091003746E7 /* SwiftyCityPickerTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C23FD246F9091003746E7 /* SwiftyCityPickerTestViewController.swift */; };
 		852C2400247043A2003746E7 /* SwiftyCityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C23FF247043A2003746E7 /* SwiftyCityModel.swift */; };
 		8544C6C9246C3CAE00361C08 /* SwiftyPickerToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8544C6C8246C3CAE00361C08 /* SwiftyPickerToolBar.swift */; };
@@ -185,6 +187,8 @@
 		851EA293253B1C8F0073C235 /* UIView+GLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+GLExtension.swift"; sourceTree = "<group>"; };
 		851EA296253B1DFA0073C235 /* UIDevice+GLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+GLExtension.swift"; sourceTree = "<group>"; };
 		8525039A253C7B8000E7673A /* CGFloat+GLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+GLExtension.swift"; sourceTree = "<group>"; };
+		852ACEB3253DE15C00A0B44C /* GLReminderPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLReminderPermission.swift; sourceTree = "<group>"; };
+		852ACEB6253DE23E00A0B44C /* GLCalendarPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLCalendarPermission.swift; sourceTree = "<group>"; };
 		852C23FD246F9091003746E7 /* SwiftyCityPickerTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCityPickerTestViewController.swift; sourceTree = "<group>"; };
 		852C23FF247043A2003746E7 /* SwiftyCityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCityModel.swift; sourceTree = "<group>"; };
 		8544C6C8246C3CAE00361C08 /* SwiftyPickerToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyPickerToolBar.swift; sourceTree = "<group>"; };
@@ -589,6 +593,8 @@
 				F9967923253D5FBE00240D11 /* GLCameraPermission.swift */,
 				F9967926253D607B00240D11 /* GLPhotoPermission.swift */,
 				F9967929253D618400240D11 /* GLContactsPermission.swift */,
+				852ACEB3253DE15C00A0B44C /* GLReminderPermission.swift */,
+				852ACEB6253DE23E00A0B44C /* GLCalendarPermission.swift */,
 			);
 			path = Permission;
 			sourceTree = "<group>";
@@ -762,6 +768,7 @@
 				8525039B253C7B8000E7673A /* CGFloat+GLExtension.swift in Sources */,
 				85C3234224853772007D2B73 /* SwiftyNativeLocation.swift in Sources */,
 				182805DB24723CE200A3D228 /* UIView+SwiftyExtensionForSnapshot.swift in Sources */,
+				852ACEB7253DE23E00A0B44C /* GLCalendarPermission.swift in Sources */,
 				859A7D80246EF7F7008F7A4F /* SwiftyCityPickerView.swift in Sources */,
 				183091B22490D89C007EA52C /* SwiftyCusNavigationBarTestViewController.swift in Sources */,
 				189404E82488A5DC005D9C29 /* SwiftyQCloudCOSManager.swift in Sources */,
@@ -777,6 +784,7 @@
 				1831125B2446F8F200155620 /* YHSystemFace.m in Sources */,
 				183112412446F8F200155620 /* YHResult.swift in Sources */,
 				852C23FE246F9091003746E7 /* SwiftyCityPickerTestViewController.swift in Sources */,
+				852ACEB4253DE15C00A0B44C /* GLReminderPermission.swift in Sources */,
 				8544C6CD246C3ED100361C08 /* SwiftyPickerView.swift in Sources */,
 				1870F4B2246A2E1D0016D596 /* SwiftyMBHUDTestViewController.swift in Sources */,
 				85ADF41724A0DB34003B5C10 /* SwiftySystemImagePickerTestViewController.swift in Sources */,

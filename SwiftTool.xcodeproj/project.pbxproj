@@ -84,6 +84,10 @@
 		8544C6CF246C4AAC00361C08 /* SwiftyPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8544C6CE246C4AAC00361C08 /* SwiftyPermission.swift */; };
 		8544C6D1246C4B7F00361C08 /* SwiftyPermissionTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8544C6D0246C4B7F00361C08 /* SwiftyPermissionTestViewController.swift */; };
 		854E899F248FC56700D1994B /* SwiftyCusNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E899E248FC56700D1994B /* SwiftyCusNavigationBar.swift */; };
+		858C9F5D253EFF05006232DA /* String+GLWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858C9F5C253EFF05006232DA /* String+GLWords.swift */; };
+		858C9F61253F03BF006232DA /* GLWordsSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858C9F60253F03BF006232DA /* GLWordsSort.swift */; };
+		858C9F68253F041A006232DA /* GLWordsSortResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858C9F67253F041A006232DA /* GLWordsSortResult.swift */; };
+		858C9F6C253F32B9006232DA /* GLWordsSortDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858C9F6B253F32B9006232DA /* GLWordsSortDemoViewController.swift */; };
 		858E538224E8BE9C00A67F0C /* SwiftyCusNavigationBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858E538124E8BE9C00A67F0C /* SwiftyCusNavigationBarButtonItem.swift */; };
 		858E538424E8C2C200A67F0C /* SwiftyCusNavigationBarTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858E538324E8C2C200A67F0C /* SwiftyCusNavigationBarTitle.swift */; };
 		858E538624E8C43C00A67F0C /* SwiftyCusNavigationBarSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858E538524E8C43C00A67F0C /* SwiftyCusNavigationBarSpace.swift */; };
@@ -197,6 +201,10 @@
 		8544C6CE246C4AAC00361C08 /* SwiftyPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyPermission.swift; sourceTree = "<group>"; };
 		8544C6D0246C4B7F00361C08 /* SwiftyPermissionTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyPermissionTestViewController.swift; sourceTree = "<group>"; };
 		854E899E248FC56700D1994B /* SwiftyCusNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCusNavigationBar.swift; sourceTree = "<group>"; };
+		858C9F5C253EFF05006232DA /* String+GLWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+GLWords.swift"; sourceTree = "<group>"; };
+		858C9F60253F03BF006232DA /* GLWordsSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLWordsSort.swift; sourceTree = "<group>"; };
+		858C9F67253F041A006232DA /* GLWordsSortResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLWordsSortResult.swift; sourceTree = "<group>"; };
+		858C9F6B253F32B9006232DA /* GLWordsSortDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLWordsSortDemoViewController.swift; sourceTree = "<group>"; };
 		858E538124E8BE9C00A67F0C /* SwiftyCusNavigationBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCusNavigationBarButtonItem.swift; sourceTree = "<group>"; };
 		858E538324E8C2C200A67F0C /* SwiftyCusNavigationBarTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCusNavigationBarTitle.swift; sourceTree = "<group>"; };
 		858E538524E8C43C00A67F0C /* SwiftyCusNavigationBarSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCusNavigationBarSpace.swift; sourceTree = "<group>"; };
@@ -541,6 +549,7 @@
 		851EA24D253B15880073C235 /* New Sources */ = {
 			isa = PBXGroup;
 			children = (
+				858C9F5B253EFEEB006232DA /* Words Sort */,
 				F996791B253D587700240D11 /* Permission */,
 				85250399253C7B6600E7673A /* Foundation */,
 				851EA24E253B15EF0073C235 /* UIKit */,
@@ -572,6 +581,17 @@
 				F996790B253D376B00240D11 /* Dictionary+GLExtension.swift */,
 			);
 			path = Foundation;
+			sourceTree = "<group>";
+		};
+		858C9F5B253EFEEB006232DA /* Words Sort */ = {
+			isa = PBXGroup;
+			children = (
+				858C9F60253F03BF006232DA /* GLWordsSort.swift */,
+				858C9F67253F041A006232DA /* GLWordsSortResult.swift */,
+				858C9F5C253EFF05006232DA /* String+GLWords.swift */,
+				858C9F6B253F32B9006232DA /* GLWordsSortDemoViewController.swift */,
+			);
+			path = "Words Sort";
 			sourceTree = "<group>";
 		};
 		859A7D78246EEFB8008F7A4F /* City Picker */ = {
@@ -719,11 +739,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				858C9F5D253EFF05006232DA /* String+GLWords.swift in Sources */,
 				8544C6CF246C4AAC00361C08 /* SwiftyPermission.swift in Sources */,
 				1890ED9A24DA702800C7CEBB /* SwiftyMapTestViewController.swift in Sources */,
 				182805E324727B1800A3D228 /* SwiftyFlowItemsDisplayNode.swift in Sources */,
 				18EBB7332473B6B30080CC2B /* SwiftyFlowItemsAutoWidthTestViewController.swift in Sources */,
 				854E899F248FC56700D1994B /* SwiftyCusNavigationBar.swift in Sources */,
+				858C9F61253F03BF006232DA /* GLWordsSort.swift in Sources */,
 				1831125C2446F8F200155620 /* YHSystemFaceHelper.m in Sources */,
 				1848527D2487AC4900BD6A25 /* SwiftyAMapLocationTestViewController.swift in Sources */,
 				1890ED9824DA5A3400C7CEBB /* SwiftyMap.swift in Sources */,
@@ -789,6 +811,7 @@
 				1870F4B2246A2E1D0016D596 /* SwiftyMBHUDTestViewController.swift in Sources */,
 				85ADF41724A0DB34003B5C10 /* SwiftySystemImagePickerTestViewController.swift in Sources */,
 				851EA291253B18590073C235 /* UIColor+GLExtension.swift in Sources */,
+				858C9F6C253F32B9006232DA /* GLWordsSortDemoViewController.swift in Sources */,
 				85C3234424853CF6007D2B73 /* SwiftyNativeLocationTestViewController.swift in Sources */,
 				181454EF25009A390006C227 /* SwiftyEnlargeTouchAreaControl.swift in Sources */,
 				851EA297253B1DFA0073C235 /* UIDevice+GLExtension.swift in Sources */,
@@ -805,6 +828,7 @@
 				18AD961724920C3900500C78 /* SwiftyTabBarController.swift in Sources */,
 				182B7BB9246B873D000A95D0 /* SwiftyPickerTestViewController.swift in Sources */,
 				18EDB38C249897A30083395C /* SwiftyTabBar.swift in Sources */,
+				858C9F68253F041A006232DA /* GLWordsSortResult.swift in Sources */,
 				18EBB7352473BA350080CC2B /* UIApplication+SwiftyExtensionForURL.swift in Sources */,
 				18EBB7382473CB670080CC2B /* SwiftyFileManager.swift in Sources */,
 				18D9E67F248675C200CFDC27 /* SwiftyBMKLocation.m in Sources */,

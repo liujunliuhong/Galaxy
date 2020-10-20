@@ -8,39 +8,40 @@
 
 import Foundation
 import Contacts
-import AddressBook
 
-public struct GLContactsPermission: GLPermissionProtocol {
+public struct GLContactsPermission {}
+
+extension GLContactsPermission: GLPermissionProtocol {
     public typealias Status = CNAuthorizationStatus
     
-    public var status: CNAuthorizationStatus {
+    public static var authorizationStatus: CNAuthorizationStatus {
         return CNContactStore.authorizationStatus(for: .contacts)
     }
     
-    public func requestAuthorization(hanlder: @escaping (CNAuthorizationStatus) -> ()) {
-        switch self.status {
-        case .authorized:
-            DispatchQueue.main.async {
-                hanlder(.authorized)
-            }
-        case .denied:
-            DispatchQueue.main.async {
-                hanlder(.denied)
-            }
-        case .restricted:
-            DispatchQueue.main.async {
-                hanlder(.restricted)
-            }
-        case .notDetermined:
-            CNContactStore().requestAccess(for: .contacts) { (granted, _) in
+    public static func requestAuthorization(hanlder: @escaping (CNAuthorizationStatus) -> ()) {
+        switch self.authorizationStatus {
+            case .authorized:
                 DispatchQueue.main.async {
-                    hanlder(granted ? .authorized : .denied)
+                    hanlder(.authorized)
                 }
-            }
-        @unknown default:
-            DispatchQueue.main.async {
-                hanlder(.denied)
-            }
+            case .denied:
+                DispatchQueue.main.async {
+                    hanlder(.denied)
+                }
+            case .restricted:
+                DispatchQueue.main.async {
+                    hanlder(.restricted)
+                }
+            case .notDetermined:
+                CNContactStore().requestAccess(for: .contacts) { (granted, _) in
+                    DispatchQueue.main.async {
+                        hanlder(granted ? .authorized : .denied)
+                    }
+                }
+            @unknown default:
+                DispatchQueue.main.async {
+                    hanlder(.denied)
+                }
         }
     }
 }

@@ -28,6 +28,18 @@ import Foundation
  */
 public protocol GLPermissionProtocol {
     associatedtype Status
-    var status: Status { get }
-    func requestAuthorization(hanlder: @escaping (Status)->())
+    static var authorizationStatus: Status { get }
+    static func requestAuthorization(hanlder: @escaping (Status)->())
 }
+
+/*
+ let authorizationStatus = GLCameraPermission.authorizationStatus
+ 
+ 
+ 
+ GLCameraPermission.requestAuthorization { (authorizationStatus) in
+     
+ }
+ 
+ 
+ */

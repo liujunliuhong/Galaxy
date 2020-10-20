@@ -9,26 +9,17 @@
 import Foundation
 import EventKit
 
-
-public struct GLCalendarPermission {
-    public static func status() -> EKAuthorizationStatus {
-        return GLCalendarPermission().status
-    }
-    
-    public static func requestAuthorization(hanlder: @escaping (EKAuthorizationStatus) -> ()) {
-        GLCalendarPermission().requestAuthorization(hanlder: hanlder)
-    }
-}
+public struct GLCalendarPermission {}
 
 extension GLCalendarPermission: GLPermissionProtocol {
     public typealias Status = EKAuthorizationStatus
     
-    public var status: EKAuthorizationStatus {
+    public static var authorizationStatus: EKAuthorizationStatus {
         return EKEventStore.authorizationStatus(for: .event)
     }
     
-    public func requestAuthorization(hanlder: @escaping (EKAuthorizationStatus) -> ()) {
-        switch self.status {
+    static public func requestAuthorization(hanlder: @escaping (EKAuthorizationStatus) -> ()) {
+        switch self.authorizationStatus {
             case .authorized:
                 DispatchQueue.main.async {
                     hanlder(.authorized)

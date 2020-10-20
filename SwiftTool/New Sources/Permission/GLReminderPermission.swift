@@ -10,25 +10,17 @@ import Foundation
 import EventKit
 
 
-public struct GLReminderPermission {
-    public static func status() -> EKAuthorizationStatus {
-        return GLReminderPermission().status
-    }
-    
-    public static func requestAuthorization(hanlder: @escaping (EKAuthorizationStatus) -> ()) {
-        GLReminderPermission().requestAuthorization(hanlder: hanlder)
-    }
-}
+public struct GLReminderPermission {}
 
 extension GLReminderPermission: GLPermissionProtocol {
     public typealias Status = EKAuthorizationStatus
     
-    public var status: EKAuthorizationStatus {
+    public static var authorizationStatus: EKAuthorizationStatus {
         return EKEventStore.authorizationStatus(for: .reminder)
     }
     
-    public func requestAuthorization(hanlder: @escaping (EKAuthorizationStatus) -> ()) {
-        switch self.status {
+    public static func requestAuthorization(hanlder: @escaping (EKAuthorizationStatus) -> ()) {
+        switch self.authorizationStatus {
             case .authorized:
                 DispatchQueue.main.async {
                     hanlder(.authorized)

@@ -84,6 +84,7 @@
 		8544C6CF246C4AAC00361C08 /* SwiftyPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8544C6CE246C4AAC00361C08 /* SwiftyPermission.swift */; };
 		8544C6D1246C4B7F00361C08 /* SwiftyPermissionTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8544C6D0246C4B7F00361C08 /* SwiftyPermissionTestViewController.swift */; };
 		854E899F248FC56700D1994B /* SwiftyCusNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E899E248FC56700D1994B /* SwiftyCusNavigationBar.swift */; };
+		857EB86F25407ACE00A0E892 /* GLMapDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857EB86E25407ACE00A0E892 /* GLMapDemoViewController.swift */; };
 		858C9F5D253EFF05006232DA /* String+GLWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858C9F5C253EFF05006232DA /* String+GLWords.swift */; };
 		858C9F61253F03BF006232DA /* GLWordsSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858C9F60253F03BF006232DA /* GLWordsSort.swift */; };
 		858C9F68253F041A006232DA /* GLWordsSortResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858C9F67253F041A006232DA /* GLWordsSortResult.swift */; };
@@ -204,6 +205,7 @@
 		8544C6CE246C4AAC00361C08 /* SwiftyPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyPermission.swift; sourceTree = "<group>"; };
 		8544C6D0246C4B7F00361C08 /* SwiftyPermissionTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyPermissionTestViewController.swift; sourceTree = "<group>"; };
 		854E899E248FC56700D1994B /* SwiftyCusNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCusNavigationBar.swift; sourceTree = "<group>"; };
+		857EB86E25407ACE00A0E892 /* GLMapDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLMapDemoViewController.swift; sourceTree = "<group>"; };
 		858C9F5C253EFF05006232DA /* String+GLWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+GLWords.swift"; sourceTree = "<group>"; };
 		858C9F60253F03BF006232DA /* GLWordsSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLWordsSort.swift; sourceTree = "<group>"; };
 		858C9F67253F041A006232DA /* GLWordsSortResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLWordsSortResult.swift; sourceTree = "<group>"; };
@@ -640,6 +642,7 @@
 			isa = PBXGroup;
 			children = (
 				F9967A15253FCAB800240D11 /* GLMapManager.swift */,
+				857EB86E25407ACE00A0E892 /* GLMapDemoViewController.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -831,6 +834,7 @@
 				F9967909253D351C00240D11 /* Bundle+GLExtension.swift in Sources */,
 				F9967927253D607B00240D11 /* GLPhotoPermission.swift in Sources */,
 				183111FA2446A8D400155620 /* Test.m in Sources */,
+				857EB86F25407ACE00A0E892 /* GLMapDemoViewController.swift in Sources */,
 				1831125B2446F8F200155620 /* YHSystemFace.m in Sources */,
 				183112412446F8F200155620 /* YHResult.swift in Sources */,
 				852C23FE246F9091003746E7 /* SwiftyCityPickerTestViewController.swift in Sources */,

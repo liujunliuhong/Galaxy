@@ -110,6 +110,9 @@
 		F9967924253D5FBE00240D11 /* GLCameraPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9967923253D5FBE00240D11 /* GLCameraPermission.swift */; };
 		F9967927253D607B00240D11 /* GLPhotoPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9967926253D607B00240D11 /* GLPhotoPermission.swift */; };
 		F996792A253D618400240D11 /* GLContactsPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9967929253D618400240D11 /* GLContactsPermission.swift */; };
+		F9967A0D253FBF9500240D11 /* Data+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9967A0C253FBF9500240D11 /* Data+GLExtension.swift */; };
+		F9967A11253FC1EF00240D11 /* GLFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9967A10253FC1EF00240D11 /* GLFileManager.swift */; };
+		F9967A16253FCAB800240D11 /* GLMapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9967A15253FCAB800240D11 /* GLMapManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -228,6 +231,9 @@
 		F9967923253D5FBE00240D11 /* GLCameraPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLCameraPermission.swift; sourceTree = "<group>"; };
 		F9967926253D607B00240D11 /* GLPhotoPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLPhotoPermission.swift; sourceTree = "<group>"; };
 		F9967929253D618400240D11 /* GLContactsPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLContactsPermission.swift; sourceTree = "<group>"; };
+		F9967A0C253FBF9500240D11 /* Data+GLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+GLExtension.swift"; sourceTree = "<group>"; };
+		F9967A10253FC1EF00240D11 /* GLFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLFileManager.swift; sourceTree = "<group>"; };
+		F9967A15253FCAB800240D11 /* GLMapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLMapManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -549,6 +555,8 @@
 		851EA24D253B15880073C235 /* New Sources */ = {
 			isa = PBXGroup;
 			children = (
+				F9967A14253FCA3C00240D11 /* Map */,
+				F9967A0F253FC1D800240D11 /* File */,
 				858C9F5B253EFEEB006232DA /* Words Sort */,
 				F996791B253D587700240D11 /* Permission */,
 				85250399253C7B6600E7673A /* Foundation */,
@@ -579,6 +587,7 @@
 				F9967905253D34AB00240D11 /* String+GLExtension.swift */,
 				F9967908253D351C00240D11 /* Bundle+GLExtension.swift */,
 				F996790B253D376B00240D11 /* Dictionary+GLExtension.swift */,
+				F9967A0C253FBF9500240D11 /* Data+GLExtension.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -617,6 +626,22 @@
 				852ACEB6253DE23E00A0B44C /* GLCalendarPermission.swift */,
 			);
 			path = Permission;
+			sourceTree = "<group>";
+		};
+		F9967A0F253FC1D800240D11 /* File */ = {
+			isa = PBXGroup;
+			children = (
+				F9967A10253FC1EF00240D11 /* GLFileManager.swift */,
+			);
+			path = File;
+			sourceTree = "<group>";
+		};
+		F9967A14253FCA3C00240D11 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				F9967A15253FCAB800240D11 /* GLMapManager.swift */,
+			);
+			path = Map;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -740,6 +765,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				858C9F5D253EFF05006232DA /* String+GLWords.swift in Sources */,
+				F9967A16253FCAB800240D11 /* GLMapManager.swift in Sources */,
 				8544C6CF246C4AAC00361C08 /* SwiftyPermission.swift in Sources */,
 				1890ED9A24DA702800C7CEBB /* SwiftyMapTestViewController.swift in Sources */,
 				182805E324727B1800A3D228 /* SwiftyFlowItemsDisplayNode.swift in Sources */,
@@ -761,6 +787,7 @@
 				182805E12472715C00A3D228 /* SwiftyTagContainerTestViewController.swift in Sources */,
 				182805D724723C4700A3D228 /* UIImage+SwiftyExtensionForColor.swift in Sources */,
 				F996790F253D446900240D11 /* UIApplication+GLExtension.swift in Sources */,
+				F9967A0D253FBF9500240D11 /* Data+GLExtension.swift in Sources */,
 				1831125E2446F8F200155620 /* YHSystemFaceView.m in Sources */,
 				1869FCDC2475023300798729 /* Array+SwiftyExtension.swift in Sources */,
 				F9967924253D5FBE00240D11 /* GLCameraPermission.swift in Sources */,
@@ -798,6 +825,7 @@
 				180E6EC62468EC5C001B069C /* SwiftyMBHUD.swift in Sources */,
 				F9967919253D57D700240D11 /* GLEnlargeControl.swift in Sources */,
 				1827D03B246D223A00429B36 /* SwiftyWordsSortTestViewController.swift in Sources */,
+				F9967A11253FC1EF00240D11 /* GLFileManager.swift in Sources */,
 				F9967921253D5AF000240D11 /* GLMicrophonePermission.swift in Sources */,
 				85CD1E472487F52300149C71 /* SwiftyViewModelType.swift in Sources */,
 				F9967909253D351C00240D11 /* Bundle+GLExtension.swift in Sources */,

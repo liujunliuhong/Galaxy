@@ -99,6 +99,7 @@
 		85C3234424853CF6007D2B73 /* SwiftyNativeLocationTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C3234324853CF6007D2B73 /* SwiftyNativeLocationTestViewController.swift */; };
 		85CD1E452487E0D900149C71 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD1E442487E0D900149C71 /* Keys.swift */; };
 		85CD1E472487F52300149C71 /* SwiftyViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD1E462487F52300149C71 /* SwiftyViewModelType.swift */; };
+		85E024762541C25100EF6D7C /* GLFlowItemsDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E024752541C25100EF6D7C /* GLFlowItemsDemoViewController.swift */; };
 		F9967903253D2DAB00240D11 /* Array+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9967902253D2DAB00240D11 /* Array+GLExtension.swift */; };
 		F9967906253D34AB00240D11 /* String+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9967905253D34AB00240D11 /* String+GLExtension.swift */; };
 		F9967909253D351C00240D11 /* Bundle+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9967908253D351C00240D11 /* Bundle+GLExtension.swift */; };
@@ -224,6 +225,7 @@
 		85C3234324853CF6007D2B73 /* SwiftyNativeLocationTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyNativeLocationTestViewController.swift; sourceTree = "<group>"; };
 		85CD1E442487E0D900149C71 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		85CD1E462487F52300149C71 /* SwiftyViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyViewModelType.swift; sourceTree = "<group>"; };
+		85E024752541C25100EF6D7C /* GLFlowItemsDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLFlowItemsDemoViewController.swift; sourceTree = "<group>"; };
 		B4B9793D1D5B9C59651E2DBB /* Pods-SwiftTool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftTool.debug.xcconfig"; path = "Target Support Files/Pods-SwiftTool/Pods-SwiftTool.debug.xcconfig"; sourceTree = "<group>"; };
 		F9967902253D2DAB00240D11 /* Array+GLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+GLExtension.swift"; sourceTree = "<group>"; };
 		F9967905253D34AB00240D11 /* String+GLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+GLExtension.swift"; sourceTree = "<group>"; };
@@ -671,6 +673,7 @@
 			children = (
 				F9967A342541842C00240D11 /* GLFlowItemsAutoWidthDisplayNode.swift */,
 				F9967A372541845900240D11 /* GLFlowItemsAutoMarginDisplayNode.swift */,
+				85E024752541C25100EF6D7C /* GLFlowItemsDemoViewController.swift */,
 			);
 			path = AsyncDisplayKit;
 			sourceTree = "<group>";
@@ -869,6 +872,7 @@
 				857EB86F25407ACE00A0E892 /* GLMapDemoViewController.swift in Sources */,
 				1831125B2446F8F200155620 /* YHSystemFace.m in Sources */,
 				183112412446F8F200155620 /* YHResult.swift in Sources */,
+				85E024762541C25100EF6D7C /* GLFlowItemsDemoViewController.swift in Sources */,
 				852C23FE246F9091003746E7 /* SwiftyCityPickerTestViewController.swift in Sources */,
 				852ACEB4253DE15C00A0B44C /* GLReminderPermission.swift in Sources */,
 				8544C6CD246C3ED100361C08 /* SwiftyPickerView.swift in Sources */,

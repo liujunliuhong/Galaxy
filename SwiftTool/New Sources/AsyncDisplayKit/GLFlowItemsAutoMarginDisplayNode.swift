@@ -75,7 +75,8 @@ extension GLFlowItemsAutoMarginDisplayNode {
                                       perRowCount: Int,
                                       verticalSpacing: CGFloat,
                                       verticalEdgeInset: CGFloat,
-                                      horizontalEdgeInset: CGFloat) {
+                                      horizontalEdgeInset: CGFloat,
+                                      defaultValueClosure: (()->(ASDisplayNode))?) {
         let nodeHeight = nodeWidth * nodeHeightRatio
         self.setupAutoMargin(nodes: nodes,
                              nodeWidth: nodeWidth,
@@ -83,7 +84,8 @@ extension GLFlowItemsAutoMarginDisplayNode {
                              perRowCount: perRowCount,
                              verticalSpacing: verticalSpacing,
                              verticalEdgeInset: verticalEdgeInset,
-                             horizontalEdgeInset: horizontalEdgeInset)
+                             horizontalEdgeInset: horizontalEdgeInset,
+                             defaultValueClosure: defaultValueClosure)
     }
     
     /// 固定宽度，自动间距
@@ -93,7 +95,8 @@ extension GLFlowItemsAutoMarginDisplayNode {
                                       perRowCount: Int,
                                       verticalSpacing: CGFloat,
                                       verticalEdgeInset: CGFloat,
-                                      horizontalEdgeInset: CGFloat) {
+                                      horizontalEdgeInset: CGFloat,
+                                      defaultValueClosure: (()->(ASDisplayNode))?) {
         //
         for (_, nodes) in self.allNodes.enumerated() {
             for (_, node) in nodes.enumerated() {
@@ -109,9 +112,7 @@ extension GLFlowItemsAutoMarginDisplayNode {
         self.verticalEdgeInset = verticalEdgeInset
         self.horizontalEdgeInset = horizontalEdgeInset
         //
-        let defaultNode = ASDisplayNode()
-        defaultNode.backgroundColor = UIColor.gl_rgba(R: 0, G: 0, B: 0).withAlphaComponent(0)
-        self.allNodes = nodes.gl_group(perRowCount: perRowCount, isMakeUp: true, defaultValue: defaultNode)
+        self.allNodes = nodes.gl_as_nodesGroup(perRowCount: perRowCount, isMakeUp: true, defaultValueClosure: defaultValueClosure)
         for (_, node) in (self.allNodes.flatMap{ $0 }).enumerated() {
             self.addSubnode(node)
         }

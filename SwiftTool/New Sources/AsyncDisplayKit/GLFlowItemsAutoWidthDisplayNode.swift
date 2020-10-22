@@ -71,7 +71,8 @@ extension GLFlowItemsAutoWidthDisplayNode {
                                      verticalSpacing: CGFloat,
                                      horizontalSpacing: CGFloat,
                                      verticalEdgeInset: CGFloat,
-                                     horizontalEdgeInset: CGFloat) {
+                                     horizontalEdgeInset: CGFloat,
+                                     defaultValueClosure: (()->(ASDisplayNode))?) {
         //
         for (_, nodes) in self.allNodes.enumerated() {
             for (_, node) in nodes.enumerated() {
@@ -88,9 +89,7 @@ extension GLFlowItemsAutoWidthDisplayNode {
         self.verticalEdgeInset = verticalEdgeInset
         self.horizontalEdgeInset = horizontalEdgeInset
         //
-        let defaultNode = ASDisplayNode()
-        defaultNode.backgroundColor = UIColor.gl_rgba(R: 0, G: 0, B: 0).withAlphaComponent(0)
-        self.allNodes = nodes.gl_group(perRowCount: perRowCount, isMakeUp: true, defaultValue: defaultNode)
+        self.allNodes = nodes.gl_as_nodesGroup(perRowCount: perRowCount, isMakeUp: true, defaultValueClosure: defaultValueClosure)
         for (_, node) in (self.allNodes.flatMap{ $0 }).enumerated() {
             self.addSubnode(node)
         }

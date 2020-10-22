@@ -34,48 +34,9 @@ extension Array {
     /// - Parameters:
     ///   - perRowCount: 每行数量
     ///   - isMakeUp: 是否补齐。如果`defaultValue`为`nil`，`isMakeUp`无效
-    ///   - defaultValue: 如果需要补齐，此时的默认值
+    ///   - defaultValueClosure: 如果需要补齐，此时的默认值
     /// - Returns: 处理好的数组
-    public func gl_group(perRowCount: Int, isMakeUp: Bool, defaultValue: Element?) -> [[Element]] {
-        assert(perRowCount > 0, "perRowCount must be greater than 0")
-        var results: [[Element]] = []
-        let row: Int = self.count / perRowCount
-        for i in 0..<row {
-            var subResults: [Element] = []
-            for j in 0..<perRowCount {
-                let index = i * perRowCount + j
-                subResults.append(self[index])
-            }
-            results.append(subResults)
-        }
-        let remain: Int = self.count % perRowCount
-        if remain <= 0 {
-            return results
-        }
-        var subResults: [Element] = []
-        for i in 0..<remain {
-            let index = row * perRowCount + i
-            subResults.append(self[index])
-        }
-        if !isMakeUp {
-            results.append(subResults)
-            return results
-        }
-        guard let defaultValue = defaultValue else {
-            results.append(subResults)
-            return results
-        }
-        for _ in 0..<(perRowCount - remain) {
-            subResults.append(defaultValue)
-        }
-        results.append(subResults)
-        return results
-    }
-}
-
-
-extension Array where Element: ASDisplayNode {
-    public func gl_as_nodesGroup(perRowCount: Int, isMakeUp: Bool, defaultValueClosure: (()->(Element))?) -> [[Element]] {
+    public func gl_group(perRowCount: Int, isMakeUp: Bool, defaultValueClosure: (()->(Element))?) -> [[Element]] {
         assert(perRowCount > 0, "perRowCount must be greater than 0")
         var results: [[Element]] = []
         let row: Int = self.count / perRowCount

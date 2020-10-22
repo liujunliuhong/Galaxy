@@ -114,6 +114,10 @@
 		F9967A0D253FBF9500240D11 /* Data+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9967A0C253FBF9500240D11 /* Data+GLExtension.swift */; };
 		F9967A11253FC1EF00240D11 /* GLFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9967A10253FC1EF00240D11 /* GLFileManager.swift */; };
 		F9967A16253FCAB800240D11 /* GLMapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9967A15253FCAB800240D11 /* GLMapManager.swift */; };
+		F9967A2C2541763C00240D11 /* GLHud.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F9967A2B2541763C00240D11 /* GLHud.bundle */; };
+		F9967A2F25417ADF00240D11 /* GLHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9967A2E25417ADF00240D11 /* GLHud.swift */; };
+		F9967A352541842C00240D11 /* GLFlowItemsAutoWidthDisplayNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9967A342541842C00240D11 /* GLFlowItemsAutoWidthDisplayNode.swift */; };
+		F9967A382541845900240D11 /* GLFlowItemsAutoMarginDisplayNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9967A372541845900240D11 /* GLFlowItemsAutoMarginDisplayNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -236,6 +240,10 @@
 		F9967A0C253FBF9500240D11 /* Data+GLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+GLExtension.swift"; sourceTree = "<group>"; };
 		F9967A10253FC1EF00240D11 /* GLFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLFileManager.swift; sourceTree = "<group>"; };
 		F9967A15253FCAB800240D11 /* GLMapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLMapManager.swift; sourceTree = "<group>"; };
+		F9967A2B2541763C00240D11 /* GLHud.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GLHud.bundle; sourceTree = "<group>"; };
+		F9967A2E25417ADF00240D11 /* GLHud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLHud.swift; sourceTree = "<group>"; };
+		F9967A342541842C00240D11 /* GLFlowItemsAutoWidthDisplayNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLFlowItemsAutoWidthDisplayNode.swift; sourceTree = "<group>"; };
+		F9967A372541845900240D11 /* GLFlowItemsAutoMarginDisplayNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLFlowItemsAutoMarginDisplayNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -557,6 +565,8 @@
 		851EA24D253B15880073C235 /* New Sources */ = {
 			isa = PBXGroup;
 			children = (
+				F9967A3225417FA600240D11 /* AsyncDisplayKit */,
+				F9967A2A2541762700240D11 /* Hud */,
 				F9967A14253FCA3C00240D11 /* Map */,
 				F9967A0F253FC1D800240D11 /* File */,
 				858C9F5B253EFEEB006232DA /* Words Sort */,
@@ -647,6 +657,24 @@
 			path = Map;
 			sourceTree = "<group>";
 		};
+		F9967A2A2541762700240D11 /* Hud */ = {
+			isa = PBXGroup;
+			children = (
+				F9967A2B2541763C00240D11 /* GLHud.bundle */,
+				F9967A2E25417ADF00240D11 /* GLHud.swift */,
+			);
+			path = Hud;
+			sourceTree = "<group>";
+		};
+		F9967A3225417FA600240D11 /* AsyncDisplayKit */ = {
+			isa = PBXGroup;
+			children = (
+				F9967A342541842C00240D11 /* GLFlowItemsAutoWidthDisplayNode.swift */,
+				F9967A372541845900240D11 /* GLFlowItemsAutoMarginDisplayNode.swift */,
+			);
+			path = AsyncDisplayKit;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -710,6 +738,7 @@
 				1831125F2446F8F200155620 /* YHSystemFace.bundle in Resources */,
 				1831115724469EB900155620 /* LaunchScreen.storyboard in Resources */,
 				1818101E248E10F200BB4D03 /* test.png in Resources */,
+				F9967A2C2541763C00240D11 /* GLHud.bundle in Resources */,
 				859A7D7A246EF00B008F7A4F /* SwiftyCity.bundle in Resources */,
 				1831115424469EB900155620 /* Assets.xcassets in Resources */,
 				1831126D2446FBB200155620 /* SwiftToolDescription in Resources */,
@@ -769,6 +798,7 @@
 			files = (
 				858C9F5D253EFF05006232DA /* String+GLWords.swift in Sources */,
 				F9967A16253FCAB800240D11 /* GLMapManager.swift in Sources */,
+				F9967A382541845900240D11 /* GLFlowItemsAutoMarginDisplayNode.swift in Sources */,
 				8544C6CF246C4AAC00361C08 /* SwiftyPermission.swift in Sources */,
 				1890ED9A24DA702800C7CEBB /* SwiftyMapTestViewController.swift in Sources */,
 				182805E324727B1800A3D228 /* SwiftyFlowItemsDisplayNode.swift in Sources */,
@@ -789,6 +819,7 @@
 				F9967903253D2DAB00240D11 /* Array+GLExtension.swift in Sources */,
 				182805E12472715C00A3D228 /* SwiftyTagContainerTestViewController.swift in Sources */,
 				182805D724723C4700A3D228 /* UIImage+SwiftyExtensionForColor.swift in Sources */,
+				F9967A352541842C00240D11 /* GLFlowItemsAutoWidthDisplayNode.swift in Sources */,
 				F996790F253D446900240D11 /* UIApplication+GLExtension.swift in Sources */,
 				F9967A0D253FBF9500240D11 /* Data+GLExtension.swift in Sources */,
 				1831125E2446F8F200155620 /* YHSystemFaceView.m in Sources */,
@@ -827,6 +858,7 @@
 				182805DF2472710000A3D228 /* SwiftyTagContainerView.swift in Sources */,
 				180E6EC62468EC5C001B069C /* SwiftyMBHUD.swift in Sources */,
 				F9967919253D57D700240D11 /* GLEnlargeControl.swift in Sources */,
+				F9967A2F25417ADF00240D11 /* GLHud.swift in Sources */,
 				1827D03B246D223A00429B36 /* SwiftyWordsSortTestViewController.swift in Sources */,
 				F9967A11253FC1EF00240D11 /* GLFileManager.swift in Sources */,
 				F9967921253D5AF000240D11 /* GLMicrophonePermission.swift in Sources */,

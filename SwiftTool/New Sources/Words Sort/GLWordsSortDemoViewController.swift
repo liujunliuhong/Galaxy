@@ -53,7 +53,7 @@ public class GLWordsSortDemoViewController: UIViewController {
         errorSortButton2.setTitle("Error Sort 2", for: .normal)
         errorSortButton2.setTitleColor(.white, for: .normal)
         errorSortButton2.backgroundColor = .gray
-        errorSortButton2.addTarget(self, action: #selector(errorSort1), for: .touchUpInside)
+        errorSortButton2.addTarget(self, action: #selector(errorSort2), for: .touchUpInside)
         return errorSortButton2
     }()
     

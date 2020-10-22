@@ -102,7 +102,7 @@ extension GLMapManager {
          MKLaunchOptionsDirectionsModeDefault、
          MKLaunchOptionsDirectionsModeDriving、
          MKLaunchOptionsDirectionsModeWalking、
-         MKLaunchOptionsDirectionsModeTransit)
+         MKLaunchOptionsDirectionsModeTransit
          */
         let options: [String: Any] = [MKLaunchOptionsDirectionsModeKey: directionsMode,
                                       MKLaunchOptionsMapTypeKey: NSNumber(value: mapType.rawValue),

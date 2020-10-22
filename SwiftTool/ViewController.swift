@@ -61,8 +61,12 @@ extension ViewController {
          self.navigationController?.pushViewController(vc, animated: true)
          */
         
-        let vc = SwiftyCusNavigationBarTestViewController(testImage: UIImage(named: "item_Image_1"))
+        //let vc = SwiftyCusNavigationBarTestViewController(testImage: UIImage(named: "item_Image_1"))
+        //self.navigationController?.pushViewController(vc, animated: true)
+        
+        let vc = GLWordsSortDemoViewController()
         self.navigationController?.pushViewController(vc, animated: true)
+        
         
         
     }

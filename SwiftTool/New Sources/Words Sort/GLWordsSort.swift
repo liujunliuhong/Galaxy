@@ -80,7 +80,7 @@ extension GLWordsSort {
         return nil
     }
     
-    /// 数组排序。models可以为模型数组，也可以为字符串数组。keyPath是模型中要排序的key
+    /// 数组排序。models可以为模型数组，也可以为字符串数组。keyPath是模型中要排序的key。如果是字符串数组排序，那么keyPath无效
     public func sort(models: [T], keyPath: String?, closure: (([GLWordsSortResult<T>]) -> ())?) {
         DispatchQueue.global().async {
             // check
@@ -154,12 +154,14 @@ extension GLWordsSort {
             }
             
             // 索引排序
-            var newKeys: [String] = sortResult.keys.sorted { (s1, s2) -> Bool in
-                return s1 <= s2
-            }
+            var newKeys: [String] = []
             if self.reverse {
                 newKeys = sortResult.keys.sorted { (s1, s2) -> Bool in
                     return s1 >= s2
+                }
+            } else {
+                newKeys = sortResult.keys.sorted { (s1, s2) -> Bool in
+                    return s1 <= s2
                 }
             }
             

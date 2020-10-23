@@ -20,7 +20,7 @@ import AsyncDisplayKit
     private var allNodes: [[ASDisplayNode]] = []
     override init() {
         super.init()
-        backgroundColor = UIColor.gl_rgba(R: 0, G: 0, B: 0).withAlphaComponent(0)
+        
     }
 }
 

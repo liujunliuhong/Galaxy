@@ -64,7 +64,7 @@ extension ViewController {
         //let vc = SwiftyCusNavigationBarTestViewController(testImage: UIImage(named: "item_Image_1"))
         //self.navigationController?.pushViewController(vc, animated: true)
         
-        let vc = GLFlowItemsDemoViewController(type: .autoWidth)
+        let vc = GLTagDemoViewController()
         self.navigationController?.pushViewController(vc, animated: true)
         
         

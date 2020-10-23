@@ -84,6 +84,9 @@
 		8544C6CF246C4AAC00361C08 /* SwiftyPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8544C6CE246C4AAC00361C08 /* SwiftyPermission.swift */; };
 		8544C6D1246C4B7F00361C08 /* SwiftyPermissionTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8544C6D0246C4B7F00361C08 /* SwiftyPermissionTestViewController.swift */; };
 		854E899F248FC56700D1994B /* SwiftyCusNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E899E248FC56700D1994B /* SwiftyCusNavigationBar.swift */; };
+		85657DD9254299A8003924B8 /* GLTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85657DD8254299A8003924B8 /* GLTagView.swift */; };
+		85657DDD25429A95003924B8 /* GLTagItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85657DDC25429A95003924B8 /* GLTagItem.swift */; };
+		85657DE025431B63003924B8 /* GLTagDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85657DDF25431B63003924B8 /* GLTagDemoViewController.swift */; };
 		857EB86F25407ACE00A0E892 /* GLMapDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857EB86E25407ACE00A0E892 /* GLMapDemoViewController.swift */; };
 		858C9F5D253EFF05006232DA /* String+GLWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858C9F5C253EFF05006232DA /* String+GLWords.swift */; };
 		858C9F61253F03BF006232DA /* GLWordsSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858C9F60253F03BF006232DA /* GLWordsSort.swift */; };
@@ -210,6 +213,9 @@
 		8544C6CE246C4AAC00361C08 /* SwiftyPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyPermission.swift; sourceTree = "<group>"; };
 		8544C6D0246C4B7F00361C08 /* SwiftyPermissionTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyPermissionTestViewController.swift; sourceTree = "<group>"; };
 		854E899E248FC56700D1994B /* SwiftyCusNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCusNavigationBar.swift; sourceTree = "<group>"; };
+		85657DD8254299A8003924B8 /* GLTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLTagView.swift; sourceTree = "<group>"; };
+		85657DDC25429A95003924B8 /* GLTagItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLTagItem.swift; sourceTree = "<group>"; };
+		85657DDF25431B63003924B8 /* GLTagDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLTagDemoViewController.swift; sourceTree = "<group>"; };
 		857EB86E25407ACE00A0E892 /* GLMapDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLMapDemoViewController.swift; sourceTree = "<group>"; };
 		858C9F5C253EFF05006232DA /* String+GLWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+GLWords.swift"; sourceTree = "<group>"; };
 		858C9F60253F03BF006232DA /* GLWordsSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLWordsSort.swift; sourceTree = "<group>"; };
@@ -567,6 +573,7 @@
 		851EA24D253B15880073C235 /* New Sources */ = {
 			isa = PBXGroup;
 			children = (
+				85657DD2254297FD003924B8 /* TagView */,
 				F9967A3225417FA600240D11 /* AsyncDisplayKit */,
 				F9967A2A2541762700240D11 /* Hud */,
 				F9967A14253FCA3C00240D11 /* Map */,
@@ -604,6 +611,16 @@
 				F9967A0C253FBF9500240D11 /* Data+GLExtension.swift */,
 			);
 			path = Foundation;
+			sourceTree = "<group>";
+		};
+		85657DD2254297FD003924B8 /* TagView */ = {
+			isa = PBXGroup;
+			children = (
+				85657DD8254299A8003924B8 /* GLTagView.swift */,
+				85657DDC25429A95003924B8 /* GLTagItem.swift */,
+				85657DDF25431B63003924B8 /* GLTagDemoViewController.swift */,
+			);
+			path = TagView;
 			sourceTree = "<group>";
 		};
 		858C9F5B253EFEEB006232DA /* Words Sort */ = {
@@ -831,6 +848,7 @@
 				18DD746C249B6D950012B8D6 /* SwiftyTabBarDemoViewController.swift in Sources */,
 				F996792A253D618400240D11 /* GLContactsPermission.swift in Sources */,
 				182805DD24726E6800A3D228 /* UIDevice+SwiftyExtension.swift in Sources */,
+				85657DDD25429A95003924B8 /* GLTagItem.swift in Sources */,
 				F9967916253D57BB00240D11 /* GLEnlargeButton.swift in Sources */,
 				852C2400247043A2003746E7 /* SwiftyCityModel.swift in Sources */,
 				182805D924723C9B00A3D228 /* UIView+SwiftyExtensionForFrame.swift in Sources */,
@@ -845,6 +863,7 @@
 				183112402446F8F200155620 /* YHRXAlamofire.swift in Sources */,
 				18EDB3902498A6790083395C /* SwiftyTabBarBadgeView.swift in Sources */,
 				851EA250253B16DB0073C235 /* UIImage+GLExtension.swift in Sources */,
+				85657DD9254299A8003924B8 /* GLTagView.swift in Sources */,
 				858E538624E8C43C00A67F0C /* SwiftyCusNavigationBarSpace.swift in Sources */,
 				1831114B24469EB700155620 /* AppDelegate.swift in Sources */,
 				18EBB731247372DC0080CC2B /* SwiftyFlowItemsAutoMarginTestViewController.swift in Sources */,
@@ -899,6 +918,7 @@
 				858C9F68253F041A006232DA /* GLWordsSortResult.swift in Sources */,
 				18EBB7352473BA350080CC2B /* UIApplication+SwiftyExtensionForURL.swift in Sources */,
 				18EBB7382473CB670080CC2B /* SwiftyFileManager.swift in Sources */,
+				85657DE025431B63003924B8 /* GLTagDemoViewController.swift in Sources */,
 				18D9E67F248675C200CFDC27 /* SwiftyBMKLocation.m in Sources */,
 				1869FCDE2475044C00798729 /* CGFloat+SwiftyExtension.swift in Sources */,
 			);

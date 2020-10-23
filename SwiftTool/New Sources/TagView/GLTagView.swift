@@ -25,6 +25,8 @@ public class GLTagView: UIView {
     public var lineSpacing: CGFloat = .zero
     /// 列间距
     public var interitemSpacing: CGFloat = .zero
+    /// 总共有几行
+    public private(set) var rowCount: Int = 0
     /// 容器宽度。优先使用容器本身的宽度(self.frame.width)，如果容器本身宽度小于`0`，那么容器宽度就是`preferdWidth`
     public var preferdWidth: CGFloat = .zero {
         didSet {
@@ -130,7 +132,7 @@ extension GLTagView {
         
         var X: CGFloat = leftPadding
         
-        var lineCount: Int = 0
+        var rowCount: Int = 0
         var maxUpLineHeight: CGFloat = 0
         
         let intrinsicWidth: CGFloat = containerWidth
@@ -166,7 +168,7 @@ extension GLTagView {
                     self.layoutAlignment(items: alignmentItems)
                     alignmentItems.removeAll()
                     //
-                    lineCount += 1
+                    rowCount += 1
                     maxUpLineHeight += self.lineSpacing
                     X = leftPadding
                     if isLayoutItem {
@@ -179,7 +181,7 @@ extension GLTagView {
                 }
             } else {
                 // 没有上一个item，也就是第一个item
-                lineCount += 1
+                rowCount += 1
                 maxUpLineHeight = topPadding
                 if isLayoutItem {
                     item.view.frame = CGRect(x: X, y: maxUpLineHeight, width: width, height: height)
@@ -196,6 +198,8 @@ extension GLTagView {
         alignmentItems.removeAll()
         //
         intrinsicHeight = maxUpLineHeight + bottomPadding
+        //
+        self.rowCount = rowCount
         //
         return CGSize(width: intrinsicWidth, height: intrinsicHeight)
     }

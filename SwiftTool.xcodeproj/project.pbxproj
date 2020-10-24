@@ -74,8 +74,6 @@
 		851EA294253B1C8F0073C235 /* UIView+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851EA293253B1C8F0073C235 /* UIView+GLExtension.swift */; };
 		851EA297253B1DFA0073C235 /* UIDevice+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851EA296253B1DFA0073C235 /* UIDevice+GLExtension.swift */; };
 		8525039B253C7B8000E7673A /* CGFloat+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8525039A253C7B8000E7673A /* CGFloat+GLExtension.swift */; };
-		852ACEB4253DE15C00A0B44C /* GLReminderPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852ACEB3253DE15C00A0B44C /* GLReminderPermission.swift */; };
-		852ACEB7253DE23E00A0B44C /* GLCalendarPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852ACEB6253DE23E00A0B44C /* GLCalendarPermission.swift */; };
 		852C23FE246F9091003746E7 /* SwiftyCityPickerTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C23FD246F9091003746E7 /* SwiftyCityPickerTestViewController.swift */; };
 		852C2400247043A2003746E7 /* SwiftyCityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C23FF247043A2003746E7 /* SwiftyCityModel.swift */; };
 		8544C6C9246C3CAE00361C08 /* SwiftyPickerToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8544C6C8246C3CAE00361C08 /* SwiftyPickerToolBar.swift */; };
@@ -84,14 +82,7 @@
 		8544C6CF246C4AAC00361C08 /* SwiftyPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8544C6CE246C4AAC00361C08 /* SwiftyPermission.swift */; };
 		8544C6D1246C4B7F00361C08 /* SwiftyPermissionTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8544C6D0246C4B7F00361C08 /* SwiftyPermissionTestViewController.swift */; };
 		854E899F248FC56700D1994B /* SwiftyCusNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854E899E248FC56700D1994B /* SwiftyCusNavigationBar.swift */; };
-		85657DD9254299A8003924B8 /* GLTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85657DD8254299A8003924B8 /* GLTagView.swift */; };
-		85657DDD25429A95003924B8 /* GLTagItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85657DDC25429A95003924B8 /* GLTagItem.swift */; };
-		85657DE025431B63003924B8 /* GLTagDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85657DDF25431B63003924B8 /* GLTagDemoViewController.swift */; };
 		857EB86F25407ACE00A0E892 /* GLMapDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857EB86E25407ACE00A0E892 /* GLMapDemoViewController.swift */; };
-		858C9F5D253EFF05006232DA /* String+GLWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858C9F5C253EFF05006232DA /* String+GLWords.swift */; };
-		858C9F61253F03BF006232DA /* GLWordsSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858C9F60253F03BF006232DA /* GLWordsSort.swift */; };
-		858C9F68253F041A006232DA /* GLWordsSortResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858C9F67253F041A006232DA /* GLWordsSortResult.swift */; };
-		858C9F6C253F32B9006232DA /* GLWordsSortDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858C9F6B253F32B9006232DA /* GLWordsSortDemoViewController.swift */; };
 		858E538224E8BE9C00A67F0C /* SwiftyCusNavigationBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858E538124E8BE9C00A67F0C /* SwiftyCusNavigationBarButtonItem.swift */; };
 		858E538424E8C2C200A67F0C /* SwiftyCusNavigationBarTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858E538324E8C2C200A67F0C /* SwiftyCusNavigationBarTitle.swift */; };
 		858E538624E8C43C00A67F0C /* SwiftyCusNavigationBarSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858E538524E8C43C00A67F0C /* SwiftyCusNavigationBarSpace.swift */; };
@@ -110,11 +101,6 @@
 		F996790F253D446900240D11 /* UIApplication+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F996790E253D446900240D11 /* UIApplication+GLExtension.swift */; };
 		F9967916253D57BB00240D11 /* GLEnlargeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9967915253D57BB00240D11 /* GLEnlargeButton.swift */; };
 		F9967919253D57D700240D11 /* GLEnlargeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9967918253D57D700240D11 /* GLEnlargeControl.swift */; };
-		F996791D253D589500240D11 /* GLPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = F996791C253D589500240D11 /* GLPermission.swift */; };
-		F9967921253D5AF000240D11 /* GLMicrophonePermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9967920253D5AF000240D11 /* GLMicrophonePermission.swift */; };
-		F9967924253D5FBE00240D11 /* GLCameraPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9967923253D5FBE00240D11 /* GLCameraPermission.swift */; };
-		F9967927253D607B00240D11 /* GLPhotoPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9967926253D607B00240D11 /* GLPhotoPermission.swift */; };
-		F996792A253D618400240D11 /* GLContactsPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9967929253D618400240D11 /* GLContactsPermission.swift */; };
 		F9967A0D253FBF9500240D11 /* Data+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9967A0C253FBF9500240D11 /* Data+GLExtension.swift */; };
 		F9967A11253FC1EF00240D11 /* GLFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9967A10253FC1EF00240D11 /* GLFileManager.swift */; };
 		F9967A16253FCAB800240D11 /* GLMapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9967A15253FCAB800240D11 /* GLMapManager.swift */; };
@@ -203,8 +189,6 @@
 		851EA293253B1C8F0073C235 /* UIView+GLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+GLExtension.swift"; sourceTree = "<group>"; };
 		851EA296253B1DFA0073C235 /* UIDevice+GLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+GLExtension.swift"; sourceTree = "<group>"; };
 		8525039A253C7B8000E7673A /* CGFloat+GLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+GLExtension.swift"; sourceTree = "<group>"; };
-		852ACEB3253DE15C00A0B44C /* GLReminderPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLReminderPermission.swift; sourceTree = "<group>"; };
-		852ACEB6253DE23E00A0B44C /* GLCalendarPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLCalendarPermission.swift; sourceTree = "<group>"; };
 		852C23FD246F9091003746E7 /* SwiftyCityPickerTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCityPickerTestViewController.swift; sourceTree = "<group>"; };
 		852C23FF247043A2003746E7 /* SwiftyCityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCityModel.swift; sourceTree = "<group>"; };
 		8544C6C8246C3CAE00361C08 /* SwiftyPickerToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyPickerToolBar.swift; sourceTree = "<group>"; };
@@ -213,14 +197,7 @@
 		8544C6CE246C4AAC00361C08 /* SwiftyPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyPermission.swift; sourceTree = "<group>"; };
 		8544C6D0246C4B7F00361C08 /* SwiftyPermissionTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyPermissionTestViewController.swift; sourceTree = "<group>"; };
 		854E899E248FC56700D1994B /* SwiftyCusNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCusNavigationBar.swift; sourceTree = "<group>"; };
-		85657DD8254299A8003924B8 /* GLTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLTagView.swift; sourceTree = "<group>"; };
-		85657DDC25429A95003924B8 /* GLTagItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLTagItem.swift; sourceTree = "<group>"; };
-		85657DDF25431B63003924B8 /* GLTagDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLTagDemoViewController.swift; sourceTree = "<group>"; };
 		857EB86E25407ACE00A0E892 /* GLMapDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLMapDemoViewController.swift; sourceTree = "<group>"; };
-		858C9F5C253EFF05006232DA /* String+GLWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+GLWords.swift"; sourceTree = "<group>"; };
-		858C9F60253F03BF006232DA /* GLWordsSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLWordsSort.swift; sourceTree = "<group>"; };
-		858C9F67253F041A006232DA /* GLWordsSortResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLWordsSortResult.swift; sourceTree = "<group>"; };
-		858C9F6B253F32B9006232DA /* GLWordsSortDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLWordsSortDemoViewController.swift; sourceTree = "<group>"; };
 		858E538124E8BE9C00A67F0C /* SwiftyCusNavigationBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCusNavigationBarButtonItem.swift; sourceTree = "<group>"; };
 		858E538324E8C2C200A67F0C /* SwiftyCusNavigationBarTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCusNavigationBarTitle.swift; sourceTree = "<group>"; };
 		858E538524E8C43C00A67F0C /* SwiftyCusNavigationBarSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCusNavigationBarSpace.swift; sourceTree = "<group>"; };
@@ -240,11 +217,6 @@
 		F996790E253D446900240D11 /* UIApplication+GLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+GLExtension.swift"; sourceTree = "<group>"; };
 		F9967915253D57BB00240D11 /* GLEnlargeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLEnlargeButton.swift; sourceTree = "<group>"; };
 		F9967918253D57D700240D11 /* GLEnlargeControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLEnlargeControl.swift; sourceTree = "<group>"; };
-		F996791C253D589500240D11 /* GLPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLPermission.swift; sourceTree = "<group>"; };
-		F9967920253D5AF000240D11 /* GLMicrophonePermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLMicrophonePermission.swift; sourceTree = "<group>"; };
-		F9967923253D5FBE00240D11 /* GLCameraPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLCameraPermission.swift; sourceTree = "<group>"; };
-		F9967926253D607B00240D11 /* GLPhotoPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLPhotoPermission.swift; sourceTree = "<group>"; };
-		F9967929253D618400240D11 /* GLContactsPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLContactsPermission.swift; sourceTree = "<group>"; };
 		F9967A0C253FBF9500240D11 /* Data+GLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+GLExtension.swift"; sourceTree = "<group>"; };
 		F9967A10253FC1EF00240D11 /* GLFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLFileManager.swift; sourceTree = "<group>"; };
 		F9967A15253FCAB800240D11 /* GLMapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLMapManager.swift; sourceTree = "<group>"; };
@@ -573,13 +545,10 @@
 		851EA24D253B15880073C235 /* New Sources */ = {
 			isa = PBXGroup;
 			children = (
-				85657DD2254297FD003924B8 /* TagView */,
 				F9967A3225417FA600240D11 /* AsyncDisplayKit */,
 				F9967A2A2541762700240D11 /* Hud */,
 				F9967A14253FCA3C00240D11 /* Map */,
 				F9967A0F253FC1D800240D11 /* File */,
-				858C9F5B253EFEEB006232DA /* Words Sort */,
-				F996791B253D587700240D11 /* Permission */,
 				85250399253C7B6600E7673A /* Foundation */,
 				851EA24E253B15EF0073C235 /* UIKit */,
 			);
@@ -613,27 +582,6 @@
 			path = Foundation;
 			sourceTree = "<group>";
 		};
-		85657DD2254297FD003924B8 /* TagView */ = {
-			isa = PBXGroup;
-			children = (
-				85657DD8254299A8003924B8 /* GLTagView.swift */,
-				85657DDC25429A95003924B8 /* GLTagItem.swift */,
-				85657DDF25431B63003924B8 /* GLTagDemoViewController.swift */,
-			);
-			path = TagView;
-			sourceTree = "<group>";
-		};
-		858C9F5B253EFEEB006232DA /* Words Sort */ = {
-			isa = PBXGroup;
-			children = (
-				858C9F60253F03BF006232DA /* GLWordsSort.swift */,
-				858C9F67253F041A006232DA /* GLWordsSortResult.swift */,
-				858C9F5C253EFF05006232DA /* String+GLWords.swift */,
-				858C9F6B253F32B9006232DA /* GLWordsSortDemoViewController.swift */,
-			);
-			path = "Words Sort";
-			sourceTree = "<group>";
-		};
 		859A7D78246EEFB8008F7A4F /* City Picker */ = {
 			isa = PBXGroup;
 			children = (
@@ -643,20 +591,6 @@
 				859A7D79246EF00B008F7A4F /* SwiftyCity.bundle */,
 			);
 			path = "City Picker";
-			sourceTree = "<group>";
-		};
-		F996791B253D587700240D11 /* Permission */ = {
-			isa = PBXGroup;
-			children = (
-				F996791C253D589500240D11 /* GLPermission.swift */,
-				F9967920253D5AF000240D11 /* GLMicrophonePermission.swift */,
-				F9967923253D5FBE00240D11 /* GLCameraPermission.swift */,
-				F9967926253D607B00240D11 /* GLPhotoPermission.swift */,
-				F9967929253D618400240D11 /* GLContactsPermission.swift */,
-				852ACEB3253DE15C00A0B44C /* GLReminderPermission.swift */,
-				852ACEB6253DE23E00A0B44C /* GLCalendarPermission.swift */,
-			);
-			path = Permission;
 			sourceTree = "<group>";
 		};
 		F9967A0F253FC1D800240D11 /* File */ = {
@@ -816,7 +750,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				858C9F5D253EFF05006232DA /* String+GLWords.swift in Sources */,
 				F9967A16253FCAB800240D11 /* GLMapManager.swift in Sources */,
 				F9967A382541845900240D11 /* GLFlowItemsAutoMarginDisplayNode.swift in Sources */,
 				8544C6CF246C4AAC00361C08 /* SwiftyPermission.swift in Sources */,
@@ -824,7 +757,6 @@
 				182805E324727B1800A3D228 /* SwiftyFlowItemsDisplayNode.swift in Sources */,
 				18EBB7332473B6B30080CC2B /* SwiftyFlowItemsAutoWidthTestViewController.swift in Sources */,
 				854E899F248FC56700D1994B /* SwiftyCusNavigationBar.swift in Sources */,
-				858C9F61253F03BF006232DA /* GLWordsSort.swift in Sources */,
 				1831125C2446F8F200155620 /* YHSystemFaceHelper.m in Sources */,
 				1848527D2487AC4900BD6A25 /* SwiftyAMapLocationTestViewController.swift in Sources */,
 				1890ED9824DA5A3400C7CEBB /* SwiftyMap.swift in Sources */,
@@ -833,7 +765,6 @@
 				187FCD8A24A0845200B423EB /* SwiftySystemImagePicker.swift in Sources */,
 				1869FCD8247501D700798729 /* String+SwiftyExtension.swift in Sources */,
 				1870F4B5246A389E0016D596 /* SwiftyLog.swift in Sources */,
-				F996791D253D589500240D11 /* GLPermission.swift in Sources */,
 				18D9E68124867E2400CFDC27 /* SwiftyBMKLocationTestViewController.swift in Sources */,
 				8544C6C9246C3CAE00361C08 /* SwiftyPickerToolBar.swift in Sources */,
 				F9967903253D2DAB00240D11 /* Array+GLExtension.swift in Sources */,
@@ -844,11 +775,8 @@
 				F9967A0D253FBF9500240D11 /* Data+GLExtension.swift in Sources */,
 				1831125E2446F8F200155620 /* YHSystemFaceView.m in Sources */,
 				1869FCDC2475023300798729 /* Array+SwiftyExtension.swift in Sources */,
-				F9967924253D5FBE00240D11 /* GLCameraPermission.swift in Sources */,
 				18DD746C249B6D950012B8D6 /* SwiftyTabBarDemoViewController.swift in Sources */,
-				F996792A253D618400240D11 /* GLContactsPermission.swift in Sources */,
 				182805DD24726E6800A3D228 /* UIDevice+SwiftyExtension.swift in Sources */,
-				85657DDD25429A95003924B8 /* GLTagItem.swift in Sources */,
 				F9967916253D57BB00240D11 /* GLEnlargeButton.swift in Sources */,
 				852C2400247043A2003746E7 /* SwiftyCityModel.swift in Sources */,
 				182805D924723C9B00A3D228 /* UIView+SwiftyExtensionForFrame.swift in Sources */,
@@ -863,7 +791,6 @@
 				183112402446F8F200155620 /* YHRXAlamofire.swift in Sources */,
 				18EDB3902498A6790083395C /* SwiftyTabBarBadgeView.swift in Sources */,
 				851EA250253B16DB0073C235 /* UIImage+GLExtension.swift in Sources */,
-				85657DD9254299A8003924B8 /* GLTagView.swift in Sources */,
 				858E538624E8C43C00A67F0C /* SwiftyCusNavigationBarSpace.swift in Sources */,
 				1831114B24469EB700155620 /* AppDelegate.swift in Sources */,
 				18EBB731247372DC0080CC2B /* SwiftyFlowItemsAutoMarginTestViewController.swift in Sources */,
@@ -873,7 +800,6 @@
 				8525039B253C7B8000E7673A /* CGFloat+GLExtension.swift in Sources */,
 				85C3234224853772007D2B73 /* SwiftyNativeLocation.swift in Sources */,
 				182805DB24723CE200A3D228 /* UIView+SwiftyExtensionForSnapshot.swift in Sources */,
-				852ACEB7253DE23E00A0B44C /* GLCalendarPermission.swift in Sources */,
 				859A7D80246EF7F7008F7A4F /* SwiftyCityPickerView.swift in Sources */,
 				183091B22490D89C007EA52C /* SwiftyCusNavigationBarTestViewController.swift in Sources */,
 				189404E82488A5DC005D9C29 /* SwiftyQCloudCOSManager.swift in Sources */,
@@ -883,22 +809,18 @@
 				F9967A2F25417ADF00240D11 /* GLHud.swift in Sources */,
 				1827D03B246D223A00429B36 /* SwiftyWordsSortTestViewController.swift in Sources */,
 				F9967A11253FC1EF00240D11 /* GLFileManager.swift in Sources */,
-				F9967921253D5AF000240D11 /* GLMicrophonePermission.swift in Sources */,
 				85CD1E472487F52300149C71 /* SwiftyViewModelType.swift in Sources */,
 				F9967909253D351C00240D11 /* Bundle+GLExtension.swift in Sources */,
-				F9967927253D607B00240D11 /* GLPhotoPermission.swift in Sources */,
 				183111FA2446A8D400155620 /* Test.m in Sources */,
 				857EB86F25407ACE00A0E892 /* GLMapDemoViewController.swift in Sources */,
 				1831125B2446F8F200155620 /* YHSystemFace.m in Sources */,
 				183112412446F8F200155620 /* YHResult.swift in Sources */,
 				85E024762541C25100EF6D7C /* GLFlowItemsDemoViewController.swift in Sources */,
 				852C23FE246F9091003746E7 /* SwiftyCityPickerTestViewController.swift in Sources */,
-				852ACEB4253DE15C00A0B44C /* GLReminderPermission.swift in Sources */,
 				8544C6CD246C3ED100361C08 /* SwiftyPickerView.swift in Sources */,
 				1870F4B2246A2E1D0016D596 /* SwiftyMBHUDTestViewController.swift in Sources */,
 				85ADF41724A0DB34003B5C10 /* SwiftySystemImagePickerTestViewController.swift in Sources */,
 				851EA291253B18590073C235 /* UIColor+GLExtension.swift in Sources */,
-				858C9F6C253F32B9006232DA /* GLWordsSortDemoViewController.swift in Sources */,
 				85C3234424853CF6007D2B73 /* SwiftyNativeLocationTestViewController.swift in Sources */,
 				181454EF25009A390006C227 /* SwiftyEnlargeTouchAreaControl.swift in Sources */,
 				851EA297253B1DFA0073C235 /* UIDevice+GLExtension.swift in Sources */,
@@ -915,10 +837,8 @@
 				18AD961724920C3900500C78 /* SwiftyTabBarController.swift in Sources */,
 				182B7BB9246B873D000A95D0 /* SwiftyPickerTestViewController.swift in Sources */,
 				18EDB38C249897A30083395C /* SwiftyTabBar.swift in Sources */,
-				858C9F68253F041A006232DA /* GLWordsSortResult.swift in Sources */,
 				18EBB7352473BA350080CC2B /* UIApplication+SwiftyExtensionForURL.swift in Sources */,
 				18EBB7382473CB670080CC2B /* SwiftyFileManager.swift in Sources */,
-				85657DE025431B63003924B8 /* GLTagDemoViewController.swift in Sources */,
 				18D9E67F248675C200CFDC27 /* SwiftyBMKLocation.m in Sources */,
 				1869FCDE2475044C00798729 /* CGFloat+SwiftyExtension.swift in Sources */,
 			);

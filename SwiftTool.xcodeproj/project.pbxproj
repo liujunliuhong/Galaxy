@@ -88,6 +88,14 @@
 		858E538624E8C43C00A67F0C /* SwiftyCusNavigationBarSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858E538524E8C43C00A67F0C /* SwiftyCusNavigationBarSpace.swift */; };
 		859A7D7A246EF00B008F7A4F /* SwiftyCity.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 859A7D79246EF00B008F7A4F /* SwiftyCity.bundle */; };
 		859A7D80246EF7F7008F7A4F /* SwiftyCityPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859A7D7F246EF7F7008F7A4F /* SwiftyCityPickerView.swift */; };
+		859E67DD25452003005F1115 /* GLCusNaviBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859E67DC25452003005F1115 /* GLCusNaviBarButtonItem.swift */; };
+		859E67E125452088005F1115 /* GLCusNaviBarTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859E67E025452088005F1115 /* GLCusNaviBarTitle.swift */; };
+		859E67E4254520C1005F1115 /* GLCusNaviBarSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859E67E3254520C1005F1115 /* GLCusNaviBarSpace.swift */; };
+		859E67E72545214C005F1115 /* GLCusNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859E67E62545214C005F1115 /* GLCusNavigationBar.swift */; };
+		859E67EB25452DE9005F1115 /* GLBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859E67EA25452DE9005F1115 /* GLBaseViewController.swift */; };
+		859E67EE25455E22005F1115 /* NextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859E67ED25455E22005F1115 /* NextViewController.swift */; };
+		859E67F325456358005F1115 /* GLCusNavigationBarDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859E67F225456358005F1115 /* GLCusNavigationBarDemoViewController.swift */; };
+		859E68452545C968005F1115 /* GLTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859E68442545C968005F1115 /* GLTabBarController.swift */; };
 		85ADF41724A0DB34003B5C10 /* SwiftySystemImagePickerTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85ADF41624A0DB34003B5C10 /* SwiftySystemImagePickerTestViewController.swift */; };
 		85C3234224853772007D2B73 /* SwiftyNativeLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C3234124853772007D2B73 /* SwiftyNativeLocation.swift */; };
 		85C3234424853CF6007D2B73 /* SwiftyNativeLocationTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C3234324853CF6007D2B73 /* SwiftyNativeLocationTestViewController.swift */; };
@@ -203,6 +211,14 @@
 		858E538524E8C43C00A67F0C /* SwiftyCusNavigationBarSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCusNavigationBarSpace.swift; sourceTree = "<group>"; };
 		859A7D79246EF00B008F7A4F /* SwiftyCity.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SwiftyCity.bundle; sourceTree = "<group>"; };
 		859A7D7F246EF7F7008F7A4F /* SwiftyCityPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCityPickerView.swift; sourceTree = "<group>"; };
+		859E67DC25452003005F1115 /* GLCusNaviBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLCusNaviBarButtonItem.swift; sourceTree = "<group>"; };
+		859E67E025452088005F1115 /* GLCusNaviBarTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLCusNaviBarTitle.swift; sourceTree = "<group>"; };
+		859E67E3254520C1005F1115 /* GLCusNaviBarSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLCusNaviBarSpace.swift; sourceTree = "<group>"; };
+		859E67E62545214C005F1115 /* GLCusNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLCusNavigationBar.swift; sourceTree = "<group>"; };
+		859E67EA25452DE9005F1115 /* GLBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLBaseViewController.swift; sourceTree = "<group>"; };
+		859E67ED25455E22005F1115 /* NextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextViewController.swift; sourceTree = "<group>"; };
+		859E67F225456358005F1115 /* GLCusNavigationBarDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLCusNavigationBarDemoViewController.swift; sourceTree = "<group>"; };
+		859E68442545C968005F1115 /* GLTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLTabBarController.swift; sourceTree = "<group>"; };
 		85ADF41624A0DB34003B5C10 /* SwiftySystemImagePickerTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftySystemImagePickerTestViewController.swift; sourceTree = "<group>"; };
 		85C3234124853772007D2B73 /* SwiftyNativeLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyNativeLocation.swift; sourceTree = "<group>"; };
 		85C3234324853CF6007D2B73 /* SwiftyNativeLocationTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyNativeLocationTestViewController.swift; sourceTree = "<group>"; };
@@ -283,6 +299,7 @@
 				183111FC2446F8F100155620 /* Sources */,
 				1831114A24469EB700155620 /* AppDelegate.swift */,
 				1831114E24469EB700155620 /* ViewController.swift */,
+				859E67ED25455E22005F1115 /* NextViewController.swift */,
 				183111F82446A8D400155620 /* Test.h */,
 				183111F92446A8D400155620 /* Test.m */,
 				85CD1E442487E0D900149C71 /* Keys.swift */,
@@ -545,6 +562,8 @@
 		851EA24D253B15880073C235 /* New Sources */ = {
 			isa = PBXGroup;
 			children = (
+				859E68432545C949005F1115 /* TabBar */,
+				859E67DB25451FAC005F1115 /* NavigationBar */,
 				F9967A3225417FA600240D11 /* AsyncDisplayKit */,
 				F9967A2A2541762700240D11 /* Hud */,
 				F9967A14253FCA3C00240D11 /* Map */,
@@ -591,6 +610,27 @@
 				859A7D79246EF00B008F7A4F /* SwiftyCity.bundle */,
 			);
 			path = "City Picker";
+			sourceTree = "<group>";
+		};
+		859E67DB25451FAC005F1115 /* NavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				859E67E62545214C005F1115 /* GLCusNavigationBar.swift */,
+				859E67DC25452003005F1115 /* GLCusNaviBarButtonItem.swift */,
+				859E67E025452088005F1115 /* GLCusNaviBarTitle.swift */,
+				859E67E3254520C1005F1115 /* GLCusNaviBarSpace.swift */,
+				859E67EA25452DE9005F1115 /* GLBaseViewController.swift */,
+				859E67F225456358005F1115 /* GLCusNavigationBarDemoViewController.swift */,
+			);
+			path = NavigationBar;
+			sourceTree = "<group>";
+		};
+		859E68432545C949005F1115 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				859E68442545C968005F1115 /* GLTabBarController.swift */,
+			);
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 		F9967A0F253FC1D800240D11 /* File */ = {
@@ -782,8 +822,10 @@
 				182805D924723C9B00A3D228 /* UIView+SwiftyExtensionForFrame.swift in Sources */,
 				1869FCD62474FF7F00798729 /* Bundle+SwiftyExtension.swift in Sources */,
 				1818101C248E0A9700BB4D03 /* SwiftyQCloudCOSManagerTestViewController.swift in Sources */,
+				859E67E72545214C005F1115 /* GLCusNavigationBar.swift in Sources */,
 				8544C6D1246C4B7F00361C08 /* SwiftyPermissionTestViewController.swift in Sources */,
 				85CD1E452487E0D900149C71 /* Keys.swift in Sources */,
+				859E68452545C968005F1115 /* GLTabBarController.swift in Sources */,
 				8544C6CB246C3D2D00361C08 /* SwiftyDatePickerView.swift in Sources */,
 				181454F425009FC10006C227 /* SwiftyEnlargeTouchAreaButton.swift in Sources */,
 				858E538424E8C2C200A67F0C /* SwiftyCusNavigationBarTitle.swift in Sources */,
@@ -793,6 +835,7 @@
 				851EA250253B16DB0073C235 /* UIImage+GLExtension.swift in Sources */,
 				858E538624E8C43C00A67F0C /* SwiftyCusNavigationBarSpace.swift in Sources */,
 				1831114B24469EB700155620 /* AppDelegate.swift in Sources */,
+				859E67F325456358005F1115 /* GLCusNavigationBarDemoViewController.swift in Sources */,
 				18EBB731247372DC0080CC2B /* SwiftyFlowItemsAutoMarginTestViewController.swift in Sources */,
 				858E538224E8BE9C00A67F0C /* SwiftyCusNavigationBarButtonItem.swift in Sources */,
 				1827D03D246D23EA00429B36 /* SwiftyWordsSort.swift in Sources */,
@@ -810,21 +853,25 @@
 				1827D03B246D223A00429B36 /* SwiftyWordsSortTestViewController.swift in Sources */,
 				F9967A11253FC1EF00240D11 /* GLFileManager.swift in Sources */,
 				85CD1E472487F52300149C71 /* SwiftyViewModelType.swift in Sources */,
+				859E67EE25455E22005F1115 /* NextViewController.swift in Sources */,
 				F9967909253D351C00240D11 /* Bundle+GLExtension.swift in Sources */,
 				183111FA2446A8D400155620 /* Test.m in Sources */,
 				857EB86F25407ACE00A0E892 /* GLMapDemoViewController.swift in Sources */,
 				1831125B2446F8F200155620 /* YHSystemFace.m in Sources */,
 				183112412446F8F200155620 /* YHResult.swift in Sources */,
+				859E67EB25452DE9005F1115 /* GLBaseViewController.swift in Sources */,
 				85E024762541C25100EF6D7C /* GLFlowItemsDemoViewController.swift in Sources */,
 				852C23FE246F9091003746E7 /* SwiftyCityPickerTestViewController.swift in Sources */,
 				8544C6CD246C3ED100361C08 /* SwiftyPickerView.swift in Sources */,
 				1870F4B2246A2E1D0016D596 /* SwiftyMBHUDTestViewController.swift in Sources */,
+				859E67E4254520C1005F1115 /* GLCusNaviBarSpace.swift in Sources */,
 				85ADF41724A0DB34003B5C10 /* SwiftySystemImagePickerTestViewController.swift in Sources */,
 				851EA291253B18590073C235 /* UIColor+GLExtension.swift in Sources */,
 				85C3234424853CF6007D2B73 /* SwiftyNativeLocationTestViewController.swift in Sources */,
 				181454EF25009A390006C227 /* SwiftyEnlargeTouchAreaControl.swift in Sources */,
 				851EA297253B1DFA0073C235 /* UIDevice+GLExtension.swift in Sources */,
 				1869FCDA2475020A00798729 /* Dictionary+SwiftyExtension.swift in Sources */,
+				859E67E125452088005F1115 /* GLCusNaviBarTitle.swift in Sources */,
 				851EA294253B1C8F0073C235 /* UIView+GLExtension.swift in Sources */,
 				182805D52472394700A3D228 /* UIColor+SwiftyExtension.swift in Sources */,
 				183091B42490D950007EA52C /* SwiftyBaseViewController.swift in Sources */,
@@ -837,6 +884,7 @@
 				18AD961724920C3900500C78 /* SwiftyTabBarController.swift in Sources */,
 				182B7BB9246B873D000A95D0 /* SwiftyPickerTestViewController.swift in Sources */,
 				18EDB38C249897A30083395C /* SwiftyTabBar.swift in Sources */,
+				859E67DD25452003005F1115 /* GLCusNaviBarButtonItem.swift in Sources */,
 				18EBB7352473BA350080CC2B /* UIApplication+SwiftyExtensionForURL.swift in Sources */,
 				18EBB7382473CB670080CC2B /* SwiftyFileManager.swift in Sources */,
 				18D9E67F248675C200CFDC27 /* SwiftyBMKLocation.m in Sources */,
@@ -987,14 +1035,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = W642XAJPP4;
+				DEVELOPMENT_TEAM = 2E8NVCJR97;
 				INFOPLIST_FILE = SwiftTool/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yinhe.SwiftTool1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.galaxy.SwiftTool1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SwiftTool/SwiftTool-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -1009,14 +1057,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = W642XAJPP4;
+				DEVELOPMENT_TEAM = 2E8NVCJR97;
 				INFOPLIST_FILE = SwiftTool/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yinhe.SwiftTool1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.galaxy.SwiftTool1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SwiftTool/SwiftTool-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

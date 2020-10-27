@@ -95,7 +95,6 @@
 		859E67EB25452DE9005F1115 /* GLBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859E67EA25452DE9005F1115 /* GLBaseViewController.swift */; };
 		859E67EE25455E22005F1115 /* NextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859E67ED25455E22005F1115 /* NextViewController.swift */; };
 		859E67F325456358005F1115 /* GLCusNavigationBarDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859E67F225456358005F1115 /* GLCusNavigationBarDemoViewController.swift */; };
-		859E68452545C968005F1115 /* GLTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859E68442545C968005F1115 /* GLTabBarController.swift */; };
 		85ADF41724A0DB34003B5C10 /* SwiftySystemImagePickerTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85ADF41624A0DB34003B5C10 /* SwiftySystemImagePickerTestViewController.swift */; };
 		85C3234224853772007D2B73 /* SwiftyNativeLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C3234124853772007D2B73 /* SwiftyNativeLocation.swift */; };
 		85C3234424853CF6007D2B73 /* SwiftyNativeLocationTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C3234324853CF6007D2B73 /* SwiftyNativeLocationTestViewController.swift */; };
@@ -116,11 +115,6 @@
 		F9967A2F25417ADF00240D11 /* GLHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9967A2E25417ADF00240D11 /* GLHud.swift */; };
 		F9967A352541842C00240D11 /* GLFlowItemsAutoWidthDisplayNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9967A342541842C00240D11 /* GLFlowItemsAutoWidthDisplayNode.swift */; };
 		F9967A382541845900240D11 /* GLFlowItemsAutoMarginDisplayNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9967A372541845900240D11 /* GLFlowItemsAutoMarginDisplayNode.swift */; };
-		F9EA31E92547FD040089DD99 /* GLTabBarBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EA31E82547FD040089DD99 /* GLTabBarBadgeView.swift */; };
-		F9EA31EC2548046A0089DD99 /* GLTabBarItemContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EA31EB2548046A0089DD99 /* GLTabBarItemContainerView.swift */; };
-		F9EA31EF254807A50089DD99 /* GLTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EA31EE254807A50089DD99 /* GLTabBarItem.swift */; };
-		F9EA31F2254809470089DD99 /* _GLabBarItemWrapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EA31F1254809470089DD99 /* _GLabBarItemWrapView.swift */; };
-		F9EA31F52548148D0089DD99 /* GLTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EA31F42548148D0089DD99 /* GLTabBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -223,7 +217,6 @@
 		859E67EA25452DE9005F1115 /* GLBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLBaseViewController.swift; sourceTree = "<group>"; };
 		859E67ED25455E22005F1115 /* NextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextViewController.swift; sourceTree = "<group>"; };
 		859E67F225456358005F1115 /* GLCusNavigationBarDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLCusNavigationBarDemoViewController.swift; sourceTree = "<group>"; };
-		859E68442545C968005F1115 /* GLTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLTabBarController.swift; sourceTree = "<group>"; };
 		85ADF41624A0DB34003B5C10 /* SwiftySystemImagePickerTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftySystemImagePickerTestViewController.swift; sourceTree = "<group>"; };
 		85C3234124853772007D2B73 /* SwiftyNativeLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyNativeLocation.swift; sourceTree = "<group>"; };
 		85C3234324853CF6007D2B73 /* SwiftyNativeLocationTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyNativeLocationTestViewController.swift; sourceTree = "<group>"; };
@@ -245,11 +238,6 @@
 		F9967A2E25417ADF00240D11 /* GLHud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLHud.swift; sourceTree = "<group>"; };
 		F9967A342541842C00240D11 /* GLFlowItemsAutoWidthDisplayNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLFlowItemsAutoWidthDisplayNode.swift; sourceTree = "<group>"; };
 		F9967A372541845900240D11 /* GLFlowItemsAutoMarginDisplayNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLFlowItemsAutoMarginDisplayNode.swift; sourceTree = "<group>"; };
-		F9EA31E82547FD040089DD99 /* GLTabBarBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLTabBarBadgeView.swift; sourceTree = "<group>"; };
-		F9EA31EB2548046A0089DD99 /* GLTabBarItemContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLTabBarItemContainerView.swift; sourceTree = "<group>"; };
-		F9EA31EE254807A50089DD99 /* GLTabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLTabBarItem.swift; sourceTree = "<group>"; };
-		F9EA31F1254809470089DD99 /* _GLabBarItemWrapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _GLabBarItemWrapView.swift; sourceTree = "<group>"; };
-		F9EA31F42548148D0089DD99 /* GLTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLTabBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -572,7 +560,6 @@
 		851EA24D253B15880073C235 /* New Sources */ = {
 			isa = PBXGroup;
 			children = (
-				859E68432545C949005F1115 /* TabBar */,
 				859E67DB25451FAC005F1115 /* NavigationBar */,
 				F9967A3225417FA600240D11 /* AsyncDisplayKit */,
 				F9967A2A2541762700240D11 /* Hud */,
@@ -633,19 +620,6 @@
 				859E67F225456358005F1115 /* GLCusNavigationBarDemoViewController.swift */,
 			);
 			path = NavigationBar;
-			sourceTree = "<group>";
-		};
-		859E68432545C949005F1115 /* TabBar */ = {
-			isa = PBXGroup;
-			children = (
-				859E68442545C968005F1115 /* GLTabBarController.swift */,
-				F9EA31F42548148D0089DD99 /* GLTabBar.swift */,
-				F9EA31EE254807A50089DD99 /* GLTabBarItem.swift */,
-				F9EA31EB2548046A0089DD99 /* GLTabBarItemContainerView.swift */,
-				F9EA31F1254809470089DD99 /* _GLabBarItemWrapView.swift */,
-				F9EA31E82547FD040089DD99 /* GLTabBarBadgeView.swift */,
-			);
-			path = TabBar;
 			sourceTree = "<group>";
 		};
 		F9967A0F253FC1D800240D11 /* File */ = {
@@ -810,10 +784,8 @@
 				8544C6CF246C4AAC00361C08 /* SwiftyPermission.swift in Sources */,
 				1890ED9A24DA702800C7CEBB /* SwiftyMapTestViewController.swift in Sources */,
 				182805E324727B1800A3D228 /* SwiftyFlowItemsDisplayNode.swift in Sources */,
-				F9EA31EF254807A50089DD99 /* GLTabBarItem.swift in Sources */,
 				18EBB7332473B6B30080CC2B /* SwiftyFlowItemsAutoWidthTestViewController.swift in Sources */,
 				854E899F248FC56700D1994B /* SwiftyCusNavigationBar.swift in Sources */,
-				F9EA31E92547FD040089DD99 /* GLTabBarBadgeView.swift in Sources */,
 				1831125C2446F8F200155620 /* YHSystemFaceHelper.m in Sources */,
 				1848527D2487AC4900BD6A25 /* SwiftyAMapLocationTestViewController.swift in Sources */,
 				1890ED9824DA5A3400C7CEBB /* SwiftyMap.swift in Sources */,
@@ -842,11 +814,8 @@
 				859E67E72545214C005F1115 /* GLCusNavigationBar.swift in Sources */,
 				8544C6D1246C4B7F00361C08 /* SwiftyPermissionTestViewController.swift in Sources */,
 				85CD1E452487E0D900149C71 /* Keys.swift in Sources */,
-				859E68452545C968005F1115 /* GLTabBarController.swift in Sources */,
 				8544C6CB246C3D2D00361C08 /* SwiftyDatePickerView.swift in Sources */,
 				181454F425009FC10006C227 /* SwiftyEnlargeTouchAreaButton.swift in Sources */,
-				F9EA31F52548148D0089DD99 /* GLTabBar.swift in Sources */,
-				F9EA31EC2548046A0089DD99 /* GLTabBarItemContainerView.swift in Sources */,
 				858E538424E8C2C200A67F0C /* SwiftyCusNavigationBarTitle.swift in Sources */,
 				F9967906253D34AB00240D11 /* String+GLExtension.swift in Sources */,
 				183112402446F8F200155620 /* YHRXAlamofire.swift in Sources */,
@@ -891,7 +860,6 @@
 				851EA297253B1DFA0073C235 /* UIDevice+GLExtension.swift in Sources */,
 				1869FCDA2475020A00798729 /* Dictionary+SwiftyExtension.swift in Sources */,
 				859E67E125452088005F1115 /* GLCusNaviBarTitle.swift in Sources */,
-				F9EA31F2254809470089DD99 /* _GLabBarItemWrapView.swift in Sources */,
 				851EA294253B1C8F0073C235 /* UIView+GLExtension.swift in Sources */,
 				182805D52472394700A3D228 /* UIColor+SwiftyExtension.swift in Sources */,
 				183091B42490D950007EA52C /* SwiftyBaseViewController.swift in Sources */,

@@ -101,6 +101,9 @@
 		85CD1E452487E0D900149C71 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD1E442487E0D900149C71 /* Keys.swift */; };
 		85CD1E472487F52300149C71 /* SwiftyViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD1E462487F52300149C71 /* SwiftyViewModelType.swift */; };
 		85E024762541C25100EF6D7C /* GLFlowItemsDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E024752541C25100EF6D7C /* GLFlowItemsDemoViewController.swift */; };
+		85FEED65254D98CF00CD5F8F /* GLLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FEED64254D98CF00CD5F8F /* GLLog.swift */; };
+		85FEED69254D9CB500CD5F8F /* GLSystemFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FEED68254D9CB500CD5F8F /* GLSystemFace.swift */; };
+		85FEED6D254D9D0200CD5F8F /* GLSystemFace.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 85FEED6C254D9D0200CD5F8F /* GLSystemFace.bundle */; };
 		F9967903253D2DAB00240D11 /* Array+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9967902253D2DAB00240D11 /* Array+GLExtension.swift */; };
 		F9967906253D34AB00240D11 /* String+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9967905253D34AB00240D11 /* String+GLExtension.swift */; };
 		F9967909253D351C00240D11 /* Bundle+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9967908253D351C00240D11 /* Bundle+GLExtension.swift */; };
@@ -223,6 +226,9 @@
 		85CD1E442487E0D900149C71 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		85CD1E462487F52300149C71 /* SwiftyViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyViewModelType.swift; sourceTree = "<group>"; };
 		85E024752541C25100EF6D7C /* GLFlowItemsDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLFlowItemsDemoViewController.swift; sourceTree = "<group>"; };
+		85FEED64254D98CF00CD5F8F /* GLLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLLog.swift; sourceTree = "<group>"; };
+		85FEED68254D9CB500CD5F8F /* GLSystemFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLSystemFace.swift; sourceTree = "<group>"; };
+		85FEED6C254D9D0200CD5F8F /* GLSystemFace.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GLSystemFace.bundle; sourceTree = "<group>"; };
 		B4B9793D1D5B9C59651E2DBB /* Pods-SwiftTool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftTool.debug.xcconfig"; path = "Target Support Files/Pods-SwiftTool/Pods-SwiftTool.debug.xcconfig"; sourceTree = "<group>"; };
 		F9967902253D2DAB00240D11 /* Array+GLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+GLExtension.swift"; sourceTree = "<group>"; };
 		F9967905253D34AB00240D11 /* String+GLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+GLExtension.swift"; sourceTree = "<group>"; };
@@ -560,6 +566,8 @@
 		851EA24D253B15880073C235 /* New Sources */ = {
 			isa = PBXGroup;
 			children = (
+				85FEED67254D9C8D00CD5F8F /* SystemFaceKeyboard */,
+				85FEED63254D98C300CD5F8F /* Log */,
 				859E67DB25451FAC005F1115 /* NavigationBar */,
 				F9967A3225417FA600240D11 /* AsyncDisplayKit */,
 				F9967A2A2541762700240D11 /* Hud */,
@@ -620,6 +628,23 @@
 				859E67F225456358005F1115 /* GLCusNavigationBarDemoViewController.swift */,
 			);
 			path = NavigationBar;
+			sourceTree = "<group>";
+		};
+		85FEED63254D98C300CD5F8F /* Log */ = {
+			isa = PBXGroup;
+			children = (
+				85FEED64254D98CF00CD5F8F /* GLLog.swift */,
+			);
+			path = Log;
+			sourceTree = "<group>";
+		};
+		85FEED67254D9C8D00CD5F8F /* SystemFaceKeyboard */ = {
+			isa = PBXGroup;
+			children = (
+				85FEED68254D9CB500CD5F8F /* GLSystemFace.swift */,
+				85FEED6C254D9D0200CD5F8F /* GLSystemFace.bundle */,
+			);
+			path = SystemFaceKeyboard;
 			sourceTree = "<group>";
 		};
 		F9967A0F253FC1D800240D11 /* File */ = {
@@ -726,6 +751,7 @@
 				1831115424469EB900155620 /* Assets.xcassets in Resources */,
 				1831126D2446FBB200155620 /* SwiftToolDescription in Resources */,
 				1831115224469EB700155620 /* Main.storyboard in Resources */,
+				85FEED6D254D9D0200CD5F8F /* GLSystemFace.bundle in Resources */,
 				180E6EC42468EBB3001B069C /* SwiftyHUD.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -786,6 +812,7 @@
 				182805E324727B1800A3D228 /* SwiftyFlowItemsDisplayNode.swift in Sources */,
 				18EBB7332473B6B30080CC2B /* SwiftyFlowItemsAutoWidthTestViewController.swift in Sources */,
 				854E899F248FC56700D1994B /* SwiftyCusNavigationBar.swift in Sources */,
+				85FEED65254D98CF00CD5F8F /* GLLog.swift in Sources */,
 				1831125C2446F8F200155620 /* YHSystemFaceHelper.m in Sources */,
 				1848527D2487AC4900BD6A25 /* SwiftyAMapLocationTestViewController.swift in Sources */,
 				1890ED9824DA5A3400C7CEBB /* SwiftyMap.swift in Sources */,
@@ -830,6 +857,7 @@
 				1827D02D246D1B7500429B36 /* SwiftyLogTestViewController.swift in Sources */,
 				8525039B253C7B8000E7673A /* CGFloat+GLExtension.swift in Sources */,
 				85C3234224853772007D2B73 /* SwiftyNativeLocation.swift in Sources */,
+				85FEED69254D9CB500CD5F8F /* GLSystemFace.swift in Sources */,
 				182805DB24723CE200A3D228 /* UIView+SwiftyExtensionForSnapshot.swift in Sources */,
 				859A7D80246EF7F7008F7A4F /* SwiftyCityPickerView.swift in Sources */,
 				183091B22490D89C007EA52C /* SwiftyCusNavigationBarTestViewController.swift in Sources */,

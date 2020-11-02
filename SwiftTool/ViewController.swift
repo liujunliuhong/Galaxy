@@ -18,6 +18,18 @@ class ViewController: UIViewController {
         self.navigationItem.title = "Demo"
         self.view.backgroundColor = .white
         
+        let options: GLSystemFaceKeyboardOptions = GLSystemFaceKeyboardOptions()
+        let faceKyboardSize: CGSize = CGSize(width: 300, height: 150)
+        let keyboard = GLSystemFaceKeyboard(keyboardSize: faceKyboardSize, options: options)
+        keyboard.backgroundColor = .orange
+        keyboard.delegate = self
+        self.view.addSubview(keyboard)
+        
+        keyboard.snp.makeConstraints { (make) in
+            make.left.equalToSuperview().offset(20)
+            make.top.equalToSuperview().offset(100)
+            make.size.equalTo(faceKyboardSize)
+        }
 //
 //
 //        let sort = SwiftyWordsSort<Model>()
@@ -64,11 +76,24 @@ extension ViewController {
         //let vc = SwiftyCusNavigationBarTestViewController(testImage: UIImage(named: "item_Image_1"))
         //self.navigationController?.pushViewController(vc, animated: true)
         
-        let vc = GLCusNavigationBarDemoViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
+//        let vc = GLCusNavigationBarDemoViewController()
+//        self.navigationController?.pushViewController(vc, animated: true)
+        
         
         
         
     }
 }
 
+
+extension ViewController: GLSystemFaceKeyboardDelegate {
+    func systemFaceKeyboard(_ systemFaceKeyboard: GLSystemFaceKeyboard, didSelectFace face: String) {
+        print("选中表情:\(face)")
+    }
+    
+    func systemFaceKeyboardDidClickDelete(_ systemFaceKeyboard: GLSystemFaceKeyboard) {
+        print("删除表情")
+    }
+    
+    
+}

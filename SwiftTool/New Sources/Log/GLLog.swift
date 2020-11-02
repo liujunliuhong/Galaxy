@@ -12,7 +12,6 @@ import CocoaLumberjack
 
 /// Log初始化(依赖`CocoaLumberjack/Swift`)
 public func GLLogSetup(saveToSandbox: Bool) {
-    
     #if DEBUG
     // DEBUG模式下，开启控制台输出打印
     if #available(iOS 10.0, *) {
@@ -36,14 +35,10 @@ public func GLLogSetup(saveToSandbox: Bool) {
     DDLog.add(fileLogger)
     
     #if DEBUG
-    print("CocoaLumberjack Log File Paths:\(formatString(value: logFileManager.sortedLogFilePaths) ?? "")")
+    let paths = logFileManager.sortedLogFilePaths as NSArray // pretty print
+    let des = NSString(format: "%@", paths)
+    print("CocoaLumberjack Log File Paths:\(des)")
     #endif
-}
-
-fileprivate func formatString<T>(value: T) -> String? {
-    guard let data = String(format: "%@", value as! CVarArg).data(using: .utf8) else { return nil }
-    guard let utf8 = String(data: data, encoding: .nonLossyASCII)?.utf8 else { return nil }
-    return "\(utf8)"
 }
 
 /// 打印日志

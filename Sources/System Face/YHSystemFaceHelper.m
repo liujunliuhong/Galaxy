@@ -51,6 +51,7 @@
             if (i < 0x1F641 || i > 0x1F644) {
                 int sym = EMOJI_CODE_TO_SYMBOL(i);
                 NSString *emoT = [[NSString alloc] initWithBytes:&sym length:sizeof(sym) encoding:NSUTF8StringEncoding];
+                 
                 [faceAry addObject:emoT];
             }
         }

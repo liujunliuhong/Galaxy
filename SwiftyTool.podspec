@@ -62,6 +62,7 @@ Pod::Spec.new do |s|
   s.subspec 'AsyncDisplayKit' do |ss|
     ss.source_files = 'Sources/AsyncDisplayKit/*.swift'
     ss.dependency 'SwiftyTool/Foundation'
+    ss.dependency 'SwiftyTool/UIKit'
     ss.dependency 'Texture'
   end
 
@@ -70,12 +71,14 @@ Pod::Spec.new do |s|
   s.subspec 'Map' do |ss|
     ss.source_files = 'Sources/Map/*.swift'
     ss.dependency 'SwiftyTool/UIKit'
+    ss.dependency 'SwiftyTool/Foundation'
   end
 
 
   # System Face Keyboard
   s.subspec 'SystemFaceKeyboard' do |ss|
     ss.source_files = 'Sources/SystemFaceKeyboard/*.swift'
+    ss.dependency 'SwiftyTool/UIKit'
     ss.resource = 'Sources/SystemFaceKeyboard/GLSystemFace.bundle'
   end
 

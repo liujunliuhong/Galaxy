@@ -36,7 +36,7 @@ public class GLSystemFaceKeyboardOptions {
 
 
 
-fileprivate func gl_emoji_to_symbol(x: Int) -> Int {
+fileprivate func gl_emoji_to_symbol(x: Int64) -> Int64 {
     let s1 = (x & 0x3F000) >> 4
     let s2 = 0x808080F0 | s1
     let s3 = (x & 0xFC0) << 10
@@ -52,8 +52,8 @@ public func GL_GetAllSystemEmojis() -> [String] {
     var result: [String] = []
     for i in 0x1F600...0x1F64F {
         if i < 0x1F641 || i > 0x1F644 {
-            var sym = gl_emoji_to_symbol(x: i)
-            if let emoj = NSString(bytes: &sym, length: MemoryLayout<Int>.size(ofValue: sym), encoding: String.Encoding.utf8.rawValue) {
+            var sym = gl_emoji_to_symbol(x: Int64(i))
+            if let emoj = NSString(bytes: &sym, length: MemoryLayout<Int64>.size(ofValue: sym), encoding: String.Encoding.utf8.rawValue) {
                 result.append(emoj as String)
             }
         }

@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 
-fileprivate func _pen(url: String?, completionHandler: ((Bool) -> ())?) {
+fileprivate func _open(url: String?, completionHandler: ((Bool) -> ())?) {
     guard let url = url else {
         completionHandler?(false)
         return
@@ -36,28 +36,28 @@ fileprivate func _pen(url: String?, completionHandler: ((Bool) -> ())?) {
 extension UIApplication {
     /// 打开手机设置页面
     public func gl_openIphoneSettings() {
-        _pen(url: UIApplication.openSettingsURLString, completionHandler: nil)
+        _open(url: UIApplication.openSettingsURLString, completionHandler: nil)
     }
     
     /// 打开App Store
     public func gl_openAppStore(with appID: String?) {
         guard let appID = appID else { return }
         let urlString = "https://itunes.apple.com/app/id\(appID)"
-        _pen(url: urlString, completionHandler: nil)
+        _open(url: urlString, completionHandler: nil)
     }
     
     /// 打开App Store的评论页面
     public func gl_openAppStoreReview(appID: String?) {
         guard let appID = appID else { return }
         let urlString = "https://itunes.apple.com/cn/app/id\(appID)?action=write-review"
-        _pen(url: urlString, completionHandler: nil)
+        _open(url: urlString, completionHandler: nil)
     }
     
     /// 打电话
     public func gl_makeCall(tel: String?) {
         guard let tel = tel else { return }
         let urlString = "tel://\(tel)"
-        _pen(url: urlString, completionHandler: nil)
+        _open(url: urlString, completionHandler: nil)
     }
     
     /// 用系统Safari浏览器打开链接
@@ -66,16 +66,16 @@ extension UIApplication {
     ///   - useHttpsWhenFail: 当打开失败时，是否使用https
     public func gl_openSafari(with url: String?, useHttpsWhenFail: Bool = true) {
         guard var url = url else { return }
-        _pen(url: url) { (isSuccess) in
+        _open(url: url) { (isSuccess) in
             if isSuccess { return }
             if !useHttpsWhenFail {
                 if url.hasPrefix("http") { return }
                 url = "http://" + url
-                _pen(url: url, completionHandler: nil)
+                _open(url: url, completionHandler: nil)
             } else {
                 if url.hasPrefix("https") { return }
                 url = "https://" + url
-                _pen(url: url, completionHandler: nil)
+                _open(url: url, completionHandler: nil)
                 
             }
         }

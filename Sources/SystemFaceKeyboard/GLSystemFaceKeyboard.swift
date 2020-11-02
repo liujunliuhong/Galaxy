@@ -126,20 +126,10 @@ extension GLSystemFaceKeyboard: UICollectionViewDataSource {
         cell.reload(options: self.options, faces: self.dataSource[indexPath.item])
         cell.clickFaceClosure = { [weak self] (face) in
             guard let self = self else { return }
-            #if DEBUG
-            if self.options.enableDebugLog {
-                print("click face: \(face.value)")
-            }
-            #endif
             self.delegate?.systemFaceKeyboard(self, didSelectFace: face.value)
         }
         cell.clickDeleteClosure = { [weak self] in
             guard let self = self else { return }
-            #if DEBUG
-            if self.options.enableDebugLog {
-                print("click face delete")
-            }
-            #endif
             self.delegate?.systemFaceKeyboardDidClickDelete(self)
         }
         return cell

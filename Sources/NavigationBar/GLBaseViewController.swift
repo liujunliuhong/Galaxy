@@ -8,7 +8,12 @@
 
 import UIKit
 import SnapKit
-
+/*
+ 1、设置info.plist 中 View controller-based status bar appearance 为 YES
+ 2、TARGETS设置支持所有方向
+ 3、TARGETS的Main Interface里面的Main去掉(很重要，否则会出现界面没旋转，但是状态栏旋转的情况)
+ 4、接下来就可以根据页面结构设置旋转了
+ */
 open class GLBaseViewController: UIViewController {
     deinit {
         

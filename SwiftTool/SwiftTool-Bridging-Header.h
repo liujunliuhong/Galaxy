@@ -11,13 +11,4 @@
 
 #import "Test.h"
 
-#import "SwiftyBMKLocation.h"
-
-#import "SwiftyAMapLocation.h"
-
-#import <BMKLocationKit/BMKLocationComponent.h>
-
-#import <AMapFoundationKit/AMapFoundationKit.h>
-#import <AMapLocationKit/AMapLocationKit.h>
-
 #endif /* SwiftTool_Bridging_Header_h */

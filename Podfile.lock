@@ -7,6 +7,7 @@ PODS:
   - CocoaLumberjack/Core (3.6.1)
   - CocoaLumberjack/Swift (3.6.1):
     - CocoaLumberjack/Core
+  - GLDeviceTool (1.0.1)
   - MBProgressHUD (1.2.0)
   - Moya (13.0.1):
     - Moya/Core (= 13.0.1)
@@ -72,11 +73,11 @@ DEPENDENCIES:
   - AMapLocation
   - BMKLocationKit
   - CocoaLumberjack/Swift
+  - GLDeviceTool
   - MBProgressHUD
   - Moya
   - "NSObject+Rx"
   - QCloudCOSXML
-  - Result
   - RxCocoa
   - RxSwift
   - SnapKit
@@ -84,6 +85,8 @@ DEPENDENCIES:
   - Texture
 
 SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - GLDeviceTool
   trunk:
     - Alamofire
     - AMapFoundation
@@ -112,6 +115,7 @@ SPEC CHECKSUMS:
   AMapLocation: c566d448285cd502c1e313063d9e2460bd4d7100
   BMKLocationKit: fd3d6b4a9a3a1a2763819f56b780bda5fc5b8726
   CocoaLumberjack: b17ae15142558d08bbacf69775fa10c4abbebcc9
+  GLDeviceTool: 40f721c8354e2418ea4fa9eb7f0b604ff2f8e131
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
   "NSObject+Rx": fa6bbcc1ab1faa06b01466bc09b1e0692bbc5946
@@ -128,6 +132,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   Texture: 2f109e937850d94d1d07232041c9c7313ccddb81
 
-PODFILE CHECKSUM: f1e8a2ca96b3c9f43023ecdc3eef8566da15f528
+PODFILE CHECKSUM: 25bbcab04d9d5afeb6896c65affedb5c0ca61822
 
 COCOAPODS: 1.10.0

@@ -3,11 +3,9 @@ Pod::Spec.new do |s|
   s.name                       = 'SwiftyTool'
   s.homepage                   = 'https://github.com/liujunliuhong/SwiftTool'
   s.summary                    = 'Swift版本的开发工具'
-  s.description                = <<-DESC
-                                 Swift版本的开发工具，旨在帮助开发人员快速开发，持续更新中...
-                                 DESC
+  s.description                = 'Swift版本的开发工具，旨在帮助开发人员快速开发，持续更新中...'
   s.author                     = { 'liujunliuhong' => '1035841713@qq.com' }
-  s.version                    = '1.0.4'
+  s.version                    = '1.1.0'
   s.source                     = { :git => 'https://github.com/liujunliuhong/SwiftTool.git', :tag => s.version.to_s }
   s.platform                   = :ios, '9.0'
   s.license                    = { :type => 'MIT', :file => 'LICENSE' }
@@ -15,130 +13,69 @@ Pod::Spec.new do |s|
   s.swift_version              = '5.0'
   s.ios.deployment_target      = '9.0'
   s.requires_arc               = true
-  s.static_framework = true
   
-  # File
-  s.subspec 'File' do |ss|
-    ss.source_files = 'Sources/File/*'
-  end
-
-  # Words Sort
-  s.subspec 'WordsSort' do |ss|
-    ss.source_files = 'Sources/Words Sort/*'
-  end
-
-
-  # Permission
-  s.subspec 'Permission' do |ss|
-    ss.source_files = 'Sources/Permission/*'
-  end
-
-  # Log
-  s.subspec 'Log' do |ss|
-    ss.source_files = 'Sources/Log/*'
-    ss.dependency 'CocoaLumberjack/Swift'
-  end
-
-  # HUD
-  s.subspec 'HUD' do |ss|
-    ss.source_files = 'Sources/HUD/*'
-    ss.dependency 'MBProgressHUD'
-    ss.resource = 'Sources/HUD/SwiftyHUD.bundle'
-  end
 
   # UIKit
   s.subspec 'UIKit' do |ss|
-    ss.source_files = 'Sources/UIKit/*'
+    ss.source_files = 'Sources/UIKit/*.swift'
   end
 
-  # Foundation
+
+ # Foundation
   s.subspec 'Foundation' do |ss|
-    ss.source_files = 'Sources/Foundation/*'
+    ss.source_files = 'Sources/Foundation/*.swift'
   end
+
+  # File
+  s.subspec 'File' do |ss|
+    ss.source_files = 'Sources/File/*.swift'
+  end
+
+
+  # Log
+  s.subspec 'Log' do |ss|
+    ss.source_files = 'Sources/Log/*.swift'
+    ss.dependency 'CocoaLumberjack/Swift'
+  end
+
+
+  # HUD
+  s.subspec 'HUD' do |ss|
+    ss.source_files = 'Sources/Hud/*.swift'
+    ss.dependency 'MBProgressHUD'
+    ss.dependency 'SwiftyTool/UIKit'
+    ss.resource = 'Sources/Hud/GLHud.bundle'
+  end
+
 
   # NavigationBar
   s.subspec 'NavigationBar' do |ss|
-    ss.source_files = 'Sources/NavigationBar/*'
-    ss.dependency 'SnapKit'
+    ss.source_files = 'Sources/NavigationBar/*.swift'
+    ss.dependency 'GLDeviceTool'
     ss.dependency 'SwiftyTool/UIKit'
+    ss.dependency 'SnapKit'
   end
 
 
-
-  # Texture
+  # AsyncDisplayKit
   s.subspec 'AsyncDisplayKit' do |ss|
-    ss.source_files = 'Sources/AsyncDisplayKit/*'
+    ss.source_files = 'Sources/AsyncDisplayKit/*.swift'
+    ss.dependency 'SwiftyTool/Foundation'
     ss.dependency 'Texture'
   end
 
 
-  # System Face
-  s.subspec 'SystemFace' do |ss|
-    ss.source_files = 'Sources/System Face/*'
-    ss.resource = 'Sources/System Face/YHSystemFace.bundle'
-  end
-
-  # SystemImagePicker
-  s.subspec 'SystemImagePicker' do |ss|
-    ss.source_files = 'Sources/SystemImagePicker/*'
-  end
-
-  # Tag
-  s.subspec 'Tag' do |ss|
-    ss.source_files = 'Sources/Tag/*'
-  end
-
-  # ViewModelType
-  s.subspec 'ViewModelType' do |ss|
-    ss.source_files = 'Sources/ViewModelType/*'
-  end
-
-  # TabBarController
-  s.subspec 'TabBarController' do |ss|
-    ss.source_files = 'Sources/SwiftyTabBarController/*'
-  end
-
-  # TencentUpload
-  s.subspec 'TencentUpload' do |ss|
-    ss.source_files = 'Sources/TencentUpload/*'
-    ss.dependency 'QCloudCOSXML'
-  end
-
-  
-  # NativeLocation
-  s.subspec 'NativeLocation' do |ss|
-    ss.source_files = 'Sources/NativeLocation/*'
-  end
-
-
-  # BaiduLocation
-  s.subspec 'BaiduLocation' do |ss|
-    ss.source_files = 'Sources/BaiduLocation/*'
-    ss.dependency 'BMKLocationKit'
-  end
-
-  # GaoDeLocation
-  s.subspec 'GaoDeLocation' do |ss|
-    ss.source_files = 'Sources/GaoDeLocation/*'
-    ss.dependency 'AMapLocation'
-  end
-
-  # Picker
-  s.subspec 'Picker' do |ss|
-    ss.source_files = 'Sources/Picker/*'
-  end
-
-  # City Picker
-  s.subspec 'CityPicker' do |ss|
-    ss.source_files = 'Sources/City Picker/*'
-    ss.resource = 'Sources/City Picker/SwiftyCity.bundle'
-    ss.dependency 'SwiftyTool/Picker'
-    ss.dependency 'SwiftyJSON'
-  end
-
   # Map
   s.subspec 'Map' do |ss|
-    ss.source_files = 'Sources/Map/*'
+    ss.source_files = 'Sources/Map/*.swift'
     ss.dependency 'SwiftyTool/UIKit'
   end
+
+
+  # System Face Keyboard
+  s.subspec 'SystemFaceKeyboard' do |ss|
+    ss.source_files = 'Sources/SystemFaceKeyboard/*.swift'
+    ss.resource = 'Sources/SystemFaceKeyboard/GLSystemFace.bundle'
+  end
+
 end

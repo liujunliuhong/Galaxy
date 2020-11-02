@@ -88,11 +88,11 @@ extension ViewController {
 
 extension ViewController: GLSystemFaceKeyboardDelegate {
     func systemFaceKeyboard(_ systemFaceKeyboard: GLSystemFaceKeyboard, didSelectFace face: String) {
-        print("选中表情:\(face)")
+        GLLog("选中表情:\(face)")
     }
     
     func systemFaceKeyboardDidClickDelete(_ systemFaceKeyboard: GLSystemFaceKeyboard) {
-        print("删除表情")
+        GLLog("删除表情")
     }
     
     

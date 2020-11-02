@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GLDeviceTool
 
 private struct GLCusNavigationBarAssociatedKeys {
     static var layerKey = "com.galaxy.cusNavigationBar.backgroundLayer.key"
@@ -19,8 +20,8 @@ open class GLCusNavigationBar: UIView {
     deinit {
         #if DEBUG
         //print("\(NSStringFromClass(self.classForCoder)) deinit")
-        self.removeNotification()
         #endif
+        self.removeNotification()
     }
     
     public private(set) lazy var barView: UIView = {

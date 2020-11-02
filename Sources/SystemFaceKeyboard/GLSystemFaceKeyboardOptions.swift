@@ -32,6 +32,8 @@ public class GLSystemFaceKeyboardOptions {
     public var indicatorInset: GLSystemFaceKeyboardInset = GLSystemFaceKeyboardInset(top: .zero, bottom: .zero)
     /// 表情size
     public var faceSize: CGFloat = 30.0
+    
+    public init() {}
 }
 
 

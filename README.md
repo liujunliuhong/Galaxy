@@ -7,63 +7,63 @@
 - 全部模块导入
 
 ```
-pod "SwiftyTool"
+pod 'SwiftyTool', :git => "https://github.com/liujunliuhong/SwiftTool.git"
 ```
 
 - UIKit(与`UIKit`相关的部分)
 
 ```
-pod "SwiftyTool/UIKit"
+pod "SwiftyTool/UIKit", :git => "https://github.com/liujunliuhong/SwiftTool.git"
 ```
 
 - Foundation(与`Foundation`相关的部分)
 
 ```
-pod "SwiftyTool/Foundation"
+pod "SwiftyTool/Foundation", :git => "https://github.com/liujunliuhong/SwiftTool.git"
 ```
 
 - File(文件模块)
 
 ```
-pod "SwiftyTool/File"
+pod "SwiftyTool/File", :git => "https://github.com/liujunliuhong/SwiftTool.git"
 ```
 
 - Log(日志打印模块)，依赖`CocoaLumberjack/Swift`
 
 ```
-pod "SwiftyTool/Log"
+pod "SwiftyTool/Log", :git => "https://github.com/liujunliuhong/SwiftTool.git"
 ```
 
 
 - HUD(提示框模块)，依赖`MBProgressHUD`
 
 ```
-pod "SwiftyTool/HUD"
+pod "SwiftyTool/HUD", :git => "https://github.com/liujunliuhong/SwiftTool.git"
 ```
 
 - NavigationBar(自定义导航栏模块)，依赖`SnapKit`、`GLDeviceTool`
 
 ```
-pod "SwiftyTool/NavigationBar"
+pod "SwiftyTool/NavigationBar", :git => "https://github.com/liujunliuhong/SwiftTool.git"
 ```
 
 - AsyncDisplayKit，依赖`Texture`
 
 ```
-pod "SwiftyTool/AsyncDisplayKit"
+pod "SwiftyTool/AsyncDisplayKit", :git => "https://github.com/liujunliuhong/SwiftTool.git"
 ```
 
 
 - Map(地图模块)
 
 ```
-pod "SwiftyTool/Map"
+pod "SwiftyTool/Map", :git => "https://github.com/liujunliuhong/SwiftTool.git"
 ```
 
 - SystemFaceKeyboard(系统表情键盘模块)
 
 ```
-pod "SwiftyTool/SystemFaceKeyboard"
+pod "SwiftyTool/SystemFaceKeyboard", :git => "https://github.com/liujunliuhong/SwiftTool.git"
 ```
 
 # 本人的其他开源库

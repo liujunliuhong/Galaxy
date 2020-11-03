@@ -24,7 +24,7 @@ extension UIColor {
     }
     
     // 0xFFFFFF，0xffffff
-    static func gl_hexColor(hex: Int, alpha: CGFloat = 1.0) -> UIColor {
+    public static func gl_hexColor(hex: Int, alpha: CGFloat = 1.0) -> UIColor {
         let red = CGFloat((Double((hex >> 16) & 0xFF)) / 255.0)
         let green = CGFloat((Double((hex >> 8) & 0xFF)) / 255.0)
         let blue = CGFloat((Double(hex & 0xFF)) / 255.0)
@@ -32,7 +32,7 @@ extension UIColor {
     }
     
     // "#ffffff", "#FFFFFF", "#fff", "255, 255, 255", "255,255,255", "0xFFFFFF"
-    static func gl_color(string: String?) -> UIColor? {
+    public static func gl_color(string: String?) -> UIColor? {
         guard var string = string else { return nil }
         
         string = string.uppercased()

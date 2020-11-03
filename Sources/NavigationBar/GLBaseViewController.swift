@@ -103,19 +103,19 @@ open class GLBaseViewController: UIViewController {
 
 // MARK: - Override
 extension GLBaseViewController {
-    open func initData() {
+    @objc open func initData() {
         
     }
     
-    open func setupUI() {
+    @objc open func setupUI() {
         
     }
     
-    open func bindViewModel() {
+    @objc open func bindViewModel() {
         
     }
     
-    open func other() {
+    @objc open func other() {
         
     }
 }

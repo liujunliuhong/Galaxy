@@ -55,7 +55,7 @@ public func GL_GetAllSystemEmojis() -> [String] {
     for i in 0x1F600...0x1F64F {
         if i < 0x1F641 || i > 0x1F644 {
             var sym = gl_emoji_to_symbol(x: Int64(i))
-            if let emoj = NSString(bytes: &sym, length: MemoryLayout<Int64>.size(ofValue: sym), encoding: String.Encoding.utf8.rawValue) {
+            if let emoj = NSString(bytes: &sym, length: MemoryLayout<Int32>.size, encoding: String.Encoding.utf8.rawValue) {
                 result.append(emoj as String)
             }
         }

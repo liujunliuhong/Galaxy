@@ -15,6 +15,11 @@ public struct GLSystemFaceKeyboardInset {
     public let bottom: CGFloat
     
     public static let zero: GLSystemFaceKeyboardInset = GLSystemFaceKeyboardInset(top: .zero, bottom: .zero)
+    
+    public init(top: CGFloat, bottom: CGFloat) {
+        self.top = top
+        self.bottom = bottom
+    }
 }
 
 public class GLSystemFaceKeyboardOptions {

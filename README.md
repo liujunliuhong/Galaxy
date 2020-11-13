@@ -65,6 +65,13 @@ pod "SwiftyTool/Map", :git => "https://github.com/liujunliuhong/SwiftTool.git"
 ```
 pod "SwiftyTool/SystemFaceKeyboard", :git => "https://github.com/liujunliuhong/SwiftTool.git"
 ```
+- 百度定位:
+
+```
+pod 'GLBaiDuLocation', :git => "https://github.com/liujunliuhong/SwiftTool.git"
+```
+
+需要在自己的桥接头文件`#import "GLBaiDuLocation.h"`，不可以`import GLBaiDuLocation`
 
 # 本人的其他开源库
 ### 1、高度还原类似探探等社交应用的滑牌效果。(兼容OC)

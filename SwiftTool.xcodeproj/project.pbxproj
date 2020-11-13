@@ -48,7 +48,9 @@
 		850664232550493C00EB4188 /* UIApplication+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850664032550493C00EB4188 /* UIApplication+GLExtension.swift */; };
 		850664242550493C00EB4188 /* GLEnlargeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850664042550493C00EB4188 /* GLEnlargeControl.swift */; };
 		859E67EE25455E22005F1115 /* NextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859E67ED25455E22005F1115 /* NextViewController.swift */; };
-		85CD1E452487E0D900149C71 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CD1E442487E0D900149C71 /* Keys.swift */; };
+		B4ED1C61255E685900115895 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED1C60255E685900115895 /* Keys.swift */; };
+		B4ED1C69255E6FB900115895 /* GLBaiDuLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ED1C68255E6FB900115895 /* GLBaiDuLocation.m */; };
+		B4ED1C6E255E72BE00115895 /* GLBaiDuLocationTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ED1C6D255E72BE00115895 /* GLBaiDuLocationTestViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,8 +100,12 @@
 		850664032550493C00EB4188 /* UIApplication+GLExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+GLExtension.swift"; sourceTree = "<group>"; };
 		850664042550493C00EB4188 /* GLEnlargeControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLEnlargeControl.swift; sourceTree = "<group>"; };
 		859E67ED25455E22005F1115 /* NextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextViewController.swift; sourceTree = "<group>"; };
-		85CD1E442487E0D900149C71 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		B4B9793D1D5B9C59651E2DBB /* Pods-SwiftTool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftTool.debug.xcconfig"; path = "Target Support Files/Pods-SwiftTool/Pods-SwiftTool.debug.xcconfig"; sourceTree = "<group>"; };
+		B4ED1C60255E685900115895 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
+		B4ED1C67255E6FB900115895 /* GLBaiDuLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLBaiDuLocation.h; sourceTree = "<group>"; };
+		B4ED1C68255E6FB900115895 /* GLBaiDuLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLBaiDuLocation.m; sourceTree = "<group>"; };
+		B4ED1C6C255E72BE00115895 /* GLBaiDuLocationTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLBaiDuLocationTestViewController.h; sourceTree = "<group>"; };
+		B4ED1C6D255E72BE00115895 /* GLBaiDuLocationTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLBaiDuLocationTestViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +123,7 @@
 		1831113E24469EB700155620 = {
 			isa = PBXGroup;
 			children = (
+				B4ED1C66255E6F8700115895 /* BaiDuLocation */,
 				850663DB2550492900EB4188 /* Sources */,
 				1831114924469EB700155620 /* SwiftTool */,
 				1831114824469EB700155620 /* Products */,
@@ -141,7 +148,7 @@
 				859E67ED25455E22005F1115 /* NextViewController.swift */,
 				183111F82446A8D400155620 /* Test.h */,
 				183111F92446A8D400155620 /* Test.m */,
-				85CD1E442487E0D900149C71 /* Keys.swift */,
+				B4ED1C60255E685900115895 /* Keys.swift */,
 				1818101D248E10F200BB4D03 /* test.png */,
 				183111FB2446A8FF00155620 /* SwiftTool-Bridging-Header.h */,
 				1831115024469EB700155620 /* Main.storyboard */,
@@ -280,6 +287,17 @@
 			path = UIKit;
 			sourceTree = "<group>";
 		};
+		B4ED1C66255E6F8700115895 /* BaiDuLocation */ = {
+			isa = PBXGroup;
+			children = (
+				B4ED1C67255E6FB900115895 /* GLBaiDuLocation.h */,
+				B4ED1C68255E6FB900115895 /* GLBaiDuLocation.m */,
+				B4ED1C6C255E72BE00115895 /* GLBaiDuLocationTestViewController.h */,
+				B4ED1C6D255E72BE00115895 /* GLBaiDuLocationTestViewController.m */,
+			);
+			path = BaiDuLocation;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -400,8 +418,11 @@
 			files = (
 				850664062550493C00EB4188 /* GLLog.swift in Sources */,
 				850664092550493C00EB4188 /* GLFlowItemsAutoMarginDisplayNode.swift in Sources */,
+				B4ED1C6E255E72BE00115895 /* GLBaiDuLocationTestViewController.m in Sources */,
 				850664142550493C00EB4188 /* GLSystemFace.swift in Sources */,
 				8506640D2550493C00EB4188 /* Bundle+GLExtension.swift in Sources */,
+				B4ED1C61255E685900115895 /* Keys.swift in Sources */,
+				B4ED1C69255E6FB900115895 /* GLBaiDuLocation.m in Sources */,
 				850664072550493C00EB4188 /* GLMapManager.swift in Sources */,
 				850664222550493C00EB4188 /* UIImage+GLExtension.swift in Sources */,
 				850664242550493C00EB4188 /* GLEnlargeControl.swift in Sources */,
@@ -426,7 +447,6 @@
 				8506640B2550493C00EB4188 /* GLFlowItemsDemoViewController.swift in Sources */,
 				850664202550493C00EB4188 /* UIView+GLExtension.swift in Sources */,
 				850664122550493C00EB4188 /* GLSystemFaceKeyboardCell.swift in Sources */,
-				85CD1E452487E0D900149C71 /* Keys.swift in Sources */,
 				8506640C2550493C00EB4188 /* Data+GLExtension.swift in Sources */,
 				1831114B24469EB700155620 /* AppDelegate.swift in Sources */,
 				8506641E2550493C00EB4188 /* GLBaseViewController.swift in Sources */,

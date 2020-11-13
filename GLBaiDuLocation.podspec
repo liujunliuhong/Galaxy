@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.swift_version              = '5.0'
   s.ios.deployment_target      = '9.0'
   s.requires_arc               = true
-  #s.static_framework           = true
+  s.static_framework           = true
   s.source_files               = 'BaiDuLocation/*.{h,m}'
   s.dependency 'BMKLocationKit'
 end

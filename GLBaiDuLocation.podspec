@@ -9,11 +9,11 @@ Pod::Spec.new do |s|
   s.source                     = { :git => 'https://github.com/liujunliuhong/SwiftTool.git', :tag => s.version.to_s }
   s.platform                   = :ios, '10.0'
   s.license                    = { :type => 'MIT', :file => 'LICENSE' }
-  s.module_name                = 'GLBaiDuLocation'
+  #s.module_name                = 'GLBaiDuLocation'
   s.swift_version              = '5.0'
   s.ios.deployment_target      = '9.0'
   s.requires_arc               = true
-  s.static_framework           = true
+  #s.static_framework           = true
   s.source_files               = 'BaiDuLocation/*.{h,m}'
   s.dependency 'BMKLocationKit'
 end

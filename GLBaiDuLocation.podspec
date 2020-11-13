@@ -15,5 +15,5 @@ Pod::Spec.new do |s|
   s.requires_arc               = true
   s.static_framework           = true
   s.source_files               = 'BaiDuLocation/*.{h,m}'
-  s.dependency                 = 'BMKLocationKit'
+  s.dependency 'BMKLocationKit'
 end

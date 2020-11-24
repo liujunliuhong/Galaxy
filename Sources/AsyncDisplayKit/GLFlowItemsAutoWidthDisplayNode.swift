@@ -19,7 +19,7 @@ import AsyncDisplayKit
     private var horizontalEdgeInset: CGFloat = 0.0
     private var allNodes: [[ASDisplayNode]] = []
     
-    override init() {
+    @objc public override init() {
         super.init()
         
     }

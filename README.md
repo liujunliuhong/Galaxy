@@ -71,6 +71,12 @@ pod "SwiftyTool/SystemFaceKeyboard", :git => "https://github.com/liujunliuhong/S
 pod 'GLBaiDuLocation', :git => "https://github.com/liujunliuhong/SwiftTool.git"
 ```
 
+- Alert
+
+```
+pod 'SwiftyTool/Alert', :git => "https://github.com/liujunliuhong/SwiftTool.git"
+```
+
 需要在自己的桥接头文件`#import "GLBaiDuLocation.h"`，不可以`import GLBaiDuLocation`
 
 # 本人的其他开源库

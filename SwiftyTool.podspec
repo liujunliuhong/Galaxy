@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.summary                    = 'Swift版本的开发工具'
   s.description                = 'Swift版本的开发工具，旨在帮助开发人员快速开发，持续更新中...'
   s.author                     = { 'liujunliuhong' => '1035841713@qq.com' }
-  s.version                    = '1.1.2'
+  s.version                    = '1.1.3'
   s.source                     = { :git => 'https://github.com/liujunliuhong/SwiftTool.git', :tag => s.version.to_s }
   s.platform                   = :ios, '10.0'
   s.license                    = { :type => 'MIT', :file => 'LICENSE' }
@@ -80,6 +80,13 @@ Pod::Spec.new do |s|
     ss.source_files = 'Sources/SystemFaceKeyboard/*.swift'
     ss.dependency 'SwiftyTool/UIKit'
     ss.resource = 'Sources/SystemFaceKeyboard/GLSystemFace.bundle'
+  end
+
+  # Alert
+  s.subspec 'Alert' do |ss|
+    ss.source_files = 'Sources/Alert/*.swift'
+    ss.dependency 'Texture'
+    ss.dependency 'SnapKit'
   end
 
 end

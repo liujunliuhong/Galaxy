@@ -48,6 +48,7 @@
 		850664232550493C00EB4188 /* UIApplication+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850664032550493C00EB4188 /* UIApplication+GLExtension.swift */; };
 		850664242550493C00EB4188 /* GLEnlargeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850664042550493C00EB4188 /* GLEnlargeControl.swift */; };
 		859E67EE25455E22005F1115 /* NextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859E67ED25455E22005F1115 /* NextViewController.swift */; };
+		85DBC91E25723EA60021BC59 /* GLAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DBC91D25723EA60021BC59 /* GLAlert.swift */; };
 		B4ED1C61255E685900115895 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED1C60255E685900115895 /* Keys.swift */; };
 		B4ED1C69255E6FB900115895 /* GLBaiDuLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ED1C68255E6FB900115895 /* GLBaiDuLocation.m */; };
 		B4ED1C6E255E72BE00115895 /* GLBaiDuLocationTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ED1C6D255E72BE00115895 /* GLBaiDuLocationTestViewController.m */; };
@@ -100,6 +101,7 @@
 		850664032550493C00EB4188 /* UIApplication+GLExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+GLExtension.swift"; sourceTree = "<group>"; };
 		850664042550493C00EB4188 /* GLEnlargeControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLEnlargeControl.swift; sourceTree = "<group>"; };
 		859E67ED25455E22005F1115 /* NextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextViewController.swift; sourceTree = "<group>"; };
+		85DBC91D25723EA60021BC59 /* GLAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLAlert.swift; sourceTree = "<group>"; };
 		B4B9793D1D5B9C59651E2DBB /* Pods-SwiftTool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftTool.debug.xcconfig"; path = "Target Support Files/Pods-SwiftTool/Pods-SwiftTool.debug.xcconfig"; sourceTree = "<group>"; };
 		B4ED1C60255E685900115895 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		B4ED1C67255E6FB900115895 /* GLBaiDuLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLBaiDuLocation.h; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 		850663DB2550492900EB4188 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				85DBC91C25723E9B0021BC59 /* Alert */,
 				850663E32550493C00EB4188 /* AsyncDisplayKit */,
 				850663DC2550493C00EB4188 /* File */,
 				850663E72550493C00EB4188 /* Foundation */,
@@ -285,6 +288,14 @@
 				850664042550493C00EB4188 /* GLEnlargeControl.swift */,
 			);
 			path = UIKit;
+			sourceTree = "<group>";
+		};
+		85DBC91C25723E9B0021BC59 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				85DBC91D25723EA60021BC59 /* GLAlert.swift */,
+			);
+			path = Alert;
 			sourceTree = "<group>";
 		};
 		B4ED1C66255E6F8700115895 /* BaiDuLocation */ = {
@@ -443,6 +454,7 @@
 				8506641F2550493C00EB4188 /* GLEnlargeButton.swift in Sources */,
 				850664082550493C00EB4188 /* GLMapDemoViewController.swift in Sources */,
 				8506641A2550493C00EB4188 /* GLCusNavigationBarDemoViewController.swift in Sources */,
+				85DBC91E25723EA60021BC59 /* GLAlert.swift in Sources */,
 				850664162550493C00EB4188 /* GLSystemFaceKeyboardOptions.swift in Sources */,
 				8506640B2550493C00EB4188 /* GLFlowItemsDemoViewController.swift in Sources */,
 				850664202550493C00EB4188 /* UIView+GLExtension.swift in Sources */,

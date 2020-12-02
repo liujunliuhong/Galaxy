@@ -33,5 +33,9 @@ target 'SwiftTool' do
   
   # 高德定位
   pod 'AMapLocation'
+  
+  pod 'SDWebImage'
+  
+  pod 'WCDB.swift'
 
 end

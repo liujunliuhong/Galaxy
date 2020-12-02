@@ -10,5 +10,6 @@
 #define SwiftTool_Bridging_Header_h
 
 #import "Test.h"
+#import "GLWeakProxy.h"
 
 #endif /* SwiftTool_Bridging_Header_h */

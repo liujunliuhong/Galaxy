@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.summary                    = 'Swift版本的开发工具'
   s.description                = 'Swift版本的开发工具，旨在帮助开发人员快速开发，持续更新中...'
   s.author                     = { 'liujunliuhong' => '1035841713@qq.com' }
-  s.version                    = '1.1.3'
+  s.version                    = '1.1.6'
   s.source                     = { :git => 'https://github.com/liujunliuhong/SwiftTool.git', :tag => s.version.to_s }
   s.platform                   = :ios, '10.0'
   s.license                    = { :type => 'MIT', :file => 'LICENSE' }
@@ -89,4 +89,20 @@ Pod::Spec.new do |s|
     ss.dependency 'SnapKit'
   end
 
+  # WeakProxy
+  s.subspec 'WeakProxy' do |ss|
+    ss.source_files = 'Sources/WeakProxy/*.swift'
+  end
+
+
+  # Dating
+  s.subspec 'Dating' do |ss|
+    # MessageNotification
+    ss.subspec 'MessageNotification' do |sss|
+      sss.source_files = 'Sources/Dating/MessageNotification/*.swift'
+      sss.dependency =  'SwiftyTool/WeakProxy'
+      sss.dependency = 'SwiftyTool/Alert'
+      sss.dependency = 'SDWebImage'
+    end
+  end
 end

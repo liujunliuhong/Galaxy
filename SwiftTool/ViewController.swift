@@ -174,11 +174,18 @@ extension ViewController {
         
         
         
-        let node = Node()
-        GLAlert.default.show(node: node, containerWidth: 180, from: .topCenter(bottom: 0), to: .center, dismissTo: .bottomCenter(top: 0))
+//        let node = Node()
+//        GLAlert.default.show(node: node, containerWidth: 180, from: .topCenter(bottom: 0), to: .center, dismissTo: .bottomCenter(top: 0))
         
 //        let alertView = AlertView()
 //        GLAlert.default.show(view: alertView, from: .rightCenter(left: 0), to: .center, dismissTo: .bottomCenter(top: 0))
+        
+        let options = GLDatingMessageNotificationOptions()
+        options.backgroundColor = .purple
+        options.content = "akjhdksdhfkhsdfjakjhdksdhfkhsdfjakjhdksdhfkhsdfjakjhdksdhfkhsdfjakjhdksdhfkhsdfjakjhdksdhfkhsdfjakjhdksdhfkhsdfjakjhdksdhfkhsdfjakjhdksdhfkhsdfj"
+        options.title = "hellohellohellohellohellohellohellohellohellohellohellohello"
+        
+        GLDatingMessageNotificationManager.default.show(options: options, from: .bottomCenter(top: 0), to: .bottomCenter(bottom: 50))
     }
 }
 

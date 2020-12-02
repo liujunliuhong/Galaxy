@@ -49,6 +49,10 @@
 		850664242550493C00EB4188 /* GLEnlargeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850664042550493C00EB4188 /* GLEnlargeControl.swift */; };
 		859E67EE25455E22005F1115 /* NextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859E67ED25455E22005F1115 /* NextViewController.swift */; };
 		85DBC91E25723EA60021BC59 /* GLAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DBC91D25723EA60021BC59 /* GLAlert.swift */; };
+		85DBE0E62577DA2400E2DF24 /* GLWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DBE0E52577DA2400E2DF24 /* GLWeakProxy.m */; };
+		85DBE0ED2577DAD700E2DF24 /* GLDatingMessageNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DBE0EC2577DAD700E2DF24 /* GLDatingMessageNotification.swift */; };
+		85DBE0F12577DB0900E2DF24 /* GLDatingMessageNotificationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DBE0F02577DB0900E2DF24 /* GLDatingMessageNotificationOptions.swift */; };
+		85DBE0F42577DB9200E2DF24 /* GLDatingMessageNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DBE0F32577DB9200E2DF24 /* GLDatingMessageNotificationManager.swift */; };
 		B4ED1C61255E685900115895 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED1C60255E685900115895 /* Keys.swift */; };
 		B4ED1C69255E6FB900115895 /* GLBaiDuLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ED1C68255E6FB900115895 /* GLBaiDuLocation.m */; };
 		B4ED1C6E255E72BE00115895 /* GLBaiDuLocationTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ED1C6D255E72BE00115895 /* GLBaiDuLocationTestViewController.m */; };
@@ -102,6 +106,11 @@
 		850664042550493C00EB4188 /* GLEnlargeControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLEnlargeControl.swift; sourceTree = "<group>"; };
 		859E67ED25455E22005F1115 /* NextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextViewController.swift; sourceTree = "<group>"; };
 		85DBC91D25723EA60021BC59 /* GLAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLAlert.swift; sourceTree = "<group>"; };
+		85DBE0E42577DA2400E2DF24 /* GLWeakProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLWeakProxy.h; sourceTree = "<group>"; };
+		85DBE0E52577DA2400E2DF24 /* GLWeakProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLWeakProxy.m; sourceTree = "<group>"; };
+		85DBE0EC2577DAD700E2DF24 /* GLDatingMessageNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingMessageNotification.swift; sourceTree = "<group>"; };
+		85DBE0F02577DB0900E2DF24 /* GLDatingMessageNotificationOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingMessageNotificationOptions.swift; sourceTree = "<group>"; };
+		85DBE0F32577DB9200E2DF24 /* GLDatingMessageNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingMessageNotificationManager.swift; sourceTree = "<group>"; };
 		B4B9793D1D5B9C59651E2DBB /* Pods-SwiftTool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftTool.debug.xcconfig"; path = "Target Support Files/Pods-SwiftTool/Pods-SwiftTool.debug.xcconfig"; sourceTree = "<group>"; };
 		B4ED1C60255E685900115895 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		B4ED1C67255E6FB900115895 /* GLBaiDuLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLBaiDuLocation.h; sourceTree = "<group>"; };
@@ -181,6 +190,8 @@
 		850663DB2550492900EB4188 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				85DBE0EA2577DAA400E2DF24 /* Dating */,
+				85DBE0E32577D9DC00E2DF24 /* WeakProxy */,
 				85DBC91C25723E9B0021BC59 /* Alert */,
 				850663E32550493C00EB4188 /* AsyncDisplayKit */,
 				850663DC2550493C00EB4188 /* File */,
@@ -296,6 +307,33 @@
 				85DBC91D25723EA60021BC59 /* GLAlert.swift */,
 			);
 			path = Alert;
+			sourceTree = "<group>";
+		};
+		85DBE0E32577D9DC00E2DF24 /* WeakProxy */ = {
+			isa = PBXGroup;
+			children = (
+				85DBE0E42577DA2400E2DF24 /* GLWeakProxy.h */,
+				85DBE0E52577DA2400E2DF24 /* GLWeakProxy.m */,
+			);
+			path = WeakProxy;
+			sourceTree = "<group>";
+		};
+		85DBE0EA2577DAA400E2DF24 /* Dating */ = {
+			isa = PBXGroup;
+			children = (
+				85DBE0EB2577DAAB00E2DF24 /* MessageNotification */,
+			);
+			path = Dating;
+			sourceTree = "<group>";
+		};
+		85DBE0EB2577DAAB00E2DF24 /* MessageNotification */ = {
+			isa = PBXGroup;
+			children = (
+				85DBE0F32577DB9200E2DF24 /* GLDatingMessageNotificationManager.swift */,
+				85DBE0EC2577DAD700E2DF24 /* GLDatingMessageNotification.swift */,
+				85DBE0F02577DB0900E2DF24 /* GLDatingMessageNotificationOptions.swift */,
+			);
+			path = MessageNotification;
 			sourceTree = "<group>";
 		};
 		B4ED1C66255E6F8700115895 /* BaiDuLocation */ = {
@@ -435,11 +473,13 @@
 				B4ED1C61255E685900115895 /* Keys.swift in Sources */,
 				B4ED1C69255E6FB900115895 /* GLBaiDuLocation.m in Sources */,
 				850664072550493C00EB4188 /* GLMapManager.swift in Sources */,
+				85DBE0F12577DB0900E2DF24 /* GLDatingMessageNotificationOptions.swift in Sources */,
 				850664222550493C00EB4188 /* UIImage+GLExtension.swift in Sources */,
 				850664242550493C00EB4188 /* GLEnlargeControl.swift in Sources */,
 				8506640E2550493C00EB4188 /* String+GLExtension.swift in Sources */,
 				850664052550493C00EB4188 /* GLFileManager.swift in Sources */,
 				850664192550493C00EB4188 /* GLCusNaviBarSpace.swift in Sources */,
+				85DBE0E62577DA2400E2DF24 /* GLWeakProxy.m in Sources */,
 				8506640A2550493C00EB4188 /* GLFlowItemsAutoWidthDisplayNode.swift in Sources */,
 				850664102550493C00EB4188 /* CGFloat+GLExtension.swift in Sources */,
 				8506641D2550493C00EB4188 /* GLCusNavigationBar.swift in Sources */,
@@ -449,6 +489,7 @@
 				8506640F2550493C00EB4188 /* Dictionary+GLExtension.swift in Sources */,
 				850664172550493C00EB4188 /* GLHud.swift in Sources */,
 				850664232550493C00EB4188 /* UIApplication+GLExtension.swift in Sources */,
+				85DBE0F42577DB9200E2DF24 /* GLDatingMessageNotificationManager.swift in Sources */,
 				850664112550493C00EB4188 /* Array+GLExtension.swift in Sources */,
 				8506641B2550493C00EB4188 /* GLCusNaviBarButtonItem.swift in Sources */,
 				8506641F2550493C00EB4188 /* GLEnlargeButton.swift in Sources */,
@@ -464,6 +505,7 @@
 				8506641E2550493C00EB4188 /* GLBaseViewController.swift in Sources */,
 				8506641C2550493C00EB4188 /* GLCusNaviBarTitle.swift in Sources */,
 				859E67EE25455E22005F1115 /* NextViewController.swift in Sources */,
+				85DBE0ED2577DAD700E2DF24 /* GLDatingMessageNotification.swift in Sources */,
 				183111FA2446A8D400155620 /* Test.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

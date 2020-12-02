@@ -80,43 +80,50 @@ public class GLAlert {
 
 extension GLAlert {
     /// 显示(针对`ASDisplayNode`)
+    @discardableResult
     public func show(node: ASDisplayNode?,
                      containerWidth: CGFloat,
                      from: GLAlertFromPosition,
                      to: GLAlertDestinationPostion,
                      dismissTo: GLAlertFromPosition,
+                     enableMask: Bool = true,
                      duration: TimeInterval = 0.25,
                      translucentColor: UIColor = GLAlertEndColor,
-                     dismissClosure: (()->())? = nil) {
-        guard let keyWindow = UIApplication.shared.keyWindow else { return }
-        guard let node = node else { return }
-        if self.currentNode != nil { return }
-        if self.currentNode?.supernode != nil { return }
+                     dismissClosure: (()->())? = nil) -> Bool {
+        guard let keyWindow = UIApplication.shared.keyWindow else { return false }
+        guard let node = node else { return false }
+        if self.currentNode != nil { return false }
+        if self.currentNode?.supernode != nil { return false }
         self.currentNode?.removeFromSupernode()
         self.maskView?.removeFromSuperview()
         self.backgroundView?.removeFromSuperview()
         
-        let backgroundView = UIView()
-        backgroundView.isUserInteractionEnabled = true
-        backgroundView.frame = keyWindow.bounds
-        
-        let maskView = UIView()
-        maskView.frame = keyWindow.bounds
-        maskView.backgroundColor = GLAlertStartColor
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismiss))
-        maskView.addGestureRecognizer(tap)
-        
-        keyWindow.addSubview(backgroundView)
-        backgroundView.addSubview(maskView)
-        backgroundView.addSubnode(node)
+        if enableMask {
+            let backgroundView = UIView()
+            backgroundView.isUserInteractionEnabled = true
+            backgroundView.frame = keyWindow.bounds
+            
+            let maskView = UIView()
+            maskView.frame = keyWindow.bounds
+            maskView.backgroundColor = GLAlertStartColor
+            let tap = UITapGestureRecognizer(target: self, action: #selector(dismiss))
+            maskView.addGestureRecognizer(tap)
+            
+            keyWindow.addSubview(backgroundView)
+            backgroundView.addSubview(maskView)
+            backgroundView.addSubnode(node)
+            
+            self.backgroundView = backgroundView
+            self.maskView = maskView
+        } else {
+            keyWindow.addSubnode(node)
+        }
         
         let containerWidth: CGFloat = containerWidth
         let containerHeight: CGFloat = node.layoutThatFits(ASSizeRange(min: CGSize(width: containerWidth, height: 0.0), max: CGSize(width: containerWidth, height: CGFloat.greatestFiniteMagnitude))).size.height
         node.layoutIfNeeded()
         node.setNeedsLayout()
         
-        self.backgroundView = backgroundView
-        self.maskView = maskView
         self.currentNode = node
         self.from = from
         self.to = to
@@ -130,7 +137,7 @@ extension GLAlert {
         if from == GLAlertFromPosition.none {
             self.maskView?.backgroundColor = self.translucentColor
             node.frame = getEndFrame(to: to, containerWidth: containerWidth, containerHeight: containerHeight)
-            return
+            return true
         }
         let initialFrame = getInitialFrame(from: from, containerWidth: containerWidth, containerHeight: containerHeight)
         node.frame = initialFrame
@@ -147,43 +154,51 @@ extension GLAlert {
         } completion: { (_) in
             self.maskView?.isUserInteractionEnabled = true
         }
+        
+        return true
     }
 }
 
 extension GLAlert {
     /// 显示(针对`UIView`)
+    @discardableResult
     public func show(view: UIView?,
                      from: GLAlertFromPosition,
                      to: GLAlertDestinationPostion,
                      dismissTo: GLAlertFromPosition,
                      duration: TimeInterval = 0.25,
+                     enableMask: Bool = true,
                      translucentColor: UIColor = GLAlertEndColor,
-                     dismissClosure: (()->())? = nil) {
-        guard let keyWindow = UIApplication.shared.keyWindow else { return }
-        guard let view = view else { return }
-        if self.currentView != nil { return }
-        if self.currentView?.superview != nil { return }
+                     dismissClosure: (()->())? = nil) -> Bool {
+        guard let keyWindow = UIApplication.shared.keyWindow else { return false }
+        guard let view = view else { return false }
+        if self.currentView != nil { return false }
+        if self.currentView?.superview != nil { return false }
         self.currentView?.removeFromSuperview()
         self.maskView?.removeFromSuperview()
         self.backgroundView?.removeFromSuperview()
         
+        if enableMask {
+            let backgroundView = UIView()
+            backgroundView.isUserInteractionEnabled = true
+            backgroundView.frame = keyWindow.bounds
+            
+            let maskView = UIView()
+            maskView.frame = keyWindow.bounds
+            maskView.backgroundColor = GLAlertStartColor
+            let tap = UITapGestureRecognizer(target: self, action: #selector(dismiss))
+            maskView.addGestureRecognizer(tap)
+            
+            keyWindow.addSubview(backgroundView)
+            backgroundView.addSubview(maskView)
+            backgroundView.addSubview(view)
+            
+            self.backgroundView = backgroundView
+            self.maskView = maskView
+        } else {
+            keyWindow.addSubview(view)
+        }
         
-        let backgroundView = UIView()
-        backgroundView.isUserInteractionEnabled = true
-        backgroundView.frame = keyWindow.bounds
-        
-        let maskView = UIView()
-        maskView.frame = keyWindow.bounds
-        maskView.backgroundColor = GLAlertStartColor
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismiss))
-        maskView.addGestureRecognizer(tap)
-        
-        keyWindow.addSubview(backgroundView)
-        backgroundView.addSubview(maskView)
-        backgroundView.addSubview(view)
-        
-        self.backgroundView = backgroundView
-        self.maskView = maskView
         self.currentView = view
         self.from = from
         self.to = to
@@ -195,7 +210,7 @@ extension GLAlert {
         if from == GLAlertFromPosition.none {
             self.maskView?.backgroundColor = self.translucentColor
             self.setEndViewConstraints(view: view, to: to)
-            return
+            return true
         }
         
         self.setInitialViewConstraints(view: view, from: from, isRemake: false)
@@ -212,6 +227,8 @@ extension GLAlert {
         } completion: { (_) in
             self.maskView?.isUserInteractionEnabled = true
         }
+        
+        return true
     }
 }
 

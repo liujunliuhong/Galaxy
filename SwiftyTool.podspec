@@ -89,20 +89,22 @@ Pod::Spec.new do |s|
     ss.dependency 'SnapKit'
   end
 
+
   # WeakProxy
   s.subspec 'WeakProxy' do |ss|
-    ss.source_files = 'Sources/WeakProxy/*.swift'
+    ss.source_files = 'Sources/WeakProxy/*.{h,m}'
   end
-
 
   # Dating
   s.subspec 'Dating' do |ss|
     # MessageNotification
     ss.subspec 'MessageNotification' do |sss|
       sss.source_files = 'Sources/Dating/MessageNotification/*.swift'
-      sss.dependency =  'SwiftyTool/WeakProxy'
-      sss.dependency = 'SwiftyTool/Alert'
-      sss.dependency = 'SDWebImage'
+      sss.dependency 'SwiftyTool/WeakProxy'
+      sss.dependency 'SwiftyTool/Alert'
+      sss.dependency 'SDWebImage'
     end
+    
   end
+  
 end

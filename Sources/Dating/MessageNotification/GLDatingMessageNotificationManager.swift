@@ -31,7 +31,11 @@ extension GLDatingMessageNotificationManager {
         
         let notification = GLDatingMessageNotification(options: options)
         notification.addTimer()
-        let result = GLAlert.default.show(view: notification, from: from, to: to, dismissTo: from, duration: 0.25, enableMask: false)
+        
+        let options = GLAlertOptions(from: from, to: to, dismissTo: from)
+        options.duration = 0.25
+        options.enableMask = false
+        let result = GLAlert.default.show(view: notification, options: options)
         notification.autoDismissClosure = { (view) in
             GLAlert.default.dismiss()
         }

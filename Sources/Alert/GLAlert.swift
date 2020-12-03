@@ -83,12 +83,7 @@ extension GLAlert {
     @discardableResult
     public func show(node: ASDisplayNode?,
                      containerWidth: CGFloat,
-                     from: GLAlertFromPosition,
-                     to: GLAlertDestinationPostion,
-                     dismissTo: GLAlertFromPosition,
-                     enableMask: Bool = true,
-                     duration: TimeInterval = 0.25,
-                     translucentColor: UIColor = GLAlertEndColor,
+                     options: GLAlertOptions,
                      dismissClosure: (()->())? = nil) -> Bool {
         guard let keyWindow = UIApplication.shared.keyWindow else { return false }
         guard let node = node else { return false }
@@ -98,7 +93,7 @@ extension GLAlert {
         self.maskView?.removeFromSuperview()
         self.backgroundView?.removeFromSuperview()
         
-        if enableMask {
+        if options.enableMask {
             let backgroundView = UIView()
             backgroundView.isUserInteractionEnabled = true
             backgroundView.frame = keyWindow.bounds
@@ -106,8 +101,10 @@ extension GLAlert {
             let maskView = UIView()
             maskView.frame = keyWindow.bounds
             maskView.backgroundColor = GLAlertStartColor
-            let tap = UITapGestureRecognizer(target: self, action: #selector(dismiss))
-            maskView.addGestureRecognizer(tap)
+            if options.shouldResignOnTouchOutside {
+                let tap = UITapGestureRecognizer(target: self, action: #selector(dismiss))
+                maskView.addGestureRecognizer(tap)
+            }
             
             keyWindow.addSubview(backgroundView)
             backgroundView.addSubview(maskView)
@@ -125,13 +122,13 @@ extension GLAlert {
         node.setNeedsLayout()
         
         self.currentNode = node
-        self.from = from
-        self.to = to
-        self.dismissTo = dismissTo
+        self.from = options.from
+        self.to = options.to
+        self.dismissTo = options.dismissTo
         self.containerWidth = containerWidth
         self.containerHeight = containerHeight
-        self.duration = duration
-        self.translucentColor = translucentColor
+        self.duration = options.duration
+        self.translucentColor = options.translucentColor
         self.dismissClosure = dismissClosure
         
         if from == GLAlertFromPosition.none {
@@ -150,7 +147,7 @@ extension GLAlert {
         
         UIView.animate(withDuration: duration) {
             self.maskView?.backgroundColor = self.translucentColor
-            node.view.transform = self.getEndTransform(initialOrigin: initialFrame.origin, to: to, containerWidth: containerWidth, containerHeight: containerHeight)
+            node.view.transform = self.getEndTransform(initialOrigin: initialFrame.origin, to: options.to, containerWidth: containerWidth, containerHeight: containerHeight)
         } completion: { (_) in
             self.maskView?.isUserInteractionEnabled = true
         }
@@ -163,12 +160,7 @@ extension GLAlert {
     /// 显示(针对`UIView`)
     @discardableResult
     public func show(view: UIView?,
-                     from: GLAlertFromPosition,
-                     to: GLAlertDestinationPostion,
-                     dismissTo: GLAlertFromPosition,
-                     duration: TimeInterval = 0.25,
-                     enableMask: Bool = true,
-                     translucentColor: UIColor = GLAlertEndColor,
+                     options: GLAlertOptions,
                      dismissClosure: (()->())? = nil) -> Bool {
         guard let keyWindow = UIApplication.shared.keyWindow else { return false }
         guard let view = view else { return false }
@@ -178,7 +170,7 @@ extension GLAlert {
         self.maskView?.removeFromSuperview()
         self.backgroundView?.removeFromSuperview()
         
-        if enableMask {
+        if options.enableMask {
             let backgroundView = UIView()
             backgroundView.isUserInteractionEnabled = true
             backgroundView.frame = keyWindow.bounds
@@ -186,9 +178,10 @@ extension GLAlert {
             let maskView = UIView()
             maskView.frame = keyWindow.bounds
             maskView.backgroundColor = GLAlertStartColor
-            let tap = UITapGestureRecognizer(target: self, action: #selector(dismiss))
-            maskView.addGestureRecognizer(tap)
-            
+            if options.shouldResignOnTouchOutside {
+                let tap = UITapGestureRecognizer(target: self, action: #selector(dismiss))
+                maskView.addGestureRecognizer(tap)
+            }
             keyWindow.addSubview(backgroundView)
             backgroundView.addSubview(maskView)
             backgroundView.addSubview(view)
@@ -200,11 +193,11 @@ extension GLAlert {
         }
         
         self.currentView = view
-        self.from = from
-        self.to = to
-        self.dismissTo = dismissTo
-        self.duration = duration
-        self.translucentColor = translucentColor
+        self.from = options.from
+        self.to = options.to
+        self.dismissTo = options.dismissTo
+        self.duration = options.duration
+        self.translucentColor = options.translucentColor
         self.dismissClosure = dismissClosure
         
         if from == GLAlertFromPosition.none {

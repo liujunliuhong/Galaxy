@@ -53,6 +53,7 @@
 		85DBE0ED2577DAD700E2DF24 /* GLDatingMessageNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DBE0EC2577DAD700E2DF24 /* GLDatingMessageNotification.swift */; };
 		85DBE0F12577DB0900E2DF24 /* GLDatingMessageNotificationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DBE0F02577DB0900E2DF24 /* GLDatingMessageNotificationOptions.swift */; };
 		85DBE0F42577DB9200E2DF24 /* GLDatingMessageNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DBE0F32577DB9200E2DF24 /* GLDatingMessageNotificationManager.swift */; };
+		B49CE0282578796E0064B51B /* GLAlertOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49CE0272578796E0064B51B /* GLAlertOptions.swift */; };
 		B4ED1C61255E685900115895 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED1C60255E685900115895 /* Keys.swift */; };
 		B4ED1C69255E6FB900115895 /* GLBaiDuLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ED1C68255E6FB900115895 /* GLBaiDuLocation.m */; };
 		B4ED1C6E255E72BE00115895 /* GLBaiDuLocationTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ED1C6D255E72BE00115895 /* GLBaiDuLocationTestViewController.m */; };
@@ -111,6 +112,7 @@
 		85DBE0EC2577DAD700E2DF24 /* GLDatingMessageNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingMessageNotification.swift; sourceTree = "<group>"; };
 		85DBE0F02577DB0900E2DF24 /* GLDatingMessageNotificationOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingMessageNotificationOptions.swift; sourceTree = "<group>"; };
 		85DBE0F32577DB9200E2DF24 /* GLDatingMessageNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingMessageNotificationManager.swift; sourceTree = "<group>"; };
+		B49CE0272578796E0064B51B /* GLAlertOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLAlertOptions.swift; sourceTree = "<group>"; };
 		B4B9793D1D5B9C59651E2DBB /* Pods-SwiftTool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftTool.debug.xcconfig"; path = "Target Support Files/Pods-SwiftTool/Pods-SwiftTool.debug.xcconfig"; sourceTree = "<group>"; };
 		B4ED1C60255E685900115895 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		B4ED1C67255E6FB900115895 /* GLBaiDuLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLBaiDuLocation.h; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 			isa = PBXGroup;
 			children = (
 				85DBC91D25723EA60021BC59 /* GLAlert.swift */,
+				B49CE0272578796E0064B51B /* GLAlertOptions.swift */,
 			);
 			path = Alert;
 			sourceTree = "<group>";
@@ -485,6 +488,7 @@
 				8506641D2550493C00EB4188 /* GLCusNavigationBar.swift in Sources */,
 				1831114F24469EB700155620 /* ViewController.swift in Sources */,
 				850664212550493C00EB4188 /* UIColor+GLExtension.swift in Sources */,
+				B49CE0282578796E0064B51B /* GLAlertOptions.swift in Sources */,
 				850664132550493C00EB4188 /* GLSystemFaceKeyboard.swift in Sources */,
 				8506640F2550493C00EB4188 /* Dictionary+GLExtension.swift in Sources */,
 				850664172550493C00EB4188 /* GLHud.swift in Sources */,

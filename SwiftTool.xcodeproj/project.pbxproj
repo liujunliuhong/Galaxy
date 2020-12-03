@@ -54,6 +54,8 @@
 		85DBE0F12577DB0900E2DF24 /* GLDatingMessageNotificationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DBE0F02577DB0900E2DF24 /* GLDatingMessageNotificationOptions.swift */; };
 		85DBE0F42577DB9200E2DF24 /* GLDatingMessageNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DBE0F32577DB9200E2DF24 /* GLDatingMessageNotificationManager.swift */; };
 		B49CE0282578796E0064B51B /* GLAlertOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49CE0272578796E0064B51B /* GLAlertOptions.swift */; };
+		B49CE1A82578B4180064B51B /* GLDatingAudioPlayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49CE1A72578B4180064B51B /* GLDatingAudioPlayManager.swift */; };
+		B49CE1AC2578B8D00064B51B /* GLDatingAVPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49CE1AB2578B8D00064B51B /* GLDatingAVPlayer.swift */; };
 		B4ED1C61255E685900115895 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED1C60255E685900115895 /* Keys.swift */; };
 		B4ED1C69255E6FB900115895 /* GLBaiDuLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ED1C68255E6FB900115895 /* GLBaiDuLocation.m */; };
 		B4ED1C6E255E72BE00115895 /* GLBaiDuLocationTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ED1C6D255E72BE00115895 /* GLBaiDuLocationTestViewController.m */; };
@@ -113,6 +115,8 @@
 		85DBE0F02577DB0900E2DF24 /* GLDatingMessageNotificationOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingMessageNotificationOptions.swift; sourceTree = "<group>"; };
 		85DBE0F32577DB9200E2DF24 /* GLDatingMessageNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingMessageNotificationManager.swift; sourceTree = "<group>"; };
 		B49CE0272578796E0064B51B /* GLAlertOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLAlertOptions.swift; sourceTree = "<group>"; };
+		B49CE1A72578B4180064B51B /* GLDatingAudioPlayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingAudioPlayManager.swift; sourceTree = "<group>"; };
+		B49CE1AB2578B8D00064B51B /* GLDatingAVPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingAVPlayer.swift; sourceTree = "<group>"; };
 		B4B9793D1D5B9C59651E2DBB /* Pods-SwiftTool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftTool.debug.xcconfig"; path = "Target Support Files/Pods-SwiftTool/Pods-SwiftTool.debug.xcconfig"; sourceTree = "<group>"; };
 		B4ED1C60255E685900115895 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		B4ED1C67255E6FB900115895 /* GLBaiDuLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLBaiDuLocation.h; sourceTree = "<group>"; };
@@ -324,6 +328,8 @@
 		85DBE0EA2577DAA400E2DF24 /* Dating */ = {
 			isa = PBXGroup;
 			children = (
+				B49CE1AA2578B8B10064B51B /* AVPlayer */,
+				B49CE1A52578B3C10064B51B /* AudioPlay */,
 				85DBE0EB2577DAAB00E2DF24 /* MessageNotification */,
 			);
 			path = Dating;
@@ -337,6 +343,22 @@
 				85DBE0F02577DB0900E2DF24 /* GLDatingMessageNotificationOptions.swift */,
 			);
 			path = MessageNotification;
+			sourceTree = "<group>";
+		};
+		B49CE1A52578B3C10064B51B /* AudioPlay */ = {
+			isa = PBXGroup;
+			children = (
+				B49CE1A72578B4180064B51B /* GLDatingAudioPlayManager.swift */,
+			);
+			path = AudioPlay;
+			sourceTree = "<group>";
+		};
+		B49CE1AA2578B8B10064B51B /* AVPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				B49CE1AB2578B8D00064B51B /* GLDatingAVPlayer.swift */,
+			);
+			path = AVPlayer;
 			sourceTree = "<group>";
 		};
 		B4ED1C66255E6F8700115895 /* BaiDuLocation */ = {
@@ -476,6 +498,7 @@
 				B4ED1C61255E685900115895 /* Keys.swift in Sources */,
 				B4ED1C69255E6FB900115895 /* GLBaiDuLocation.m in Sources */,
 				850664072550493C00EB4188 /* GLMapManager.swift in Sources */,
+				B49CE1AC2578B8D00064B51B /* GLDatingAVPlayer.swift in Sources */,
 				85DBE0F12577DB0900E2DF24 /* GLDatingMessageNotificationOptions.swift in Sources */,
 				850664222550493C00EB4188 /* UIImage+GLExtension.swift in Sources */,
 				850664242550493C00EB4188 /* GLEnlargeControl.swift in Sources */,
@@ -502,6 +525,7 @@
 				85DBC91E25723EA60021BC59 /* GLAlert.swift in Sources */,
 				850664162550493C00EB4188 /* GLSystemFaceKeyboardOptions.swift in Sources */,
 				8506640B2550493C00EB4188 /* GLFlowItemsDemoViewController.swift in Sources */,
+				B49CE1A82578B4180064B51B /* GLDatingAudioPlayManager.swift in Sources */,
 				850664202550493C00EB4188 /* UIView+GLExtension.swift in Sources */,
 				850664122550493C00EB4188 /* GLSystemFaceKeyboardCell.swift in Sources */,
 				8506640C2550493C00EB4188 /* Data+GLExtension.swift in Sources */,

@@ -104,6 +104,14 @@ Pod::Spec.new do |s|
       sss.dependency 'SwiftyTool/Alert'
       sss.dependency 'SDWebImage'
     end
+
+    ss.subspec 'AudioPlay' do |sss|
+      sss.source_files = 'Sources/Dating/AudioPlay/*.swift'
+    end
+
+    ss.subspec 'AVPlayer' do |sss|
+      sss.source_files = 'Sources/Dating/AVPlayer/*.swift'
+    end
     
   end
   

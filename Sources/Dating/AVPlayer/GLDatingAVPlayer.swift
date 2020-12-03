@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import UIKit
 
 public class GLDatingAVPlayer: UIView {
     
@@ -17,7 +18,7 @@ public class GLDatingAVPlayer: UIView {
     
     private var playerLayer: AVPlayerLayer?
     private var playerItem: AVPlayerItem?
-    private var player: AVPlayer?
+    public private(set) var player: AVPlayer?
     
     private var videoURL: URL?
     
@@ -38,9 +39,13 @@ extension GLDatingAVPlayer {
     private func addNotification() {
         self.removeNotification()
         NotificationCenter.default.addObserver(self, selector: #selector(videoPlayFinishedNotification), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self)
+        NotificationCenter.default.addObserver(self, selector: #selector(didEnterBackgroundNotification), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForegroundNotification), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
     private func removeNotification() {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
     }
 }
 
@@ -48,6 +53,16 @@ extension GLDatingAVPlayer {
     @objc private func videoPlayFinishedNotification(noti: Notification) {
         if let player = noti.object as? GLDatingAVPlayer, player == self {
             self.replay()
+        }
+    }
+    
+    @objc private func didEnterBackgroundNotification() {
+        self.pausePlay()
+    }
+    
+    @objc private func willEnterForegroundNotification() {
+        if self.superview != nil {
+            self.continuePlay()
         }
     }
 }
@@ -93,6 +108,7 @@ extension GLDatingAVPlayer {
     
     /// 播放一个远程视频
     public func playVideo(remoteVideoPath: String?) {
+        self.stopPlay()
         guard let remoteVideoPath = remoteVideoPath else { return }
         guard let videoURL = URL(string: remoteVideoPath) else { return }
         let playerItem = AVPlayerItem(url: videoURL)

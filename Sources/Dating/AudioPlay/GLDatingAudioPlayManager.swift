@@ -8,6 +8,7 @@
 
 import Foundation
 import AVFoundation
+import UIKit
 
 public class GLDatingAudioPlayManager: NSObject {
     public static let `default` = GLDatingAudioPlayManager()
@@ -21,6 +22,18 @@ public class GLDatingAudioPlayManager: NSObject {
 }
 
 extension GLDatingAudioPlayManager {
+    
+    private func addNotification() {
+        self.removeNotification()
+        NotificationCenter.default.addObserver(self, selector: #selector(didEnterBackgroundNotification), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForegroundNotification), name: UIApplication.willEnterForegroundNotification, object: nil)
+    }
+    
+    private func removeNotification() {
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
+    }
+    
     /// 继续播放
     private func replayAudio() {
         guard let audioURL = self.audioURL else { return }
@@ -45,8 +58,19 @@ extension GLDatingAudioPlayManager: AVAudioPlayerDelegate {
 }
 
 extension GLDatingAudioPlayManager {
+    @objc private func didEnterBackgroundNotification() {
+        self.pausePlay()
+    }
+    
+    @objc private func willEnterForegroundNotification() {
+        self.continuePlay()
+    }
+}
+
+extension GLDatingAudioPlayManager {
     /// 播放一个本地音频文件
     public func playAudio(localAudioPath: String?) {
+        self.stopPlay()
         guard let localAudioPath = localAudioPath else { return }
         let audioURL = URL(fileURLWithPath: localAudioPath)
         do {
@@ -55,6 +79,7 @@ extension GLDatingAudioPlayManager {
             self.audioPlayer?.delegate = self
             self.audioPlayer?.play()
             self.audioURL = audioURL
+            self.addNotification()
         } catch {
             #if DEBUG
             print("[GLDatingAudioPlayManager] [初始化`AVAudioPlayer`失败] \(error)")
@@ -73,6 +98,7 @@ extension GLDatingAudioPlayManager {
             self.audioPlayer?.delegate = self
             self.audioPlayer?.play()
             self.audioURL = audioURL
+            self.addNotification()
         } catch {
             #if DEBUG
             print("[GLDatingAudioPlayManager] [初始化`AVAudioPlayer`失败] \(error)")
@@ -95,5 +121,6 @@ extension GLDatingAudioPlayManager {
         self.audioPlayer?.stop()
         self.audioPlayer = nil
         self.audioURL = nil
+        self.removeNotification()
     }
 }

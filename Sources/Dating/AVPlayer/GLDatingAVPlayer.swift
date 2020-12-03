@@ -61,7 +61,7 @@ extension GLDatingAVPlayer {
     }
     
     @objc private func willEnterForegroundNotification() {
-        if self.superview != nil {
+        if self.superview != nil && self.superview?.window != nil {
             self.continuePlay()
         }
     }

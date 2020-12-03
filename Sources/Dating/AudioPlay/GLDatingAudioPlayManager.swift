@@ -117,12 +117,16 @@ extension GLDatingAudioPlayManager {
     
     /// 暂停播放
     public func pausePlay() {
-        self.audioPlayer?.pause()
+        if self.audioPlayer?.isPlaying ?? false {
+            self.audioPlayer?.pause()
+        }
     }
     
     /// 继续播放
     public func continuePlay() {
-        self.audioPlayer?.play()
+        if !(self.audioPlayer?.isPlaying ?? false) {
+            self.audioPlayer?.play()
+        }
     }
     
     /// 停止播放

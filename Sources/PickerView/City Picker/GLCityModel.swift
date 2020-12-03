@@ -42,11 +42,15 @@ public class GLCityModel {
 
 extension GLCityModel: CustomDebugStringConvertible, CustomStringConvertible {
     public var debugDescription: String {
-        return String(format: "%@", self.info()).gl_unicodeToUTF8 ?? ""
+        return "\(self._getInfo())"
     }
     
     public var description: String {
-        return String(format: "%@", self.info()).gl_unicodeToUTF8 ?? ""
+        return "\(self._getInfo())"
+    }
+    
+    private func _getInfo() -> NSString {
+        return NSString(format: "%@", self.info() as NSDictionary)
     }
     
     public func info() -> [String: Any] {

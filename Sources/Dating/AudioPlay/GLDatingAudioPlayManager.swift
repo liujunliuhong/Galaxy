@@ -37,10 +37,19 @@ extension GLDatingAudioPlayManager {
     /// 继续播放
     private func replayAudio() {
         guard let audioURL = self.audioURL else { return }
-        self.audioPlayer = try? AVAudioPlayer(contentsOf: audioURL)
-        self.audioPlayer?.prepareToPlay()
-        self.audioPlayer?.delegate = self
-        self.audioPlayer?.play()
+        self.stopPlay()
+        do {
+            self.audioPlayer = try AVAudioPlayer(contentsOf: audioURL)
+            self.audioPlayer?.prepareToPlay()
+            self.audioPlayer?.delegate = self
+            self.audioPlayer?.play()
+            self.addNotification()
+            self.audioURL = audioURL
+        } catch {
+            #if DEBUG
+            print("[GLDatingAudioPlayManager] [初始化`AVAudioPlayer`失败] \(error)")
+            #endif
+        }
     }
 }
 

@@ -38,12 +38,12 @@ public class GLDatingAVPlayer: UIView {
 extension GLDatingAVPlayer {
     private func addNotification() {
         self.removeNotification()
-        NotificationCenter.default.addObserver(self, selector: #selector(videoPlayFinishedNotification), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self)
+        NotificationCenter.default.addObserver(self, selector: #selector(videoPlayFinishedNotification(noti:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(didEnterBackgroundNotification), name: UIApplication.didEnterBackgroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForegroundNotification), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
     private func removeNotification() {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIApplication.didEnterBackgroundNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
     }
@@ -51,7 +51,7 @@ extension GLDatingAVPlayer {
 
 extension GLDatingAVPlayer {
     @objc private func videoPlayFinishedNotification(noti: Notification) {
-        if let player = noti.object as? GLDatingAVPlayer, player == self {
+        if let item = noti.object as? AVPlayerItem, item == self.playerItem {
             self.replay()
         }
     }
@@ -69,8 +69,8 @@ extension GLDatingAVPlayer {
 
 extension GLDatingAVPlayer {
     private func replay() {
-        self.stopPlay()
         guard let videoURL = self.videoURL else { return }
+        self.stopPlay()
         let playerItem = AVPlayerItem(url: videoURL)
         let player = AVPlayer(playerItem: playerItem)
         let playerLayer = AVPlayerLayer(player: player)
@@ -82,6 +82,7 @@ extension GLDatingAVPlayer {
         self.playerLayer = playerLayer
         self.playerItem = playerItem
         self.player = player
+        self.videoURL = videoURL
     }
 }
 

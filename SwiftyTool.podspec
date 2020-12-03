@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.summary                    = 'Swift版本的开发工具'
   s.description                = 'Swift版本的开发工具，旨在帮助开发人员快速开发，持续更新中...'
   s.author                     = { 'liujunliuhong' => '1035841713@qq.com' }
-  s.version                    = '1.1.61'
+  s.version                    = '1.1.62'
   s.source                     = { :git => 'https://github.com/liujunliuhong/SwiftTool.git', :tag => s.version.to_s }
   s.platform                   = :ios, '10.0'
   s.license                    = { :type => 'MIT', :file => 'LICENSE' }
@@ -95,6 +95,33 @@ Pod::Spec.new do |s|
     ss.source_files = 'Sources/WeakProxy/*.{h,m}'
   end
 
+  # Reachability
+  s.subspec 'Reachability' do |ss|
+    ss.source_files = 'Sources/Reachability/*.swift'
+    ss.dependency 'Alamofire'
+  end
+
+
+  # WordsSort
+  s.subspec 'WordsSort' do |ss|
+    ss.source_files = 'Sources/WordsSort/*.swift'
+  end
+
+  # PickerView
+  s.subspec 'PickerView' do |ss|
+    # Common
+    ss.subspec 'Common' do |sss|
+      sss.source_files = 'Sources/PickerView/Picker/*.swift'
+    end
+    # City
+    ss.subspec 'City' do |sss|
+      sss.source_files = 'Sources/PickerView/City Picker/*.swift'
+      sss.resource = 'Sources/PickerView/City Picker/GLCity.bundle'
+      sss.dependency 'SwiftyTool/PickerView/Common'
+    end
+  end
+
+
   # Dating
   s.subspec 'Dating' do |ss|
     # MessageNotification
@@ -104,11 +131,11 @@ Pod::Spec.new do |s|
       sss.dependency 'SwiftyTool/Alert'
       sss.dependency 'SDWebImage'
     end
-
+    # AudioPlay
     ss.subspec 'AudioPlay' do |sss|
       sss.source_files = 'Sources/Dating/AudioPlay/*.swift'
     end
-
+    # AVPlayer
     ss.subspec 'AVPlayer' do |sss|
       sss.source_files = 'Sources/Dating/AVPlayer/*.swift'
     end

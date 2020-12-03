@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (4.9.1)
+  - Alamofire (5.4.0)
   - AMapFoundation (1.6.5.1)
   - AMapLocation (2.6.7):
     - AMapFoundation (~> 1.6.4)
@@ -9,11 +9,6 @@ PODS:
     - CocoaLumberjack/Core
   - GLDeviceTool (1.0.1)
   - MBProgressHUD (1.2.0)
-  - Moya (13.0.1):
-    - Moya/Core (= 13.0.1)
-  - Moya/Core (13.0.1):
-    - Alamofire (~> 4.1)
-    - Result (~> 4.1)
   - "NSObject+Rx (5.1.0)":
     - RxSwift (~> 5.1)
   - PINCache (3.0.3):
@@ -38,7 +33,6 @@ PODS:
     - QCloudCOSXML/Default (= 5.8.1)
   - QCloudCOSXML/Default (5.8.1):
     - QCloudCore (= 5.8.1)
-  - Result (4.1.0)
   - RxCocoa (5.1.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
@@ -48,7 +42,7 @@ PODS:
   - SDWebImage (5.10.0):
     - SDWebImage/Core (= 5.10.0)
   - SDWebImage/Core (5.10.0)
-  - SnapKit (4.2.0)
+  - SnapKit (5.0.1)
   - SQLiteRepairKit (1.2.2):
     - WCDBOptimizedSQLCipher (~> 1.2.0)
   - SwiftyJSON (5.0.0)
@@ -84,7 +78,6 @@ DEPENDENCIES:
   - CocoaLumberjack/Swift
   - GLDeviceTool
   - MBProgressHUD
-  - Moya
   - "NSObject+Rx"
   - QCloudCOSXML
   - RxCocoa
@@ -104,14 +97,12 @@ SPEC REPOS:
     - CocoaLumberjack
     - GLDeviceTool
     - MBProgressHUD
-    - Moya
     - "NSObject+Rx"
     - PINCache
     - PINOperation
     - PINRemoteImage
     - QCloudCore
     - QCloudCOSXML
-    - Result
     - RxCocoa
     - RxRelay
     - RxSwift
@@ -124,32 +115,30 @@ SPEC REPOS:
     - WCDBOptimizedSQLCipher
 
 SPEC CHECKSUMS:
-  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  Alamofire: 3b6a534a3df22db367e4dedeeca73d1ddfcf0e2f
   AMapFoundation: b67560a6f21aab81c8c12f84616b55a3833b6253
   AMapLocation: a46c30d9930d0f3a3bd21139d8f845d10ac3f01d
   BMKLocationKit: 097814ef672b1e57e86e6c1968d7892fb78002bf
   CocoaLumberjack: e8955b9d337ac307103b0a34fd141c32f27e53c5
   GLDeviceTool: 40f721c8354e2418ea4fa9eb7f0b604ff2f8e131
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
-  Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
   "NSObject+Rx": fa6bbcc1ab1faa06b01466bc09b1e0692bbc5946
   PINCache: 7a8fc1a691173d21dbddbf86cd515de6efa55086
   PINOperation: 00c935935f1e8cf0d1e2d6b542e75b88fc3e5e20
   PINRemoteImage: f1295b29f8c5e640e25335a1b2bd9d805171bd01
   QCloudCore: 93533feb89e59494ec6e93153ae148b1f4f5180d
   QCloudCOSXML: a7abb2754f59f7ae34a847ac94ed8c0f372f5137
-  Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
   SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
-  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SQLiteRepairKit: 35aaae5a8838adb85f5b1eb4d796055be6060a4b
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   Texture: 2f109e937850d94d1d07232041c9c7313ccddb81
   WCDB.swift: 05d509d7a0e60fb6e11c34eb7e4027c0fab5849f
   WCDBOptimizedSQLCipher: baf44493b0c7a3d49e97bc5b64a3856f6428ddd1
 
-PODFILE CHECKSUM: 37ad07389a5c9d612f7a4cec69897a3760d5e9ee
+PODFILE CHECKSUM: 35c0b5984318f5100706947b53cfc1da2b670c43
 
 COCOAPODS: 1.10.0

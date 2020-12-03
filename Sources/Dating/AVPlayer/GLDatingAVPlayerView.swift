@@ -1,16 +1,16 @@
 //
-//  GLDatingAVPlayer.swift
+//  GLDatingAVPlayerView.swift
 //  SwiftTool
 //
-//  Created by Yule on 2020/12/3.
+//  Created by galaxy on 2020/12/3.
 //  Copyright © 2020 yinhe. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import AVFoundation
 import UIKit
 
-public class GLDatingAVPlayer: UIView {
+public class GLDatingAVPlayerView: UIView {
     
     deinit {
         self.removeNotification()
@@ -35,7 +35,7 @@ public class GLDatingAVPlayer: UIView {
     }
 }
 
-extension GLDatingAVPlayer {
+extension GLDatingAVPlayerView {
     private func addNotification() {
         self.removeNotification()
         NotificationCenter.default.addObserver(self, selector: #selector(videoPlayFinishedNotification(noti:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
@@ -49,7 +49,7 @@ extension GLDatingAVPlayer {
     }
 }
 
-extension GLDatingAVPlayer {
+extension GLDatingAVPlayerView {
     @objc private func videoPlayFinishedNotification(noti: Notification) {
         if let item = noti.object as? AVPlayerItem, item == self.playerItem {
             self.replay()
@@ -67,7 +67,7 @@ extension GLDatingAVPlayer {
     }
 }
 
-extension GLDatingAVPlayer {
+extension GLDatingAVPlayerView {
     private func replay() {
         guard let videoURL = self.videoURL else { return }
         self.stopPlay()
@@ -86,7 +86,7 @@ extension GLDatingAVPlayer {
     }
 }
 
-extension GLDatingAVPlayer {
+extension GLDatingAVPlayerView {
     
     /// 播放一个本地视频
     public func playVideo(localVideoPath: String?) {

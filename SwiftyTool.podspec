@@ -107,7 +107,11 @@ Pod::Spec.new do |s|
     ss.source_files = 'Sources/WordsSort/*.swift'
   end
 
-  
+  # Chain
+  s.subspec 'Chain' do |ss|
+    ss.source_files = 'Sources/Chain/*.swift'
+  end
+
   # PickerView
   s.subspec 'PickerView' do |ss|
     # Common

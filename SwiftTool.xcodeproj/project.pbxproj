@@ -59,6 +59,9 @@
 		85CC96AB25793427002B993F /* GLCityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CC96A525793427002B993F /* GLCityModel.swift */; };
 		85CC96AC25793427002B993F /* GLCity.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 85CC96A625793427002B993F /* GLCity.bundle */; };
 		85CC96AD25793427002B993F /* GLCityPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CC96A725793427002B993F /* GLCityPickerView.swift */; };
+		85CC97332579416C002B993F /* GLChain+Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CC97322579416C002B993F /* GLChain+Base.swift */; };
+		85CC97372579418F002B993F /* GLChain+Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CC97362579418F002B993F /* GLChain+Label.swift */; };
+		85CC973B257946CB002B993F /* GLChainMake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CC973A257946CB002B993F /* GLChainMake.swift */; };
 		85DBC91E25723EA60021BC59 /* GLAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DBC91D25723EA60021BC59 /* GLAlert.swift */; };
 		85DBE0E62577DA2400E2DF24 /* GLWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DBE0E52577DA2400E2DF24 /* GLWeakProxy.m */; };
 		85DBE0ED2577DAD700E2DF24 /* GLDatingMessageNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DBE0EC2577DAD700E2DF24 /* GLDatingMessageNotification.swift */; };
@@ -129,6 +132,9 @@
 		85CC96A525793427002B993F /* GLCityModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLCityModel.swift; sourceTree = "<group>"; };
 		85CC96A625793427002B993F /* GLCity.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GLCity.bundle; sourceTree = "<group>"; };
 		85CC96A725793427002B993F /* GLCityPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLCityPickerView.swift; sourceTree = "<group>"; };
+		85CC97322579416C002B993F /* GLChain+Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GLChain+Base.swift"; sourceTree = "<group>"; };
+		85CC97362579418F002B993F /* GLChain+Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GLChain+Label.swift"; sourceTree = "<group>"; };
+		85CC973A257946CB002B993F /* GLChainMake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLChainMake.swift; sourceTree = "<group>"; };
 		85DBC91D25723EA60021BC59 /* GLAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLAlert.swift; sourceTree = "<group>"; };
 		85DBE0E42577DA2400E2DF24 /* GLWeakProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLWeakProxy.h; sourceTree = "<group>"; };
 		85DBE0E52577DA2400E2DF24 /* GLWeakProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLWeakProxy.m; sourceTree = "<group>"; };
@@ -216,6 +222,7 @@
 		850663DB2550492900EB4188 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				85CC972925793FAD002B993F /* Chain */,
 				85CC969F257933F4002B993F /* PickerView */,
 				85CC969725793284002B993F /* WordsSort */,
 				85CC942825792953002B993F /* Reachability */,
@@ -375,6 +382,16 @@
 				85CC96A625793427002B993F /* GLCity.bundle */,
 			);
 			path = "City Picker";
+			sourceTree = "<group>";
+		};
+		85CC972925793FAD002B993F /* Chain */ = {
+			isa = PBXGroup;
+			children = (
+				85CC973A257946CB002B993F /* GLChainMake.swift */,
+				85CC97322579416C002B993F /* GLChain+Base.swift */,
+				85CC97362579418F002B993F /* GLChain+Label.swift */,
+			);
+			path = Chain;
 			sourceTree = "<group>";
 		};
 		85DBC91C25723E9B0021BC59 /* Alert */ = {
@@ -582,10 +599,12 @@
 				85DBE0E62577DA2400E2DF24 /* GLWeakProxy.m in Sources */,
 				8506640A2550493C00EB4188 /* GLFlowItemsAutoWidthDisplayNode.swift in Sources */,
 				85CC969D25793290002B993F /* GLWordsSortResult.swift in Sources */,
+				85CC97372579418F002B993F /* GLChain+Label.swift in Sources */,
 				850664102550493C00EB4188 /* CGFloat+GLExtension.swift in Sources */,
 				8506641D2550493C00EB4188 /* GLCusNavigationBar.swift in Sources */,
 				1831114F24469EB700155620 /* ViewController.swift in Sources */,
 				850664212550493C00EB4188 /* UIColor+GLExtension.swift in Sources */,
+				85CC97332579416C002B993F /* GLChain+Base.swift in Sources */,
 				85CC969425793189002B993F /* GLDatingAVPlayerView.swift in Sources */,
 				B49CE0282578796E0064B51B /* GLAlertOptions.swift in Sources */,
 				850664132550493C00EB4188 /* GLSystemFaceKeyboard.swift in Sources */,
@@ -610,6 +629,7 @@
 				8506640C2550493C00EB4188 /* Data+GLExtension.swift in Sources */,
 				1831114B24469EB700155620 /* AppDelegate.swift in Sources */,
 				85CC96AD25793427002B993F /* GLCityPickerView.swift in Sources */,
+				85CC973B257946CB002B993F /* GLChainMake.swift in Sources */,
 				8506641E2550493C00EB4188 /* GLBaseViewController.swift in Sources */,
 				8506641C2550493C00EB4188 /* GLCusNaviBarTitle.swift in Sources */,
 				859E67EE25455E22005F1115 /* NextViewController.swift in Sources */,

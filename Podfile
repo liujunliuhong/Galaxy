@@ -1,4 +1,4 @@
-# Uncomment the next line to define a global platform for your project
+#Uncomment the next line to define a global platform for your project
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '10.0'
 target 'SwiftTool' do
@@ -12,7 +12,7 @@ target 'SwiftTool' do
   pod 'NSObject+Rx'
 
   pod 'Alamofire'
-  #pod 'Moya'
+  pod 'Moya'
   #pod 'Moya/RxSwift'
 
   pod 'SwiftyJSON'

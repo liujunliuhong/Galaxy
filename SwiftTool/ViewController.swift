@@ -123,6 +123,18 @@ class ViewController: UIViewController {
             make.top.equalToSuperview().offset(100)
             make.size.equalTo(faceKyboardSize)
         }
+        
+        let label = UILabel()
+        label.glc
+            .text("")
+            .textColor(nil)
+            .backgroundColor(nil)
+            .layer
+            .cornerRadius(2)
+            //.view?
+            //.text("")
+        
+        
 //
 //
 //        let sort = SwiftyWordsSort<Model>()

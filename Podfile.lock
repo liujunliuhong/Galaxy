@@ -9,6 +9,10 @@ PODS:
     - CocoaLumberjack/Core
   - GLDeviceTool (1.0.1)
   - MBProgressHUD (1.2.0)
+  - Moya (14.0.0):
+    - Moya/Core (= 14.0.0)
+  - Moya/Core (14.0.0):
+    - Alamofire (~> 5.0)
   - "NSObject+Rx (5.1.0)":
     - RxSwift (~> 5.1)
   - PINCache (3.0.3):
@@ -78,6 +82,7 @@ DEPENDENCIES:
   - CocoaLumberjack/Swift
   - GLDeviceTool
   - MBProgressHUD
+  - Moya
   - "NSObject+Rx"
   - QCloudCOSXML
   - RxCocoa
@@ -97,6 +102,7 @@ SPEC REPOS:
     - CocoaLumberjack
     - GLDeviceTool
     - MBProgressHUD
+    - Moya
     - "NSObject+Rx"
     - PINCache
     - PINOperation
@@ -122,6 +128,7 @@ SPEC CHECKSUMS:
   CocoaLumberjack: e8955b9d337ac307103b0a34fd141c32f27e53c5
   GLDeviceTool: 40f721c8354e2418ea4fa9eb7f0b604ff2f8e131
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+  Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   "NSObject+Rx": fa6bbcc1ab1faa06b01466bc09b1e0692bbc5946
   PINCache: 7a8fc1a691173d21dbddbf86cd515de6efa55086
   PINOperation: 00c935935f1e8cf0d1e2d6b542e75b88fc3e5e20
@@ -139,6 +146,6 @@ SPEC CHECKSUMS:
   WCDB.swift: 05d509d7a0e60fb6e11c34eb7e4027c0fab5849f
   WCDBOptimizedSQLCipher: baf44493b0c7a3d49e97bc5b64a3856f6428ddd1
 
-PODFILE CHECKSUM: 35c0b5984318f5100706947b53cfc1da2b670c43
+PODFILE CHECKSUM: 802bed84b93b231adc9e8c3607213a340e3d5905
 
 COCOAPODS: 1.10.0

@@ -7,3 +7,9 @@
 //
 
 import Foundation
+import UIKit
+
+
+extension GLChain where Base: UICollectionView {
+    
+}

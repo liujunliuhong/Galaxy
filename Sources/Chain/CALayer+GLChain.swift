@@ -11,10 +11,6 @@ import UIKit
 
 extension GLChain where Base: CALayer {
     
-    public var view: GLChain<UIView>? {
-        return objc_getAssociatedObject(self, &Keys.view_layer_key) as? GLChain<UIView>
-    }
-    
     @discardableResult
     public func bounds(_ bounds: CGRect) -> Self {
         self.base.bounds = bounds

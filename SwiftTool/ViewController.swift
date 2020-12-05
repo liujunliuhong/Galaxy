@@ -106,6 +106,9 @@ fileprivate class Model: NSObject {
 }
 
 class ViewController: UIViewController {
+    
+    lazy var label = UILabel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Demo"
@@ -124,15 +127,15 @@ class ViewController: UIViewController {
             make.size.equalTo(faceKyboardSize)
         }
         
-        let label = UILabel()
-        label.glc
-            .text("")
+        self.view.addSubview(self.label)
+        self.label.snp.makeConstraints { (make) in
+            make.center.equalToSuperview()
+            make.width.height.equalTo(100)
+        }
+        self.label.glc
+            .text("123")
             .textColor(nil)
-            .backgroundColor(nil)
-            .layer
-            .cornerRadius(2)
-            //.view?
-            //.text("")
+            .backgroundColor(.red)
         
         
 //
@@ -146,6 +149,8 @@ class ViewController: UIViewController {
 
 extension ViewController {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.label.glc.text("567")
+        self.label.layer.glc.cornerRadius(5).masksToBounds(true)
         //let vc = SwiftyBMKLocationTestViewController(bmk_key: bmk_key)
         //let vc = SwiftyNativeLocationTestViewController()
         //let vc = SwiftyAMapLocationTestViewController(amap_key: amap_key)
@@ -192,12 +197,15 @@ extension ViewController {
 //        let alertView = AlertView()
 //        GLAlert.default.show(view: alertView, from: .rightCenter(left: 0), to: .center, dismissTo: .bottomCenter(top: 0))
         
-        let options = GLDatingMessageNotificationOptions()
-        options.backgroundColor = .purple
-        options.content = "akjhdksdhfkhsdfjakjhdksdhfkhsdfjakjhdksdhfkhsdfjakjhdksdhfkhsdfjakjhdksdhfkhsdfjakjhdksdhfkhsdfjakjhdksdhfkhsdfjakjhdksdhfkhsdfjakjhdksdhfkhsdfj"
-        options.title = "hellohellohellohellohellohellohellohellohellohellohellohello"
         
-        GLDatingMessageNotificationManager.default.show(options: options, from: .bottomCenter(top: 0), to: .bottomCenter(bottom: 50))
+        
+//        
+//        let options = GLDatingMessageNotificationOptions()
+//        options.backgroundColor = .purple
+//        options.content = "akjhdksdhfkhsdfjakjhdksdhfkhsdfjakjhdksdhfkhsdfjakjhdksdhfkhsdfjakjhdksdhfkhsdfjakjhdksdhfkhsdfjakjhdksdhfkhsdfjakjhdksdhfkhsdfjakjhdksdhfkhsdfj"
+//        options.title = "hellohellohellohellohellohellohellohellohellohellohellohello"
+//        
+//        GLDatingMessageNotificationManager.default.show(options: options, from: .bottomCenter(top: 0), to: .bottomCenter(bottom: 50))
         
     }
 }

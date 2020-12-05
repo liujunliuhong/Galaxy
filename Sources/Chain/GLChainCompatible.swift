@@ -23,7 +23,12 @@ public protocol GLChainCompatible {
 
 extension GLChainCompatible {
     public var glc: GLChain<Self> {
-        return GLChain(self)
+        if let value = objc_getAssociatedObject(self, &Keys.associatedKey) as? GLChain<Self> {
+            return value
+        }
+        let value = GLChain(self)
+        objc_setAssociatedObject(self, &Keys.associatedKey, value, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        return value
     }
 }
 
@@ -31,5 +36,5 @@ extension UIView: GLChainCompatible{}
 extension CALayer: GLChainCompatible{}
 
 internal struct Keys {
-    static var view_layer_key = "com.galaxy.glc.view_layer.key"
+    static var associatedKey = "com.galaxy.glchain.associatedKey"
 }

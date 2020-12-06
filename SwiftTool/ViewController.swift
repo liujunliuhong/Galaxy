@@ -24,6 +24,12 @@ fileprivate class Node: ASDisplayNode {
         super.init()
         self.backgroundColor = .red
         automaticallyManagesSubnodes = true
+        
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//            self.node.style.height = ASDimensionMake(500)
+//            self.setNeedsLayout()
+//            self.layoutIfNeeded()
+//        }
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
@@ -127,17 +133,6 @@ class ViewController: UIViewController {
             make.size.equalTo(faceKyboardSize)
         }
         
-        self.view.addSubview(self.label)
-        self.label.snp.makeConstraints { (make) in
-            make.center.equalToSuperview()
-            make.width.height.equalTo(100)
-        }
-        self.label.glc
-            .text("123")
-            .textColor(nil)
-            .backgroundColor(.red)
-        
-        
 //
 //
 //        let sort = SwiftyWordsSort<Model>()
@@ -149,8 +144,7 @@ class ViewController: UIViewController {
 
 extension ViewController {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.label.glc.text("567")
-        self.label.layer.glc.cornerRadius(5).masksToBounds(true)
+        
         //let vc = SwiftyBMKLocationTestViewController(bmk_key: bmk_key)
         //let vc = SwiftyNativeLocationTestViewController()
         //let vc = SwiftyAMapLocationTestViewController(amap_key: amap_key)
@@ -191,12 +185,39 @@ extension ViewController {
         
         
         
-//        let node = Node()
-//        GLAlert.default.show(node: node, containerWidth: 180, from: .topCenter(bottom: 0), to: .center, dismissTo: .bottomCenter(top: 0))
+        let node = Node()
+        let options = GLAlertOptions(from: .leftCenter(right: 0), to: .center, dismissTo: .bottomCenter(top: 0))
+
+        options.willShowClosure = {
+            print("willShowClosure")
+        }
+        options.didShowClosure = {
+            print("didShowClosure")
+        }
+        options.willDismissClosure = {
+            print("willDismissClosure")
+        }
+        options.didDismissClosure = {
+            print("didDismissClosure")
+        }
+        GLAlert.default.show(node: node, containerWidth: 300, options: options)
         
+
 //        let alertView = AlertView()
-//        GLAlert.default.show(view: alertView, from: .rightCenter(left: 0), to: .center, dismissTo: .bottomCenter(top: 0))
-        
+//        let options = GLAlertOptions(from: .topCenter(bottom: 0), to: .center, dismissTo: .bottomCenter(top: 0))
+//        options.willShowClosure = {
+//            print("willShowClosure")
+//        }
+//        options.didShowClosure = {
+//            print("didShowClosure")
+//        }
+//        options.willDismissClosure = {
+//            print("willDismissClosure")
+//        }
+//        options.didDismissClosure = {
+//            print("didDismissClosure")
+//        }
+//        GLAlert.default.show(view: alertView, options: options)
         
         
 //        
@@ -204,7 +225,7 @@ extension ViewController {
 //        options.backgroundColor = .purple
 //        options.content = "akjhdksdhfkhsdfjakjhdksdhfkhsdfjakjhdksdhfkhsdfjakjhdksdhfkhsdfjakjhdksdhfkhsdfjakjhdksdhfkhsdfjakjhdksdhfkhsdfjakjhdksdhfkhsdfjakjhdksdhfkhsdfj"
 //        options.title = "hellohellohellohellohellohellohellohellohellohellohellohello"
-//        
+//
 //        GLDatingMessageNotificationManager.default.show(options: options, from: .bottomCenter(top: 0), to: .bottomCenter(bottom: 50))
         
     }

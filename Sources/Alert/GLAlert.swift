@@ -56,42 +56,36 @@ public enum GLAlertDestinationPostion {
 public let GLAlertStartColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).withAlphaComponent(0)
 public let GLAlertEndColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).withAlphaComponent(0.6)
 
+private let defaultOptions = GLAlertOptions(from: .topCenter(bottom: 0), to: .center, dismissTo: .none)
+private let defaultUsingSpringWithDamping: CGFloat = 0.75
+private let defaultInitialSpringVelocity: CGFloat = 7.0
+
 public class GLAlert {
     public static let `default` = GLAlert()
     
     private var backgroundView: UIView?
     private var maskView: UIView?
-    private var currentNode: ASDisplayNode?
+    
     private var currentView: UIView?
-    private var from: GLAlertFromPosition = .none
-    private var to: GLAlertDestinationPostion = .center
-    private var initialFrame: CGRect = .zero
-    private var dismissTo: GLAlertFromPosition = .none
-    private var duration: TimeInterval = 0.25
-    private var containerWidth: CGFloat = .zero
-    private var containerHeight: CGFloat = .zero
-    private var translucentColor: UIColor = GLAlertEndColor
-    private var dismissClosure: (()->())?
+    private var currentNode: ASDisplayNode?
     
     private init() {
         
     }
 }
 
+fileprivate struct Keys {
+    static var associatedKey = "com.galaxy.glalert.associatedKey"
+}
+
 extension GLAlert {
     /// 显示(针对`ASDisplayNode`)
     @discardableResult
-    public func show(node: ASDisplayNode?,
-                     containerWidth: CGFloat,
-                     options: GLAlertOptions,
-                     dismissClosure: (()->())? = nil) -> Bool {
+    public func show(node: ASDisplayNode?, containerWidth: CGFloat, options: GLAlertOptions) -> Bool {
         guard let keyWindow = UIApplication.shared.keyWindow else { return false }
         guard let node = node else { return false }
-        if self.currentNode != nil { return false }
-        if self.currentNode?.supernode != nil { return false }
-        self.currentNode?.removeFromSupernode()
-        self.maskView?.removeFromSuperview()
-        self.backgroundView?.removeFromSuperview()
+        
+        self.immediatelyRelease()
         
         if options.enableMask {
             let backgroundView = UIView()
@@ -105,50 +99,43 @@ extension GLAlert {
                 let tap = UITapGestureRecognizer(target: self, action: #selector(dismiss))
                 maskView.addGestureRecognizer(tap)
             }
-            
             keyWindow.addSubview(backgroundView)
             backgroundView.addSubview(maskView)
-            backgroundView.addSubnode(node)
-            
+            keyWindow.addSubnode(node)
             self.backgroundView = backgroundView
             self.maskView = maskView
         } else {
             keyWindow.addSubnode(node)
         }
         
-        let containerWidth: CGFloat = containerWidth
-        let containerHeight: CGFloat = node.layoutThatFits(ASSizeRange(min: CGSize(width: containerWidth, height: 0.0), max: CGSize(width: containerWidth, height: CGFloat.greatestFiniteMagnitude))).size.height
-        node.layoutIfNeeded()
-        node.setNeedsLayout()
-        
         self.currentNode = node
-        self.from = options.from
-        self.to = options.to
-        self.dismissTo = options.dismissTo
-        self.containerWidth = containerWidth
-        self.containerHeight = containerHeight
-        self.duration = options.duration
-        self.translucentColor = options.translucentColor
-        self.dismissClosure = dismissClosure
         
-        if from == GLAlertFromPosition.none {
-            self.maskView?.backgroundColor = self.translucentColor
-            node.frame = getEndFrame(to: to, containerWidth: containerWidth, containerHeight: containerHeight)
+        let containerHeight = node.layoutThatFits(ASSizeRangeMake(CGSize(width: containerWidth, height: 0), CGSize(width: containerWidth, height: CGFloat.greatestFiniteMagnitude))).size.height
+        node.setNeedsLayout()
+        node.layoutIfNeeded()
+        
+        objc_setAssociatedObject(node, &Keys.associatedKey, options, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        
+        if options.from == GLAlertFromPosition.none {
+            self.maskView?.backgroundColor = options.translucentColor
+            let frame = self.getEndFrame(to: options.to, containerWidth: containerWidth, containerHeight: containerHeight)
+            node.frame = frame
+            options.willShowClosure?()
+            options.didShowClosure?()
             return true
         }
-        let initialFrame = getInitialFrame(from: from, containerWidth: containerWidth, containerHeight: containerHeight)
-        node.frame = initialFrame
-        node.view.transform = .identity
         
-        self.initialFrame = initialFrame
+        let initialFrame = getInitialFrame(from: options.from, containerWidth: containerWidth, containerHeight: containerHeight)
+        node.frame = initialFrame
         
         self.maskView?.isUserInteractionEnabled = false
         
-        
-        UIView.animate(withDuration: duration) {
-            self.maskView?.backgroundColor = self.translucentColor
-            node.view.transform = self.getEndTransform(initialOrigin: initialFrame.origin, to: options.to, containerWidth: containerWidth, containerHeight: containerHeight)
+        options.willShowClosure?()
+        UIView.animate(withDuration: options.duration, delay: 0, usingSpringWithDamping: defaultUsingSpringWithDamping, initialSpringVelocity: defaultInitialSpringVelocity, options: options.animationOptions) {
+            self.maskView?.backgroundColor = options.translucentColor
+            node.frame = self.getEndFrame(to: options.to, containerWidth: containerWidth, containerHeight: containerHeight)
         } completion: { (_) in
+            options.didShowClosure?()
             self.maskView?.isUserInteractionEnabled = true
         }
         
@@ -159,16 +146,10 @@ extension GLAlert {
 extension GLAlert {
     /// 显示(针对`UIView`)
     @discardableResult
-    public func show(view: UIView?,
-                     options: GLAlertOptions,
-                     dismissClosure: (()->())? = nil) -> Bool {
+    public func show(view: UIView?, options: GLAlertOptions) -> Bool {
         guard let keyWindow = UIApplication.shared.keyWindow else { return false }
         guard let view = view else { return false }
-        if self.currentView != nil { return false }
-        if self.currentView?.superview != nil { return false }
-        self.currentView?.removeFromSuperview()
-        self.maskView?.removeFromSuperview()
-        self.backgroundView?.removeFromSuperview()
+        self.immediatelyRelease()
         
         if options.enableMask {
             let backgroundView = UIView()
@@ -184,43 +165,41 @@ extension GLAlert {
             }
             keyWindow.addSubview(backgroundView)
             backgroundView.addSubview(maskView)
-            backgroundView.addSubview(view)
-            
+            keyWindow.addSubview(view)
+            self.currentView = view
             self.backgroundView = backgroundView
             self.maskView = maskView
         } else {
             keyWindow.addSubview(view)
+            self.currentView = view
         }
         
-        self.currentView = view
-        self.from = options.from
-        self.to = options.to
-        self.dismissTo = options.dismissTo
-        self.duration = options.duration
-        self.translucentColor = options.translucentColor
-        self.dismissClosure = dismissClosure
+        objc_setAssociatedObject(view, &Keys.associatedKey, options, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         
-        if from == GLAlertFromPosition.none {
-            self.maskView?.backgroundColor = self.translucentColor
-            self.setEndViewConstraints(view: view, to: to)
+        if options.from == GLAlertFromPosition.none {
+            self.maskView?.backgroundColor = options.translucentColor
+            self.setEndViewConstraints(view: view, to: options.to)
+            options.willShowClosure?()
+            options.didShowClosure?()
             return true
         }
         
-        self.setInitialViewConstraints(view: view, from: from, isRemake: false)
+        self.setInitialViewConstraints(view: view, from: options.from, isRemake: false)
         view.superview?.layoutIfNeeded()
         view.layoutIfNeeded()
         
         self.maskView?.isUserInteractionEnabled = false
         
-        self.setEndViewConstraints(view: view, to: to)
+        self.setEndViewConstraints(view: view, to: options.to)
         
-        UIView.animate(withDuration: duration) {
-            self.maskView?.backgroundColor = self.translucentColor
+        options.willShowClosure?()
+        UIView.animate(withDuration: options.duration, delay: 0, usingSpringWithDamping: defaultUsingSpringWithDamping, initialSpringVelocity: defaultInitialSpringVelocity, options: options.animationOptions) {
+            self.maskView?.backgroundColor = options.translucentColor
             view.superview?.layoutIfNeeded()
         } completion: { (_) in
+            options.didShowClosure?()
             self.maskView?.isUserInteractionEnabled = true
         }
-        
         return true
     }
 }
@@ -228,33 +207,91 @@ extension GLAlert {
 extension GLAlert {
     /// dismiss
     @objc public func dismiss() {
-        if self.dismissTo == GLAlertFromPosition.none {
-            self.dismissClosure?()
-            self.release()
-            return
-        }
-        self.maskView?.isUserInteractionEnabled = false
-        if self.currentNode != nil {
-            UIView.animate(withDuration: self.duration) {
-                self.maskView?.backgroundColor = GLAlertStartColor
-                self.currentNode?.view.transform = self.getDismissTransform(initialOrigin: self.initialFrame.origin, from: self.dismissTo, containerWidth: self.containerWidth, containerHeight: self.containerHeight)
-            } completion: { (_) in
-                self.dismissClosure?()
-                self.release()
+        if let currentView = self.currentView {
+            let options = (objc_getAssociatedObject(currentView, &Keys.associatedKey) as? GLAlertOptions) ?? defaultOptions
+            if options.dismissTo == GLAlertFromPosition.none {
+                self.immediatelyRelease()
+                return
             }
-        }
-        if self.currentView != nil {
-            self.setInitialViewConstraints(view: self.currentView, from: self.dismissTo, isRemake: true)
-            UIView.animate(withDuration: self.duration) {
+            self.maskView?.isUserInteractionEnabled = false
+            options.willDismissClosure?()
+            self.setInitialViewConstraints(view: currentView, from: options.dismissTo, isRemake: true)
+            UIView.animate(withDuration: options.duration, delay: 0, options: options.animationOptions) {
                 self.maskView?.backgroundColor = GLAlertStartColor
                 self.currentView?.superview?.layoutIfNeeded()
             } completion: { (_) in
-                self.dismissClosure?()
+                self.maskView?.isUserInteractionEnabled = true
+                options.didDismissClosure?()
+                self.release()
+            }
+        }
+        if let currentNode = self.currentNode {
+            let options = (objc_getAssociatedObject(currentNode, &Keys.associatedKey) as? GLAlertOptions) ?? defaultOptions
+            if options.dismissTo == GLAlertFromPosition.none {
+                self.immediatelyRelease()
+                return
+            }
+            let nodeSize: CGSize = currentNode.frame.size
+            self.maskView?.isUserInteractionEnabled = false
+            options.willDismissClosure?()
+            UIView.animate(withDuration: options.duration, delay: 0, options: options.animationOptions) {
+                self.maskView?.backgroundColor = GLAlertStartColor
+                currentNode.frame = self.getInitialFrame(from: options.dismissTo, containerWidth: nodeSize.width, containerHeight: nodeSize.height)
+            } completion: { (_) in
+                self.maskView?.isUserInteractionEnabled = true
+                options.didDismissClosure?()
                 self.release()
             }
         }
     }
 }
+
+extension GLAlert {
+    private func immediatelyRelease() {
+        if let currentView = self.currentView, let options = objc_getAssociatedObject(currentView, &Keys.associatedKey) as? GLAlertOptions {
+            options.willDismissClosure?()
+            options.didDismissClosure?()
+            objc_setAssociatedObject(currentView, &Keys.associatedKey, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+        if let currentNode = self.currentNode, let options = objc_getAssociatedObject(currentNode, &Keys.associatedKey) as? GLAlertOptions {
+            options.willDismissClosure?()
+            options.didDismissClosure?()
+            objc_setAssociatedObject(currentNode, &Keys.associatedKey, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+        self.currentNode?.removeFromSupernode()
+        self.currentNode = nil
+        self.currentView?.removeFromSuperview()
+        self.currentView = nil
+        self.maskView?.backgroundColor = GLAlertStartColor
+        self.maskView?.isUserInteractionEnabled = false
+        self.maskView?.removeFromSuperview()
+        self.backgroundView?.removeFromSuperview()
+        self.maskView = nil
+        self.backgroundView = nil
+    }
+    
+    private func release() {
+        if let currentView = self.currentView {
+            objc_setAssociatedObject(currentView, &Keys.associatedKey, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+        if let currentNode = self.currentNode {
+            objc_setAssociatedObject(currentNode, &Keys.associatedKey, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+        self.currentNode?.removeFromSupernode()
+        self.currentNode = nil
+        self.currentView?.removeFromSuperview()
+        self.maskView?.backgroundColor = GLAlertStartColor
+        self.maskView?.isUserInteractionEnabled = false
+        self.maskView?.removeFromSuperview()
+        self.backgroundView?.removeFromSuperview()
+        self.currentView = nil
+        self.maskView = nil
+        self.backgroundView = nil
+    }
+}
+
+
+
 
 extension GLAlert {
     /// 获取初始frame
@@ -341,99 +378,7 @@ extension GLAlert {
         }
         return rect
     }
-    
-    /// 获取最终显示的transform
-    private func getEndTransform(initialOrigin: CGPoint, to: GLAlertDestinationPostion, containerWidth: CGFloat, containerHeight: CGFloat) -> CGAffineTransform {
-        var transform: CGAffineTransform = .identity
-        
-        var origin: CGPoint = .zero
-        switch to {
-            case .topLeft(let top, let left):
-                origin.x = left
-                origin.y = top
-            case .topCenter(let top):
-                origin.x = (UIScreen.main.bounds.width - containerWidth) / 2.0
-                origin.y = top
-            case .topRight(let top, let right):
-                origin.x = UIScreen.main.bounds.width - containerWidth - right
-                origin.y = top
-            case .leftCenter(let left):
-                origin.x = left
-                origin.y = (UIScreen.main.bounds.height - containerHeight) / 2.0
-            case .bottomLeft(let bottom, let left):
-                origin.x = left
-                origin.y = UIScreen.main.bounds.height - containerHeight - bottom
-            case .bottomCenter(let bottom):
-                origin.x = (UIScreen.main.bounds.width - containerWidth) / 2.0
-                origin.y = UIScreen.main.bounds.height - containerHeight - bottom
-            case .bottomRight(let bottom, let right):
-                origin.x = UIScreen.main.bounds.width - containerWidth - right
-                origin.y = UIScreen.main.bounds.height - containerHeight - bottom
-            case .rightCenter(let right):
-                origin.x = UIScreen.main.bounds.width - containerWidth - right
-                origin.y = (UIScreen.main.bounds.height - containerHeight) / 2.0
-            case .center:
-                origin.x = (UIScreen.main.bounds.width - containerWidth) / 2.0
-                origin.y = (UIScreen.main.bounds.height - containerHeight) / 2.0
-        }
-        
-        transform = CGAffineTransform(translationX: origin.x - initialOrigin.x,
-                                      y: origin.y - initialOrigin.y)
-        return transform
-    }
-    
-    /// 获取最终消失的transform
-    private func getDismissTransform(initialOrigin: CGPoint, from: GLAlertFromPosition, containerWidth: CGFloat, containerHeight: CGFloat) -> CGAffineTransform {
-        var transform: CGAffineTransform = .identity
-        
-        var origin: CGPoint = .zero
-        switch from {
-            case .topLeft(let bottom, let left):
-                origin.x = left
-                origin.y = -containerHeight - bottom
-            case .topCenter(let bottom):
-                origin.x = (UIScreen.main.bounds.width - containerWidth) / 2.0
-                origin.y = -containerHeight - bottom
-            case .topRight(let bottom, let right):
-                origin.x = UIScreen.main.bounds.width - containerWidth - right
-                origin.y = -containerHeight - bottom
-            case .leftTop(let right, let top):
-                origin.x = -containerWidth - right
-                origin.y = top
-            case .leftCenter(let right):
-                origin.x = -containerWidth - right
-                origin.y = (UIScreen.main.bounds.height - containerHeight) / 2.0
-            case .leftBottom(let right, let bottom):
-                origin.x = -containerWidth - right
-                origin.y = UIScreen.main.bounds.height - containerHeight - bottom
-            case .bottomLeft(let top, let left):
-                origin.x = left
-                origin.y = UIScreen.main.bounds.height + top
-            case .bottomCenter(let top):
-                origin.x = (UIScreen.main.bounds.width - containerWidth) / 2.0
-                origin.y = UIScreen.main.bounds.height + top
-            case .bottomRight(let top, let right):
-                origin.x = UIScreen.main.bounds.width - containerWidth - right
-                origin.y = UIScreen.main.bounds.height + top
-            case .rightTop(let left, let top):
-                origin.x = UIScreen.main.bounds.width + left
-                origin.y = top
-            case .rightCenter(let left):
-                origin.x = UIScreen.main.bounds.width + left
-                origin.y = (UIScreen.main.bounds.height - containerHeight) / 2.0
-            case .rightBottom(let left, let bottom):
-                origin.x = UIScreen.main.bounds.width + left
-                origin.y = UIScreen.main.bounds.height - containerHeight - bottom
-            case .none:
-                break
-        }
-        
-        transform = CGAffineTransform(translationX: origin.x - initialOrigin.x,
-                                      y: origin.y - initialOrigin.y)
-        return transform
-    }
 }
-
 
 extension GLAlert {
     private func setInitialViewConstraints(view: UIView?, from: GLAlertFromPosition, isRemake: Bool) {
@@ -639,23 +584,5 @@ extension GLAlert {
                     make.centerY.equalToSuperview()
                 }
         }
-    }
-}
-
-extension GLAlert {
-    private func release() {
-        self.currentNode?.view.transform = .identity
-        self.currentNode?.removeFromSupernode()
-        self.currentView?.transform = .identity
-        self.currentView?.removeFromSuperview()
-        self.maskView?.backgroundColor = GLAlertStartColor
-        self.maskView?.isUserInteractionEnabled = false
-        self.maskView?.removeFromSuperview()
-        self.backgroundView?.removeFromSuperview()
-        self.dismissClosure = nil
-        self.currentView = nil
-        self.currentNode = nil
-        self.maskView = nil
-        self.backgroundView = nil
     }
 }

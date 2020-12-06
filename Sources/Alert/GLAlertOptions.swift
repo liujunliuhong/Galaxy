@@ -16,8 +16,15 @@ public class GLAlertOptions {
     
     public var enableMask: Bool = true
     public var shouldResignOnTouchOutside: Bool = true
+    
     public var duration: TimeInterval = 0.25
     public var translucentColor: UIColor = GLAlertEndColor
+    public var animationOptions: UIView.AnimationOptions = [.curveEaseInOut]
+    
+    public var willShowClosure: (()->())?
+    public var didShowClosure: (()->())?
+    public var willDismissClosure: (()->())?
+    public var didDismissClosure: (()->())?
     
     public init(from: GLAlertFromPosition, to: GLAlertDestinationPostion, dismissTo: GLAlertFromPosition) {
         self.from = from

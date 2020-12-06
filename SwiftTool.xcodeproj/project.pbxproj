@@ -47,6 +47,9 @@
 		850664222550493C00EB4188 /* UIImage+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850664022550493C00EB4188 /* UIImage+GLExtension.swift */; };
 		850664232550493C00EB4188 /* UIApplication+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850664032550493C00EB4188 /* UIApplication+GLExtension.swift */; };
 		850664242550493C00EB4188 /* GLEnlargeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850664042550493C00EB4188 /* GLEnlargeControl.swift */; };
+		8594C767257C98A400D3C9C7 /* UICollectionViewLayout+GLChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8594C766257C98A400D3C9C7 /* UICollectionViewLayout+GLChain.swift */; };
+		8594C76B257CB63000D3C9C7 /* UICollectionViewFlowLayout+GLChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8594C76A257CB63000D3C9C7 /* UICollectionViewFlowLayout+GLChain.swift */; };
+		8594C76F257CC0D000D3C9C7 /* UIStackView+GLChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8594C76E257CC0D000D3C9C7 /* UIStackView+GLChain.swift */; };
 		859E67EE25455E22005F1115 /* NextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859E67ED25455E22005F1115 /* NextViewController.swift */; };
 		85CC942A25792982002B993F /* GLReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CC942925792982002B993F /* GLReachabilityManager.swift */; };
 		85CC969425793189002B993F /* GLDatingAVPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CC969325793189002B993F /* GLDatingAVPlayerView.swift */; };
@@ -135,6 +138,9 @@
 		850664022550493C00EB4188 /* UIImage+GLExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+GLExtension.swift"; sourceTree = "<group>"; };
 		850664032550493C00EB4188 /* UIApplication+GLExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+GLExtension.swift"; sourceTree = "<group>"; };
 		850664042550493C00EB4188 /* GLEnlargeControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLEnlargeControl.swift; sourceTree = "<group>"; };
+		8594C766257C98A400D3C9C7 /* UICollectionViewLayout+GLChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewLayout+GLChain.swift"; sourceTree = "<group>"; };
+		8594C76A257CB63000D3C9C7 /* UICollectionViewFlowLayout+GLChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewFlowLayout+GLChain.swift"; sourceTree = "<group>"; };
+		8594C76E257CC0D000D3C9C7 /* UIStackView+GLChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+GLChain.swift"; sourceTree = "<group>"; };
 		859E67ED25455E22005F1115 /* NextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextViewController.swift; sourceTree = "<group>"; };
 		85CC942925792982002B993F /* GLReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLReachabilityManager.swift; sourceTree = "<group>"; };
 		85CC969325793189002B993F /* GLDatingAVPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingAVPlayerView.swift; sourceTree = "<group>"; };
@@ -430,11 +436,14 @@
 				B4735D0A257A3C5A002F7566 /* UITextView+GLChain.swift */,
 				B4735D0D257A3C7D002F7566 /* UISwitch+GLChain.swift */,
 				B4735D10257A3C9A002F7566 /* UIActivityIndicatorView+GLChain.swift */,
+				8594C766257C98A400D3C9C7 /* UICollectionViewLayout+GLChain.swift */,
+				8594C76A257CB63000D3C9C7 /* UICollectionViewFlowLayout+GLChain.swift */,
 				B4735D13257A3D07002F7566 /* UICollectionView+GLChain.swift */,
+				B4735D1F257A3D89002F7566 /* UITableView+GLChain.swift */,
 				B4735D16257A3D1B002F7566 /* UIProgressView+GLChain.swift */,
 				B4735D19257A3D32002F7566 /* UIRefreshControl+GLChain.swift */,
 				B4735D1C257A3D6E002F7566 /* UIScrollView+GLChain.swift */,
-				B4735D1F257A3D89002F7566 /* UITableView+GLChain.swift */,
+				8594C76E257CC0D000D3C9C7 /* UIStackView+GLChain.swift */,
 			);
 			path = Chain;
 			sourceTree = "<group>";
@@ -637,6 +646,7 @@
 				85CC969C25793290002B993F /* GLWordsSort.swift in Sources */,
 				85CC96A925793427002B993F /* GLDatePickerView.swift in Sources */,
 				B4735D11257A3C9A002F7566 /* UIActivityIndicatorView+GLChain.swift in Sources */,
+				8594C76F257CC0D000D3C9C7 /* UIStackView+GLChain.swift in Sources */,
 				B4ED1C61255E685900115895 /* Keys.swift in Sources */,
 				B4735D14257A3D07002F7566 /* UICollectionView+GLChain.swift in Sources */,
 				B4ED1C69255E6FB900115895 /* GLBaiDuLocation.m in Sources */,
@@ -653,6 +663,7 @@
 				850664192550493C00EB4188 /* GLCusNaviBarSpace.swift in Sources */,
 				85DBE0E62577DA2400E2DF24 /* GLWeakProxy.m in Sources */,
 				8506640A2550493C00EB4188 /* GLFlowItemsAutoWidthDisplayNode.swift in Sources */,
+				8594C767257C98A400D3C9C7 /* UICollectionViewLayout+GLChain.swift in Sources */,
 				85CC969D25793290002B993F /* GLWordsSortResult.swift in Sources */,
 				850664102550493C00EB4188 /* CGFloat+GLExtension.swift in Sources */,
 				8506641D2550493C00EB4188 /* GLCusNavigationBar.swift in Sources */,
@@ -691,6 +702,7 @@
 				B4735D05257A3C33002F7566 /* UIPageControl+GLChain.swift in Sources */,
 				85CC96AD25793427002B993F /* GLCityPickerView.swift in Sources */,
 				8506641E2550493C00EB4188 /* GLBaseViewController.swift in Sources */,
+				8594C76B257CB63000D3C9C7 /* UICollectionViewFlowLayout+GLChain.swift in Sources */,
 				8506641C2550493C00EB4188 /* GLCusNaviBarTitle.swift in Sources */,
 				859E67EE25455E22005F1115 /* NextViewController.swift in Sources */,
 				85DBE0ED2577DAD700E2DF24 /* GLDatingMessageNotification.swift in Sources */,

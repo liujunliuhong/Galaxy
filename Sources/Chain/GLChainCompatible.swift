@@ -34,6 +34,7 @@ extension GLChainCompatible {
 
 extension UIView: GLChainCompatible{}
 extension CALayer: GLChainCompatible{}
+extension UICollectionViewLayout: GLChainCompatible{}
 
 internal struct Keys {
     static var associatedKey = "com.galaxy.glchain.associatedKey"

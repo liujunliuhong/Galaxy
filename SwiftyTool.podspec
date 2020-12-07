@@ -183,7 +183,16 @@ Pod::Spec.new do |s|
       sss.dependency 'NSObject+Rx'
       sss.resource = 'Sources/Dating/Web/GLDatingWeb.bundle'
     end
-    
+    # Photo
+    ss.subspec 'Photo' do |sss|
+      sss.source_files = 'Sources/Dating/Photo/*.swift'
+      sss.dependency 'SwiftyTool/File'
+    end
+    # TermLabel
+    ss.subspec 'TermLabel' do |sss|
+      sss.source_files = 'Sources/Dating/TermLabel/*.swift'
+      sss.dependency 'YYText'
+    end
   end
   
 end

@@ -38,6 +38,11 @@ public struct GLDatingRobotMessage {
         "Hi, baby how are you?",
         "I am missing someone……but I don't know who.……Is that you?"
     ]
+    
+    public var randomMessage: String {
+        let index: Int = Int(arc4random() % UInt32(self.messages.count))
+        return self.messages[index]
+    }
 }
 
 extension GLDatingRobotMessage {

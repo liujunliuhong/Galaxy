@@ -101,6 +101,10 @@
 		B4F8AAEC257DF7E4004C932C /* String+GLMd5.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F8AAEB257DF7E4004C932C /* String+GLMd5.swift */; };
 		B4F8AAF1257DF955004C932C /* GLDatingWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F8AAF0257DF955004C932C /* GLDatingWebViewController.swift */; };
 		B4F8AAF5257DFA49004C932C /* GLDatingWeb.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B4F8AAF4257DFA49004C932C /* GLDatingWeb.bundle */; };
+		B4F8AAF9257E0B70004C932C /* GLDatingPhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F8AAF8257E0B70004C932C /* GLDatingPhotoManager.swift */; };
+		B4F8AB01257E0D6F004C932C /* NSMutableAttributedString+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F8AB00257E0D6F004C932C /* NSMutableAttributedString+GLExtension.swift */; };
+		B4F8AB05257E0D8A004C932C /* NSParagraphStyle+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F8AB04257E0D8A004C932C /* NSParagraphStyle+GLExtension.swift */; };
+		B4F8AB09257E151E004C932C /* GLDatingTermLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F8AB08257E151E004C932C /* GLDatingTermLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -207,6 +211,10 @@
 		B4F8AAEB257DF7E4004C932C /* String+GLMd5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+GLMd5.swift"; sourceTree = "<group>"; };
 		B4F8AAF0257DF955004C932C /* GLDatingWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingWebViewController.swift; sourceTree = "<group>"; };
 		B4F8AAF4257DFA49004C932C /* GLDatingWeb.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GLDatingWeb.bundle; sourceTree = "<group>"; };
+		B4F8AAF8257E0B70004C932C /* GLDatingPhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingPhotoManager.swift; sourceTree = "<group>"; };
+		B4F8AB00257E0D6F004C932C /* NSMutableAttributedString+GLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+GLExtension.swift"; sourceTree = "<group>"; };
+		B4F8AB04257E0D8A004C932C /* NSParagraphStyle+GLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSParagraphStyle+GLExtension.swift"; sourceTree = "<group>"; };
+		B4F8AB08257E151E004C932C /* GLDatingTermLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingTermLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -347,6 +355,8 @@
 				850663EB2550493C00EB4188 /* Dictionary+GLExtension.swift */,
 				850663EC2550493C00EB4188 /* CGFloat+GLExtension.swift */,
 				850663ED2550493C00EB4188 /* Array+GLExtension.swift */,
+				B4F8AB00257E0D6F004C932C /* NSMutableAttributedString+GLExtension.swift */,
+				B4F8AB04257E0D8A004C932C /* NSParagraphStyle+GLExtension.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -496,6 +506,8 @@
 		85DBE0EA2577DAA400E2DF24 /* Dating */ = {
 			isa = PBXGroup;
 			children = (
+				B4F8AB07257E1502004C932C /* TermLabel */,
+				B4F8AAF7257E0B5C004C932C /* Photo */,
 				B4F8AAEF257DF889004C932C /* Web */,
 				B4F8AAE5257DF646004C932C /* RobotMessage */,
 				B4F8AAE0257DDFE5004C932C /* LocalPush */,
@@ -608,6 +620,22 @@
 				B4F8AAF4257DFA49004C932C /* GLDatingWeb.bundle */,
 			);
 			path = Web;
+			sourceTree = "<group>";
+		};
+		B4F8AAF7257E0B5C004C932C /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				B4F8AAF8257E0B70004C932C /* GLDatingPhotoManager.swift */,
+			);
+			path = Photo;
+			sourceTree = "<group>";
+		};
+		B4F8AB07257E1502004C932C /* TermLabel */ = {
+			isa = PBXGroup;
+			children = (
+				B4F8AB08257E151E004C932C /* GLDatingTermLabel.swift */,
+			);
+			path = TermLabel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -754,8 +782,10 @@
 				B4ED1C69255E6FB900115895 /* GLBaiDuLocation.m in Sources */,
 				B4262D8F2579FBC500AA144B /* UIView+GLChain.swift in Sources */,
 				B4F8AAF1257DF955004C932C /* GLDatingWebViewController.swift in Sources */,
+				B4F8AAF9257E0B70004C932C /* GLDatingPhotoManager.swift in Sources */,
 				850664072550493C00EB4188 /* GLMapManager.swift in Sources */,
 				85DBE0F12577DB0900E2DF24 /* GLDatingMessageNotificationOptions.swift in Sources */,
+				B4F8AB01257E0D6F004C932C /* NSMutableAttributedString+GLExtension.swift in Sources */,
 				850664222550493C00EB4188 /* UIImage+GLExtension.swift in Sources */,
 				B4262D922579FBD200AA144B /* UILabel+GLChain.swift in Sources */,
 				850664242550493C00EB4188 /* GLEnlargeControl.swift in Sources */,
@@ -784,6 +814,7 @@
 				85CC96AA25793427002B993F /* GLPickerView.swift in Sources */,
 				850664232550493C00EB4188 /* UIApplication+GLExtension.swift in Sources */,
 				85DBE0F42577DB9200E2DF24 /* GLDatingMessageNotificationManager.swift in Sources */,
+				B4F8AB05257E0D8A004C932C /* NSParagraphStyle+GLExtension.swift in Sources */,
 				B4735D17257A3D1B002F7566 /* UIProgressView+GLChain.swift in Sources */,
 				B4735D1A257A3D32002F7566 /* UIRefreshControl+GLChain.swift in Sources */,
 				85CC942A25792982002B993F /* GLReachabilityManager.swift in Sources */,
@@ -794,6 +825,7 @@
 				850664082550493C00EB4188 /* GLMapDemoViewController.swift in Sources */,
 				8506641A2550493C00EB4188 /* GLCusNavigationBarDemoViewController.swift in Sources */,
 				85DBC91E25723EA60021BC59 /* GLAlert.swift in Sources */,
+				B4F8AB09257E151E004C932C /* GLDatingTermLabel.swift in Sources */,
 				B4735D1D257A3D6E002F7566 /* UIScrollView+GLChain.swift in Sources */,
 				850664162550493C00EB4188 /* GLSystemFaceKeyboardOptions.swift in Sources */,
 				8506640B2550493C00EB4188 /* GLFlowItemsDemoViewController.swift in Sources */,

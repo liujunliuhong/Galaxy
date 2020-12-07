@@ -139,7 +139,25 @@ class ViewController: UIViewController {
 //        let result = SwiftyWordsSort.getFirstEnglishWords(string: " ,.,;'!@#$%^&*() 嘻嘻哈哈啦啦abc ")
 //        print("\(result)")
         
-        GLNotification.default.registerNotification()
+//        GLNotification.default.registerNotification()
+        
+        let label = GLDatingTermLabel(text: "请同dfsdsfdsfdsfdsfdsfdsfdsf意用户协议和隐私协议", termsOfUseString: "用户协议", privacyPolicyString: "隐私协议", textColor: .red, font: UIFont.systemFont(ofSize: 25), alignment: .center, linkTextColor: .purple, linkBackgroundColor: nil, maxWidth: UIDevice.gl_width - 20 - 20)
+        label.backgroundColor = .green
+        
+        self.view.addSubview(label)
+        
+        label.snp.makeConstraints { (make) in
+            make.left.equalToSuperview().offset(20)
+            make.top.equalToSuperview().offset(300)
+            make.right.equalToSuperview().offset(-20)
+        }
+        
+        label.clickPrivacyPolicyClosure = {
+            GLLog("点击隐私协议")
+        }
+        label.clickTermsOfServiceClosure = {
+            GLLog("点击用户协议")
+        }
     }
 }
 
@@ -232,7 +250,9 @@ extension ViewController {
         
 //        GLDatingLocalPush.default.openLocalPushForEveryDay(message: "hello")
         
-        GLDatingWebViewController.show(with: self, type: .privacyPolicy(title: "Privacy Policy"))
+//        GLDatingWebViewController.show(with: self, type: .privacyPolicy(title: "Privacy Policy"))
+        
+        
     }
 }
 

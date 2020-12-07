@@ -38,4 +38,5 @@ target 'SwiftTool' do
 
   pod 'WCDB.swift'
 
+  pod 'YYText'
 end

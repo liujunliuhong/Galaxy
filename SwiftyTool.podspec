@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.summary                    = 'Swift版本的开发工具'
   s.description                = 'Swift版本的开发工具，旨在帮助开发人员快速开发，持续更新中...'
   s.author                     = { 'liujunliuhong' => '1035841713@qq.com' }
-  s.version                    = '1.1.63'
+  s.version                    = '1.1.64'
   s.source                     = { :git => 'https://github.com/liujunliuhong/SwiftTool.git', :tag => s.version.to_s }
   s.platform                   = :ios, '10.0'
   s.license                    = { :type => 'MIT', :file => 'LICENSE' }
@@ -139,6 +139,11 @@ Pod::Spec.new do |s|
   # Crypto
   s.subspec 'Crypto' do |ss|
     ss.source_files = 'Sources/Crypto/*.swift'
+  end
+
+  # AttributedString
+  s.subspec 'AttributedString' do |ss|
+    ss.source_files = 'Sources/AttributedString/*.swift'
   end
 
   # Dating

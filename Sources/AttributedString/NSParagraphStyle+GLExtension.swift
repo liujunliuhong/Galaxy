@@ -11,11 +11,10 @@ import CoreText
 import UIKit
 
 extension NSParagraphStyle {
-    /// CTParagraphStyle -> NSParagraphStyle
-    /// - Parameter ctStyle: CTParagraphStyle
-    public static func gl_convert(ctStyle: CTParagraphStyle) -> NSParagraphStyle {
-        let style: NSMutableParagraphStyle = NSMutableParagraphStyle.default as! NSMutableParagraphStyle
+    
+    public static func gl_nsStyle(with ctStyle: CTParagraphStyle) -> NSParagraphStyle {
         
+        let style: NSMutableParagraphStyle = NSMutableParagraphStyle()
         
         // alignment
         var alignment: NSTextAlignment = .left
@@ -87,20 +86,20 @@ extension NSParagraphStyle {
                                                 &lineBreakMode) {
             var _lineBreakMode: NSLineBreakMode = .byTruncatingTail
             switch lineBreakMode {
-            case .byCharWrapping:
-                _lineBreakMode = .byCharWrapping
-            case .byClipping:
-                _lineBreakMode = .byClipping
-            case .byTruncatingHead:
-                _lineBreakMode = .byTruncatingHead
-            case .byTruncatingMiddle:
-                _lineBreakMode = .byTruncatingMiddle
-            case .byTruncatingTail:
-                _lineBreakMode = .byTruncatingTail
-            case .byWordWrapping:
-                _lineBreakMode = .byWordWrapping
-            @unknown default:
-                _lineBreakMode = .byTruncatingTail
+                case .byCharWrapping:
+                    _lineBreakMode = .byCharWrapping
+                case .byClipping:
+                    _lineBreakMode = .byClipping
+                case .byTruncatingHead:
+                    _lineBreakMode = .byTruncatingHead
+                case .byTruncatingMiddle:
+                    _lineBreakMode = .byTruncatingMiddle
+                case .byTruncatingTail:
+                    _lineBreakMode = .byTruncatingTail
+                case .byWordWrapping:
+                    _lineBreakMode = .byWordWrapping
+                @unknown default:
+                    _lineBreakMode = .byTruncatingTail
             }
             style.lineBreakMode = _lineBreakMode
         }
@@ -160,14 +159,14 @@ extension NSParagraphStyle {
                                                 &baseWritingDirection) {
             var _baseWritingDirection: NSWritingDirection = .leftToRight
             switch baseWritingDirection {
-            case .leftToRight:
-                _baseWritingDirection = .leftToRight
-            case .natural:
-                _baseWritingDirection = .natural
-            case .rightToLeft:
-                _baseWritingDirection = .rightToLeft
-            @unknown default:
-                _baseWritingDirection = .leftToRight
+                case .leftToRight:
+                    _baseWritingDirection = .leftToRight
+                case .natural:
+                    _baseWritingDirection = .natural
+                case .rightToLeft:
+                    _baseWritingDirection = .rightToLeft
+                @unknown default:
+                    _baseWritingDirection = .leftToRight
             }
             style.baseWritingDirection = _baseWritingDirection
         }
@@ -182,73 +181,67 @@ extension NSParagraphStyle {
         }
         
         return style
-        
     }
     
-    
-    
-    /// NSParagraphStyle -> CTParagraphStyle
-    /// - Parameter paragraphStyle: NSParagraphStyle
-    public static func gl_convert(paragraphStyle: NSParagraphStyle) -> CTParagraphStyle {
+    public func gl_CTStyle() -> CTParagraphStyle {
         var settings = [CTParagraphStyleSetting]()
         
-        var lineSpacing: CGFloat = paragraphStyle.lineSpacing
-        settings.append(CTParagraphStyleSetting(spec: .lineSpacingAdjustment, valueSize: MemoryLayout<CGFloat>.size, value: &lineSpacing))
+        var lineSpacing: CGFloat = self.lineSpacing
+        settings.append(withUnsafeMutableBytes(of: &lineSpacing, { CTParagraphStyleSetting(spec: .lineSpacingAdjustment, valueSize: MemoryLayout<CGFloat>.size, value: $0.baseAddress!) }))
         
-        var paragraphSpacing: CGFloat = paragraphStyle.paragraphSpacing
-        settings.append(CTParagraphStyleSetting(spec: .paragraphSpacing, valueSize: MemoryLayout<CGFloat>.size, value: &paragraphSpacing))
+        var paragraphSpacing: CGFloat = self.paragraphSpacing
+        settings.append(withUnsafeMutableBytes(of: &paragraphSpacing, { CTParagraphStyleSetting(spec: .paragraphSpacing, valueSize: MemoryLayout<CGFloat>.size, value: $0.baseAddress!) }))
         
-        var alignment = CTTextAlignment(paragraphStyle.alignment)
-        settings.append(CTParagraphStyleSetting(spec: .alignment, valueSize: MemoryLayout<CTTextAlignment>.size, value: &alignment))
+        var alignment = CTTextAlignment(self.alignment)
+        settings.append(withUnsafeMutableBytes(of: &alignment, { CTParagraphStyleSetting(spec: .alignment, valueSize: MemoryLayout<CTTextAlignment>.size, value: $0.baseAddress!) }))
         
-        var firstLineHeadIndent: CGFloat = paragraphStyle.firstLineHeadIndent
-        settings.append(CTParagraphStyleSetting(spec: .firstLineHeadIndent, valueSize: MemoryLayout<CGFloat>.size, value: &firstLineHeadIndent))
+        var firstLineHeadIndent: CGFloat = self.firstLineHeadIndent
+        settings.append(withUnsafeMutableBytes(of: &firstLineHeadIndent, { CTParagraphStyleSetting(spec: .firstLineHeadIndent, valueSize: MemoryLayout<CGFloat>.size, value: $0.baseAddress!) }))
         
-        var headIndent: CGFloat = paragraphStyle.headIndent
-        settings.append(CTParagraphStyleSetting(spec: .headIndent, valueSize: MemoryLayout<CGFloat>.size, value: &headIndent))
+        var headIndent: CGFloat = self.headIndent
+        settings.append(withUnsafeMutableBytes(of: &headIndent, { CTParagraphStyleSetting(spec: .headIndent, valueSize: MemoryLayout<CGFloat>.size, value: $0.baseAddress!) }))
         
-        var tailIndent: CGFloat = paragraphStyle.tailIndent
-        settings.append(CTParagraphStyleSetting(spec: .tailIndent, valueSize: MemoryLayout<CGFloat>.size, value: &tailIndent))
+        var tailIndent: CGFloat = self.tailIndent
+        settings.append(withUnsafeMutableBytes(of: &tailIndent, { CTParagraphStyleSetting(spec: .tailIndent, valueSize: MemoryLayout<CGFloat>.size, value: $0.baseAddress!) }))
         
-        var paraLineBreak = CTLineBreakMode(rawValue: UInt8(paragraphStyle.lineBreakMode.rawValue))
-        settings.append(CTParagraphStyleSetting(spec: .lineBreakMode, valueSize: MemoryLayout<CTLineBreakMode>.size, value: &paraLineBreak))
+        var paraLineBreak = CTLineBreakMode(rawValue: UInt8(self.lineBreakMode.rawValue))
+        settings.append(withUnsafeMutableBytes(of: &paraLineBreak, { CTParagraphStyleSetting(spec: .lineBreakMode, valueSize: MemoryLayout<CTLineBreakMode>.size, value: $0.baseAddress!) }))
         
-        var minimumLineHeight: CGFloat = paragraphStyle.minimumLineHeight
-        settings.append(CTParagraphStyleSetting(spec: .minimumLineHeight, valueSize: MemoryLayout<CGFloat>.size, value: &minimumLineHeight))
+        var minimumLineHeight: CGFloat = self.minimumLineHeight
+        settings.append(withUnsafeMutableBytes(of: &minimumLineHeight, { CTParagraphStyleSetting(spec: .minimumLineHeight, valueSize: MemoryLayout<CGFloat>.size, value: $0.baseAddress!) }))
         
-        var maximumLineHeight: CGFloat = paragraphStyle.maximumLineHeight
-        settings.append(CTParagraphStyleSetting(spec: .maximumLineHeight, valueSize: MemoryLayout<CGFloat>.size, value: &maximumLineHeight))
+        var maximumLineHeight: CGFloat = self.maximumLineHeight
+        settings.append(withUnsafeMutableBytes(of: &maximumLineHeight, { CTParagraphStyleSetting(spec: .maximumLineHeight, valueSize: MemoryLayout<CGFloat>.size, value: $0.baseAddress!) }))
         
-        var paraWritingDirection = CTWritingDirection(rawValue: Int8(paragraphStyle.baseWritingDirection.rawValue))
-        settings.append(CTParagraphStyleSetting(spec: .baseWritingDirection, valueSize: MemoryLayout<CTWritingDirection>.size, value: &paraWritingDirection))
+        var paraWritingDirection = CTWritingDirection(rawValue: Int8(self.baseWritingDirection.rawValue))
+        settings.append(withUnsafeMutableBytes(of: &paraWritingDirection, { CTParagraphStyleSetting(spec: .baseWritingDirection, valueSize: MemoryLayout<CTWritingDirection>.size, value: $0.baseAddress!) }))
         
-        var lineHeightMultiple: CGFloat = paragraphStyle.lineHeightMultiple
-        settings.append(CTParagraphStyleSetting(spec: .lineHeightMultiple, valueSize: MemoryLayout<CGFloat>.size, value: &lineHeightMultiple))
+        var lineHeightMultiple: CGFloat = self.lineHeightMultiple
+        settings.append(withUnsafeMutableBytes(of: &lineHeightMultiple, { CTParagraphStyleSetting(spec: .lineHeightMultiple, valueSize: MemoryLayout<CGFloat>.size, value: $0.baseAddress!) }))
         
-        var paragraphSpacingBefore: CGFloat = paragraphStyle.paragraphSpacingBefore
-        settings.append(CTParagraphStyleSetting(spec: .paragraphSpacingBefore, valueSize: MemoryLayout<CGFloat>.size, value: &paragraphSpacingBefore))
+        var paragraphSpacingBefore: CGFloat = self.paragraphSpacingBefore
+        settings.append(withUnsafeMutableBytes(of: &paragraphSpacingBefore, { CTParagraphStyleSetting(spec: .paragraphSpacingBefore, valueSize: MemoryLayout<CGFloat>.size, value: $0.baseAddress!) }))
         
-        if paragraphStyle.responds(to: #selector(getter: self.tabStops)) {
+        
+        if self.responds(to: #selector(getter: self.tabStops)) {
             var tabs: [AnyHashable] = []
-            
-            let numTabs: Int = paragraphStyle.tabStops.count
+            let numTabs: Int = self.tabStops.count
             if numTabs != 0 {
-                (paragraphStyle.tabStops as NSArray).enumerateObjects({ tab, idx, stop in
-                    let tab_: NSTextTab = tab as! NSTextTab
-                    
-                    let ctTab = CTTextTabCreate(CTTextAlignment.init(tab_.alignment), Double(tab_.location), tab_.options as CFDictionary)
-                    
-                    tabs.append(ctTab)
+                (self.tabStops as NSArray).enumerateObjects({ tab, idx, stop in
+                    if let tab_: NSTextTab = tab as? NSTextTab {
+                        let ctTab = CTTextTabCreate(CTTextAlignment.init(tab_.alignment), Double(tab_.location), tab_.options as CFDictionary)
+                        tabs.append(ctTab)
+                    }
                 })
                 var tabStops = tabs
-                settings.append(CTParagraphStyleSetting(spec: .tabStops, valueSize: MemoryLayout<CFArray>.size, value: &tabStops))
+                settings.append(withUnsafeMutableBytes(of: &tabStops, { CTParagraphStyleSetting(spec: .tabStops, valueSize: MemoryLayout<CFArray>.size, value: $0.baseAddress!) }))
             }
         }
         
         
-        if paragraphStyle.responds(to: #selector(getter: paragraphStyle.defaultTabInterval)) {
-            var defaultTabInterval: CGFloat = paragraphStyle.defaultTabInterval
-            settings.append(CTParagraphStyleSetting(spec: .defaultTabInterval, valueSize: MemoryLayout<CGFloat>.size, value: &defaultTabInterval))
+        if self.responds(to: #selector(getter: self.defaultTabInterval)) {
+            var defaultTabInterval: CGFloat = self.defaultTabInterval
+            settings.append(withUnsafeMutableBytes(of: &defaultTabInterval, { CTParagraphStyleSetting(spec: .defaultTabInterval, valueSize: MemoryLayout<CGFloat>.size, value: $0.baseAddress!) }))
         }
         
         let style = CTParagraphStyleCreate(settings, settings.count)

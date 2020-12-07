@@ -141,23 +141,46 @@ class ViewController: UIViewController {
         
 //        GLNotification.default.registerNotification()
         
-        let label = GLDatingTermLabel(text: "请同dfsdsfdsfdsfdsfdsfdsfdsf意用户协议和隐私协议", termsOfUseString: "用户协议", privacyPolicyString: "隐私协议", textColor: .red, font: UIFont.systemFont(ofSize: 25), alignment: .center, linkTextColor: .purple, linkBackgroundColor: nil, maxWidth: UIDevice.gl_width - 20 - 20)
-        label.backgroundColor = .green
+//        let label = GLDatingTermLabel(text: "请同dfsdsfdsfdsfdsfdsfdsfdsf意用户协议和隐私协议", termsOfUseString: "用户协议", privacyPolicyString: "隐私协议", textColor: .red, font: UIFont.systemFont(ofSize: 25), alignment: .center, linkTextColor: .purple, linkBackgroundColor: nil, maxWidth: UIDevice.gl_width - 20 - 20)
+//        label.backgroundColor = .green
+//
+//        self.view.addSubview(label)
+//
+//        label.snp.makeConstraints { (make) in
+//            make.left.equalToSuperview().offset(20)
+//            make.top.equalToSuperview().offset(300)
+//            make.right.equalToSuperview().offset(-20)
+//        }
+//
+//        label.clickPrivacyPolicyClosure = {
+//            GLLog("点击隐私协议")
+//        }
+//        label.clickTermsOfServiceClosure = {
+//            GLLog("点击用户协议")
+//        }
         
+        let label = UILabel()
+        label.backgroundColor = .orange
+        label.numberOfLines = 0
         self.view.addSubview(label)
-        
         label.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(20)
             make.top.equalToSuperview().offset(300)
             make.right.equalToSuperview().offset(-20)
+            make.height.equalTo(400)
         }
         
-        label.clickPrivacyPolicyClosure = {
-            GLLog("点击隐私协议")
-        }
-        label.clickTermsOfServiceClosure = {
-            GLLog("点击用户协议")
-        }
+        let atr = NSMutableAttributedString(string: "hello world, hedjkfjhsjkfhjwkhe sdaskdjaskdashello world, hedjkfjhsjkfhjwkhe sdaskdjaskdashello world, hedjkfjhsjkfhjwkhe sdaskdjaskdashello world, hedjkfjhsjkfhjwkhe sdaskdjaskdashello world, hedjkfjhsjkfhjwkhe sdaskdjaskdashello world, hedjkfjhsjkfhjwkhe sdaskdjaskdashello world, hedjkfjhsjkfhjwkhe sdaskdjaskdas")
+        
+        atr.gl_atr
+            .add(font: .systemFont(ofSize: 20))
+            .add(textColor: .white)
+            .add(textColor: .purple, range: NSRange(location: 2, length: 5))
+            .add(lineBreakMode: .byCharWrapping)
+            .add(lineSpacing: 3)
+            //            .gl_add(firstLineHeadIndent: 10)
+            .add(headIndent: 10)
+        label.attributedText = atr
     }
 }
 

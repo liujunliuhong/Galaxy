@@ -67,6 +67,8 @@
 		85DBE0ED2577DAD700E2DF24 /* GLDatingMessageNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DBE0EC2577DAD700E2DF24 /* GLDatingMessageNotification.swift */; };
 		85DBE0F12577DB0900E2DF24 /* GLDatingMessageNotificationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DBE0F02577DB0900E2DF24 /* GLDatingMessageNotificationOptions.swift */; };
 		85DBE0F42577DB9200E2DF24 /* GLDatingMessageNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DBE0F32577DB9200E2DF24 /* GLDatingMessageNotificationManager.swift */; };
+		85E5CC0D257E7E49003C2A2B /* GLAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E5CC0C257E7E49003C2A2B /* GLAttributedString.swift */; };
+		85E5CC11257E7F98003C2A2B /* NSMutableAttributedString+GLAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E5CC10257E7F98003C2A2B /* NSMutableAttributedString+GLAttributedString.swift */; };
 		B4262D8C2579F9C400AA144B /* GLChainCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4262D8B2579F9C400AA144B /* GLChainCompatible.swift */; };
 		B4262D8F2579FBC500AA144B /* UIView+GLChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4262D8E2579FBC500AA144B /* UIView+GLChain.swift */; };
 		B4262D922579FBD200AA144B /* UILabel+GLChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4262D912579FBD200AA144B /* UILabel+GLChain.swift */; };
@@ -102,7 +104,6 @@
 		B4F8AAF1257DF955004C932C /* GLDatingWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F8AAF0257DF955004C932C /* GLDatingWebViewController.swift */; };
 		B4F8AAF5257DFA49004C932C /* GLDatingWeb.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B4F8AAF4257DFA49004C932C /* GLDatingWeb.bundle */; };
 		B4F8AAF9257E0B70004C932C /* GLDatingPhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F8AAF8257E0B70004C932C /* GLDatingPhotoManager.swift */; };
-		B4F8AB01257E0D6F004C932C /* NSMutableAttributedString+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F8AB00257E0D6F004C932C /* NSMutableAttributedString+GLExtension.swift */; };
 		B4F8AB05257E0D8A004C932C /* NSParagraphStyle+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F8AB04257E0D8A004C932C /* NSParagraphStyle+GLExtension.swift */; };
 		B4F8AB09257E151E004C932C /* GLDatingTermLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F8AB08257E151E004C932C /* GLDatingTermLabel.swift */; };
 /* End PBXBuildFile section */
@@ -174,6 +175,8 @@
 		85DBE0EC2577DAD700E2DF24 /* GLDatingMessageNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingMessageNotification.swift; sourceTree = "<group>"; };
 		85DBE0F02577DB0900E2DF24 /* GLDatingMessageNotificationOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingMessageNotificationOptions.swift; sourceTree = "<group>"; };
 		85DBE0F32577DB9200E2DF24 /* GLDatingMessageNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingMessageNotificationManager.swift; sourceTree = "<group>"; };
+		85E5CC0C257E7E49003C2A2B /* GLAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLAttributedString.swift; sourceTree = "<group>"; };
+		85E5CC10257E7F98003C2A2B /* NSMutableAttributedString+GLAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+GLAttributedString.swift"; sourceTree = "<group>"; };
 		B4262D8B2579F9C400AA144B /* GLChainCompatible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLChainCompatible.swift; sourceTree = "<group>"; };
 		B4262D8E2579FBC500AA144B /* UIView+GLChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+GLChain.swift"; sourceTree = "<group>"; };
 		B4262D912579FBD200AA144B /* UILabel+GLChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+GLChain.swift"; sourceTree = "<group>"; };
@@ -212,7 +215,6 @@
 		B4F8AAF0257DF955004C932C /* GLDatingWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingWebViewController.swift; sourceTree = "<group>"; };
 		B4F8AAF4257DFA49004C932C /* GLDatingWeb.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GLDatingWeb.bundle; sourceTree = "<group>"; };
 		B4F8AAF8257E0B70004C932C /* GLDatingPhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingPhotoManager.swift; sourceTree = "<group>"; };
-		B4F8AB00257E0D6F004C932C /* NSMutableAttributedString+GLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+GLExtension.swift"; sourceTree = "<group>"; };
 		B4F8AB04257E0D8A004C932C /* NSParagraphStyle+GLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSParagraphStyle+GLExtension.swift"; sourceTree = "<group>"; };
 		B4F8AB08257E151E004C932C /* GLDatingTermLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingTermLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -288,6 +290,7 @@
 		850663DB2550492900EB4188 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				85E5CC0B257E7E16003C2A2B /* AttributedString */,
 				B4F8AAEA257DF7CC004C932C /* Crypto */,
 				B4F8AADB257DDF11004C932C /* Notification */,
 				B4F8AAD6257DDD78004C932C /* Navigation */,
@@ -355,8 +358,6 @@
 				850663EB2550493C00EB4188 /* Dictionary+GLExtension.swift */,
 				850663EC2550493C00EB4188 /* CGFloat+GLExtension.swift */,
 				850663ED2550493C00EB4188 /* Array+GLExtension.swift */,
-				B4F8AB00257E0D6F004C932C /* NSMutableAttributedString+GLExtension.swift */,
-				B4F8AB04257E0D8A004C932C /* NSParagraphStyle+GLExtension.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -528,6 +529,16 @@
 				85DBE0F02577DB0900E2DF24 /* GLDatingMessageNotificationOptions.swift */,
 			);
 			path = MessageNotification;
+			sourceTree = "<group>";
+		};
+		85E5CC0B257E7E16003C2A2B /* AttributedString */ = {
+			isa = PBXGroup;
+			children = (
+				85E5CC0C257E7E49003C2A2B /* GLAttributedString.swift */,
+				85E5CC10257E7F98003C2A2B /* NSMutableAttributedString+GLAttributedString.swift */,
+				B4F8AB04257E0D8A004C932C /* NSParagraphStyle+GLExtension.swift */,
+			);
+			path = AttributedString;
 			sourceTree = "<group>";
 		};
 		B49CE1A52578B3C10064B51B /* AudioPlay */ = {
@@ -785,10 +796,10 @@
 				B4F8AAF9257E0B70004C932C /* GLDatingPhotoManager.swift in Sources */,
 				850664072550493C00EB4188 /* GLMapManager.swift in Sources */,
 				85DBE0F12577DB0900E2DF24 /* GLDatingMessageNotificationOptions.swift in Sources */,
-				B4F8AB01257E0D6F004C932C /* NSMutableAttributedString+GLExtension.swift in Sources */,
 				850664222550493C00EB4188 /* UIImage+GLExtension.swift in Sources */,
 				B4262D922579FBD200AA144B /* UILabel+GLChain.swift in Sources */,
 				850664242550493C00EB4188 /* GLEnlargeControl.swift in Sources */,
+				85E5CC11257E7F98003C2A2B /* NSMutableAttributedString+GLAttributedString.swift in Sources */,
 				B4F8AAE2257DDFF3004C932C /* GLDatingLocalPush.swift in Sources */,
 				8506640E2550493C00EB4188 /* String+GLExtension.swift in Sources */,
 				B4262D8C2579F9C400AA144B /* GLChainCompatible.swift in Sources */,
@@ -843,6 +854,7 @@
 				8506641E2550493C00EB4188 /* GLBaseViewController.swift in Sources */,
 				8594C76B257CB63000D3C9C7 /* UICollectionViewFlowLayout+GLChain.swift in Sources */,
 				8506641C2550493C00EB4188 /* GLCusNaviBarTitle.swift in Sources */,
+				85E5CC0D257E7E49003C2A2B /* GLAttributedString.swift in Sources */,
 				859E67EE25455E22005F1115 /* NextViewController.swift in Sources */,
 				85DBE0ED2577DAD700E2DF24 /* GLDatingMessageNotification.swift in Sources */,
 				183111FA2446A8D400155620 /* Test.m in Sources */,

@@ -267,7 +267,8 @@ extension GLCusNavigationBar {
             for (_, item) in (self.leftItems ?? []).enumerated() {
                 if let item = item as? GLCusNaviBarButtonItem, let view = item.view {
                     switch item.layoutType {
-                        case .custom(let y, let width, let height):
+                        case .custom(let width, let height):
+                            let y = (self.barHeight - height) / 2.0
                             view.frame = CGRect(x: leftDistance, y: y, width: width, height: height)
                             leftDistance += width
                         case .auto:
@@ -296,7 +297,8 @@ extension GLCusNavigationBar {
             for (_, item) in (self.rightItems ?? []).enumerated().reversed() {
                 if let item = item as? GLCusNaviBarButtonItem, let view = item.view {
                     switch item.layoutType {
-                        case .custom(let y, let width, let height):
+                        case .custom(let width, let height):
+                            let y = (self.barHeight - height) / 2.0
                             view.frame = CGRect(x: barWidth - rightDistance - width, y: y, width: width, height: height)
                             rightDistance += width
                         case .auto:

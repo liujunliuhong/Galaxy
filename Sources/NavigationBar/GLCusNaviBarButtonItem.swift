@@ -12,7 +12,7 @@ import UIKit
 public class GLCusNaviBarButtonItem {
     
     public enum LayoutType {
-        case custom(y: CGFloat, width: CGFloat, height: CGFloat)
+        case custom(width: CGFloat, height: CGFloat)
         case auto  // 需要实现`view`的`intrinsicContentSize`方法，且是垂直居中显示
     }
     

@@ -39,7 +39,7 @@ public class GLCusNavigationBarDemoViewController: GLBaseViewController {
             let button = UIButton(type: .system)
             button.backgroundColor = .gray
             button.setTitle("button", for: .normal)
-            let leftItem1 = GLCusNaviBarButtonItem(view: button, layoutType: .custom(y: 0, width: 80, height: self.cusNaviBar.barHeight))
+            let leftItem1 = GLCusNaviBarButtonItem(view: button, layoutType: .custom(width: 80, height: self.cusNaviBar.barHeight))
             self.cusNaviBar.leftItems = [space, leftItem1]
             
             let graidentLayer = CAGradientLayer()

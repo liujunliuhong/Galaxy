@@ -11,6 +11,11 @@ import UIKit
 
 extension UIColor {
     
+    public static let gl_white: UIColor = UIColor.gl_rgba(R: 255, G: 255, B: 255)
+    public static let gl_black: UIColor = UIColor.gl_rgba(R: 0, G: 0, B: 0)
+    public static let gl_clear: UIColor = UIColor.gl_black.withAlphaComponent(0)
+    
+    
     public static func gl_rgba(R: Int, G: Int, B: Int, A: CGFloat = 1.0) -> UIColor {
         return UIColor(red: (CGFloat(R) / 255.0), green: (CGFloat(G) / 255.0), blue: (CGFloat(B) / 255.0), alpha: A)
     }
@@ -32,8 +37,8 @@ extension UIColor {
     }
     
     // "#ffffff", "#FFFFFF", "#fff", "255, 255, 255", "255,255,255", "0xFFFFFF"
-    public static func gl_color(string: String?) -> UIColor? {
-        guard var string = string else { return nil }
+    public static func gl_color(string: String?) -> UIColor {
+        guard var string = string else { return .gl_clear }
         
         string = string.uppercased()
         string = string.replacingOccurrences(of: "#", with: "")
@@ -76,7 +81,7 @@ extension UIColor {
                 break
         }
         
-        return hexColor
+        return hexColor ?? .gl_clear
     }
 }
 

@@ -126,6 +126,20 @@ Pod::Spec.new do |s|
     end
   end
 
+  # Navigation
+  s.subspec 'Navigation' do |ss|
+    ss.source_files = 'Sources/Navigation/*.swift'
+  end
+
+  # Notification
+  s.subspec 'Notification' do |ss|
+    ss.source_files = 'Sources/Notification/*.swift'
+  end
+
+  # Crypto
+  s.subspec 'Crypto' do |ss|
+    ss.source_files = 'Sources/Crypto/*.swift'
+  end
 
   # Dating
   s.subspec 'Dating' do |ss|
@@ -143,6 +157,31 @@ Pod::Spec.new do |s|
     # AVPlayer
     ss.subspec 'AVPlayer' do |sss|
       sss.source_files = 'Sources/Dating/AVPlayer/*.swift'
+    end
+    # Online
+    ss.subspec 'AVPlayer' do |sss|
+      sss.source_files = 'Sources/Dating/Online/*.swift'
+    end
+    # Error
+    ss.subspec 'Error' do |sss|
+      sss.source_files = 'Sources/Dating/Error/*.swift'
+    end
+    # Local Push
+    ss.subspec 'LocalPush' do |sss|
+      sss.source_files = 'Sources/Dating/LocalPush/*.swift'
+    end
+    # RobotMessage
+    ss.subspec 'RobotMessage' do |sss|
+      sss.source_files = 'Sources/Dating/RobotMessage/*.swift'
+    end
+    # Web
+    ss.subspec 'Web' do |sss|
+      sss.source_files = 'Sources/Dating/Web/*.swift'
+      sss.dependency 'SnapKit'
+      sss.dependency 'RxSwift'
+      sss.dependency 'RxCocoa'
+      sss.dependency 'NSObject_Rx'
+      sss.resource = 'Sources/Dating/Web/GLDatingWeb.bundle'
     end
     
   end

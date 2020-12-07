@@ -138,6 +138,8 @@ class ViewController: UIViewController {
 //        let sort = SwiftyWordsSort<Model>()
 //        let result = SwiftyWordsSort.getFirstEnglishWords(string: " ,.,;'!@#$%^&*() 嘻嘻哈哈啦啦abc ")
 //        print("\(result)")
+        
+        GLNotification.default.registerNotification()
     }
 }
 
@@ -185,22 +187,22 @@ extension ViewController {
         
         
         
-        let node = Node()
-        let options = GLAlertOptions(from: .topCenter(bottom: 0), to: .bottomCenter(bottom: 40), dismissTo: .topCenter(bottom: 0))
-
-        options.willShowClosure = {
-            print("willShowClosure")
-        }
-        options.didShowClosure = {
-            print("didShowClosure")
-        }
-        options.willDismissClosure = {
-            print("willDismissClosure")
-        }
-        options.didDismissClosure = {
-            print("didDismissClosure")
-        }
-        GLAlert.default.show(node: node, containerWidth: 300, options: options)
+//        let node = Node()
+//        let options = GLAlertOptions(from: .topCenter(bottom: 0), to: .bottomCenter(bottom: 40), dismissTo: .topCenter(bottom: 0))
+//
+//        options.willShowClosure = {
+//            print("willShowClosure")
+//        }
+//        options.didShowClosure = {
+//            print("didShowClosure")
+//        }
+//        options.willDismissClosure = {
+//            print("willDismissClosure")
+//        }
+//        options.didDismissClosure = {
+//            print("didDismissClosure")
+//        }
+//        GLAlert.default.show(node: node, containerWidth: 300, options: options)
         
 
 //        let alertView = AlertView()
@@ -228,6 +230,9 @@ extension ViewController {
 //
 //        GLDatingMessageNotificationManager.default.show(options: options, from: .bottomCenter(top: 0), to: .bottomCenter(bottom: 50))
         
+//        GLDatingLocalPush.default.openLocalPushForEveryDay(message: "hello")
+        
+        GLDatingWebViewController.show(with: self, type: .privacyPolicy(title: "Privacy Policy"))
     }
 }
 

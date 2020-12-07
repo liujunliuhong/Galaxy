@@ -92,6 +92,15 @@
 		B4ED1C6E255E72BE00115895 /* GLBaiDuLocationTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ED1C6D255E72BE00115895 /* GLBaiDuLocationTestViewController.m */; };
 		B4F8A9A1257DCD00004C932C /* UITableViewCell+GLChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F8A9A0257DCD00004C932C /* UITableViewCell+GLChain.swift */; };
 		B4F8A9A4257DCF45004C932C /* UICollectionViewCell+GLChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F8A9A3257DCF45004C932C /* UICollectionViewCell+GLChain.swift */; };
+		B4F8AACF257DDCEC004C932C /* GLDatingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F8AACE257DDCEB004C932C /* GLDatingError.swift */; };
+		B4F8AAD3257DDD17004C932C /* GLDatingOnlineState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F8AAD2257DDD17004C932C /* GLDatingOnlineState.swift */; };
+		B4F8AAD8257DDD8D004C932C /* GLNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F8AAD7257DDD8D004C932C /* GLNavigation.swift */; };
+		B4F8AADD257DDF2D004C932C /* GLNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F8AADC257DDF2D004C932C /* GLNotification.swift */; };
+		B4F8AAE2257DDFF3004C932C /* GLDatingLocalPush.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F8AAE1257DDFF3004C932C /* GLDatingLocalPush.swift */; };
+		B4F8AAE7257DF65D004C932C /* GLDatingRobotMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F8AAE6257DF65D004C932C /* GLDatingRobotMessage.swift */; };
+		B4F8AAEC257DF7E4004C932C /* String+GLMd5.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F8AAEB257DF7E4004C932C /* String+GLMd5.swift */; };
+		B4F8AAF1257DF955004C932C /* GLDatingWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F8AAF0257DF955004C932C /* GLDatingWebViewController.swift */; };
+		B4F8AAF5257DFA49004C932C /* GLDatingWeb.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B4F8AAF4257DFA49004C932C /* GLDatingWeb.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -189,6 +198,15 @@
 		B4ED1C6D255E72BE00115895 /* GLBaiDuLocationTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLBaiDuLocationTestViewController.m; sourceTree = "<group>"; };
 		B4F8A9A0257DCD00004C932C /* UITableViewCell+GLChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+GLChain.swift"; sourceTree = "<group>"; };
 		B4F8A9A3257DCF45004C932C /* UICollectionViewCell+GLChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+GLChain.swift"; sourceTree = "<group>"; };
+		B4F8AACE257DDCEB004C932C /* GLDatingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingError.swift; sourceTree = "<group>"; };
+		B4F8AAD2257DDD17004C932C /* GLDatingOnlineState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingOnlineState.swift; sourceTree = "<group>"; };
+		B4F8AAD7257DDD8D004C932C /* GLNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLNavigation.swift; sourceTree = "<group>"; };
+		B4F8AADC257DDF2D004C932C /* GLNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLNotification.swift; sourceTree = "<group>"; };
+		B4F8AAE1257DDFF3004C932C /* GLDatingLocalPush.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingLocalPush.swift; sourceTree = "<group>"; };
+		B4F8AAE6257DF65D004C932C /* GLDatingRobotMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingRobotMessage.swift; sourceTree = "<group>"; };
+		B4F8AAEB257DF7E4004C932C /* String+GLMd5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+GLMd5.swift"; sourceTree = "<group>"; };
+		B4F8AAF0257DF955004C932C /* GLDatingWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingWebViewController.swift; sourceTree = "<group>"; };
+		B4F8AAF4257DFA49004C932C /* GLDatingWeb.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GLDatingWeb.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -262,6 +280,9 @@
 		850663DB2550492900EB4188 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				B4F8AAEA257DF7CC004C932C /* Crypto */,
+				B4F8AADB257DDF11004C932C /* Notification */,
+				B4F8AAD6257DDD78004C932C /* Navigation */,
 				85CC972925793FAD002B993F /* Chain */,
 				85CC969F257933F4002B993F /* PickerView */,
 				85CC969725793284002B993F /* WordsSort */,
@@ -475,6 +496,11 @@
 		85DBE0EA2577DAA400E2DF24 /* Dating */ = {
 			isa = PBXGroup;
 			children = (
+				B4F8AAEF257DF889004C932C /* Web */,
+				B4F8AAE5257DF646004C932C /* RobotMessage */,
+				B4F8AAE0257DDFE5004C932C /* LocalPush */,
+				B4F8AAC9257DDBCE004C932C /* Error */,
+				B4F8AAC5257DDAD6004C932C /* Online */,
 				B49CE1AA2578B8B10064B51B /* AVPlayer */,
 				B49CE1A52578B3C10064B51B /* AudioPlay */,
 				85DBE0EB2577DAAB00E2DF24 /* MessageNotification */,
@@ -517,6 +543,71 @@
 				B4ED1C6D255E72BE00115895 /* GLBaiDuLocationTestViewController.m */,
 			);
 			path = BaiDuLocation;
+			sourceTree = "<group>";
+		};
+		B4F8AAC5257DDAD6004C932C /* Online */ = {
+			isa = PBXGroup;
+			children = (
+				B4F8AAD2257DDD17004C932C /* GLDatingOnlineState.swift */,
+			);
+			path = Online;
+			sourceTree = "<group>";
+		};
+		B4F8AAC9257DDBCE004C932C /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				B4F8AACE257DDCEB004C932C /* GLDatingError.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		B4F8AAD6257DDD78004C932C /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				B4F8AAD7257DDD8D004C932C /* GLNavigation.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		B4F8AADB257DDF11004C932C /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				B4F8AADC257DDF2D004C932C /* GLNotification.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		B4F8AAE0257DDFE5004C932C /* LocalPush */ = {
+			isa = PBXGroup;
+			children = (
+				B4F8AAE1257DDFF3004C932C /* GLDatingLocalPush.swift */,
+			);
+			path = LocalPush;
+			sourceTree = "<group>";
+		};
+		B4F8AAE5257DF646004C932C /* RobotMessage */ = {
+			isa = PBXGroup;
+			children = (
+				B4F8AAE6257DF65D004C932C /* GLDatingRobotMessage.swift */,
+			);
+			path = RobotMessage;
+			sourceTree = "<group>";
+		};
+		B4F8AAEA257DF7CC004C932C /* Crypto */ = {
+			isa = PBXGroup;
+			children = (
+				B4F8AAEB257DF7E4004C932C /* String+GLMd5.swift */,
+			);
+			path = Crypto;
+			sourceTree = "<group>";
+		};
+		B4F8AAEF257DF889004C932C /* Web */ = {
+			isa = PBXGroup;
+			children = (
+				B4F8AAF0257DF955004C932C /* GLDatingWebViewController.swift */,
+				B4F8AAF4257DFA49004C932C /* GLDatingWeb.bundle */,
+			);
+			path = Web;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -581,6 +672,7 @@
 			files = (
 				1831115724469EB900155620 /* LaunchScreen.storyboard in Resources */,
 				1818101E248E10F200BB4D03 /* test.png in Resources */,
+				B4F8AAF5257DFA49004C932C /* GLDatingWeb.bundle in Resources */,
 				850664182550493C00EB4188 /* GLHud.bundle in Resources */,
 				1831115424469EB900155620 /* Assets.xcassets in Resources */,
 				850664152550493C00EB4188 /* GLSystemFace.bundle in Resources */,
@@ -642,9 +734,11 @@
 				850664092550493C00EB4188 /* GLFlowItemsAutoMarginDisplayNode.swift in Sources */,
 				B4735D28257A4CAA002F7566 /* CALayer+GLChain.swift in Sources */,
 				B4ED1C6E255E72BE00115895 /* GLBaiDuLocationTestViewController.m in Sources */,
+				B4F8AAD3257DDD17004C932C /* GLDatingOnlineState.swift in Sources */,
 				850664142550493C00EB4188 /* GLSystemFace.swift in Sources */,
 				85CC96AB25793427002B993F /* GLCityModel.swift in Sources */,
 				B4735CFF257A3BFF002F7566 /* UIImageView+GLChain.swift in Sources */,
+				B4F8AADD257DDF2D004C932C /* GLNotification.swift in Sources */,
 				85CC969B25793290002B993F /* String+GLWords.swift in Sources */,
 				8506640D2550493C00EB4188 /* Bundle+GLExtension.swift in Sources */,
 				B4735D0E257A3C7D002F7566 /* UISwitch+GLChain.swift in Sources */,
@@ -652,16 +746,20 @@
 				85CC969C25793290002B993F /* GLWordsSort.swift in Sources */,
 				85CC96A925793427002B993F /* GLDatePickerView.swift in Sources */,
 				B4735D11257A3C9A002F7566 /* UIActivityIndicatorView+GLChain.swift in Sources */,
+				B4F8AAEC257DF7E4004C932C /* String+GLMd5.swift in Sources */,
 				8594C76F257CC0D000D3C9C7 /* UIStackView+GLChain.swift in Sources */,
+				B4F8AAD8257DDD8D004C932C /* GLNavigation.swift in Sources */,
 				B4ED1C61255E685900115895 /* Keys.swift in Sources */,
 				B4735D14257A3D07002F7566 /* UICollectionView+GLChain.swift in Sources */,
 				B4ED1C69255E6FB900115895 /* GLBaiDuLocation.m in Sources */,
 				B4262D8F2579FBC500AA144B /* UIView+GLChain.swift in Sources */,
+				B4F8AAF1257DF955004C932C /* GLDatingWebViewController.swift in Sources */,
 				850664072550493C00EB4188 /* GLMapManager.swift in Sources */,
 				85DBE0F12577DB0900E2DF24 /* GLDatingMessageNotificationOptions.swift in Sources */,
 				850664222550493C00EB4188 /* UIImage+GLExtension.swift in Sources */,
 				B4262D922579FBD200AA144B /* UILabel+GLChain.swift in Sources */,
 				850664242550493C00EB4188 /* GLEnlargeControl.swift in Sources */,
+				B4F8AAE2257DDFF3004C932C /* GLDatingLocalPush.swift in Sources */,
 				8506640E2550493C00EB4188 /* String+GLExtension.swift in Sources */,
 				B4262D8C2579F9C400AA144B /* GLChainCompatible.swift in Sources */,
 				B4735CFC257A3A16002F7566 /* UIControl+GLChain.swift in Sources */,
@@ -670,6 +768,7 @@
 				85DBE0E62577DA2400E2DF24 /* GLWeakProxy.m in Sources */,
 				8506640A2550493C00EB4188 /* GLFlowItemsAutoWidthDisplayNode.swift in Sources */,
 				B4F8A9A4257DCF45004C932C /* UICollectionViewCell+GLChain.swift in Sources */,
+				B4F8AACF257DDCEC004C932C /* GLDatingError.swift in Sources */,
 				8594C767257C98A400D3C9C7 /* UICollectionViewLayout+GLChain.swift in Sources */,
 				85CC969D25793290002B993F /* GLWordsSortResult.swift in Sources */,
 				850664102550493C00EB4188 /* CGFloat+GLExtension.swift in Sources */,
@@ -715,6 +814,7 @@
 				859E67EE25455E22005F1115 /* NextViewController.swift in Sources */,
 				85DBE0ED2577DAD700E2DF24 /* GLDatingMessageNotification.swift in Sources */,
 				183111FA2446A8D400155620 /* Test.m in Sources */,
+				B4F8AAE7257DF65D004C932C /* GLDatingRobotMessage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

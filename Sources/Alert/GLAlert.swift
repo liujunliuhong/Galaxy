@@ -107,38 +107,37 @@ extension GLAlert {
         } else {
             keyWindow.addSubnode(node)
         }
+
+        let containerHeight = node.layoutThatFits(ASSizeRangeMake(CGSize(width: containerWidth, height: 0), CGSize(width: containerWidth, height: CGFloat.greatestFiniteMagnitude))).size.height
+
+        objc_setAssociatedObject(node, &Keys.associatedKey, options, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         
         self.currentNode = node
         
-        let containerHeight = node.layoutThatFits(ASSizeRangeMake(CGSize(width: containerWidth, height: 0), CGSize(width: containerWidth, height: CGFloat.greatestFiniteMagnitude))).size.height
-        node.setNeedsLayout()
-        node.layoutIfNeeded()
-        
-        objc_setAssociatedObject(node, &Keys.associatedKey, options, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        
         if options.from == GLAlertFromPosition.none {
             self.maskView?.backgroundColor = options.translucentColor
-            let frame = self.getEndFrame(to: options.to, containerWidth: containerWidth, containerHeight: containerHeight)
-            node.frame = frame
+            self.setEndViewConstraints(view: node.view, to: options.to, size: node.calculatedSize)
             options.willShowClosure?()
             options.didShowClosure?()
             return true
         }
         
-        let initialFrame = getInitialFrame(from: options.from, containerWidth: containerWidth, containerHeight: containerHeight)
-        node.frame = initialFrame
+        self.setInitialViewConstraints(view: node.view, from: options.from, size: CGSize(width: containerWidth, height: containerHeight), isRemake: false)
+        
+        node.view.superview?.layoutIfNeeded()
         
         self.maskView?.isUserInteractionEnabled = false
+        
+        self.setEndViewConstraints(view: node.view, to: options.to, size: node.calculatedSize)
         
         options.willShowClosure?()
         UIView.animate(withDuration: options.duration, delay: 0, usingSpringWithDamping: defaultUsingSpringWithDamping, initialSpringVelocity: defaultInitialSpringVelocity, options: options.animationOptions) {
             self.maskView?.backgroundColor = options.translucentColor
-            node.frame = self.getEndFrame(to: options.to, containerWidth: containerWidth, containerHeight: containerHeight)
+            node.view.superview?.layoutIfNeeded()
         } completion: { (_) in
             options.didShowClosure?()
             self.maskView?.isUserInteractionEnabled = true
         }
-        
         return true
     }
 }
@@ -166,31 +165,31 @@ extension GLAlert {
             keyWindow.addSubview(backgroundView)
             backgroundView.addSubview(maskView)
             keyWindow.addSubview(view)
-            self.currentView = view
             self.backgroundView = backgroundView
             self.maskView = maskView
         } else {
             keyWindow.addSubview(view)
-            self.currentView = view
         }
+        
+        self.currentView = view
         
         objc_setAssociatedObject(view, &Keys.associatedKey, options, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         
         if options.from == GLAlertFromPosition.none {
             self.maskView?.backgroundColor = options.translucentColor
-            self.setEndViewConstraints(view: view, to: options.to)
+            self.setEndViewConstraints(view: view, to: options.to, size: nil)
             options.willShowClosure?()
             options.didShowClosure?()
             return true
         }
         
-        self.setInitialViewConstraints(view: view, from: options.from, isRemake: false)
+        self.setInitialViewConstraints(view: view, from: options.from, size: nil, isRemake: false)
         view.superview?.layoutIfNeeded()
         view.layoutIfNeeded()
         
         self.maskView?.isUserInteractionEnabled = false
         
-        self.setEndViewConstraints(view: view, to: options.to)
+        self.setEndViewConstraints(view: view, to: options.to, size: nil)
         
         options.willShowClosure?()
         UIView.animate(withDuration: options.duration, delay: 0, usingSpringWithDamping: defaultUsingSpringWithDamping, initialSpringVelocity: defaultInitialSpringVelocity, options: options.animationOptions) {
@@ -209,39 +208,29 @@ extension GLAlert {
     @objc public func dismiss() {
         if let currentView = self.currentView {
             let options = (objc_getAssociatedObject(currentView, &Keys.associatedKey) as? GLAlertOptions) ?? defaultOptions
-            if options.dismissTo == GLAlertFromPosition.none {
-                self.immediatelyRelease()
-                return
-            }
-            self.maskView?.isUserInteractionEnabled = false
-            options.willDismissClosure?()
-            self.setInitialViewConstraints(view: currentView, from: options.dismissTo, isRemake: true)
-            UIView.animate(withDuration: options.duration, delay: 0, options: options.animationOptions) {
-                self.maskView?.backgroundColor = GLAlertStartColor
-                self.currentView?.superview?.layoutIfNeeded()
-            } completion: { (_) in
-                self.maskView?.isUserInteractionEnabled = true
-                options.didDismissClosure?()
-                self.release()
-            }
+            self._dismiss(options: options,view: currentView, size: nil)
         }
         if let currentNode = self.currentNode {
             let options = (objc_getAssociatedObject(currentNode, &Keys.associatedKey) as? GLAlertOptions) ?? defaultOptions
-            if options.dismissTo == GLAlertFromPosition.none {
-                self.immediatelyRelease()
-                return
-            }
-            let nodeSize: CGSize = currentNode.frame.size
-            self.maskView?.isUserInteractionEnabled = false
-            options.willDismissClosure?()
-            UIView.animate(withDuration: options.duration, delay: 0, options: options.animationOptions) {
-                self.maskView?.backgroundColor = GLAlertStartColor
-                currentNode.frame = self.getInitialFrame(from: options.dismissTo, containerWidth: nodeSize.width, containerHeight: nodeSize.height)
-            } completion: { (_) in
-                self.maskView?.isUserInteractionEnabled = true
-                options.didDismissClosure?()
-                self.release()
-            }
+            self._dismiss(options: options, view: currentNode.view, size: currentNode.calculatedSize)
+        }
+    }
+    
+    private func _dismiss(options: GLAlertOptions, view: UIView?, size: CGSize?) {
+        if options.dismissTo == GLAlertFromPosition.none {
+            self.immediatelyRelease()
+            return
+        }
+        self.maskView?.isUserInteractionEnabled = false
+        options.willDismissClosure?()
+        self.setInitialViewConstraints(view: view, from: options.dismissTo, size: size, isRemake: true)
+        UIView.animate(withDuration: options.duration, delay: 0, options: options.animationOptions) {
+            self.maskView?.backgroundColor = GLAlertStartColor
+            view?.superview?.layoutIfNeeded()
+        } completion: { (_) in
+            self.maskView?.isUserInteractionEnabled = true
+            options.didDismissClosure?()
+            self.release()
         }
     }
 }
@@ -290,98 +279,8 @@ extension GLAlert {
     }
 }
 
-
-
-
 extension GLAlert {
-    /// 获取初始frame
-    private func getInitialFrame(from: GLAlertFromPosition, containerWidth: CGFloat, containerHeight: CGFloat) -> CGRect {
-        var rect: CGRect = .zero
-        rect.size.width = containerWidth
-        rect.size.height = containerHeight
-        switch from {
-            case .topLeft(let bottom, let left):
-                rect.origin.x = left
-                rect.origin.y = -containerHeight - bottom
-            case .topCenter(let bottom):
-                rect.origin.x = (UIScreen.main.bounds.width - containerWidth) / 2.0
-                rect.origin.y = -containerHeight - bottom
-            case .topRight(let bottom, let right):
-                rect.origin.x = UIScreen.main.bounds.width - containerWidth - right
-                rect.origin.y = -containerHeight - bottom
-            case .leftTop(let right, let top):
-                rect.origin.x = -containerWidth - right
-                rect.origin.y = top
-            case .leftCenter(let right):
-                rect.origin.x = -containerWidth - right
-                rect.origin.y = (UIScreen.main.bounds.height - containerHeight) / 2.0
-            case .leftBottom(let right, let bottom):
-                rect.origin.x = -containerWidth - right
-                rect.origin.y = UIScreen.main.bounds.height - containerHeight - bottom
-            case .bottomLeft(let top, let left):
-                rect.origin.x = left
-                rect.origin.y = UIScreen.main.bounds.height + top
-            case .bottomCenter(let top):
-                rect.origin.x = (UIScreen.main.bounds.width - containerWidth) / 2.0
-                rect.origin.y = UIScreen.main.bounds.height + top
-            case .bottomRight(let top, let right):
-                rect.origin.x = UIScreen.main.bounds.width - containerWidth - right
-                rect.origin.y = UIScreen.main.bounds.height + top
-            case .rightTop(let left, let top):
-                rect.origin.x = UIScreen.main.bounds.width + left
-                rect.origin.y = top
-            case .rightCenter(let left):
-                rect.origin.x = UIScreen.main.bounds.width + left
-                rect.origin.y = (UIScreen.main.bounds.height - containerHeight) / 2.0
-            case .rightBottom(let left, let bottom):
-                rect.origin.x = UIScreen.main.bounds.width + left
-                rect.origin.y = UIScreen.main.bounds.height - containerHeight - bottom
-            case .none:
-                rect = .zero
-        }
-        return rect
-    }
-    
-    /// 获取最终显示的frame
-    private func getEndFrame(to: GLAlertDestinationPostion, containerWidth: CGFloat, containerHeight: CGFloat) -> CGRect {
-        var rect: CGRect = .zero
-        rect.size.width = containerWidth
-        rect.size.height = containerHeight
-        switch to {
-            case .topLeft(let top, let left):
-                rect.origin.x = left
-                rect.origin.y = top
-            case .topCenter(let top):
-                rect.origin.x = (UIScreen.main.bounds.width - containerWidth) / 2.0
-                rect.origin.y = top
-            case .topRight(let top, let right):
-                rect.origin.x = UIScreen.main.bounds.width - containerWidth - right
-                rect.origin.y = top
-            case .leftCenter(let left):
-                rect.origin.x = left
-                rect.origin.y = (UIScreen.main.bounds.height - containerHeight) / 2.0
-            case .bottomLeft(let bottom, let left):
-                rect.origin.x = left
-                rect.origin.y = UIScreen.main.bounds.height - containerHeight - bottom
-            case .bottomCenter(let bottom):
-                rect.origin.x = (UIScreen.main.bounds.width - containerWidth) / 2.0
-                rect.origin.y = UIScreen.main.bounds.height - containerHeight - bottom
-            case .bottomRight(let bottom, let right):
-                rect.origin.x = UIScreen.main.bounds.width - containerWidth - right
-                rect.origin.y = UIScreen.main.bounds.height - containerHeight - bottom
-            case .rightCenter(let right):
-                rect.origin.x = UIScreen.main.bounds.width - containerWidth - right
-                rect.origin.y = (UIScreen.main.bounds.height - containerHeight) / 2.0
-            case .center:
-                rect.origin.x = (UIScreen.main.bounds.width - containerWidth) / 2.0
-                rect.origin.y = (UIScreen.main.bounds.height - containerHeight) / 2.0
-        }
-        return rect
-    }
-}
-
-extension GLAlert {
-    private func setInitialViewConstraints(view: UIView?, from: GLAlertFromPosition, isRemake: Bool) {
+    private func setInitialViewConstraints(view: UIView?, from: GLAlertFromPosition, size: CGSize?, isRemake: Bool) {
         guard let view = view else { return }
         guard let superview = view.superview else { return }
         switch from {
@@ -390,11 +289,17 @@ extension GLAlert {
                     view.snp.remakeConstraints({ (make) in
                         make.left.equalToSuperview().offset(left)
                         make.bottom.equalTo(superview.snp.top).offset(-bottom)
+                        if let size = size {
+                            make.size.equalTo(size)
+                        }
                     })
                 } else {
                     view.snp.makeConstraints({ (make) in
                         make.left.equalToSuperview().offset(left)
                         make.bottom.equalTo(superview.snp.top).offset(-bottom)
+                        if let size = size {
+                            make.size.equalTo(size)
+                        }
                     })
                 }
             case .topCenter(let bottom):
@@ -402,11 +307,17 @@ extension GLAlert {
                     view.snp.remakeConstraints({ (make) in
                         make.centerX.equalToSuperview()
                         make.bottom.equalTo(superview.snp.top).offset(-bottom)
+                        if let size = size {
+                            make.size.equalTo(size)
+                        }
                     })
                 } else {
                     view.snp.makeConstraints({ (make) in
                         make.centerX.equalToSuperview()
                         make.bottom.equalTo(superview.snp.top).offset(-bottom)
+                        if let size = size {
+                            make.size.equalTo(size)
+                        }
                     })
                 }
             case .topRight(let bottom, let right):
@@ -414,11 +325,17 @@ extension GLAlert {
                     view.snp.remakeConstraints({ (make) in
                         make.right.equalToSuperview().offset(-right)
                         make.bottom.equalTo(superview.snp.top).offset(-bottom)
+                        if let size = size {
+                            make.size.equalTo(size)
+                        }
                     })
                 } else {
                     view.snp.makeConstraints({ (make) in
                         make.right.equalToSuperview().offset(-right)
                         make.bottom.equalTo(superview.snp.top).offset(-bottom)
+                        if let size = size {
+                            make.size.equalTo(size)
+                        }
                     })
                 }
             case .leftTop(let right, let top):
@@ -426,11 +343,17 @@ extension GLAlert {
                     view.snp.remakeConstraints({ (make) in
                         make.top.equalToSuperview().offset(top)
                         make.right.equalTo(superview.snp.left).offset(-right)
+                        if let size = size {
+                            make.size.equalTo(size)
+                        }
                     })
                 } else {
                     view.snp.makeConstraints({ (make) in
                         make.top.equalToSuperview().offset(top)
                         make.right.equalTo(superview.snp.left).offset(-right)
+                        if let size = size {
+                            make.size.equalTo(size)
+                        }
                     })
                 }
             case .leftCenter(let right):
@@ -438,11 +361,17 @@ extension GLAlert {
                     view.snp.remakeConstraints({ (make) in
                         make.centerY.equalToSuperview()
                         make.right.equalTo(superview.snp.left).offset(-right)
+                        if let size = size {
+                            make.size.equalTo(size)
+                        }
                     })
                 } else {
                     view.snp.makeConstraints({ (make) in
                         make.centerY.equalToSuperview()
                         make.right.equalTo(superview.snp.left).offset(-right)
+                        if let size = size {
+                            make.size.equalTo(size)
+                        }
                     })
                 }
             case .leftBottom(let right, let bottom):
@@ -450,11 +379,17 @@ extension GLAlert {
                     view.snp.remakeConstraints({ (make) in
                         make.bottom.equalToSuperview().offset(-bottom)
                         make.right.equalTo(superview.snp.left).offset(-right)
+                        if let size = size {
+                            make.size.equalTo(size)
+                        }
                     })
                 } else {
                     view.snp.makeConstraints({ (make) in
                         make.bottom.equalToSuperview().offset(-bottom)
                         make.right.equalTo(superview.snp.left).offset(-right)
+                        if let size = size {
+                            make.size.equalTo(size)
+                        }
                     })
                 }
             case .bottomLeft(let top, let left):
@@ -462,11 +397,17 @@ extension GLAlert {
                     view.snp.remakeConstraints({ (make) in
                         make.top.equalTo(superview.snp.bottom).offset(top)
                         make.left.equalToSuperview().offset(left)
+                        if let size = size {
+                            make.size.equalTo(size)
+                        }
                     })
                 } else {
                     view.snp.makeConstraints({ (make) in
                         make.top.equalTo(superview.snp.bottom).offset(top)
                         make.left.equalToSuperview().offset(left)
+                        if let size = size {
+                            make.size.equalTo(size)
+                        }
                     })
                 }
             case .bottomCenter(let top):
@@ -474,11 +415,17 @@ extension GLAlert {
                     view.snp.remakeConstraints({ (make) in
                         make.top.equalTo(superview.snp.bottom).offset(top)
                         make.centerX.equalToSuperview()
+                        if let size = size {
+                            make.size.equalTo(size)
+                        }
                     })
                 } else {
                     view.snp.makeConstraints({ (make) in
                         make.top.equalTo(superview.snp.bottom).offset(top)
                         make.centerX.equalToSuperview()
+                        if let size = size {
+                            make.size.equalTo(size)
+                        }
                     })
                 }
             case .bottomRight(let top, let right):
@@ -486,11 +433,17 @@ extension GLAlert {
                     view.snp.remakeConstraints({ (make) in
                         make.top.equalTo(superview.snp.bottom).offset(top)
                         make.right.equalToSuperview().offset(-right)
+                        if let size = size {
+                            make.size.equalTo(size)
+                        }
                     })
                 } else {
                     view.snp.makeConstraints({ (make) in
                         make.top.equalTo(superview.snp.bottom).offset(top)
                         make.right.equalToSuperview().offset(-right)
+                        if let size = size {
+                            make.size.equalTo(size)
+                        }
                     })
                 }
             case .rightTop(let left, let top):
@@ -498,11 +451,17 @@ extension GLAlert {
                     view.snp.remakeConstraints({ (make) in
                         make.top.equalTo(superview.snp.bottom).offset(top)
                         make.left.equalTo(superview.snp.right).offset(left)
+                        if let size = size {
+                            make.size.equalTo(size)
+                        }
                     })
                 } else {
                     view.snp.makeConstraints({ (make) in
                         make.top.equalTo(superview.snp.bottom).offset(top)
                         make.left.equalTo(superview.snp.right).offset(left)
+                        if let size = size {
+                            make.size.equalTo(size)
+                        }
                     })
                 }
             case .rightCenter(let left):
@@ -510,11 +469,17 @@ extension GLAlert {
                     view.snp.remakeConstraints({ (make) in
                         make.centerY.equalToSuperview()
                         make.left.equalTo(superview.snp.right).offset(left)
+                        if let size = size {
+                            make.size.equalTo(size)
+                        }
                     })
                 } else {
                     view.snp.makeConstraints({ (make) in
                         make.centerY.equalToSuperview()
                         make.left.equalTo(superview.snp.right).offset(left)
+                        if let size = size {
+                            make.size.equalTo(size)
+                        }
                     })
                 }
             case .rightBottom(let left, let bottom):
@@ -522,11 +487,17 @@ extension GLAlert {
                     view.snp.remakeConstraints({ (make) in
                         make.bottom.equalToSuperview().offset(-bottom)
                         make.left.equalTo(superview.snp.right).offset(left)
+                        if let size = size {
+                            make.size.equalTo(size)
+                        }
                     })
                 } else {
                     view.snp.makeConstraints({ (make) in
                         make.bottom.equalToSuperview().offset(-bottom)
                         make.left.equalTo(superview.snp.right).offset(left)
+                        if let size = size {
+                            make.size.equalTo(size)
+                        }
                     })
                 }
             default:
@@ -534,7 +505,7 @@ extension GLAlert {
         }
     }
     
-    private func setEndViewConstraints(view: UIView?, to: GLAlertDestinationPostion) {
+    private func setEndViewConstraints(view: UIView?, to: GLAlertDestinationPostion, size: CGSize?) {
         guard let view = view else { return }
         guard let _ = view.superview else { return }
         switch to {
@@ -542,47 +513,199 @@ extension GLAlert {
                 view.snp.remakeConstraints { (make) in
                     make.top.equalToSuperview().offset(top)
                     make.left.equalToSuperview().offset(left)
+                    if let size = size {
+                        make.size.equalTo(size)
+                    }
                 }
             case .topCenter(let top):
                 view.snp.remakeConstraints { (make) in
                     make.top.equalToSuperview().offset(top)
                     make.centerX.equalToSuperview()
+                    if let size = size {
+                        make.size.equalTo(size)
+                    }
                 }
             case .topRight(let top, let right):
                 view.snp.remakeConstraints { (make) in
                     make.top.equalToSuperview().offset(top)
                     make.right.equalToSuperview().offset(-right)
+                    if let size = size {
+                        make.size.equalTo(size)
+                    }
                 }
             case .leftCenter(let left):
                 view.snp.remakeConstraints { (make) in
                     make.centerY.equalToSuperview()
                     make.left.equalToSuperview().offset(left)
+                    if let size = size {
+                        make.size.equalTo(size)
+                    }
                 }
             case .bottomLeft(let bottom, let left):
                 view.snp.remakeConstraints { (make) in
                     make.bottom.equalToSuperview().offset(-bottom)
                     make.left.equalToSuperview().offset(left)
+                    if let size = size {
+                        make.size.equalTo(size)
+                    }
                 }
             case .bottomCenter(let bottom):
                 view.snp.remakeConstraints { (make) in
                     make.centerX.equalToSuperview()
                     make.bottom.equalToSuperview().offset(-bottom)
+                    if let size = size {
+                        make.size.equalTo(size)
+                    }
                 }
             case .bottomRight(let bottom, let right):
                 view.snp.remakeConstraints { (make) in
                     make.right.equalToSuperview().offset(-right)
                     make.bottom.equalToSuperview().offset(-bottom)
+                    if let size = size {
+                        make.size.equalTo(size)
+                    }
                 }
             case .rightCenter(let right):
                 view.snp.remakeConstraints { (make) in
                     make.centerY.equalToSuperview()
                     make.right.equalToSuperview().offset(-right)
+                    if let size = size {
+                        make.size.equalTo(size)
+                    }
                 }
             case .center:
                 view.snp.remakeConstraints { (make) in
                     make.centerX.equalToSuperview()
                     make.centerY.equalToSuperview()
+                    if let size = size {
+                        make.size.equalTo(size)
+                    }
                 }
         }
     }
 }
+
+
+
+/*
+ extension GLAlert {
+     /// 获取初始frame
+     private func getInitialFrame(from: GLAlertFromPosition, containerWidth: CGFloat, containerHeight: CGFloat) -> CGRect {
+         var rect: CGRect = .zero
+         rect.size.width = containerWidth
+         rect.size.height = containerHeight
+         switch from {
+             case .topLeft(let bottom, let left):
+                 rect.origin.x = left
+                 rect.origin.y = -containerHeight - bottom
+             case .topCenter(let bottom):
+                 rect.origin.x = (UIScreen.main.bounds.width - containerWidth) / 2.0
+                 rect.origin.y = -containerHeight - bottom
+             case .topRight(let bottom, let right):
+                 rect.origin.x = UIScreen.main.bounds.width - containerWidth - right
+                 rect.origin.y = -containerHeight - bottom
+             case .leftTop(let right, let top):
+                 rect.origin.x = -containerWidth - right
+                 rect.origin.y = top
+             case .leftCenter(let right):
+                 rect.origin.x = -containerWidth - right
+                 rect.origin.y = (UIScreen.main.bounds.height - containerHeight) / 2.0
+             case .leftBottom(let right, let bottom):
+                 rect.origin.x = -containerWidth - right
+                 rect.origin.y = UIScreen.main.bounds.height - containerHeight - bottom
+             case .bottomLeft(let top, let left):
+                 rect.origin.x = left
+                 rect.origin.y = UIScreen.main.bounds.height + top
+             case .bottomCenter(let top):
+                 rect.origin.x = (UIScreen.main.bounds.width - containerWidth) / 2.0
+                 rect.origin.y = UIScreen.main.bounds.height + top
+             case .bottomRight(let top, let right):
+                 rect.origin.x = UIScreen.main.bounds.width - containerWidth - right
+                 rect.origin.y = UIScreen.main.bounds.height + top
+             case .rightTop(let left, let top):
+                 rect.origin.x = UIScreen.main.bounds.width + left
+                 rect.origin.y = top
+             case .rightCenter(let left):
+                 rect.origin.x = UIScreen.main.bounds.width + left
+                 rect.origin.y = (UIScreen.main.bounds.height - containerHeight) / 2.0
+             case .rightBottom(let left, let bottom):
+                 rect.origin.x = UIScreen.main.bounds.width + left
+                 rect.origin.y = UIScreen.main.bounds.height - containerHeight - bottom
+             case .none:
+                 rect = .zero
+         }
+         return rect
+     }
+     
+     /// 获取最终显示的frame
+     private func getEndFrame(to: GLAlertDestinationPostion, containerWidth: CGFloat, containerHeight: CGFloat) -> CGRect {
+         var rect: CGRect = .zero
+         rect.size.width = containerWidth
+         rect.size.height = containerHeight
+         switch to {
+             case .topLeft(let top, let left):
+                 rect.origin.x = left
+                 rect.origin.y = top
+             case .topCenter(let top):
+                 rect.origin.x = (UIScreen.main.bounds.width - containerWidth) / 2.0
+                 rect.origin.y = top
+             case .topRight(let top, let right):
+                 rect.origin.x = UIScreen.main.bounds.width - containerWidth - right
+                 rect.origin.y = top
+             case .leftCenter(let left):
+                 rect.origin.x = left
+                 rect.origin.y = (UIScreen.main.bounds.height - containerHeight) / 2.0
+             case .bottomLeft(let bottom, let left):
+                 rect.origin.x = left
+                 rect.origin.y = UIScreen.main.bounds.height - containerHeight - bottom
+             case .bottomCenter(let bottom):
+                 rect.origin.x = (UIScreen.main.bounds.width - containerWidth) / 2.0
+                 rect.origin.y = UIScreen.main.bounds.height - containerHeight - bottom
+             case .bottomRight(let bottom, let right):
+                 rect.origin.x = UIScreen.main.bounds.width - containerWidth - right
+                 rect.origin.y = UIScreen.main.bounds.height - containerHeight - bottom
+             case .rightCenter(let right):
+                 rect.origin.x = UIScreen.main.bounds.width - containerWidth - right
+                 rect.origin.y = (UIScreen.main.bounds.height - containerHeight) / 2.0
+             case .center:
+                 rect.origin.x = (UIScreen.main.bounds.width - containerWidth) / 2.0
+                 rect.origin.y = (UIScreen.main.bounds.height - containerHeight) / 2.0
+         }
+         return rect
+     }
+ }
+ */
+/*
+ 
+//        self.currentNode = node
+//        let containerHeight = node.layoutThatFits(ASSizeRangeMake(CGSize(width: containerWidth, height: 0), CGSize(width: containerWidth, height: CGFloat.greatestFiniteMagnitude))).size.height
+//        node.setNeedsLayout()
+//        node.layoutIfNeeded()
+ 
+//        objc_setAssociatedObject(node, &Keys.associatedKey, options, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+ 
+//        if options.from == GLAlertFromPosition.none {
+//            self.maskView?.backgroundColor = options.translucentColor
+//            let frame = self.getEndFrame(to: options.to, containerWidth: containerWidth, containerHeight: containerHeight)
+//            node.frame = frame
+//            options.willShowClosure?()
+//            options.didShowClosure?()
+//            return true
+//        }
+ 
+//        let initialFrame = getInitialFrame(from: options.from, containerWidth: containerWidth, containerHeight: containerHeight)
+//        node.frame = initialFrame
+ 
+//        self.maskView?.isUserInteractionEnabled = false
+//
+//        options.willShowClosure?()
+//        UIView.animate(withDuration: options.duration, delay: 0, usingSpringWithDamping: defaultUsingSpringWithDamping, initialSpringVelocity: defaultInitialSpringVelocity, options: options.animationOptions) {
+//            self.maskView?.backgroundColor = options.translucentColor
+//            node.frame = self.getEndFrame(to: options.to, containerWidth: containerWidth, containerHeight: containerHeight)
+//        } completion: { (_) in
+//            options.didShowClosure?()
+//            self.maskView?.isUserInteractionEnabled = true
+//        }
+ 
+ 
+ */

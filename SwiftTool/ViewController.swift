@@ -25,11 +25,11 @@ fileprivate class Node: ASDisplayNode {
         self.backgroundColor = .red
         automaticallyManagesSubnodes = true
         
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-//            self.node.style.height = ASDimensionMake(500)
-//            self.setNeedsLayout()
-//            self.layoutIfNeeded()
-//        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.node.style.height = ASDimensionMake(500)
+            self.setNeedsLayout()
+            self.layoutIfNeeded()
+        }
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
@@ -186,7 +186,7 @@ extension ViewController {
         
         
         let node = Node()
-        let options = GLAlertOptions(from: .leftCenter(right: 0), to: .center, dismissTo: .bottomCenter(top: 0))
+        let options = GLAlertOptions(from: .topCenter(bottom: 0), to: .bottomCenter(bottom: 40), dismissTo: .topCenter(bottom: 0))
 
         options.willShowClosure = {
             print("willShowClosure")

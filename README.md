@@ -83,6 +83,12 @@ pod 'SwiftyTool/Alert', :git => "https://github.com/liujunliuhong/SwiftTool.git"
 pod 'SwiftyTool/WeakProxy', :git => "https://github.com/liujunliuhong/SwiftTool.git"
 ```
 
+- Chain
+
+```
+pod 'SwiftyTool/Chain', :git => "https://github.com/liujunliuhong/SwiftTool.git"
+```
+
 需要在自己的桥接头文件`#import "GLBaiDuLocation.h"`，不可以`import GLBaiDuLocation`
 
 # 本人的其他开源库
@@ -99,10 +105,6 @@ pod 'SwiftyTool/WeakProxy', :git => "https://github.com/liujunliuhong/SwiftTool.
 [DeviceTool](https://github.com/liujunliuhong/DeviceTool)
 ### 6、对系统权限进行的封装，支持iOS 14。采用Swift编写，不支持OC
 [Permission](https://github.com/liujunliuhong/Permission)
-### 7、系统UIPickerView、UIDatePicker的封装，国内城市选择器的封装，提供了从屏幕底部逐渐弹出的交互效果
-[PickerView](https://github.com/liujunliuhong/PickerView)
-### 8、字符串分组排序。可实现通讯录按首字母分组排序，国家省市地区按首字母分组排序等功能。采用Swift编写。不支持OC
-[WordsSort](https://github.com/liujunliuhong/WordsSort)
 
 
 

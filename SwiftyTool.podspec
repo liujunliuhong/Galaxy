@@ -180,7 +180,7 @@ Pod::Spec.new do |s|
       sss.dependency 'SnapKit'
       sss.dependency 'RxSwift'
       sss.dependency 'RxCocoa'
-      sss.dependency 'NSObject_Rx'
+      sss.dependency 'NSObject+Rx'
       sss.resource = 'Sources/Dating/Web/GLDatingWeb.bundle'
     end
     

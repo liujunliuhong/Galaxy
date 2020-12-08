@@ -146,6 +146,14 @@ Pod::Spec.new do |s|
     ss.source_files = 'Sources/AttributedString/*.swift'
   end
 
+  # Location
+  s.subspec 'Location' do |ss|
+    # Single
+    ss.subspec 'Single' do |sss|
+      sss.source_files = 'Sources/Location/Single/*.swift'
+    end
+  end
+
   # Dating
   s.subspec 'Dating' do |ss|
     # MessageNotification

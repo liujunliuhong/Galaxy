@@ -275,8 +275,24 @@ extension ViewController {
         
 //        GLDatingWebViewController.show(with: self, type: .privacyPolicy(title: "Privacy Policy"))
         
-        let vc = GLBaiDuLocationTestViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
+//        let vc = GLBaiDuLocationTestViewController()
+//        self.navigationController?.pushViewController(vc, animated: true)
+        
+//        GLSingleLocationAuthorization.default.requestWhenInUseAuthorizationStatus { (isAllow) in
+//            print("是否允许定位: \(isAllow)")
+//            if isAllow {
+//                GLSingleLocation.default.startSingleLocation { (placemark, error) in
+//                    if let placemark = placemark {
+//                        print("单次定位成功: \(placemark.locality ?? placemark.administrativeArea)")
+//                    }
+//                    if let error = error {
+//                        print("单次定位失败: \(error)")
+//                    }
+//                }
+//            }
+//        }
+        
+        
     }
 }
 

@@ -78,6 +78,20 @@ public class GLDatingTextField: UIView {
         }
     }
     
+    /// 当可以选中时，正常状态下边框宽度
+    public var shouldSelectNormalBorderWidth: CGFloat = 0 {
+        didSet {
+            self.reloadUI()
+        }
+    }
+    
+    /// 当可以选中时，正常状态下边框颜色
+    public var shouldSelectNormalBorderColor: UIColor? {
+        didSet {
+            self.reloadUI()
+        }
+    }
+    
     /// 正常状态下边框宽度
     public var normalBorderWidth: CGFloat = 1.5 {
         didSet {
@@ -160,11 +174,12 @@ extension GLDatingTextField {
         self.layer.cornerRadius = self.cornerRadius
         let text = self.currentText.value ?? ""
         if self.shouldSelect {
-            self.layer.borderColor = self.selectBorderColor?.cgColor
             if text.count > 0 {
+                self.layer.borderColor = self.selectBorderColor?.cgColor
                 self.layer.borderWidth = self.selectBorderWidth
             } else {
-                self.layer.borderWidth = 0
+                self.layer.borderColor = self.shouldSelectNormalBorderColor?.cgColor
+                self.layer.borderWidth = self.shouldSelectNormalBorderWidth
             }
         } else {
             self.layer.borderColor = self.normalBorderColor?.cgColor

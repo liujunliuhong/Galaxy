@@ -282,12 +282,12 @@ extension ViewController {
             print("是否允许定位: \(isAllow)")
             if isAllow {
                 GLSingleLocation.default.startSingleLocation { (placemark, error) in
-                    if let placemark = placemark {
-                        print("单次定位成功: \(placemark.locality ?? placemark.administrativeArea)")
-                    }
-                    if let error = error {
-                        print("单次定位失败: \(error)")
-                    }
+//                    if let placemark = placemark {
+//                        print("单次定位成功: \(placemark.locality ?? placemark.administrativeArea)")
+//                    }
+//                    if let error = error {
+//                        print("单次定位失败: \(error)")
+//                    }
                 }
             }
         }

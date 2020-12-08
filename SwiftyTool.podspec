@@ -212,7 +212,7 @@ Pod::Spec.new do |s|
       sss.dependency 'RxSwift'
       sss.dependency 'RxCocoa'
       sss.dependency 'NSObject+Rx'
-      ss.dependency 'SwiftyTool/UIKit'
+      sss.dependency 'SwiftyTool/UIKit'
     end
   end
   

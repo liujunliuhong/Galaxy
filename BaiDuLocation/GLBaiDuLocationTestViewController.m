@@ -18,13 +18,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    [GLBaiDuLocation registerWithTarget:self key:@"qnt8bsCPXzrdizV3dGMEgKwI8HVtyqcg" completionBlock:nil];
+}
+
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self startSingleLocation];
 }
 
 
 - (void)startSingleLocation{
-    [GLBaiDuLocation singleLocationWithConfiguration:^(BMKLocationManager * _Nonnull bmkLocationManager) {
+    [GLBaiDuLocation singleLocationWithTarget:self configuration:^(BMKLocationManager * _Nonnull bmkLocationManager) {
         bmkLocationManager.coordinateType = BMKLocationCoordinateTypeWGS84;
         bmkLocationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+        bmkLocationManager.locationTimeout = 60;
+        bmkLocationManager.reGeocodeTimeout = 60;
     } completionBlock:^(BMKLocation * _Nullable location, NSError * _Nullable error) {
         
     }];

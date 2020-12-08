@@ -275,7 +275,8 @@ extension ViewController {
         
 //        GLDatingWebViewController.show(with: self, type: .privacyPolicy(title: "Privacy Policy"))
         
-        
+        let vc = GLBaiDuLocationTestViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

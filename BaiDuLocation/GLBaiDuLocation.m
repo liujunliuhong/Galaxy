@@ -13,8 +13,12 @@
 static char gl_bmk_register_associated_key;
 static char gl_bmk_register_completion_associated_key;
 
+static char gl_bmk_single_location_associated_key;
 
-@interface GLBaiDuLocation () <BMKLocationAuthDelegate>
+#define GLBaiDuLocationLog(FORMAT, ...) fprintf(stderr,"%s\n", [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+
+
+@interface GLBaiDuLocation () <BMKLocationAuthDelegate, BMKLocationManagerDelegate>
 @property (nonatomic, strong, nullable) BMKLocationManager *locationManager;
 @property (nonatomic, weak) id target;
 @end
@@ -22,7 +26,7 @@ static char gl_bmk_register_completion_associated_key;
 @implementation GLBaiDuLocation
 - (void)dealloc{
 #ifdef DEBUG
-    NSLog(@"[GLBaiDuLocation] %@ dealloc",NSStringFromClass([self class]));
+    GLBaiDuLocationLog(@"[GLBaiDuLocation] %@ dealloc",NSStringFromClass([self class]));
 #endif
 }
 
@@ -37,19 +41,29 @@ static char gl_bmk_register_completion_associated_key;
     });
 }
 
-+ (void)singleLocationWithConfiguration:(GLBMKSingleLocationConfiguration)configuration completionBlock:(GLBMKSingleLocationCompletionBlock)completionBlock {
++ (void)singleLocationWithTarget:(id)target configuration:(GLBMKSingleLocationConfiguration)configuration completionBlock:(GLBMKSingleLocationCompletionBlock)completionBlock {
     dispatch_async(dispatch_get_main_queue(), ^{
+        GLBaiDuLocation *location = [[GLBaiDuLocation alloc] init];
+        location.target = target;
         BMKLocationManager *bmkLocationManager = [[BMKLocationManager alloc] init];
+        bmkLocationManager.delegate = location;
         configuration(bmkLocationManager);
+        location.locationManager = bmkLocationManager;
+        
+        objc_setAssociatedObject(target, &gl_bmk_single_location_associated_key, location, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        
         [bmkLocationManager requestLocationWithReGeocode:YES withNetworkState:YES completionBlock:^(BMKLocation * _Nullable location, BMKLocationNetworkState state, NSError * _Nullable error) {
             dispatch_async(dispatch_get_main_queue(), ^{
+                //
+                objc_setAssociatedObject(target, &gl_bmk_single_location_associated_key, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+                //
 #ifdef DEBUG
                 if (error != nil) {
-                    NSLog(@"[GLBaiDuLocation] [单次定位失败]: %@", error);
+                    GLBaiDuLocationLog(@"[GLBaiDuLocation] [单次定位失败]: %@", error);
                     return;
                 }
                 if (location != nil) {
-                    NSLog(@"[GLBaiDuLocation] [单次定位成功]");
+                    GLBaiDuLocationLog(@"[GLBaiDuLocation] [单次定位成功]");
                     CLLocationDegrees latitude = location.location.coordinate.latitude ? location.location.coordinate.latitude : 0;
                     CLLocationDegrees longitude = location.location.coordinate.longitude ? location.location.coordinate.longitude : 0;
                     BMKLocationProvider provider = location.provider ? location.provider : BMKLocationProviderIOS;
@@ -104,7 +118,7 @@ static char gl_bmk_register_completion_associated_key;
                         @"locationDescribe": locationDescribe,
                         @"poiInfos": poiInfos
                     };
-                    NSLog(@"[GLBaiDuLocation] [定位信息] %@", locationInfo);
+                    GLBaiDuLocationLog(@"[GLBaiDuLocation] [定位信息] %@", locationInfo);
                 }
 #endif
                 if (completionBlock) {
@@ -137,7 +151,7 @@ static char gl_bmk_register_completion_associated_key;
             [propertyNames setObject:value ? value : @"" forKey:propertyName];
         }
 #if DEBUG
-        NSLog(@"[GLBaiDuLocation] [BMKLocationAuth]: %@", propertyNames);
+        GLBaiDuLocationLog(@"[GLBaiDuLocation] [BMKLocationAuth]: %@", propertyNames);
 #endif
         for (NSString *propertyName in [propertyNames allKeys]) {
             if ([propertyName containsString:@"delegate"]) {
@@ -154,5 +168,11 @@ static char gl_bmk_register_completion_associated_key;
         blobk(iError);
     }
     [self releaseRegister];
+}
+
+- (void)BMKLocationManager:(BMKLocationManager *)manager didFailWithError:(NSError *)error {
+#if DEBUG
+    GLBaiDuLocationLog(@"[GLBaiDuLocation] [单次定位失败] %@", error);
+#endif
 }
 @end

@@ -19,7 +19,7 @@ typedef void(^GLBMKSingleLocationCompletionBlock)(BMKLocation * _Nullable locati
 
 + (void)registerWithTarget:(id)target key:(NSString *)key completionBlock:(nullable GLBMKRegisterBlock)completionBlock;
 
-+ (void)singleLocationWithConfiguration:(GLBMKSingleLocationConfiguration)configuration completionBlock:(nullable GLBMKSingleLocationCompletionBlock)completionBlock;
++ (void)singleLocationWithTarget:(id)target configuration:(GLBMKSingleLocationConfiguration)configuration completionBlock:(nullable GLBMKSingleLocationCompletionBlock)completionBlock;
 @end
 
 NS_ASSUME_NONNULL_END

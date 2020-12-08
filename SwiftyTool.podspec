@@ -198,6 +198,21 @@ Pod::Spec.new do |s|
       sss.source_files = 'Sources/Dating/TermLabel/*.swift'
       sss.dependency 'YYText'
     end
+    # Sex
+    ss.subspec 'Sex' do |sss|
+      sss.source_files = 'Sources/Dating/Sex/*.swift'
+    end
+    # Message
+    ss.subspec 'Message' do |sss|
+      sss.source_files = 'Sources/Dating/Message/*.swift'
+    end
+    # TextField
+    ss.subspec 'TextField' do |sss|
+      sss.source_files = 'Sources/Dating/TextField/*.swift'
+      sss.dependency 'RxSwift'
+      sss.dependency 'RxCocoa'
+      sss.dependency 'NSObject+Rx'
+    end
   end
   
 end

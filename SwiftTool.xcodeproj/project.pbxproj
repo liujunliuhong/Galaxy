@@ -89,6 +89,9 @@
 		B4735D28257A4CAA002F7566 /* CALayer+GLChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4735D27257A4CAA002F7566 /* CALayer+GLChain.swift */; };
 		B49CE0282578796E0064B51B /* GLAlertOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49CE0272578796E0064B51B /* GLAlertOptions.swift */; };
 		B49CE1A82578B4180064B51B /* GLDatingAudioPlayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49CE1A72578B4180064B51B /* GLDatingAudioPlayManager.swift */; };
+		B4C6B39A257F1150004CD337 /* GLDatingSexType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C6B399257F1150004CD337 /* GLDatingSexType.swift */; };
+		B4C6B39E257F12E0004CD337 /* GLDatingMessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C6B39D257F12E0004CD337 /* GLDatingMessageType.swift */; };
+		B4C6B3A3257F1382004CD337 /* GLDatingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C6B3A2257F1382004CD337 /* GLDatingTextField.swift */; };
 		B4ED1C61255E685900115895 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED1C60255E685900115895 /* Keys.swift */; };
 		B4ED1C69255E6FB900115895 /* GLBaiDuLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ED1C68255E6FB900115895 /* GLBaiDuLocation.m */; };
 		B4ED1C6E255E72BE00115895 /* GLBaiDuLocationTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ED1C6D255E72BE00115895 /* GLBaiDuLocationTestViewController.m */; };
@@ -198,6 +201,9 @@
 		B49CE0272578796E0064B51B /* GLAlertOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLAlertOptions.swift; sourceTree = "<group>"; };
 		B49CE1A72578B4180064B51B /* GLDatingAudioPlayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingAudioPlayManager.swift; sourceTree = "<group>"; };
 		B4B9793D1D5B9C59651E2DBB /* Pods-SwiftTool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftTool.debug.xcconfig"; path = "Target Support Files/Pods-SwiftTool/Pods-SwiftTool.debug.xcconfig"; sourceTree = "<group>"; };
+		B4C6B399257F1150004CD337 /* GLDatingSexType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingSexType.swift; sourceTree = "<group>"; };
+		B4C6B39D257F12E0004CD337 /* GLDatingMessageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingMessageType.swift; sourceTree = "<group>"; };
+		B4C6B3A2257F1382004CD337 /* GLDatingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingTextField.swift; sourceTree = "<group>"; };
 		B4ED1C60255E685900115895 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		B4ED1C67255E6FB900115895 /* GLBaiDuLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLBaiDuLocation.h; sourceTree = "<group>"; };
 		B4ED1C68255E6FB900115895 /* GLBaiDuLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLBaiDuLocation.m; sourceTree = "<group>"; };
@@ -507,6 +513,9 @@
 		85DBE0EA2577DAA400E2DF24 /* Dating */ = {
 			isa = PBXGroup;
 			children = (
+				B4C6B3A1257F1348004CD337 /* TextField */,
+				B4C6B39C257F12CA004CD337 /* Message */,
+				B4C6B397257F1051004CD337 /* Sex */,
 				B4F8AB07257E1502004C932C /* TermLabel */,
 				B4F8AAF7257E0B5C004C932C /* Photo */,
 				B4F8AAEF257DF889004C932C /* Web */,
@@ -555,6 +564,30 @@
 				85CC969325793189002B993F /* GLDatingAVPlayerView.swift */,
 			);
 			path = AVPlayer;
+			sourceTree = "<group>";
+		};
+		B4C6B397257F1051004CD337 /* Sex */ = {
+			isa = PBXGroup;
+			children = (
+				B4C6B399257F1150004CD337 /* GLDatingSexType.swift */,
+			);
+			path = Sex;
+			sourceTree = "<group>";
+		};
+		B4C6B39C257F12CA004CD337 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				B4C6B39D257F12E0004CD337 /* GLDatingMessageType.swift */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		B4C6B3A1257F1348004CD337 /* TextField */ = {
+			isa = PBXGroup;
+			children = (
+				B4C6B3A2257F1382004CD337 /* GLDatingTextField.swift */,
+			);
+			path = TextField;
 			sourceTree = "<group>";
 		};
 		B4ED1C66255E6F8700115895 /* BaiDuLocation */ = {
@@ -794,6 +827,7 @@
 				B4262D8F2579FBC500AA144B /* UIView+GLChain.swift in Sources */,
 				B4F8AAF1257DF955004C932C /* GLDatingWebViewController.swift in Sources */,
 				B4F8AAF9257E0B70004C932C /* GLDatingPhotoManager.swift in Sources */,
+				B4C6B39E257F12E0004CD337 /* GLDatingMessageType.swift in Sources */,
 				850664072550493C00EB4188 /* GLMapManager.swift in Sources */,
 				85DBE0F12577DB0900E2DF24 /* GLDatingMessageNotificationOptions.swift in Sources */,
 				850664222550493C00EB4188 /* UIImage+GLExtension.swift in Sources */,
@@ -802,6 +836,7 @@
 				85E5CC11257E7F98003C2A2B /* NSMutableAttributedString+GLAttributedString.swift in Sources */,
 				B4F8AAE2257DDFF3004C932C /* GLDatingLocalPush.swift in Sources */,
 				8506640E2550493C00EB4188 /* String+GLExtension.swift in Sources */,
+				B4C6B39A257F1150004CD337 /* GLDatingSexType.swift in Sources */,
 				B4262D8C2579F9C400AA144B /* GLChainCompatible.swift in Sources */,
 				B4735CFC257A3A16002F7566 /* UIControl+GLChain.swift in Sources */,
 				850664052550493C00EB4188 /* GLFileManager.swift in Sources */,
@@ -817,6 +852,7 @@
 				1831114F24469EB700155620 /* ViewController.swift in Sources */,
 				850664212550493C00EB4188 /* UIColor+GLExtension.swift in Sources */,
 				85CC969425793189002B993F /* GLDatingAVPlayerView.swift in Sources */,
+				B4C6B3A3257F1382004CD337 /* GLDatingTextField.swift in Sources */,
 				B49CE0282578796E0064B51B /* GLAlertOptions.swift in Sources */,
 				850664132550493C00EB4188 /* GLSystemFaceKeyboard.swift in Sources */,
 				8506640F2550493C00EB4188 /* Dictionary+GLExtension.swift in Sources */,

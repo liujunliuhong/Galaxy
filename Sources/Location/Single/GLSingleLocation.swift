@@ -125,12 +125,3 @@ private func _printPlacemarkInfo(placemark: CLPlacemark) {
     print(message)
     #endif
 }
-
-extension String {
-    fileprivate var _unicodeToUTF8: String? {
-        guard let data = self.data(using: .utf8) else { return nil }
-        guard let utf8 = String(data: data, encoding: .nonLossyASCII)?.utf8 else { return nil }
-        return "\(utf8)"
-    }
-}
-

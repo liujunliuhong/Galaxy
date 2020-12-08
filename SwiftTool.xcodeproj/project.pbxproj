@@ -92,6 +92,9 @@
 		B4C6B39A257F1150004CD337 /* GLDatingSexType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C6B399257F1150004CD337 /* GLDatingSexType.swift */; };
 		B4C6B39E257F12E0004CD337 /* GLDatingMessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C6B39D257F12E0004CD337 /* GLDatingMessageType.swift */; };
 		B4C6B3A3257F1382004CD337 /* GLDatingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C6B3A2257F1382004CD337 /* GLDatingTextField.swift */; };
+		B4C6B4E0257F2CC1004CD337 /* GLDatingUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C6B4DF257F2CC1004CD337 /* GLDatingUser.swift */; };
+		B4C6B4E3257F2FE2004CD337 /* GLDatingUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C6B4E2257F2FE2004CD337 /* GLDatingUserManager.swift */; };
+		B4C6B4E6257F3D1F004CD337 /* UserDefaults+GLDatingUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C6B4E5257F3D1F004CD337 /* UserDefaults+GLDatingUser.swift */; };
 		B4ED1C61255E685900115895 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED1C60255E685900115895 /* Keys.swift */; };
 		B4ED1C69255E6FB900115895 /* GLBaiDuLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ED1C68255E6FB900115895 /* GLBaiDuLocation.m */; };
 		B4ED1C6E255E72BE00115895 /* GLBaiDuLocationTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ED1C6D255E72BE00115895 /* GLBaiDuLocationTestViewController.m */; };
@@ -204,6 +207,9 @@
 		B4C6B399257F1150004CD337 /* GLDatingSexType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingSexType.swift; sourceTree = "<group>"; };
 		B4C6B39D257F12E0004CD337 /* GLDatingMessageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingMessageType.swift; sourceTree = "<group>"; };
 		B4C6B3A2257F1382004CD337 /* GLDatingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingTextField.swift; sourceTree = "<group>"; };
+		B4C6B4DF257F2CC1004CD337 /* GLDatingUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingUser.swift; sourceTree = "<group>"; };
+		B4C6B4E2257F2FE2004CD337 /* GLDatingUserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingUserManager.swift; sourceTree = "<group>"; };
+		B4C6B4E5257F3D1F004CD337 /* UserDefaults+GLDatingUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+GLDatingUser.swift"; sourceTree = "<group>"; };
 		B4ED1C60255E685900115895 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		B4ED1C67255E6FB900115895 /* GLBaiDuLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLBaiDuLocation.h; sourceTree = "<group>"; };
 		B4ED1C68255E6FB900115895 /* GLBaiDuLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLBaiDuLocation.m; sourceTree = "<group>"; };
@@ -513,6 +519,7 @@
 		85DBE0EA2577DAA400E2DF24 /* Dating */ = {
 			isa = PBXGroup;
 			children = (
+				B4C6B4C3257F2BAF004CD337 /* User */,
 				B4C6B3A1257F1348004CD337 /* TextField */,
 				B4C6B39C257F12CA004CD337 /* Message */,
 				B4C6B397257F1051004CD337 /* Sex */,
@@ -588,6 +595,16 @@
 				B4C6B3A2257F1382004CD337 /* GLDatingTextField.swift */,
 			);
 			path = TextField;
+			sourceTree = "<group>";
+		};
+		B4C6B4C3257F2BAF004CD337 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				B4C6B4DF257F2CC1004CD337 /* GLDatingUser.swift */,
+				B4C6B4E2257F2FE2004CD337 /* GLDatingUserManager.swift */,
+				B4C6B4E5257F3D1F004CD337 /* UserDefaults+GLDatingUser.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		B4ED1C66255E6F8700115895 /* BaiDuLocation */ = {
@@ -807,10 +824,12 @@
 				B4735D28257A4CAA002F7566 /* CALayer+GLChain.swift in Sources */,
 				B4ED1C6E255E72BE00115895 /* GLBaiDuLocationTestViewController.m in Sources */,
 				B4F8AAD3257DDD17004C932C /* GLDatingOnlineState.swift in Sources */,
+				B4C6B4E6257F3D1F004CD337 /* UserDefaults+GLDatingUser.swift in Sources */,
 				850664142550493C00EB4188 /* GLSystemFace.swift in Sources */,
 				85CC96AB25793427002B993F /* GLCityModel.swift in Sources */,
 				B4735CFF257A3BFF002F7566 /* UIImageView+GLChain.swift in Sources */,
 				B4F8AADD257DDF2D004C932C /* GLNotification.swift in Sources */,
+				B4C6B4E3257F2FE2004CD337 /* GLDatingUserManager.swift in Sources */,
 				85CC969B25793290002B993F /* String+GLWords.swift in Sources */,
 				8506640D2550493C00EB4188 /* Bundle+GLExtension.swift in Sources */,
 				B4735D0E257A3C7D002F7566 /* UISwitch+GLChain.swift in Sources */,
@@ -830,6 +849,7 @@
 				B4C6B39E257F12E0004CD337 /* GLDatingMessageType.swift in Sources */,
 				850664072550493C00EB4188 /* GLMapManager.swift in Sources */,
 				85DBE0F12577DB0900E2DF24 /* GLDatingMessageNotificationOptions.swift in Sources */,
+				B4C6B4E0257F2CC1004CD337 /* GLDatingUser.swift in Sources */,
 				850664222550493C00EB4188 /* UIImage+GLExtension.swift in Sources */,
 				B4262D922579FBD200AA144B /* UILabel+GLChain.swift in Sources */,
 				850664242550493C00EB4188 /* GLEnlargeControl.swift in Sources */,

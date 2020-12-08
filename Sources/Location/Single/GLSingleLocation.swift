@@ -47,9 +47,6 @@ extension GLSingleLocation: CLLocationManagerDelegate {
     public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.locationManager?.stopUpdatingLocation()
         self.locationManager = nil
-        if manager != self.locationManager {
-            return
-        }
         guard let location = locations.first else {
             self.locationManager = nil
             self.completion?(nil, GLSingleLocationError.error("no location"))

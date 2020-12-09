@@ -90,6 +90,8 @@
 		B4735D1D257A3D6E002F7566 /* UIScrollView+GLChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4735D1C257A3D6E002F7566 /* UIScrollView+GLChain.swift */; };
 		B4735D20257A3D89002F7566 /* UITableView+GLChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4735D1F257A3D89002F7566 /* UITableView+GLChain.swift */; };
 		B4735D28257A4CAA002F7566 /* CALayer+GLChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4735D27257A4CAA002F7566 /* CALayer+GLChain.swift */; };
+		B4746ABE2580CE2400E1CB2A /* GLDatingLikes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4746ABD2580CE2400E1CB2A /* GLDatingLikes.swift */; };
+		B4746AC22580CE4600E1CB2A /* GLDatingLikesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4746AC12580CE4600E1CB2A /* GLDatingLikesManager.swift */; };
 		B49CE0282578796E0064B51B /* GLAlertOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49CE0272578796E0064B51B /* GLAlertOptions.swift */; };
 		B49CE1A82578B4180064B51B /* GLDatingAudioPlayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49CE1A72578B4180064B51B /* GLDatingAudioPlayManager.swift */; };
 		B4C6B39A257F1150004CD337 /* GLDatingSexType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C6B399257F1150004CD337 /* GLDatingSexType.swift */; };
@@ -207,6 +209,8 @@
 		B4735D1C257A3D6E002F7566 /* UIScrollView+GLChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+GLChain.swift"; sourceTree = "<group>"; };
 		B4735D1F257A3D89002F7566 /* UITableView+GLChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+GLChain.swift"; sourceTree = "<group>"; };
 		B4735D27257A4CAA002F7566 /* CALayer+GLChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+GLChain.swift"; sourceTree = "<group>"; };
+		B4746ABD2580CE2400E1CB2A /* GLDatingLikes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingLikes.swift; sourceTree = "<group>"; };
+		B4746AC12580CE4600E1CB2A /* GLDatingLikesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingLikesManager.swift; sourceTree = "<group>"; };
 		B49CE0272578796E0064B51B /* GLAlertOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLAlertOptions.swift; sourceTree = "<group>"; };
 		B49CE1A72578B4180064B51B /* GLDatingAudioPlayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingAudioPlayManager.swift; sourceTree = "<group>"; };
 		B4B9793D1D5B9C59651E2DBB /* Pods-SwiftTool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftTool.debug.xcconfig"; path = "Target Support Files/Pods-SwiftTool/Pods-SwiftTool.debug.xcconfig"; sourceTree = "<group>"; };
@@ -544,6 +548,7 @@
 		85DBE0EA2577DAA400E2DF24 /* Dating */ = {
 			isa = PBXGroup;
 			children = (
+				B4746ABC2580CE1300E1CB2A /* Likes */,
 				B4C6B4C3257F2BAF004CD337 /* User */,
 				B4C6B3A1257F1348004CD337 /* TextField */,
 				B4C6B39C257F12CA004CD337 /* Message */,
@@ -580,6 +585,15 @@
 				B4F8AB04257E0D8A004C932C /* NSParagraphStyle+GLExtension.swift */,
 			);
 			path = AttributedString;
+			sourceTree = "<group>";
+		};
+		B4746ABC2580CE1300E1CB2A /* Likes */ = {
+			isa = PBXGroup;
+			children = (
+				B4746AC12580CE4600E1CB2A /* GLDatingLikesManager.swift */,
+				B4746ABD2580CE2400E1CB2A /* GLDatingLikes.swift */,
+			);
+			path = Likes;
 			sourceTree = "<group>";
 		};
 		B49CE1A52578B3C10064B51B /* AudioPlay */ = {
@@ -901,12 +915,14 @@
 				85CC969425793189002B993F /* GLDatingAVPlayerView.swift in Sources */,
 				B4C6B3A3257F1382004CD337 /* GLDatingTextField.swift in Sources */,
 				B49CE0282578796E0064B51B /* GLAlertOptions.swift in Sources */,
+				B4746AC22580CE4600E1CB2A /* GLDatingLikesManager.swift in Sources */,
 				850664132550493C00EB4188 /* GLSystemFaceKeyboard.swift in Sources */,
 				8506640F2550493C00EB4188 /* Dictionary+GLExtension.swift in Sources */,
 				B4735D20257A3D89002F7566 /* UITableView+GLChain.swift in Sources */,
 				850664172550493C00EB4188 /* GLHud.swift in Sources */,
 				85CC96AA25793427002B993F /* GLPickerView.swift in Sources */,
 				850664232550493C00EB4188 /* UIApplication+GLExtension.swift in Sources */,
+				B4746ABE2580CE2400E1CB2A /* GLDatingLikes.swift in Sources */,
 				85DBE0F42577DB9200E2DF24 /* GLDatingMessageNotificationManager.swift in Sources */,
 				B4F8AB05257E0D8A004C932C /* NSParagraphStyle+GLExtension.swift in Sources */,
 				B4735D17257A3D1B002F7566 /* UIProgressView+GLChain.swift in Sources */,

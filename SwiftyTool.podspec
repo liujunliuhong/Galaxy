@@ -235,6 +235,12 @@ Pod::Spec.new do |s|
       sss.dependency 'SwiftyTool/Dating/Error'
       sss.dependency 'SwiftyTool/Foundation'
     end
+    # Likes
+    ss.subspec 'Likes' do |sss|
+      sss.source_files = 'Sources/Dating/Likes/*.swift'
+      sss.dependency 'WCDB.swift'
+      sss.dependency 'SwiftyTool/Dating/Error'
+    end
 
   end
   

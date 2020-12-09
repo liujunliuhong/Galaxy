@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    [GLBaiDuLocation registerWithTarget:self key:@"qnt8bsCPXzrdizV3dGMEgKwI8HVtyqcg" completionBlock:nil];
+    [GLBaiDuLocation registerWithTarget:self key:@"" completionBlock:nil];
 }
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {

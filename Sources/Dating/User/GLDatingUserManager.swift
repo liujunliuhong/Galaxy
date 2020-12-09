@@ -245,9 +245,32 @@ extension GLDatingUserManager {
     }
     
     /// 测试账号注册
-    public func registerTestAccount(email: String, password: String, sex: GLDatingSexType) {
+    public func registerTestAccount(email: String, password: String, sex: GLDatingSexType) throws {
+        guard let database = self.database else {
+            #if DEBUG
+            print("[测试账号注册] [database不存在]")
+            #endif
+            throw GLDatingError.unknownError
+        }
+        
+        let user = GLDatingUser()
+        user.sex = sex
+        user.email = email
+        user.password = password
+        
         do {
-            try GLDatingUserManager.default.register(sex: sex, email: email, password: password)
+            // 注册之前，先根据传入的邮箱在数据库里面查找
+            let results:[GLDatingUser] = try database.getObjects(on: GLDatingUser.Properties.all,
+                                                                 fromTable: tableName,
+                                                                 where: GLDatingUser.Properties.email == email)
+            if results.count > 0 {
+                #if DEBUG
+                print("[测试账号注册失败] 邮箱重复")
+                #endif
+                throw GLDatingError.error("Email has been registered")
+            }
+            
+            try database.insert(objects: user, intoTable: tableName)
             #if DEBUG
             print("[测试账号注册成功]")
             #endif
@@ -255,6 +278,7 @@ extension GLDatingUserManager {
             #if DEBUG
             print("[测试账号注册失败] \(error)")
             #endif
+            throw error
         }
     }
     

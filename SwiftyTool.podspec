@@ -172,7 +172,7 @@ Pod::Spec.new do |s|
       sss.source_files = 'Sources/Dating/AVPlayer/*.swift'
     end
     # Online
-    ss.subspec 'AVPlayer' do |sss|
+    ss.subspec 'Online' do |sss|
       sss.source_files = 'Sources/Dating/Online/*.swift'
     end
     # Error

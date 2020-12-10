@@ -7,20 +7,20 @@
 //
 
 import Foundation
-import WCDBSwift
+import GRDB
 import RxSwift
 import RxCocoa
-import NSObject_Rx
 
-private let tableName = String(describing: GLDatingUser.self)
+private let tableDirectory = "GLDatingUserDatabase"
+private let tablePath = "user.db"
+
 
 public class GLDatingUserManager {
     /// 单列
     public static let `default` = GLDatingUserManager()
     
     
-    private var database: Database?
-    
+    private var dbQueue: DatabaseQueue?
     
     
     /// 当前用户
@@ -61,6 +61,7 @@ public class GLDatingUserManager {
     /// 是否是超级vip
     public let isSuperVip = BehaviorRelay<Bool>(value: false)
     
+    
     /// 是否登录
     public var isLogin: Bool {
         if let _ = UserDefaults.standard.gl_dating_getUserID() {
@@ -77,6 +78,7 @@ public class GLDatingUserManager {
     
     private init() {
         self.initDatabase()
+        self.creatUserDatabase()
     }
 }
 
@@ -84,39 +86,77 @@ extension GLDatingUserManager {
     /// 初始化数据库
     private func initDatabase() {
         guard let basePath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last else { return }
-        let directory = "GLDatingUserDatabase"
-        let path = URL(fileURLWithPath: "\(basePath)/\(directory)").appendingPathComponent(tableName).path
+        let dirPath = basePath + "/" + tableDirectory
+        var isDirectory: ObjCBool = true
+        if !FileManager.default.fileExists(atPath: dirPath, isDirectory: &isDirectory) {
+            try? FileManager.default.createDirectory(atPath: dirPath, withIntermediateDirectories: true, attributes: nil)
+        }
+        let path = dirPath + "/" + tablePath
         #if DEBUG
         print("用户信息数据库路径:\(path)")
         #endif
-        let database = Database(withPath: path)
-        database.close()
+        var configuration = GRDB.Configuration()
+        configuration.busyMode = .timeout(10)
+        configuration.readonly = false
         do {
-            try database.create(table: tableName, of: GLDatingUser.self)
+            let dbQueue = try DatabaseQueue(path: path, configuration: configuration)
+            self.dbQueue = dbQueue
             #if DEBUG
-            print("[创建数据用户信息数据库成功]")
+            print("初始化用户数据库成功")
             #endif
         } catch {
             #if DEBUG
-            print("[创建数据用户信息数据库失败] \(error)")
+            print("初始化用户数据库失败: \(error.localizedDescription)")
             #endif
         }
-        self.database = database
+    }
+    
+    /// 创建用户数据库
+    private func creatUserDatabase() {
+        do {
+            try self.dbQueue?.write({ (db) in
+                if try db.tableExists(GLDatingUserTableName) {
+                    throw GLDatingError.error("用户表已存在，不能再创建")
+                }
+                try db.create(table: GLDatingUserTableName, temporary: false, ifNotExists: true, body: { (t) in
+                    t.column(GLDatingUser.CodingKeys.user_id.rawValue, .text).primaryKey().indexed()
+                    t.column(GLDatingUser.CodingKeys.email.rawValue, .text)
+                    t.column(GLDatingUser.CodingKeys.sex.rawValue, .integer).defaults(to: GLDatingSexType.man)
+                    t.column(GLDatingUser.CodingKeys.nick_name.rawValue, .text)
+                    t.column(GLDatingUser.CodingKeys.age.rawValue, .integer).defaults(to: 25)
+                    t.column(GLDatingUser.CodingKeys.height.rawValue, .integer).defaults(to: 170)
+                    t.column(GLDatingUser.CodingKeys.password.rawValue, .text)
+                    t.column(GLDatingUser.CodingKeys.avatar_name.rawValue, .text)
+                    t.column(GLDatingUser.CodingKeys.photos.rawValue, .text)
+                    t.column(GLDatingUser.CodingKeys.country.rawValue, .text)
+                    t.column(GLDatingUser.CodingKeys.city.rawValue, .text)
+                    t.column(GLDatingUser.CodingKeys.location_description.rawValue, .text)
+                    t.column(GLDatingUser.CodingKeys.profession.rawValue, .text)
+                    t.column(GLDatingUser.CodingKeys.about_me.rawValue, .text)
+                    t.column(GLDatingUser.CodingKeys.looking_for.rawValue, .text)
+                    t.column(GLDatingUser.CodingKeys.diamond.rawValue, .integer).defaults(to: 0)
+                    t.column(GLDatingUser.CodingKeys.is_vip.rawValue, .boolean).defaults(to: false)
+                    t.column(GLDatingUser.CodingKeys.is_super_vip.rawValue, .boolean).defaults(to: false)
+                })
+            })
+            #if DEBUG
+            print("用户表创建成功")
+            #endif
+        } catch {
+            #if DEBUG
+            print("用户表创建失败: \(error.localizedDescription)")
+            #endif
+        }
     }
 }
 
 extension GLDatingUserManager {
+    
     /// 加载用户信息，应该先调用`isLogin`判断是否登录，如果登录了，再调用此方法
-    public func loadInfo() throws {
-        guard let database = self.database else {
-            #if DEBUG
-            print("[获取用户信息] [database不存在]")
-            #endif
-            throw GLDatingError.unknownError
-        }
+    public func loadUserInfo() throws {
         if !self.isLogin {
             #if DEBUG
-            print("[获取用户信息] [未登录]")
+            print("[获取用户信息] [用户未登录]")
             #endif
             throw GLDatingError.error("Please sign in")
         }
@@ -126,26 +166,21 @@ extension GLDatingUserManager {
             #endif
             throw GLDatingError.error("Please sign in")
         }
-        
         do {
-            let results:[GLDatingUser] = try database.getObjects(on: GLDatingUser.Properties.all,
-                                                                 fromTable: tableName,
-                                                                 where: GLDatingUser.Properties.user_id == userID)
-            if results.count <= 0 {
-                #if DEBUG
-                print("[获取用户信息] [数据库查询此用户不存在]")
-                #endif
-                throw GLDatingError.error("Incorrect email or password")
+            let user = try self.dbQueue?.write({ (db) -> GLDatingUser? in
+                return try GLDatingUser.filter(Column(GLDatingUser.CodingKeys.user_id.rawValue) == userID).fetchOne(db)
+            })
+            if user == nil {
+                throw GLDatingError.error("user not exists")
             }
-            let user = results.first!
-            self.currentUser = user
+            self.currentUser = user!
             self.refreshUserInfo()
             #if DEBUG
-            print("[获取用户信息成功] \(user.description)")
+            print("[获取用户信息成功] \(user!.description)")
             #endif
         } catch {
             #if DEBUG
-            print("[获取用户信息失败] \(error)")
+            print("[获取用户信息失败] \(error.localizedDescription)")
             #endif
             throw error
         }
@@ -153,26 +188,13 @@ extension GLDatingUserManager {
     
     /// 检查邮箱是否重复
     public func checkEmailIsRepeat(email: String) -> Bool {
-        guard let database = self.database else {
-            #if DEBUG
-            print("[检查邮箱是否重复] [database不存在]")
-            #endif
-            return true
-        }
-        do {
-            let results:[GLDatingUser] = try database.getObjects(on: GLDatingUser.Properties.all,
-                                                                 fromTable: tableName,
-                                                                 where: GLDatingUser.Properties.email == email)
-            #if DEBUG
-            print("[检查邮箱是否重复] \(results)")
-            #endif
-            return results.count > 0
-        } catch {
-            #if DEBUG
-            print("[检查邮箱是否重复失败] \(error)")
-            #endif
-            return false
-        }
+        let count = (try? self.dbQueue?.write({ (db) -> Int in
+            return try GLDatingUser.filter(Column(GLDatingUser.CodingKeys.email.rawValue) == email).fetchCount(db)
+        })) ?? 0
+        #if DEBUG
+        print("[检查邮箱是否重复] \(count > 0)")
+        #endif
+        return count > 0
     }
     
     /// 注册
@@ -193,11 +215,9 @@ extension GLDatingUserManager {
                          diamond: Int = 0,
                          isVip: Bool = false,
                          isSuperVip: Bool = false) throws {
-        guard let database = self.database else {
-            #if DEBUG
-            print("[注册] [database不存在]")
-            #endif
-            throw GLDatingError.unknownError
+        
+        if self.checkEmailIsRepeat(email: email) {
+            throw GLDatingError.error("Email has been registered")
         }
         
         let user = GLDatingUser()
@@ -220,89 +240,72 @@ extension GLDatingUserManager {
         user.is_super_vip = isSuperVip
         
         do {
-            // 注册之前，先根据传入的邮箱在数据库里面查找
-            let results:[GLDatingUser] = try database.getObjects(on: GLDatingUser.Properties.all,
-                                                                 fromTable: tableName,
-                                                                 where: GLDatingUser.Properties.email == email)
-            if results.count > 0 {
-                #if DEBUG
-                print("[注册失败] 邮箱重复")
-                #endif
-                throw GLDatingError.error("Email has been registered")
-            }
-            
-            try database.insert(objects: user, intoTable: tableName)
+            try self.dbQueue?.write({ (db) in
+                var user = user
+                do {
+                    try user.insert(db)
+                } catch {
+                    throw error
+                }
+            })
             UserDefaults.standard.gl_dating_set(userID: user.user_id) // 存userID
             #if DEBUG
-            print("[注册成功] \(user.description)")
+            print("[注册成功]")
             #endif
         } catch {
             #if DEBUG
-            print("[注册失败] \(error)")
+            print("[注册失败] \(error.localizedDescription)")
             #endif
             throw error
         }
     }
     
     /// 测试账号注册
-    public func registerTestAccount(email: String, password: String, sex: GLDatingSexType) throws {
-        guard let database = self.database else {
+    public func registerTestAccount(email: String, password: String, sex: GLDatingSexType) {
+        if self.checkEmailIsRepeat(email: email) {
             #if DEBUG
-            print("[测试账号注册] [database不存在]")
+            print("[测试账号已存在，不能再注册]")
             #endif
-            throw GLDatingError.unknownError
+            return
         }
         
         let user = GLDatingUser()
         user.sex = sex
         user.email = email
         user.password = password
+        user.nick_name = "admin"
         
         do {
-            // 注册之前，先根据传入的邮箱在数据库里面查找
-            let results:[GLDatingUser] = try database.getObjects(on: GLDatingUser.Properties.all,
-                                                                 fromTable: tableName,
-                                                                 where: GLDatingUser.Properties.email == email)
-            if results.count > 0 {
-                #if DEBUG
-                print("[测试账号注册失败] 邮箱重复")
-                #endif
-                throw GLDatingError.error("Email has been registered")
-            }
-            
-            try database.insert(objects: user, intoTable: tableName)
+            try self.dbQueue?.write({ (db) in
+                var user = user
+                do {
+                    try user.insert(db)
+                } catch {
+                    throw error
+                }
+            })
             #if DEBUG
             print("[测试账号注册成功]")
             #endif
         } catch {
             #if DEBUG
-            print("[测试账号注册失败] \(error)")
+            print("[注册失败] \(error.localizedDescription)")
             #endif
-            throw error
         }
     }
     
     /// 登录(根据邮箱和密码在数据库里面查找，如果查询到用户，就把用户ID存进UserDefaults)
     public func login(email: String,
                       password: String) throws {
-        guard let database = self.database else {
-            #if DEBUG
-            print("[登录] [database不存在]")
-            #endif
-            throw GLDatingError.unknownError
-        }
+        
         do {
-            let results:[GLDatingUser] = try database.getObjects(on: GLDatingUser.Properties.all,
-                                                                 fromTable: tableName,
-                                                                 where: GLDatingUser.Properties.email == email && GLDatingUser.Properties.password == password)
-            if results.count <= 0 {
-                #if DEBUG
-                print("[登录] [查询用户不存在]")
-                #endif
+            let user = try self.dbQueue?.write({ (db) -> GLDatingUser? in
+                return try GLDatingUser.filter(Column(GLDatingUser.CodingKeys.email.rawValue) == email && Column(GLDatingUser.CodingKeys.password.rawValue) == password).fetchOne(db)
+            })
+            if user == nil {
                 throw GLDatingError.error("Incorrect email or password")
             }
-            let user = results.first!
-            UserDefaults.standard.gl_dating_set(userID: user.user_id) // 存userID
+            UserDefaults.standard.gl_dating_set(userID: user!.user_id) // 存userID
             #if DEBUG
             print("[登录成功]")
             #endif
@@ -319,21 +322,20 @@ extension GLDatingUserManager {
         self.clearUserInfo()
     }
     
+    
+    
     /// 删除用户(把当前用户从本地数据库删除)
     public func delete() throws {
-        guard let database = self.database else {
+        guard let user = self.currentUser else {
             #if DEBUG
-            print("[删除用户] [database不存在]")
+            print("[删除用户] [当前用户不存在]")
             #endif
             throw GLDatingError.unknownError
         }
-        guard let user = self.currentUser else {
-            print("[删除用户] [当前用户不存在]")
-            throw GLDatingError.unknownError
-        }
-        
         do {
-            try database.delete(fromTable: tableName, where: GLDatingUser.Properties.user_id == user.user_id)
+            try self.dbQueue?.write({ (db) -> Void in
+                try user.delete(db)
+            })
             self.clearUserInfo()
             #if DEBUG
             print("[删除用户成功]")
@@ -345,7 +347,40 @@ extension GLDatingUserManager {
             throw error
         }
     }
+    
+    /// 打印用户信息
+    public func printUserInfo() {
+        if !self.isLogin {
+            #if DEBUG
+            print("[打印用户信息] [用户未登录]")
+            #endif
+            return
+        }
+        guard let userID = UserDefaults.standard.gl_dating_getUserID() else {
+            #if DEBUG
+            print("[打印用户信息] [userID不存在]")
+            #endif
+            return
+        }
+        do {
+            let user = try self.dbQueue?.write({ (db) -> GLDatingUser? in
+                return try GLDatingUser.filter(Column(GLDatingUser.CodingKeys.user_id.rawValue) == userID).fetchOne(db)
+            })
+            if user == nil {
+                throw GLDatingError.error("user not exists")
+            }
+            #if DEBUG
+            print("[打印用户信息成功] \(user!.description)")
+            #endif
+        } catch {
+            #if DEBUG
+            print("[打印用户信息失败] \(error.localizedDescription)")
+            #endif
+        }
+    }
 }
+
+
 
 extension GLDatingUserManager {
     private func refreshUserInfo() {
@@ -393,12 +428,6 @@ extension GLDatingUserManager {
 extension GLDatingUserManager {
     /// 更新用户性别
     public func updateUserSex(sex: GLDatingSexType) {
-        guard let database = self.database else {
-            #if DEBUG
-            print("[更新用户性别] [database不存在]")
-            #endif
-            return
-        }
         guard let user = GLDatingUserManager.default.currentUser else {
             #if DEBUG
             print("[更新用户性别] [用户不存在]")
@@ -406,18 +435,16 @@ extension GLDatingUserManager {
             return
         }
         user.sex = sex
-        try? database.update(table: tableName, on: GLDatingUser.Properties.sex, with: user)
-        GLDatingUserManager.default.sex.accept(sex)
+        self._update(user: user) {
+            GLDatingUserManager.default.sex.accept(sex)
+            #if DEBUG
+            print("[更新用户性别成功]")
+            #endif
+        }
     }
     
     /// 更新用户LookingFor
     public func updateUserLookingFor(lookingFor: String?) {
-        guard let database = self.database else {
-            #if DEBUG
-            print("[更新用户LookingFor] [database不存在]")
-            #endif
-            return
-        }
         guard let user = GLDatingUserManager.default.currentUser else {
             #if DEBUG
             print("[更新用户LookingFor] [用户不存在]")
@@ -425,18 +452,16 @@ extension GLDatingUserManager {
             return
         }
         user.looking_for = lookingFor
-        try? database.update(table: tableName, on: GLDatingUser.Properties.looking_for, with: user)
-        GLDatingUserManager.default.lookingFor.accept(lookingFor)
+        self._update(user: user) {
+            GLDatingUserManager.default.lookingFor.accept(lookingFor)
+            #if DEBUG
+            print("[更新用户LookingFor成功]")
+            #endif
+        }
     }
     
     /// 更新用户AboutMe
     public func updateUserAboutMe(aboutMe: String?) {
-        guard let database = self.database else {
-            #if DEBUG
-            print("[更新用户AboutMe] [database不存在]")
-            #endif
-            return
-        }
         guard let user = GLDatingUserManager.default.currentUser else {
             #if DEBUG
             print("[更新用户AboutMe] [用户不存在]")
@@ -444,18 +469,16 @@ extension GLDatingUserManager {
             return
         }
         user.about_me = aboutMe
-        try? database.update(table: tableName, on: GLDatingUser.Properties.about_me, with: user)
-        GLDatingUserManager.default.aboutMe.accept(aboutMe)
+        self._update(user: user) {
+            GLDatingUserManager.default.aboutMe.accept(aboutMe)
+            #if DEBUG
+            print("[更新用户AboutMe成功]")
+            #endif
+        }
     }
     
     /// 更新用户照片
     public func updateUserPhotos(photos: [String]) {
-        guard let database = self.database else {
-            #if DEBUG
-            print("[更新用户照片] [database不存在]")
-            #endif
-            return
-        }
         guard let user = GLDatingUserManager.default.currentUser else {
             #if DEBUG
             print("[更新用户照片] [用户不存在]")
@@ -463,18 +486,17 @@ extension GLDatingUserManager {
             return
         }
         user.photos = photos.gl_jsonEncode
-        try? database.update(table: tableName, on: GLDatingUser.Properties.photos, with: user)
-        GLDatingUserManager.default.photos.accept(photos)
+        self._update(user: user) {
+            GLDatingUserManager.default.photos.accept(photos)
+            #if DEBUG
+            print("[更新用户照片成功]")
+            #endif
+        }
     }
+    
     
     /// 更新用户职业
     public func updateUserProfession(profession: String?) {
-        guard let database = self.database else {
-            #if DEBUG
-            print("[更新用户职业] [database不存在]")
-            #endif
-            return
-        }
         guard let user = GLDatingUserManager.default.currentUser else {
             #if DEBUG
             print("[更新用户职业] [用户不存在]")
@@ -482,18 +504,16 @@ extension GLDatingUserManager {
             return
         }
         user.profession = profession
-        try? database.update(table: tableName, on: GLDatingUser.Properties.profession, with: user)
-        GLDatingUserManager.default.profession.accept(profession)
+        self._update(user: user) {
+            GLDatingUserManager.default.profession.accept(profession)
+            #if DEBUG
+            print("[更新用户职业成功]")
+            #endif
+        }
     }
     
     /// 更新用户位置描述
     public func updateUserLocationDescription(locationDescription: String?) {
-        guard let database = self.database else {
-            #if DEBUG
-            print("[更新用户位置描述] [database不存在]")
-            #endif
-            return
-        }
         guard let user = GLDatingUserManager.default.currentUser else {
             #if DEBUG
             print("[更新用户位置描述] [用户不存在]")
@@ -501,18 +521,16 @@ extension GLDatingUserManager {
             return
         }
         user.location_description = locationDescription
-        try? database.update(table: tableName, on: GLDatingUser.Properties.location_description, with: user)
-        GLDatingUserManager.default.locationDescription.accept(locationDescription)
+        self._update(user: user) {
+            GLDatingUserManager.default.locationDescription.accept(locationDescription)
+            #if DEBUG
+            print("[更新用户位置描述成功]")
+            #endif
+        }
     }
     
     /// 更新用户城市
     public func updateUserCity(city: String?) {
-        guard let database = self.database else {
-            #if DEBUG
-            print("[更新用户城市] [database不存在]")
-            #endif
-            return
-        }
         guard let user = GLDatingUserManager.default.currentUser else {
             #if DEBUG
             print("[更新用户城市] [用户不存在]")
@@ -520,18 +538,16 @@ extension GLDatingUserManager {
             return
         }
         user.city = city
-        try? database.update(table: tableName, on: GLDatingUser.Properties.city, with: user)
-        GLDatingUserManager.default.city.accept(city)
+        self._update(user: user) {
+            GLDatingUserManager.default.city.accept(city)
+            #if DEBUG
+            print("[更新用户城市成功]")
+            #endif
+        }
     }
     
     /// 更新用户国家
     public func updateUserCountry(country: String?) {
-        guard let database = self.database else {
-            #if DEBUG
-            print("[更新用户国家] [database不存在]")
-            #endif
-            return
-        }
         guard let user = GLDatingUserManager.default.currentUser else {
             #if DEBUG
             print("[更新用户国家] [用户不存在]")
@@ -539,18 +555,16 @@ extension GLDatingUserManager {
             return
         }
         user.country = country
-        try? database.update(table: tableName, on: GLDatingUser.Properties.country, with: user)
-        GLDatingUserManager.default.country.accept(country)
+        self._update(user: user) {
+            GLDatingUserManager.default.country.accept(country)
+            #if DEBUG
+            print("[更新用户国家成功]")
+            #endif
+        }
     }
     
     /// 更新用户头像
     public func updateUserAvatar(avatarName: String?) {
-        guard let database = self.database else {
-            #if DEBUG
-            print("[更新用户头像] [database不存在]")
-            #endif
-            return
-        }
         guard let user = GLDatingUserManager.default.currentUser else {
             #if DEBUG
             print("[更新用户头像] [用户不存在]")
@@ -558,18 +572,16 @@ extension GLDatingUserManager {
             return
         }
         user.avatar_name = avatarName
-        try? database.update(table: tableName, on: GLDatingUser.Properties.avatar_name, with: user)
-        GLDatingUserManager.default.avatarName.accept(avatarName)
+        self._update(user: user) {
+            GLDatingUserManager.default.avatarName.accept(avatarName)
+            #if DEBUG
+            print("[更新用户头像成功]")
+            #endif
+        }
     }
     
     /// 更新用户年龄
     public func updateUserAge(age: Int) {
-        guard let database = self.database else {
-            #if DEBUG
-            print("[更新用户年龄] [database不存在]")
-            #endif
-            return
-        }
         guard let user = GLDatingUserManager.default.currentUser else {
             #if DEBUG
             print("[更新用户年龄] [用户不存在]")
@@ -577,18 +589,16 @@ extension GLDatingUserManager {
             return
         }
         user.age = age
-        try? database.update(table: tableName, on: GLDatingUser.Properties.age, with: user)
-        GLDatingUserManager.default.age.accept(age)
+        self._update(user: user) {
+            GLDatingUserManager.default.age.accept(age)
+            #if DEBUG
+            print("[更新用户年龄成功]")
+            #endif
+        }
     }
     
     /// 更新用户身高
     public func updateUserHeight(height: Int) {
-        guard let database = self.database else {
-            #if DEBUG
-            print("[更新用户身高] [database不存在]")
-            #endif
-            return
-        }
         guard let user = GLDatingUserManager.default.currentUser else {
             #if DEBUG
             print("[更新用户身高] [用户不存在]")
@@ -596,18 +606,17 @@ extension GLDatingUserManager {
             return
         }
         user.height = height
-        try? database.update(table: tableName, on: GLDatingUser.Properties.height, with: user)
-        GLDatingUserManager.default.height.accept(height)
+        self._update(user: user) {
+            GLDatingUserManager.default.height.accept(height)
+            #if DEBUG
+            print("[更新用户身高成功]")
+            #endif
+        }
     }
+    
     
     /// 更新用户昵称
     public func updateUserNickName(nickName: String?) {
-        guard let database = self.database else {
-            #if DEBUG
-            print("[更新用户昵称] [database不存在]")
-            #endif
-            return
-        }
         guard let user = GLDatingUserManager.default.currentUser else {
             #if DEBUG
             print("[更新用户昵称] [用户不存在]")
@@ -615,18 +624,16 @@ extension GLDatingUserManager {
             return
         }
         user.nick_name = nickName
-        try? database.update(table: tableName, on: GLDatingUser.Properties.nick_name, with: user)
-        GLDatingUserManager.default.nickName.accept(nickName)
+        self._update(user: user) {
+            GLDatingUserManager.default.nickName.accept(nickName)
+            #if DEBUG
+            print("[更新用户昵称成功]")
+            #endif
+        }
     }
     
     /// 更新用户vip状态
     public func updateUserVip(isVip: Bool) {
-        guard let database = self.database else {
-            #if DEBUG
-            print("[更新用户vip状态] [database不存在]")
-            #endif
-            return
-        }
         guard let user = GLDatingUserManager.default.currentUser else {
             #if DEBUG
             print("[更新用户vip状态] [用户不存在]")
@@ -634,18 +641,16 @@ extension GLDatingUserManager {
             return
         }
         user.is_vip = isVip
-        try? database.update(table: tableName, on: GLDatingUser.Properties.is_vip, with: user)
-        GLDatingUserManager.default.isVip.accept(isVip)
+        self._update(user: user) {
+            GLDatingUserManager.default.isVip.accept(isVip)
+            #if DEBUG
+            print("[更新用户vip状态成功]")
+            #endif
+        }
     }
     
     /// 更新用户超级vip状态
     public func updateUserSuperVip(isSuperVip: Bool) {
-        guard let database = self.database else {
-            #if DEBUG
-            print("[更新用户超级vip状态] [database不存在]")
-            #endif
-            return
-        }
         guard let user = GLDatingUserManager.default.currentUser else {
             #if DEBUG
             print("[更新用户超级vip状态] [用户不存在]")
@@ -653,22 +658,19 @@ extension GLDatingUserManager {
             return
         }
         user.is_super_vip = isSuperVip
-        try? database.update(table: tableName, on: GLDatingUser.Properties.is_super_vip, with: user)
-        GLDatingUserManager.default.isSuperVip.accept(isSuperVip)
+        self._update(user: user) {
+            GLDatingUserManager.default.isSuperVip.accept(isSuperVip)
+            #if DEBUG
+            print("[更新用户超级vip状态成功]")
+            #endif
+        }
     }
     
     /// 更新用户钻石（消费）
     public func updateDiamondWhenCost(costCount: Int) {
-        guard let database = self.database else {
-            #if DEBUG
-            print("[更新用户钻石（消费）] [database不存在]")
-            #endif
-            return
-        }
-        
         guard let user = GLDatingUserManager.default.currentUser else {
             #if DEBUG
-            print("[更新用户钻石（消费）] [user不存在]")
+            print("[更新用户钻石（消费时）] [user不存在]")
             #endif
             return
         }
@@ -677,22 +679,19 @@ extension GLDatingUserManager {
             value = 0
         }
         user.diamond = value
-        try? database.update(table: tableName, on: GLDatingUser.Properties.diamond, with: user)
-        GLDatingUserManager.default.diamond.accept(value)
+        self._update(user: user) {
+            GLDatingUserManager.default.diamond.accept(value)
+            #if DEBUG
+            print("[更新用户钻石（消费时）成功]")
+            #endif
+        }
     }
     
     /// 更新用户钻石（充值）
     public func updateDiamondWhenRecharge(rechargeCount: Int) {
-        guard let database = self.database else {
-            #if DEBUG
-            print("[更新用户钻石（充值）] [database不存在]")
-            #endif
-            return
-        }
-        
         guard let user = GLDatingUserManager.default.currentUser else {
             #if DEBUG
-            print("[更新用户钻石（充值）] [user不存在]")
+            print("[更新用户钻石（充值时）] [user不存在]")
             #endif
             return
         }
@@ -701,7 +700,26 @@ extension GLDatingUserManager {
             value = 0
         }
         user.diamond = value
-        try? database.update(table: tableName, on: GLDatingUser.Properties.diamond, with: user)
-        GLDatingUserManager.default.diamond.accept(value)
+        self._update(user: user) {
+            GLDatingUserManager.default.diamond.accept(value)
+            #if DEBUG
+            print("[更新用户钻石（充值时）成功]")
+            #endif
+        }
+    }
+}
+
+extension GLDatingUserManager {
+    private func _update(user: GLDatingUser, completion: (() -> Void)?) {
+        do {
+            try self.dbQueue?.write({ (db) -> Void in
+                try user.update(db)
+            })
+            completion?()
+        } catch {
+            #if DEBUG
+            print("[更新用户信息失败] \(error.localizedDescription)")
+            #endif
+        }
     }
 }

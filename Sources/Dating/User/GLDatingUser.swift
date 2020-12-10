@@ -8,9 +8,12 @@
 
 import UIKit
 import Foundation
-import WCDBSwift
+import GRDB
 
-public class GLDatingUser: TableCodable {
+/// 表名
+internal let GLDatingUserTableName = "User"
+
+public class GLDatingUser: Codable {
     /// 用户ID
     public var user_id: String = UUID().uuidString
     /// 邮箱
@@ -49,10 +52,7 @@ public class GLDatingUser: TableCodable {
     public var is_super_vip: Bool = false
     
     
-    public enum CodingKeys: String, CodingTableKey {
-        public typealias Root = GLDatingUser
-        public static let objectRelationalMapping = TableBinding(CodingKeys.self)
-        
+    public enum CodingKeys: String, CodingKey, ColumnExpression {
         case user_id
         case email
         case sex
@@ -71,21 +71,14 @@ public class GLDatingUser: TableCodable {
         case diamond
         case is_vip
         case is_super_vip
-        
-        public static var columnConstraintBindings: [CodingKeys: ColumnConstraintBinding]? {
-            return [
-                .user_id: ColumnConstraintBinding(isPrimary: true)
-            ]
-        }
-        
-        public static var indexBindings: [IndexBinding.Subfix: IndexBinding]? {
-            return [
-                "_index": IndexBinding(indexesBy: CodingKeys.user_id)
-            ]
-        }
     }
 }
 
+extension GLDatingUser: MutablePersistableRecord, FetchableRecord, TableRecord, PersistableRecord {
+    public static var databaseTableName: String {
+        return GLDatingUserTableName
+    }
+}
 
 
 extension GLDatingUser: CustomStringConvertible, CustomDebugStringConvertible {

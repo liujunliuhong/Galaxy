@@ -36,8 +36,11 @@ target 'SwiftTool' do
 
   pod 'SDWebImage'
 
-  pod 'WCDB.swift'
+  #pod 'WCDB.swift'
 
   pod 'YYText'
   
+  pod 'GRDB.swift'
+  
+  pod 'FLEX'
 end

@@ -7,26 +7,12 @@
 //
 
 import Foundation
-import WCDBSwift
+import GRDB
 
-public enum GLDatingSexType: Int {
+public enum GLDatingSexType: Int, Codable {
     case man = 0
     case women = 1
     case unknown = 2
 }
 
-
-extension GLDatingSexType: ColumnCodable {
-    public init?(with value: FundamentalValue) {
-        guard let object = GLDatingSexType(rawValue: Int(truncatingIfNeeded: value.int64Value)) else { return nil }
-        self = object
-    }
-    
-    public func archivedValue() -> FundamentalValue {
-        return FundamentalValue(Int64(self.rawValue))
-    }
-    
-    public static var columnType: ColumnType {
-        return .integer64
-    }
-}
+extension GLDatingSexType: DatabaseValueConvertible {}

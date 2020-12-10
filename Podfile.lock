@@ -7,7 +7,11 @@ PODS:
   - CocoaLumberjack/Core (3.7.0)
   - CocoaLumberjack/Swift (3.7.0):
     - CocoaLumberjack/Core
+  - FLEX (4.2.2)
   - GLDeviceTool (1.0.1)
+  - GRDB.swift (5.2.0):
+    - GRDB.swift/standard (= 5.2.0)
+  - GRDB.swift/standard (5.2.0)
   - MBProgressHUD (1.2.0)
   - Moya (14.0.0):
     - Moya/Core (= 14.0.0)
@@ -47,8 +51,6 @@ PODS:
     - SDWebImage/Core (= 5.10.0)
   - SDWebImage/Core (5.10.0)
   - SnapKit (5.0.1)
-  - SQLiteRepairKit (1.2.2):
-    - WCDBOptimizedSQLCipher (~> 1.2.0)
   - SwiftyJSON (5.0.0)
   - Texture (3.0.0):
     - Texture/AssetsLibrary (= 3.0.0)
@@ -70,10 +72,6 @@ PODS:
     - Texture/Core
   - Texture/Video (3.0.0):
     - Texture/Core
-  - WCDB.swift (1.0.8.2):
-    - SQLiteRepairKit (~> 1.2.0)
-    - WCDBOptimizedSQLCipher (~> 1.2.0)
-  - WCDBOptimizedSQLCipher (1.2.1)
   - YYText (1.0.7)
 
 DEPENDENCIES:
@@ -81,7 +79,9 @@ DEPENDENCIES:
   - AMapLocation
   - BMKLocationKit
   - CocoaLumberjack/Swift
+  - FLEX
   - GLDeviceTool
+  - GRDB.swift
   - MBProgressHUD
   - Moya
   - "NSObject+Rx"
@@ -92,7 +92,6 @@ DEPENDENCIES:
   - SnapKit
   - SwiftyJSON
   - Texture
-  - WCDB.swift
   - YYText
 
 SPEC REPOS:
@@ -102,7 +101,9 @@ SPEC REPOS:
     - AMapLocation
     - BMKLocationKit
     - CocoaLumberjack
+    - FLEX
     - GLDeviceTool
+    - GRDB.swift
     - MBProgressHUD
     - Moya
     - "NSObject+Rx"
@@ -116,11 +117,8 @@ SPEC REPOS:
     - RxSwift
     - SDWebImage
     - SnapKit
-    - SQLiteRepairKit
     - SwiftyJSON
     - Texture
-    - WCDB.swift
-    - WCDBOptimizedSQLCipher
     - YYText
 
 SPEC CHECKSUMS:
@@ -129,7 +127,9 @@ SPEC CHECKSUMS:
   AMapLocation: a46c30d9930d0f3a3bd21139d8f845d10ac3f01d
   BMKLocationKit: 097814ef672b1e57e86e6c1968d7892fb78002bf
   CocoaLumberjack: e8955b9d337ac307103b0a34fd141c32f27e53c5
+  FLEX: dbd68ae9c67fcc872c79c9e5a728f38243dfaa78
   GLDeviceTool: 40f721c8354e2418ea4fa9eb7f0b604ff2f8e131
+  GRDB.swift: f44f61fd032e176e3aadb1f70e15656dc50ca018
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   "NSObject+Rx": fa6bbcc1ab1faa06b01466bc09b1e0692bbc5946
@@ -143,13 +143,10 @@ SPEC CHECKSUMS:
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
   SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
-  SQLiteRepairKit: 35aaae5a8838adb85f5b1eb4d796055be6060a4b
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   Texture: 2f109e937850d94d1d07232041c9c7313ccddb81
-  WCDB.swift: 05d509d7a0e60fb6e11c34eb7e4027c0fab5849f
-  WCDBOptimizedSQLCipher: baf44493b0c7a3d49e97bc5b64a3856f6428ddd1
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 38c4bd6fe05ae03098437346f992201b91292b77
+PODFILE CHECKSUM: e79455c95f390462243174a752b9c40dc19db102
 
 COCOAPODS: 1.10.0

@@ -7,10 +7,13 @@
 //
 
 import Foundation
-import WCDBSwift
+import GRDB
+
+/// 表名
+internal let GLDatingLikesTableName = "Likes"
 
 // 喜欢
-public class GLDatingLikes: TableCodable {
+public class GLDatingLikes: Codable {
     public var ID: String = UUID().uuidString
     /// 用户ID
     public var userID: String?
@@ -20,29 +23,22 @@ public class GLDatingLikes: TableCodable {
     public var avatar: String?
     /// 昵称
     public var name: String?
+    /// 创建时间
+    public var timeStmp: Int = Int(Date().timeIntervalSince1970)
     
     
-    public enum CodingKeys: String, CodingTableKey {
-        public typealias Root = GLDatingLikes
-        public static let objectRelationalMapping = TableBinding(CodingKeys.self)
-        
+    public enum CodingKeys: String, CodingKey, ColumnExpression {
         case ID
         case userID
         case ownerID
         case avatar
         case name
-        
-        public static var columnConstraintBindings: [CodingKeys: ColumnConstraintBinding]? {
-            return [
-                .ID: ColumnConstraintBinding(isPrimary: true)
-            ]
-        }
-        
-        public static var indexBindings: [IndexBinding.Subfix: IndexBinding]? {
-            return [
-                "_index": IndexBinding(indexesBy: CodingKeys.ID)
-            ]
-        }
+        case timeStmp
     }
 }
 
+extension GLDatingLikes: MutablePersistableRecord, FetchableRecord, TableRecord, PersistableRecord {
+    public static var databaseTableName: String {
+        return GLDatingLikesTableName
+    }
+}

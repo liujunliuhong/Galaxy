@@ -92,6 +92,8 @@
 		B4735D28257A4CAA002F7566 /* CALayer+GLChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4735D27257A4CAA002F7566 /* CALayer+GLChain.swift */; };
 		B4746ABE2580CE2400E1CB2A /* GLDatingLikes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4746ABD2580CE2400E1CB2A /* GLDatingLikes.swift */; };
 		B4746AC22580CE4600E1CB2A /* GLDatingLikesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4746AC12580CE4600E1CB2A /* GLDatingLikesManager.swift */; };
+		B4746B7B2581BA7900E1CB2A /* GRDBDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4746B7A2581BA7900E1CB2A /* GRDBDemoViewController.swift */; };
+		B4746B7F2581BB1500E1CB2A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4746B7E2581BB1500E1CB2A /* User.swift */; };
 		B49CE0282578796E0064B51B /* GLAlertOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49CE0272578796E0064B51B /* GLAlertOptions.swift */; };
 		B49CE1A82578B4180064B51B /* GLDatingAudioPlayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49CE1A72578B4180064B51B /* GLDatingAudioPlayManager.swift */; };
 		B4C6B39A257F1150004CD337 /* GLDatingSexType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C6B399257F1150004CD337 /* GLDatingSexType.swift */; };
@@ -211,6 +213,8 @@
 		B4735D27257A4CAA002F7566 /* CALayer+GLChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+GLChain.swift"; sourceTree = "<group>"; };
 		B4746ABD2580CE2400E1CB2A /* GLDatingLikes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingLikes.swift; sourceTree = "<group>"; };
 		B4746AC12580CE4600E1CB2A /* GLDatingLikesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingLikesManager.swift; sourceTree = "<group>"; };
+		B4746B7A2581BA7900E1CB2A /* GRDBDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GRDBDemoViewController.swift; sourceTree = "<group>"; };
+		B4746B7E2581BB1500E1CB2A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B49CE0272578796E0064B51B /* GLAlertOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLAlertOptions.swift; sourceTree = "<group>"; };
 		B49CE1A72578B4180064B51B /* GLDatingAudioPlayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingAudioPlayManager.swift; sourceTree = "<group>"; };
 		B4B9793D1D5B9C59651E2DBB /* Pods-SwiftTool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftTool.debug.xcconfig"; path = "Target Support Files/Pods-SwiftTool/Pods-SwiftTool.debug.xcconfig"; sourceTree = "<group>"; };
@@ -276,6 +280,7 @@
 		1831114924469EB700155620 /* SwiftTool */ = {
 			isa = PBXGroup;
 			children = (
+				B4746B792581BA5C00E1CB2A /* GRDB_Demo */,
 				1831114A24469EB700155620 /* AppDelegate.swift */,
 				1831114E24469EB700155620 /* ViewController.swift */,
 				859E67ED25455E22005F1115 /* NextViewController.swift */,
@@ -596,6 +601,15 @@
 			path = Likes;
 			sourceTree = "<group>";
 		};
+		B4746B792581BA5C00E1CB2A /* GRDB_Demo */ = {
+			isa = PBXGroup;
+			children = (
+				B4746B7A2581BA7900E1CB2A /* GRDBDemoViewController.swift */,
+				B4746B7E2581BB1500E1CB2A /* User.swift */,
+			);
+			path = GRDB_Demo;
+			sourceTree = "<group>";
+		};
 		B49CE1A52578B3C10064B51B /* AudioPlay */ = {
 			isa = PBXGroup;
 			children = (
@@ -878,6 +892,7 @@
 				85CC96A925793427002B993F /* GLDatePickerView.swift in Sources */,
 				B4735D11257A3C9A002F7566 /* UIActivityIndicatorView+GLChain.swift in Sources */,
 				B4F8AAEC257DF7E4004C932C /* String+GLMd5.swift in Sources */,
+				B4746B7B2581BA7900E1CB2A /* GRDBDemoViewController.swift in Sources */,
 				8594C76F257CC0D000D3C9C7 /* UIStackView+GLChain.swift in Sources */,
 				B4F8AAD8257DDD8D004C932C /* GLNavigation.swift in Sources */,
 				B4ED1C61255E685900115895 /* Keys.swift in Sources */,
@@ -925,6 +940,7 @@
 				B4746ABE2580CE2400E1CB2A /* GLDatingLikes.swift in Sources */,
 				85DBE0F42577DB9200E2DF24 /* GLDatingMessageNotificationManager.swift in Sources */,
 				B4F8AB05257E0D8A004C932C /* NSParagraphStyle+GLExtension.swift in Sources */,
+				B4746B7F2581BB1500E1CB2A /* User.swift in Sources */,
 				B4735D17257A3D1B002F7566 /* UIProgressView+GLChain.swift in Sources */,
 				B4735D1A257A3D32002F7566 /* UIRefreshControl+GLChain.swift in Sources */,
 				85CC942A25792982002B993F /* GLReachabilityManager.swift in Sources */,

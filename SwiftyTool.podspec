@@ -209,12 +209,12 @@ Pod::Spec.new do |s|
     # Sex
     ss.subspec 'Sex' do |sss|
       sss.source_files = 'Sources/Dating/Sex/*.swift'
-      sss.dependency 'WCDB.swift'
+      sss.dependency 'GRDB.swift'
     end
     # Message
     ss.subspec 'Message' do |sss|
       sss.source_files = 'Sources/Dating/Message/*.swift'
-      sss.dependency 'WCDB.swift'
+      sss.dependency 'GRDB.swift'
     end
     # TextField
     ss.subspec 'TextField' do |sss|
@@ -227,10 +227,9 @@ Pod::Spec.new do |s|
     # User
     ss.subspec 'User' do |sss|
       sss.source_files = 'Sources/Dating/User/*.swift'
-      sss.dependency 'WCDB.swift'
+      sss.dependency 'GRDB.swift'
       sss.dependency 'RxSwift'
       sss.dependency 'RxCocoa'
-      sss.dependency 'NSObject+Rx'
       sss.dependency 'SwiftyTool/Dating/Sex'
       sss.dependency 'SwiftyTool/Dating/Error'
       sss.dependency 'SwiftyTool/Foundation'
@@ -238,7 +237,7 @@ Pod::Spec.new do |s|
     # Likes
     ss.subspec 'Likes' do |sss|
       sss.source_files = 'Sources/Dating/Likes/*.swift'
-      sss.dependency 'WCDB.swift'
+      sss.dependency 'GRDB.swift'
       sss.dependency 'SwiftyTool/Dating/Error'
     end
 

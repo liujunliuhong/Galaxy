@@ -241,7 +241,6 @@ extension GLDatingUserManager {
         
         do {
             try self.dbQueue?.write({ (db) in
-                var user = user
                 do {
                     try user.insert(db)
                 } catch {
@@ -277,7 +276,6 @@ extension GLDatingUserManager {
         
         do {
             try self.dbQueue?.write({ (db) in
-                var user = user
                 do {
                     try user.insert(db)
                 } catch {

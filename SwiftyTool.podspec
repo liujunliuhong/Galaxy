@@ -215,6 +215,9 @@ Pod::Spec.new do |s|
     ss.subspec 'Message' do |sss|
       sss.source_files = 'Sources/Dating/Message/*.swift'
       sss.dependency 'GRDB.swift'
+      sss.dependency 'RxSwift'
+      sss.dependency 'RxCocoa'
+      sss.dependency 'SwiftyTool/Dating/Error'
     end
     # TextField
     ss.subspec 'TextField' do |sss|

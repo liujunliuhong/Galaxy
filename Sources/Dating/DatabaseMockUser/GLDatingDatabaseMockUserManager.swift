@@ -17,16 +17,17 @@ public class GLDatingDatabaseMockUserManager {
     public static let `default` = GLDatingDatabaseMockUserManager()
     
     private var dbQueue: DatabaseQueue?
+    private var ownerID: String?
+    
     
     private init() {
-        self.initDatabase()
-        self.creatDatabase()
+        
     }
 }
 
 extension GLDatingDatabaseMockUserManager {
     /// 初始化数据库
-    private func initDatabase() {
+    private func _initDatabase() {
         guard let basePath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last else { return }
         let dirPath = basePath + "/" + tableDirectory
         var isDirectory: ObjCBool = true
@@ -54,7 +55,7 @@ extension GLDatingDatabaseMockUserManager {
     }
     
     /// 创建数据库
-    private func creatDatabase() {
+    private func _creatDatabase() {
         guard let dbQueue = self.dbQueue else {
             #if DEBUG
             print("[DatingDatabaseMockUser] 数据库队列不存在")
@@ -68,11 +69,11 @@ extension GLDatingDatabaseMockUserManager {
                 }
                 try db.create(table: GLDatingDatabaseMockUserTableName, temporary: false, ifNotExists: true, body: { (t) in
                     t.column(GLDatingDatabaseMockUser.CodingKeys.ID.rawValue, .text).primaryKey().indexed()
-                    t.column(GLDatingDatabaseMockUser.CodingKeys.userID.rawValue, .text)
-                    t.column(GLDatingDatabaseMockUser.CodingKeys.ownerID.rawValue, .text)
+                    t.column(GLDatingDatabaseMockUser.CodingKeys.user_id.rawValue, .text)
+                    t.column(GLDatingDatabaseMockUser.CodingKeys.owner_id.rawValue, .text)
                     t.column(GLDatingDatabaseMockUser.CodingKeys.avatar.rawValue, .integer)
                     t.column(GLDatingDatabaseMockUser.CodingKeys.name.rawValue, .integer)
-                    t.column(GLDatingDatabaseMockUser.CodingKeys.timeStmp.rawValue, .integer)
+                    t.column(GLDatingDatabaseMockUser.CodingKeys.time_stmp.rawValue, .integer)
                     t.column(GLDatingDatabaseMockUser.CodingKeys.type.rawValue, .integer)
                     t.column(GLDatingDatabaseMockUser.CodingKeys.ext.rawValue, .text)
                 })
@@ -89,14 +90,31 @@ extension GLDatingDatabaseMockUserManager {
 }
 
 extension GLDatingDatabaseMockUserManager {
+    
+    /// 注册`ownerID`(第一步)
+    public func register(ownerID: String?) {
+        self.ownerID = ownerID
+    }
+    
+    /// 创建`DatabaseMockUser`数据库(第二步)
+    public func creatDataBase() {
+        self._initDatabase()
+        self._creatDatabase()
+    }
+    
+    /// 注销（退出登录的时候调用）
+    public func unRegister() {
+        self.ownerID = nil
+        self.dbQueue = nil
+    }
+    
     /// 添加
-    public func addObject(ownerID: String?,
-                          userID: String?,
+    public func addObject(userID: String?,
                           avatar: String?,
                           name: String?,
                           type: GLDatingDatabaseMockUserType,
                           ext: String? = nil) throws {
-        guard let ownerID = ownerID else {
+        guard let ownerID = self.ownerID else {
             #if DEBUG
             print("[DatingDatabaseMockUser] [ownerID is nil]")
             #endif
@@ -118,8 +136,8 @@ extension GLDatingDatabaseMockUserManager {
         // 先查询
         let count = (try? dbQueue.write({ (db) -> Int in
             let predicate: GRDB.SQLSpecificExpressible =
-                Column(GLDatingDatabaseMockUser.CodingKeys.ownerID.rawValue) == ownerID &&
-                Column(GLDatingDatabaseMockUser.CodingKeys.userID.rawValue) == userID &&
+                Column(GLDatingDatabaseMockUser.CodingKeys.owner_id.rawValue) == ownerID &&
+                Column(GLDatingDatabaseMockUser.CodingKeys.user_id.rawValue) == userID &&
                 Column(GLDatingDatabaseMockUser.CodingKeys.type.rawValue) == type
             
             return try GLDatingDatabaseMockUser.filter(predicate).fetchCount(db)
@@ -130,8 +148,8 @@ extension GLDatingDatabaseMockUserManager {
         }
         
         let databaseMockUser = GLDatingDatabaseMockUser()
-        databaseMockUser.ownerID = ownerID
-        databaseMockUser.userID = userID
+        databaseMockUser.owner_id = ownerID
+        databaseMockUser.user_id = userID
         databaseMockUser.avatar = avatar
         databaseMockUser.name = name
         databaseMockUser.type = type
@@ -157,10 +175,9 @@ extension GLDatingDatabaseMockUserManager {
     }
     
     /// 移除
-    public func deleteObject(ownerID: String?,
-                             userID: String?,
+    public func deleteObject(userID: String?,
                              type: GLDatingDatabaseMockUserType) throws {
-        guard let ownerID = ownerID else {
+        guard let ownerID = self.ownerID else {
             #if DEBUG
             print("[DatingDatabaseMockUser] [ownerID is nil]")
             #endif
@@ -181,12 +198,12 @@ extension GLDatingDatabaseMockUserManager {
         
         do {
             try dbQueue.write({ (db) -> Void in
-                let keys: [[String: DatabaseValueConvertible?]] = [
-                    [GLDatingDatabaseMockUser.CodingKeys.ownerID.rawValue: ownerID],
-                    [GLDatingDatabaseMockUser.CodingKeys.userID.rawValue: userID],
-                    [GLDatingDatabaseMockUser.CodingKeys.type.rawValue: type],
-                ]
-                try GLDatingDatabaseMockUser.deleteAll(db, keys: keys)
+                let predicate: GRDB.SQLSpecificExpressible =
+                    Column(GLDatingDatabaseMockUser.CodingKeys.owner_id.rawValue) == ownerID &&
+                    Column(GLDatingDatabaseMockUser.CodingKeys.user_id.rawValue) == userID &&
+                    Column(GLDatingDatabaseMockUser.CodingKeys.type.rawValue) == type
+                
+                try GLDatingDatabaseMockUser.filter(predicate).deleteAll(db)
             })
             #if DEBUG
             print("[DatingDatabaseMockUser] [删除成功]")
@@ -200,10 +217,9 @@ extension GLDatingDatabaseMockUserManager {
     }
     
     /// 查询是否添加
-    public func queryIsAdd(ownerID: String?,
-                           userID: String?,
+    public func queryIsAdd(userID: String?,
                            type: GLDatingDatabaseMockUserType) -> Bool {
-        guard let ownerID = ownerID else {
+        guard let ownerID = self.ownerID else {
             #if DEBUG
             print("[DatingDatabaseMockUser] [ownerID is nil]")
             #endif
@@ -224,10 +240,9 @@ extension GLDatingDatabaseMockUserManager {
         // 查询
         let count = (try? dbQueue.write({ (db) -> Int in
             let predicate: GRDB.SQLSpecificExpressible =
-                Column(GLDatingDatabaseMockUser.CodingKeys.ownerID.rawValue) == ownerID &&
-                Column(GLDatingDatabaseMockUser.CodingKeys.userID.rawValue) == userID &&
+                Column(GLDatingDatabaseMockUser.CodingKeys.owner_id.rawValue) == ownerID &&
+                Column(GLDatingDatabaseMockUser.CodingKeys.user_id.rawValue) == userID &&
                 Column(GLDatingDatabaseMockUser.CodingKeys.type.rawValue) == type
-            
             return try GLDatingDatabaseMockUser.filter(predicate).fetchCount(db)
         })) ?? 0
         #if DEBUG
@@ -237,9 +252,8 @@ extension GLDatingDatabaseMockUserManager {
     }
     
     /// 获取所有数据
-    public func queryAllAdds(ownerID: String?,
-                             type: GLDatingDatabaseMockUserType) -> [GLDatingDatabaseMockUser] {
-        guard let ownerID = ownerID else {
+    public func queryAllAdds(type: GLDatingDatabaseMockUserType) -> [GLDatingDatabaseMockUser] {
+        guard let ownerID = self.ownerID else {
             #if DEBUG
             print("[DatingDatabaseMockUser] [ownerID is nil]")
             #endif
@@ -254,10 +268,13 @@ extension GLDatingDatabaseMockUserManager {
         
         let results = try? dbQueue.write({ (db) -> [GLDatingDatabaseMockUser] in
             let predicate: GRDB.SQLSpecificExpressible =
-                Column(GLDatingDatabaseMockUser.CodingKeys.ownerID.rawValue) == ownerID &&
+                Column(GLDatingDatabaseMockUser.CodingKeys.owner_id.rawValue) == ownerID &&
                 Column(GLDatingDatabaseMockUser.CodingKeys.type.rawValue) == type
             
-            return try GLDatingDatabaseMockUser.filter(predicate).fetchAll(db)
+            return try GLDatingDatabaseMockUser
+                .order(Column(GLDatingDatabaseMockUser.CodingKeys.time_stmp).desc)
+                .filter(predicate)
+                .fetchAll(db)
         })
         #if DEBUG
         print("[DatingDatabaseMockUser] [获取所有数据成功]")
@@ -266,8 +283,7 @@ extension GLDatingDatabaseMockUserManager {
     }
     
     /// 删除所有数据
-    public func deleteAllObjects(ownerID: String?,
-                                 type: GLDatingDatabaseMockUserType) throws {
+    public func deleteAllObjects(type: GLDatingDatabaseMockUserType) throws {
         guard let ownerID = ownerID else {
             #if DEBUG
             print("[DatingDatabaseMockUser] [ownerID is nil]")
@@ -282,11 +298,10 @@ extension GLDatingDatabaseMockUserManager {
         }
         do {
             try dbQueue.write({ (db) -> Void in
-                let keys: [[String: DatabaseValueConvertible?]] = [
-                    [GLDatingDatabaseMockUser.CodingKeys.ownerID.rawValue: ownerID],
-                    [GLDatingDatabaseMockUser.CodingKeys.type.rawValue: type]
-                ]
-                try GLDatingDatabaseMockUser.deleteAll(db, keys: keys)
+                let predicate: GRDB.SQLSpecificExpressible = Column(GLDatingDatabaseMockUser.CodingKeys.owner_id.rawValue) == ownerID &&
+                    Column(GLDatingDatabaseMockUser.CodingKeys.type.rawValue) == type
+                
+                try GLDatingDatabaseMockUser.filter(predicate).deleteAll(db)
             })
             #if DEBUG
             print("[DatingDatabaseMockUser] [删除所有数据成功]")

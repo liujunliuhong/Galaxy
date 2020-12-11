@@ -81,23 +81,41 @@ class GRDBDemoViewController: UIViewController {
         self.insertButton.addTarget(self, action: #selector(insertAction), for: .touchUpInside)
         self.queryButton.addTarget(self, action: #selector(queryAction), for: .touchUpInside)
         self.queryButton.addTarget(self, action: #selector(updateAction), for: .touchUpInside)
+        
+        GLDatingMessageManager.default.conversationList.subscribe(onNext: { (conversationList) in
+            for (_, conversation) in conversationList.enumerated() {
+                GLLog("\(conversation.unReadCount)")
+            }
+        }).disposed(by: rx.disposeBag)
     }
 }
 
+let ownerID: String = "123"
+
 extension GRDBDemoViewController {
     @objc func creatAction() {
-        let _ = GLDatingUserManager.default
+        GLDatingMessageManager.default.register(ownerID: ownerID)
+        GLDatingMessageManager.default.creatDataBase()
+        GLDatingMessageManager.default.startListeningConversationList()
+        GLDatingMessageManager.default.startListeningMessageUnreadCount()
+//        let _ = GLDatingUserManager.default
     }
     
     @objc func insertAction() {
-        try? GLDatingUserManager.default.register(sex: .women, email: "222@", password: "123456", nickName: "lala")
+//        try? GLDatingUserManager.default.register(sex: .women, email: "222@", password: "123456", nickName: "lala")
+//        let userInfo =  GLDatingMessageUserInfo()
+//        userInfo.sender_id = "sender_id"
+        
+        let message = GLDatingMessageManager.default.sendMessage(conversationID: "111", messageType: .text, messageContent: "hello", isSender: true, isRead: false, userInfo: nil)
+        
     }
     
     @objc func queryAction() {
-        try? GLDatingUserManager.default.loadUserInfo()
+        let message = GLDatingMessageManager.default.sendMessage(conversationID: "222", messageType: .text, messageContent: "hello", isSender: true, isRead: false, userInfo: nil)
+//        try? GLDatingUserManager.default.loadUserInfo()
     }
     
     @objc func updateAction() {
-        GLDatingUserManager.default.updateUserNickName(nickName: "liujun__12345")
+//        GLDatingUserManager.default.updateUserNickName(nickName: "liujun__12345")
     }
 }

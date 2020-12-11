@@ -79,14 +79,13 @@ public class GLDatingUserManager {
     }
     
     private init() {
-        self.initDatabase()
-        self.creatUserDatabase()
+        
     }
 }
 
 extension GLDatingUserManager {
     /// 初始化数据库
-    private func initDatabase() {
+    private func _initDatabase() {
         guard let basePath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last else { return }
         let dirPath = basePath + "/" + tableDirectory
         var isDirectory: ObjCBool = true
@@ -114,7 +113,7 @@ extension GLDatingUserManager {
     }
     
     /// 创建用户数据库
-    private func creatUserDatabase() {
+    private func _creatUserDatabase() {
         guard let dbQueue = self.dbQueue else {
             #if DEBUG
             print("数据库队列不存在，不能创建用户数据库")
@@ -160,6 +159,12 @@ extension GLDatingUserManager {
 }
 
 extension GLDatingUserManager {
+    
+    /// 创建用户数据库
+    public func creatDataBase() {
+        self._initDatabase()
+        self._creatUserDatabase()
+    }
     
     /// 加载用户信息，应该先调用`isLogin`判断是否登录，如果登录了，再调用此方法
     public func loadUserInfo() throws {
@@ -366,6 +371,7 @@ extension GLDatingUserManager {
     /// 退出登录(会把单列里面的所有信息清除)
     public func logout() {
         self.clearUserInfo()
+        self.dbQueue = nil
     }
     
     

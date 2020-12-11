@@ -30,9 +30,9 @@ extension GLDatingDatabaseMockUserType: DatabaseValueConvertible {}
 public class GLDatingDatabaseMockUser: Codable {
     public var ID: String = UUID().uuidString
     /// 用户ID
-    public var userID: String?
+    public var user_id: String?
     /// 拥有者ID
-    public var ownerID: String?
+    public var owner_id: String?
     /// 头像
     public var avatar: String?
     /// 昵称
@@ -42,18 +42,18 @@ public class GLDatingDatabaseMockUser: Codable {
     /// 额外信息
     public var ext: String?
     /// 创建时间
-    public var timeStmp: Int = Int(Date().timeIntervalSince1970)
+    public var time_stmp: Int = Int(Date().timeIntervalSince1970)
     
     
     public enum CodingKeys: String, CodingKey, ColumnExpression {
         case ID
-        case userID
-        case ownerID
+        case user_id
+        case owner_id
         case avatar
         case name
         case type
         case ext
-        case timeStmp
+        case time_stmp
     }
 }
 

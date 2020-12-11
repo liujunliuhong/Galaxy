@@ -77,6 +77,9 @@
 		B4262D922579FBD200AA144B /* UILabel+GLChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4262D912579FBD200AA144B /* UILabel+GLChain.swift */; };
 		B463D86E25830B1E000C0474 /* GLDatingDatabaseMockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B463D86D25830B1E000C0474 /* GLDatingDatabaseMockUser.swift */; };
 		B463D87225830C8F000C0474 /* GLDatingDatabaseMockUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B463D87125830C8F000C0474 /* GLDatingDatabaseMockUserManager.swift */; };
+		B463D96D25835D70000C0474 /* GLDatingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B463D96C25835D70000C0474 /* GLDatingMessage.swift */; };
+		B463D9702583601E000C0474 /* GLDatingMessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B463D96F2583601E000C0474 /* GLDatingMessageManager.swift */; };
+		B463D97725836F59000C0474 /* GLDatingConversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B463D97625836F59000C0474 /* GLDatingConversation.swift */; };
 		B4735CF9257A3A08002F7566 /* UIButton+GLChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4735CF8257A3A08002F7566 /* UIButton+GLChain.swift */; };
 		B4735CFC257A3A16002F7566 /* UIControl+GLChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4735CFB257A3A16002F7566 /* UIControl+GLChain.swift */; };
 		B4735CFF257A3BFF002F7566 /* UIImageView+GLChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4735CFE257A3BFF002F7566 /* UIImageView+GLChain.swift */; };
@@ -198,6 +201,9 @@
 		B4262D912579FBD200AA144B /* UILabel+GLChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+GLChain.swift"; sourceTree = "<group>"; };
 		B463D86D25830B1E000C0474 /* GLDatingDatabaseMockUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingDatabaseMockUser.swift; sourceTree = "<group>"; };
 		B463D87125830C8F000C0474 /* GLDatingDatabaseMockUserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingDatabaseMockUserManager.swift; sourceTree = "<group>"; };
+		B463D96C25835D70000C0474 /* GLDatingMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingMessage.swift; sourceTree = "<group>"; };
+		B463D96F2583601E000C0474 /* GLDatingMessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingMessageManager.swift; sourceTree = "<group>"; };
+		B463D97625836F59000C0474 /* GLDatingConversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingConversation.swift; sourceTree = "<group>"; };
 		B4735CF8257A3A08002F7566 /* UIButton+GLChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+GLChain.swift"; sourceTree = "<group>"; };
 		B4735CFB257A3A16002F7566 /* UIControl+GLChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+GLChain.swift"; sourceTree = "<group>"; };
 		B4735CFE257A3BFF002F7566 /* UIImageView+GLChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+GLChain.swift"; sourceTree = "<group>"; };
@@ -638,6 +644,9 @@
 			isa = PBXGroup;
 			children = (
 				B4C6B39D257F12E0004CD337 /* GLDatingMessageType.swift */,
+				B463D96F2583601E000C0474 /* GLDatingMessageManager.swift */,
+				B463D96C25835D70000C0474 /* GLDatingMessage.swift */,
+				B463D97625836F59000C0474 /* GLDatingConversation.swift */,
 			);
 			path = Message;
 			sourceTree = "<group>";
@@ -902,6 +911,7 @@
 				B4F8AAF1257DF955004C932C /* GLDatingWebViewController.swift in Sources */,
 				B4F8AAF9257E0B70004C932C /* GLDatingPhotoManager.swift in Sources */,
 				B4C6B39E257F12E0004CD337 /* GLDatingMessageType.swift in Sources */,
+				B463D97725836F59000C0474 /* GLDatingConversation.swift in Sources */,
 				850664072550493C00EB4188 /* GLMapManager.swift in Sources */,
 				85DBE0F12577DB0900E2DF24 /* GLDatingMessageNotificationOptions.swift in Sources */,
 				B4C6B4E0257F2CC1004CD337 /* GLDatingUser.swift in Sources */,
@@ -927,6 +937,7 @@
 				850664102550493C00EB4188 /* CGFloat+GLExtension.swift in Sources */,
 				8506641D2550493C00EB4188 /* GLCusNavigationBar.swift in Sources */,
 				1831114F24469EB700155620 /* ViewController.swift in Sources */,
+				B463D96D25835D70000C0474 /* GLDatingMessage.swift in Sources */,
 				850664212550493C00EB4188 /* UIColor+GLExtension.swift in Sources */,
 				85CC969425793189002B993F /* GLDatingAVPlayerView.swift in Sources */,
 				B4C6B3A3257F1382004CD337 /* GLDatingTextField.swift in Sources */,
@@ -972,6 +983,7 @@
 				8506641C2550493C00EB4188 /* GLCusNaviBarTitle.swift in Sources */,
 				85E5CC0D257E7E49003C2A2B /* GLAttributedString.swift in Sources */,
 				859E67EE25455E22005F1115 /* NextViewController.swift in Sources */,
+				B463D9702583601E000C0474 /* GLDatingMessageManager.swift in Sources */,
 				85DBE0ED2577DAD700E2DF24 /* GLDatingMessageNotification.swift in Sources */,
 				183111FA2446A8D400155620 /* Test.m in Sources */,
 				B4F8AAE7257DF65D004C932C /* GLDatingRobotMessage.swift in Sources */,

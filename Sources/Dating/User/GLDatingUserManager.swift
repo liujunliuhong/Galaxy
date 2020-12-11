@@ -130,6 +130,7 @@ extension GLDatingUserManager {
                     t.column(GLDatingUser.CodingKeys.user_id.rawValue, .text).primaryKey().indexed()
                     t.column(GLDatingUser.CodingKeys.email.rawValue, .text)
                     t.column(GLDatingUser.CodingKeys.sex.rawValue, .integer).defaults(to: GLDatingSexType.man)
+                    t.column(GLDatingUser.CodingKeys.looking_for_sex.rawValue, .integer).defaults(to: GLDatingSexType.women)
                     t.column(GLDatingUser.CodingKeys.nick_name.rawValue, .text)
                     t.column(GLDatingUser.CodingKeys.age.rawValue, .integer).defaults(to: 25)
                     t.column(GLDatingUser.CodingKeys.height.rawValue, .integer).defaults(to: 170)

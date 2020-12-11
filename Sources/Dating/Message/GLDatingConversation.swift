@@ -24,3 +24,12 @@ public class GLDatingConversation: NSObject {
     /// 未读数量
     public var unReadCount: Int = 0
 }
+
+/*
+ 机器人自动给我消息
+ 机器人自动`like`我
+ 机器人自动`visited`我
+ 机器人自动`attention`我
+ 
+ 传入一组时间，然后依次收到回调
+ */

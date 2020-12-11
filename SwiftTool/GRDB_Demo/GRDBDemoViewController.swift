@@ -80,24 +80,34 @@ class GRDBDemoViewController: UIViewController {
         self.creatButton.addTarget(self, action: #selector(creatAction), for: .touchUpInside)
         self.insertButton.addTarget(self, action: #selector(insertAction), for: .touchUpInside)
         self.queryButton.addTarget(self, action: #selector(queryAction), for: .touchUpInside)
-        self.queryButton.addTarget(self, action: #selector(updateAction), for: .touchUpInside)
+        self.updateButton.addTarget(self, action: #selector(updateAction), for: .touchUpInside)
         
         GLDatingMessageManager.default.conversationList.subscribe(onNext: { (conversationList) in
             for (_, conversation) in conversationList.enumerated() {
                 GLLog("\(conversation.unReadCount)")
             }
         }).disposed(by: rx.disposeBag)
+        
+//        GLDatingPrint("1234598765432")
     }
 }
 
 let ownerID: String = "123"
+let targetConversationID: String = "111"
+
+
 
 extension GRDBDemoViewController {
     @objc func creatAction() {
+        GLDatingMessageManager.default.unListeningAllMessages(conversationID: targetConversationID)
+        GLDatingMessageManager.default.unRegister()
+        
         GLDatingMessageManager.default.register(ownerID: ownerID)
         GLDatingMessageManager.default.creatDataBase()
         GLDatingMessageManager.default.startListeningConversationList()
         GLDatingMessageManager.default.startListeningMessageUnreadCount()
+        GLDatingMessageManager.default.startListeningAllMessages(conversationID: targetConversationID)
+        
 //        let _ = GLDatingUserManager.default
     }
     
@@ -106,7 +116,7 @@ extension GRDBDemoViewController {
 //        let userInfo =  GLDatingMessageUserInfo()
 //        userInfo.sender_id = "sender_id"
         
-        let message = GLDatingMessageManager.default.sendMessage(conversationID: "111", messageType: .text, messageContent: "hello", isSender: true, isRead: false, userInfo: nil)
+        let message = GLDatingMessageManager.default.sendMessage(conversationID: targetConversationID, messageType: .text, messageContent: "hello", isSender: true, isRead: false, userInfo: nil)
         
     }
     
@@ -116,6 +126,7 @@ extension GRDBDemoViewController {
     }
     
     @objc func updateAction() {
+        GLDatingMessageManager.default.markHasRead(conversationID: targetConversationID)
 //        GLDatingUserManager.default.updateUserNickName(nickName: "liujun__12345")
     }
 }

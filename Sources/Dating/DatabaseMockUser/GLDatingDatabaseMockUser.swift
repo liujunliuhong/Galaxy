@@ -15,13 +15,21 @@ internal let GLDatingDatabaseMockUserTableName = "DatabaseMockUser"
 
 public enum GLDatingDatabaseMockUserType: Int, Codable {
     /// 我最喜欢的
-    case my_favorites = 0
+    case me_favorites = 0
+    /// 最喜欢我的
+    case favorites_me = 1
     /// 我喜欢的
-    case you_like = 1
+    case me_like = 2
     /// 喜欢我的
-    case like_you = 2
-    /// 我噶关注的
-    case my_attention = 3
+    case like_me = 3
+    /// 我关注的
+    case me_attention = 4
+    /// 关注我的
+    case attention_me = 5
+    /// 我浏览过的
+    case me_visited = 6
+    /// 浏览过我的
+    case visited_me = 7
 }
 
 extension GLDatingDatabaseMockUserType: DatabaseValueConvertible {}
@@ -38,7 +46,7 @@ public class GLDatingDatabaseMockUser: Codable {
     /// 昵称
     public var name: String?
     /// 类型
-    public var type: GLDatingDatabaseMockUserType = .my_favorites
+    public var type: GLDatingDatabaseMockUserType = .me_favorites
     /// 额外信息
     public var ext: String?
     /// 创建时间

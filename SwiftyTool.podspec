@@ -218,6 +218,7 @@ Pod::Spec.new do |s|
       sss.dependency 'RxSwift'
       sss.dependency 'RxCocoa'
       sss.dependency 'SwiftyTool/Dating/Error'
+      sss.dependency 'SwiftyTool/Dating/Log'
     end
     # TextField
     ss.subspec 'TextField' do |sss|
@@ -242,8 +243,12 @@ Pod::Spec.new do |s|
       sss.source_files = 'Sources/Dating/DatabaseMockUser/*.swift'
       sss.dependency 'GRDB.swift'
       sss.dependency 'SwiftyTool/Dating/Error'
+      sss.dependency 'SwiftyTool/Dating/Log'
     end
-
+    # Log
+    ss.subspec 'Log' do |sss|
+      sss.source_files = 'Sources/Dating/Log/*.swift'
+    end
   end
   
 end

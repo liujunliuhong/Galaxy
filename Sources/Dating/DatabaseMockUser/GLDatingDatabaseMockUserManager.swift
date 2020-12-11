@@ -35,31 +35,25 @@ extension GLDatingDatabaseMockUserManager {
             try? FileManager.default.createDirectory(atPath: dirPath, withIntermediateDirectories: true, attributes: nil)
         }
         let path = dirPath + "/" + tablePath
-        #if DEBUG
-        print("`[DatingDatabaseMockUser] 数据库路径:\(path)")
-        #endif
+        
+        GLDatingLog("`[DatingDatabaseMockUser] 数据库路径:\(path)")
+        
         var configuration = GRDB.Configuration()
         configuration.busyMode = .timeout(10)
         configuration.readonly = false
         do {
             let dbQueue = try DatabaseQueue(path: path, configuration: configuration)
             self.dbQueue = dbQueue
-            #if DEBUG
-            print("[DatingDatabaseMockUser] 初始化数据库成功")
-            #endif
+            GLDatingLog("[DatingDatabaseMockUser] 初始化数据库成功")
         } catch {
-            #if DEBUG
-            print("[DatingDatabaseMockUser] 初始化数据库失败: \(error.localizedDescription)")
-            #endif
+            GLDatingLog("[DatingDatabaseMockUser] 初始化数据库失败: \(error.localizedDescription)")
         }
     }
     
     /// 创建数据库
     private func _creatDatabase() {
         guard let dbQueue = self.dbQueue else {
-            #if DEBUG
-            print("[DatingDatabaseMockUser] 数据库队列不存在")
-            #endif
+            GLDatingLog("[DatingDatabaseMockUser] 数据库队列不存在")
             return
         }
         do {
@@ -78,13 +72,9 @@ extension GLDatingDatabaseMockUserManager {
                     t.column(GLDatingDatabaseMockUser.CodingKeys.ext.rawValue, .text)
                 })
             })
-            #if DEBUG
-            print("[DatingDatabaseMockUser] 表创建成功")
-            #endif
+            GLDatingLog("[DatingDatabaseMockUser] 表创建成功")
         } catch {
-            #if DEBUG
-            print("[DatingDatabaseMockUser] 表创建失败: \(error.localizedDescription)")
-            #endif
+            GLDatingLog("[DatingDatabaseMockUser] 表创建失败: \(error.localizedDescription)")
         }
     }
 }
@@ -115,21 +105,15 @@ extension GLDatingDatabaseMockUserManager {
                           type: GLDatingDatabaseMockUserType,
                           ext: String? = nil) throws {
         guard let ownerID = self.ownerID else {
-            #if DEBUG
-            print("[DatingDatabaseMockUser] [ownerID is nil]")
-            #endif
+            GLDatingLog("[DatingDatabaseMockUser] [ownerID is nil]")
             throw GLDatingError.error("ownerID is nil")
         }
         guard let userID = userID else {
-            #if DEBUG
-            print("[DatingDatabaseMockUser] [userID is nil]")
-            #endif
+            GLDatingLog("[DatingDatabaseMockUser] [userID is nil]")
             throw GLDatingError.error("userID is nil")
         }
         guard let dbQueue = self.dbQueue else {
-            #if DEBUG
-            print("[DatingDatabaseMockUser] 数据库队列不存在")
-            #endif
+            GLDatingLog("[DatingDatabaseMockUser] 数据库队列不存在")
             throw GLDatingError.error("数据库队列不存在")
         }
         
@@ -163,13 +147,9 @@ extension GLDatingDatabaseMockUserManager {
                     throw error
                 }
             })
-            #if DEBUG
-            print("[DatingDatabaseMockUser] [添加成功]")
-            #endif
+            GLDatingLog("[DatingDatabaseMockUser] [添加成功]")
         } catch {
-            #if DEBUG
-            print("[DatingDatabaseMockUser] [添加失败] \(error.localizedDescription)")
-            #endif
+            GLDatingLog("[DatingDatabaseMockUser] [添加失败] \(error.localizedDescription)")
             throw error
         }
     }
@@ -178,21 +158,15 @@ extension GLDatingDatabaseMockUserManager {
     public func deleteObject(userID: String?,
                              type: GLDatingDatabaseMockUserType) throws {
         guard let ownerID = self.ownerID else {
-            #if DEBUG
-            print("[DatingDatabaseMockUser] [ownerID is nil]")
-            #endif
+            GLDatingLog("[DatingDatabaseMockUser] [ownerID is nil]")
             throw GLDatingError.error("ownerID is nil")
         }
         guard let userID = userID else {
-            #if DEBUG
-            print("[DatingDatabaseMockUser] [userID is nil]")
-            #endif
+            GLDatingLog("[DatingDatabaseMockUser] [userID is nil]")
             throw GLDatingError.error("userID is nil")
         }
         guard let dbQueue = self.dbQueue else {
-            #if DEBUG
-            print("[DatingDatabaseMockUser] 数据库队列不存在")
-            #endif
+            GLDatingLog("[DatingDatabaseMockUser] 数据库队列不存在")
             throw GLDatingError.error("数据库队列不存在")
         }
         
@@ -205,13 +179,9 @@ extension GLDatingDatabaseMockUserManager {
                 
                 try GLDatingDatabaseMockUser.filter(predicate).deleteAll(db)
             })
-            #if DEBUG
-            print("[DatingDatabaseMockUser] [删除成功]")
-            #endif
+            GLDatingLog("[DatingDatabaseMockUser] [删除成功]")
         } catch {
-            #if DEBUG
-            print("[DatingDatabaseMockUser] [删除失败] \(error.localizedDescription)")
-            #endif
+            GLDatingLog("[DatingDatabaseMockUser] [删除失败] \(error.localizedDescription)")
             throw error
         }
     }
@@ -220,21 +190,15 @@ extension GLDatingDatabaseMockUserManager {
     public func queryIsAdd(userID: String?,
                            type: GLDatingDatabaseMockUserType) -> Bool {
         guard let ownerID = self.ownerID else {
-            #if DEBUG
-            print("[DatingDatabaseMockUser] [ownerID is nil]")
-            #endif
+            GLDatingLog("[DatingDatabaseMockUser] [ownerID is nil]")
             return false
         }
         guard let userID = userID else {
-            #if DEBUG
-            print("[DatingDatabaseMockUser] [userID is nil]")
-            #endif
+            GLDatingLog("[DatingDatabaseMockUser] [userID is nil]")
             return false
         }
         guard let dbQueue = self.dbQueue else {
-            #if DEBUG
-            print("[DatingDatabaseMockUser] 数据库队列不存在")
-            #endif
+            GLDatingLog("[DatingDatabaseMockUser] 数据库队列不存在")
             return false
         }
         // 查询
@@ -245,24 +209,18 @@ extension GLDatingDatabaseMockUserManager {
                 Column(GLDatingDatabaseMockUser.CodingKeys.type.rawValue) == type
             return try GLDatingDatabaseMockUser.filter(predicate).fetchCount(db)
         })) ?? 0
-        #if DEBUG
-        print("[DatingDatabaseMockUser] [查询是否Add成功] \(count > 0)")
-        #endif
+        GLDatingLog("[DatingDatabaseMockUser] [查询是否Add成功] \(count > 0)")
         return count > 0
     }
     
     /// 获取所有数据
     public func queryAllAdds(type: GLDatingDatabaseMockUserType) -> [GLDatingDatabaseMockUser] {
         guard let ownerID = self.ownerID else {
-            #if DEBUG
-            print("[DatingDatabaseMockUser] [ownerID is nil]")
-            #endif
+            GLDatingLog("[DatingDatabaseMockUser] [ownerID is nil]")
             return []
         }
         guard let dbQueue = self.dbQueue else {
-            #if DEBUG
-            print("[DatingDatabaseMockUser] 数据库队列不存在")
-            #endif
+            GLDatingLog("[DatingDatabaseMockUser] 数据库队列不存在")
             return []
         }
         
@@ -276,24 +234,18 @@ extension GLDatingDatabaseMockUserManager {
                 .filter(predicate)
                 .fetchAll(db)
         })
-        #if DEBUG
-        print("[DatingDatabaseMockUser] [获取所有数据成功]")
-        #endif
+        GLDatingLog("[DatingDatabaseMockUser] [获取所有数据成功]")
         return results ?? []
     }
     
     /// 删除所有数据
     public func deleteAllObjects(type: GLDatingDatabaseMockUserType) throws {
         guard let ownerID = ownerID else {
-            #if DEBUG
-            print("[DatingDatabaseMockUser] [ownerID is nil]")
-            #endif
+            GLDatingLog("[DatingDatabaseMockUser] [ownerID is nil]")
             throw GLDatingError.error("ownerID is nil")
         }
         guard let dbQueue = self.dbQueue else {
-            #if DEBUG
-            print("[DatingDatabaseMockUser] 数据库队列不存在")
-            #endif
+            GLDatingLog("[DatingDatabaseMockUser] 数据库队列不存在")
             throw GLDatingError.error("数据库队列不存在")
         }
         do {
@@ -303,14 +255,12 @@ extension GLDatingDatabaseMockUserManager {
                 
                 try GLDatingDatabaseMockUser.filter(predicate).deleteAll(db)
             })
-            #if DEBUG
-            print("[DatingDatabaseMockUser] [删除所有数据成功]")
-            #endif
+            GLDatingLog("[DatingDatabaseMockUser] [删除所有数据成功]")
         } catch {
-            #if DEBUG
-            print("[DatingDatabaseMockUser] [删除所有数据失败] \(error.localizedDescription)")
-            #endif
+            GLDatingLog("[DatingDatabaseMockUser] [删除所有数据失败] \(error.localizedDescription)")
             throw error
         }
     }
 }
+
+

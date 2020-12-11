@@ -57,31 +57,30 @@ extension GLDatingMessageManager {
             try? FileManager.default.createDirectory(atPath: dirPath, withIntermediateDirectories: true, attributes: nil)
         }
         let path = dirPath + "/" + tablePath
-        #if DEBUG
-        print("消息数据库路径:\(path)")
-        #endif
+        GLDatingLog("消息数据库路径:\(path)")
         var configuration = GRDB.Configuration()
         configuration.busyMode = .timeout(10)
         configuration.readonly = false
+        //        configuration.prepareDatabase { (db) in
+        //            db.trace(options: [.statement]) { (event) in
+        //                #if DEBUG
+        //                print("\(event.description)") // 打印SQL语句
+        //                #endif
+        //            }
+        //        }
         do {
             let dbQueue = try DatabaseQueue(path: path, configuration: configuration)
             self.dbQueue = dbQueue
-            #if DEBUG
-            print("初始化消息数据库成功")
-            #endif
+            GLDatingLog("初始化消息数据库成功")
         } catch {
-            #if DEBUG
-            print("初始化消息数据库失败: \(error.localizedDescription)")
-            #endif
+            GLDatingLog("初始化消息数据库失败: \(error.localizedDescription)")
         }
     }
     
     /// 创建消息数据库
     private func _creatMessageDatabase() {
         guard let dbQueue = self.dbQueue else {
-            #if DEBUG
-            print("数据库队列不存在，不能创建消息数据库")
-            #endif
+            GLDatingLog("数据库队列不存在，不能创建消息数据库")
             return
         }
         do {
@@ -101,13 +100,9 @@ extension GLDatingMessageManager {
                     t.column(GLDatingMessage.CodingKeys.user_info.rawValue, .text)
                 })
             })
-            #if DEBUG
-            print("消息表创建成功")
-            #endif
+            GLDatingLog("消息表创建成功")
         } catch {
-            #if DEBUG
-            print("消息表创建失败: \(error.localizedDescription)")
-            #endif
+            GLDatingLog("消息表创建失败: \(error.localizedDescription)")
         }
     }
 }
@@ -148,21 +143,15 @@ extension GLDatingMessageManager {
                             isRead: Bool,
                             userInfo: GLDatingMessageUserInfo?) -> GLDatingMessage? {
         guard let conversationID = conversationID else {
-            #if DEBUG
-            print("[发送消息] conversationID = nil")
-            #endif
+            GLDatingLog("[发送消息] conversationID = nil")
             return nil
         }
         guard let ownerID = self.ownerID else {
-            #if DEBUG
-            print("[发送消息] ownerID = nil")
-            #endif
+            GLDatingLog("[发送消息] ownerID = nil")
             return nil
         }
         guard let dbQueue = self.dbQueue else {
-            #if DEBUG
-            print("[发送消息] 数据库队列不存在")
-            #endif
+            GLDatingLog("[发送消息] 数据库队列不存在")
             return nil
         }
         
@@ -182,14 +171,10 @@ extension GLDatingMessageManager {
                     throw error
                 }
             })
-            #if DEBUG
-            print("[发送消息] [消息发送成功]")
-            #endif
+            GLDatingLog("[发送消息] [消息发送成功]")
             return message
         } catch {
-            #if DEBUG
-            print("[发送消息] [消息发送失败] \(error.localizedDescription)")
-            #endif
+            GLDatingLog("[发送消息] [消息发送失败] \(error.localizedDescription)")
             return nil
         }
     }
@@ -197,17 +182,13 @@ extension GLDatingMessageManager {
     /// 监控消息未读数量
     func startListeningMessageUnreadCount() {
         guard let dbQueue = self.dbQueue else {
-            #if DEBUG
-            print("[监控未读消息数量] 数据库队列不存在")
-            #endif
+            GLDatingLog("[监控总未读消息数量失败] 数据库队列不存在")
             self.unreadCount.accept(0)
             return
         }
         
         guard let ownerID = self.ownerID else {
-            #if DEBUG
-            print("[监控未读消息数量] ownerID = nil")
-            #endif
+            GLDatingLog("[监控总未读消息数量失败] ownerID = nil")
             self.unreadCount.accept(0)
             return
         }
@@ -217,17 +198,13 @@ extension GLDatingMessageManager {
                 Column(GLDatingMessage.CodingKeys.owner_id.rawValue) == ownerID &&
                 Column(GLDatingMessage.CodingKeys.is_read.rawValue) == false
             return try GLDatingMessage.filter(predicate).fetchCount(db)
-        }).start(in: dbQueue, onError: { [weak self] (error) in
+        }).removeDuplicates().start(in: dbQueue, onError: { [weak self] (error) in
             guard let self = self else { return }
-            #if DEBUG
-            print("[监控未读消息数量发生错误] \(error.localizedDescription)")
-            #endif
+            GLDatingLog("[监控总未读消息数量发生错误] \(error.localizedDescription)")
             self.unreadCount.accept(0)
         }, onChange: { [weak self] (count) in
             guard let self = self else { return }
-            #if DEBUG
-            print("[监控未读消息数量成功] \(count)")
-            #endif
+            GLDatingLog("[监控总未读消息数量成功] [收到总未读消息数量改变] \(count)")
             self.unreadCount.accept(count)
         })
     }
@@ -235,17 +212,13 @@ extension GLDatingMessageManager {
     /// 监控会话列表
     public func startListeningConversationList() {
         guard let dbQueue = self.dbQueue else {
-            #if DEBUG
-            print("[监控会话列表] 数据库队列不存在")
-            #endif
+            GLDatingLog("[监控所有会话列表失败] 数据库队列不存在")
             self.unreadCount.accept(0)
             return
         }
         
         guard let ownerID = self.ownerID else {
-            #if DEBUG
-            print("[监控会话列表] ownerID = nil")
-            #endif
+            GLDatingLog("[监控所有会话列表失败] ownerID = nil")
             self.unreadCount.accept(0)
             return
         }
@@ -258,14 +231,10 @@ extension GLDatingMessageManager {
                 .group(Column(GLDatingMessage.CodingKeys.conversation_id))
                 .fetchAll(db)
         }).start(in: dbQueue, onError: { (error) in
-            #if DEBUG
-            print("[监控会话列表失败] \(error.localizedDescription)")
-            #endif
+            GLDatingLog("[监控所有会话列表失败] \(error.localizedDescription)")
         }, onChange: { [weak self] (messages) in
             guard let self = self else { return }
-            #if DEBUG
-            print("[监控会话列表成功] \(messages)")
-            #endif
+            GLDatingLog("[监控所有会话列表成功] [收到所有会话列表改变]")
             do {
                 let conversationList = try dbQueue.write { (db) -> [GLDatingConversation] in
                     var conversationList: [GLDatingConversation] = []
@@ -320,24 +289,18 @@ extension GLDatingMessageManager {
         })
     }
     
-    /// 开始监听某个会话的所有消息
+    /// 开始监听某个会话的所有消息(多次调用该方法，且每次传入的`conversationID`不同，表示同时监控这些会话消息)。监听的只是数量改变，消息本身状态改变不会被监听
     public func startListeningAllMessages(conversationID: String?) {
         guard let conversationID = conversationID else {
-            #if DEBUG
-            print("[监控会话消息失败] conversationID = nil")
-            #endif
+            GLDatingLog("[监控会话消息失败] conversationID = nil")
             return
         }
         guard let dbQueue = self.dbQueue else {
-            #if DEBUG
-            print("[监控会话`\(conversationID)`消息失败] 数据库队列不存在")
-            #endif
+            GLDatingLog("[监控会话`\(conversationID)`消息失败] 数据库队列不存在")
             return
         }
         guard let ownerID = self.ownerID else {
-            #if DEBUG
-            print("[监控会话`\(conversationID)`消息失败] ownerID = nil")
-            #endif
+            GLDatingLog("[监控会话`\(conversationID)`消息失败] ownerID = nil")
             return
         }
         
@@ -349,39 +312,43 @@ extension GLDatingMessageManager {
                 break
             }
         }
-        
         if contain {
-            #if DEBUG
-            print("[已经监控会话`\(conversationID)`] 不能再次监控")
-            #endif
+            GLDatingLog("[已经监控会话`\(conversationID)`] 不能再次监控")
             return
         }
         
-        let cancellable = ValueObservation.tracking { (db) -> [GLDatingMessage] in
+        let cancellable = ValueObservation.tracking { (db) -> Int in
             let predicate: GRDB.SQLSpecificExpressible =
                 Column(GLDatingMessage.CodingKeys.owner_id.rawValue) == ownerID &&
                 Column(GLDatingMessage.CodingKeys.conversation_id.rawValue) == conversationID
-            return try GLDatingMessage.filter(predicate).fetchAll(db)
-        }.start(in: dbQueue) { (error) in
-            #if DEBUG
-            print("[监控会话`\(conversationID)`失败] \(error.localizedDescription)")
-            #endif
-        } onChange: { [weak self] (tmpMessages) in
+            return try GLDatingMessage.filter(predicate).fetchCount(db)
+        }.removeDuplicates().start(in: dbQueue) { (error) in
+            GLDatingLog("[监控会话`\(conversationID)`失败] \(error.localizedDescription)")
+        } onChange: { [weak self] (count) in
             guard let self = self else { return }
-            #if DEBUG
-            print("[收到会话`\(conversationID)`改变]")
-            #endif
-            let messages = self.messages.value
-            var isChange: Bool = false
-            for (_, object) in messages.enumerated() {
-                if object.conversationID == conversationID {
-                    object.messages = tmpMessages
-                    isChange = true
-                    break
+            GLDatingLog("[监控会话`\(conversationID)`成功] [收到消息变化]")
+            do {
+                let tmpMessages = try dbQueue.write { (db) -> [GLDatingMessage] in
+                    let predicate: GRDB.SQLSpecificExpressible =
+                        Column(GLDatingMessage.CodingKeys.owner_id.rawValue) == ownerID &&
+                        Column(GLDatingMessage.CodingKeys.conversation_id.rawValue) == conversationID
+                    return try GLDatingMessage.filter(predicate).fetchAll(db)
                 }
-            }
-            if isChange {
-                self.messages.accept(messages)
+                GLDatingLog("[监控会话`\(conversationID)`成功] [收到消息变化] [之后查询所有消息成功]")
+                let messages = self.messages.value
+                var isChange: Bool = false
+                for (_, object) in messages.enumerated() {
+                    if object.conversationID == conversationID {
+                        object.messages = tmpMessages
+                        isChange = true
+                        break
+                    }
+                }
+                if isChange {
+                    self.messages.accept(messages)
+                }
+            } catch {
+                GLDatingLog("[监控会话`\(conversationID)`成功] [收到消息变化] [之后查询所有消息失败] \(error.localizedDescription)")
             }
         }
         let object = GLDatingMessageObject(conversationID: conversationID)
@@ -402,5 +369,38 @@ extension GLDatingMessageManager {
             }
         }
         self.messages.accept(messages)
+    }
+    
+    /// 标记某个会话已读
+    public func markHasRead(conversationID: String?) {
+        guard let conversationID = conversationID else {
+            GLDatingLog("[标记会话已读] conversationID = nil")
+            return
+        }
+        guard let dbQueue = self.dbQueue else {
+            GLDatingLog("[标记会话`\(conversationID)`已读失败] 数据库队列不存在")
+            return
+        }
+        guard let ownerID = self.ownerID else {
+            GLDatingLog("[标记会话`\(conversationID)`已读失败] ownerID = nil")
+            return
+        }
+        do {
+            try dbQueue.write { (db) in
+                let predicate: GRDB.SQLSpecificExpressible =
+                    Column(GLDatingMessage.CodingKeys.owner_id.rawValue) == ownerID &&
+                    Column(GLDatingMessage.CodingKeys.conversation_id.rawValue) == conversationID &&
+                    Column(GLDatingMessage.CodingKeys.is_read.rawValue) == false
+                
+                let assignment: ColumnAssignment = Column(GLDatingMessage.CodingKeys.is_read.rawValue).set(to: true)
+                
+                try GLDatingMessage
+                    .filter(predicate)
+                    .updateAll(db, assignment)
+            }
+            GLDatingLog("[标记会话`\(conversationID)`已读成功]")
+        } catch {
+            GLDatingLog("[标记会话`\(conversationID)`已读失败] \(error.localizedDescription)")
+        }
     }
 }

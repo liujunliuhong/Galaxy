@@ -31,11 +31,13 @@ public class GLDatingUserManager {
     /// 邮箱
     public let email = BehaviorRelay<String?>(value: nil)
     /// 性别
-    public let sex = BehaviorRelay<GLDatingSexType>(value: .women)
+    public let sex = BehaviorRelay<GLDatingSexType>(value: .man)
     /// 昵称
     public let nickName = BehaviorRelay<String?>(value: nil)
     /// 年龄
     public let age = BehaviorRelay<Int>(value: 20)
+    /// 寻找的性别
+    public let lookingForSex = BehaviorRelay<GLDatingSexType>(value: .women)
     /// 身高
     public let height = BehaviorRelay<Int>(value: 165)
     /// 头像
@@ -113,8 +115,14 @@ extension GLDatingUserManager {
     
     /// 创建用户数据库
     private func creatUserDatabase() {
+        guard let dbQueue = self.dbQueue else {
+            #if DEBUG
+            print("数据库队列不存在，不能创建用户数据库")
+            #endif
+            return
+        }
         do {
-            try self.dbQueue?.write({ (db) in
+            try dbQueue.write({ (db) in
                 if try db.tableExists(GLDatingUserTableName) {
                     throw GLDatingError.error("用户表已存在，不能再创建")
                 }
@@ -166,9 +174,16 @@ extension GLDatingUserManager {
             #endif
             throw GLDatingError.error("Please sign in")
         }
+        guard let dbQueue = self.dbQueue else {
+            #if DEBUG
+            print("[获取用户信息] 数据库队列不存在")
+            #endif
+            throw GLDatingError.unknownError
+        }
         do {
-            let user = try self.dbQueue?.write({ (db) -> GLDatingUser? in
-                return try GLDatingUser.filter(Column(GLDatingUser.CodingKeys.user_id.rawValue) == userID).fetchOne(db)
+            let user = try dbQueue.write({ (db) -> GLDatingUser? in
+                let predicate: GRDB.SQLSpecificExpressible = Column(GLDatingUser.CodingKeys.user_id.rawValue) == userID
+                return try GLDatingUser.filter(predicate).fetchOne(db)
             })
             if user == nil {
                 throw GLDatingError.error("user not exists")
@@ -188,8 +203,15 @@ extension GLDatingUserManager {
     
     /// 检查邮箱是否重复
     public func checkEmailIsRepeat(email: String) -> Bool {
-        let count = (try? self.dbQueue?.write({ (db) -> Int in
-            return try GLDatingUser.filter(Column(GLDatingUser.CodingKeys.email.rawValue) == email).fetchCount(db)
+        guard let dbQueue = self.dbQueue else {
+            #if DEBUG
+            print("[检查邮箱是否重复] 数据库队列不存在")
+            #endif
+            return false
+        }
+        let count = (try? dbQueue.write({ (db) -> Int in
+            let predicate: GRDB.SQLSpecificExpressible = Column(GLDatingUser.CodingKeys.email.rawValue) == email
+            return try GLDatingUser.filter(predicate).fetchCount(db)
         })) ?? 0
         #if DEBUG
         print("[检查邮箱是否重复] \(count > 0)")
@@ -197,11 +219,12 @@ extension GLDatingUserManager {
         return count > 0
     }
     
-    /// 注册
+    /// 注册(如果注册成功，就把用户ID存进UserDefaults)
     public func register(sex: GLDatingSexType,
                          email: String,
                          password: String,
                          nickName: String? = nil,
+                         looking_for_sex: GLDatingSexType = .women,
                          age: Int = 20,
                          avatar: String? = nil,
                          height: Int = 165,
@@ -219,6 +242,12 @@ extension GLDatingUserManager {
         if self.checkEmailIsRepeat(email: email) {
             throw GLDatingError.error("Email has been registered")
         }
+        guard let dbQueue = self.dbQueue else {
+            #if DEBUG
+            print("[注册失败] 数据库队列不存在")
+            #endif
+            throw GLDatingError.unknownError
+        }
         
         let user = GLDatingUser()
         user.sex = sex
@@ -227,6 +256,7 @@ extension GLDatingUserManager {
         user.nick_name = nickName
         user.age = age
         user.avatar_name = avatar
+        user.looking_for_sex = looking_for_sex
         user.height = height
         user.country = country
         user.city = city
@@ -240,7 +270,7 @@ extension GLDatingUserManager {
         user.is_super_vip = isSuperVip
         
         do {
-            try self.dbQueue?.write({ (db) in
+            try dbQueue.write({ (db) in
                 do {
                     try user.insert(db)
                 } catch {
@@ -261,6 +291,13 @@ extension GLDatingUserManager {
     
     /// 测试账号注册
     public func registerTestAccount(email: String, password: String, sex: GLDatingSexType) {
+        guard let dbQueue = self.dbQueue else {
+            #if DEBUG
+            print("[测试账号注册失败] 数据库队列不存在")
+            #endif
+            return
+        }
+        
         if self.checkEmailIsRepeat(email: email) {
             #if DEBUG
             print("[测试账号已存在，不能再注册]")
@@ -275,7 +312,7 @@ extension GLDatingUserManager {
         user.nick_name = "admin"
         
         do {
-            try self.dbQueue?.write({ (db) in
+            try dbQueue.write({ (db) in
                 do {
                     try user.insert(db)
                 } catch {
@@ -287,7 +324,7 @@ extension GLDatingUserManager {
             #endif
         } catch {
             #if DEBUG
-            print("[注册失败] \(error.localizedDescription)")
+            print("[测试账号注册失败] \(error.localizedDescription)")
             #endif
         }
     }
@@ -295,10 +332,20 @@ extension GLDatingUserManager {
     /// 登录(根据邮箱和密码在数据库里面查找，如果查询到用户，就把用户ID存进UserDefaults)
     public func login(email: String,
                       password: String) throws {
+        guard let dbQueue = self.dbQueue else {
+            #if DEBUG
+            print("[登录失败] 数据库队列不存在")
+            #endif
+            throw GLDatingError.unknownError
+        }
         
         do {
-            let user = try self.dbQueue?.write({ (db) -> GLDatingUser? in
-                return try GLDatingUser.filter(Column(GLDatingUser.CodingKeys.email.rawValue) == email && Column(GLDatingUser.CodingKeys.password.rawValue) == password).fetchOne(db)
+            let user = try dbQueue.write({ (db) -> GLDatingUser? in
+                let predicate: GRDB.SQLSpecificExpressible =
+                    Column(GLDatingUser.CodingKeys.email.rawValue) == email &&
+                    Column(GLDatingUser.CodingKeys.password.rawValue) == password
+                
+                return try GLDatingUser.filter(predicate).fetchOne(db)
             })
             if user == nil {
                 throw GLDatingError.error("Incorrect email or password")
@@ -330,8 +377,14 @@ extension GLDatingUserManager {
             #endif
             throw GLDatingError.unknownError
         }
+        guard let dbQueue = self.dbQueue else {
+            #if DEBUG
+            print("[删除用户] 数据库队列不存在")
+            #endif
+            throw GLDatingError.unknownError
+        }
         do {
-            try self.dbQueue?.write({ (db) -> Void in
+            try dbQueue.write({ (db) -> Void in
                 try user.delete(db)
             })
             self.clearUserInfo()
@@ -360,9 +413,16 @@ extension GLDatingUserManager {
             #endif
             return
         }
+        guard let dbQueue = self.dbQueue else {
+            #if DEBUG
+            print("[打印用户信息] 数据库队列不存在")
+            #endif
+            return
+        }
         do {
-            let user = try self.dbQueue?.write({ (db) -> GLDatingUser? in
-                return try GLDatingUser.filter(Column(GLDatingUser.CodingKeys.user_id.rawValue) == userID).fetchOne(db)
+            let user = try dbQueue.write({ (db) -> GLDatingUser? in
+                let predicate: GRDB.SQLSpecificExpressible = Column(GLDatingUser.CodingKeys.user_id.rawValue) == userID
+                return try GLDatingUser.filter(predicate).fetchOne(db)
             })
             if user == nil {
                 throw GLDatingError.error("user not exists")
@@ -389,6 +449,7 @@ extension GLDatingUserManager {
         self.age.accept(user.age)
         self.height.accept(user.height)
         self.avatarName.accept(user.avatar_name)
+        self.lookingForSex.accept(user.looking_for_sex)
         self.country.accept(user.country)
         self.city.accept(user.city)
         self.locationDescription.accept(user.location_description)
@@ -405,7 +466,8 @@ extension GLDatingUserManager {
         self.currentUser = nil
         UserDefaults.standard.gl_dating_removeUserID()
         self.email.accept(nil)
-        self.sex.accept(.women)
+        self.sex.accept(.man)
+        self.lookingForSex.accept(.women)
         self.nickName.accept(nil)
         self.age.accept(20)
         self.height.accept(165)
@@ -437,6 +499,23 @@ extension GLDatingUserManager {
             GLDatingUserManager.default.sex.accept(sex)
             #if DEBUG
             print("[更新用户性别成功]")
+            #endif
+        }
+    }
+    
+    /// 更新用户寻找性别
+    public func updateUserLookingForSex(lookingForSex: GLDatingSexType) {
+        guard let user = GLDatingUserManager.default.currentUser else {
+            #if DEBUG
+            print("[更新用户寻找性别] [用户不存在]")
+            #endif
+            return
+        }
+        user.looking_for_sex = lookingForSex
+        self._update(user: user) {
+            GLDatingUserManager.default.lookingForSex.accept(lookingForSex)
+            #if DEBUG
+            print("[更新用户寻找性别成功]")
             #endif
         }
     }
@@ -709,8 +788,14 @@ extension GLDatingUserManager {
 
 extension GLDatingUserManager {
     private func _update(user: GLDatingUser, completion: (() -> Void)?) {
+        guard let dbQueue = self.dbQueue else {
+            #if DEBUG
+            print("[更新用户信息失败] 数据库队列不存在")
+            #endif
+            return
+        }
         do {
-            try self.dbQueue?.write({ (db) -> Void in
+            try dbQueue.write({ (db) -> Void in
                 try user.update(db)
             })
             completion?()

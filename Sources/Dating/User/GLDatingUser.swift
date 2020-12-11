@@ -20,6 +20,8 @@ public class GLDatingUser: Codable {
     public var email: String?
     /// 性别
     public var sex: GLDatingSexType = .women
+    /// 寻找的性别
+    public var looking_for_sex: GLDatingSexType = .women
     /// 昵称
     public var nick_name: String?
     /// 年龄
@@ -56,6 +58,7 @@ public class GLDatingUser: Codable {
         case user_id
         case email
         case sex
+        case looking_for_sex
         case nick_name
         case age
         case height
@@ -94,6 +97,7 @@ extension GLDatingUser: CustomStringConvertible, CustomDebugStringConvertible {
         let dict: [String: Any] = [GLDatingUser.CodingKeys.user_id.rawValue: user_id,
                                    GLDatingUser.CodingKeys.email.rawValue: email ?? "",
                                    GLDatingUser.CodingKeys.sex.rawValue: sex,
+                                   GLDatingUser.CodingKeys.looking_for_sex.rawValue: looking_for_sex,
                                    GLDatingUser.CodingKeys.nick_name.rawValue: nick_name ?? "",
                                    GLDatingUser.CodingKeys.password.rawValue: password ?? "",
                                    GLDatingUser.CodingKeys.age.rawValue: age,

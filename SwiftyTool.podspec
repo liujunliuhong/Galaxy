@@ -234,9 +234,9 @@ Pod::Spec.new do |s|
       sss.dependency 'SwiftyTool/Dating/Error'
       sss.dependency 'SwiftyTool/Foundation'
     end
-    # Likes
-    ss.subspec 'Likes' do |sss|
-      sss.source_files = 'Sources/Dating/Likes/*.swift'
+    # DatabaseMockUser
+    ss.subspec 'DatabaseMockUser' do |sss|
+      sss.source_files = 'Sources/Dating/DatabaseMockUser/*.swift'
       sss.dependency 'GRDB.swift'
       sss.dependency 'SwiftyTool/Dating/Error'
     end

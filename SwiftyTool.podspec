@@ -174,6 +174,7 @@ Pod::Spec.new do |s|
     # Online
     ss.subspec 'Online' do |sss|
       sss.source_files = 'Sources/Dating/Online/*.swift'
+      sss.dependency 'SwiftyTool/UIKit'
     end
     # Error
     ss.subspec 'Error' do |sss|

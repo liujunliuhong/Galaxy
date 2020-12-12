@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.summary                    = 'Swift版本的开发工具'
   s.description                = 'Swift版本的开发工具，旨在帮助开发人员快速开发，持续更新中...'
   s.author                     = { 'liujunliuhong' => '1035841713@qq.com' }
-  s.version                    = '1.1.65'
+  s.version                    = '1.1.66'
   s.source                     = { :git => 'https://github.com/liujunliuhong/SwiftTool.git', :tag => s.version.to_s }
   s.platform                   = :ios, '10.0'
   s.license                    = { :type => 'MIT', :file => 'LICENSE' }
@@ -194,7 +194,6 @@ Pod::Spec.new do |s|
       sss.dependency 'RxSwift'
       sss.dependency 'RxCocoa'
       sss.dependency 'NSObject+Rx'
-      sss.resource = 'Sources/Dating/Web/GLDatingWeb.bundle'
     end
     # Photo
     ss.subspec 'Photo' do |sss|
@@ -204,21 +203,12 @@ Pod::Spec.new do |s|
     # TermLabel
     ss.subspec 'TermLabel' do |sss|
       sss.source_files = 'Sources/Dating/TermLabel/*.swift'
-      sss.dependency 'YYText'
+      sss.dependency 'SwiftyTool/AttributedString'
     end
     # Sex
     ss.subspec 'Sex' do |sss|
       sss.source_files = 'Sources/Dating/Sex/*.swift'
       sss.dependency 'GRDB.swift'
-    end
-    # Message
-    ss.subspec 'Message' do |sss|
-      sss.source_files = 'Sources/Dating/Message/*.swift'
-      sss.dependency 'GRDB.swift'
-      sss.dependency 'RxSwift'
-      sss.dependency 'RxCocoa'
-      sss.dependency 'SwiftyTool/Dating/Error'
-      sss.dependency 'SwiftyTool/Dating/Log'
     end
     # TextField
     ss.subspec 'TextField' do |sss|
@@ -236,6 +226,7 @@ Pod::Spec.new do |s|
       sss.dependency 'RxCocoa'
       sss.dependency 'SwiftyTool/Dating/Sex'
       sss.dependency 'SwiftyTool/Dating/Error'
+      sss.dependency 'SwiftyTool/Dating/Log'
       sss.dependency 'SwiftyTool/Foundation'
     end
     # DatabaseMockUser
@@ -243,6 +234,21 @@ Pod::Spec.new do |s|
       sss.source_files = 'Sources/Dating/DatabaseMockUser/*.swift'
       sss.dependency 'GRDB.swift'
       sss.dependency 'SwiftyTool/Dating/Error'
+      sss.dependency 'SwiftyTool/Dating/Log'
+    end
+    # Message
+    ss.subspec 'Message' do |sss|
+      sss.source_files = 'Sources/Dating/Message/*.swift'
+      sss.dependency 'GRDB.swift'
+      sss.dependency 'RxSwift'
+      sss.dependency 'RxCocoa'
+      sss.dependency 'SwiftyTool/Dating/Error'
+      sss.dependency 'SwiftyTool/Dating/Log'
+    end
+    # AutoAction
+    ss.subspec 'AutoAction' do |sss|
+      sss.source_files = 'Sources/Dating/AutoAction/*.swift'
+      sss.dependency 'SwiftyTool/WeakProxy'
       sss.dependency 'SwiftyTool/Dating/Log'
     end
     # Log

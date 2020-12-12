@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Dating专用日志打印
 public func GLDatingLog<T>(_ message: T) {
     #if DEBUG
     print(message)

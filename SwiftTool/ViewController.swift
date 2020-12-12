@@ -159,28 +159,22 @@ class ViewController: UIViewController {
 //            GLLog("点击用户协议")
 //        }
         
-        let label = UILabel()
-        label.backgroundColor = .orange
-        label.numberOfLines = 0
+        let label = GLDatingTermLabel(text: "同意用户协议和隐私协议sdasjdksadkjsadjasjdhjsakhdjsa", termsOfUseString: "用户协议", privacyPolicyString: "隐私协议", textColor: .red, font: .systemFont(ofSize: 20), alignment: .center, linkTextColor: .purple)
         self.view.addSubview(label)
         label.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(20)
             make.top.equalToSuperview().offset(300)
             make.right.equalToSuperview().offset(-20)
-            make.height.equalTo(400)
         }
-        
-        let atr = NSMutableAttributedString(string: "hello world, hedjkfjhsjkfhjwkhe sdaskdjaskdashello world, hedjkfjhsjkfhjwkhe sdaskdjaskdashello world, hedjkfjhsjkfhjwkhe sdaskdjaskdashello world, hedjkfjhsjkfhjwkhe sdaskdjaskdashello world, hedjkfjhsjkfhjwkhe sdaskdjaskdashello world, hedjkfjhsjkfhjwkhe sdaskdjaskdashello world, hedjkfjhsjkfhjwkhe sdaskdjaskdas")
-        
-        atr.gl_atr
-            .add(font: .systemFont(ofSize: 20))
-            .add(textColor: .white)
-            .add(textColor: .purple, range: NSRange(location: 2, length: 5))
-            .add(lineBreakMode: .byCharWrapping)
-            .add(lineSpacing: 3)
-            //            .gl_add(firstLineHeadIndent: 10)
-            .add(headIndent: 10)
-        label.attributedText = atr
+        label.clickPrivacyPolicyClosure = { [weak self] in
+            guard let self = self else { return }
+            //GLDatingWeb.show(with: self, type: .privacyPolicy(title: "Privacy Policy", content: nil))
+            GLDatingWeb.show(with: self, type: .url(url: "https://www.baidu.com", title: nil))
+        }
+        label.clickTermsOfServiceClosure = { [weak self] in
+            guard let self = self else { return }
+            GLDatingWeb.show(with: self, type: .termsOfUse(title: "Terms of Service", content: nil))
+        }
     }
 }
 

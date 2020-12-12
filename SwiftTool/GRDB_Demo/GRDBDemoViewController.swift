@@ -89,6 +89,8 @@ class GRDBDemoViewController: UIViewController {
         }).disposed(by: rx.disposeBag)
         
 //        GLDatingPrint("1234598765432")
+        
+        
     }
 }
 
@@ -99,16 +101,20 @@ let targetConversationID: String = "111"
 
 extension GRDBDemoViewController {
     @objc func creatAction() {
-        GLDatingMessageManager.default.unListeningAllMessages(conversationID: targetConversationID)
-        GLDatingMessageManager.default.unRegister()
-        
-        GLDatingMessageManager.default.register(ownerID: ownerID)
-        GLDatingMessageManager.default.creatDataBase()
-        GLDatingMessageManager.default.startListeningConversationList()
-        GLDatingMessageManager.default.startListeningMessageUnreadCount()
-        GLDatingMessageManager.default.startListeningAllMessages(conversationID: targetConversationID)
+//        GLDatingMessageManager.default.unListeningAllMessages(conversationID: targetConversationID)
+//        GLDatingMessageManager.default.unRegister()
+//
+//        GLDatingMessageManager.default.register(ownerID: ownerID)
+//        GLDatingMessageManager.default.creatDataBase()
+//        GLDatingMessageManager.default.startListeningConversationList()
+//        GLDatingMessageManager.default.startListeningMessageUnreadCount()
+//        GLDatingMessageManager.default.startListeningAllMessages(conversationID: targetConversationID)
         
 //        let _ = GLDatingUserManager.default
+        
+        GLDatingAutoActionManager.default.addAutoAction(label: "attention_me", timeIntervals: [1, 2, 3]) {
+            print("😋😋😋😋😋😋😋😋发送消息")
+        }
     }
     
     @objc func insertAction() {
@@ -116,7 +122,9 @@ extension GRDBDemoViewController {
 //        let userInfo =  GLDatingMessageUserInfo()
 //        userInfo.sender_id = "sender_id"
         
-        let message = GLDatingMessageManager.default.sendMessage(conversationID: targetConversationID, messageType: .text, messageContent: "hello", isSender: true, isRead: false, userInfo: nil)
+//        let message = GLDatingMessageManager.default.sendMessage(conversationID: targetConversationID, messageType: .text, messageContent: "hello", isSender: true, isRead: false, userInfo: nil)
+        
+        GLDatingAutoActionManager.default.stopAllAutoActions()
         
     }
     

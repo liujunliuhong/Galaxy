@@ -158,6 +158,7 @@ extension GLDatingMessageManager {
         
         let message = GLDatingMessage()
         message.conversation_id = conversationID
+        message.content = messageContent
         message.owner_id = ownerID
         message.message_type = messageType
         message.is_sender = isSender

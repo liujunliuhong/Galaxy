@@ -33,7 +33,7 @@ public class GLDatingMessage: Codable {
     /// 消息类型
     public var message_type: GLDatingMessageType = .text
     /// 消息内容(可能是图片，也可能是文字，要根据`message_type`来区分)
-    public var content: String = ""
+    public var content: String?
     /// 发送消息时的时间戳
     public var time_stmp: Int = Int(Date().timeIntervalSince1970)
     /// 是否是发送者

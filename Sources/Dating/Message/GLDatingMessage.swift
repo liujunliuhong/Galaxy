@@ -19,6 +19,7 @@ public class GLDatingMessageUserInfo: Codable {
     public var receiver_id: String?
     public var receiver_name: String?
     public var receiver_avatar: String?
+    public init() {}
 }
 
 

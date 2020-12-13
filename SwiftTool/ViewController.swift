@@ -159,7 +159,7 @@ class ViewController: UIViewController {
 //            GLLog("点击用户协议")
 //        }
         
-        let label = GLDatingTermLabel(text: "同意用户协议和隐私协议sdasjdksadkjsadjasjdhjsakhdjsa", termsOfUseString: "用户协议", privacyPolicyString: "隐私协议", textColor: .red, font: .systemFont(ofSize: 20), alignment: .center, linkTextColor: .purple)
+        let label = GLDatingTermLabel(text: "同意用户协议和隐私协议sdasjdksadkjsadjasjdhjsakhdjsa", termsOfUseString: "用户协议", privacyPolicyString: "隐私协议", textColor: .red, font: .systemFont(ofSize: 20), alignment: .center, linkTextColor: .green)
         self.view.addSubview(label)
         label.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(20)

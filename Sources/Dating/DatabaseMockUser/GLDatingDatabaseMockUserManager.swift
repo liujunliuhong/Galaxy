@@ -59,7 +59,7 @@ extension GLDatingDatabaseMockUserManager {
         do {
             try dbQueue.write({ (db) in
                 if try db.tableExists(GLDatingDatabaseMockUserTableName) {
-                    throw GLDatingError.error("`Likes`表已存在，不能再创建")
+                    throw GLDatingError.error("表已存在，不能再创建")
                 }
                 try db.create(table: GLDatingDatabaseMockUserTableName, temporary: false, ifNotExists: true, body: { (t) in
                     t.column(GLDatingDatabaseMockUser.CodingKeys.ID.rawValue, .text).primaryKey().indexed()

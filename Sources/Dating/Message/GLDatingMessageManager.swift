@@ -136,6 +136,7 @@ extension GLDatingMessageManager {
     }
     
     /// 发送消息
+    @discardableResult
     public func sendMessage(conversationID: String?,
                             messageType: GLDatingMessageType,
                             messageContent: String?,

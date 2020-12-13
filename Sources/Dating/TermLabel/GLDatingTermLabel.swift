@@ -63,9 +63,10 @@ public class GLDatingTermLabel: UIView {
         self.textView.textContainerInset = .zero
         self.textView.backgroundColor = UIColor.clear
         self.textView.attributedText = self.atr
+        if let linkTextColor = linkTextColor {
+            self.textView.linkTextAttributes = [.foregroundColor: linkTextColor]
+        }
         self.addSubview(self.textView)
-        
-        self.backgroundColor = .orange
     }
     
     required init?(coder: NSCoder) {

@@ -22,7 +22,7 @@ extension UIImage {
         return image
     }
     
-    /// 获取某个bundle下的图片
+    /// 获取某个bundle下的图片(支持`png`、`jpg`、`jpeg`)，会自动去查找对应分辨率的图片，支持`Asset`文件夹和直接拖进工程的图片
     public static func gl_image(bundle: Bundle?, name: String?) -> UIImage? {
         guard let name = name else { return nil }
         guard let bundle = bundle else { return nil }

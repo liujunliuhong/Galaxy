@@ -182,7 +182,7 @@ extension GLDatingMessageManager {
     }
     
     /// 监控消息未读数量
-    func startListeningMessageUnreadCount() {
+    public func startListeningMessageUnreadCount() {
         guard let dbQueue = self.dbQueue else {
             GLDatingLog("[监控总未读消息数量失败] 数据库队列不存在")
             self.unreadCount.accept(0)

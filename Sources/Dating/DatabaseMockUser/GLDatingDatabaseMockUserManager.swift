@@ -36,7 +36,7 @@ extension GLDatingDatabaseMockUserManager {
         }
         let path = dirPath + "/" + tablePath
         
-        GLDatingLog("`[DatingDatabaseMockUser] 数据库路径:\(path)")
+        GLDatingLog("[DatingDatabaseMockUser] 数据库路径:\(path)")
         
         var configuration = GRDB.Configuration()
         configuration.busyMode = .timeout(10)

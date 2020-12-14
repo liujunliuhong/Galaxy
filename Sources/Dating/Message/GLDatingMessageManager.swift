@@ -224,69 +224,57 @@ extension GLDatingMessageManager {
             self.unreadCount.accept(0)
             return
         }
-        self.conversationListCancellable = ValueObservation.tracking({ (db) -> [GLDatingMessage] in
+        self.conversationListCancellable = ValueObservation.tracking({ (db) -> [String] in
             let predicate: GRDB.SQLSpecificExpressible =
                 Column(GLDatingMessage.CodingKeys.owner_id.rawValue) == ownerID
             return try GLDatingMessage
                 .filter(predicate)
-                .order(Column(GLDatingMessage.CodingKeys.time_stmp).desc)
                 .group(Column(GLDatingMessage.CodingKeys.conversation_id))
                 .fetchAll(db)
+                .map{ $0.conversation_id }
         }).start(in: dbQueue, onError: { (error) in
             GLDatingLog("[监控所有会话列表失败] \(error.localizedDescription)")
-        }, onChange: { [weak self] (messages) in
+        }, onChange: { [weak self] (allConversationIDs) in
             guard let self = self else { return }
             GLDatingLog("[监控所有会话列表成功] [收到所有会话列表改变]")
             do {
                 let conversationList = try dbQueue.write { (db) -> [GLDatingConversation] in
                     var conversationList: [GLDatingConversation] = []
-                    for (_, message) in messages.enumerated() {
-                        let conversation = GLDatingConversation()
-                        conversation.conversationID = message.conversation_id
-                        conversation.messageType = message.message_type
-                        conversation.latestMessage = message.content
-                        conversation.timeStmp = message.time_stmp
-                        if message.is_sender {
-                            conversation.avatar = message.user_info?.receiver_avatar
-                            conversation.nickName = message.user_info?.receiver_name
-                        } else {
-                            conversation.avatar = message.user_info?.sender_avatar
-                            conversation.nickName = message.user_info?.sender_name
-                        }
-                        //
+                    for (_, conversationID) in allConversationIDs.enumerated() {
                         let predicate: GRDB.SQLSpecificExpressible =
                             Column(GLDatingMessage.CodingKeys.owner_id.rawValue) == ownerID &&
-                            Column(GLDatingMessage.CodingKeys.is_read.rawValue) == false &&
-                            Column(GLDatingMessage.CodingKeys.conversation_id.rawValue) == message.conversation_id
-                        let count = try GLDatingMessage.filter(predicate).fetchCount(db)
-                        //
-                        conversation.unReadCount = count
+                            Column(GLDatingMessage.CodingKeys.conversation_id.rawValue) == conversationID
+                        let tmpMessages = try GLDatingMessage
+                            .filter(predicate)
+                            .order(Column(GLDatingMessage.CodingKeys.time_stmp).asc)
+                            .fetchAll(db)
+                        let unReadCount = tmpMessages.filter{ $0.is_read == false }.count
+                        let latestMessage = tmpMessages.last
+                        let conversation = GLDatingConversation()
+                        conversation.conversationID = conversationID
+                        conversation.messageType = latestMessage?.message_type ?? .text
+                        conversation.timeStmp = latestMessage?.time_stmp ?? 0
+                        conversation.unReadCount = unReadCount
+                        conversation.latestMessage = latestMessage?.content
+                        let isSender = latestMessage?.is_sender ?? false
+                        if isSender {
+                            conversation.avatar = latestMessage?.user_info?.receiver_avatar
+                            conversation.nickName = latestMessage?.user_info?.receiver_name
+                        } else {
+                            conversation.avatar = latestMessage?.user_info?.sender_avatar
+                            conversation.nickName = latestMessage?.user_info?.sender_name
+                        }
                         //
                         conversationList.append(conversation)
                     }
                     return conversationList
                 }
-                self.conversationList.accept(conversationList)
-            } catch {
-                var conversationList: [GLDatingConversation] = []
-                for (_, message) in messages.enumerated() {
-                    let conversation = GLDatingConversation()
-                    conversation.conversationID = message.conversation_id
-                    conversation.messageType = message.message_type
-                    conversation.latestMessage = message.content
-                    conversation.timeStmp = message.time_stmp
-                    if message.is_sender {
-                        conversation.avatar = message.user_info?.receiver_avatar
-                        conversation.nickName = message.user_info?.receiver_name
-                    } else {
-                        conversation.avatar = message.user_info?.sender_avatar
-                        conversation.nickName = message.user_info?.sender_name
-                    }
-                    conversation.unReadCount = 0
-                    //
-                    conversationList.append(conversation)
+                let tmpConversationList = conversationList.sorted { (o1, o2) -> Bool in
+                    return o1.timeStmp >= o2.timeStmp
                 }
-                self.conversationList.accept(conversationList)
+                self.conversationList.accept(tmpConversationList)
+            } catch {
+                self.conversationList.accept([])
             }
         })
     }
@@ -334,7 +322,10 @@ extension GLDatingMessageManager {
                     let predicate: GRDB.SQLSpecificExpressible =
                         Column(GLDatingMessage.CodingKeys.owner_id.rawValue) == ownerID &&
                         Column(GLDatingMessage.CodingKeys.conversation_id.rawValue) == conversationID
-                    return try GLDatingMessage.filter(predicate).fetchAll(db)
+                    return try GLDatingMessage
+                        .filter(predicate)
+                        .order(Column(GLDatingMessage.CodingKeys.time_stmp).asc)
+                        .fetchAll(db)
                 }
                 GLDatingLog("[监控会话`\(conversationID)`成功] [收到消息变化] [之后查询所有消息成功]")
                 let messages = self.messages.value

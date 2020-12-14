@@ -51,4 +51,20 @@ extension UIImage {
         }
         return image
     }
+    
+    /// 图片的高宽比
+    public var gl_heightRatio: CGFloat {
+        if self.size.width.isLessThanOrEqualTo(.zero) {
+            return 1.0
+        }
+        return self.size.height / self.size.width
+    }
+    
+    /// 图片的宽高比
+    public var gl_widthRatio: CGFloat {
+        if self.size.height.isLessThanOrEqualTo(.zero) {
+            return 1.0
+        }
+        return self.size.width / self.size.height
+    }
 }

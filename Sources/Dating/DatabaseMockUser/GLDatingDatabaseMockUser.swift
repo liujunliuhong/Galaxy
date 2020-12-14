@@ -13,23 +13,23 @@ import GRDB
 internal let GLDatingDatabaseMockUserTableName = "DatabaseMockUser"
 
 
-public enum GLDatingDatabaseMockUserType: Int, Codable {
+public enum GLDatingDatabaseMockUserType: String, Codable {
     /// 我最喜欢的
-    case me_favorites = 0
+    case me_favorites
     /// 最喜欢我的
-    case favorites_me = 1
+    case favorites_me
     /// 我喜欢的
-    case me_like = 2
+    case me_like
     /// 喜欢我的
-    case like_me = 3
+    case like_me
     /// 我关注的
-    case me_attention = 4
+    case me_attention
     /// 关注我的
-    case attention_me = 5
+    case attention_me
     /// 我浏览过的
-    case me_visited = 6
+    case me_visited
     /// 浏览过我的
-    case visited_me = 7
+    case visited_me
 }
 
 extension GLDatingDatabaseMockUserType: DatabaseValueConvertible {}

@@ -38,7 +38,7 @@ public class GLDatingMessageManager {
     public let unreadCount = BehaviorRelay<Int>(value: 0)
     /// 会话列表
     public let conversationList = BehaviorRelay<[GLDatingConversation]>(value: [])
-    /// 消息列表（实时回调，每发送一条消息，都会受到回调）只有监听了的才会回调
+    /// 消息列表（实时回调，每发送一条消息，都会收到回调）只有监听了的才会回调
     public let messages = BehaviorRelay<[GLDatingMessageObject]>(value: [])
     
     

@@ -9,15 +9,30 @@
 import Foundation
 import UIKit
 import GRDB
+import RxSwift
+import RxCocoa
 
 private let tableDirectory = "GLDatingUserDatabase"
 private let tablePath = "user.db"
+
+public class GLDatingDatabaseMockUserObject {
+    public let type: GLDatingDatabaseMockUserType
+    public var dataSource: [GLDatingDatabaseMockUser] = []
+    public var cancellable: DatabaseCancellable?
+    public init(type: GLDatingDatabaseMockUserType) {
+        self.type = type
+    }
+}
 
 public class GLDatingDatabaseMockUserManager {
     public static let `default` = GLDatingDatabaseMockUserManager()
     
     private var dbQueue: DatabaseQueue?
     private var ownerID: String?
+    private var dataSourceCancellable: DatabaseCancellable?
+    
+    /// 数据源（实时回调）只有监听了的才会回调
+    public let dataSource = BehaviorRelay<[GLDatingDatabaseMockUserObject]>(value: [])
     
     
     private init() {
@@ -94,6 +109,15 @@ extension GLDatingDatabaseMockUserManager {
     
     /// 注销（退出登录的时候调用）
     public func unRegister() {
+        self.dataSourceCancellable?.cancel()
+        self.dataSourceCancellable = nil
+        var dataSource = self.dataSource.value
+        for (_, obejct) in dataSource.enumerated() {
+            obejct.cancellable?.cancel()
+            obejct.dataSource = []
+        }
+        dataSource.removeAll()
+        self.dataSource.accept([])
         self.ownerID = nil
         self.dbQueue = nil
     }
@@ -104,6 +128,10 @@ extension GLDatingDatabaseMockUserManager {
                           name: String?,
                           type: GLDatingDatabaseMockUserType,
                           ext: String? = nil) throws {
+        let avatar = avatar
+        let name = name
+        let type = type
+        let ext = ext
         guard let ownerID = self.ownerID else {
             GLDatingLog("[DatingDatabaseMockUser] [ownerID is nil]")
             throw GLDatingError.error("ownerID is nil")
@@ -157,6 +185,7 @@ extension GLDatingDatabaseMockUserManager {
     /// 移除
     public func deleteObject(userID: String?,
                              type: GLDatingDatabaseMockUserType) throws {
+        let type = type
         guard let ownerID = self.ownerID else {
             GLDatingLog("[DatingDatabaseMockUser] [ownerID is nil]")
             throw GLDatingError.error("ownerID is nil")
@@ -189,6 +218,7 @@ extension GLDatingDatabaseMockUserManager {
     /// 查询是否添加
     public func queryIsAdd(userID: String?,
                            type: GLDatingDatabaseMockUserType) -> Bool {
+        let type = type
         guard let ownerID = self.ownerID else {
             GLDatingLog("[DatingDatabaseMockUser] [ownerID is nil]")
             return false
@@ -215,6 +245,7 @@ extension GLDatingDatabaseMockUserManager {
     
     /// 获取所有数据
     public func queryAllAdds(type: GLDatingDatabaseMockUserType) -> [GLDatingDatabaseMockUser] {
+        let type = type
         guard let ownerID = self.ownerID else {
             GLDatingLog("[DatingDatabaseMockUser] [ownerID is nil]")
             return []
@@ -234,12 +265,13 @@ extension GLDatingDatabaseMockUserManager {
                 .filter(predicate)
                 .fetchAll(db)
         })
-        GLDatingLog("[DatingDatabaseMockUser] [获取所有数据成功]")
+        GLDatingLog("[DatingDatabaseMockUser] [获取`\(type.rawValue)`所有数据成功]")
         return results ?? []
     }
     
     /// 删除所有数据
     public func deleteAllObjects(type: GLDatingDatabaseMockUserType) throws {
+        let type = type
         guard let ownerID = ownerID else {
             GLDatingLog("[DatingDatabaseMockUser] [ownerID is nil]")
             throw GLDatingError.error("ownerID is nil")
@@ -260,6 +292,64 @@ extension GLDatingDatabaseMockUserManager {
             GLDatingLog("[DatingDatabaseMockUser] [删除所有数据失败] \(error.localizedDescription)")
             throw error
         }
+    }
+    
+    /// 开始监听
+    public func startListeningDataSource(type: GLDatingDatabaseMockUserType) {
+        let type = type
+        guard let dbQueue = self.dbQueue else {
+            GLDatingLog("[监控`DatabaseMockUser`失败] 数据库队列不存在")
+            return
+        }
+        guard let ownerID = self.ownerID else {
+            GLDatingLog("[监控`DatabaseMockUser`失败] ownerID = nil")
+            return
+        }
+        var dataSource = self.dataSource.value
+        var contain: Bool = false
+        for (_, object) in dataSource.enumerated() {
+            if object.type == type {
+                contain = true
+                break
+            }
+        }
+        if contain {
+            GLDatingLog("[监控`DatabaseMockUser`失败] [已经监控`\(type.rawValue)`] 不能再次监控")
+            return
+        }
+        
+        let cancellable = ValueObservation.tracking { (db) -> [GLDatingDatabaseMockUser] in
+            let predicate: GRDB.SQLSpecificExpressible =
+                Column(GLDatingDatabaseMockUser.CodingKeys.owner_id.rawValue) == ownerID &&
+                Column(GLDatingDatabaseMockUser.CodingKeys.type.rawValue) == type
+            return try GLDatingDatabaseMockUser
+                .order(Column(GLDatingDatabaseMockUser.CodingKeys.time_stmp).desc)
+                .filter(predicate)
+                .fetchAll(db)
+        }.start(in: dbQueue) { (error) in
+            GLDatingLog("[监控`DatabaseMockUser`失败] \(error.localizedDescription)")
+        } onChange: { [weak self] (tmpDataSource) in
+            guard let self = self else { return }
+            GLDatingLog("[监控`DatabaseMockUser`成功] [type = `\(type.rawValue)`]")
+            
+            let dataSource = self.dataSource.value
+            var isChange: Bool = false
+            for (_, object) in dataSource.enumerated() {
+                if object.type == type {
+                    object.dataSource = tmpDataSource
+                    isChange = true
+                    break
+                }
+            }
+            if isChange {
+                self.dataSource.accept(dataSource)
+            }
+        }
+        let object = GLDatingDatabaseMockUserObject(type: type)
+        object.cancellable = cancellable
+        object.dataSource = []
+        dataSource.append(object)
+        self.dataSource.accept(dataSource)
     }
 }
 

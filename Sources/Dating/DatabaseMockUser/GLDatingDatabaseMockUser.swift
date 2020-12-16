@@ -52,6 +52,7 @@ public class GLDatingDatabaseMockUser: Codable {
     /// 创建时间
     public var time_stmp: Int = Int(Date().timeIntervalSince1970)
     
+    public init() {}
     
     public enum CodingKeys: String, CodingKey, ColumnExpression {
         case ID

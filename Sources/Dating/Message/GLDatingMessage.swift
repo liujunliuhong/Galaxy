@@ -44,6 +44,7 @@ public class GLDatingMessage: Codable {
     public var user_info: GLDatingMessageUserInfo?
     
     
+    public init() {}
     
     
     public enum CodingKeys: String, CodingKey, ColumnExpression {

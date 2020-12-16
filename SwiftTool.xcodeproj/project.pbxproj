@@ -100,6 +100,7 @@
 		B4735D28257A4CAA002F7566 /* CALayer+GLChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4735D27257A4CAA002F7566 /* CALayer+GLChain.swift */; };
 		B4746B7B2581BA7900E1CB2A /* GRDBDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4746B7A2581BA7900E1CB2A /* GRDBDemoViewController.swift */; };
 		B4746B7F2581BB1500E1CB2A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4746B7E2581BB1500E1CB2A /* User.swift */; };
+		B481BDD325899EF400329F69 /* GLDatingEulaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B481BDD225899EF400329F69 /* GLDatingEulaViewController.swift */; };
 		B49CE0282578796E0064B51B /* GLAlertOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49CE0272578796E0064B51B /* GLAlertOptions.swift */; };
 		B49CE1A82578B4180064B51B /* GLDatingAudioPlayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49CE1A72578B4180064B51B /* GLDatingAudioPlayManager.swift */; };
 		B4C6B39A257F1150004CD337 /* GLDatingSexType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C6B399257F1150004CD337 /* GLDatingSexType.swift */; };
@@ -226,6 +227,7 @@
 		B4735D27257A4CAA002F7566 /* CALayer+GLChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+GLChain.swift"; sourceTree = "<group>"; };
 		B4746B7A2581BA7900E1CB2A /* GRDBDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GRDBDemoViewController.swift; sourceTree = "<group>"; };
 		B4746B7E2581BB1500E1CB2A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B481BDD225899EF400329F69 /* GLDatingEulaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingEulaViewController.swift; sourceTree = "<group>"; };
 		B49CE0272578796E0064B51B /* GLAlertOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLAlertOptions.swift; sourceTree = "<group>"; };
 		B49CE1A72578B4180064B51B /* GLDatingAudioPlayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingAudioPlayManager.swift; sourceTree = "<group>"; };
 		B4B9793D1D5B9C59651E2DBB /* Pods-SwiftTool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftTool.debug.xcconfig"; path = "Target Support Files/Pods-SwiftTool/Pods-SwiftTool.debug.xcconfig"; sourceTree = "<group>"; };
@@ -572,6 +574,7 @@
 		85DBE0EA2577DAA400E2DF24 /* Dating */ = {
 			isa = PBXGroup;
 			children = (
+				B481BDD125899ECD00329F69 /* EULA */,
 				85534E8D258501FE00E7A983 /* AutoAction */,
 				85EA72712583D2AD00DCC1AE /* Log */,
 				B463D86C25830AEB000C0474 /* DatabaseMockUser */,
@@ -637,6 +640,14 @@
 				B4746B7E2581BB1500E1CB2A /* User.swift */,
 			);
 			path = GRDB_Demo;
+			sourceTree = "<group>";
+		};
+		B481BDD125899ECD00329F69 /* EULA */ = {
+			isa = PBXGroup;
+			children = (
+				B481BDD225899EF400329F69 /* GLDatingEulaViewController.swift */,
+			);
+			path = EULA;
 			sourceTree = "<group>";
 		};
 		B49CE1A52578B3C10064B51B /* AudioPlay */ = {
@@ -922,6 +933,7 @@
 				85CC96A925793427002B993F /* GLDatePickerView.swift in Sources */,
 				B4735D11257A3C9A002F7566 /* UIActivityIndicatorView+GLChain.swift in Sources */,
 				B4F8AAEC257DF7E4004C932C /* String+GLMd5.swift in Sources */,
+				B481BDD325899EF400329F69 /* GLDatingEulaViewController.swift in Sources */,
 				B4746B7B2581BA7900E1CB2A /* GRDBDemoViewController.swift in Sources */,
 				8594C76F257CC0D000D3C9C7 /* UIStackView+GLChain.swift in Sources */,
 				B4F8AAD8257DDD8D004C932C /* GLNavigation.swift in Sources */,

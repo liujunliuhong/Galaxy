@@ -287,10 +287,10 @@ extension ViewController {
 //        }
         
         
-        let vc = GRDBDemoViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
+//        let vc = GRDBDemoViewController()
+//        self.navigationController?.pushViewController(vc, animated: true)
         
-        
+        GLDatingEULA.show(content: nil, viewController: self)
     }
 }
 

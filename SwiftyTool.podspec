@@ -254,6 +254,13 @@ Pod::Spec.new do |s|
       sss.dependency 'SwiftyTool/WeakProxy'
       sss.dependency 'SwiftyTool/Dating/Log'
     end
+    # EULA
+    ss.subspec 'EULA' do |sss|
+      sss.source_files = 'Sources/Dating/EULA/*.swift'
+      sss.dependency 'SnapKit'
+      sss.dependency 'SwiftyTool/AttributedString'
+      sss.dependency 'GLDeviceTool'
+    end
     # Log
     ss.subspec 'Log' do |sss|
       sss.source_files = 'Sources/Dating/Log/*.swift'

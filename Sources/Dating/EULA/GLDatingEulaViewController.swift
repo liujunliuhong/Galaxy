@@ -56,6 +56,7 @@ fileprivate class GLDatingEulaViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "EULA"
         self.view.backgroundColor = UIColor.white
         if #available(iOS 11.0, *) {
             self.textView.contentInsetAdjustmentBehavior = .never

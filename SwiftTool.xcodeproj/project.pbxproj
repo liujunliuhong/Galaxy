@@ -78,6 +78,18 @@
 		B4262D8C2579F9C400AA144B /* GLChainCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4262D8B2579F9C400AA144B /* GLChainCompatible.swift */; };
 		B4262D8F2579FBC500AA144B /* UIView+GLChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4262D8E2579FBC500AA144B /* UIView+GLChain.swift */; };
 		B4262D922579FBD200AA144B /* UILabel+GLChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4262D912579FBD200AA144B /* UILabel+GLChain.swift */; };
+		B44FA566258C85DF008CB554 /* GLDatingRefundAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44FA565258C85DF008CB554 /* GLDatingRefundAlert.swift */; };
+		B44FA56A258C8B17008CB554 /* GLDatingApplyForRefundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44FA569258C8B17008CB554 /* GLDatingApplyForRefundViewController.swift */; };
+		B44FA570258C92D3008CB554 /* GLDatingRefundTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44FA56F258C92D3008CB554 /* GLDatingRefundTextField.swift */; };
+		B44FA574258C95C1008CB554 /* GLDatingRefundTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44FA573258C95C1008CB554 /* GLDatingRefundTextView.swift */; };
+		B44FA577258C9A02008CB554 /* GLDatingApplyForRefundContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44FA576258C9A02008CB554 /* GLDatingApplyForRefundContentView.swift */; };
+		B44FA57A258C9B25008CB554 /* GLDatingRefund.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B44FA579258C9B25008CB554 /* GLDatingRefund.bundle */; };
+		B44FA57E258C9BDD008CB554 /* GLDatingRefundSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44FA57D258C9BDD008CB554 /* GLDatingRefundSuccessView.swift */; };
+		B44FA583258C9F41008CB554 /* GLDatingApplyForRefundViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44FA582258C9F41008CB554 /* GLDatingApplyForRefundViewModel.swift */; };
+		B44FA587258CA303008CB554 /* GLDatingRefundMakeSuggestionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44FA586258CA303008CB554 /* GLDatingRefundMakeSuggestionsViewModel.swift */; };
+		B44FA58B258CA316008CB554 /* GLDatingRefundMakeSuggestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44FA58A258CA316008CB554 /* GLDatingRefundMakeSuggestionsViewController.swift */; };
+		B44FA58E258CA327008CB554 /* GLDatingRefundMakeSuggestionsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44FA58D258CA327008CB554 /* GLDatingRefundMakeSuggestionsContentView.swift */; };
+		B44FA592258CA5EB008CB554 /* GLDatingRefundAlertOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44FA591258CA5EB008CB554 /* GLDatingRefundAlertOptions.swift */; };
 		B463D86E25830B1E000C0474 /* GLDatingDatabaseMockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B463D86D25830B1E000C0474 /* GLDatingDatabaseMockUser.swift */; };
 		B463D87225830C8F000C0474 /* GLDatingDatabaseMockUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B463D87125830C8F000C0474 /* GLDatingDatabaseMockUserManager.swift */; };
 		B463D96D25835D70000C0474 /* GLDatingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B463D96C25835D70000C0474 /* GLDatingMessage.swift */; };
@@ -205,6 +217,18 @@
 		B4262D8B2579F9C400AA144B /* GLChainCompatible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLChainCompatible.swift; sourceTree = "<group>"; };
 		B4262D8E2579FBC500AA144B /* UIView+GLChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+GLChain.swift"; sourceTree = "<group>"; };
 		B4262D912579FBD200AA144B /* UILabel+GLChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+GLChain.swift"; sourceTree = "<group>"; };
+		B44FA565258C85DF008CB554 /* GLDatingRefundAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingRefundAlert.swift; sourceTree = "<group>"; };
+		B44FA569258C8B17008CB554 /* GLDatingApplyForRefundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingApplyForRefundViewController.swift; sourceTree = "<group>"; };
+		B44FA56F258C92D3008CB554 /* GLDatingRefundTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingRefundTextField.swift; sourceTree = "<group>"; };
+		B44FA573258C95C1008CB554 /* GLDatingRefundTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingRefundTextView.swift; sourceTree = "<group>"; };
+		B44FA576258C9A02008CB554 /* GLDatingApplyForRefundContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingApplyForRefundContentView.swift; sourceTree = "<group>"; };
+		B44FA579258C9B25008CB554 /* GLDatingRefund.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GLDatingRefund.bundle; sourceTree = "<group>"; };
+		B44FA57D258C9BDD008CB554 /* GLDatingRefundSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingRefundSuccessView.swift; sourceTree = "<group>"; };
+		B44FA582258C9F41008CB554 /* GLDatingApplyForRefundViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingApplyForRefundViewModel.swift; sourceTree = "<group>"; };
+		B44FA586258CA303008CB554 /* GLDatingRefundMakeSuggestionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingRefundMakeSuggestionsViewModel.swift; sourceTree = "<group>"; };
+		B44FA58A258CA316008CB554 /* GLDatingRefundMakeSuggestionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingRefundMakeSuggestionsViewController.swift; sourceTree = "<group>"; };
+		B44FA58D258CA327008CB554 /* GLDatingRefundMakeSuggestionsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingRefundMakeSuggestionsContentView.swift; sourceTree = "<group>"; };
+		B44FA591258CA5EB008CB554 /* GLDatingRefundAlertOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingRefundAlertOptions.swift; sourceTree = "<group>"; };
 		B463D86D25830B1E000C0474 /* GLDatingDatabaseMockUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingDatabaseMockUser.swift; sourceTree = "<group>"; };
 		B463D87125830C8F000C0474 /* GLDatingDatabaseMockUserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingDatabaseMockUserManager.swift; sourceTree = "<group>"; };
 		B463D96C25835D70000C0474 /* GLDatingMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingMessage.swift; sourceTree = "<group>"; };
@@ -574,6 +598,7 @@
 		85DBE0EA2577DAA400E2DF24 /* Dating */ = {
 			isa = PBXGroup;
 			children = (
+				B44FA55F258C854E008CB554 /* Refund */,
 				B481BDD125899ECD00329F69 /* EULA */,
 				85534E8D258501FE00E7A983 /* AutoAction */,
 				85EA72712583D2AD00DCC1AE /* Log */,
@@ -622,6 +647,57 @@
 				85EA72722583D2BF00DCC1AE /* GLDatingLog.swift */,
 			);
 			path = Log;
+			sourceTree = "<group>";
+		};
+		B44FA55F258C854E008CB554 /* Refund */ = {
+			isa = PBXGroup;
+			children = (
+				B44FA579258C9B25008CB554 /* GLDatingRefund.bundle */,
+				B44FA565258C85DF008CB554 /* GLDatingRefundAlert.swift */,
+				B44FA591258CA5EB008CB554 /* GLDatingRefundAlertOptions.swift */,
+				B44FA585258CA2DD008CB554 /* MakeSuggestions */,
+				B44FA56C258C8D60008CB554 /* ApplyForRefund */,
+				B44FA57C258C9BC3008CB554 /* Success */,
+				B44FA56E258C929B008CB554 /* CommonUI */,
+			);
+			path = Refund;
+			sourceTree = "<group>";
+		};
+		B44FA56C258C8D60008CB554 /* ApplyForRefund */ = {
+			isa = PBXGroup;
+			children = (
+				B44FA569258C8B17008CB554 /* GLDatingApplyForRefundViewController.swift */,
+				B44FA576258C9A02008CB554 /* GLDatingApplyForRefundContentView.swift */,
+				B44FA582258C9F41008CB554 /* GLDatingApplyForRefundViewModel.swift */,
+			);
+			path = ApplyForRefund;
+			sourceTree = "<group>";
+		};
+		B44FA56E258C929B008CB554 /* CommonUI */ = {
+			isa = PBXGroup;
+			children = (
+				B44FA56F258C92D3008CB554 /* GLDatingRefundTextField.swift */,
+				B44FA573258C95C1008CB554 /* GLDatingRefundTextView.swift */,
+			);
+			path = CommonUI;
+			sourceTree = "<group>";
+		};
+		B44FA57C258C9BC3008CB554 /* Success */ = {
+			isa = PBXGroup;
+			children = (
+				B44FA57D258C9BDD008CB554 /* GLDatingRefundSuccessView.swift */,
+			);
+			path = Success;
+			sourceTree = "<group>";
+		};
+		B44FA585258CA2DD008CB554 /* MakeSuggestions */ = {
+			isa = PBXGroup;
+			children = (
+				B44FA58A258CA316008CB554 /* GLDatingRefundMakeSuggestionsViewController.swift */,
+				B44FA58D258CA327008CB554 /* GLDatingRefundMakeSuggestionsContentView.swift */,
+				B44FA586258CA303008CB554 /* GLDatingRefundMakeSuggestionsViewModel.swift */,
+			);
+			path = MakeSuggestions;
 			sourceTree = "<group>";
 		};
 		B463D86C25830AEB000C0474 /* DatabaseMockUser */ = {
@@ -857,6 +933,7 @@
 				1831115724469EB900155620 /* LaunchScreen.storyboard in Resources */,
 				1818101E248E10F200BB4D03 /* test.png in Resources */,
 				850664182550493C00EB4188 /* GLHud.bundle in Resources */,
+				B44FA57A258C9B25008CB554 /* GLDatingRefund.bundle in Resources */,
 				1831115424469EB900155620 /* Assets.xcassets in Resources */,
 				850664152550493C00EB4188 /* GLSystemFace.bundle in Resources */,
 				85CC96AC25793427002B993F /* GLCity.bundle in Resources */,
@@ -920,13 +997,17 @@
 				B4ED1C6E255E72BE00115895 /* GLBaiDuLocationTestViewController.m in Sources */,
 				B4F8AAD3257DDD17004C932C /* GLDatingOnlineState.swift in Sources */,
 				B4C6B4E6257F3D1F004CD337 /* UserDefaults+GLDatingUser.swift in Sources */,
+				B44FA577258C9A02008CB554 /* GLDatingApplyForRefundContentView.swift in Sources */,
 				850664142550493C00EB4188 /* GLSystemFace.swift in Sources */,
+				B44FA566258C85DF008CB554 /* GLDatingRefundAlert.swift in Sources */,
+				B44FA587258CA303008CB554 /* GLDatingRefundMakeSuggestionsViewModel.swift in Sources */,
 				85CC96AB25793427002B993F /* GLCityModel.swift in Sources */,
 				B4735CFF257A3BFF002F7566 /* UIImageView+GLChain.swift in Sources */,
 				B4F8AADD257DDF2D004C932C /* GLNotification.swift in Sources */,
 				B4C6B4E3257F2FE2004CD337 /* GLDatingUserManager.swift in Sources */,
 				85CC969B25793290002B993F /* String+GLWords.swift in Sources */,
 				8506640D2550493C00EB4188 /* Bundle+GLExtension.swift in Sources */,
+				B44FA56A258C8B17008CB554 /* GLDatingApplyForRefundViewController.swift in Sources */,
 				B4735D0E257A3C7D002F7566 /* UISwitch+GLChain.swift in Sources */,
 				B4735D08257A3C48002F7566 /* UITextField+GLChain.swift in Sources */,
 				85CC969C25793290002B993F /* GLWordsSort.swift in Sources */,
@@ -952,7 +1033,9 @@
 				B4262D922579FBD200AA144B /* UILabel+GLChain.swift in Sources */,
 				850664242550493C00EB4188 /* GLEnlargeControl.swift in Sources */,
 				B463D87225830C8F000C0474 /* GLDatingDatabaseMockUserManager.swift in Sources */,
+				B44FA574258C95C1008CB554 /* GLDatingRefundTextView.swift in Sources */,
 				85E5CC11257E7F98003C2A2B /* NSMutableAttributedString+GLAttributedString.swift in Sources */,
+				B44FA57E258C9BDD008CB554 /* GLDatingRefundSuccessView.swift in Sources */,
 				B4F8AAE2257DDFF3004C932C /* GLDatingLocalPush.swift in Sources */,
 				8506640E2550493C00EB4188 /* String+GLExtension.swift in Sources */,
 				B4C6B39A257F1150004CD337 /* GLDatingSexType.swift in Sources */,
@@ -969,6 +1052,7 @@
 				85CC969D25793290002B993F /* GLWordsSortResult.swift in Sources */,
 				8544713E257FC686005CFA6D /* GLSingleLocationError.swift in Sources */,
 				850664102550493C00EB4188 /* CGFloat+GLExtension.swift in Sources */,
+				B44FA58E258CA327008CB554 /* GLDatingRefundMakeSuggestionsContentView.swift in Sources */,
 				85534E8F2585022700E7A983 /* GLDatingAutoActionManager.swift in Sources */,
 				8506641D2550493C00EB4188 /* GLCusNavigationBar.swift in Sources */,
 				85EA72732583D2BF00DCC1AE /* GLDatingLog.swift in Sources */,
@@ -978,6 +1062,8 @@
 				85CC969425793189002B993F /* GLDatingAVPlayerView.swift in Sources */,
 				B4C6B3A3257F1382004CD337 /* GLDatingTextField.swift in Sources */,
 				B49CE0282578796E0064B51B /* GLAlertOptions.swift in Sources */,
+				B44FA570258C92D3008CB554 /* GLDatingRefundTextField.swift in Sources */,
+				B44FA58B258CA316008CB554 /* GLDatingRefundMakeSuggestionsViewController.swift in Sources */,
 				850664132550493C00EB4188 /* GLSystemFaceKeyboard.swift in Sources */,
 				8506640F2550493C00EB4188 /* Dictionary+GLExtension.swift in Sources */,
 				B4735D20257A3D89002F7566 /* UITableView+GLChain.swift in Sources */,
@@ -1015,10 +1101,12 @@
 				85CC96AD25793427002B993F /* GLCityPickerView.swift in Sources */,
 				8506641E2550493C00EB4188 /* GLBaseViewController.swift in Sources */,
 				8594C76B257CB63000D3C9C7 /* UICollectionViewFlowLayout+GLChain.swift in Sources */,
+				B44FA583258C9F41008CB554 /* GLDatingApplyForRefundViewModel.swift in Sources */,
 				B463D86E25830B1E000C0474 /* GLDatingDatabaseMockUser.swift in Sources */,
 				8506641C2550493C00EB4188 /* GLCusNaviBarTitle.swift in Sources */,
 				85E5CC0D257E7E49003C2A2B /* GLAttributedString.swift in Sources */,
 				859E67EE25455E22005F1115 /* NextViewController.swift in Sources */,
+				B44FA592258CA5EB008CB554 /* GLDatingRefundAlertOptions.swift in Sources */,
 				B463D9702583601E000C0474 /* GLDatingMessageManager.swift in Sources */,
 				85DBE0ED2577DAD700E2DF24 /* GLDatingMessageNotification.swift in Sources */,
 				183111FA2446A8D400155620 /* Test.m in Sources */,

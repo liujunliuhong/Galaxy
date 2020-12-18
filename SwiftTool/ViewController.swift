@@ -290,7 +290,9 @@ extension ViewController {
 //        let vc = GRDBDemoViewController()
 //        self.navigationController?.pushViewController(vc, animated: true)
         
-        GLDatingEULA.show(content: nil, viewController: self)
+//        GLDatingEULA.show(content: nil, viewController: self)
+        
+        GLDatingRefundAlert.show(viewController: self)
     }
 }
 

@@ -261,6 +261,19 @@ Pod::Spec.new do |s|
       sss.dependency 'SwiftyTool/AttributedString'
       sss.dependency 'GLDeviceTool'
     end
+    # Refund
+    ss.subspec 'Refund' do |sss|
+      sss.source_files = 'Sources/Dating/Refund/*.swift', 'Sources/Dating/Refund/*/*.swift'
+      sss.dependency 'SnapKit'
+      sss.dependency 'RxSwift'
+      sss.dependency 'RxCocoa'
+      sss.dependency 'NSObject+Rx'
+      sss.dependency 'SwiftyTool/Alert'
+      sss.dependency 'SwiftyTool/HUD'
+      sss.dependency 'SwiftyTool/UIKit'
+      sss.dependency 'GLDeviceTool'
+      sss.resource = 'Sources/Dating/Refund/GLDatingRefund.bundle'
+    end
     # Log
     ss.subspec 'Log' do |sss|
       sss.source_files = 'Sources/Dating/Log/*.swift'

@@ -272,7 +272,6 @@ Pod::Spec.new do |s|
       sss.dependency 'SwiftyTool/HUD'
       sss.dependency 'SwiftyTool/UIKit'
       sss.dependency 'GLDeviceTool'
-      sss.resource = 'Sources/Dating/Refund/GLDatingRefund.bundle'
     end
     # Log
     ss.subspec 'Log' do |sss|

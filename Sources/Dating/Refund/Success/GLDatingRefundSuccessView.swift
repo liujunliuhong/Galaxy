@@ -14,15 +14,10 @@ import NSObject_Rx
 private let buttonHeight: CGFloat = 44.0
 
 internal class GLDatingRefundSuccessView: UIView {
-    private static func _bundle() -> Bundle? {
-        guard let path = Bundle(for: GLDatingRefundAlert.classForCoder()).path(forResource: "GLDatingRefund", ofType: "bundle") else { return nil }
-        return Bundle(path: path)
-    }
-    private let successImage = UIImage.gl_image(bundle: _bundle(), name: "success")
     
     private lazy var successImageView: UIImageView = {
         let successImageView = UIImageView()
-        successImageView.image = successImage
+        successImageView.image = GLDatingRefundOptions?.successImage
         successImageView.contentMode = .scaleAspectFit
         return successImageView
     }()

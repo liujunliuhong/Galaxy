@@ -83,7 +83,6 @@
 		B44FA570258C92D3008CB554 /* GLDatingRefundTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44FA56F258C92D3008CB554 /* GLDatingRefundTextField.swift */; };
 		B44FA574258C95C1008CB554 /* GLDatingRefundTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44FA573258C95C1008CB554 /* GLDatingRefundTextView.swift */; };
 		B44FA577258C9A02008CB554 /* GLDatingApplyForRefundContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44FA576258C9A02008CB554 /* GLDatingApplyForRefundContentView.swift */; };
-		B44FA57A258C9B25008CB554 /* GLDatingRefund.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B44FA579258C9B25008CB554 /* GLDatingRefund.bundle */; };
 		B44FA57E258C9BDD008CB554 /* GLDatingRefundSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44FA57D258C9BDD008CB554 /* GLDatingRefundSuccessView.swift */; };
 		B44FA583258C9F41008CB554 /* GLDatingApplyForRefundViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44FA582258C9F41008CB554 /* GLDatingApplyForRefundViewModel.swift */; };
 		B44FA587258CA303008CB554 /* GLDatingRefundMakeSuggestionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44FA586258CA303008CB554 /* GLDatingRefundMakeSuggestionsViewModel.swift */; };
@@ -222,7 +221,6 @@
 		B44FA56F258C92D3008CB554 /* GLDatingRefundTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingRefundTextField.swift; sourceTree = "<group>"; };
 		B44FA573258C95C1008CB554 /* GLDatingRefundTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingRefundTextView.swift; sourceTree = "<group>"; };
 		B44FA576258C9A02008CB554 /* GLDatingApplyForRefundContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingApplyForRefundContentView.swift; sourceTree = "<group>"; };
-		B44FA579258C9B25008CB554 /* GLDatingRefund.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GLDatingRefund.bundle; sourceTree = "<group>"; };
 		B44FA57D258C9BDD008CB554 /* GLDatingRefundSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingRefundSuccessView.swift; sourceTree = "<group>"; };
 		B44FA582258C9F41008CB554 /* GLDatingApplyForRefundViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingApplyForRefundViewModel.swift; sourceTree = "<group>"; };
 		B44FA586258CA303008CB554 /* GLDatingRefundMakeSuggestionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingRefundMakeSuggestionsViewModel.swift; sourceTree = "<group>"; };
@@ -652,7 +650,6 @@
 		B44FA55F258C854E008CB554 /* Refund */ = {
 			isa = PBXGroup;
 			children = (
-				B44FA579258C9B25008CB554 /* GLDatingRefund.bundle */,
 				B44FA565258C85DF008CB554 /* GLDatingRefundAlert.swift */,
 				B44FA591258CA5EB008CB554 /* GLDatingRefundAlertOptions.swift */,
 				B44FA585258CA2DD008CB554 /* MakeSuggestions */,
@@ -933,7 +930,6 @@
 				1831115724469EB900155620 /* LaunchScreen.storyboard in Resources */,
 				1818101E248E10F200BB4D03 /* test.png in Resources */,
 				850664182550493C00EB4188 /* GLHud.bundle in Resources */,
-				B44FA57A258C9B25008CB554 /* GLDatingRefund.bundle in Resources */,
 				1831115424469EB900155620 /* Assets.xcassets in Resources */,
 				850664152550493C00EB4188 /* GLSystemFace.bundle in Resources */,
 				85CC96AC25793427002B993F /* GLCity.bundle in Resources */,

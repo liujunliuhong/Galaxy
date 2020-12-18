@@ -16,5 +16,6 @@ public class GLDatingRefundAlertOptions {
     public var refundSendSuccessClosure: (() -> Void)?
     public var clickSuggestionsClosure: (() -> Void)?
     public var suggestionsSendSuccessClosure: (() -> Void)?
+    public var successImage: UIImage?
     public init() {}
 }

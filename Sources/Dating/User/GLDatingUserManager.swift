@@ -237,13 +237,13 @@ extension GLDatingUserManager {
                          diamond: Int = 0,
                          isVip: Bool = false,
                          isSuperVip: Bool = false,
-                         birth: String?,
-                         bodyTypeStatus: String?,
-                         relationshipStatus: String?,
-                         childrenStatus: String?,
-                         drinkStatus: String?,
-                         smokeStatus: String?,
-                         ethnicitiesStatus: String?) throws {
+                         birth: String? = nil,
+                         bodyTypeStatus: String? = nil,
+                         relationshipStatus: String? = nil,
+                         childrenStatus: String? = nil,
+                         drinkStatus: String? = nil,
+                         smokeStatus: String? = nil,
+                         ethnicitiesStatus: String? = nil) throws {
         if self.checkEmailIsRepeat(email: email) {
             throw GLDatingError.error("Email has been registered")
         }

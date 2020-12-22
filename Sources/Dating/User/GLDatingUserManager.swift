@@ -62,6 +62,20 @@ public class GLDatingUserManager {
     public let isVip = BehaviorRelay<Bool>(value: false)
     /// 是否是超级vip
     public let isSuperVip = BehaviorRelay<Bool>(value: false)
+    /// 生日
+    public let birth = BehaviorRelay<String?>(value: nil)
+    /// 体型（苗条、健美型、很胖等等）
+    public let bodyTypeStatus = BehaviorRelay<String?>(value: nil)
+    /// 关系状态（单身、离异等等）
+    public let relationshipStatus = BehaviorRelay<String?>(value: nil)
+    /// 小孩状态（没有小孩、有小孩但是不住在一起等等）
+    public let childrenStatus = BehaviorRelay<String?>(value: nil)
+    /// 吸烟状态（从不吸烟、偶尔吸烟、经常吸烟等等）
+    public let smokeStatus = BehaviorRelay<String?>(value: nil)
+    /// 饮酒状态（从不饮酒、偶尔饮酒、经常饮酒等等）
+    public let drinkStatus = BehaviorRelay<String?>(value: nil)
+    /// 种族（白种人、黄种人等等）
+    public let ethnicitiesStatus = BehaviorRelay<String?>(value: nil)
     
     
     /// 是否登录
@@ -135,6 +149,13 @@ extension GLDatingUserManager {
                     t.column(GLDatingUser.CodingKeys.diamond.rawValue, .integer).defaults(to: 0)
                     t.column(GLDatingUser.CodingKeys.is_vip.rawValue, .boolean).defaults(to: false)
                     t.column(GLDatingUser.CodingKeys.is_super_vip.rawValue, .boolean).defaults(to: false)
+                    t.column(GLDatingUser.CodingKeys.birth.rawValue, .text)
+                    t.column(GLDatingUser.CodingKeys.body_type_status.rawValue, .text)
+                    t.column(GLDatingUser.CodingKeys.relationship_status.rawValue, .text)
+                    t.column(GLDatingUser.CodingKeys.children_status.rawValue, .text)
+                    t.column(GLDatingUser.CodingKeys.drink_status.rawValue, .text)
+                    t.column(GLDatingUser.CodingKeys.smoke_status.rawValue, .text)
+                    t.column(GLDatingUser.CodingKeys.ethnicities_status.rawValue, .text)
                 })
             })
             GLDatingLog("用户表创建成功")
@@ -215,8 +236,14 @@ extension GLDatingUserManager {
                          lookingFor: String? = nil,
                          diamond: Int = 0,
                          isVip: Bool = false,
-                         isSuperVip: Bool = false) throws {
-        
+                         isSuperVip: Bool = false,
+                         birth: String?,
+                         bodyTypeStatus: String?,
+                         relationshipStatus: String?,
+                         childrenStatus: String?,
+                         drinkStatus: String?,
+                         smokeStatus: String?,
+                         ethnicitiesStatus: String?) throws {
         if self.checkEmailIsRepeat(email: email) {
             throw GLDatingError.error("Email has been registered")
         }
@@ -244,6 +271,13 @@ extension GLDatingUserManager {
         user.diamond = diamond
         user.is_vip = isVip
         user.is_super_vip = isSuperVip
+        user.birth = birth
+        user.body_type_status = bodyTypeStatus
+        user.relationship_status = relationshipStatus
+        user.children_status = childrenStatus
+        user.drink_status = drinkStatus
+        user.smoke_status = smokeStatus
+        user.ethnicities_status = ethnicitiesStatus
         
         do {
             try dbQueue.write({ (db) in
@@ -400,6 +434,13 @@ extension GLDatingUserManager {
         self.diamond.accept(user.diamond)
         self.isVip.accept(user.is_vip)
         self.isSuperVip.accept(user.is_super_vip)
+        self.birth.accept(user.birth)
+        self.bodyTypeStatus.accept(user.body_type_status)
+        self.relationshipStatus.accept(user.relationship_status)
+        self.childrenStatus.accept(user.children_status)
+        self.drinkStatus.accept(user.drink_status)
+        self.smokeStatus.accept(user.smoke_status)
+        self.ethnicitiesStatus.accept(user.ethnicities_status)
     }
     
     private func clearUserInfo() {
@@ -422,6 +463,13 @@ extension GLDatingUserManager {
         self.diamond.accept(0)
         self.isVip.accept(false)
         self.isSuperVip.accept(false)
+        self.birth.accept(nil)
+        self.bodyTypeStatus.accept(nil)
+        self.relationshipStatus.accept(nil)
+        self.childrenStatus.accept(nil)
+        self.drinkStatus.accept(nil)
+        self.smokeStatus.accept(nil)
+        self.ethnicitiesStatus.accept(nil)
     }
 }
 
@@ -654,6 +702,97 @@ extension GLDatingUserManager {
         self._update(user: user) {
             GLDatingUserManager.default.diamond.accept(value)
             GLDatingLog("[更新用户钻石（充值时）成功]")
+        }
+    }
+    
+    /// 更新用户生日
+    public func updateUserBirth(birth: String?) {
+        guard let user = GLDatingUserManager.default.currentUser else {
+            GLDatingLog("[更新用户生日] [用户不存在]")
+            return
+        }
+        user.birth = birth
+        self._update(user: user) {
+            GLDatingUserManager.default.birth.accept(birth)
+            GLDatingLog("[更新用户生日成功]")
+        }
+    }
+    
+    /// 更新用户体型（苗条、健美型、很胖等等）
+    public func updateUserBodyTypeStatus(bodyTypeStatus: String?) {
+        guard let user = GLDatingUserManager.default.currentUser else {
+            GLDatingLog("[更新用户体型] [用户不存在]")
+            return
+        }
+        user.body_type_status = bodyTypeStatus
+        self._update(user: user) {
+            GLDatingUserManager.default.bodyTypeStatus.accept(bodyTypeStatus)
+            GLDatingLog("[更新用户体型成功]")
+        }
+    }
+    
+    /// 更新用户关系状态（单身、离异等等）
+    public func updateUserRelationshipStatus(relationshipStatus: String?) {
+        guard let user = GLDatingUserManager.default.currentUser else {
+            GLDatingLog("[更新用户关系状态] [用户不存在]")
+            return
+        }
+        user.relationship_status = relationshipStatus
+        self._update(user: user) {
+            GLDatingUserManager.default.relationshipStatus.accept(relationshipStatus)
+            GLDatingLog("[更新用户关系状态成功]")
+        }
+    }
+    
+    /// 更新用户小孩状态（没有小孩、有小孩但是不住在一起等等）
+    public func updateUserChildrenStatus(childrenStatus: String?) {
+        guard let user = GLDatingUserManager.default.currentUser else {
+            GLDatingLog("[更新用户小孩状态] [用户不存在]")
+            return
+        }
+        user.children_status = childrenStatus
+        self._update(user: user) {
+            GLDatingUserManager.default.childrenStatus.accept(childrenStatus)
+            GLDatingLog("[更新用户小孩状态成功]")
+        }
+    }
+    
+    /// 更新用户吸烟状态（从不吸烟、偶尔吸烟、经常吸烟等等）
+    public func updateUserSmokeStatus(smokeStatus: String?) {
+        guard let user = GLDatingUserManager.default.currentUser else {
+            GLDatingLog("[更新用户吸烟状态] [用户不存在]")
+            return
+        }
+        user.smoke_status = smokeStatus
+        self._update(user: user) {
+            GLDatingUserManager.default.smokeStatus.accept(smokeStatus)
+            GLDatingLog("[更新用户吸烟状态成功]")
+        }
+    }
+    
+    /// 更新用户饮酒状态（从不饮酒、偶尔饮酒、经常饮酒等等）
+    public func updateUserDrinkStatus(drinkStatus: String?) {
+        guard let user = GLDatingUserManager.default.currentUser else {
+            GLDatingLog("[更新用户饮酒状态] [用户不存在]")
+            return
+        }
+        user.drink_status = drinkStatus
+        self._update(user: user) {
+            GLDatingUserManager.default.drinkStatus.accept(drinkStatus)
+            GLDatingLog("[更新用户饮酒状态成功]")
+        }
+    }
+    
+    /// 更新用户种族（白种人、黄种人等等）
+    public func updateUserEthnicitiesStatus(ethnicitiesStatus: String?) {
+        guard let user = GLDatingUserManager.default.currentUser else {
+            GLDatingLog("[更新用户种族] [用户不存在]")
+            return
+        }
+        user.ethnicities_status = ethnicitiesStatus
+        self._update(user: user) {
+            GLDatingUserManager.default.ethnicitiesStatus.accept(ethnicitiesStatus)
+            GLDatingLog("[更新用户种族成功]")
         }
     }
 }

@@ -54,6 +54,24 @@ public class GLDatingUser: Codable {
     public var is_super_vip: Bool = false
     
     
+    
+    /// 生日
+    public var birth: String?
+    /// 体型（苗条、健美型、很胖等等）
+    public var body_type_status: String?
+    /// 关系状态（单身、离异等等）
+    public var relationship_status: String?
+    /// 小孩状态（没有小孩、有小孩但是不住在一起等等）
+    public var children_status: String?
+    /// 吸烟状态（从不吸烟、偶尔吸烟、经常吸烟等等）
+    public var smoke_status: String?
+    /// 饮酒状态（从不饮酒、偶尔饮酒、经常饮酒等等）
+    public var drink_status: String?
+    /// 种族（白种人、黄种人等等）
+    public var ethnicities_status: String?
+    
+    
+    
     public enum CodingKeys: String, CodingKey, ColumnExpression {
         case user_id
         case email
@@ -74,6 +92,13 @@ public class GLDatingUser: Codable {
         case diamond
         case is_vip
         case is_super_vip
+        case birth
+        case body_type_status
+        case relationship_status
+        case children_status
+        case smoke_status
+        case drink_status
+        case ethnicities_status
     }
 }
 
@@ -112,7 +137,16 @@ extension GLDatingUser: CustomStringConvertible, CustomDebugStringConvertible {
                                    GLDatingUser.CodingKeys.looking_for.rawValue: looking_for ?? "",
                                    GLDatingUser.CodingKeys.diamond.rawValue: diamond,
                                    GLDatingUser.CodingKeys.is_vip.rawValue: is_vip,
-                                   GLDatingUser.CodingKeys.is_super_vip.rawValue: is_super_vip]
+                                   GLDatingUser.CodingKeys.is_super_vip.rawValue: is_super_vip,
+        
+        
+                                   GLDatingUser.CodingKeys.birth.rawValue: birth ?? "",
+                                   GLDatingUser.CodingKeys.body_type_status.rawValue: body_type_status ?? "",
+                                   GLDatingUser.CodingKeys.relationship_status.rawValue: relationship_status ?? "",
+                                   GLDatingUser.CodingKeys.children_status.rawValue: children_status ?? "",
+                                   GLDatingUser.CodingKeys.smoke_status.rawValue: smoke_status ?? "",
+                                   GLDatingUser.CodingKeys.drink_status.rawValue: drink_status ?? "",
+                                   GLDatingUser.CodingKeys.ethnicities_status.rawValue: ethnicities_status ?? ""]
         return NSString(format: "%@", dict as NSDictionary) as String
     }
 }

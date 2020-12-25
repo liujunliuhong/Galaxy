@@ -30,6 +30,10 @@ public enum GLDatingDatabaseMockUserType: String, Codable {
     case me_visited
     /// 浏览过我的
     case visited_me
+    /// 我收藏的
+    case me_collection
+    /// 我`Wike`的
+    case me_wike
 }
 
 extension GLDatingDatabaseMockUserType: DatabaseValueConvertible {}

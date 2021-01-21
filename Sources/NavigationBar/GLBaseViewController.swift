@@ -25,7 +25,6 @@ open class GLBaseViewController: UIViewController {
         cusNaviBar.hideNavigationBar = true
         cusNaviBar.hideBar = false
         cusNaviBar.hideToolBar = true
-        cusNaviBar.hideStatusBar = false
         return cusNaviBar
     }()
     
@@ -36,7 +35,7 @@ open class GLBaseViewController: UIViewController {
     
     override open func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.view.addSubview(cusNaviBar)
         self.view.addSubview(safeAreaView)
         
@@ -86,7 +85,7 @@ open class GLBaseViewController: UIViewController {
     override open var prefersHomeIndicatorAutoHidden: Bool {
         return false
     }
-
+    
     // Set the default status bar style based on the values in info. plist.
     override open var preferredStatusBarStyle: UIStatusBarStyle {
         let infoDic = Bundle.main.infoDictionary

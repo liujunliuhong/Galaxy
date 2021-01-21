@@ -89,12 +89,7 @@ open class GLCusNavigationBar: UIView {
             self.refresh()
         }
     }
-    /// 是否隐藏状态栏那部分的View，默认false
-    public var hideStatusBar: Bool = false {
-        didSet {
-            self.refresh()
-        }
-    }
+    
     /// 是否隐藏bar，默认false
     public var hideBar: Bool = false {
         didSet {
@@ -120,7 +115,8 @@ open class GLCusNavigationBar: UIView {
         }
     }
     
-    private var shouldLayout: Bool = true
+    /// `contentSize`
+    private var contentSize: CGSize = .zero
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -162,104 +158,77 @@ extension GLCusNavigationBar {
 }
 
 extension GLCusNavigationBar {
-    open override var intrinsicContentSize: CGSize {
-        return self.reloadUI(isLayoutItem: false)
-    }
-}
-
-
-extension GLCusNavigationBar {
-    public override func layoutSubviews() {
-        super.layoutSubviews()
-        if !self.shouldLayout {
-            return
+    open override func layoutIfNeeded() {
+        super.layoutIfNeeded()
+        self.subviews.forEach { (view) in
+            view.layoutIfNeeded()
         }
-        self.reloadUI(isLayoutItem: true)
-        self.shouldLayout = false
+    }
+    
+    open override var intrinsicContentSize: CGSize {
+        return self.contentSize
+    }
+    
+    open override func layoutSubviews() {
+        super.layoutSubviews()
+        self.contentSize = self.reloadUI()
+        self.invalidateIntrinsicContentSize()
     }
 }
-
 
 extension GLCusNavigationBar {
     @discardableResult
-    private func reloadUI(isLayoutItem: Bool) -> CGSize {
+    private func reloadUI() -> CGSize {
         if self.hideNavigationBar || self.bounds.width.isLessThanOrEqualTo(.zero) {
-            if isLayoutItem {
-                self.barView.subviews.forEach { (v) in
-                    v.removeFromSuperview()
-                }
-                self.barView.isHidden = true
-                self.toolView.isHidden = true
-                self.lineView.isHidden = true
-                self.barView.frame = .zero
-                self.toolView.frame = .zero
-                self.lineView.frame = .zero
+            self.barView.subviews.forEach { (v) in
+                v.removeFromSuperview()
             }
+            self.barView.isHidden = true
+            self.toolView.isHidden = true
+            self.lineView.isHidden = true
+            self.barView.frame = .zero
+            self.toolView.frame = .zero
+            self.lineView.frame = .zero
             return .zero
         }
         
-        if isLayoutItem {
-            self.lineView.isHidden = false
-        }
+        self.lineView.isHidden = false
         
         let o_x: CGFloat = .zero
         let barWidth: CGFloat = self.bounds.width
-        var sumHeight: CGFloat = 0.0
-        
-        // status bar
-        if !self.hideStatusBar {
-            if !UIApplication.shared.isStatusBarHidden {
-                sumHeight +=  UIApplication.shared.statusBarFrame.size.height
-            } else {
-                sumHeight += UIDevice.gl_notchHeight
-            }
-        }
+        var sumHeight: CGFloat = UIDevice.gl_statusBarHeight
         
         
         // bar view
-        if isLayoutItem {
-            self.barView.subviews.forEach { (view) in
-                view.removeFromSuperview() // remove
-            }
+        
+        self.barView.subviews.forEach { (view) in
+            view.removeFromSuperview() // remove
         }
         if !self.hideBar {
-            if isLayoutItem {
-                self.barView.isHidden = false
-                self.barView.frame = CGRect(x: o_x, y: sumHeight, width: barWidth, height: self.barHeight)
-            }
+            self.barView.isHidden = false
+            self.barView.frame = CGRect(x: o_x, y: sumHeight, width: barWidth, height: self.barHeight)
             sumHeight += self.barHeight
         } else {
-            if isLayoutItem {
-                self.barView.isHidden = true
-                self.barView.frame = .zero
-            }
+            self.barView.isHidden = true
+            self.barView.frame = .zero
         }
         
         
         // tool view
-        if isLayoutItem {
-            self.toolView.subviews.forEach { (view) in
-                view.removeFromSuperview() // remove
-            }
+        self.toolView.subviews.forEach { (view) in
+            view.removeFromSuperview() // remove
         }
         if !self.hideToolBar && !self.toolHeight.isLessThanOrEqualTo(.zero) {
-            if isLayoutItem {
-                self.toolView.isHidden = false
-                self.toolView.frame = CGRect(x: o_x, y: sumHeight, width: barWidth, height: self.toolHeight)
-            }
+            self.toolView.isHidden = false
+            self.toolView.frame = CGRect(x: o_x, y: sumHeight, width: barWidth, height: self.toolHeight)
             sumHeight += self.toolHeight
         } else {
-            if isLayoutItem {
-                self.toolView.isHidden = true
-                self.toolView.frame = .zero
-            }
+            self.toolView.isHidden = true
+            self.toolView.frame = .zero
         }
         
         let size = CGSize(width: self.bounds.width, height: sumHeight)
         
-        if !isLayoutItem {
-            return size
-        }
         
         if !self.hideBar {
             // left items
@@ -368,11 +337,9 @@ extension GLCusNavigationBar {
 }
 
 extension GLCusNavigationBar {
-    /// 刷新界面。只有特殊情况下才调用此方法。一般不需要手动调用
+    /// 刷新界面
     public func refresh() {
-        self.shouldLayout = true
         self.setNeedsLayout()
         self.layoutIfNeeded()
-        self.invalidateIntrinsicContentSize()
     }
 }

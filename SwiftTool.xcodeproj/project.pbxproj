@@ -22,10 +22,6 @@
 		850664092550493C00EB4188 /* GLFlowItemsAutoMarginDisplayNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850663E42550493C00EB4188 /* GLFlowItemsAutoMarginDisplayNode.swift */; };
 		8506640A2550493C00EB4188 /* GLFlowItemsAutoWidthDisplayNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850663E52550493C00EB4188 /* GLFlowItemsAutoWidthDisplayNode.swift */; };
 		8506640B2550493C00EB4188 /* GLFlowItemsDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850663E62550493C00EB4188 /* GLFlowItemsDemoViewController.swift */; };
-		8506640C2550493C00EB4188 /* Data+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850663E82550493C00EB4188 /* Data+GLExtension.swift */; };
-		8506640D2550493C00EB4188 /* Bundle+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850663E92550493C00EB4188 /* Bundle+GLExtension.swift */; };
-		8506640E2550493C00EB4188 /* String+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850663EA2550493C00EB4188 /* String+GLExtension.swift */; };
-		8506640F2550493C00EB4188 /* Dictionary+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850663EB2550493C00EB4188 /* Dictionary+GLExtension.swift */; };
 		850664102550493C00EB4188 /* CGFloat+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850663EC2550493C00EB4188 /* CGFloat+GLExtension.swift */; };
 		850664112550493C00EB4188 /* Array+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850663ED2550493C00EB4188 /* Array+GLExtension.swift */; };
 		850664122550493C00EB4188 /* GLSystemFaceKeyboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850663EF2550493C00EB4188 /* GLSystemFaceKeyboardCell.swift */; };
@@ -54,6 +50,12 @@
 		8594C76B257CB63000D3C9C7 /* UICollectionViewFlowLayout+GLChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8594C76A257CB63000D3C9C7 /* UICollectionViewFlowLayout+GLChain.swift */; };
 		8594C76F257CC0D000D3C9C7 /* UIStackView+GLChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8594C76E257CC0D000D3C9C7 /* UIStackView+GLChain.swift */; };
 		859E67EE25455E22005F1115 /* NextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859E67ED25455E22005F1115 /* NextViewController.swift */; };
+		859F2DBA264ECAF400A4575C /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859F2DB9264ECAF400A4575C /* String+Extension.swift */; };
+		859F2DBC264ECC4000A4575C /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859F2DBB264ECC4000A4575C /* Data+Extension.swift */; };
+		859F2DBE264ECD1C00A4575C /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859F2DBD264ECD1C00A4575C /* Array+Extension.swift */; };
+		859F2DC0264ECD4600A4575C /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859F2DBF264ECD4600A4575C /* Dictionary+Extension.swift */; };
+		859F2DC2264ECD5000A4575C /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859F2DC1264ECD5000A4575C /* Bundle+Extension.swift */; };
+		859F2DC4264ED25400A4575C /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859F2DC3264ED25400A4575C /* Date+Extension.swift */; };
 		85B225E9257FB7CB00EF6ECD /* GLSingleLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B225E8257FB7CB00EF6ECD /* GLSingleLocation.swift */; };
 		85B225F0257FB90600EF6ECD /* GLSingleLocationAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B225EF257FB90600EF6ECD /* GLSingleLocationAuthorization.swift */; };
 		85CC942A25792982002B993F /* GLReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CC942925792982002B993F /* GLReachabilityManager.swift */; };
@@ -159,10 +161,6 @@
 		850663E42550493C00EB4188 /* GLFlowItemsAutoMarginDisplayNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLFlowItemsAutoMarginDisplayNode.swift; sourceTree = "<group>"; };
 		850663E52550493C00EB4188 /* GLFlowItemsAutoWidthDisplayNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLFlowItemsAutoWidthDisplayNode.swift; sourceTree = "<group>"; };
 		850663E62550493C00EB4188 /* GLFlowItemsDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLFlowItemsDemoViewController.swift; sourceTree = "<group>"; };
-		850663E82550493C00EB4188 /* Data+GLExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+GLExtension.swift"; sourceTree = "<group>"; };
-		850663E92550493C00EB4188 /* Bundle+GLExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+GLExtension.swift"; sourceTree = "<group>"; };
-		850663EA2550493C00EB4188 /* String+GLExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+GLExtension.swift"; sourceTree = "<group>"; };
-		850663EB2550493C00EB4188 /* Dictionary+GLExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+GLExtension.swift"; sourceTree = "<group>"; };
 		850663EC2550493C00EB4188 /* CGFloat+GLExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+GLExtension.swift"; sourceTree = "<group>"; };
 		850663ED2550493C00EB4188 /* Array+GLExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+GLExtension.swift"; sourceTree = "<group>"; };
 		850663EF2550493C00EB4188 /* GLSystemFaceKeyboardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLSystemFaceKeyboardCell.swift; sourceTree = "<group>"; };
@@ -191,6 +189,12 @@
 		8594C76A257CB63000D3C9C7 /* UICollectionViewFlowLayout+GLChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewFlowLayout+GLChain.swift"; sourceTree = "<group>"; };
 		8594C76E257CC0D000D3C9C7 /* UIStackView+GLChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+GLChain.swift"; sourceTree = "<group>"; };
 		859E67ED25455E22005F1115 /* NextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextViewController.swift; sourceTree = "<group>"; };
+		859F2DB9264ECAF400A4575C /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		859F2DBB264ECC4000A4575C /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
+		859F2DBD264ECD1C00A4575C /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
+		859F2DBF264ECD4600A4575C /* Dictionary+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extension.swift"; sourceTree = "<group>"; };
+		859F2DC1264ECD5000A4575C /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
+		859F2DC3264ED25400A4575C /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		85B225E8257FB7CB00EF6ECD /* GLSingleLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLSingleLocation.swift; sourceTree = "<group>"; };
 		85B225EF257FB90600EF6ECD /* GLSingleLocationAuthorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLSingleLocationAuthorization.swift; sourceTree = "<group>"; };
 		85CC942925792982002B993F /* GLReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLReachabilityManager.swift; sourceTree = "<group>"; };
@@ -414,12 +418,14 @@
 		850663E72550493C00EB4188 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
-				850663E82550493C00EB4188 /* Data+GLExtension.swift */,
-				850663E92550493C00EB4188 /* Bundle+GLExtension.swift */,
-				850663EA2550493C00EB4188 /* String+GLExtension.swift */,
-				850663EB2550493C00EB4188 /* Dictionary+GLExtension.swift */,
 				850663EC2550493C00EB4188 /* CGFloat+GLExtension.swift */,
 				850663ED2550493C00EB4188 /* Array+GLExtension.swift */,
+				859F2DBD264ECD1C00A4575C /* Array+Extension.swift */,
+				859F2DBF264ECD4600A4575C /* Dictionary+Extension.swift */,
+				859F2DC1264ECD5000A4575C /* Bundle+Extension.swift */,
+				859F2DBB264ECC4000A4575C /* Data+Extension.swift */,
+				859F2DC3264ED25400A4575C /* Date+Extension.swift */,
+				859F2DB9264ECAF400A4575C /* String+Extension.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -878,7 +884,7 @@
 				1831114324469EB700155620 /* Sources */,
 				1831114424469EB700155620 /* Frameworks */,
 				1831114524469EB700155620 /* Resources */,
-				C7B1322DF387C0F7FCD24AD0 /* [CP] Embed Pods Frameworks */,
+				874D362F41CB61B1A7E218A8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -940,7 +946,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		C7B1322DF387C0F7FCD24AD0 /* [CP] Embed Pods Frameworks */ = {
+		874D362F41CB61B1A7E218A8 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1002,7 +1008,6 @@
 				B4F8AADD257DDF2D004C932C /* GLNotification.swift in Sources */,
 				B4C6B4E3257F2FE2004CD337 /* GLDatingUserManager.swift in Sources */,
 				85CC969B25793290002B993F /* String+GLWords.swift in Sources */,
-				8506640D2550493C00EB4188 /* Bundle+GLExtension.swift in Sources */,
 				B44FA56A258C8B17008CB554 /* GLDatingApplyForRefundViewController.swift in Sources */,
 				B4735D0E257A3C7D002F7566 /* UISwitch+GLChain.swift in Sources */,
 				B4735D08257A3C48002F7566 /* UITextField+GLChain.swift in Sources */,
@@ -1030,16 +1035,17 @@
 				850664242550493C00EB4188 /* GLEnlargeControl.swift in Sources */,
 				B463D87225830C8F000C0474 /* GLDatingDatabaseMockUserManager.swift in Sources */,
 				B44FA574258C95C1008CB554 /* GLDatingRefundTextView.swift in Sources */,
+				859F2DC0264ECD4600A4575C /* Dictionary+Extension.swift in Sources */,
 				85E5CC11257E7F98003C2A2B /* NSMutableAttributedString+GLAttributedString.swift in Sources */,
 				B44FA57E258C9BDD008CB554 /* GLDatingRefundSuccessView.swift in Sources */,
 				B4F8AAE2257DDFF3004C932C /* GLDatingLocalPush.swift in Sources */,
-				8506640E2550493C00EB4188 /* String+GLExtension.swift in Sources */,
 				B4C6B39A257F1150004CD337 /* GLDatingSexType.swift in Sources */,
 				B4262D8C2579F9C400AA144B /* GLChainCompatible.swift in Sources */,
 				B4735CFC257A3A16002F7566 /* UIControl+GLChain.swift in Sources */,
 				85534E93258502A000E7A983 /* GLDatingAutoAction.swift in Sources */,
 				850664052550493C00EB4188 /* GLFileManager.swift in Sources */,
 				850664192550493C00EB4188 /* GLCusNaviBarSpace.swift in Sources */,
+				859F2DC4264ED25400A4575C /* Date+Extension.swift in Sources */,
 				85DBE0E62577DA2400E2DF24 /* GLWeakProxy.m in Sources */,
 				8506640A2550493C00EB4188 /* GLFlowItemsAutoWidthDisplayNode.swift in Sources */,
 				B4F8A9A4257DCF45004C932C /* UICollectionViewCell+GLChain.swift in Sources */,
@@ -1061,7 +1067,6 @@
 				B44FA570258C92D3008CB554 /* GLDatingRefundTextField.swift in Sources */,
 				B44FA58B258CA316008CB554 /* GLDatingRefundMakeSuggestionsViewController.swift in Sources */,
 				850664132550493C00EB4188 /* GLSystemFaceKeyboard.swift in Sources */,
-				8506640F2550493C00EB4188 /* Dictionary+GLExtension.swift in Sources */,
 				B4735D20257A3D89002F7566 /* UITableView+GLChain.swift in Sources */,
 				850664172550493C00EB4188 /* GLHud.swift in Sources */,
 				85CC96AA25793427002B993F /* GLPickerView.swift in Sources */,
@@ -1069,6 +1074,7 @@
 				85DBE0F42577DB9200E2DF24 /* GLDatingMessageNotificationManager.swift in Sources */,
 				B4F8AB05257E0D8A004C932C /* NSParagraphStyle+GLExtension.swift in Sources */,
 				B4746B7F2581BB1500E1CB2A /* User.swift in Sources */,
+				859F2DC2264ECD5000A4575C /* Bundle+Extension.swift in Sources */,
 				B4735D17257A3D1B002F7566 /* UIProgressView+GLChain.swift in Sources */,
 				B4735D1A257A3D32002F7566 /* UIRefreshControl+GLChain.swift in Sources */,
 				85CC942A25792982002B993F /* GLReachabilityManager.swift in Sources */,
@@ -1078,18 +1084,20 @@
 				85CC96A825793427002B993F /* GLPickerToolBar.swift in Sources */,
 				850664082550493C00EB4188 /* GLMapDemoViewController.swift in Sources */,
 				8506641A2550493C00EB4188 /* GLCusNavigationBarDemoViewController.swift in Sources */,
+				859F2DBC264ECC4000A4575C /* Data+Extension.swift in Sources */,
 				85DBC91E25723EA60021BC59 /* GLAlert.swift in Sources */,
 				B4F8AB09257E151E004C932C /* GLDatingTermLabel.swift in Sources */,
+				859F2DBA264ECAF400A4575C /* String+Extension.swift in Sources */,
 				B4735D1D257A3D6E002F7566 /* UIScrollView+GLChain.swift in Sources */,
 				850664162550493C00EB4188 /* GLSystemFaceKeyboardOptions.swift in Sources */,
 				8506640B2550493C00EB4188 /* GLFlowItemsDemoViewController.swift in Sources */,
 				85B225F0257FB90600EF6ECD /* GLSingleLocationAuthorization.swift in Sources */,
+				859F2DBE264ECD1C00A4575C /* Array+Extension.swift in Sources */,
 				B4735CF9257A3A08002F7566 /* UIButton+GLChain.swift in Sources */,
 				B4735D0B257A3C5A002F7566 /* UITextView+GLChain.swift in Sources */,
 				B49CE1A82578B4180064B51B /* GLDatingAudioPlayManager.swift in Sources */,
 				850664202550493C00EB4188 /* UIView+GLExtension.swift in Sources */,
 				850664122550493C00EB4188 /* GLSystemFaceKeyboardCell.swift in Sources */,
-				8506640C2550493C00EB4188 /* Data+GLExtension.swift in Sources */,
 				1831114B24469EB700155620 /* AppDelegate.swift in Sources */,
 				B4F8A9A1257DCD00004C932C /* UITableViewCell+GLChain.swift in Sources */,
 				B4735D02257A3C09002F7566 /* UISlider+GLChain.swift in Sources */,

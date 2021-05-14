@@ -1,9 +1,9 @@
 //
-//  Dictionary+GLExtension.swift
+//  Dictionary+Extension.swift
 //  SwiftTool
 //
-//  Created by galaxy on 2020/10/19.
-//  Copyright © 2020 yinhe. All rights reserved.
+//  Created by galaxy on 2021/5/14.
+//  Copyright © 2021 yinhe. All rights reserved.
 //
 
 import Foundation

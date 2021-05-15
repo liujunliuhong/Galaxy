@@ -81,7 +81,7 @@ extension DBManager {
     
     /// 查询
     func query(studentName: String?) -> [Student]? {
-        return self.dbQueue?.read({ (db) -> [Student]? in
+        return try? self.dbQueue?.read({ (db) -> [Student]? in
             return try? Student.filter(Column(Student.MyColumns.student_name.rawValue) == studentName).fetchAll(db)
         })
     }

@@ -9,7 +9,7 @@
 import Foundation
 
 extension Bundle {
-    /// get app name
+    /// 获取APP名称
     public static var gl_appName: String? {
         func getAppName(info: [String: Any]) -> String? {
             var result: String?
@@ -30,7 +30,7 @@ extension Bundle {
         return nil
     }
     
-    /// get app bundleID
+    /// 获取APP BundleID
     public static var gl_appBundleID: String? {
         if let path = Bundle.main.path(forResource: "Info", ofType: "plist"), let info = NSDictionary(contentsOfFile: path) as? [String: Any] {
             return info["CFBundleIdentifier"] as? String
@@ -38,7 +38,7 @@ extension Bundle {
         return nil
     }
     
-    /// get app buildID
+    /// 获取APP BuildID
     public static var gl_appBuildID: String? {
         if let path = Bundle.main.path(forResource: "Info", ofType: "plist"), let info = NSDictionary(contentsOfFile: path) as? [String: Any] {
             return info["CFBundleVersion"] as? String
@@ -46,7 +46,7 @@ extension Bundle {
         return nil
     }
     
-    /// get app version
+    /// 获取APP Version
     public static var gl_appVersion: String? {
         if let path = Bundle.main.path(forResource: "Info", ofType: "plist"), let info = NSDictionary(contentsOfFile: path) as? [String: Any] {
             return info["CFBundleShortVersionString"] as? String

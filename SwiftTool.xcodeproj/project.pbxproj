@@ -22,8 +22,6 @@
 		850664092550493C00EB4188 /* GLFlowItemsAutoMarginDisplayNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850663E42550493C00EB4188 /* GLFlowItemsAutoMarginDisplayNode.swift */; };
 		8506640A2550493C00EB4188 /* GLFlowItemsAutoWidthDisplayNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850663E52550493C00EB4188 /* GLFlowItemsAutoWidthDisplayNode.swift */; };
 		8506640B2550493C00EB4188 /* GLFlowItemsDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850663E62550493C00EB4188 /* GLFlowItemsDemoViewController.swift */; };
-		850664102550493C00EB4188 /* CGFloat+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850663EC2550493C00EB4188 /* CGFloat+GLExtension.swift */; };
-		850664112550493C00EB4188 /* Array+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850663ED2550493C00EB4188 /* Array+GLExtension.swift */; };
 		850664122550493C00EB4188 /* GLSystemFaceKeyboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850663EF2550493C00EB4188 /* GLSystemFaceKeyboardCell.swift */; };
 		850664132550493C00EB4188 /* GLSystemFaceKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850663F02550493C00EB4188 /* GLSystemFaceKeyboard.swift */; };
 		850664142550493C00EB4188 /* GLSystemFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850663F12550493C00EB4188 /* GLSystemFace.swift */; };
@@ -69,6 +67,16 @@
 		85CC96AB25793427002B993F /* GLCityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CC96A525793427002B993F /* GLCityModel.swift */; };
 		85CC96AC25793427002B993F /* GLCity.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 85CC96A625793427002B993F /* GLCity.bundle */; };
 		85CC96AD25793427002B993F /* GLCityPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CC96A725793427002B993F /* GLCityPickerView.swift */; };
+		85D755C2264F644300C20D91 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D755C1264F644300C20D91 /* Keys.swift */; };
+		85D755C6264F664F00C20D91 /* Numeric+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D755C5264F664F00C20D91 /* Numeric+Extension.swift */; };
+		85D755C9264F696400C20D91 /* Collection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D755C8264F696400C20D91 /* Collection+Extension.swift */; };
+		85D755D4264F6F1000C20D91 /* SwiftToolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D755D3264F6F1000C20D91 /* SwiftToolTests.swift */; };
+		85D755DD264F728F00C20D91 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859F2DBB264ECC4000A4575C /* Data+Extension.swift */; };
+		85D755E0264F75C000C20D91 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859F2DB9264ECAF400A4575C /* String+Extension.swift */; };
+		85D755E3264F859100C20D91 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859F2DBD264ECD1C00A4575C /* Array+Extension.swift */; };
+		85D755E7264F89D300C20D91 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D755E6264F89D300C20D91 /* Int+Extension.swift */; };
+		85D755F2264F9A4E00C20D91 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D755F1264F9A4E00C20D91 /* URL+Extension.swift */; };
+		85D755F3264F9A4E00C20D91 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D755F1264F9A4E00C20D91 /* URL+Extension.swift */; };
 		85DBC91E25723EA60021BC59 /* GLAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DBC91D25723EA60021BC59 /* GLAlert.swift */; };
 		85DBE0E62577DA2400E2DF24 /* GLWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DBE0E52577DA2400E2DF24 /* GLWeakProxy.m */; };
 		85DBE0ED2577DAD700E2DF24 /* GLDatingMessageNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DBE0EC2577DAD700E2DF24 /* GLDatingMessageNotification.swift */; };
@@ -122,7 +130,6 @@
 		B4C6B4E0257F2CC1004CD337 /* GLDatingUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C6B4DF257F2CC1004CD337 /* GLDatingUser.swift */; };
 		B4C6B4E3257F2FE2004CD337 /* GLDatingUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C6B4E2257F2FE2004CD337 /* GLDatingUserManager.swift */; };
 		B4C6B4E6257F3D1F004CD337 /* UserDefaults+GLDatingUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C6B4E5257F3D1F004CD337 /* UserDefaults+GLDatingUser.swift */; };
-		B4ED1C61255E685900115895 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED1C60255E685900115895 /* Keys.swift */; };
 		B4ED1C69255E6FB900115895 /* GLBaiDuLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ED1C68255E6FB900115895 /* GLBaiDuLocation.m */; };
 		B4ED1C6E255E72BE00115895 /* GLBaiDuLocationTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ED1C6D255E72BE00115895 /* GLBaiDuLocationTestViewController.m */; };
 		B4F8A9A1257DCD00004C932C /* UITableViewCell+GLChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F8A9A0257DCD00004C932C /* UITableViewCell+GLChain.swift */; };
@@ -139,6 +146,16 @@
 		B4F8AB05257E0D8A004C932C /* NSParagraphStyle+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F8AB04257E0D8A004C932C /* NSParagraphStyle+GLExtension.swift */; };
 		B4F8AB09257E151E004C932C /* GLDatingTermLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F8AB08257E151E004C932C /* GLDatingTermLabel.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		85D755D6264F6F1000C20D91 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1831113F24469EB700155620 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1831114624469EB700155620;
+			remoteInfo = SwiftTool;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1818101D248E10F200BB4D03 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
@@ -161,8 +178,6 @@
 		850663E42550493C00EB4188 /* GLFlowItemsAutoMarginDisplayNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLFlowItemsAutoMarginDisplayNode.swift; sourceTree = "<group>"; };
 		850663E52550493C00EB4188 /* GLFlowItemsAutoWidthDisplayNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLFlowItemsAutoWidthDisplayNode.swift; sourceTree = "<group>"; };
 		850663E62550493C00EB4188 /* GLFlowItemsDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLFlowItemsDemoViewController.swift; sourceTree = "<group>"; };
-		850663EC2550493C00EB4188 /* CGFloat+GLExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+GLExtension.swift"; sourceTree = "<group>"; };
-		850663ED2550493C00EB4188 /* Array+GLExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+GLExtension.swift"; sourceTree = "<group>"; };
 		850663EF2550493C00EB4188 /* GLSystemFaceKeyboardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLSystemFaceKeyboardCell.swift; sourceTree = "<group>"; };
 		850663F02550493C00EB4188 /* GLSystemFaceKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLSystemFaceKeyboard.swift; sourceTree = "<group>"; };
 		850663F12550493C00EB4188 /* GLSystemFace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLSystemFace.swift; sourceTree = "<group>"; };
@@ -208,6 +223,14 @@
 		85CC96A525793427002B993F /* GLCityModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLCityModel.swift; sourceTree = "<group>"; };
 		85CC96A625793427002B993F /* GLCity.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GLCity.bundle; sourceTree = "<group>"; };
 		85CC96A725793427002B993F /* GLCityPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLCityPickerView.swift; sourceTree = "<group>"; };
+		85D755C1264F644300C20D91 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
+		85D755C5264F664F00C20D91 /* Numeric+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Numeric+Extension.swift"; sourceTree = "<group>"; };
+		85D755C8264F696400C20D91 /* Collection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extension.swift"; sourceTree = "<group>"; };
+		85D755D1264F6F1000C20D91 /* SwiftToolTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftToolTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		85D755D3264F6F1000C20D91 /* SwiftToolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftToolTests.swift; sourceTree = "<group>"; };
+		85D755D5264F6F1000C20D91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		85D755E6264F89D300C20D91 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
+		85D755F1264F9A4E00C20D91 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 		85DBC91D25723EA60021BC59 /* GLAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLAlert.swift; sourceTree = "<group>"; };
 		85DBE0E42577DA2400E2DF24 /* GLWeakProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLWeakProxy.h; sourceTree = "<group>"; };
 		85DBE0E52577DA2400E2DF24 /* GLWeakProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLWeakProxy.m; sourceTree = "<group>"; };
@@ -263,7 +286,6 @@
 		B4C6B4DF257F2CC1004CD337 /* GLDatingUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingUser.swift; sourceTree = "<group>"; };
 		B4C6B4E2257F2FE2004CD337 /* GLDatingUserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingUserManager.swift; sourceTree = "<group>"; };
 		B4C6B4E5257F3D1F004CD337 /* UserDefaults+GLDatingUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+GLDatingUser.swift"; sourceTree = "<group>"; };
-		B4ED1C60255E685900115895 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		B4ED1C67255E6FB900115895 /* GLBaiDuLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLBaiDuLocation.h; sourceTree = "<group>"; };
 		B4ED1C68255E6FB900115895 /* GLBaiDuLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLBaiDuLocation.m; sourceTree = "<group>"; };
 		B4ED1C6C255E72BE00115895 /* GLBaiDuLocationTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLBaiDuLocationTestViewController.h; sourceTree = "<group>"; };
@@ -292,6 +314,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		85D755CE264F6F1000C20D91 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -301,6 +330,7 @@
 				B4ED1C66255E6F8700115895 /* BaiDuLocation */,
 				850663DB2550492900EB4188 /* Sources */,
 				1831114924469EB700155620 /* SwiftTool */,
+				85D755D2264F6F1000C20D91 /* SwiftToolTests */,
 				1831114824469EB700155620 /* Products */,
 				21C11EE9CC175856C82472D7 /* Pods */,
 				2F72C10AAB3612D3E076865B /* Frameworks */,
@@ -311,6 +341,7 @@
 			isa = PBXGroup;
 			children = (
 				1831114724469EB700155620 /* SwiftTool.app */,
+				85D755D1264F6F1000C20D91 /* SwiftToolTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -324,7 +355,7 @@
 				859E67ED25455E22005F1115 /* NextViewController.swift */,
 				183111F82446A8D400155620 /* Test.h */,
 				183111F92446A8D400155620 /* Test.m */,
-				B4ED1C60255E685900115895 /* Keys.swift */,
+				85D755C1264F644300C20D91 /* Keys.swift */,
 				1818101D248E10F200BB4D03 /* test.png */,
 				183111FB2446A8FF00155620 /* SwiftTool-Bridging-Header.h */,
 				1831115024469EB700155620 /* Main.storyboard */,
@@ -418,14 +449,16 @@
 		850663E72550493C00EB4188 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
-				850663EC2550493C00EB4188 /* CGFloat+GLExtension.swift */,
-				850663ED2550493C00EB4188 /* Array+GLExtension.swift */,
 				859F2DBD264ECD1C00A4575C /* Array+Extension.swift */,
+				85D755C5264F664F00C20D91 /* Numeric+Extension.swift */,
+				85D755C8264F696400C20D91 /* Collection+Extension.swift */,
 				859F2DBF264ECD4600A4575C /* Dictionary+Extension.swift */,
 				859F2DC1264ECD5000A4575C /* Bundle+Extension.swift */,
 				859F2DBB264ECC4000A4575C /* Data+Extension.swift */,
 				859F2DC3264ED25400A4575C /* Date+Extension.swift */,
+				85D755E6264F89D300C20D91 /* Int+Extension.swift */,
 				859F2DB9264ECAF400A4575C /* String+Extension.swift */,
+				85D755F1264F9A4E00C20D91 /* URL+Extension.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -579,6 +612,15 @@
 				B4F8A9A3257DCF45004C932C /* UICollectionViewCell+GLChain.swift */,
 			);
 			path = Chain;
+			sourceTree = "<group>";
+		};
+		85D755D2264F6F1000C20D91 /* SwiftToolTests */ = {
+			isa = PBXGroup;
+			children = (
+				85D755D3264F6F1000C20D91 /* SwiftToolTests.swift */,
+				85D755D5264F6F1000C20D91 /* Info.plist */,
+			);
+			path = SwiftToolTests;
 			sourceTree = "<group>";
 		};
 		85DBC91C25723E9B0021BC59 /* Alert */ = {
@@ -895,18 +937,40 @@
 			productReference = 1831114724469EB700155620 /* SwiftTool.app */;
 			productType = "com.apple.product-type.application";
 		};
+		85D755D0264F6F1000C20D91 /* SwiftToolTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 85D755D8264F6F1000C20D91 /* Build configuration list for PBXNativeTarget "SwiftToolTests" */;
+			buildPhases = (
+				85D755CD264F6F1000C20D91 /* Sources */,
+				85D755CE264F6F1000C20D91 /* Frameworks */,
+				85D755CF264F6F1000C20D91 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				85D755D7264F6F1000C20D91 /* PBXTargetDependency */,
+			);
+			name = SwiftToolTests;
+			productName = SwiftToolTests;
+			productReference = 85D755D1264F6F1000C20D91 /* SwiftToolTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		1831113F24469EB700155620 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1130;
+				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = yinhe;
 				TargetAttributes = {
 					1831114624469EB700155620 = {
 						CreatedOnToolsVersion = 11.3;
+					};
+					85D755D0264F6F1000C20D91 = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = 1831114624469EB700155620;
 					};
 				};
 			};
@@ -924,6 +988,7 @@
 			projectRoot = "";
 			targets = (
 				1831114624469EB700155620 /* SwiftTool */,
+				85D755D0264F6F1000C20D91 /* SwiftToolTests */,
 			);
 		};
 /* End PBXProject section */
@@ -940,6 +1005,13 @@
 				850664152550493C00EB4188 /* GLSystemFace.bundle in Resources */,
 				85CC96AC25793427002B993F /* GLCity.bundle in Resources */,
 				1831115224469EB700155620 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		85D755CF264F6F1000C20D91 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1001,6 +1073,7 @@
 				B4C6B4E6257F3D1F004CD337 /* UserDefaults+GLDatingUser.swift in Sources */,
 				B44FA577258C9A02008CB554 /* GLDatingApplyForRefundContentView.swift in Sources */,
 				850664142550493C00EB4188 /* GLSystemFace.swift in Sources */,
+				85D755C6264F664F00C20D91 /* Numeric+Extension.swift in Sources */,
 				B44FA566258C85DF008CB554 /* GLDatingRefundAlert.swift in Sources */,
 				B44FA587258CA303008CB554 /* GLDatingRefundMakeSuggestionsViewModel.swift in Sources */,
 				85CC96AB25793427002B993F /* GLCityModel.swift in Sources */,
@@ -1019,7 +1092,6 @@
 				B4746B7B2581BA7900E1CB2A /* GRDBDemoViewController.swift in Sources */,
 				8594C76F257CC0D000D3C9C7 /* UIStackView+GLChain.swift in Sources */,
 				B4F8AAD8257DDD8D004C932C /* GLNavigation.swift in Sources */,
-				B4ED1C61255E685900115895 /* Keys.swift in Sources */,
 				B4735D14257A3D07002F7566 /* UICollectionView+GLChain.swift in Sources */,
 				B4ED1C69255E6FB900115895 /* GLBaiDuLocation.m in Sources */,
 				B4262D8F2579FBC500AA144B /* UIView+GLChain.swift in Sources */,
@@ -1048,12 +1120,13 @@
 				859F2DC4264ED25400A4575C /* Date+Extension.swift in Sources */,
 				85DBE0E62577DA2400E2DF24 /* GLWeakProxy.m in Sources */,
 				8506640A2550493C00EB4188 /* GLFlowItemsAutoWidthDisplayNode.swift in Sources */,
+				85D755C2264F644300C20D91 /* Keys.swift in Sources */,
 				B4F8A9A4257DCF45004C932C /* UICollectionViewCell+GLChain.swift in Sources */,
+				85D755F2264F9A4E00C20D91 /* URL+Extension.swift in Sources */,
 				B4F8AACF257DDCEC004C932C /* GLDatingError.swift in Sources */,
 				8594C767257C98A400D3C9C7 /* UICollectionViewLayout+GLChain.swift in Sources */,
 				85CC969D25793290002B993F /* GLWordsSortResult.swift in Sources */,
 				8544713E257FC686005CFA6D /* GLSingleLocationError.swift in Sources */,
-				850664102550493C00EB4188 /* CGFloat+GLExtension.swift in Sources */,
 				B44FA58E258CA327008CB554 /* GLDatingRefundMakeSuggestionsContentView.swift in Sources */,
 				85534E8F2585022700E7A983 /* GLDatingAutoActionManager.swift in Sources */,
 				8506641D2550493C00EB4188 /* GLCusNavigationBar.swift in Sources */,
@@ -1061,6 +1134,7 @@
 				1831114F24469EB700155620 /* ViewController.swift in Sources */,
 				B463D96D25835D70000C0474 /* GLDatingMessage.swift in Sources */,
 				850664212550493C00EB4188 /* UIColor+GLExtension.swift in Sources */,
+				85D755E7264F89D300C20D91 /* Int+Extension.swift in Sources */,
 				85CC969425793189002B993F /* GLDatingAVPlayerView.swift in Sources */,
 				B4C6B3A3257F1382004CD337 /* GLDatingTextField.swift in Sources */,
 				B49CE0282578796E0064B51B /* GLAlertOptions.swift in Sources */,
@@ -1075,10 +1149,10 @@
 				B4F8AB05257E0D8A004C932C /* NSParagraphStyle+GLExtension.swift in Sources */,
 				B4746B7F2581BB1500E1CB2A /* User.swift in Sources */,
 				859F2DC2264ECD5000A4575C /* Bundle+Extension.swift in Sources */,
+				85D755C9264F696400C20D91 /* Collection+Extension.swift in Sources */,
 				B4735D17257A3D1B002F7566 /* UIProgressView+GLChain.swift in Sources */,
 				B4735D1A257A3D32002F7566 /* UIRefreshControl+GLChain.swift in Sources */,
 				85CC942A25792982002B993F /* GLReachabilityManager.swift in Sources */,
-				850664112550493C00EB4188 /* Array+GLExtension.swift in Sources */,
 				8506641B2550493C00EB4188 /* GLCusNaviBarButtonItem.swift in Sources */,
 				8506641F2550493C00EB4188 /* GLEnlargeButton.swift in Sources */,
 				85CC96A825793427002B993F /* GLPickerToolBar.swift in Sources */,
@@ -1118,7 +1192,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		85D755CD264F6F1000C20D91 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				85D755D4264F6F1000C20D91 /* SwiftToolTests.swift in Sources */,
+				85D755E0264F75C000C20D91 /* String+Extension.swift in Sources */,
+				85D755DD264F728F00C20D91 /* Data+Extension.swift in Sources */,
+				85D755F3264F9A4E00C20D91 /* URL+Extension.swift in Sources */,
+				85D755E3264F859100C20D91 /* Array+Extension.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		85D755D7264F6F1000C20D91 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1831114624469EB700155620 /* SwiftTool */;
+			targetProxy = 85D755D6264F6F1000C20D91 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		1831115024469EB700155620 /* Main.storyboard */ = {
@@ -1298,6 +1392,50 @@
 			};
 			name = Release;
 		};
+		85D755D9264F6F1000C20D91 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2E8NVCJR97;
+				INFOPLIST_FILE = SwiftToolTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.galaxy.SwiftToolTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftTool.app/SwiftTool";
+			};
+			name = Debug;
+		};
+		85D755DA264F6F1000C20D91 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2E8NVCJR97;
+				INFOPLIST_FILE = SwiftToolTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.galaxy.SwiftToolTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftTool.app/SwiftTool";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1315,6 +1453,15 @@
 			buildConfigurations = (
 				1831115C24469EB900155620 /* Debug */,
 				1831115D24469EB900155620 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		85D755D8264F6F1000C20D91 /* Build configuration list for PBXNativeTarget "SwiftToolTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				85D755D9264F6F1000C20D91 /* Debug */,
+				85D755DA264F6F1000C20D91 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

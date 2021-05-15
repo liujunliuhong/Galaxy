@@ -89,7 +89,7 @@ extension GLFlowItemsAutoWidthDisplayNode {
         self.verticalEdgeInset = verticalEdgeInset
         self.horizontalEdgeInset = horizontalEdgeInset
         //
-        self.allNodes = nodes.gl_group(perRowCount: perRowCount, isMakeUp: true, defaultValueClosure: defaultValueClosure)
+        self.allNodes = nodes.gl_makeGroups(perRowCount: perRowCount, isMakeUp: true, defaultValueClosure: defaultValueClosure)
         for (_, node) in (self.allNodes.flatMap{ $0 }).enumerated() {
             self.addSubnode(node)
         }

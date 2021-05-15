@@ -126,7 +126,7 @@ extension GLMapManager {
                              coordinateType: GLBaiDuMapCoordinateType,
                              navigationType: GLBaiDuNavigationType) {
         guard let destination = destination else { return }
-        guard let bundleID = Bundle.gl_appBundleID() else { return }
+        guard let bundleID = Bundle.gl_appBundleID else { return }
         //
         var origin: String = "origin={{我的位置}}"
         if let currentPlace = currentPlace, let currentPlaceName = currentPlaceName, currentPlaceName.count > 0 {

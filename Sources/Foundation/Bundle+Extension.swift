@@ -1,17 +1,16 @@
 //
-//  Bundle+GLExtension.swift
+//  Bundle+Extension.swift
 //  SwiftTool
 //
-//  Created by galaxy on 2020/10/19.
-//  Copyright © 2020 yinhe. All rights reserved.
+//  Created by galaxy on 2021/5/14.
+//  Copyright © 2021 yinhe. All rights reserved.
 //
 
 import Foundation
 
 extension Bundle {
-    
-    /// app名字
-    public static func gl_appName() -> String? {
+    /// get app name
+    public static var gl_appName: String? {
         func getAppName(info: [String: Any]) -> String? {
             var result: String?
             if let name = info["CFBundleDisplayName"] as? String {
@@ -31,24 +30,24 @@ extension Bundle {
         return nil
     }
     
-    /// app bundleID
-    public static func gl_appBundleID() -> String? {
+    /// get app bundleID
+    public static var gl_appBundleID: String? {
         if let path = Bundle.main.path(forResource: "Info", ofType: "plist"), let info = NSDictionary(contentsOfFile: path) as? [String: Any] {
             return info["CFBundleIdentifier"] as? String
         }
         return nil
     }
     
-    /// app buildID
-    public static func gl_appBuildID() -> String? {
+    /// get app buildID
+    public static var gl_appBuildID: String? {
         if let path = Bundle.main.path(forResource: "Info", ofType: "plist"), let info = NSDictionary(contentsOfFile: path) as? [String: Any] {
             return info["CFBundleVersion"] as? String
         }
         return nil
     }
     
-    /// app版本
-    public static func gl_appVersion() -> String? {
+    /// get app version
+    public static var gl_appVersion: String? {
         if let path = Bundle.main.path(forResource: "Info", ofType: "plist"), let info = NSDictionary(contentsOfFile: path) as? [String: Any] {
             return info["CFBundleShortVersionString"] as? String
         }

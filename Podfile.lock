@@ -1,24 +1,24 @@
 PODS:
-  - Alamofire (5.4.1)
-  - AMapFoundation (1.6.5.1)
-  - AMapLocation (2.6.7):
+  - Alamofire (5.4.3)
+  - AMapFoundation (1.6.7)
+  - AMapLocation (2.6.8):
     - AMapFoundation (~> 1.6.4)
   - BMKLocationKit (2.0.0)
-  - CocoaLumberjack/Core (3.7.0)
-  - CocoaLumberjack/Swift (3.7.0):
+  - CocoaLumberjack/Core (3.7.2)
+  - CocoaLumberjack/Swift (3.7.2):
     - CocoaLumberjack/Core
-  - FLEX (4.3.0)
+  - FLEX (4.4.1)
   - GLDeviceTool (1.1.0)
-  - GRDB.swift (5.3.0):
-    - GRDB.swift/standard (= 5.3.0)
-  - GRDB.swift/standard (5.3.0)
+  - GRDB.swift (5.7.4):
+    - GRDB.swift/standard (= 5.7.4)
+  - GRDB.swift/standard (5.7.4)
   - MBProgressHUD (1.2.0)
   - Moya (14.0.0):
     - Moya/Core (= 14.0.0)
   - Moya/Core (14.0.0):
     - Alamofire (~> 5.0)
-  - "NSObject+Rx (5.2.0)":
-    - RxSwift (~> 6.0.0)
+  - "NSObject+Rx (5.2.1)":
+    - RxSwift (~> 6.0)
   - PINCache (3.0.3):
     - PINCache/Arc-exception-safe (= 3.0.3)
     - PINCache/Core (= 3.0.3)
@@ -34,24 +34,24 @@ PODS:
   - PINRemoteImage/PINCache (3.0.3):
     - PINCache (~> 3.0.3)
     - PINRemoteImage/Core
-  - QCloudCore (5.8.3):
-    - QCloudCore/Default (= 5.8.3)
-  - QCloudCore/Default (5.8.3)
-  - QCloudCOSXML (5.8.3):
-    - QCloudCOSXML/Default (= 5.8.3)
-  - QCloudCOSXML/Default (5.8.3):
-    - QCloudCore (= 5.8.3)
-  - RxCocoa (6.0.0):
-    - RxRelay (= 6.0.0)
-    - RxSwift (= 6.0.0)
-  - RxRelay (6.0.0):
-    - RxSwift (= 6.0.0)
-  - RxSwift (6.0.0)
-  - SDWebImage (5.10.2):
-    - SDWebImage/Core (= 5.10.2)
-  - SDWebImage/Core (5.10.2)
+  - QCloudCore (5.8.8):
+    - QCloudCore/Default (= 5.8.8)
+  - QCloudCore/Default (5.8.8)
+  - QCloudCOSXML (5.8.8):
+    - QCloudCOSXML/Default (= 5.8.8)
+  - QCloudCOSXML/Default (5.8.8):
+    - QCloudCore (= 5.8.8)
+  - RxCocoa (6.2.0):
+    - RxRelay (= 6.2.0)
+    - RxSwift (= 6.2.0)
+  - RxRelay (6.2.0):
+    - RxSwift (= 6.2.0)
+  - RxSwift (6.2.0)
+  - SDWebImage (5.11.1):
+    - SDWebImage/Core (= 5.11.1)
+  - SDWebImage/Core (5.11.1)
   - SnapKit (5.0.1)
-  - SwiftyJSON (5.0.0)
+  - SwiftyJSON (5.0.1)
   - Texture (3.0.0):
     - Texture/AssetsLibrary (= 3.0.0)
     - Texture/Core (= 3.0.0)
@@ -122,31 +122,31 @@ SPEC REPOS:
     - YYText
 
 SPEC CHECKSUMS:
-  Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
-  AMapFoundation: b67560a6f21aab81c8c12f84616b55a3833b6253
-  AMapLocation: a46c30d9930d0f3a3bd21139d8f845d10ac3f01d
+  Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  AMapFoundation: c7da72b42a713f1429c88af1858d623dde88934b
+  AMapLocation: dad27669c4ca68e395ce7532ff614b7d4d45f7b7
   BMKLocationKit: 097814ef672b1e57e86e6c1968d7892fb78002bf
-  CocoaLumberjack: e8955b9d337ac307103b0a34fd141c32f27e53c5
-  FLEX: 58820af8881284bdd44e36141c607b8199cca45d
+  CocoaLumberjack: b7e05132ff94f6ae4dfa9d5bce9141893a21d9da
+  FLEX: 7ca2c8cd3a435ff501ff6d2f2141e9bdc934eaab
   GLDeviceTool: 0e40b24163e4bffbdbcfb3196e379ec54b2ddce8
-  GRDB.swift: 6d44795b19d716e9f09f19018c3bde5b71b67ae9
+  GRDB.swift: 2064e726141f130d0b8bd819b29086f2b1157597
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
-  "NSObject+Rx": 488b91a66043cc47de9cd5de9264f2ae1e2fcb13
+  "NSObject+Rx": 49ffbf55ad0bbc29a44547db63a9e33caf0c5d60
   PINCache: 7a8fc1a691173d21dbddbf86cd515de6efa55086
   PINOperation: 00c935935f1e8cf0d1e2d6b542e75b88fc3e5e20
   PINRemoteImage: f1295b29f8c5e640e25335a1b2bd9d805171bd01
-  QCloudCore: c8542aca5b873aab0de8cc653beffd6d17c8023d
-  QCloudCOSXML: 30bb0444c5c9298c286ac273eee7f138cff58297
-  RxCocoa: 3f79328fafa3645b34600f37c31e64c73ae3a80e
-  RxRelay: 8d593be109c06ea850df027351beba614b012ffb
-  RxSwift: c14e798c59b9f6e9a2df8fd235602e85cc044295
-  SDWebImage: b969dcfc02c40a5da71eac0b03b8f1a0c794a86f
+  QCloudCore: a09b8029aabc4e6aab744cb94c9f2ad11837b7c6
+  QCloudCOSXML: 415e71ee99cbee3869d77e15b917c9078fada8b2
+  RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
+  RxRelay: e72dbfd157807478401ef1982e1c61c945c94b2f
+  RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
+  SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
-  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
+  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
   Texture: 2f109e937850d94d1d07232041c9c7313ccddb81
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: e79455c95f390462243174a752b9c40dc19db102
+PODFILE CHECKSUM: c4d4adea6c8f209a2b1f6ea07ecc891c249a75db
 
 COCOAPODS: 1.10.1

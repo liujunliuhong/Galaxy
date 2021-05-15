@@ -39,8 +39,8 @@ target 'SwiftTool' do
   #pod 'WCDB.swift'
 
   pod 'YYText'
-  
+
   pod 'GRDB.swift'
-  
+
   pod 'FLEX'
 end

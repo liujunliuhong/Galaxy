@@ -1,9 +1,9 @@
 //
-//  NSParagraphStyle+GLExtension.swift
+//  NSParagraphStyle+Extension.swift
 //  SwiftTool
 //
-//  Created by Yule on 2020/12/7.
-//  Copyright © 2020 yinhe. All rights reserved.
+//  Created by galaxy on 2021/5/16.
+//  Copyright © 2021 yinhe. All rights reserved.
 //
 
 import Foundation
@@ -248,3 +248,4 @@ extension NSParagraphStyle {
         return style
     }
 }
+

@@ -1,34 +1,41 @@
 //
-//  UIColor+GLExtension.swift
+//  UIColor+Extension.swift
 //  SwiftTool
 //
-//  Created by galaxy on 2020/10/17.
-//  Copyright © 2020 yinhe. All rights reserved.
+//  Created by galaxy on 2021/5/16.
+//  Copyright © 2021 yinhe. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
 extension UIColor {
-    
+    /// 白色
     public static let gl_white: UIColor = UIColor.gl_rgba(R: 255, G: 255, B: 255)
+    
+    /// 黑色
     public static let gl_black: UIColor = UIColor.gl_rgba(R: 0, G: 0, B: 0)
+    
+    /// 透明
     public static let gl_clear: UIColor = UIColor.gl_black.withAlphaComponent(0)
     
-    
-    public static func gl_rgba(R: Int, G: Int, B: Int, A: CGFloat = 1.0) -> UIColor {
-        return UIColor(red: (CGFloat(R) / 255.0), green: (CGFloat(G) / 255.0), blue: (CGFloat(B) / 255.0), alpha: A)
+    /// `R`、`G`、`B`、`A`转`UIColor`
+    public static func gl_rgba(R: CGFloat, G: CGFloat, B: CGFloat, A: CGFloat = 1.0) -> UIColor {
+        return UIColor(red: (R / 255.0), green: (G / 255.0), blue: (B / 255.0), alpha: A)
     }
     
+    /// 获取一个随机颜色
     public static func gl_randomColor() -> UIColor {
-        let R: CGFloat = CGFloat(arc4random() % 255)
-        let G: CGFloat = CGFloat(arc4random() % 255)
-        let B: CGFloat = CGFloat(arc4random() % 255)
+        let R: CGFloat = Int.random(in: Range(uncheckedBounds: (0, 255))).gl_cgFloat
+        let G: CGFloat = Int.random(in: Range(uncheckedBounds: (0, 255))).gl_cgFloat
+        let B: CGFloat = Int.random(in: Range(uncheckedBounds: (0, 255))).gl_cgFloat
         let A: CGFloat = 1.0
-        return UIColor(red: (CGFloat(R) / 255.0), green: (CGFloat(G) / 255.0), blue: (CGFloat(B) / 255.0), alpha: A)
+        return UIColor.gl_rgba(R: R, G: G, B: B, A: A)
     }
     
-    // 0xFFFFFF，0xffffff
+    /// `16`进制转颜色
+    ///
+    /// 形如`0xFFFFFF`、`0xffffff`
     public static func gl_hexColor(hex: Int, alpha: CGFloat = 1.0) -> UIColor {
         let red = CGFloat((Double((hex >> 16) & 0xFF)) / 255.0)
         let green = CGFloat((Double((hex >> 8) & 0xFF)) / 255.0)
@@ -36,7 +43,9 @@ extension UIColor {
         return UIColor(red: red, green: green, blue: blue, alpha: alpha)
     }
     
-    // "#ffffff", "#FFFFFF", "#fff", "255, 255, 255", "255,255,255", "0xFFFFFF"
+    /// 字符串转颜色
+    ///
+    /// 支持`#ffffff`、`#FFFFFF`、 `#fff`、 `255, 255, 255`、 `255,255,255`、 `0xFFFFFF`
     public static func gl_color(string: String?) -> UIColor {
         guard var string = string else { return .gl_clear }
         

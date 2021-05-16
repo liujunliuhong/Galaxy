@@ -42,14 +42,13 @@ public class GLDatingTermLabel: UIView {
         let privacyPolicyRange = (text as NSString).range(of: privacyPolicyString)
         
         let atr = NSMutableAttributedString(string: text)
-        atr.gl_atr
-            .add(textColor: textColor)
-            .add(font: font)
-            .add(textColor: linkTextColor, range: termsOfServiceRange)
-            .add(textColor: linkTextColor, range: privacyPolicyRange)
-            .add(alignment: alignment)
-            .addAttribute(key: .link, value: "useragreement://", range: termsOfServiceRange)
-            .addAttribute(key: .link, value: "privacy://", range: privacyPolicyRange)
+        atr.gl_add(textColor: textColor)
+            .gl_add(font: font)
+            .gl_add(textColor: linkTextColor, range: termsOfServiceRange)
+            .gl_add(textColor: linkTextColor, range: privacyPolicyRange)
+            .gl_add(alignment: alignment)
+            .gl_addAttribute(key: .link, value: "useragreement://", range: termsOfServiceRange)
+            .gl_addAttribute(key: .link, value: "privacy://", range: privacyPolicyRange)
         self.atr = atr
         
         super.init(frame: .zero)

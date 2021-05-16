@@ -1,135 +1,137 @@
 //
-//  NSMutableAttributedString+GLAttributedString.swift
+//  NSMutableAttributedString+Extension.swift
 //  SwiftTool
 //
-//  Created by galaxy on 2020/12/7.
-//  Copyright © 2020 yinhe. All rights reserved.
+//  Created by galaxy on 2021/5/16.
+//  Copyright © 2021 yinhe. All rights reserved.
 //
 
 import Foundation
 import UIKit
 import CoreText
 
-extension GLAttributedString where Base: NSMutableAttributedString {
+extension NSMutableAttributedString {
     
     /// font
     @discardableResult
-    public func add(font: UIFont?, range: NSRange? = nil) -> Self {
-        addAttribute(key: .font, value: font, range: range)
+    public func gl_add(font: UIFont?, range: NSRange? = nil) -> Self {
+        gl_addAttribute(key: .font, value: font, range: range)
         return self
     }
     
     /// foregroundColor
     @discardableResult
-    public func add(textColor: UIColor?, range: NSRange? = nil) -> Self {
-        addAttribute(key: kCTForegroundColorAttributeName as NSAttributedString.Key, value: textColor?.cgColor, range: range)
-        addAttribute(key: .foregroundColor, value: textColor, range: range)
+    public func gl_add(textColor: UIColor?, range: NSRange? = nil) -> Self {
+        gl_addAttribute(key: kCTForegroundColorAttributeName as NSAttributedString.Key, value: textColor?.cgColor, range: range)
+        gl_addAttribute(key: .foregroundColor, value: textColor, range: range)
         return self
     }
     
     /// ligature
     @discardableResult
-    public func add(ligature: NSNumber?, range: NSRange? = nil) -> Self {
-        addAttribute(key: .ligature, value: ligature, range: range)
+    public func gl_add(ligature: NSNumber?, range: NSRange? = nil) -> Self {
+        gl_addAttribute(key: .ligature, value: ligature, range: range)
         return self
     }
     
     /// kern
     @discardableResult
-    public func add(kern: NSNumber?, range: NSRange? = nil) -> Self {
-        addAttribute(key: .kern, value: kern, range: range)
+    public func gl_add(kern: NSNumber?, range: NSRange? = nil) -> Self {
+        gl_addAttribute(key: .kern, value: kern, range: range)
         return self
     }
     
     /// underlineColor
     @discardableResult
-    public func add(underlineColor: UIColor?, range: NSRange? = nil) -> Self {
-        addAttribute(key: .underlineColor, value: underlineColor?.cgColor, range: range)
+    public func gl_add(underlineColor: UIColor?, range: NSRange? = nil) -> Self {
+        gl_addAttribute(key: .underlineColor, value: underlineColor?.cgColor, range: range)
         return self
     }
     
     
     /// underlineStyle
     @discardableResult
-    public func add(underlineStyle: NSUnderlineStyle, range: NSRange? = nil) -> Self {
-        addAttribute(key: .underlineStyle, value: underlineStyle.rawValue, range: range)
+    public func gl_add(underlineStyle: NSUnderlineStyle, range: NSRange? = nil) -> Self {
+        gl_addAttribute(key: .underlineStyle, value: underlineStyle.rawValue, range: range)
         return self
     }
     
     /// strikethroughColor
     @discardableResult
-    public func add(strikethroughColor: UIColor?, range: NSRange? = nil) -> Self {
-        addAttribute(key: .strikethroughColor, value: strikethroughColor?.cgColor, range: range)
+    public func gl_add(strikethroughColor: UIColor?, range: NSRange? = nil) -> Self {
+        gl_addAttribute(key: .strikethroughColor, value: strikethroughColor?.cgColor, range: range)
         return self
     }
     
     /// strikethroughStyle
     @discardableResult
-    public func add(strikethroughStyle: NSUnderlineStyle, range: NSRange? = nil) -> Self {
-        addAttribute(key: .strikethroughStyle, value: strikethroughStyle.rawValue, range: range)
+    public func gl_add(strikethroughStyle: NSUnderlineStyle, range: NSRange? = nil) -> Self {
+        gl_addAttribute(key: .strikethroughStyle, value: strikethroughStyle.rawValue, range: range)
         return self
     }
     
     /// strokeColor
     @discardableResult
-    public func add(strokeColor: UIColor?, range: NSRange? = nil) -> Self {
-        addAttribute(key: kCTStrokeColorAttributeName as NSAttributedString.Key, value: strokeColor?.cgColor, range: range)
-        addAttribute(key: .strokeColor, value: strokeColor, range: range)
+    public func gl_add(strokeColor: UIColor?, range: NSRange? = nil) -> Self {
+        gl_addAttribute(key: kCTStrokeColorAttributeName as NSAttributedString.Key, value: strokeColor?.cgColor, range: range)
+        gl_addAttribute(key: .strokeColor, value: strokeColor, range: range)
         return self
     }
     
     /// strokeWidth
     @discardableResult
-    public func add(strokeWidth: NSNumber?, range: NSRange? = nil) -> Self {
-        addAttribute(key: .strokeWidth, value: strokeWidth, range: range)
+    public func gl_add(strokeWidth: NSNumber?, range: NSRange? = nil) -> Self {
+        gl_addAttribute(key: .strokeWidth, value: strokeWidth, range: range)
         return self
     }
     
     /// shadow
     @discardableResult
-    public func add(shadow: NSShadow?, range: NSRange? = nil) -> Self {
-        addAttribute(key: .shadow, value: shadow, range: range)
+    public func gl_add(shadow: NSShadow?, range: NSRange? = nil) -> Self {
+        gl_addAttribute(key: .shadow, value: shadow, range: range)
         return self
     }
     
     /// textEffect
     @discardableResult
-    public func add(textEffect: String?, range: NSRange? = nil) -> Self {
-        addAttribute(key: .textEffect, value: textEffect, range: range)
+    public func gl_add(textEffect: String?, range: NSRange? = nil) -> Self {
+        gl_addAttribute(key: .textEffect, value: textEffect, range: range)
         return self
     }
     
     /// baselineOffset
     @discardableResult
-    public func add(baselineOffset: NSNumber?, range: NSRange? = nil) -> Self {
-        addAttribute(key: .baselineOffset, value: baselineOffset, range: range)
+    public func gl_add(baselineOffset: NSNumber?, range: NSRange? = nil) -> Self {
+        gl_addAttribute(key: .baselineOffset, value: baselineOffset, range: range)
         return self
     }
     
     /// obliqueness
     @discardableResult
-    public func add(obliqueness: NSNumber?, range: NSRange? = nil) -> Self {
-        addAttribute(key: .obliqueness, value: obliqueness, range: range)
+    public func gl_add(obliqueness: NSNumber?, range: NSRange? = nil) -> Self {
+        gl_addAttribute(key: .obliqueness, value: obliqueness, range: range)
         return self
     }
     
     /// expansion
     @discardableResult
-    public func add(expansion: NSNumber?, range: NSRange? = nil) -> Self {
-        addAttribute(key: .expansion, value: expansion, range: range)
+    public func gl_add(expansion: NSNumber?, range: NSRange? = nil) -> Self {
+        gl_addAttribute(key: .expansion, value: expansion, range: range)
         return self
     }
-    
+}
+
+extension NSMutableAttributedString {
     /// paragraphStyle
     @discardableResult
-    public func add(paragraphStyle: NSParagraphStyle, range: NSRange? = nil) -> Self {
-        addAttribute(key: .paragraphStyle, value: paragraphStyle, range: range)
+    public func gl_add(paragraphStyle: NSParagraphStyle, range: NSRange? = nil) -> Self {
+        gl_addAttribute(key: .paragraphStyle, value: paragraphStyle, range: range)
         return self
     }
     
     /// alignment
     @discardableResult
-    public func add(alignment: NSTextAlignment, range: NSRange? = nil) -> Self {
+    public func gl_add(alignment: NSTextAlignment, range: NSRange? = nil) -> Self {
         paragraphStyleSet(range: range) { (style) in
             style.alignment = alignment
         }
@@ -138,7 +140,7 @@ extension GLAttributedString where Base: NSMutableAttributedString {
     
     /// lineSpacing
     @discardableResult
-    public func add(lineSpacing: CGFloat, range: NSRange? = nil) -> Self {
+    public func gl_add(lineSpacing: CGFloat, range: NSRange? = nil) -> Self {
         paragraphStyleSet(range: range) { (style) in
             style.lineSpacing = lineSpacing
         }
@@ -146,11 +148,12 @@ extension GLAttributedString where Base: NSMutableAttributedString {
     }
     
     /// lineBreakMode（此方法慎用）
+    ///
     /// 如果忽略`SwiftyLabel`中的`lineBreakMode`属性，而直接通过该方法设置富文本的`lineBreakMode`，最后只会显示一行
     /// 原因是`lineBreakMode`最后是设置到富文本的`NSParagraphStyle`段落样式的属性中。
     /// 当富文本中的`NSParagraphStyle`属性中的`lineBreakMode`值有意义，那么用`CTFramesetter`创建的`CTLine`就只会有一行
     @discardableResult
-    public func add(lineBreakMode: NSLineBreakMode, range: NSRange? = nil) -> Self {
+    public func gl_add(lineBreakMode: NSLineBreakMode, range: NSRange? = nil) -> Self {
         paragraphStyleSet(range: range) { (style) in
             style.lineBreakMode = lineBreakMode
         }
@@ -159,7 +162,7 @@ extension GLAttributedString where Base: NSMutableAttributedString {
     
     /// paragraphSpacingBefore
     @discardableResult
-    public func add(paragraphSpacingBefore: CGFloat, range: NSRange? = nil) -> Self {
+    public func gl_add(paragraphSpacingBefore: CGFloat, range: NSRange? = nil) -> Self {
         paragraphStyleSet(range: range) { (style) in
             style.paragraphSpacingBefore = paragraphSpacingBefore
         }
@@ -168,7 +171,7 @@ extension GLAttributedString where Base: NSMutableAttributedString {
     
     /// paragraphSpacing
     @discardableResult
-    public func add(paragraphSpacing: CGFloat, range: NSRange? = nil) -> Self {
+    public func gl_add(paragraphSpacing: CGFloat, range: NSRange? = nil) -> Self {
         paragraphStyleSet(range: range) { (style) in
             style.paragraphSpacing = paragraphSpacing
         }
@@ -177,7 +180,7 @@ extension GLAttributedString where Base: NSMutableAttributedString {
     
     /// firstLineHeadIndent
     @discardableResult
-    public func add(firstLineHeadIndent: CGFloat, range: NSRange? = nil) -> Self {
+    public func gl_add(firstLineHeadIndent: CGFloat, range: NSRange? = nil) -> Self {
         paragraphStyleSet(range: range) { (style) in
             style.firstLineHeadIndent = firstLineHeadIndent
         }
@@ -186,7 +189,7 @@ extension GLAttributedString where Base: NSMutableAttributedString {
     
     /// headIndent
     @discardableResult
-    public func add(headIndent: CGFloat, range: NSRange? = nil) -> Self {
+    public func gl_add(headIndent: CGFloat, range: NSRange? = nil) -> Self {
         paragraphStyleSet(range: range) { (style) in
             style.headIndent = headIndent
         }
@@ -195,7 +198,7 @@ extension GLAttributedString where Base: NSMutableAttributedString {
     
     /// tailIndent
     @discardableResult
-    public func add(tailIndent: CGFloat, range: NSRange? = nil) -> Self {
+    public func gl_add(tailIndent: CGFloat, range: NSRange? = nil) -> Self {
         paragraphStyleSet(range: range) { (style) in
             style.tailIndent = tailIndent
         }
@@ -204,7 +207,7 @@ extension GLAttributedString where Base: NSMutableAttributedString {
     
     /// minimumLineHeight
     @discardableResult
-    public func add(minimumLineHeight: CGFloat, range: NSRange? = nil) -> Self {
+    public func gl_add(minimumLineHeight: CGFloat, range: NSRange? = nil) -> Self {
         paragraphStyleSet(range: range) { (style) in
             style.minimumLineHeight = minimumLineHeight
         }
@@ -213,7 +216,7 @@ extension GLAttributedString where Base: NSMutableAttributedString {
     
     /// maximumLineHeight
     @discardableResult
-    public func add(maximumLineHeight: CGFloat, range: NSRange? = nil) -> Self {
+    public func gl_add(maximumLineHeight: CGFloat, range: NSRange? = nil) -> Self {
         paragraphStyleSet(range: range) { (style) in
             style.maximumLineHeight = maximumLineHeight
         }
@@ -222,7 +225,7 @@ extension GLAttributedString where Base: NSMutableAttributedString {
     
     /// lineHeightMultiple
     @discardableResult
-    public func add(lineHeightMultiple: CGFloat, range: NSRange? = nil) -> Self {
+    public func gl_add(lineHeightMultiple: CGFloat, range: NSRange? = nil) -> Self {
         paragraphStyleSet(range: range) { (style) in
             style.lineHeightMultiple = lineHeightMultiple
         }
@@ -231,7 +234,7 @@ extension GLAttributedString where Base: NSMutableAttributedString {
     
     /// hyphenationFactor
     @discardableResult
-    public func add(hyphenationFactor: Float, range: NSRange? = nil) -> Self {
+    public func gl_add(hyphenationFactor: Float, range: NSRange? = nil) -> Self {
         paragraphStyleSet(range: range) { (style) in
             style.hyphenationFactor = hyphenationFactor
         }
@@ -240,7 +243,7 @@ extension GLAttributedString where Base: NSMutableAttributedString {
     
     /// defaultTabInterval
     @discardableResult
-    public func add(defaultTabInterval: CGFloat, range: NSRange? = nil) -> Self {
+    public func gl_add(defaultTabInterval: CGFloat, range: NSRange? = nil) -> Self {
         paragraphStyleSet(range: range) { (style) in
             style.defaultTabInterval = defaultTabInterval
         }
@@ -249,7 +252,7 @@ extension GLAttributedString where Base: NSMutableAttributedString {
     
     /// tabStops
     @discardableResult
-    public func add(tabStops: [NSTextTab]?, range: NSRange? = nil) -> Self {
+    public func gl_add(tabStops: [NSTextTab]?, range: NSRange? = nil) -> Self {
         paragraphStyleSet(range: range) { (style) in
             style.tabStops = tabStops
         }
@@ -258,7 +261,7 @@ extension GLAttributedString where Base: NSMutableAttributedString {
     
     /// baseWritingDirection
     @discardableResult
-    public func add(baseWritingDirection: NSWritingDirection, range: NSRange? = nil) -> Self {
+    public func gl_add(baseWritingDirection: NSWritingDirection, range: NSRange? = nil) -> Self {
         paragraphStyleSet(range: range) { (style) in
             style.baseWritingDirection = baseWritingDirection
         }
@@ -267,8 +270,8 @@ extension GLAttributedString where Base: NSMutableAttributedString {
     
     /// set paragraph style
     private func paragraphStyleSet(range: NSRange? ,closure: (NSMutableParagraphStyle)->()) {
-        let _range = (range == nil) ? NSRange(location: 0, length: self.base.length) : range!
-        self.base.enumerateAttribute(.paragraphStyle, in: _range, options: .longestEffectiveRangeNotRequired) { (value, subRange, _) in
+        let _range = (range == nil) ? NSRange(location: 0, length: self.length) : range!
+        self.enumerateAttribute(.paragraphStyle, in: _range, options: .longestEffectiveRangeNotRequired) { (value, subRange, _) in
             var _style: NSMutableParagraphStyle?
             if var value = value as? NSParagraphStyle {
                 if CFGetTypeID(value) == CTParagraphStyleGetTypeID() {
@@ -280,28 +283,30 @@ extension GLAttributedString where Base: NSMutableAttributedString {
             }
             if let style = _style {
                 closure(style)
-                self.add(paragraphStyle: style, range: subRange)
+                self.gl_add(paragraphStyle: style, range: subRange)
             }
         }
     }
-    
+}
+
+extension NSMutableAttributedString {
     @discardableResult
-    public func addAttribute(key: NSAttributedString.Key, value: Any?, range: NSRange? = nil) -> Self {
-        let _range = (range == nil) ? NSRange(location: 0, length: self.base.length) : range!
-        self.base.removeAttribute(key, range: _range)
+    public func gl_addAttribute(key: NSAttributedString.Key, value: Any?, range: NSRange? = nil) -> Self {
+        let _range = (range == nil) ? NSRange(location: 0, length: length) : range!
+        removeAttribute(key, range: _range)
         if let value = value {
-            self.base.addAttribute(key, value: value, range: _range)
+            addAttribute(key, value: value, range: _range)
         }
         return self
     }
     
     @discardableResult
-    public func addAttributes(attributes: [NSAttributedString.Key: Any]?, range: NSRange? = nil) -> Self {
-        let _range = (range == nil) ? NSRange(location: 0, length: self.base.length) : range!
+    public func gl_addAttributes(attributes: [NSAttributedString.Key: Any]?, range: NSRange? = nil) -> Self {
+        let _range = (range == nil) ? NSRange(location: 0, length: length) : range!
         guard let attributes = attributes else { return self }
-        self.base.setAttributes([:], range: _range)
+        setAttributes([:], range: _range)
         for atr in attributes {
-            self.addAttribute(key: atr.key, value: atr.value, range: _range)
+            gl_addAttribute(key: atr.key, value: atr.value, range: _range)
         }
         return self
     }

@@ -31,6 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navi = UINavigationController(rootViewController: vc)
         self.window?.rootViewController = navi
         
+        let size = 1024*1024+7100
+        print(FileManager.default.gl_formatSize(length: size))
         
         
         

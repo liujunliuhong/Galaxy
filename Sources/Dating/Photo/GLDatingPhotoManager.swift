@@ -24,7 +24,7 @@ extension GLDatingPhotoManager {
     public func saveImage(image: UIImage?, imageName: String?) {
         guard let image = image else { return }
         guard let imageName = imageName else { return }
-        guard let directory = GLDocumentDirectory else { return }
+        let directory = FileManager.gl_documentDirectory
         
         let directoryPath = URL(fileURLWithPath: directory).appendingPathComponent("GLDatingPhoto").path
         var isDir: ObjCBool = ObjCBool(true)
@@ -39,7 +39,7 @@ extension GLDatingPhotoManager {
     /// 从本地获取图片
     public func getImage(imageName: String?) -> UIImage? {
         guard let imageName = imageName else { return nil }
-        guard let directory = GLDocumentDirectory else { return nil }
+        let directory = FileManager.gl_documentDirectory
         let directoryPath = URL(fileURLWithPath: directory).appendingPathComponent("GLDatingPhoto").path
         let fullPath = directoryPath + "/" + imageName
         return UIImage(contentsOfFile: fullPath)

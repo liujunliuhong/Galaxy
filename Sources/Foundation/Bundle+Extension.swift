@@ -8,6 +8,12 @@
 
 import Foundation
 
+/// 文件类型
+public enum GLFileType: String {
+    case json = "json"    /// json
+    case plist = "plist"  /// plist
+}
+
 extension Bundle {
     /// 获取APP名称
     public static var gl_appName: String? {
@@ -52,5 +58,15 @@ extension Bundle {
             return info["CFBundleShortVersionString"] as? String
         }
         return nil
+    }
+}
+
+extension Bundle {
+    /// 获取本地文件
+    public func gl_getFile(fileName: String, type: GLFileType, options: JSONSerialization.ReadingOptions = [.mutableContainers]) -> Any? {
+        guard let path = path(forResource: fileName, ofType: type.rawValue) else { return nil }
+        guard let data = try? Data(contentsOf: URL(fileURLWithPath: path)) else { return nil }
+        let resultData = try? JSONSerialization.jsonObject(with: data, options: options)
+        return resultData
     }
 }

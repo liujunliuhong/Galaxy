@@ -12,7 +12,7 @@ import SnapKit
 private let defaultContent = "In order to have a better chatting place. please obey the following rules:\nHealthy chatting: chatting content includes all, except insult ,flirt,sexual,harassing messages,or like the same. Serious violation will get account banned.\nReport: Any bad behavior, please report to us.\nVisible Content: Do not tell others your privacy.\nDating Matters: If you start to meet frinds,please choose public places.\nPolice: When in danger or threatened in anappointment, please contact local police.";
 
 fileprivate class GLDatingEulaViewController: UIViewController {
-
+    
     private lazy var textView: UITextView = {
         let textView = UITextView()
         textView.backgroundColor = UIColor.clear
@@ -64,10 +64,9 @@ fileprivate class GLDatingEulaViewController: UIViewController {
             self.automaticallyAdjustsScrollViewInsets = false
         }
         let atr = NSMutableAttributedString(string: self.content)
-        atr.gl_atr
-            .add(font: UIFont.systemFont(ofSize: 17))
-            .add(textColor: UIColor.black)
-            .add(lineSpacing: 10)
+        atr.gl_add(font: UIFont.systemFont(ofSize: 17))
+            .gl_add(textColor: UIColor.black)
+            .gl_add(lineSpacing: 10)
         self.textView.attributedText = atr
         
         self.view.addSubview(self.agreeButton)
@@ -93,7 +92,7 @@ fileprivate class GLDatingEulaViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
     }
-
+    
     override var shouldAutorotate: Bool {
         return false
     }

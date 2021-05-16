@@ -1,15 +1,16 @@
 //
-//  UIView+GLExtension.swift
+//  UIView+Extension.swift
 //  SwiftTool
 //
-//  Created by galaxy on 2020/10/17.
-//  Copyright © 2020 yinhe. All rights reserved.
+//  Created by galaxy on 2021/5/16.
+//  Copyright © 2021 yinhe. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
 extension UIView {
+    /// origin
     public var gl_origin: CGPoint {
         get {
             return self.frame.origin
@@ -21,6 +22,7 @@ extension UIView {
         }
     }
     
+    /// x
     public var gl_x: CGFloat {
         get {
             return self.frame.origin.x
@@ -32,6 +34,7 @@ extension UIView {
         }
     }
     
+    /// y
     public var gl_y: CGFloat {
         get {
             return self.frame.origin.y
@@ -43,6 +46,7 @@ extension UIView {
         }
     }
     
+    /// size
     public var gl_size: CGSize {
         get {
             return self.frame.size
@@ -54,6 +58,7 @@ extension UIView {
         }
     }
     
+    /// width
     public var gl_width: CGFloat {
         get {
             return self.frame.size.width
@@ -65,6 +70,7 @@ extension UIView {
         }
     }
     
+    /// height
     public var gl_height: CGFloat {
         get {
             return self.frame.size.height
@@ -76,6 +82,7 @@ extension UIView {
         }
     }
     
+    /// center
     public var gl_center: CGPoint {
         get {
             return self.center
@@ -85,6 +92,7 @@ extension UIView {
         }
     }
     
+    /// center x
     public var gl_centerX: CGFloat {
         get {
             return self.center.x
@@ -94,6 +102,7 @@ extension UIView {
         }
     }
     
+    /// center y
     public var gl_centerY: CGFloat {
         get {
             return self.center.y
@@ -103,6 +112,7 @@ extension UIView {
         }
     }
     
+    /// top
     public var gl_top: CGFloat {
         get {
             return self.frame.origin.y
@@ -114,6 +124,7 @@ extension UIView {
         }
     }
     
+    /// bottom
     public var gl_bottom: CGFloat {
         get {
             return self.frame.origin.y + self.frame.size.height
@@ -125,6 +136,7 @@ extension UIView {
         }
     }
     
+    /// left
     public var gl_left: CGFloat {
         get {
             return self.frame.origin.x
@@ -136,6 +148,7 @@ extension UIView {
         }
     }
     
+    /// right
     public var gl_right: CGFloat {
         get {
             return self.frame.origin.x + self.frame.size.width
@@ -148,19 +161,25 @@ extension UIView {
     }
 }
 
-
 extension UIView {
-    public func gl_snapshot(targetRect: CGRect) -> UIImage? {
-        let scale: CGFloat = UIScreen.main.scale // Setting the screen magnification can guarantee the quality of screenshots
+    /// 对一个`View`的指定`Rect`截图
+    public func gl_snapshot(targetRect: CGRect?) -> UIImage? {
+        // Setting the screen magnification can guarantee the quality of screenshots
+        let scale: CGFloat = UIScreen.main.scale
+        //
+        var targetRect = targetRect ?? self.frame
+        targetRect = CGRect(x: targetRect.origin.x * scale, y: targetRect.origin.y * scale, width: targetRect.width * scale, height: targetRect.height * scale)
+        //
         UIGraphicsBeginImageContextWithOptions(self.frame.size, true, scale)
-        guard let context = UIGraphicsGetCurrentContext() else { // This code cannot be written in front of `UIGraphicsBeginImageContextWithOptions`, otherwise `context` is nil
+        // This code cannot be written in front of `UIGraphicsBeginImageContextWithOptions`.
+        // Otherwise `context` is nil.
+        guard let context = UIGraphicsGetCurrentContext() else {
             return nil
         }
         self.layer.render(in: context)
         defer {
             UIGraphicsEndImageContext()
         }
-        let targetRect = CGRect(x: targetRect.origin.x * scale, y: targetRect.origin.y * scale, width: targetRect.width * scale, height: targetRect.height * scale)
         guard let image = UIGraphicsGetImageFromCurrentImageContext() else {
             return nil
         }

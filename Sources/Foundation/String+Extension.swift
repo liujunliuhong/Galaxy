@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import CommonCrypto
 
 extension String {
     /// `json`解析
@@ -134,6 +134,15 @@ extension String {
         return data.gl_bytes
     }
     
+    /// 将一个字符串`MD5`
+    public var gl_md5: String {
+        let ccharArray = self.cString(using: String.Encoding.utf8)
+        var uint8Array = [UInt8](repeating: 0, count: Int(CC_MD5_DIGEST_LENGTH))
+        CC_MD5(ccharArray, CC_LONG(ccharArray!.count - 1), &uint8Array)
+        let result = uint8Array.reduce("") { $0 + String(format: "%02X", $1) }
+        return result
+    }
+    
     /// 将一个字符串转为合法的`URL`
     ///
     /// 有些链接，比如`www.baidu.com`，在`iOS`里面，这不是一个合法的`URL`
@@ -148,6 +157,7 @@ extension String {
     ///     let urlString3 = "http://www.baidu.com"
     ///     let result3 = urlString.gl_toURL(schemeType: .https) // https://www.baidu.com
     ///
+    /// 只对前缀有效
     public func gl_toURL(schemeType: URL.GLSchemeType) -> String {
         let alphas = ["a", "b", "c", "d", "e", "f", "g",
                       "h", "i", "j", "k", "l", "m", "n",

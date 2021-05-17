@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 /// 文件类型
 public enum GLFileType: String {
@@ -58,6 +59,41 @@ extension Bundle {
             return info["CFBundleShortVersionString"] as? String
         }
         return nil
+    }
+}
+
+extension Bundle {
+    /// 获取某个`Bundle`下的图片(支持`png`、`jpg`、`jpeg`)
+    ///
+    /// 会自动去查找对应分辨率的图片，支持`Asset`文件夹和直接拖进工程的图片
+    public func gl_image(name: String?) -> UIImage? {
+        guard let name = name else { return nil }
+        var scale = Int(UIScreen.main.scale)
+        if scale < 2 {
+            scale = 2
+        } else if scale > 3 {
+            scale = 3
+        }
+        let newName = "\(name)@\(scale)x"
+        var image: UIImage?
+        if let path = path(forResource: newName, ofType: "png") { /* test@2x.png */
+            image = UIImage(contentsOfFile: path)
+        } else if let path = path(forResource: newName, ofType: "jpg") { /* test@2x.jpg */
+            image = UIImage(contentsOfFile: path)
+        } else if let path = path(forResource: newName, ofType: "jpeg") { /* test@2x.jpeg */
+            image = UIImage(contentsOfFile: path)
+        } else if let path = path(forResource: name, ofType: "png") { /* test.png */
+            image = UIImage(contentsOfFile: path)
+        } else if let path = path(forResource: name, ofType: "jpg") { /* test.jpg */
+            image = UIImage(contentsOfFile: path)
+        } else if let path = path(forResource: name, ofType: "jpeg") { /* test.jpeg */
+            image = UIImage(contentsOfFile: path)
+        } else if let path = path(forResource: name, ofType: nil) {
+            image = UIImage(contentsOfFile: path)
+        } else {
+            image = UIImage(named: name)
+        }
+        return image
     }
 }
 

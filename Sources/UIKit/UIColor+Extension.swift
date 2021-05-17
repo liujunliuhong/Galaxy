@@ -92,6 +92,20 @@ extension UIColor {
         
         return hexColor ?? .gl_clear
     }
+    
+    /// 颜色转图片
+    public func gl_toImage(size: CGSize = CGSize(width: 1.0, height: 1.0)) -> UIImage? {
+        let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        UIGraphicsBeginImageContext(size)
+        let context = UIGraphicsGetCurrentContext()
+        defer {
+            UIGraphicsEndImageContext()
+        }
+        context?.setFillColor(cgColor)
+        context?.fill(rect)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        return image
+    }
 }
 
 

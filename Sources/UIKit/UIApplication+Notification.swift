@@ -1,22 +1,18 @@
 //
-//  GLNotification.swift
+//  UIApplication+Notification.swift
 //  SwiftTool
 //
-//  Created by Yule on 2020/12/7.
-//  Copyright © 2020 yinhe. All rights reserved.
+//  Created by liujun on 2021/5/17.
+//  Copyright © 2021 yinhe. All rights reserved.
 //
 
 import Foundation
 import UIKit
+import UserNotifications
 
-public struct GLNotification {
-    public static let `default` = GLNotification()
-    private init() {}
-}
-
-extension GLNotification {
-    /// 注册推送（本地推送和远程推送）
-    public func registerNotification(completion: (() -> Void)? = nil) {
+extension UIApplication {
+    /// 注册推送（支持本地推送和远程推送）
+    public func gl_registerNotification(completion: (() -> Void)? = nil) {
         if #available(iOS 10.0, *) {
             let center = UNUserNotificationCenter.current()
             let options: UNAuthorizationOptions = [.badge, .alert, .sound]
@@ -35,7 +31,8 @@ extension GLNotification {
         }
     }
     
-    public func clearBadgeNumber() {
+    /// 清除角标
+    public func gl_clearBadgeNumber() {
         UIApplication.shared.applicationIconBadgeNumber = 0
     }
 }

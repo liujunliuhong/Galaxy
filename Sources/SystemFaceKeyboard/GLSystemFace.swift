@@ -20,7 +20,7 @@ public class GLSystemFace: NSObject {
 public class GLSystemFaceDelete: NSObject {
     public let image: UIImage?
     public override init() {
-        self.image = UIImage.gl_image(bundle: GLSystemFaceDelete._bundle(), name: "delete")
+        self.image = GLSystemFaceDelete._bundle()?.gl_image(name: "delete")
         super.init()
     }
     

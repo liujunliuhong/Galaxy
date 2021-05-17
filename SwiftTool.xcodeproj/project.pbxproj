@@ -35,9 +35,10 @@
 		8506641D2550493C00EB4188 /* GLCusNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850663FC2550493C00EB4188 /* GLCusNavigationBar.swift */; };
 		8506641E2550493C00EB4188 /* GLBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850663FD2550493C00EB4188 /* GLBaseViewController.swift */; };
 		8506641F2550493C00EB4188 /* GLEnlargeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850663FF2550493C00EB4188 /* GLEnlargeButton.swift */; };
-		850664222550493C00EB4188 /* UIImage+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850664022550493C00EB4188 /* UIImage+GLExtension.swift */; };
-		850664232550493C00EB4188 /* UIApplication+GLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850664032550493C00EB4188 /* UIApplication+GLExtension.swift */; };
 		850664242550493C00EB4188 /* GLEnlargeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850664042550493C00EB4188 /* GLEnlargeControl.swift */; };
+		85237B732652744B00162AC8 /* UIApplication+Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85237B722652744B00162AC8 /* UIApplication+Notification.swift */; };
+		85237B79265275E700162AC8 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85237B78265275E700162AC8 /* UIButton+Extension.swift */; };
+		85237B7D2652761400162AC8 /* UIControl+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85237B7C2652761400162AC8 /* UIControl+Extension.swift */; };
 		8544713E257FC686005CFA6D /* GLSingleLocationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8544713D257FC686005CFA6D /* GLSingleLocationError.swift */; };
 		85534E8F2585022700E7A983 /* GLDatingAutoActionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85534E8E2585022700E7A983 /* GLDatingAutoActionManager.swift */; };
 		85534E93258502A000E7A983 /* GLDatingAutoAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85534E92258502A000E7A983 /* GLDatingAutoAction.swift */; };
@@ -146,7 +147,6 @@
 		B4F8AACF257DDCEC004C932C /* GLDatingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F8AACE257DDCEB004C932C /* GLDatingError.swift */; };
 		B4F8AAD3257DDD17004C932C /* GLDatingOnlineState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F8AAD2257DDD17004C932C /* GLDatingOnlineState.swift */; };
 		B4F8AAD8257DDD8D004C932C /* GLNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F8AAD7257DDD8D004C932C /* GLNavigation.swift */; };
-		B4F8AADD257DDF2D004C932C /* GLNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F8AADC257DDF2D004C932C /* GLNotification.swift */; };
 		B4F8AAE2257DDFF3004C932C /* GLDatingLocalPush.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F8AAE1257DDFF3004C932C /* GLDatingLocalPush.swift */; };
 		B4F8AAE7257DF65D004C932C /* GLDatingRobotMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F8AAE6257DF65D004C932C /* GLDatingRobotMessage.swift */; };
 		B4F8AAF1257DF955004C932C /* GLDatingWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F8AAF0257DF955004C932C /* GLDatingWebViewController.swift */; };
@@ -198,9 +198,10 @@
 		850663FC2550493C00EB4188 /* GLCusNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLCusNavigationBar.swift; sourceTree = "<group>"; };
 		850663FD2550493C00EB4188 /* GLBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLBaseViewController.swift; sourceTree = "<group>"; };
 		850663FF2550493C00EB4188 /* GLEnlargeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLEnlargeButton.swift; sourceTree = "<group>"; };
-		850664022550493C00EB4188 /* UIImage+GLExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+GLExtension.swift"; sourceTree = "<group>"; };
-		850664032550493C00EB4188 /* UIApplication+GLExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+GLExtension.swift"; sourceTree = "<group>"; };
 		850664042550493C00EB4188 /* GLEnlargeControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLEnlargeControl.swift; sourceTree = "<group>"; };
+		85237B722652744B00162AC8 /* UIApplication+Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Notification.swift"; sourceTree = "<group>"; };
+		85237B78265275E700162AC8 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		85237B7C2652761400162AC8 /* UIControl+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+Extension.swift"; sourceTree = "<group>"; };
 		8544713D257FC686005CFA6D /* GLSingleLocationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLSingleLocationError.swift; sourceTree = "<group>"; };
 		85534E8E2585022700E7A983 /* GLDatingAutoActionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingAutoActionManager.swift; sourceTree = "<group>"; };
 		85534E92258502A000E7A983 /* GLDatingAutoAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingAutoAction.swift; sourceTree = "<group>"; };
@@ -304,7 +305,6 @@
 		B4F8AACE257DDCEB004C932C /* GLDatingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingError.swift; sourceTree = "<group>"; };
 		B4F8AAD2257DDD17004C932C /* GLDatingOnlineState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingOnlineState.swift; sourceTree = "<group>"; };
 		B4F8AAD7257DDD8D004C932C /* GLNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLNavigation.swift; sourceTree = "<group>"; };
-		B4F8AADC257DDF2D004C932C /* GLNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLNotification.swift; sourceTree = "<group>"; };
 		B4F8AAE1257DDFF3004C932C /* GLDatingLocalPush.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingLocalPush.swift; sourceTree = "<group>"; };
 		B4F8AAE6257DF65D004C932C /* GLDatingRobotMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingRobotMessage.swift; sourceTree = "<group>"; };
 		B4F8AAF0257DF955004C932C /* GLDatingWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingWebViewController.swift; sourceTree = "<group>"; };
@@ -394,7 +394,6 @@
 			isa = PBXGroup;
 			children = (
 				85B225E7257FB61100EF6ECD /* Location */,
-				B4F8AADB257DDF11004C932C /* Notification */,
 				B4F8AAD6257DDD78004C932C /* Navigation */,
 				85CC972925793FAD002B993F /* Chain */,
 				85CC969F257933F4002B993F /* PickerView */,
@@ -502,10 +501,11 @@
 				857F87A02650E068002D59AE /* UIColor+Extension.swift */,
 				857F87A32650E094002D59AE /* UIView+Extension.swift */,
 				857F87A626516408002D59AE /* UIImage+Extension.swift */,
+				85237B78265275E700162AC8 /* UIButton+Extension.swift */,
+				85237B7C2652761400162AC8 /* UIControl+Extension.swift */,
 				857F87A926516419002D59AE /* UIApplication+Extension.swift */,
+				85237B722652744B00162AC8 /* UIApplication+Notification.swift */,
 				850663FF2550493C00EB4188 /* GLEnlargeButton.swift */,
-				850664022550493C00EB4188 /* UIImage+GLExtension.swift */,
-				850664032550493C00EB4188 /* UIApplication+GLExtension.swift */,
 				850664042550493C00EB4188 /* GLEnlargeControl.swift */,
 			);
 			path = UIKit;
@@ -850,14 +850,6 @@
 			path = Navigation;
 			sourceTree = "<group>";
 		};
-		B4F8AADB257DDF11004C932C /* Notification */ = {
-			isa = PBXGroup;
-			children = (
-				B4F8AADC257DDF2D004C932C /* GLNotification.swift */,
-			);
-			path = Notification;
-			sourceTree = "<group>";
-		};
 		B4F8AAE0257DDFE5004C932C /* LocalPush */ = {
 			isa = PBXGroup;
 			children = (
@@ -1062,7 +1054,6 @@
 				B44FA587258CA303008CB554 /* GLDatingRefundMakeSuggestionsViewModel.swift in Sources */,
 				85CC96AB25793427002B993F /* GLCityModel.swift in Sources */,
 				B4735CFF257A3BFF002F7566 /* UIImageView+GLChain.swift in Sources */,
-				B4F8AADD257DDF2D004C932C /* GLNotification.swift in Sources */,
 				B4C6B4E3257F2FE2004CD337 /* GLDatingUserManager.swift in Sources */,
 				85CC969B25793290002B993F /* String+GLWords.swift in Sources */,
 				B44FA56A258C8B17008CB554 /* GLDatingApplyForRefundViewController.swift in Sources */,
@@ -1073,6 +1064,7 @@
 				B4735D11257A3C9A002F7566 /* UIActivityIndicatorView+GLChain.swift in Sources */,
 				B481BDD325899EF400329F69 /* GLDatingEulaViewController.swift in Sources */,
 				B4746B7B2581BA7900E1CB2A /* GRDBDemoViewController.swift in Sources */,
+				85237B732652744B00162AC8 /* UIApplication+Notification.swift in Sources */,
 				857F87A42650E094002D59AE /* UIView+Extension.swift in Sources */,
 				8594C76F257CC0D000D3C9C7 /* UIStackView+GLChain.swift in Sources */,
 				B4F8AAD8257DDD8D004C932C /* GLNavigation.swift in Sources */,
@@ -1087,7 +1079,6 @@
 				850664072550493C00EB4188 /* GLMapManager.swift in Sources */,
 				85DBE0F12577DB0900E2DF24 /* GLDatingMessageNotificationOptions.swift in Sources */,
 				B4C6B4E0257F2CC1004CD337 /* GLDatingUser.swift in Sources */,
-				850664222550493C00EB4188 /* UIImage+GLExtension.swift in Sources */,
 				857F87A12650E068002D59AE /* UIColor+Extension.swift in Sources */,
 				B4262D922579FBD200AA144B /* UILabel+GLChain.swift in Sources */,
 				850664242550493C00EB4188 /* GLEnlargeControl.swift in Sources */,
@@ -1128,8 +1119,8 @@
 				B4735D20257A3D89002F7566 /* UITableView+GLChain.swift in Sources */,
 				850664172550493C00EB4188 /* GLHud.swift in Sources */,
 				85CC96AA25793427002B993F /* GLPickerView.swift in Sources */,
-				850664232550493C00EB4188 /* UIApplication+GLExtension.swift in Sources */,
 				85DBE0F42577DB9200E2DF24 /* GLDatingMessageNotificationManager.swift in Sources */,
+				85237B7D2652761400162AC8 /* UIControl+Extension.swift in Sources */,
 				B4746B7F2581BB1500E1CB2A /* User.swift in Sources */,
 				859F2DC2264ECD5000A4575C /* Bundle+Extension.swift in Sources */,
 				85D755C9264F696400C20D91 /* Collection+Extension.swift in Sources */,
@@ -1142,6 +1133,7 @@
 				85CC96A825793427002B993F /* GLPickerToolBar.swift in Sources */,
 				850664082550493C00EB4188 /* GLMapDemoViewController.swift in Sources */,
 				8506641A2550493C00EB4188 /* GLCusNavigationBarDemoViewController.swift in Sources */,
+				85237B79265275E700162AC8 /* UIButton+Extension.swift in Sources */,
 				859F2DBC264ECC4000A4575C /* Data+Extension.swift in Sources */,
 				85DBC91E25723EA60021BC59 /* GLAlert.swift in Sources */,
 				B4F8AB09257E151E004C932C /* GLDatingTermLabel.swift in Sources */,

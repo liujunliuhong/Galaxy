@@ -10,10 +10,10 @@ import Foundation
 import UIKit
 import MBProgressHUD
 
-fileprivate let successImage: UIImage? = UIImage.gl_image(bundle: GLHud.bundle(), name: "success")
-fileprivate let errorImage: UIImage? = UIImage.gl_image(bundle: GLHud.bundle(), name: "error")
-fileprivate let infoImage: UIImage? = UIImage.gl_image(bundle: GLHud.bundle(), name: "info")
-fileprivate let warnImage: UIImage? = UIImage.gl_image(bundle: GLHud.bundle(), name: "warn")
+fileprivate let successImage: UIImage? = GLHud.bundle()?.gl_image(name: "success")
+fileprivate let errorImage: UIImage? = GLHud.bundle()?.gl_image( name: "error")
+fileprivate let infoImage: UIImage? = GLHud.bundle()?.gl_image(name: "info")
+fileprivate let warnImage: UIImage? = GLHud.bundle()?.gl_image(name: "warn")
 
 public enum GLHudType {
     case success

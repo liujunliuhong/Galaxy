@@ -185,7 +185,7 @@ fileprivate class _Navi: UINavigationController {
         self.navigationBar.tintColor = GLDatingRefundOptions?.textColor
         self.navigationBar.isTranslucent = false
         
-        self.navigationBar.shadowImage = UIImage.gl_image(color: GLDatingRefundOptions?.backgroundColor ?? .clear)
+        self.navigationBar.shadowImage = GLDatingRefundOptions?.backgroundColor.gl_toImage()
     }
     
     override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {

@@ -148,7 +148,7 @@ extension GLMapManager {
         print("map url: \(url)")
         #endif
         url = (url as NSString).addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
-        UIApplication.shared.gl_openSafari(with: url)
+        UIApplication.shared.gl_openSafari(urlString: url, schemeType: .https)
     }
     
     
@@ -188,7 +188,7 @@ extension GLMapManager {
         print("map url: \(url)")
         #endif
         url = (url as NSString).addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
-        UIApplication.shared.gl_openSafari(with: url)
+        UIApplication.shared.gl_openSafari(urlString: url, schemeType: .https)
     }
 }
 

@@ -125,13 +125,15 @@ private func _rgb_string_color(string: String) -> UIColor? {
         red = CGFloat(Int(colorStrings[0]) ?? 0) / 255.0
         green = CGFloat(Int(colorStrings[1]) ?? 0) / 255.0
         blue = CGFloat(Int(colorStrings[2]) ?? 0) / 255.0
+        return UIColor(red: red, green: green, blue: blue, alpha: alpha)
     } else if colorStrings.count == 4 {
         red = CGFloat(Int(colorStrings[0]) ?? 0) / 255.0
         green = CGFloat(Int(colorStrings[1]) ?? 0) / 255.0
         blue = CGFloat(Int(colorStrings[2]) ?? 0) / 255.0
         alpha = CGFloat(Double(colorStrings[3]) ?? 1.0) // default 1.0
+        return UIColor(red: red, green: green, blue: blue, alpha: alpha)
     }
-    return UIColor(red: red, green: green, blue: blue, alpha: alpha)
+    return nil
 }
 
 private func _color(string: String, start: Int, length: Int) -> CGFloat {

@@ -34,14 +34,16 @@
 		8506641C2550493C00EB4188 /* GLCusNaviBarTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850663FB2550493C00EB4188 /* GLCusNaviBarTitle.swift */; };
 		8506641D2550493C00EB4188 /* GLCusNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850663FC2550493C00EB4188 /* GLCusNavigationBar.swift */; };
 		8506641E2550493C00EB4188 /* GLBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850663FD2550493C00EB4188 /* GLBaseViewController.swift */; };
-		8506641F2550493C00EB4188 /* GLEnlargeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850663FF2550493C00EB4188 /* GLEnlargeButton.swift */; };
-		850664242550493C00EB4188 /* GLEnlargeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850664042550493C00EB4188 /* GLEnlargeControl.swift */; };
 		85237B732652744B00162AC8 /* UIApplication+Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85237B722652744B00162AC8 /* UIApplication+Notification.swift */; };
 		85237B79265275E700162AC8 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85237B78265275E700162AC8 /* UIButton+Extension.swift */; };
 		85237B7D2652761400162AC8 /* UIControl+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85237B7C2652761400162AC8 /* UIControl+Extension.swift */; };
 		8544713E257FC686005CFA6D /* GLSingleLocationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8544713D257FC686005CFA6D /* GLSingleLocationError.swift */; };
 		85534E8F2585022700E7A983 /* GLDatingAutoActionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85534E8E2585022700E7A983 /* GLDatingAutoActionManager.swift */; };
 		85534E93258502A000E7A983 /* GLDatingAutoAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85534E92258502A000E7A983 /* GLDatingAutoAction.swift */; };
+		857D979126536AFF00B436E2 /* String+WordsSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857D979026536AFF00B436E2 /* String+WordsSort.swift */; };
+		857D979726538A9400B436E2 /* Alamofire.NetworkReachabilityManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857D979626538A9400B436E2 /* Alamofire.NetworkReachabilityManager+Extension.swift */; };
+		857D97C326538F5500B436E2 /* WKWebView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857D97C226538F5500B436E2 /* WKWebView+Extension.swift */; };
+		857D97E02653EADC00B436E2 /* UIApplication+MapExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857D97DF2653EADC00B436E2 /* UIApplication+MapExtension.swift */; };
 		857F87982650D3FE002D59AE /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857F87972650D3FE002D59AE /* FileManager+Extension.swift */; };
 		857F87992650D3FE002D59AE /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857F87972650D3FE002D59AE /* FileManager+Extension.swift */; };
 		857F879B2650DC25002D59AE /* NSParagraphStyle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857F879A2650DC25002D59AE /* NSParagraphStyle+Extension.swift */; };
@@ -68,11 +70,8 @@
 		859F2DC4264ED25400A4575C /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859F2DC3264ED25400A4575C /* Date+Extension.swift */; };
 		85B225E9257FB7CB00EF6ECD /* GLSingleLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B225E8257FB7CB00EF6ECD /* GLSingleLocation.swift */; };
 		85B225F0257FB90600EF6ECD /* GLSingleLocationAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B225EF257FB90600EF6ECD /* GLSingleLocationAuthorization.swift */; };
-		85CC942A25792982002B993F /* GLReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CC942925792982002B993F /* GLReachabilityManager.swift */; };
 		85CC969425793189002B993F /* GLDatingAVPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CC969325793189002B993F /* GLDatingAVPlayerView.swift */; };
-		85CC969B25793290002B993F /* String+GLWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CC969825793290002B993F /* String+GLWords.swift */; };
 		85CC969C25793290002B993F /* GLWordsSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CC969925793290002B993F /* GLWordsSort.swift */; };
-		85CC969D25793290002B993F /* GLWordsSortResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CC969A25793290002B993F /* GLWordsSortResult.swift */; };
 		85CC96A825793427002B993F /* GLPickerToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CC96A125793427002B993F /* GLPickerToolBar.swift */; };
 		85CC96A925793427002B993F /* GLDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CC96A225793427002B993F /* GLDatePickerView.swift */; };
 		85CC96AA25793427002B993F /* GLPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CC96A325793427002B993F /* GLPickerView.swift */; };
@@ -197,14 +196,16 @@
 		850663FB2550493C00EB4188 /* GLCusNaviBarTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLCusNaviBarTitle.swift; sourceTree = "<group>"; };
 		850663FC2550493C00EB4188 /* GLCusNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLCusNavigationBar.swift; sourceTree = "<group>"; };
 		850663FD2550493C00EB4188 /* GLBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLBaseViewController.swift; sourceTree = "<group>"; };
-		850663FF2550493C00EB4188 /* GLEnlargeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLEnlargeButton.swift; sourceTree = "<group>"; };
-		850664042550493C00EB4188 /* GLEnlargeControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLEnlargeControl.swift; sourceTree = "<group>"; };
 		85237B722652744B00162AC8 /* UIApplication+Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Notification.swift"; sourceTree = "<group>"; };
 		85237B78265275E700162AC8 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		85237B7C2652761400162AC8 /* UIControl+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+Extension.swift"; sourceTree = "<group>"; };
 		8544713D257FC686005CFA6D /* GLSingleLocationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLSingleLocationError.swift; sourceTree = "<group>"; };
 		85534E8E2585022700E7A983 /* GLDatingAutoActionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingAutoActionManager.swift; sourceTree = "<group>"; };
 		85534E92258502A000E7A983 /* GLDatingAutoAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingAutoAction.swift; sourceTree = "<group>"; };
+		857D979026536AFF00B436E2 /* String+WordsSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+WordsSort.swift"; sourceTree = "<group>"; };
+		857D979626538A9400B436E2 /* Alamofire.NetworkReachabilityManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alamofire.NetworkReachabilityManager+Extension.swift"; sourceTree = "<group>"; };
+		857D97C226538F5500B436E2 /* WKWebView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WKWebView+Extension.swift"; sourceTree = "<group>"; };
+		857D97DF2653EADC00B436E2 /* UIApplication+MapExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+MapExtension.swift"; sourceTree = "<group>"; };
 		857F87972650D3FE002D59AE /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
 		857F879A2650DC25002D59AE /* NSParagraphStyle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSParagraphStyle+Extension.swift"; sourceTree = "<group>"; };
 		857F879D2650DC74002D59AE /* NSMutableAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Extension.swift"; sourceTree = "<group>"; };
@@ -224,11 +225,8 @@
 		859F2DC3264ED25400A4575C /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		85B225E8257FB7CB00EF6ECD /* GLSingleLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLSingleLocation.swift; sourceTree = "<group>"; };
 		85B225EF257FB90600EF6ECD /* GLSingleLocationAuthorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLSingleLocationAuthorization.swift; sourceTree = "<group>"; };
-		85CC942925792982002B993F /* GLReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLReachabilityManager.swift; sourceTree = "<group>"; };
 		85CC969325793189002B993F /* GLDatingAVPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingAVPlayerView.swift; sourceTree = "<group>"; };
-		85CC969825793290002B993F /* String+GLWords.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+GLWords.swift"; sourceTree = "<group>"; };
 		85CC969925793290002B993F /* GLWordsSort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLWordsSort.swift; sourceTree = "<group>"; };
-		85CC969A25793290002B993F /* GLWordsSortResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLWordsSortResult.swift; sourceTree = "<group>"; };
 		85CC96A125793427002B993F /* GLPickerToolBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLPickerToolBar.swift; sourceTree = "<group>"; };
 		85CC96A225793427002B993F /* GLDatePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLDatePickerView.swift; sourceTree = "<group>"; };
 		85CC96A325793427002B993F /* GLPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLPickerView.swift; sourceTree = "<group>"; };
@@ -504,9 +502,9 @@
 				85237B78265275E700162AC8 /* UIButton+Extension.swift */,
 				85237B7C2652761400162AC8 /* UIControl+Extension.swift */,
 				857F87A926516419002D59AE /* UIApplication+Extension.swift */,
+				857D97DF2653EADC00B436E2 /* UIApplication+MapExtension.swift */,
 				85237B722652744B00162AC8 /* UIApplication+Notification.swift */,
-				850663FF2550493C00EB4188 /* GLEnlargeButton.swift */,
-				850664042550493C00EB4188 /* GLEnlargeControl.swift */,
+				857D97C226538F5500B436E2 /* WKWebView+Extension.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -541,7 +539,7 @@
 		85CC942825792953002B993F /* Reachability */ = {
 			isa = PBXGroup;
 			children = (
-				85CC942925792982002B993F /* GLReachabilityManager.swift */,
+				857D979626538A9400B436E2 /* Alamofire.NetworkReachabilityManager+Extension.swift */,
 			);
 			path = Reachability;
 			sourceTree = "<group>";
@@ -550,8 +548,7 @@
 			isa = PBXGroup;
 			children = (
 				85CC969925793290002B993F /* GLWordsSort.swift */,
-				85CC969A25793290002B993F /* GLWordsSortResult.swift */,
-				85CC969825793290002B993F /* String+GLWords.swift */,
+				857D979026536AFF00B436E2 /* String+WordsSort.swift */,
 			);
 			path = WordsSort;
 			sourceTree = "<group>";
@@ -1055,13 +1052,13 @@
 				85CC96AB25793427002B993F /* GLCityModel.swift in Sources */,
 				B4735CFF257A3BFF002F7566 /* UIImageView+GLChain.swift in Sources */,
 				B4C6B4E3257F2FE2004CD337 /* GLDatingUserManager.swift in Sources */,
-				85CC969B25793290002B993F /* String+GLWords.swift in Sources */,
 				B44FA56A258C8B17008CB554 /* GLDatingApplyForRefundViewController.swift in Sources */,
 				B4735D0E257A3C7D002F7566 /* UISwitch+GLChain.swift in Sources */,
 				B4735D08257A3C48002F7566 /* UITextField+GLChain.swift in Sources */,
 				85CC969C25793290002B993F /* GLWordsSort.swift in Sources */,
 				85CC96A925793427002B993F /* GLDatePickerView.swift in Sources */,
 				B4735D11257A3C9A002F7566 /* UIActivityIndicatorView+GLChain.swift in Sources */,
+				857D97E02653EADC00B436E2 /* UIApplication+MapExtension.swift in Sources */,
 				B481BDD325899EF400329F69 /* GLDatingEulaViewController.swift in Sources */,
 				B4746B7B2581BA7900E1CB2A /* GRDBDemoViewController.swift in Sources */,
 				85237B732652744B00162AC8 /* UIApplication+Notification.swift in Sources */,
@@ -1079,9 +1076,9 @@
 				850664072550493C00EB4188 /* GLMapManager.swift in Sources */,
 				85DBE0F12577DB0900E2DF24 /* GLDatingMessageNotificationOptions.swift in Sources */,
 				B4C6B4E0257F2CC1004CD337 /* GLDatingUser.swift in Sources */,
+				857D979726538A9400B436E2 /* Alamofire.NetworkReachabilityManager+Extension.swift in Sources */,
 				857F87A12650E068002D59AE /* UIColor+Extension.swift in Sources */,
 				B4262D922579FBD200AA144B /* UILabel+GLChain.swift in Sources */,
-				850664242550493C00EB4188 /* GLEnlargeControl.swift in Sources */,
 				B463D87225830C8F000C0474 /* GLDatingDatabaseMockUserManager.swift in Sources */,
 				B44FA574258C95C1008CB554 /* GLDatingRefundTextView.swift in Sources */,
 				859F2DC0264ECD4600A4575C /* Dictionary+Extension.swift in Sources */,
@@ -1101,12 +1098,12 @@
 				85D755F2264F9A4E00C20D91 /* URL+Extension.swift in Sources */,
 				B4F8AACF257DDCEC004C932C /* GLDatingError.swift in Sources */,
 				8594C767257C98A400D3C9C7 /* UICollectionViewLayout+GLChain.swift in Sources */,
-				85CC969D25793290002B993F /* GLWordsSortResult.swift in Sources */,
 				8544713E257FC686005CFA6D /* GLSingleLocationError.swift in Sources */,
 				B44FA58E258CA327008CB554 /* GLDatingRefundMakeSuggestionsContentView.swift in Sources */,
 				85534E8F2585022700E7A983 /* GLDatingAutoActionManager.swift in Sources */,
 				8506641D2550493C00EB4188 /* GLCusNavigationBar.swift in Sources */,
 				85EA72732583D2BF00DCC1AE /* GLDatingLog.swift in Sources */,
+				857D97C326538F5500B436E2 /* WKWebView+Extension.swift in Sources */,
 				1831114F24469EB700155620 /* ViewController.swift in Sources */,
 				B463D96D25835D70000C0474 /* GLDatingMessage.swift in Sources */,
 				85D755E7264F89D300C20D91 /* Int+Extension.swift in Sources */,
@@ -1126,10 +1123,9 @@
 				85D755C9264F696400C20D91 /* Collection+Extension.swift in Sources */,
 				B4735D17257A3D1B002F7566 /* UIProgressView+GLChain.swift in Sources */,
 				B4735D1A257A3D32002F7566 /* UIRefreshControl+GLChain.swift in Sources */,
-				85CC942A25792982002B993F /* GLReachabilityManager.swift in Sources */,
 				857F87982650D3FE002D59AE /* FileManager+Extension.swift in Sources */,
+				857D979126536AFF00B436E2 /* String+WordsSort.swift in Sources */,
 				8506641B2550493C00EB4188 /* GLCusNaviBarButtonItem.swift in Sources */,
-				8506641F2550493C00EB4188 /* GLEnlargeButton.swift in Sources */,
 				85CC96A825793427002B993F /* GLPickerToolBar.swift in Sources */,
 				850664082550493C00EB4188 /* GLMapDemoViewController.swift in Sources */,
 				8506641A2550493C00EB4188 /* GLCusNavigationBarDemoViewController.swift in Sources */,

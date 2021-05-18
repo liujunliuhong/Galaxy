@@ -10,6 +10,11 @@ import UIKit
 import AsyncDisplayKit
 import SnapKit
 
+class mmm: UIControl {
+    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        return true
+    }
+}
 
 fileprivate class Node: ASDisplayNode {
     

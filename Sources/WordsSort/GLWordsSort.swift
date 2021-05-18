@@ -8,22 +8,17 @@
 
 import Foundation
 
-extension String {
-    /// 获取字符串中指定位置的内容
-    fileprivate func _string(index: Int) -> String? {
-        if self.count <= 0 {
-            return nil
-        }
-        if index >= self.count || index < 0 {
-            return nil
-        }
-        let start = self.index(self.startIndex, offsetBy: index)
-        let end = self.index(self.startIndex, offsetBy: index + 1)
-        return String(self[start..<end])
-    }
-}
-
 public class GLWordsSort<T> {
+    
+    /// 排序结果
+    public struct Result {
+        public let key: String /// `key`
+        public let models: [T] /// `key`下对应的数组集合
+        public init(key: String, models: [T]) {
+            self.key = key
+            self.models = models
+        }
+    }
     
     /// 特殊索引文本，默认`#`
     public var specialSectionTitle: String = "#"
@@ -65,7 +60,9 @@ public class GLWordsSort<T> {
 
 extension GLWordsSort {
     
-    /// 获取字符串中每个字符所对应的英文的首字母。你好 -> NH
+    /// 获取字符串中每个字符所对应的英文的首字母
+    ///
+    /// 你好 -> NH
     public static func getFirstEnglishWords(string: String) -> String {
         let string = string.uppercased()
         var result: String = ""
@@ -77,8 +74,8 @@ extension GLWordsSort {
                 result.append(String(scalar))
             } else {
                 let index = code - 19968
-                if index >= 0 && index < gl_firstLetterArray.count {
-                    let s = gl_firstLetterArray._string(index: index) ?? ""
+                if index >= 0 && index < gl_firstLetterArray.count { /* 索引里面查找 */
+                    let s = gl_firstLetterArray.gl_string(index: index) ?? ""
                     result.append(s)
                 } else { /* 特殊字符 */
                     result.append(String(scalar))
@@ -99,14 +96,38 @@ extension GLWordsSort {
         return nil
     }
     
-    /// 数组排序。models可以为模型数组，也可以为字符串数组。keyPath是模型中要排序的key。如果是字符串数组排序，那么keyPath无效
-    public func sort(models: [T], keyPath: String?, closure: (([GLWordsSortResult<T>]) -> ())?) {
+    /// 数组排序
+    ///
+    ///     fileprivate struct Model {
+    ///         let title: String
+    ///         init(title: String) {
+    ///             self.title = title
+    ///         }
+    ///     }
+    ///
+    ///     private var results: [GLWordsSort.Result] = []
+    ///     var models: [Model] = []
+    ///     for _ in 0..<50 {
+    ///         let string = ""
+    ///         let model = Model(title: string)
+    ///         models.append(model)
+    ///     }
+    ///
+    ///     let sort = GLWordsSort<Model>()
+    ///     sort.sort(models: models, keyPath: "title") { [weak self] (results) in
+    ///         // ...
+    ///     }
+    ///
+    /// `models`可以为模型数组(支持结构体)，也可以为字符串数组
+    /// `keyPath`是模型中要排序的`key`
+    /// 如果是字符串数组排序，那么`keyPath`无效，传`nil`
+    public func sort(models: [T], keyPath: String?, closure: (([GLWordsSort.Result]) -> ())?) {
         _sort(models: models, keyPath: keyPath, closure: closure)
     }
 }
 
 extension GLWordsSort {
-    private func _sort(models: [T], keyPath: String?, closure: (([GLWordsSortResult<T>]) -> ())?) {
+    private func _sort(models: [T], keyPath: String?, closure: (([GLWordsSort.Result]) -> ())?) {
         DispatchQueue.global().async {
             // check
             if models.count <= 0 {
@@ -196,15 +217,15 @@ extension GLWordsSort {
                 }
             }
             
-            var results: [GLWordsSortResult<T>] = []
+            var results: [GLWordsSort.Result] = []
             newKeys.forEach { (key) in
                 let tmpModels = sortResult[key]!
-                let m = GLWordsSortResult<T>(key: key, models: tmpModels)
+                let m = GLWordsSort.Result(key: key, models: tmpModels)
                 results.append(m)
             }
             
             if specialModels.count > 0 {
-                let specialResultModel = GLWordsSortResult<T>(key: self.specialSectionTitle, models: specialModels)
+                let specialResultModel = GLWordsSort.Result(key: self.specialSectionTitle, models: specialModels)
                 if self.specialSectionTitleInsertAtFirst {
                     results.insert(specialResultModel, at: 0)
                 } else {
@@ -227,31 +248,3 @@ extension GLWordsSort {
         }
     }
 }
-
-/*
- fileprivate struct Model {
-     let title: String
-     init(title: String) {
-         self.title = title
-     }
- }
- 
- private var results: [GLWordsSortResult<Model>] = []
- 
- 
- var models: [Model] = []
- for _ in 0..<50 {
-     let index = arc4random() % UInt32(self.strings.count)
-     let string = self.strings[Int(index)]
-     
-     let model = Model(title: string)
-     models.append(model)
- }
-
- let sort = GLWordsSort<Model>()
- sort.sort(models: models, keyPath: "title") { [weak self] (results) in
-     guard let self = self else { return }
-     self.results = results
-     self.tableView.reloadData()
- }
- */

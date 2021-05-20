@@ -10,7 +10,7 @@ import Foundation
 import CoreLocation
 
 /// 单次定位授权
-public class GLSingleLocationAuthorization: NSObject {
+public final class GLSingleLocationAuthorization: NSObject {
     /// 单例
     public static let `default` = GLSingleLocationAuthorization()
     

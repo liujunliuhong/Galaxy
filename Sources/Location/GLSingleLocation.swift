@@ -10,7 +10,7 @@ import Foundation
 import CoreLocation
 
 /// 单次定位
-public class GLSingleLocation: NSObject {
+public final class GLSingleLocation: NSObject {
     /// Error
     public enum Error: LocalizedError {
         case error(String?)

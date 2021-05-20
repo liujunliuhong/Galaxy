@@ -66,8 +66,10 @@ public class GLAlert {
     private var backgroundView: UIView?
     private var maskView: UIView?
     
-    private var currentView: UIView?
-    private var currentNode: ASDisplayNode?
+    private var masterView: UIView?
+    private var subViews: [UIView] = []
+    
+    //private var currentNode: ASDisplayNode?
     
     private init() {
         
@@ -201,6 +203,24 @@ extension GLAlert {
         }
         return true
     }
+    
+    public func show(view: UIView?, alertView: UIView?) {
+        guard let alertView = alertView else { return }
+        guard let baseView = view else { return }
+        //
+        
+        
+        
+        
+    }
+    
+    public func add(view: UIView?) {
+        
+    }
+    
+    public func revoke() {
+        
+    }
 }
 
 extension GLAlert {
@@ -247,10 +267,13 @@ extension GLAlert {
             options.didDismissClosure?()
             objc_setAssociatedObject(currentNode, &Keys.associatedKey, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
-        self.currentNode?.removeFromSupernode()
-        self.currentNode = nil
-        self.currentView?.removeFromSuperview()
-        self.currentView = nil
+        
+        self.maskView?.removeFromSuperview()
+        self.maskView = nil
+        for v in self.subViews {
+            v.removeFromSuperview()
+        }
+        self.subViews.removeAll()
         self.maskView?.backgroundColor = GLAlertStartColor
         self.maskView?.isUserInteractionEnabled = false
         self.maskView?.removeFromSuperview()

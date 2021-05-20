@@ -137,7 +137,11 @@ extension UIDevice {
     }
 }
 
-extension UIDevice.GLType {
+extension UIDevice.GLType: CustomStringConvertible, CustomDebugStringConvertible {
+    public var debugDescription: String {
+        return self.description
+    }
+    
     public var description: String {
         switch self {
             // AirPods

@@ -78,7 +78,7 @@ extension UIDevice {
     public static var gl_isNotchiPhone: Bool {
         var isNotchiPhone: Bool = false
         if UIDevice.gl_isSimulator {
-            if #available(iOS 11.0, *) {
+            if #available(iOS 11.0, *) { // `safeAreaInsets`是在`iOS 11`开始提出的概念
                 if let delegate = UIApplication.shared.delegate, let _window = delegate.window, let window = _window {
                     isNotchiPhone = window.safeAreaInsets.bottom > 0
                 }

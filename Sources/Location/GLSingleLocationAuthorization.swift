@@ -9,7 +9,9 @@
 import Foundation
 import CoreLocation
 
+/// 单次定位授权
 public class GLSingleLocationAuthorization: NSObject {
+    /// 单例
     public static let `default` = GLSingleLocationAuthorization()
     
     private var locationManager: CLLocationManager?
@@ -21,7 +23,10 @@ public class GLSingleLocationAuthorization: NSObject {
 }
 
 extension GLSingleLocationAuthorization {
-    public func requestWhenInUseAuthorizationStatus(completion: ((Bool) -> Void)? = nil) {
+    
+    /// 请求定位授权状态（使用中）
+    /// - Parameter completion: 授权状态回调
+    public func requestAuthorizationStatusWhenInUse(completion: ((Bool) -> Void)? = nil) {
         if !CLLocationManager.locationServicesEnabled() {
             completion?(false)
             return

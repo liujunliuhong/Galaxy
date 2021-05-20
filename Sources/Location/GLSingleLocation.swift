@@ -9,12 +9,30 @@
 import Foundation
 import CoreLocation
 
+/// 单次定位
 public class GLSingleLocation: NSObject {
+    /// Error
+    public enum Error: LocalizedError {
+        case error(String?)
+        public var errorDescription: String? {
+            switch self {
+            case .error(let des):
+                return des
+            }
+        }
+        public var localizedDescription: String? {
+            switch self {
+            case .error(let des):
+                return des
+            }
+        }
+    }
+
+    /// 单例
     public static let `default` = GLSingleLocation()
     
     private var locationManager: CLLocationManager?
-    
-    private var completion: ((CLPlacemark?, Error?) -> Void)?
+    private var completion: ((CLPlacemark?, GLSingleLocation.Error?) -> Void)?
     
     private override init() {
         super.init()
@@ -22,9 +40,20 @@ public class GLSingleLocation: NSObject {
 }
 
 extension GLSingleLocation {
-    public func startSingleLocation(completion: ((CLPlacemark?, Error?) -> Void)?) {
+    
+    /// 开始单次定位
+    ///
+    ///     GLSingleLocation.default.startSingleLocation { (place, err) in
+    ///
+    ///     }
+    ///
+    /// - Parameters:
+    ///   - desiredAccuracy: 定位精度
+    ///   - completion: 定位回调
+    public func startSingleLocation(desiredAccuracy: CLLocationAccuracy = kCLLocationAccuracyBest,
+                                    completion: ((CLPlacemark?, GLSingleLocation.Error?) -> Void)?) {
         if !CLLocationManager.locationServicesEnabled() {
-            self.completion?(nil, GLSingleLocationError.error("location services not enabled"))
+            self.completion?(nil, GLSingleLocation.Error.error("location services not enabled"))
             return
         }
         self.completion = nil
@@ -32,15 +61,16 @@ extension GLSingleLocation {
         self.completion = completion
         self.locationManager = CLLocationManager()
         self.locationManager?.delegate = self
-        self.locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+        self.locationManager?.desiredAccuracy = desiredAccuracy
         self.locationManager?.startUpdatingLocation()
     }
 }
 
 extension GLSingleLocation: CLLocationManagerDelegate {
-    public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+    public func locationManager(_ manager: CLLocationManager, didFailWithError error: Swift.Error) {
+        self.locationManager?.stopUpdatingLocation()
         self.locationManager = nil
-        self.completion?(nil, error)
+        self.completion?(nil, GLSingleLocation.Error.error(error.localizedDescription))
         self.completion = nil
     }
     
@@ -49,7 +79,7 @@ extension GLSingleLocation: CLLocationManagerDelegate {
         self.locationManager = nil
         guard let location = locations.first else {
             self.locationManager = nil
-            self.completion?(nil, GLSingleLocationError.error("no location"))
+            self.completion?(nil, GLSingleLocation.Error.error("no location"))
             self.completion = nil
             return
         }
@@ -59,20 +89,20 @@ extension GLSingleLocation: CLLocationManagerDelegate {
             guard let self = self else { return }
             if let error = error {
                 self.locationManager = nil
-                self.completion?(nil, error)
+                self.completion?(nil, GLSingleLocation.Error.error(error.localizedDescription))
                 self.completion = nil
                 return
             }
             
             guard let placemark = placemarks?.first else {
                 self.locationManager = nil
-                self.completion?(nil, GLSingleLocationError.error("no placemarks"))
+                self.completion?(nil, GLSingleLocation.Error.error("no placemarks"))
                 self.completion = nil
                 return
             }
             _printPlacemarkInfo(placemark: placemark)
             self.locationManager = nil
-            self.completion?(placemark, error)
+            self.completion?(placemark, GLSingleLocation.Error.error(error?.localizedDescription))
             self.completion = nil
         }
     }
@@ -81,9 +111,8 @@ extension GLSingleLocation: CLLocationManagerDelegate {
 
 private func _printPlacemarkInfo(placemark: CLPlacemark) {
     #if DEBUG
-    // 四大直辖市的城市信息无法通过CLPlacemark的locality属性获得，
-    // 只能通过访问administrativeArea属性来获得（如果locality为空，则可知为直辖市）
-    
+    // 四大直辖市的城市信息无法通过`CLPlacemark`的`locality`属性获得，
+    // 只能通过访问`administrativeArea`属性来获得（如果`locality`为空，则可知为直辖市）
     var addressDictionary: [String: Any] = [:]
     (placemark.addressDictionary ?? [:]).forEach { (value) in
         addressDictionary["\(value.key)"] = value.value

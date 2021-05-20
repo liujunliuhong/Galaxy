@@ -35,7 +35,6 @@
 		85237B732652744B00162AC8 /* UIApplication+Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85237B722652744B00162AC8 /* UIApplication+Notification.swift */; };
 		85237B79265275E700162AC8 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85237B78265275E700162AC8 /* UIButton+Extension.swift */; };
 		85237B7D2652761400162AC8 /* UIControl+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85237B7C2652761400162AC8 /* UIControl+Extension.swift */; };
-		8544713E257FC686005CFA6D /* GLSingleLocationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8544713D257FC686005CFA6D /* GLSingleLocationError.swift */; };
 		85534E8F2585022700E7A983 /* GLDatingAutoActionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85534E8E2585022700E7A983 /* GLDatingAutoActionManager.swift */; };
 		85534E93258502A000E7A983 /* GLDatingAutoAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85534E92258502A000E7A983 /* GLDatingAutoAction.swift */; };
 		857D979126536AFF00B436E2 /* String+WordsSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857D979026536AFF00B436E2 /* String+WordsSort.swift */; };
@@ -197,7 +196,6 @@
 		85237B722652744B00162AC8 /* UIApplication+Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Notification.swift"; sourceTree = "<group>"; };
 		85237B78265275E700162AC8 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		85237B7C2652761400162AC8 /* UIControl+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+Extension.swift"; sourceTree = "<group>"; };
-		8544713D257FC686005CFA6D /* GLSingleLocationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLSingleLocationError.swift; sourceTree = "<group>"; };
 		85534E8E2585022700E7A983 /* GLDatingAutoActionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingAutoActionManager.swift; sourceTree = "<group>"; };
 		85534E92258502A000E7A983 /* GLDatingAutoAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLDatingAutoAction.swift; sourceTree = "<group>"; };
 		857D979026536AFF00B436E2 /* String+WordsSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+WordsSort.swift"; sourceTree = "<group>"; };
@@ -513,19 +511,10 @@
 		85B225E7257FB61100EF6ECD /* Location */ = {
 			isa = PBXGroup;
 			children = (
-				85B225EE257FB8E200EF6ECD /* Single */,
-			);
-			path = Location;
-			sourceTree = "<group>";
-		};
-		85B225EE257FB8E200EF6ECD /* Single */ = {
-			isa = PBXGroup;
-			children = (
 				85B225E8257FB7CB00EF6ECD /* GLSingleLocation.swift */,
 				85B225EF257FB90600EF6ECD /* GLSingleLocationAuthorization.swift */,
-				8544713D257FC686005CFA6D /* GLSingleLocationError.swift */,
 			);
-			path = Single;
+			path = Location;
 			sourceTree = "<group>";
 		};
 		85CC942825792953002B993F /* Reachability */ = {
@@ -1090,7 +1079,6 @@
 				85D755F2264F9A4E00C20D91 /* URL+Extension.swift in Sources */,
 				B4F8AACF257DDCEC004C932C /* GLDatingError.swift in Sources */,
 				8594C767257C98A400D3C9C7 /* UICollectionViewLayout+GLChain.swift in Sources */,
-				8544713E257FC686005CFA6D /* GLSingleLocationError.swift in Sources */,
 				B44FA58E258CA327008CB554 /* GLDatingRefundMakeSuggestionsContentView.swift in Sources */,
 				85534E8F2585022700E7A983 /* GLDatingAutoActionManager.swift in Sources */,
 				8506641D2550493C00EB4188 /* GLCusNavigationBar.swift in Sources */,

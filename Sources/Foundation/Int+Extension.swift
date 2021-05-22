@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import CoreGraphics
 
 extension Int {
     /// `Int`转`Float`

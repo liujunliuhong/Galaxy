@@ -82,11 +82,11 @@ class GRDBDemoViewController: UIViewController {
         self.queryButton.addTarget(self, action: #selector(queryAction), for: .touchUpInside)
         self.updateButton.addTarget(self, action: #selector(updateAction), for: .touchUpInside)
         
-        GLDatingMessageManager.default.conversationList.subscribe(onNext: { (conversationList) in
-            for (_, conversation) in conversationList.enumerated() {
-                GLLog("\(conversation.unReadCount)")
-            }
-        }).disposed(by: rx.disposeBag)
+//        GLDatingMessageManager.default.conversationList.subscribe(onNext: { (conversationList) in
+//            for (_, conversation) in conversationList.enumerated() {
+//                GLLog("\(conversation.unReadCount)")
+//            }
+//        }).disposed(by: rx.disposeBag)
         
 //        GLDatingPrint("1234598765432")
         
@@ -112,9 +112,9 @@ extension GRDBDemoViewController {
         
 //        let _ = GLDatingUserManager.default
         
-        GLDatingAutoActionManager.default.addAutoAction(label: "attention_me", timeIntervals: [1, 2, 3]) {
-            print("😋😋😋😋😋😋😋😋发送消息")
-        }
+//        GLDatingAutoActionManager.default.addAutoAction(label: "attention_me", timeIntervals: [1, 2, 3]) {
+//            print("😋😋😋😋😋😋😋😋发送消息")
+//        }
     }
     
     @objc func insertAction() {
@@ -124,17 +124,17 @@ extension GRDBDemoViewController {
         
 //        let message = GLDatingMessageManager.default.sendMessage(conversationID: targetConversationID, messageType: .text, messageContent: "hello", isSender: true, isRead: false, userInfo: nil)
         
-        GLDatingAutoActionManager.default.stopAllAutoActions()
+//        GLDatingAutoActionManager.default.stopAllAutoActions()
         
     }
     
     @objc func queryAction() {
-        let message = GLDatingMessageManager.default.sendMessage(conversationID: "222", messageType: .text, messageContent: "hello", isSender: true, isRead: false, userInfo: nil)
+//        let message = GLDatingMessageManager.default.sendMessage(conversationID: "222", messageType: .text, messageContent: "hello", isSender: true, isRead: false, userInfo: nil)
 //        try? GLDatingUserManager.default.loadUserInfo()
     }
     
     @objc func updateAction() {
-        GLDatingMessageManager.default.markHasRead(conversationID: targetConversationID)
+//        GLDatingMessageManager.default.markHasRead(conversationID: targetConversationID)
 //        GLDatingUserManager.default.updateUserNickName(nickName: "liujun__12345")
     }
 }

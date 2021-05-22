@@ -12,6 +12,4 @@
 #import "Test.h"
 #import "GLWeakProxy.h"
 
-#import "GLBaiDuLocationTestViewController.h"
-
 #endif /* SwiftTool_Bridging_Header_h */

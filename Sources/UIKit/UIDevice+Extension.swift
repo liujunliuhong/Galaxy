@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-
 extension UIDevice {
     /// 获取屏幕宽
     public static var gl_width: CGFloat {

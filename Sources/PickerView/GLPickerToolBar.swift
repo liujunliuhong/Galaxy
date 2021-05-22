@@ -10,12 +10,6 @@ import UIKit
 /// 内置的ToolBar
 public class GLPickerToolBar: UIView {
     
-    deinit {
-        #if DEBUG
-        //print("\(NSStringFromClass(self.classForCoder)) deinit")
-        #endif
-    }
-    
     public private(set) lazy var cancelButton: UIButton = {
         let cancelButton = UIButton(type: .system)
         cancelButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
@@ -61,35 +55,35 @@ public class GLPickerToolBar: UIView {
         
         var _sureButtonWidth: CGFloat = .zero
         var _cancelButtonWidth: CGFloat = .zero
-        if !self.sureButtonWidth.isLessThanOrEqualTo(.zero) {
-            _sureButtonWidth = self.sureButtonWidth
+        if !sureButtonWidth.isLessThanOrEqualTo(.zero) {
+            _sureButtonWidth = sureButtonWidth
         } else {
-            self.sureButton.sizeToFit()
-            _sureButtonWidth = self.sureButton.frame.width
+            sureButton.sizeToFit()
+            _sureButtonWidth = sureButton.frame.width
         }
-        if !self.cancelButtonWidth.isLessThanOrEqualTo(.zero) {
-            _cancelButtonWidth = self.cancelButtonWidth
+        if !cancelButtonWidth.isLessThanOrEqualTo(.zero) {
+            _cancelButtonWidth = cancelButtonWidth
         } else {
-            self.cancelButton.sizeToFit()
-            _cancelButtonWidth = self.cancelButton.frame.width
+            cancelButton.sizeToFit()
+            _cancelButtonWidth = cancelButton.frame.width
         }
         
         var leftDistance: CGFloat = .zero
         if !_cancelButtonWidth.isLessThanOrEqualTo(.zero) {
-            self.cancelButton.frame = CGRect(x: 10, y: 0, width: _cancelButtonWidth, height: self.frame.height)
-            leftDistance = self.cancelButton.frame.maxX
+            cancelButton.frame = CGRect(x: 10, y: 0, width: _cancelButtonWidth, height: frame.height)
+            leftDistance = cancelButton.frame.maxX
         }
         
         var rightDistance: CGFloat = .zero
         if !_sureButtonWidth.isLessThanOrEqualTo(.zero) {
-            self.sureButton.frame = CGRect(x: self.frame.width - _sureButtonWidth - 10, y: 0, width: _sureButtonWidth, height: self.frame.height)
-            rightDistance = self.frame.width - self.sureButton.frame.minX
+            sureButton.frame = CGRect(x: frame.width - _sureButtonWidth - 10, y: 0, width: _sureButtonWidth, height: frame.height)
+            rightDistance = frame.width - sureButton.frame.minX
         }
         
         let distance: CGFloat = max(leftDistance, rightDistance)
         
-        let titleWidth = self.frame.width - 2.0 * distance
-        self.titleLabel.frame = CGRect(x: distance, y: 0, width: titleWidth, height: self.frame.height)
+        let titleWidth = frame.width - 2.0 * distance
+        self.titleLabel.frame = CGRect(x: distance, y: 0, width: titleWidth, height: frame.height)
     }
 }
 

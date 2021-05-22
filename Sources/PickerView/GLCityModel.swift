@@ -27,7 +27,8 @@ public class GLCityModel {
         }
         
         var nextModels: [GLCityModel] = []
-        if let nexts = data[kNexts] as? [[String: Any]], nexts.count > 0  {
+        if let nexts = data[kNexts] as? [[String: Any]],
+           nexts.count > 0  {
             nexts.forEach { (j) in
                 let m = GLCityModel(with: j)
                 nextModels.append(m)

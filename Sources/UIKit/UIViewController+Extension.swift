@@ -9,17 +9,17 @@
 import Foundation
 import UIKit
 
-extension UIViewController {
+extension GL where Base == UIViewController {
     
     /// `present`
     /// - Parameters:
     ///   - viewController: 控制器
     ///   - animated: 是否需要动画
     ///   - completion: 完成回调
-    public func gl_present(destination viewController: UIViewController?, animated: Bool, completion: (() -> Void)? = nil) {
+    public func present(destination viewController: UIViewController?, animated: Bool, completion: (() -> Void)? = nil) {
         guard let viewController = viewController else { return }
         viewController.modalPresentationStyle = .fullScreen
-        present(viewController, animated: animated, completion: completion)
+        base.present(viewController, animated: animated, completion: completion)
     }
     
     
@@ -27,7 +27,7 @@ extension UIViewController {
     /// - Parameters:
     ///   - animated: 是否需要动画
     ///   - completion: 完成回调
-    public func gl_dismiss(animated: Bool, completion: (() -> Void)? = nil) {
-        dismiss(animated: animated, completion: completion)
+    public func dismiss(animated: Bool, completion: (() -> Void)? = nil) {
+        base.dismiss(animated: animated, completion: completion)
     }
 }

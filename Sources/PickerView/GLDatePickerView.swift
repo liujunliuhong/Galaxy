@@ -99,7 +99,7 @@ public final class GLDatePickerView: UIView {
         self.datePickerView.sizeToFit()
         let height = self.toolBarHeight + self.datePickerView.bounds.height
         
-        return CGSize(width: UIDevice.gl_width, height: height)
+        return CGSize(width: GL.width, height: height)
     }
 }
 
@@ -123,7 +123,7 @@ extension GLDatePickerView {
             addSubview(datePickerView)
             defaultToolBar.snp.makeConstraints { make in
                 make.left.top.equalToSuperview()
-                make.width.equalTo(UIDevice.gl_width)
+                make.width.equalTo(GL.width)
                 make.height.equalTo(toolBarHeight)
             }
             datePickerView.snp.makeConstraints { make in
@@ -179,7 +179,7 @@ extension GLDatePickerView {
         if let toolBar = toolBar {
             toolBar.snp.remakeConstraints { make in
                 make.left.top.equalToSuperview()
-                make.width.equalTo(UIDevice.gl_width)
+                make.width.equalTo(GL.width)
                 make.height.equalTo(toolBarHeight)
             }
             datePickerView.snp.remakeConstraints { make in
@@ -190,7 +190,7 @@ extension GLDatePickerView {
         } else {
             defaultToolBar.snp.remakeConstraints { make in
                 make.left.top.equalToSuperview()
-                make.width.equalTo(UIDevice.gl_width)
+                make.width.equalTo(GL.width)
                 make.height.equalTo(toolBarHeight)
             }
             datePickerView.snp.remakeConstraints { make in

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import GLDeviceTool
 
 private struct GLCusNavigationBarAssociatedKeys {
     static var layerKey = "com.galaxy.cusNavigationBar.backgroundLayer.key"
@@ -103,7 +102,7 @@ open class GLCusNavigationBar: UIView {
         }
     }
     
-    public var lineColor: UIColor = UIColor.gl_rgba(R: 162, G: 168, B: 195, A: 0.7) {
+    public var lineColor: UIColor = GL.rgba(R: 162, G: 168, B: 195, A: 0.7) {
         didSet {
             self.lineView.backgroundColor = lineColor
         }
@@ -196,7 +195,7 @@ extension GLCusNavigationBar {
         
         let o_x: CGFloat = .zero
         let barWidth: CGFloat = self.bounds.width
-        var sumHeight: CGFloat = UIDevice.gl_statusBarHeight
+        var sumHeight: CGFloat = GL.statusBarHeight
         
         
         // bar view
@@ -311,7 +310,7 @@ extension GLCusNavigationBar {
         
         // line view
         if !self.hideBar {
-            self.lineView.frame = CGRect(x: o_x, y: self.barView.gl_bottom - self.lineHeight, width: barWidth, height: self.lineHeight)
+            self.lineView.frame = CGRect(x: o_x, y: self.barView.gl.bottom - self.lineHeight, width: barWidth, height: self.lineHeight)
         }
         
         

@@ -125,18 +125,18 @@ class ViewController: UIViewController {
         self.navigationItem.title = "Demo"
         self.view.backgroundColor = .white
         
-        let options: GLSystemFaceKeyboardOptions = GLSystemFaceKeyboardOptions()
-        let faceKyboardSize: CGSize = CGSize(width: 300, height: 150)
-        let keyboard = GLSystemFaceKeyboard(keyboardSize: faceKyboardSize, options: options)
-        keyboard.backgroundColor = .orange
-        keyboard.delegate = self
-        self.view.addSubview(keyboard)
-        
-        keyboard.snp.makeConstraints { (make) in
-            make.left.equalToSuperview().offset(20)
-            make.top.equalToSuperview().offset(100)
-            make.size.equalTo(faceKyboardSize)
-        }
+//        let options: GLSystemFaceKeyboardOptions = GLSystemFaceKeyboardOptions()
+//        let faceKyboardSize: CGSize = CGSize(width: 300, height: 150)
+//        let keyboard = GLSystemFaceKeyboard(keyboardSize: faceKyboardSize, options: options)
+//        keyboard.backgroundColor = .orange
+//        keyboard.delegate = self
+//        self.view.addSubview(keyboard)
+//        
+//        keyboard.snp.makeConstraints { (make) in
+//            make.left.equalToSuperview().offset(20)
+//            make.top.equalToSuperview().offset(100)
+//            make.size.equalTo(faceKyboardSize)
+//        }
         
 //
 //
@@ -339,8 +339,9 @@ extension ViewController {
 //            pickerView.toolBarHeight = 90
 //        }
         
+//        ["1": 2].gl.jsonEncode
         
-        
+        print(["1": "1"].gl.jsonEncode!)
         
         let cityPickerView = GLCityPickerView()
 //        cityPickerView.enableDebugLog = true
@@ -384,16 +385,16 @@ extension ViewController {
     }
 }
 
-
-extension ViewController: GLSystemFaceKeyboardDelegate {
-    func systemFaceKeyboard(_ systemFaceKeyboard: GLSystemFaceKeyboard, didSelectFace face: String) {
-        GLLog("选中表情:\(face)")
-    }
-    
-    func systemFaceKeyboardDidClickDelete(_ systemFaceKeyboard: GLSystemFaceKeyboard) {
-        GLLog("删除表情")
-    }
-    
-    
-}
+//
+//extension ViewController: GLSystemFaceKeyboardDelegate {
+//    func systemFaceKeyboard(_ systemFaceKeyboard: GLSystemFaceKeyboard, didSelectFace face: String) {
+//        GLLog("选中表情:\(face)")
+//    }
+//
+//    func systemFaceKeyboardDidClickDelete(_ systemFaceKeyboard: GLSystemFaceKeyboard) {
+//        GLLog("删除表情")
+//    }
+//
+//
+//}
 

@@ -7,22 +7,21 @@
 //
 
 import UIKit
-import GLDeviceTool
 import FLEX
 
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
+    
+    
     var window: UIWindow?
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         FLEXManager.shared.showExplorer()
         
         GLLogSetup(saveToSandbox: true)
-        GLLog(UIDevice.gl_info)
+        GLLog(GL.deviceInformation)
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.makeKeyAndVisible()
@@ -32,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = navi
         
         let size = 1024*1024+7100
-        print(FileManager.default.gl_formatSize(length: size))
+        print(FileManager.default.gl.formatSize(length: size))
         
         
         

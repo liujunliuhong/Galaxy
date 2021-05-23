@@ -9,28 +9,28 @@
 import Foundation
 import UIKit
 
-extension UIApplication {
+extension GL where Base == UIApplication {
     /// 打开手机设置页面
-    public func gl_openIphoneSettings() {
+    public func openIphoneSettings() {
         _open(urlString: UIApplication.openSettingsURLString, completionHandler: nil)
     }
     
     /// 打开`App Store`
-    public func gl_openAppStore(with appID: String?) {
+    public func openAppStore(with appID: String?) {
         guard let appID = appID else { return }
         let urlString = "https://itunes.apple.com/app/id\(appID)"
         _open(urlString: urlString, completionHandler: nil)
     }
     
     /// 打开`App Store`的评论页面
-    public func gl_openAppStoreReview(appID: String?) {
+    public func openAppStoreReview(appID: String?) {
         guard let appID = appID else { return }
         let urlString = "https://itunes.apple.com/cn/app/id\(appID)?action=write-review"
         _open(urlString: urlString, completionHandler: nil)
     }
     
     /// 打电话
-    public func gl_makeCall(tel: String?) {
+    public func makeCall(tel: String?) {
         guard let tel = tel else { return }
         let urlString = "tel://\(tel)"
         _open(urlString: urlString, completionHandler: nil)
@@ -42,11 +42,11 @@ extension UIApplication {
     ///   - schemeType: schemeType
     ///
     /// 先尝试用浏览器打开给定的链接，如果打开失败，会用给定的`schemeType`对链接进行改造，再尝试打开
-    public func gl_openSafari(urlString: String?, schemeType: URL.GLSchemeType) {
+    public func openSafari(urlString: String?, schemeType: GLSchemeType) {
         var urlString = urlString
         _open(urlString: urlString) { (isSuccess) in
             if isSuccess { return }
-            urlString = urlString?.gl_toURL(schemeType: schemeType)
+            urlString = urlString?.gl.toURL(schemeType: schemeType)
             _open(urlString: urlString, completionHandler: nil)
         }
     }

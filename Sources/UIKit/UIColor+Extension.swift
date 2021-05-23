@@ -9,34 +9,34 @@
 import Foundation
 import UIKit
 
-extension UIColor {
+extension GL where Base == UIColor {
     /// 白色
-    public static let gl_white: UIColor = UIColor.gl_rgba(R: 255, G: 255, B: 255)
+    public static let white: UIColor = GL.rgba(R: 255, G: 255, B: 255)
     
     /// 黑色
-    public static let gl_black: UIColor = UIColor.gl_rgba(R: 0, G: 0, B: 0)
+    public static let black: UIColor = GL.rgba(R: 0, G: 0, B: 0)
     
     /// 透明
-    public static let gl_clear: UIColor = UIColor.gl_black.withAlphaComponent(0)
+    public static let clear: UIColor = GL.black.withAlphaComponent(0)
     
     /// `R`、`G`、`B`、`A`转`UIColor`
-    public static func gl_rgba(R: CGFloat, G: CGFloat, B: CGFloat, A: CGFloat = 1.0) -> UIColor {
+    public static func rgba(R: CGFloat, G: CGFloat, B: CGFloat, A: CGFloat = 1.0) -> UIColor {
         return UIColor(red: (R / 255.0), green: (G / 255.0), blue: (B / 255.0), alpha: A)
     }
     
     /// 获取一个随机颜色
-    public static func gl_randomColor() -> UIColor {
-        let R: CGFloat = Int.random(in: Range(uncheckedBounds: (0, 255))).gl_cgFloat
-        let G: CGFloat = Int.random(in: Range(uncheckedBounds: (0, 255))).gl_cgFloat
-        let B: CGFloat = Int.random(in: Range(uncheckedBounds: (0, 255))).gl_cgFloat
+    public static func randomColor() -> UIColor {
+        let R: CGFloat = Int.random(in: Range(uncheckedBounds: (0, 255))).gl.cgFloat
+        let G: CGFloat = Int.random(in: Range(uncheckedBounds: (0, 255))).gl.cgFloat
+        let B: CGFloat = Int.random(in: Range(uncheckedBounds: (0, 255))).gl.cgFloat
         let A: CGFloat = 1.0
-        return UIColor.gl_rgba(R: R, G: G, B: B, A: A)
+        return GL.rgba(R: R, G: G, B: B, A: A)
     }
     
     /// `16`进制转颜色
     ///
     /// 形如`0xFFFFFF`、`0xffffff`
-    public static func gl_hexColor(hex: Int, alpha: CGFloat = 1.0) -> UIColor {
+    public static func hexColor(hex: Int, alpha: CGFloat = 1.0) -> UIColor {
         let red = CGFloat((Double((hex >> 16) & 0xFF)) / 255.0)
         let green = CGFloat((Double((hex >> 8) & 0xFF)) / 255.0)
         let blue = CGFloat((Double(hex & 0xFF)) / 255.0)
@@ -46,8 +46,8 @@ extension UIColor {
     /// 字符串转颜色
     ///
     /// 支持`#ffffff`、`#FFFFFF`、 `#fff`、 `255, 255, 255`、 `255,255,255`、 `0xFFFFFF`
-    public static func gl_color(string: String?) -> UIColor {
-        guard var string = string else { return .gl_clear }
+    public static func color(string: String?) -> UIColor {
+        guard var string = string else { return GL.clear }
         
         string = string.uppercased()
         string = string.replacingOccurrences(of: "#", with: "")
@@ -89,19 +89,20 @@ extension UIColor {
             default:
                 break
         }
-        
-        return hexColor ?? .gl_clear
+        return hexColor ?? GL.clear
     }
-    
+}
+
+extension GL where Base == UIColor {
     /// 颜色转图片
-    public func gl_toImage(size: CGSize = CGSize(width: 1.0, height: 1.0)) -> UIImage? {
+    public func toImage(size: CGSize = CGSize(width: 1.0, height: 1.0)) -> UIImage? {
         let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         UIGraphicsBeginImageContext(size)
         let context = UIGraphicsGetCurrentContext()
         defer {
             UIGraphicsEndImageContext()
         }
-        context?.setFillColor(cgColor)
+        context?.setFillColor(base.cgColor)
         context?.fill(rect)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         return image

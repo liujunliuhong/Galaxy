@@ -9,20 +9,20 @@
 import Foundation
 import UIKit
 
-extension UIImage {
+extension GL where Base == UIImage {
     /// 图片的高宽比
-    public var gl_heightRatio: CGFloat {
-        if size.width.isLessThanOrEqualTo(.zero) {
+    public var heightRatio: CGFloat {
+        if base.size.width.isLessThanOrEqualTo(.zero) {
             return 1.0
         }
-        return size.height / size.width
+        return base.size.height / base.size.width
     }
     
     /// 图片的宽高比
-    public var gl_widthRatio: CGFloat {
-        if size.height.isLessThanOrEqualTo(.zero) {
+    public var widthRatio: CGFloat {
+        if base.size.height.isLessThanOrEqualTo(.zero) {
             return 1.0
         }
-        return size.width / size.height
+        return base.size.width / base.size.height
     }
 }

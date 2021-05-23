@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 import UserNotifications
 
-extension UIApplication {
+extension GL where Base == UIApplication {
     /// 注册推送（支持本地推送和远程推送）
-    public func gl_registerNotification(completion: (() -> Void)? = nil) {
+    public func registerNotification(completion: (() -> Void)? = nil) {
         if #available(iOS 10.0, *) {
             let center = UNUserNotificationCenter.current()
             let options: UNAuthorizationOptions = [.badge, .alert, .sound]
@@ -32,7 +32,7 @@ extension UIApplication {
     }
     
     /// 清除角标
-    public func gl_clearBadgeNumber() {
+    public func clearBadgeNumber() {
         UIApplication.shared.applicationIconBadgeNumber = 0
     }
 }

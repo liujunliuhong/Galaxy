@@ -19,9 +19,9 @@ import CoreLocation
 ///         <string>baidumap</string>
 ///     </array>
 ///
-extension UIApplication {
+extension GL where Base == UIApplication {
     /// 百度地图坐标类型
-    public enum GLBaiDuMapCoordinateType: String {
+    public enum BaiDuMapCoordinateType: String {
         case bd09ll = "bd09ll"  /// 百度经纬度坐标
         case bd09mc = "bd09mc"  /// 百度墨卡托坐标
         case gcj02 = "gcj02"    /// 经国测局加密的坐标
@@ -29,7 +29,7 @@ extension UIApplication {
     }
     
     /// 百度地图导航类型
-    public enum GLBaiDuNavigationType: String {
+    public enum BaiDuNavigationType: String {
         case transit = "transit"        /// 公交
         case driving = "driving"        /// 驾车
         case navigation = "navigation"  /// 导航
@@ -38,7 +38,7 @@ extension UIApplication {
     }
     
     /// 高德地图导航类型
-    public enum GLGaoDeNavigationType: Int {
+    public enum GaoDeNavigationType: Int {
         case driving = 0   /// 驾车
         case transit = 1   /// 公交
         case walking = 2   /// 步行
@@ -46,13 +46,13 @@ extension UIApplication {
     }
     
     /// 是否可以打开百度地图app
-    public func gl_canOpenBaiDuMapApp() -> Bool {
+    public func canOpenBaiDuMapApp() -> Bool {
         guard let url = URL(string: "baidumap://") else { return false }
         return UIApplication.shared.canOpenURL(url)
     }
     
     /// 是否可以打开高德地图app
-    public func gl_canOpenGaoDeMapApp() -> Bool {
+    public func canOpenGaoDeMapApp() -> Bool {
         guard let url = URL(string: "iosamap://") else { return false }
         return UIApplication.shared.canOpenURL(url)
     }
@@ -63,7 +63,7 @@ extension UIApplication {
     ///     let startName: String = "起点位置"
     ///     let destinationCoordinate = CLLocationCoordinate2D(latitude: 39.54, longitude: 115.25)
     ///     let destinationName: String = "终点位置"
-    ///     UIApplication.shared.gl_openSystemMap(currentPlace: startCoordinate,
+    ///     UIApplication.shared.gl.openSystemMap(currentPlace: startCoordinate,
     ///                                           currentPlaceName: startName,
     ///                                           destination: destinationCoordinate,
     ///                                           destinationName: destinationName,
@@ -80,13 +80,13 @@ extension UIApplication {
     ///   - mapType: 地图类型
     ///   - showsTrafficKey: 是否显示交通情况
     ///
-    public func gl_openSystemMap(currentPlace: CLLocationCoordinate2D?,
-                                 currentPlaceName: String?,
-                                 destination: CLLocationCoordinate2D?,
-                                 destinationName: String?,
-                                 directionsMode: String,
-                                 mapType: MKMapType,
-                                 showsTrafficKey: Bool) {
+    public func openSystemMap(currentPlace: CLLocationCoordinate2D?,
+                              currentPlaceName: String?,
+                              destination: CLLocationCoordinate2D?,
+                              destinationName: String?,
+                              directionsMode: String,
+                              mapType: MKMapType,
+                              showsTrafficKey: Bool) {
         guard let destination = destination else { return }
         //
         var currentPlaceItem: MKMapItem?
@@ -132,7 +132,7 @@ extension UIApplication {
     ///     let startName: String = "起点位置"
     ///     let destinationCoordinate = CLLocationCoordinate2D(latitude: 39.54, longitude: 115.25)
     ///     let destinationName: String = "终点位置"
-    ///     UIApplication.shared.gl_openBaiDuMap(currentPlace: startCoordinate,
+    ///     UIApplication.shared.gl.openBaiDuMap(currentPlace: startCoordinate,
     ///                                          currentPlaceName: startName,
     ///                                          destination: destinationCoordinate,
     ///                                          destinationName: destinationName,
@@ -146,14 +146,14 @@ extension UIApplication {
     ///   - destinationName: 目的地名称，可以为空
     ///   - coordinateType: 坐标类型
     ///   - navigationType: 导航模式
-    public func gl_openBaiDuMap(currentPlace: CLLocationCoordinate2D?,
-                                currentPlaceName: String?,
-                                destination: CLLocationCoordinate2D?,
-                                destinationName: String?,
-                                coordinateType: UIApplication.GLBaiDuMapCoordinateType,
-                                navigationType: UIApplication.GLBaiDuNavigationType) {
+    public func openBaiDuMap(currentPlace: CLLocationCoordinate2D?,
+                             currentPlaceName: String?,
+                             destination: CLLocationCoordinate2D?,
+                             destinationName: String?,
+                             coordinateType: GalaxyWrapper.BaiDuMapCoordinateType,
+                             navigationType: GalaxyWrapper.BaiDuNavigationType) {
         guard let destination = destination else { return }
-        guard let bundleID = Bundle.gl_appBundleID else { return }
+        guard let bundleID = GL.appBundleID else { return }
         //
         var origin: String = "origin={{我的位置}}"
         if let currentPlace = currentPlace, let currentPlaceName = currentPlaceName, currentPlaceName.count > 0 {
@@ -175,7 +175,7 @@ extension UIApplication {
         print("open baidu map url: \(url)")
         #endif
         url = (url as NSString).addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
-        UIApplication.shared.gl_openSafari(urlString: url, schemeType: .https)
+        UIApplication.shared.gl.openSafari(urlString: url, schemeType: .https)
     }
     
     
@@ -186,7 +186,7 @@ extension UIApplication {
     ///     let startName: String = "起点位置"
     ///     let destinationCoordinate = CLLocationCoordinate2D(latitude: 39.54, longitude: 115.25)
     ///     let destinationName: String = "终点位置"
-    ///     UIApplication.shared.gl_openGaoDeMap(currentPlace: startCoordinate,
+    ///     UIApplication.shared.gl.openGaoDeMap(currentPlace: startCoordinate,
     ///                                          currentPlaceName: startName,
     ///                                          destination: destinationCoordinate,
     ///                                          destinationName: destinationName,
@@ -198,13 +198,13 @@ extension UIApplication {
     ///   - destination: 目的地，可以为空。如果为空，拉不起导航
     ///   - destinationName: 目的地名称，可以为空
     ///   - navigationType: 导航类型
-    public func gl_openGaoDeMap(currentPlace: CLLocationCoordinate2D?,
-                                currentPlaceName: String?,
-                                destination: CLLocationCoordinate2D?,
-                                destinationName: String?,
-                                navigationType: UIApplication.GLGaoDeNavigationType) {
+    public func openGaoDeMap(currentPlace: CLLocationCoordinate2D?,
+                             currentPlaceName: String?,
+                             destination: CLLocationCoordinate2D?,
+                             destinationName: String?,
+                             navigationType: GalaxyWrapper.GaoDeNavigationType) {
         guard let destination = destination else { return }
-        guard let appName = Bundle.gl_appName else { return }
+        guard let appName = GL.appName else { return }
         //
         var origin: String = ""
         if let currentPlace = currentPlace, let currentPlaceName = currentPlaceName, currentPlaceName.count > 0 {
@@ -227,6 +227,6 @@ extension UIApplication {
         print("open gaode map url: \(url)")
         #endif
         url = (url as NSString).addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
-        UIApplication.shared.gl_openSafari(urlString: url, schemeType: .https)
+        UIApplication.shared.gl.openSafari(urlString: url, schemeType: .https)
     }
 }

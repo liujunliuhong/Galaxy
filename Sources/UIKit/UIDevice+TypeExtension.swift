@@ -42,8 +42,8 @@ import UIKit
  iPhone 5             320 x 568             2x
  iPhone 5s            320 x 568             2x
  */
-extension UIDevice {
-    public enum GLType: CaseIterable, Equatable {
+extension GL where Base == UIDevice {
+    public enum DeviceType: CaseIterable, Equatable {
         // AirPods
         case AirPods_1st_generation
         case AirPods_2nd_generation
@@ -137,7 +137,7 @@ extension UIDevice {
     }
 }
 
-extension UIDevice.GLType: CustomStringConvertible, CustomDebugStringConvertible {
+extension GalaxyWrapper.DeviceType: CustomStringConvertible, CustomDebugStringConvertible {
     public var debugDescription: String {
         return self.description
     }

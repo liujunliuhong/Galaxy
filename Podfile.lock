@@ -8,7 +8,6 @@ PODS:
   - CocoaLumberjack/Swift (3.7.2):
     - CocoaLumberjack/Core
   - FLEX (4.4.1)
-  - GLDeviceTool (1.1.0)
   - GRDB.swift (5.7.4):
     - GRDB.swift/standard (= 5.7.4)
   - GRDB.swift/standard (5.7.4)
@@ -80,7 +79,6 @@ DEPENDENCIES:
   - BMKLocationKit
   - CocoaLumberjack/Swift
   - FLEX
-  - GLDeviceTool
   - GRDB.swift
   - MBProgressHUD
   - Moya
@@ -102,7 +100,6 @@ SPEC REPOS:
     - BMKLocationKit
     - CocoaLumberjack
     - FLEX
-    - GLDeviceTool
     - GRDB.swift
     - MBProgressHUD
     - Moya
@@ -128,7 +125,6 @@ SPEC CHECKSUMS:
   BMKLocationKit: 097814ef672b1e57e86e6c1968d7892fb78002bf
   CocoaLumberjack: b7e05132ff94f6ae4dfa9d5bce9141893a21d9da
   FLEX: 7ca2c8cd3a435ff501ff6d2f2141e9bdc934eaab
-  GLDeviceTool: 0e40b24163e4bffbdbcfb3196e379ec54b2ddce8
   GRDB.swift: 2064e726141f130d0b8bd819b29086f2b1157597
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
@@ -147,6 +143,6 @@ SPEC CHECKSUMS:
   Texture: 2f109e937850d94d1d07232041c9c7313ccddb81
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: c4d4adea6c8f209a2b1f6ea07ecc891c249a75db
+PODFILE CHECKSUM: 849c5c54be66005bad1e66b4fc3975b93c5fcd57
 
 COCOAPODS: 1.10.1

@@ -9,174 +9,175 @@
 import Foundation
 import UIKit
 
-extension UIView {
+extension GL where Base == UIView {
     /// origin
-    public var gl_origin: CGPoint {
+    public var origin: CGPoint {
         get {
-            return self.frame.origin
+            return base.frame.origin
         }
         set {
-            var frame = self.frame
+            var frame = base.frame
             frame.origin = newValue
-            self.frame = frame
+            base.frame = frame
         }
     }
     
     /// x
-    public var gl_x: CGFloat {
+    public var x: CGFloat {
         get {
-            return self.frame.origin.x
+            return base.frame.origin.x
         }
         set {
-            var frame = self.frame
+            var frame = base.frame
             frame.origin.x = newValue
-            self.frame = frame
+            base.frame = frame
         }
     }
     
     /// y
-    public var gl_y: CGFloat {
+    public var y: CGFloat {
         get {
-            return self.frame.origin.y
+            return base.frame.origin.y
         }
         set {
-            var frame = self.frame
+            var frame = base.frame
             frame.origin.y = newValue
-            self.frame = frame
+            base.frame = frame
         }
     }
     
     /// size
-    public var gl_size: CGSize {
+    public var size: CGSize {
         get {
-            return self.frame.size
+            return base.frame.size
         }
         set {
-            var frame = self.frame
+            var frame = base.frame
             frame.size = newValue
-            self.frame = frame
+            base.frame = frame
         }
     }
     
     /// width
-    public var gl_width: CGFloat {
+    public var width: CGFloat {
         get {
-            return self.frame.size.width
+            return base.frame.size.width
         }
         set {
-            var frame = self.frame
+            var frame = base.frame
             frame.size.width = newValue
-            self.frame = frame
+            base.frame = frame
         }
     }
     
     /// height
-    public var gl_height: CGFloat {
+    public var height: CGFloat {
         get {
-            return self.frame.size.height
+            return base.frame.size.height
         }
         set {
-            var frame = self.frame
+            var frame = base.frame
             frame.size.height = newValue
-            self.frame = frame
+            base.frame = frame
         }
     }
     
     /// center
-    public var gl_center: CGPoint {
+    public var center: CGPoint {
         get {
-            return self.center
+            return base.center
         }
         set {
-            self.center = newValue
+            base.center = newValue
         }
     }
     
     /// center x
-    public var gl_centerX: CGFloat {
+    public var centerX: CGFloat {
         get {
-            return self.center.x
+            return base.center.x
         }
         set {
-            self.center = CGPoint(x: newValue, y: self.center.y)
+            base.center = CGPoint(x: newValue, y: base.center.y)
         }
     }
     
     /// center y
-    public var gl_centerY: CGFloat {
+    public var centerY: CGFloat {
         get {
-            return self.center.y
+            return base.center.y
         }
         set {
-            self.center = CGPoint(x: self.center.x, y: newValue)
+            base.center = CGPoint(x: base.center.x, y: newValue)
         }
     }
     
     /// top
-    public var gl_top: CGFloat {
+    public var top: CGFloat {
         get {
-            return self.frame.origin.y
+            return base.frame.origin.y
         }
         set {
-            var frame = self.frame
+            var frame = base.frame
             frame.origin.y = newValue
-            self.frame = frame
+            base.frame = frame
         }
     }
     
     /// bottom
-    public var gl_bottom: CGFloat {
+    public var bottom: CGFloat {
         get {
-            return self.frame.origin.y + self.frame.size.height
+            return base.frame.origin.y + base.frame.size.height
         }
         set {
-            var frame = self.frame
-            frame.origin.y = newValue - self.frame.size.height
-            self.frame = frame
+            var frame = base.frame
+            frame.origin.y = newValue - base.frame.size.height
+            base.frame = frame
         }
     }
     
     /// left
-    public var gl_left: CGFloat {
+    public var left: CGFloat {
         get {
-            return self.frame.origin.x
+            return base.frame.origin.x
         }
         set {
-            var frame = self.frame
+            var frame = base.frame
             frame.origin.x = newValue
-            self.frame = frame
+            base.frame = frame
         }
     }
     
     /// right
-    public var gl_right: CGFloat {
+    public var right: CGFloat {
         get {
-            return self.frame.origin.x + self.frame.size.width
+            return base.frame.origin.x + base.frame.size.width
         }
         set {
-            var frame = self.frame
-            frame.origin.x = newValue - self.frame.size.width
-            self.frame = frame
+            var frame = base.frame
+            frame.origin.x = newValue - base.frame.size.width
+            base.frame = frame
         }
     }
 }
 
-extension UIView {
+extension GL where Base == UIView {
     /// 对一个`View`的指定`Rect`截图
-    public func gl_snapshot(targetRect: CGRect?) -> UIImage? {
+    public func snapshot(targetRect: CGRect?) -> UIImage? {
         // Setting the screen magnification can guarantee the quality of screenshots
         let scale: CGFloat = UIScreen.main.scale
         //
-        var targetRect = targetRect ?? self.frame
+        var targetRect = targetRect ?? base.frame
         targetRect = CGRect(x: targetRect.origin.x * scale, y: targetRect.origin.y * scale, width: targetRect.width * scale, height: targetRect.height * scale)
         //
-        UIGraphicsBeginImageContextWithOptions(self.frame.size, true, scale)
+        UIGraphicsBeginImageContextWithOptions(base.frame.size, true, scale)
         // This code cannot be written in front of `UIGraphicsBeginImageContextWithOptions`.
         // Otherwise `context` is nil.
         guard let context = UIGraphicsGetCurrentContext() else {
             return nil
         }
-        self.layer.render(in: context)
+        
+        base.layer.render(in: context)
         defer {
             UIGraphicsEndImageContext()
         }

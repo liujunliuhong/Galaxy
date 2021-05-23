@@ -75,7 +75,7 @@ extension GLWordsSort {
             } else {
                 let index = code - 19968
                 if index >= 0 && index < gl_firstLetterArray.count { /* 索引里面查找 */
-                    let s = gl_firstLetterArray.gl_string(index: index) ?? ""
+                    let s = gl_firstLetterArray.gl.string(index: index) ?? ""
                     result.append(s)
                 } else { /* 特殊字符 */
                     result.append(String(scalar))

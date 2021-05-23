@@ -8,11 +8,6 @@
 
 import Foundation
 
-
-extension Dictionary {
-    /// json encode
-    public var gl_jsonEncode: String? {
-        guard let data = try? JSONSerialization.data(withJSONObject: self, options: []) else { return nil }
-        return String(data: data, encoding: .utf8)
-    }
+extension GL where Base == Dictionary<String, Any> {
+    
 }

@@ -8,13 +8,12 @@
 
 import Foundation
 
-
-extension Date {
+extension GL where Base == Date {
     /// 是否是今天
-    public var gl_isToday: Bool {
+    public var isToday: Bool {
         let calendar = Calendar(identifier: Calendar.current.identifier)
         let cmps: Set<Calendar.Component> = [.year, .month, .day]
-        let current = calendar.dateComponents(cmps, from: self)
+        let current = calendar.dateComponents(cmps, from: base)
         let now = calendar.dateComponents(cmps, from: Date())
         return current.year == now.year && current.month == now.month && current.day == now.day
     }

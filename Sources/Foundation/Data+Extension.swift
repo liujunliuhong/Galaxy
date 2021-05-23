@@ -10,17 +10,17 @@ import Foundation
 
 private let hexAlphabet = "0123456789abcdef".unicodeScalars.map { $0 }
 
-extension Data {
+extension GL where Base == Data {
     /// 获取设备`token`，用于推送
-    public var gl_deviceToken: String {
-        return gl_toHexString
+    public var deviceToken: String {
+        return toHexString
     }
     
     /// `Data`转`Bytes`
     ///
     /// `Byte`是`UInt8`类型
-    public var gl_bytes: Array<UInt8> {
-        return Array(self)
+    public var bytes: Array<UInt8> {
+        return Array(base)
     }
     
     /// `Data`转`16`进制字符串
@@ -28,12 +28,12 @@ extension Data {
     /// 转换为`16`进制字符串之后，全部为小写，且不含`0x`或者`0X`前缀
     ///
     ///     <68656c6c 6f> -> "68656c6c6f"
-    public var gl_toHexString: String {
-        return reduce("", { $0 + String(format: "%02x", $1) })
+    public var toHexString: String {
+        return base.reduce("", { $0 + String(format: "%02x", $1) })
     }
     
     /// 生成指定长度的随机`Data`
-    public static func gl_randomData(length: Int) -> Data? {
+    public static func randomData(length: Int) -> Data? {
         for _ in 0...1024 {
             var data = Data(repeating: 0, count: length)
             let result = data.withUnsafeMutableBytes { (body: UnsafeMutableRawBufferPointer) -> Int32? in

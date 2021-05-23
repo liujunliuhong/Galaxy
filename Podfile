@@ -5,7 +5,7 @@ target 'SwiftTool' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  pod 'GLDeviceTool' # 个人开发工具
+#  pod 'GLDeviceTool' # 个人开发工具
 
   pod 'RxSwift'
   pod 'RxCocoa'

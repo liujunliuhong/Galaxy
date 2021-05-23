@@ -9,14 +9,14 @@
 import Foundation
 import CoreGraphics
 
-extension Int {
+extension GL where Base == Int {
     /// `Int`转`Float`
-    public var gl_float: Float {
-        return Float(self)
+    public var float: Float {
+        return Float(base)
     }
     
     /// `Int`转`CGFloat`
-    public var gl_cgFloat: CGFloat {
-        return CGFloat(self)
+    public var cgFloat: CGFloat {
+        return CGFloat(base)
     }
 }

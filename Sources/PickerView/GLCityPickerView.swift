@@ -151,7 +151,7 @@ public final class GLCityPickerView: UIView {
         self.pickerView.sizeToFit()
         let height = self.toolBarHeight + self.pickerView.bounds.height
         
-        return CGSize(width: UIDevice.gl_width, height: height)
+        return CGSize(width: GL.width, height: height)
     }
 }
 
@@ -175,7 +175,7 @@ extension GLCityPickerView {
             addSubview(pickerView)
             defaultToolBar.snp.makeConstraints { make in
                 make.left.top.equalToSuperview()
-                make.width.equalTo(UIDevice.gl_width)
+                make.width.equalTo(GL.width)
                 make.height.equalTo(toolBarHeight)
             }
             pickerView.snp.makeConstraints { make in
@@ -431,7 +431,7 @@ extension GLCityPickerView {
         if let toolBar = toolBar {
             toolBar.snp.remakeConstraints { make in
                 make.left.top.equalToSuperview()
-                make.width.equalTo(UIDevice.gl_width)
+                make.width.equalTo(GL.width)
                 make.height.equalTo(toolBarHeight)
             }
             pickerView.snp.remakeConstraints { make in
@@ -442,7 +442,7 @@ extension GLCityPickerView {
         } else {
             defaultToolBar.snp.remakeConstraints { make in
                 make.left.top.equalToSuperview()
-                make.width.equalTo(UIDevice.gl_width)
+                make.width.equalTo(GL.width)
                 make.height.equalTo(toolBarHeight)
             }
             pickerView.snp.remakeConstraints { make in
@@ -502,7 +502,7 @@ extension GLCityPickerView {
     public func show(doneClosure: (([Int])->())?, currentSelectRowClosure: (([Int])->())? = nil) {
         guard let window = UIApplication.shared.keyWindow else { return }
         //
-        guard let datas = GLCityData.gl_jsonDecode as? [[String: Any]] else { return }
+        guard let datas = GLCityData.gl.jsonDecode as? [[String: Any]] else { return }
         self.handleDatasource(dataSource: datas)
         //
         self.doneClosure = doneClosure
@@ -577,8 +577,10 @@ extension GLCityPickerView {
         
         pickerView.selectRow(row, inComponent: component, animated: animated)
         
-        if currentSelectIndexs.count < currentSelectIndexs.count {
-            return
+        if let titlesForComponents = titlesForComponents {
+            if currentSelectIndexs.count < titlesForComponents.count {
+                return
+            }
         }
         
         if component <= currentSelectIndexs.count {

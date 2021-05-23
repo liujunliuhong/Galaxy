@@ -8,18 +8,12 @@
 
 import Foundation
 
-extension URL {
-    
-    public enum GLSchemeType: String, CaseIterable {
-        case http = "http"
-        case https = "https"
-    }
-    
+extension GL where Base == URL {
     /// 获取`URL`里面的所有参数，组装成字典
     ///
     /// 支持`www.baidu.com?name=xiaoming&age=20`形式
-    public var gl_queryParameters: [String: String]? {
-        guard let components = URLComponents(url: self, resolvingAgainstBaseURL: false),
+    public var queryParameters: [String: String]? {
+        guard let components = URLComponents(url: base, resolvingAgainstBaseURL: false),
               let queryItems = components.queryItems else { return nil }
         
         var items: [String: String] = [:]
@@ -33,8 +27,8 @@ extension URL {
     /// 在原有的`URL`上面拼接参数
     ///
     /// 支持`www.baidu.com?name=xiaoming&age=20`形式
-    public func gl_appendingQueryParameters(_ parameters: [String: String]) -> URL? {
-        guard var urlComponents = URLComponents(url: self, resolvingAgainstBaseURL: true) else { return nil }
+    public func appendingQueryParameters(_ parameters: [String: String]) -> URL? {
+        guard var urlComponents = URLComponents(url: base, resolvingAgainstBaseURL: true) else { return nil }
         let queryItems = parameters.map { (key, value) -> URLQueryItem in
             return URLQueryItem(name: key, value: value)
         }
@@ -45,8 +39,8 @@ extension URL {
     /// 在`URL`上面查询一个参数
     ///
     /// 支持`www.baidu.com?name=xiaoming&age=20`形式
-    public func gl_queryValue(for key: String) -> String? {
-        return URLComponents(string: absoluteString)?
+    public func queryValue(for key: String) -> String? {
+        return URLComponents(string: base.absoluteString)?
             .queryItems?
             .first(where: { $0.name == key })?
             .value

@@ -8,19 +8,18 @@
 
 import Foundation
 
-
-extension Numeric {
+extension GL where Base: Numeric {
     /// 角度转弧度
-    public var gl_degreesToRadius: Double {
-        let temp: Double = Double("\(self)") ?? 0
+    public var degreesToRadius: Double {
+        let temp: Double = Double("\(base)") ?? 0
         var result = temp * Double.pi
         result = result / Double(180.0)
         return result
     }
     
     /// 弧度转角度
-    public var gl_radiusToDegrees: Double {
-        let temp: Double = Double("\(self)") ?? 0
+    public var radiusToDegrees: Double {
+        let temp: Double = Double("\(base)") ?? 0
         var result = temp * Double(180.0)
         result = result / Double.pi
         return result

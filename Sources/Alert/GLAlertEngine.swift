@@ -187,8 +187,7 @@ extension GLAlertEngine {
             make.edges.equalToSuperview()
         }
         if let currentAlertView = currentAlertView,
-           let options = objc_getAssociatedObject(currentAlertView, &Keys.associatedKey) as? GLAlertEngine.Options,
-           options.dismissPosition != .none {
+           let options = objc_getAssociatedObject(currentAlertView, &Keys.associatedKey) as? GLAlertEngine.Options {
             setToPositionConstraints(view: currentAlertView, toPosition: options.toPosition)
         }
     }

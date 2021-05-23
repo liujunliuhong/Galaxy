@@ -128,7 +128,7 @@ public final class GLPickerView: UIView {
         self.pickerView.sizeToFit()
         let height = self.toolBarHeight + self.pickerView.bounds.height
         
-        return CGSize(width: UIDevice.gl_width, height: height)
+        return CGSize(width: GL.width, height: height)
     }
 }
 
@@ -153,7 +153,7 @@ extension GLPickerView {
             addSubview(pickerView)
             defaultToolBar.snp.makeConstraints { make in
                 make.left.top.equalToSuperview()
-                make.width.equalTo(UIDevice.gl_width)
+                make.width.equalTo(GL.width)
                 make.height.equalTo(toolBarHeight)
             }
             pickerView.snp.makeConstraints { make in
@@ -192,7 +192,7 @@ extension GLPickerView {
         if let toolBar = toolBar {
             toolBar.snp.remakeConstraints { make in
                 make.left.top.equalToSuperview()
-                make.width.equalTo(UIDevice.gl_width)
+                make.width.equalTo(GL.width)
                 make.height.equalTo(toolBarHeight)
             }
             pickerView.snp.remakeConstraints { make in
@@ -203,7 +203,7 @@ extension GLPickerView {
         } else {
             defaultToolBar.snp.remakeConstraints { make in
                 make.left.top.equalToSuperview()
-                make.width.equalTo(UIDevice.gl_width)
+                make.width.equalTo(GL.width)
                 make.height.equalTo(toolBarHeight)
             }
             pickerView.snp.remakeConstraints { make in

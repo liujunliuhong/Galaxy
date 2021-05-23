@@ -9,48 +9,48 @@
 import Foundation
 import CommonCrypto
 
-extension String {
+extension GL where Base == String {
     /// `json`解析
-    public var gl_jsonDecode: Any? {
-        guard let data = data(using: .utf8) else { return nil }
+    public var jsonDecode: Any? {
+        guard let data = base.data(using: .utf8) else { return nil }
         return try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
     }
     
     /// If it is Chinese, then unicode is displayed on the console, which affects reading, so convert it.
-    public var gl_unicodeToUTF8: String? {
-        guard let data = data(using: .utf8) else { return nil }
+    public var unicodeToUTF8: String? {
+        guard let data = base.data(using: .utf8) else { return nil }
         guard let utf8 = String(data: data, encoding: .nonLossyASCII)?.utf8 else { return nil }
         return "\(utf8)"
     }
     
     /// 获取字符串中指定位置的内容
-    public func gl_string(index: Int) -> String? {
-        if index >= count || index < 0 {
+    public func string(index: Int) -> String? {
+        if index >= base.count || index < 0 {
             return nil
         }
-        let start = self.index(startIndex, offsetBy: index)
-        let end = self.index(startIndex, offsetBy: index + 1)
-        return String(self[start..<end])
+        let start = base.index(base.startIndex, offsetBy: index)
+        let end = base.index(base.startIndex, offsetBy: index + 1)
+        return String(base[start..<end])
     }
     
     /// 获取字符串中，某一个范围内的内容
-    public func gl_string(startIndex: Int, endIndex: Int) -> String? {
-        if count <= 0 {
+    public func string(startIndex: Int, endIndex: Int) -> String? {
+        if base.count <= 0 {
             return nil
         }
         if endIndex <= startIndex {
             return nil
         }
         let start = max(startIndex, 0)
-        let end = min(endIndex, count)
-        let _start = self.index(self.startIndex, offsetBy: start)
-        let _end = self.index(self.startIndex, offsetBy: end)
-        return String(self[_start..<_end])
+        let end = min(endIndex, base.count)
+        let _start = base.index(base.startIndex, offsetBy: start)
+        let _end = base.index(base.startIndex, offsetBy: end)
+        return String(base[_start..<_end])
     }
     
     /// 字符串中是否包含中文
-    public func gl_isIncludeChinese() -> Bool {
-        for ch in unicodeScalars {
+    public func isIncludeChinese() -> Bool {
+        for ch in base.unicodeScalars {
             if (0x4e00 < ch.value  && ch.value < 0x9fff) { // Chinese character range：0x4e00 ~ 0x9fff
                 return true
             }
@@ -59,45 +59,45 @@ extension String {
     }
     
     /// 是否有`0x`或者`0X`前缀
-    public var gl_hasHexPrefix: Bool {
-        return hasPrefix("0x") || hasPrefix("0X")
+    public var hasHexPrefix: Bool {
+        return base.hasPrefix("0x") || base.hasPrefix("0X")
     }
     
     /// 切割`0x`或者`0X`前缀
-    public var gl_splitHexPrefix: String {
-        if hasPrefix("0x") || hasPrefix("0X") {
-            let indexStart = index(startIndex, offsetBy: 2)
-            let result = String(self[indexStart...])
-            if result.gl_hasHexPrefix {
-                return result.gl_splitHexPrefix
+    public var splitHexPrefix: String {
+        if base.hasPrefix("0x") || base.hasPrefix("0X") {
+            let indexStart = base.index(base.startIndex, offsetBy: 2)
+            let result = String(base[indexStart...])
+            if result.gl.hasHexPrefix {
+                return result.gl.splitHexPrefix
             }
             return result
         }
-        return self
+        return base
     }
     
     /// 添加`0x`前缀（小写的`0x`）
-    public var gl_add0xHexPrefix: String {
-        if !gl_hasHexPrefix {
-            return "0x" + self
+    public var add0xHexPrefix: String {
+        if !base.gl.hasHexPrefix {
+            return "0x" + base
         }
-        return self
+        return base
     }
     
     /// 添加'0X'前缀（大写的`0X`）
-    public var gl_add0XHexPrefix: String {
-        if !gl_hasHexPrefix {
-            return "0x" + self
+    public var add0XHexPrefix: String {
+        if !base.gl.hasHexPrefix {
+            return "0x" + base
         }
-        return self
+        return base
     }
     
     /// `16`进制字符串转`Data`
     ///
     ///     "68656c6c6f" -> <68656c6c 6f>
     ///
-    public var gl_toHexData: Data? {
-        let string = gl_splitHexPrefix
+    public var toHexData: Data? {
+        let string = base.gl.splitHexPrefix
         guard let hexData = string.data(using: .ascii) else { return nil }
         
         let len = string.count / 2
@@ -129,14 +129,14 @@ extension String {
     }
     
     /// 字符串转`Bytes`
-    public var gl_toBytes: Array<UInt8>? {
-        guard let data = data(using: .utf8, allowLossyConversion: true) else { return nil }
-        return data.gl_bytes
+    public var toBytes: Array<UInt8>? {
+        guard let data = base.data(using: .utf8, allowLossyConversion: true) else { return nil }
+        return data.gl.bytes
     }
     
     /// 将一个字符串`MD5`
-    public var gl_md5: String {
-        let ccharArray = self.cString(using: String.Encoding.utf8)
+    public var md5: String {
+        let ccharArray = base.cString(using: String.Encoding.utf8)
         var uint8Array = [UInt8](repeating: 0, count: Int(CC_MD5_DIGEST_LENGTH))
         CC_MD5(ccharArray, CC_LONG(ccharArray!.count - 1), &uint8Array)
         let result = uint8Array.reduce("") { $0 + String(format: "%02X", $1) }
@@ -149,16 +149,16 @@ extension String {
     /// 需要在前面加上`http://`或者`https://`才是一个合法的`URL`
     ///
     ///     let urlString = "http:/.的哈哈🈲👌🏻///://:/www.baidu.com"
-    ///     let result = urlString.gl_toURL(schemeType: .https) // https://www.baidu.com
+    ///     let result = urlString.gl.toURL(schemeType: .https) // https://www.baidu.com
     ///
     ///     let urlString2 = "www.baidu.com"
-    ///     let result2 = urlString.gl_toURL(schemeType: .http) // http://www.baidu.com
+    ///     let result2 = urlString.gl.toURL(schemeType: .http) // http://www.baidu.com
     ///
     ///     let urlString3 = "http://www.baidu.com"
-    ///     let result3 = urlString.gl_toURL(schemeType: .https) // https://www.baidu.com
+    ///     let result3 = urlString.gl.toURL(schemeType: .https) // https://www.baidu.com
     ///
     /// 只对前缀有效
-    public func gl_toURL(schemeType: URL.GLSchemeType) -> String {
+    public func toURL(schemeType: GLSchemeType) -> String {
         let alphas = ["a", "b", "c", "d", "e", "f", "g",
                       "h", "i", "j", "k", "l", "m", "n",
                       "o", "p", "q", "r", "s", "t", "u",
@@ -168,21 +168,21 @@ extension String {
                       "O", "P", "Q", "R", "S", "T", "U",
                       "V", "W", "X", "Y", "Z"]
         
-        var tempString = self
-        for scheme in URL.GLSchemeType.allCases {
+        var tempString = base
+        for scheme in GLSchemeType.allCases {
             if tempString.hasPrefix(scheme.rawValue) {
                 let indexStart = tempString.index(tempString.startIndex, offsetBy: scheme.rawValue.count)
                 tempString = String(tempString[indexStart...])
             }
         }
         if tempString.count <= 0 {
-            return self
+            return base
         }
         
         let indexStart = tempString.index(tempString.startIndex, offsetBy: 1)
         if !alphas.contains(String(tempString[tempString.startIndex..<indexStart])) {
-            return String(tempString[indexStart...]).gl_toURL(schemeType: schemeType)
+            return String(tempString[indexStart...]).gl.toURL(schemeType: schemeType)
         }
-        return schemeType.rawValue + "://" + self
+        return schemeType.rawValue + "://" + base
     }
 }

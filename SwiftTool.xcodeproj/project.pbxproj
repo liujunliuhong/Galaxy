@@ -15,10 +15,7 @@
 		1831115724469EB900155620 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1831115524469EB900155620 /* LaunchScreen.storyboard */; };
 		183111FA2446A8D400155620 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 183111F92446A8D400155620 /* Test.m */; };
 		7ED1CA540CCEE052DF44FE7A /* Pods_SwiftTool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4806E0A8EE8767510EF2FD61 /* Pods_SwiftTool.framework */; };
-		850664192550493C00EB4188 /* GLCusNaviBarSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850663F82550493C00EB4188 /* GLCusNaviBarSpace.swift */; };
 		8506641A2550493C00EB4188 /* GLCusNavigationBarDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850663F92550493C00EB4188 /* GLCusNavigationBarDemoViewController.swift */; };
-		8506641B2550493C00EB4188 /* GLCusNaviBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850663FA2550493C00EB4188 /* GLCusNaviBarButtonItem.swift */; };
-		8506641C2550493C00EB4188 /* GLCusNaviBarTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850663FB2550493C00EB4188 /* GLCusNaviBarTitle.swift */; };
 		8506641D2550493C00EB4188 /* GLCusNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850663FC2550493C00EB4188 /* GLCusNavigationBar.swift */; };
 		8506641E2550493C00EB4188 /* GLBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850663FD2550493C00EB4188 /* GLBaseViewController.swift */; };
 		8506CD2C265B2EA300ACF112 /* SingleLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8506CD2B265B2EA300ACF112 /* SingleLocation.swift */; };
@@ -64,6 +61,9 @@
 		859F2DC0264ECD4600A4575C /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859F2DBF264ECD4600A4575C /* Dictionary+Extension.swift */; };
 		859F2DC2264ECD5000A4575C /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859F2DC1264ECD5000A4575C /* Bundle+Extension.swift */; };
 		859F2DC4264ED25400A4575C /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859F2DC3264ED25400A4575C /* Date+Extension.swift */; };
+		85A12AF9265BF50F00AD2465 /* NavigationBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A12AF8265BF50F00AD2465 /* NavigationBarButtonItem.swift */; };
+		85A12AFB265BF54C00AD2465 /* NavigationTitleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A12AFA265BF54C00AD2465 /* NavigationTitleItem.swift */; };
+		85A12AFE265C005200AD2465 /* NavigationSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A12AFD265C005200AD2465 /* NavigationSize.swift */; };
 		85BF96A4265927BD0030770F /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BF96A3265927BD0030770F /* UINavigationController+Extension.swift */; };
 		85BF96A6265927D10030770F /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BF96A5265927D10030770F /* UIViewController+Extension.swift */; };
 		85D755C2264F644300C20D91 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D755C1264F644300C20D91 /* Keys.swift */; };
@@ -107,10 +107,7 @@
 		183111FB2446A8FF00155620 /* SwiftTool-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwiftTool-Bridging-Header.h"; sourceTree = "<group>"; };
 		425C6511002199BBE0183C7D /* Pods-SwiftTool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftTool.release.xcconfig"; path = "Target Support Files/Pods-SwiftTool/Pods-SwiftTool.release.xcconfig"; sourceTree = "<group>"; };
 		4806E0A8EE8767510EF2FD61 /* Pods_SwiftTool.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftTool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		850663F82550493C00EB4188 /* GLCusNaviBarSpace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLCusNaviBarSpace.swift; sourceTree = "<group>"; };
 		850663F92550493C00EB4188 /* GLCusNavigationBarDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLCusNavigationBarDemoViewController.swift; sourceTree = "<group>"; };
-		850663FA2550493C00EB4188 /* GLCusNaviBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLCusNaviBarButtonItem.swift; sourceTree = "<group>"; };
-		850663FB2550493C00EB4188 /* GLCusNaviBarTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLCusNaviBarTitle.swift; sourceTree = "<group>"; };
 		850663FC2550493C00EB4188 /* GLCusNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLCusNavigationBar.swift; sourceTree = "<group>"; };
 		850663FD2550493C00EB4188 /* GLBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLBaseViewController.swift; sourceTree = "<group>"; };
 		8506CD2B265B2EA300ACF112 /* SingleLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleLocation.swift; sourceTree = "<group>"; };
@@ -148,6 +145,9 @@
 		859F2DBF264ECD4600A4575C /* Dictionary+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extension.swift"; sourceTree = "<group>"; };
 		859F2DC1264ECD5000A4575C /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
 		859F2DC3264ED25400A4575C /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		85A12AF8265BF50F00AD2465 /* NavigationBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarButtonItem.swift; sourceTree = "<group>"; };
+		85A12AFA265BF54C00AD2465 /* NavigationTitleItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTitleItem.swift; sourceTree = "<group>"; };
+		85A12AFD265C005200AD2465 /* NavigationSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationSize.swift; sourceTree = "<group>"; };
 		85BF96A3265927BD0030770F /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
 		85BF96A5265927D10030770F /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		85D755C1264F644300C20D91 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
@@ -294,13 +294,13 @@
 		850663F72550493C00EB4188 /* NavigationBar */ = {
 			isa = PBXGroup;
 			children = (
-				850663F82550493C00EB4188 /* GLCusNaviBarSpace.swift */,
 				850663F92550493C00EB4188 /* GLCusNavigationBarDemoViewController.swift */,
-				850663FA2550493C00EB4188 /* GLCusNaviBarButtonItem.swift */,
-				850663FB2550493C00EB4188 /* GLCusNaviBarTitle.swift */,
-				850663FC2550493C00EB4188 /* GLCusNavigationBar.swift */,
 				850663FD2550493C00EB4188 /* GLBaseViewController.swift */,
+				850663FC2550493C00EB4188 /* GLCusNavigationBar.swift */,
 				8506CF63265BAE2000ACF112 /* NavigationBar.swift */,
+				85A12AF8265BF50F00AD2465 /* NavigationBarButtonItem.swift */,
+				85A12AFA265BF54C00AD2465 /* NavigationTitleItem.swift */,
+				85A12AFD265C005200AD2465 /* NavigationSize.swift */,
 			);
 			path = NavigationBar;
 			sourceTree = "<group>";
@@ -560,6 +560,7 @@
 				8506CD2C265B2EA300ACF112 /* SingleLocation.swift in Sources */,
 				85D755C6264F664F00C20D91 /* Numeric+Extension.swift in Sources */,
 				85EAA85226541BDB00AACCDC /* UIDevice+TypeExtension.swift in Sources */,
+				85A12AFB265BF54C00AD2465 /* NavigationTitleItem.swift in Sources */,
 				857D97E02653EADC00B436E2 /* UIApplication+MapExtension.swift in Sources */,
 				B4746B7B2581BA7900E1CB2A /* GRDBDemoViewController.swift in Sources */,
 				85237B732652744B00162AC8 /* UIApplication+Notification.swift in Sources */,
@@ -570,8 +571,8 @@
 				857D979726538A9400B436E2 /* Alamofire.NetworkReachabilityManager+Extension.swift in Sources */,
 				857F87A12650E068002D59AE /* UIColor+Extension.swift in Sources */,
 				859F2DC0264ECD4600A4575C /* Dictionary+Extension.swift in Sources */,
+				85A12AFE265C005200AD2465 /* NavigationSize.swift in Sources */,
 				857F87AA26516419002D59AE /* UIApplication+Extension.swift in Sources */,
-				850664192550493C00EB4188 /* GLCusNaviBarSpace.swift in Sources */,
 				8506CD67265B696300ACF112 /* CityModel.swift in Sources */,
 				859F2DC4264ED25400A4575C /* Date+Extension.swift in Sources */,
 				85DBE0E62577DA2400E2DF24 /* GLWeakProxy.m in Sources */,
@@ -585,13 +586,13 @@
 				1831114F24469EB700155620 /* ViewController.swift in Sources */,
 				85D755E7264F89D300C20D91 /* Int+Extension.swift in Sources */,
 				85237B7D2652761400162AC8 /* UIControl+Extension.swift in Sources */,
+				85A12AF9265BF50F00AD2465 /* NavigationBarButtonItem.swift in Sources */,
 				B4746B7F2581BB1500E1CB2A /* User.swift in Sources */,
 				859F2DC2264ECD5000A4575C /* Bundle+Extension.swift in Sources */,
 				85D755C9264F696400C20D91 /* Collection+Extension.swift in Sources */,
 				857F87982650D3FE002D59AE /* FileManager+Extension.swift in Sources */,
 				8506CD5B265B690700ACF112 /* CityData.swift in Sources */,
 				857D979126536AFF00B436E2 /* String+WordsSort.swift in Sources */,
-				8506641B2550493C00EB4188 /* GLCusNaviBarButtonItem.swift in Sources */,
 				8506CD55265B689900ACF112 /* PickerToolBar.swift in Sources */,
 				855C461F265A351600893BE6 /* Galaxy.swift in Sources */,
 				8506641A2550493C00EB4188 /* GLCusNavigationBarDemoViewController.swift in Sources */,
@@ -606,7 +607,6 @@
 				8506641E2550493C00EB4188 /* GLBaseViewController.swift in Sources */,
 				85EAA850265419D500AACCDC /* UIDevice+Extension.swift in Sources */,
 				857F879E2650DC74002D59AE /* NSMutableAttributedString+Extension.swift in Sources */,
-				8506641C2550493C00EB4188 /* GLCusNaviBarTitle.swift in Sources */,
 				859E67EE25455E22005F1115 /* NextViewController.swift in Sources */,
 				183111FA2446A8D400155620 /* Test.m in Sources */,
 			);

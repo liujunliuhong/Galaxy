@@ -11,17 +11,17 @@ import UIKit
 
 extension GL where Base == UIDevice {
     /// 获取屏幕宽
-    public static var width: CGFloat {
+    public static var deviceWidth: CGFloat {
         return UIScreen.main.bounds.size.width
     }
     
     /// 获取屏幕高
-    public static var height: CGFloat {
+    public static var deviceHeight: CGFloat {
         return UIScreen.main.bounds.size.height
     }
     
     /// 获取设备机器名字，例如`iPhone 7 Plus`.
-    public static var machineName: String {
+    public static var deviceMachineName: String {
         let machine = UIDevice._machine
         var machineName = machine
         for (_, type) in GalaxyWrapper.DeviceType.allCases.enumerated() {
@@ -50,7 +50,7 @@ extension GL where Base == UIDevice {
             + "\n"
             + "SystemVersion:    \(UIDevice.current.systemVersion)"
             + "\n"
-            + "MachineName:      \(GL.machineName)"
+            + "MachineName:      \(GL.deviceMachineName)"
             + "\n"
             + "DeviceName:       \(UIDevice.current.name)"
             + "\n"
@@ -58,7 +58,7 @@ extension GL where Base == UIDevice {
     }
     
     /// 是否是模拟器
-    public static var isSimulator: Bool {
+    public static var deviceIsSimulator: Bool {
         let machine = UIDevice._machine
         var isSimulator: Bool = false
         for (_, type) in GalaxyWrapper.DeviceType.allCases.enumerated() {
@@ -74,9 +74,9 @@ extension GL where Base == UIDevice {
     ///
     /// 模拟器通过判断`safeAreaInsets.bottom`是否大于`0`
     /// 真机通过判断机器型号
-    public static var isNotchiPhone: Bool {
+    public static var deviceIsNotchiPhone: Bool {
         var isNotchiPhone: Bool = false
-        if GL.isSimulator {
+        if GL.deviceIsSimulator {
             if #available(iOS 11.0, *) { // `safeAreaInsets`是在`iOS 11`开始提出的概念
                 if let delegate = UIApplication.shared.delegate, let _window = delegate.window, let window = _window {
                     isNotchiPhone = window.safeAreaInsets.bottom > 0
@@ -98,7 +98,7 @@ extension GL where Base == UIDevice {
     }
     
     /// 获取状态栏高度
-    public static var statusBarHeight: CGFloat {
+    public static var deviceStatusBarHeight: CGFloat {
         var statusBarHeight: CGFloat = UIApplication.shared.statusBarFrame.height
         if #available(iOS 13.0, *) {
             if let delegate = UIApplication.shared.delegate,
@@ -113,7 +113,7 @@ extension GL where Base == UIDevice {
     }
     
     /// 是否隐藏了状态栏
-    public static var isStatusBarHidden: Bool {
+    public static var deviceIsStatusBarHidden: Bool {
         var isStatusBarHidden: Bool = UIApplication.shared.isStatusBarHidden
         if #available(iOS 13.0, *) {
             if let delegate = UIApplication.shared.delegate,
@@ -128,7 +128,7 @@ extension GL where Base == UIDevice {
     }
     
     /// 获取状态栏样式
-    public static var statusBarStyle: UIStatusBarStyle {
+    public static var deviceStatusBarStyle: UIStatusBarStyle {
         var statusBarStyle: UIStatusBarStyle = UIApplication.shared.statusBarStyle
         if #available(iOS 13.0, *) {
             if let delegate = UIApplication.shared.delegate,
@@ -143,7 +143,7 @@ extension GL where Base == UIDevice {
     }
     
     /// 获取虚拟Home键高度，兼容真机和模拟器
-    public static var homeIndicatorHeight: CGFloat {
+    public static var deviceHomeIndicatorHeight: CGFloat {
         var homeIndicatorHeight: CGFloat = .zero
         if #available(iOS 11.0, *) {
             if let delegate = UIApplication.shared.delegate, let _window = delegate.window, let window = _window {

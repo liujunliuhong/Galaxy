@@ -1,8 +1,9 @@
 //
-//  GLCityModel.swift
-//  PickerView
+//  CityModel.swift
+//  SwiftTool
 //
-//  Created by galaxy on 2020/10/25.
+//  Created by liujun on 2021/5/24.
+//  Copyright © 2021 yinhe. All rights reserved.
 //
 
 import Foundation
@@ -11,10 +12,10 @@ fileprivate let kAreaId: String = "areaId"
 fileprivate let kAreaName: String = "areaName"
 fileprivate let kNexts: String = "nexts"
 
-public class GLCityModel {
+public class CityModel {
     public let areaId: String
     public let areaName: String
-    public let nexts: [GLCityModel]
+    public let nexts: [CityModel]
     
     public init(with data: [String: Any]) {
         var areaId: String = ""
@@ -26,11 +27,11 @@ public class GLCityModel {
             areaName = _areaName
         }
         
-        var nextModels: [GLCityModel] = []
+        var nextModels: [CityModel] = []
         if let nexts = data[kNexts] as? [[String: Any]],
            nexts.count > 0  {
             nexts.forEach { (j) in
-                let m = GLCityModel(with: j)
+                let m = CityModel(with: j)
                 nextModels.append(m)
             }
         }
@@ -41,7 +42,7 @@ public class GLCityModel {
     }
 }
 
-extension GLCityModel: CustomDebugStringConvertible, CustomStringConvertible {
+extension CityModel: CustomDebugStringConvertible, CustomStringConvertible {
     public var debugDescription: String {
         return "\(self._getInfo())"
     }
@@ -62,7 +63,7 @@ extension GLCityModel: CustomDebugStringConvertible, CustomStringConvertible {
         return infoDic
     }
     
-    private func nextsInfo(nexts: [GLCityModel]) -> [[String: Any]] {
+    private func nextsInfo(nexts: [CityModel]) -> [[String: Any]] {
         var infos: [[String: Any]] = []
         nexts.forEach { (n) in
             var infoDic: [String: Any] = [:]

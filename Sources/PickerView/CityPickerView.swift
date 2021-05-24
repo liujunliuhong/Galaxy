@@ -1,10 +1,12 @@
 //
-//  GLCityPickerView.swift
-//  PickerView
+//  CityPickerView.swift
+//  SwiftTool
 //
-//  Created by galaxy on 2020/10/25.
+//  Created by liujun on 2021/5/24.
+//  Copyright © 2021 yinhe. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 fileprivate struct _SelectionLocation {
@@ -13,7 +15,7 @@ fileprivate struct _SelectionLocation {
     let thirdSelectedIndex: Int
 }
 
-public final class GLCityPickerView: UIView {
+public final class CityPickerView: UIView {
     deinit {
         removeNotification()
         #if DEBUG
@@ -28,7 +30,7 @@ public final class GLCityPickerView: UIView {
     }
     
     /// 选择类型
-    public var cityPickerType: GLCityPickerView.PickerType = .province_city_district
+    public var cityPickerType: CityPickerView.PickerType = .province_city_district
     
     /// 默认选中的地区名字集合
     public var defaultSelectAreaNames: [String]?
@@ -37,10 +39,10 @@ public final class GLCityPickerView: UIView {
     public var defaultSelectAreaIds: [String]?
     
     /// 数据源
-    public private(set) var cityModels: [GLCityModel] = []
+    public private(set) var cityModels: [CityModel] = []
     
     /// 当前选中`Model`
-    public private(set) var currentSelectModel: GLCityModel?
+    public private(set) var currentSelectModel: CityModel?
     
     /// DEBUG模式下是否开启日志打印
     public var enableDebugLog: Bool = false
@@ -76,8 +78,8 @@ public final class GLCityPickerView: UIView {
     public var toolBar: UIView?
     
     /// 框架默认的`toolBar`
-    public private(set) lazy var defaultToolBar: GLPickerToolBar = {
-        let toolBar = GLPickerToolBar()
+    public private(set) lazy var defaultToolBar: PickerToolBar = {
+        let toolBar = PickerToolBar()
         return toolBar
     }()
     
@@ -85,7 +87,7 @@ public final class GLCityPickerView: UIView {
     public var toolBarHeight: CGFloat = 49.0 {
         didSet {
             invalidateIntrinsicContentSize()
-            GLAlertEngine.default.refresh()
+            AlertEngine.default.refresh()
         }
     }
     
@@ -151,11 +153,11 @@ public final class GLCityPickerView: UIView {
         self.pickerView.sizeToFit()
         let height = self.toolBarHeight + self.pickerView.bounds.height
         
-        return CGSize(width: GL.width, height: height)
+        return CGSize(width: GL.deviceWidth, height: height)
     }
 }
 
-extension GLCityPickerView {
+extension CityPickerView {
     private func setupUI() {
         backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1) // 白色
         if let toolBar = toolBar {
@@ -175,7 +177,7 @@ extension GLCityPickerView {
             addSubview(pickerView)
             defaultToolBar.snp.makeConstraints { make in
                 make.left.top.equalToSuperview()
-                make.width.equalTo(GL.width)
+                make.width.equalTo(GL.deviceWidth)
                 make.height.equalTo(toolBarHeight)
             }
             pickerView.snp.makeConstraints { make in
@@ -195,7 +197,7 @@ extension GLCityPickerView {
         self.cityModels.removeAll()
         //
         dataSource.forEach { (d) in
-            let model = GLCityModel(with: d)
+            let model = CityModel(with: d)
             self.cityModels.append(model)
         }
         if self.enableDebugLog {
@@ -431,7 +433,7 @@ extension GLCityPickerView {
         if let toolBar = toolBar {
             toolBar.snp.remakeConstraints { make in
                 make.left.top.equalToSuperview()
-                make.width.equalTo(GL.width)
+                make.width.equalTo(GL.deviceWidth)
                 make.height.equalTo(toolBarHeight)
             }
             pickerView.snp.remakeConstraints { make in
@@ -442,7 +444,7 @@ extension GLCityPickerView {
         } else {
             defaultToolBar.snp.remakeConstraints { make in
                 make.left.top.equalToSuperview()
-                make.width.equalTo(GL.width)
+                make.width.equalTo(GL.deviceWidth)
                 make.height.equalTo(toolBarHeight)
             }
             pickerView.snp.remakeConstraints { make in
@@ -465,10 +467,10 @@ extension GLCityPickerView {
     }
 }
 
-extension GLCityPickerView {
+extension CityPickerView {
     /// 显示城市选择器
     ///
-    ///     let cityPickerView = GLCityPickerView()
+    ///     let cityPickerView = CityPickerView()
     ///     cityPickerView.enableDebugLog = true
     ///     cityPickerView.cityPickerType = .province_city_district
     ///     cityPickerView.defaultSelectAreaNames = ["四川省", "成都市", "双流县"]
@@ -502,30 +504,30 @@ extension GLCityPickerView {
     public func show(doneClosure: (([Int])->())?, currentSelectRowClosure: (([Int])->())? = nil) {
         guard let window = UIApplication.shared.keyWindow else { return }
         //
-        guard let datas = GLCityData.gl.jsonDecode as? [[String: Any]] else { return }
+        guard let datas = CityData.gl.jsonDecode as? [[String: Any]] else { return }
         self.handleDatasource(dataSource: datas)
         //
         self.doneClosure = doneClosure
         self.currentSelectRowClosure = currentSelectRowClosure
         //
-        let options = GLAlertEngine.Options()
+        let options = AlertEngine.Options()
         options.fromPosition = .bottomCenter(top: .zero)
         options.toPosition = .bottomCenter(bottom: .zero)
         options.dismissPosition = .bottomCenter(top: .zero)
         options.translucentColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0).withAlphaComponent(0.4)
         //
-        GLAlertEngine.default.show(parentView: window, alertView: self, options: options)
+        AlertEngine.default.show(parentView: window, alertView: self, options: options)
     }
 }
 
-extension GLCityPickerView {
+extension CityPickerView {
     @objc private func sureAction() {
         getResult()
-        GLAlertEngine.default.dismiss()
+        AlertEngine.default.dismiss()
     }
     
     @objc private func cancelAction() {
-        GLAlertEngine.default.dismiss()
+        AlertEngine.default.dismiss()
     }
     
     @objc private func orientationDidChange() {
@@ -534,7 +536,7 @@ extension GLCityPickerView {
     }
 }
 
-extension GLCityPickerView {
+extension CityPickerView {
     /// 刷新所有列
     public func reloadAllComponents() {
         pickerView.reloadAllComponents()
@@ -590,7 +592,7 @@ extension GLCityPickerView {
     }
 }
 
-extension GLCityPickerView: UIPickerViewDataSource, UIPickerViewDelegate {
+extension CityPickerView: UIPickerViewDataSource, UIPickerViewDelegate {
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         if let titlesForComponents = self.titlesForComponents {
             return titlesForComponents.count

@@ -1,14 +1,14 @@
 //
-//  GLWordsSort.swift
+//  WordsSort.swift
 //  SwiftTool
 //
-//  Created by galaxy on 2020/10/20.
-//  Copyright © 2020 yinhe. All rights reserved.
+//  Created by liujun on 2021/5/24.
+//  Copyright © 2021 yinhe. All rights reserved.
 //
 
 import Foundation
 
-public class GLWordsSort<T> {
+public class WordsSort<T> {
     
     /// 排序结果
     public struct Result {
@@ -50,6 +50,8 @@ public class GLWordsSort<T> {
                 "长城": "CC",
                 "地球": "DQ",
                 "朝阳": "ZY",
+                "朝阳区": "CYQ",
+                "朝阳路": "CYL",
                 "犍为": "QW"]
     }()
     
@@ -58,7 +60,7 @@ public class GLWordsSort<T> {
     }
 }
 
-extension GLWordsSort {
+extension WordsSort {
     
     /// 获取字符串中每个字符所对应的英文的首字母
     ///
@@ -74,8 +76,8 @@ extension GLWordsSort {
                 result.append(String(scalar))
             } else {
                 let index = code - 19968
-                if index >= 0 && index < gl_firstLetterArray.count { /* 索引里面查找 */
-                    let s = gl_firstLetterArray.gl.string(index: index) ?? ""
+                if index >= 0 && index < firstLetterArray.count { /* 索引里面查找 */
+                    let s = firstLetterArray.gl.string(index: index) ?? ""
                     result.append(s)
                 } else { /* 特殊字符 */
                     result.append(String(scalar))
@@ -105,7 +107,7 @@ extension GLWordsSort {
     ///         }
     ///     }
     ///
-    ///     private var results: [GLWordsSort.Result] = []
+    ///     private var results: [WordsSort.Result] = []
     ///     var models: [Model] = []
     ///     for _ in 0..<50 {
     ///         let string = ""
@@ -113,7 +115,7 @@ extension GLWordsSort {
     ///         models.append(model)
     ///     }
     ///
-    ///     let sort = GLWordsSort<Model>()
+    ///     let sort = WordsSort<Model>()
     ///     sort.sort(models: models, keyPath: "title") { [weak self] (results) in
     ///         // ...
     ///     }
@@ -121,13 +123,13 @@ extension GLWordsSort {
     /// `models`可以为模型数组(支持结构体)，也可以为字符串数组
     /// `keyPath`是模型中要排序的`key`
     /// 如果是字符串数组排序，那么`keyPath`无效，传`nil`
-    public func sort(models: [T], keyPath: String?, closure: (([GLWordsSort.Result]) -> ())?) {
+    public func sort(models: [T], keyPath: String?, closure: (([WordsSort.Result]) -> ())?) {
         _sort(models: models, keyPath: keyPath, closure: closure)
     }
 }
 
-extension GLWordsSort {
-    private func _sort(models: [T], keyPath: String?, closure: (([GLWordsSort.Result]) -> ())?) {
+extension WordsSort {
+    private func _sort(models: [T], keyPath: String?, closure: (([WordsSort.Result]) -> ())?) {
         DispatchQueue.global().async {
             // check
             if models.count <= 0 {
@@ -172,7 +174,7 @@ extension GLWordsSort {
                 
                 modelValue = modelValue!.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
                 
-                var englishFirstLetters: String = GLWordsSort.getFirstEnglishWords(string: modelValue!)
+                var englishFirstLetters: String = WordsSort.getFirstEnglishWords(string: modelValue!)
                 if self.polyphonicMap.keys.contains(modelValue!) { /* 多音字处理 */
                     englishFirstLetters = self.polyphonicMap[modelValue!]!
                 }
@@ -217,15 +219,15 @@ extension GLWordsSort {
                 }
             }
             
-            var results: [GLWordsSort.Result] = []
+            var results: [WordsSort.Result] = []
             newKeys.forEach { (key) in
                 let tmpModels = sortResult[key]!
-                let m = GLWordsSort.Result(key: key, models: tmpModels)
+                let m = WordsSort.Result(key: key, models: tmpModels)
                 results.append(m)
             }
             
             if specialModels.count > 0 {
-                let specialResultModel = GLWordsSort.Result(key: self.specialSectionTitle, models: specialModels)
+                let specialResultModel = WordsSort.Result(key: self.specialSectionTitle, models: specialModels)
                 if self.specialSectionTitleInsertAtFirst {
                     results.insert(specialResultModel, at: 0)
                 } else {

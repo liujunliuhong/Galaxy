@@ -300,11 +300,11 @@ extension ViewController {
 //        GLDatingRefundAlert.show(viewController: self)
         
         
-//        let datePickerView = GLDatePickerView()
+//        let datePickerView = DatePickerView()
 //        datePickerView.defaultToolBar.titleLabel.text = "DatePickerView"
 //        datePickerView.datePickerView.minimumDate = Date().addingTimeInterval(-5*365*24*60*60) // 往前推5年
 //        datePickerView.datePickerView.maximumDate = Date().addingTimeInterval(5*365*24*60*60) // 往后推5年
-//        GLDatePickerView.show(pickerView: datePickerView) { selectDate in
+//        DatePickerView.show(pickerView: datePickerView) { selectDate in
 //            print(selectDate)
 //        }
 //
@@ -323,7 +323,7 @@ extension ViewController {
 //                                   "1 - 1",
 //                                   "1 - 2",
 //                                   "1 - 3"]]
-//        let pickerView = GLPickerView()
+//        let pickerView = PickerView()
 //        pickerView.titlesForComponents = titles
 //        pickerView.defaultToolBar.titleLabel.text = "普通PickerView"
 //        pickerView.selectRow(1, inComponent: 0, animated: false)
@@ -343,7 +343,7 @@ extension ViewController {
         
         print(["1": "1"].gl.jsonEncode!)
         
-        let cityPickerView = GLCityPickerView()
+        let cityPickerView = CityPickerView()
 //        cityPickerView.enableDebugLog = true
         cityPickerView.cityPickerType = .province_city_district
         cityPickerView.defaultSelectAreaNames = ["四川省", "成都市", "双流县"]

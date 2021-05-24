@@ -10,15 +10,15 @@ import Foundation
 import Alamofire
 
 /// `Alamofire`网络监控
-extension Alamofire.NetworkReachabilityManager {
+extension GL where Base == Alamofire.NetworkReachabilityManager {
     /// 开启网络状态监控
     ///
-    ///     Alamofire.NetworkReachabilityManager.default?.gl_startListeningNetwork()
+    ///     Alamofire.NetworkReachabilityManager.default?.gl.startListeningNetwork()
     ///
     @discardableResult
-    public func gl_startListeningNetwork(onQueue queue: DispatchQueue = .main,
-                                         onUpdatePerforming listener: Alamofire.NetworkReachabilityManager.Listener? = nil) -> Bool {
-        self.startListening(onQueue: queue) { (status) in
+    public func startListeningNetwork(onQueue queue: DispatchQueue = .main,
+                                      onUpdatePerforming listener: Alamofire.NetworkReachabilityManager.Listener? = nil) -> Bool {
+        base.startListening(onQueue: queue) { (status) in
             listener?(status)
             switch status {
             case .notReachable:
@@ -46,9 +46,9 @@ extension Alamofire.NetworkReachabilityManager {
     
     /// 停止网络状态监控
     ///
-    ///     Alamofire.NetworkReachabilityManager.default?.gl_stopListeningNetwork()
+    ///     Alamofire.NetworkReachabilityManager.default?.gl.stopListeningNetwork()
     ///
     public func gl_stopListeningNetwork() {
-        self.stopListening()
+        base.stopListening()
     }
 }

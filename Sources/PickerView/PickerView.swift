@@ -1,13 +1,15 @@
 //
-//  GLPickerView.swift
-//  PickerView
+//  PickerView.swift
+//  SwiftTool
 //
-//  Created by galaxy on 2020/10/25.
+//  Created by liujun on 2021/5/24.
+//  Copyright © 2021 yinhe. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
-public final class GLPickerView: UIView {
+public final class PickerView: UIView {
     deinit {
         removeNotification()
         #if DEBUG
@@ -51,8 +53,8 @@ public final class GLPickerView: UIView {
     public var toolBar: UIView?
     
     /// 框架默认的`toolBar`
-    public private(set) lazy var defaultToolBar: GLPickerToolBar = {
-        let toolBar = GLPickerToolBar()
+    public private(set) lazy var defaultToolBar: PickerToolBar = {
+        let toolBar = PickerToolBar()
         return toolBar
     }()
     
@@ -60,7 +62,7 @@ public final class GLPickerView: UIView {
     public var toolBarHeight: CGFloat = 49.0 {
         didSet {
             invalidateIntrinsicContentSize()
-            GLAlertEngine.default.refresh()
+            AlertEngine.default.refresh()
             update()
         }
     }
@@ -128,12 +130,12 @@ public final class GLPickerView: UIView {
         self.pickerView.sizeToFit()
         let height = self.toolBarHeight + self.pickerView.bounds.height
         
-        return CGSize(width: GL.width, height: height)
+        return CGSize(width: GL.deviceWidth, height: height)
     }
 }
 
 
-extension GLPickerView {
+extension PickerView {
     private func setupUI() {
         backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1) // 白色
         if let toolBar = toolBar {
@@ -153,7 +155,7 @@ extension GLPickerView {
             addSubview(pickerView)
             defaultToolBar.snp.makeConstraints { make in
                 make.left.top.equalToSuperview()
-                make.width.equalTo(GL.width)
+                make.width.equalTo(GL.deviceWidth)
                 make.height.equalTo(toolBarHeight)
             }
             pickerView.snp.makeConstraints { make in
@@ -192,7 +194,7 @@ extension GLPickerView {
         if let toolBar = toolBar {
             toolBar.snp.remakeConstraints { make in
                 make.left.top.equalToSuperview()
-                make.width.equalTo(GL.width)
+                make.width.equalTo(GL.deviceWidth)
                 make.height.equalTo(toolBarHeight)
             }
             pickerView.snp.remakeConstraints { make in
@@ -203,7 +205,7 @@ extension GLPickerView {
         } else {
             defaultToolBar.snp.remakeConstraints { make in
                 make.left.top.equalToSuperview()
-                make.width.equalTo(GL.width)
+                make.width.equalTo(GL.deviceWidth)
                 make.height.equalTo(toolBarHeight)
             }
             pickerView.snp.remakeConstraints { make in
@@ -215,7 +217,7 @@ extension GLPickerView {
     }
 }
 
-extension GLPickerView {
+extension PickerView {
     /// 刷新所有列
     public func reloadAllComponents() {
         pickerView.reloadAllComponents()
@@ -287,7 +289,7 @@ extension GLPickerView {
         currentSelectRowClosure?(currentSelectIndexs)
     }
     
-    /// 显示`GLPickerView`
+    /// 显示`PickerView`
     ///
     ///     let titles: [[String]] = [["0 - 0",
     ///                                "0 - 1",
@@ -299,7 +301,7 @@ extension GLPickerView {
     ///                                "1 - 1",
     ///                                "1 - 2",
     ///                                "1 - 3"]]
-    ///     let pickerView = GLPickerView()
+    ///     let pickerView = PickerView()
     ///     pickerView.titlesForComponents = titles
     ///     pickerView.defaultToolBar.titleLabel.text = "普通PickerView"
     ///     pickerView.selectRow(1, inComponent: 0, animated: false)
@@ -333,17 +335,17 @@ extension GLPickerView {
         self.doneClosure = doneClosure
         self.currentSelectRowClosure = currentSelectRowClosure
         //
-        let options = GLAlertEngine.Options()
+        let options = AlertEngine.Options()
         options.fromPosition = .bottomCenter(top: .zero)
         options.toPosition = .bottomCenter(bottom: .zero)
         options.dismissPosition = .bottomCenter(top: .zero)
         options.translucentColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0).withAlphaComponent(0.4)
         //
-        GLAlertEngine.default.show(parentView: window, alertView: self, options: options)
+        AlertEngine.default.show(parentView: window, alertView: self, options: options)
     }
 }
 
-extension GLPickerView {
+extension PickerView {
     @objc private func orientationDidChange() {
         invalidateIntrinsicContentSize()
         update()
@@ -351,15 +353,15 @@ extension GLPickerView {
     
     @objc private func sureAction() {
         self.getResult()
-        GLAlertEngine.default.dismiss()
+        AlertEngine.default.dismiss()
     }
     
     @objc private func cancelAction() {
-        GLAlertEngine.default.dismiss()
+        AlertEngine.default.dismiss()
     }
 }
 
-extension GLPickerView: UIPickerViewDataSource, UIPickerViewDelegate {
+extension PickerView: UIPickerViewDataSource, UIPickerViewDelegate {
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         if let attributeTitlesForComponents = self.attributeTitlesForComponents {
             return attributeTitlesForComponents.count

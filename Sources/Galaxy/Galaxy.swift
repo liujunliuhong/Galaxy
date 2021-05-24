@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import CoreText
+import Alamofire
 
 public struct GalaxyWrapper<Base> {
     public let base: Base
@@ -28,13 +29,14 @@ extension GalaxyCompatible {
     }
 }
 
-public enum GLSchemeType: String, CaseIterable {
-    case http = "http"
-    case https = "https"
+/// Scheme类型
+public enum SchemeType: String, CaseIterable {
+    case http = "http"    /// http
+    case https = "https"  /// https
 }
 
 /// 文件类型
-public enum GLFileType: String {
+public enum FileType: String {
     case json = "json"    /// json
     case plist = "plist"  /// plist
 }
@@ -50,3 +52,4 @@ extension Int: GalaxyCompatible { }
 extension Data: GalaxyCompatible { }
 extension String: GalaxyCompatible { }
 extension CTParagraphStyle: GalaxyCompatible { }
+extension Alamofire.NetworkReachabilityManager: GalaxyCompatible { }

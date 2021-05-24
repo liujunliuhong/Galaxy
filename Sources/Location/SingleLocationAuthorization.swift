@@ -1,18 +1,18 @@
 //
-//  GLSingleLocationAuthorization.swift
+//  SingleLocationAuthorization.swift
 //  SwiftTool
 //
-//  Created by galaxy on 2020/12/8.
-//  Copyright © 2020 yinhe. All rights reserved.
+//  Created by liujun on 2021/5/24.
+//  Copyright © 2021 yinhe. All rights reserved.
 //
 
 import Foundation
 import CoreLocation
 
 /// 单次定位授权
-public final class GLSingleLocationAuthorization: NSObject {
+public final class SingleLocationAuthorization: NSObject {
     /// 单例
-    public static let `default` = GLSingleLocationAuthorization()
+    public static let `default` = SingleLocationAuthorization()
     
     private var locationManager: CLLocationManager?
     private var completion: ((Bool) -> Void)?
@@ -22,7 +22,7 @@ public final class GLSingleLocationAuthorization: NSObject {
     }
 }
 
-extension GLSingleLocationAuthorization {
+extension SingleLocationAuthorization {
     
     /// 请求定位授权状态（使用中）
     /// - Parameter completion: 授权状态回调
@@ -51,7 +51,7 @@ extension GLSingleLocationAuthorization {
     }
 }
 
-extension GLSingleLocationAuthorization: CLLocationManagerDelegate {
+extension SingleLocationAuthorization: CLLocationManagerDelegate {
     public func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .notDetermined {
             return

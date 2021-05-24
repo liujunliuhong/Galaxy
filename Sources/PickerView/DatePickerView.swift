@@ -1,14 +1,16 @@
 //
-//  GLDatePickerView.swift
-//  PickerView
+//  DatePickerView.swift
+//  SwiftTool
 //
-//  Created by galaxy on 2020/10/25.
+//  Created by liujun on 2021/5/24.
+//  Copyright © 2021 yinhe. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import SnapKit
 
-public final class GLDatePickerView: UIView {
+public final class DatePickerView: UIView {
     deinit {
         removeNotification()
         #if DEBUG
@@ -32,8 +34,8 @@ public final class GLDatePickerView: UIView {
     public var toolBar: UIView?
     
     /// 框架默认的`toolBar`
-    public private(set) lazy var defaultToolBar: GLPickerToolBar = {
-        let toolBar = GLPickerToolBar()
+    public private(set) lazy var defaultToolBar: PickerToolBar = {
+        let toolBar = PickerToolBar()
         return toolBar
     }()
     
@@ -53,7 +55,7 @@ public final class GLDatePickerView: UIView {
     public var toolBarHeight: CGFloat = 49.0 {
         didSet {
             invalidateIntrinsicContentSize()
-            GLAlertEngine.default.refresh()
+            AlertEngine.default.refresh()
             update()
         }
     }
@@ -99,11 +101,11 @@ public final class GLDatePickerView: UIView {
         self.datePickerView.sizeToFit()
         let height = self.toolBarHeight + self.datePickerView.bounds.height
         
-        return CGSize(width: GL.width, height: height)
+        return CGSize(width: GL.deviceWidth, height: height)
     }
 }
 
-extension GLDatePickerView {
+extension DatePickerView {
     private func setupUI() {
         backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1) // 白色
         if let toolBar = toolBar {
@@ -123,7 +125,7 @@ extension GLDatePickerView {
             addSubview(datePickerView)
             defaultToolBar.snp.makeConstraints { make in
                 make.left.top.equalToSuperview()
-                make.width.equalTo(GL.width)
+                make.width.equalTo(GL.deviceWidth)
                 make.height.equalTo(toolBarHeight)
             }
             datePickerView.snp.makeConstraints { make in
@@ -148,38 +150,38 @@ extension GLDatePickerView {
     }
 }
 
-extension GLDatePickerView {
+extension DatePickerView {
     
-    /// 显示`GLDatePickerView`
+    /// 显示`DatePickerView`
     ///
-    ///     let datePickerView = GLDatePickerView()
+    ///     let datePickerView = DatePickerView()
     ///     datePickerView.defaultToolBar.titleLabel.text = "DatePickerView"
     ///     datePickerView.datePickerView.minimumDate = Date().addingTimeInterval(-5*365*24*60*60) // 往前推5年
     ///     datePickerView.datePickerView.maximumDate = Date().addingTimeInterval(5*365*24*60*60) // 往后推5年
-    ///     GLDatePickerView.show(pickerView: datePickerView) { selectDate in
+    ///     DatePickerView.show(pickerView: datePickerView) { selectDate in
     ///
     ///     }
-    public static func show(pickerView: GLDatePickerView, doneClosure: ((Date) -> ())?) {
+    public static func show(pickerView: DatePickerView, doneClosure: ((Date) -> ())?) {
         guard let window = UIApplication.shared.keyWindow else { return }
         
         pickerView.doneClosure = doneClosure
         
-        let options = GLAlertEngine.Options()
+        let options = AlertEngine.Options()
         options.fromPosition = .bottomCenter(top: .zero)
         options.toPosition = .bottomCenter(bottom: .zero)
         options.dismissPosition = .bottomCenter(top: .zero)
         options.translucentColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0).withAlphaComponent(0.4)
         
-        GLAlertEngine.default.show(parentView: window, alertView: pickerView, options: options)
+        AlertEngine.default.show(parentView: window, alertView: pickerView, options: options)
     }
 }
 
-extension GLDatePickerView {
+extension DatePickerView {
     private func update() {
         if let toolBar = toolBar {
             toolBar.snp.remakeConstraints { make in
                 make.left.top.equalToSuperview()
-                make.width.equalTo(GL.width)
+                make.width.equalTo(GL.deviceWidth)
                 make.height.equalTo(toolBarHeight)
             }
             datePickerView.snp.remakeConstraints { make in
@@ -190,7 +192,7 @@ extension GLDatePickerView {
         } else {
             defaultToolBar.snp.remakeConstraints { make in
                 make.left.top.equalToSuperview()
-                make.width.equalTo(GL.width)
+                make.width.equalTo(GL.deviceWidth)
                 make.height.equalTo(toolBarHeight)
             }
             datePickerView.snp.remakeConstraints { make in
@@ -205,18 +207,18 @@ extension GLDatePickerView {
     }
 }
 
-extension GLDatePickerView {
+extension DatePickerView {
     @objc private func orientationDidChange() {
         invalidateIntrinsicContentSize()
         update()
     }
     
     @objc private func cancelAction() {
-        GLAlertEngine.default.dismiss()
+        AlertEngine.default.dismiss()
     }
     
     @objc private func sureAction() {
         self.getResult()
-        GLAlertEngine.default.dismiss()
+        AlertEngine.default.dismiss()
     }
 }

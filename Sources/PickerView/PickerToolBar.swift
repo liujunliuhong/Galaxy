@@ -1,14 +1,16 @@
 //
-//  GLPickerToolBar.swift
-//  PickerView
+//  PickerToolBar.swift
+//  SwiftTool
 //
-//  Created by galaxy on 2020/10/25.
+//  Created by liujun on 2021/5/24.
+//  Copyright © 2021 yinhe. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 /// 内置的ToolBar
-public class GLPickerToolBar: UIView {
+public class PickerToolBar: UIView {
     
     public private(set) lazy var cancelButton: UIButton = {
         let cancelButton = UIButton(type: .system)
@@ -88,7 +90,7 @@ public class GLPickerToolBar: UIView {
 }
 
 
-extension GLPickerToolBar {
+extension PickerToolBar {
     private func setupUI() {
         addSubview(cancelButton)
         addSubview(sureButton)

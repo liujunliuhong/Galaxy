@@ -54,14 +54,14 @@ extension DBManager {
     func creatTable() {
         try? self.dbQueue?.inDatabase({ (db) in
             if try db.tableExists(TableName.student) {
-                GLLog("数据库表存在，不能创建")
+                MyLog("数据库表存在，不能创建")
                 return
             }
             try? db.create(table: TableName.student, temporary: false, ifNotExists: true) { (t) in
                 t.column(Student.MyColumns.ID.rawValue, .text).notNull().primaryKey().indexed()
                 t.column(Student.MyColumns.student_name.rawValue, .text)
                 t.column(Student.MyColumns.age.rawValue, .integer)
-                GLLog("数据库表创建成功")
+                MyLog("数据库表创建成功")
             }
         })
     }
@@ -71,7 +71,7 @@ extension DBManager {
             do {
                 var student = student
                 try student.insert(db) // 要实现`MutablePersistableRecord`协议，才能执行insert
-                GLLog("插入数据成功")
+                MyLog("插入数据成功")
                 return .commit
             } catch {
                 return .rollback

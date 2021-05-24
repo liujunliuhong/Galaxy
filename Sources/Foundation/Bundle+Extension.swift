@@ -93,7 +93,7 @@ extension GL where Base == Bundle {
 
 extension GL where Base == Bundle {
     /// 获取本地文件
-    public func getFile(fileName: String, type: GLFileType, options: JSONSerialization.ReadingOptions = [.mutableContainers]) -> Any? {
+    public func getFile(fileName: String, type: FileType, options: JSONSerialization.ReadingOptions = [.mutableContainers]) -> Any? {
         guard let path = base.path(forResource: fileName, ofType: type.rawValue) else { return nil }
         guard let data = try? Data(contentsOf: URL(fileURLWithPath: path)) else { return nil }
         let resultData = try? JSONSerialization.jsonObject(with: data, options: options)

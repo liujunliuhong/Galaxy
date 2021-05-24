@@ -195,7 +195,7 @@ extension GLCusNavigationBar {
         
         let o_x: CGFloat = .zero
         let barWidth: CGFloat = self.bounds.width
-        var sumHeight: CGFloat = GL.statusBarHeight
+        var sumHeight: CGFloat = GL.deviceStatusBarHeight
         
         
         // bar view

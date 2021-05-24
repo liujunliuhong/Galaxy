@@ -158,7 +158,7 @@ extension GL where Base == String {
     ///     let result3 = urlString.gl.toURL(schemeType: .https) // https://www.baidu.com
     ///
     /// 只对前缀有效
-    public func toURL(schemeType: GLSchemeType) -> String {
+    public func toURL(schemeType: SchemeType) -> String {
         let alphas = ["a", "b", "c", "d", "e", "f", "g",
                       "h", "i", "j", "k", "l", "m", "n",
                       "o", "p", "q", "r", "s", "t", "u",
@@ -169,7 +169,7 @@ extension GL where Base == String {
                       "V", "W", "X", "Y", "Z"]
         
         var tempString = base
-        for scheme in GLSchemeType.allCases {
+        for scheme in SchemeType.allCases {
             if tempString.hasPrefix(scheme.rawValue) {
                 let indexStart = tempString.index(tempString.startIndex, offsetBy: scheme.rawValue.count)
                 tempString = String(tempString[indexStart...])

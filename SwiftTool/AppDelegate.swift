@@ -20,8 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FLEXManager.shared.showExplorer()
         
-        GLLogSetup(saveToSandbox: true)
-        GLLog(GL.deviceInformation)
+        Log.setup(saveToSandbox: true)
+        MyLog(GL.deviceInformation)
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.makeKeyAndVisible()

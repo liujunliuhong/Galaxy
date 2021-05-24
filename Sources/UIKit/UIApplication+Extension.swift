@@ -42,7 +42,7 @@ extension GL where Base == UIApplication {
     ///   - schemeType: schemeType
     ///
     /// 先尝试用浏览器打开给定的链接，如果打开失败，会用给定的`schemeType`对链接进行改造，再尝试打开
-    public func openSafari(urlString: String?, schemeType: GLSchemeType) {
+    public func openSafari(urlString: String?, schemeType: SchemeType) {
         var urlString = urlString
         _open(urlString: urlString) { (isSuccess) in
             if isSuccess { return }

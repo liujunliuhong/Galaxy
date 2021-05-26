@@ -20,7 +20,9 @@ public final class NavigationTitleItem {
         case fill
     }
     
+    /// 自定义`View`
     public var customView: UIView?
+    /// 布局类型
     public var constraintsType: ConstraintsType = .center(width: .auto, height: .auto)
     
     public init(customView: UIView?, constraintsType: ConstraintsType) {

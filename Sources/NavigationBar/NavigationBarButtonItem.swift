@@ -14,24 +14,17 @@ public final class NavigationBarButtonItem {
     public typealias ButtonConfigure = ((UIButton) -> Void)
     public typealias LabelConfigure = ((UILabel) -> Void)
     
-    public enum ConstraintsType {
-        /// 指定`customView`的具体`size`
-        case size(width: NavigationSize, height: NavigationSize)
-        /// 自动，需要实现`customView`的`intrinsicContentSize`方法，且是垂直居中显示
-        case auto
-    }
-    
+    /// 自定义`View`
     public var customView: UIView?
-    public var constraintsType: ConstraintsType = .auto
-    
     /// 宽度。如果是`auto`，需要实现`customView`的`intrinsicContentSize`方法
     public var width: NavigationSize = .auto
     /// 宽度。如果是`auto`，需要实现`customView`的`intrinsicContentSize`方法，且是垂直居中显示
     public var height: NavigationSize = .auto
     
-    public init(customView: UIView?, constraintsType: ConstraintsType) {
+    public init(customView: UIView?, width: NavigationSize, height: NavigationSize) {
         self.customView = customView
-        self.constraintsType = constraintsType
+        self.width = width
+        self.height = height
     }
     
     public init() { }
@@ -39,26 +32,26 @@ public final class NavigationBarButtonItem {
 
 extension NavigationBarButtonItem {
     /// Custom
-    public class func custom(_ customView: UIView, constraintsType: ConstraintsType) -> NavigationBarButtonItem {
-        return NavigationBarButtonItem(customView: customView, constraintsType: constraintsType)
+    public class func custom(_ customView: UIView, width: NavigationSize, height: NavigationSize) -> NavigationBarButtonItem {
+        return NavigationBarButtonItem(customView: customView, width: width, height: height)
     }
     
     /// Button
-    public class func button(constraintsType: ConstraintsType, configure: ButtonConfigure?) -> NavigationBarButtonItem {
+    public class func button(width: NavigationSize, height: NavigationSize, configure: ButtonConfigure?) -> NavigationBarButtonItem {
         let button = UIButton(type: .custom)
         configure?(button)
-        return NavigationBarButtonItem(customView: button, constraintsType: constraintsType)
+        return NavigationBarButtonItem(customView: button, width: width, height: height)
     }
     
     /// Label
-    public class func label(constraintsType: ConstraintsType, configure: LabelConfigure?) -> NavigationBarButtonItem {
+    public class func label(width: NavigationSize, height: NavigationSize, configure: LabelConfigure?) -> NavigationBarButtonItem {
         let label = UILabel()
         configure?(label)
-        return NavigationBarButtonItem(customView: label, constraintsType: constraintsType)
+        return NavigationBarButtonItem(customView: label, width: width, height: height)
     }
     
     /// Space
     public class func fixedSpace(_ width: NavigationSize) -> NavigationBarButtonItem {
-        return NavigationBarButtonItem(customView: nil, constraintsType: .size(width: width, height: .zero))
+        return NavigationBarButtonItem(customView: nil, width: width, height: .zero)
     }
 }

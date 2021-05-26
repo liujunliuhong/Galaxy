@@ -14,18 +14,16 @@ private struct AssociatedKeys {
 }
 
 extension GL where Base: UIViewController {
-    public var navigationBar: NavigationBar {
-        if let _ = objc_getAssociatedObject(self.base, &AssociatedKeys.navigation) as? NavigationBar {
-            
-        }
-        return NavigationBar()
-    }
-    
     public func addNavigationBar() {
         if let _ = objc_getAssociatedObject(self.base, &AssociatedKeys.navigation) as? NavigationBar {
             return
         }
-        
-        
+        let navigationBar = NavigationBar(viewController: self.base)
+        self.base.view.addSubview(navigationBar)
+        objc_setAssociatedObject(self.base, &AssociatedKeys.navigation, navigationBar, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+    }
+    
+    public var navigationBar: NavigationBar? {
+        return objc_getAssociatedObject(self.base, &AssociatedKeys.navigation) as? NavigationBar
     }
 }

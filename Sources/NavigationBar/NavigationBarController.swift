@@ -1,49 +1,33 @@
 //
-//  GLBaseViewController.swift
+//  NavigationBarController.swift
 //  SwiftTool
 //
-//  Created by galaxy on 2020/10/25.
-//  Copyright © 2020 yinhe. All rights reserved.
+//  Created by galaxy on 2021/5/27.
+//  Copyright © 2021 yinhe. All rights reserved.
 //
 
 import UIKit
 import SnapKit
-/*
- 1、设置info.plist 中 View controller-based status bar appearance 为 YES
- 2、TARGETS设置支持所有方向
- 3、TARGETS的Main Interface里面的Main去掉(很重要，否则会出现界面没旋转，但是状态栏旋转的情况)
- 4、接下来就可以根据页面结构设置旋转了
- */
-open class GLBaseViewController: UIViewController {
-    deinit {
-        
-    }
-    
-    public lazy var cusNaviBar: GLCusNavigationBar = {
-        let cusNaviBar = GLCusNavigationBar()
-        // By default, the entire navigation bar is hidden to avoid bugs. if set to true, the navigation bar will flash when entering an interface that needs to hide the navigation bar
-        cusNaviBar.hideNavigationBar = true
-        cusNaviBar.hideBar = false
-        cusNaviBar.hideToolBar = true
-        return cusNaviBar
-    }()
+
+/// 1、设置`Info.plist`中`View controller-based status bar appearance`为 YES
+/// 2、`TARGETS`设置支持所有方向
+/// 3、`TARGETS`的`Main Interfac`e里面的`Main`去掉(很重要，否则会出现界面没旋转，但是状态栏旋转的情况)
+/// 4、接下来就可以根据页面结构设置旋转了
+open class NavigationBarController: UIViewController {
     
     public lazy var safeAreaView: UIView = {
         let safeView = UIView()
         return safeView
     }()
     
-    override open func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.view.addSubview(cusNaviBar)
-        self.view.addSubview(safeAreaView)
-        
-        self.cusNaviBar.snp.makeConstraints { (make) in
-            make.left.top.right.equalToSuperview()
-        }
-        self.safeAreaView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.cusNaviBar.snp.bottom)
+        //
+        gl.addNavigationBar()
+        //
+        view.addSubview(safeAreaView)
+        safeAreaView.snp.makeConstraints { (make) in
+            make.top.equalTo(self.gl.navigationBar!.snp.bottom)
             if #available(iOS 11.0, *) {
                 make.right.equalTo(self.view.safeAreaLayoutGuide)
                 make.left.equalTo(self.view.safeAreaLayoutGuide)
@@ -55,10 +39,10 @@ open class GLBaseViewController: UIViewController {
             }
         }
         
-        self.initData()
-        self.setupUI()
-        self.bindViewModel()
-        self.other()
+        initData()
+        setupUI()
+        bindViewModel()
+        other()
     }
     
     // The status bar is not hidden by default.
@@ -101,20 +85,9 @@ open class GLBaseViewController: UIViewController {
 }
 
 // MARK: - Override
-extension GLBaseViewController {
-    @objc open func initData() {
-        
-    }
-    
-    @objc open func setupUI() {
-        
-    }
-    
-    @objc open func bindViewModel() {
-        
-    }
-    
-    @objc open func other() {
-        
-    }
+extension NavigationBarController {
+    @objc open func initData() { }
+    @objc open func setupUI() { }
+    @objc open func bindViewModel() { }
+    @objc open func other() { }
 }

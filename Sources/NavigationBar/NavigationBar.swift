@@ -14,16 +14,13 @@ private struct AssociatedKeys {
     static var viewKey = "com.galaxy.navigationBar.backgroundView.key"
 }
 
-
 /// 自定义导航栏
-/// 支持AutoLayout和Frame布局。注意：必须设置宽度
 open class NavigationBar: UIView {
     deinit {
         removeNotification()
         #if DEBUG
         print("\(NSStringFromClass(self.classForCoder)) deinit")
         #endif
-        
     }
     
     public private(set) lazy var barView: UIView = {
@@ -32,7 +29,7 @@ open class NavigationBar: UIView {
         return barView
     }()
     
-    public private(set) lazy var seperateLineView: UIView = {
+    private lazy var seperateLineView: UIView = {
         let lineView = UIView()
         return lineView
     }()
@@ -46,97 +43,96 @@ open class NavigationBar: UIView {
     /// bar的高度，系统的永远是44.0，可以手动更改此高度
     public var barHeight: CGFloat = 44.0 {
         didSet {
-            self.refresh()
+            refresh()
         }
     }
     /// 工具栏高度
     public var toolHeight: CGFloat = 0.0 {
         didSet {
-            self.refresh()
+            refresh()
         }
     }
     /// 左边的`items`
     public var leftItems: [NavigationBarButtonItem]? {
         didSet {
-            self.refresh()
+            refresh()
         }
     }
     /// 右边的items
     public var rightItems: [NavigationBarButtonItem]? {
         didSet {
-            self.refresh()
+            refresh()
         }
     }
     /// 导航栏标题
-    public var title: NavigationTitleItem? {
+    public var titleItem: NavigationTitleItem? {
         didSet {
-            self.refresh()
+            refresh()
         }
     }
     /// 背景Layer
     public var backgroundLayer: CALayer? {
         didSet {
-            self.refresh()
+            refresh()
         }
     }
     /// 背景View
     public var backgroundView: UIView? {
         didSet {
-            self.refresh()
+            refresh()
         }
     }
-    /// 是否隐藏整个自定义导航栏，默认true
-    public var hideNavigationBar: Bool = true {  // contains all
+    /// 是否隐藏整个自定义导航栏，默认false
+    public var hideNavigationBar: Bool = false {
         didSet {
-            self.refresh()
+            refresh()
         }
     }
     
     /// 是否隐藏bar，默认false
     public var hideBar: Bool = false {
         didSet {
-            self.refresh()
+            refresh()
         }
     }
     /// 是否隐藏工具栏
     public var hideToolBar: Bool = false {
         didSet {
-            self.refresh()
+            refresh()
         }
     }
     
     public var seperateLineColor: UIColor = GL.rgba(R: 162, G: 168, B: 195, A: 0.7) {
         didSet {
-            self.seperateLineView.backgroundColor = seperateLineColor
+            seperateLineView.backgroundColor = seperateLineColor
         }
     }
     
     public var seperateLineHeight: CGFloat = 0.5 {
         didSet {
-            self.refresh()
+            refresh()
         }
     }
-    
-    /// `contentSize`
-    private var contentSize: CGSize = .zero
     
     private var containerHeight: CGFloat = .zero
     private var containerWidth: CGFloat = .zero
     
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
+    public private(set) weak var viewController: UIViewController?
+    
+    public convenience init(viewController: UIViewController) {
+        self.init(frame: .zero)
+        self.viewController = viewController
+        containerWidth = viewController.view.bounds.width
         addNotification()
         setupUI()
     }
     
-    public private(set) weak var viewController: UIViewController?
-    
-    public init(viewController: UIViewController) {
+    private init() {
         super.init(frame: .zero)
-        viewController = viewController
-        containerWidth = viewController.view.bounds.width
-        addNotification()
-        setupUI()
+    }
+    
+    private override init(frame: CGRect) {
+        super.init(frame: frame)
     }
     
     required public init?(coder: NSCoder) {
@@ -146,10 +142,10 @@ open class NavigationBar: UIView {
 
 extension NavigationBar {
     private func setupUI() {
-        self.addSubview(self.seperateLineView)
-        self.addSubview(self.barView)
-        self.addSubview(self.toolView)
-        self.seperateLineView.backgroundColor = self.seperateLineColor
+        addSubview(seperateLineView)
+        addSubview(barView)
+        addSubview(toolView)
+        seperateLineView.backgroundColor = seperateLineColor
     }
     
     private func addNotification() {
@@ -163,26 +159,20 @@ extension NavigationBar {
 
 extension NavigationBar {
     @objc private func orientationDidChange() {
-        self.refresh()
+        refresh()
     }
 }
 
 extension NavigationBar {
     open override func layoutIfNeeded() {
         super.layoutIfNeeded()
-        self.subviews.forEach { (view) in
+        subviews.forEach { (view) in
             view.layoutIfNeeded()
         }
     }
     
     open override var intrinsicContentSize: CGSize {
-        return self.contentSize
-    }
-    
-    open override func layoutSubviews() {
-        super.layoutSubviews()
-        self.contentSize = self.reloadUI()
-        self.invalidateIntrinsicContentSize()
+        return CGSize(width: containerWidth, height: containerHeight)
     }
 }
 
@@ -245,61 +235,40 @@ extension NavigationBar {
     private func setupBar() {
         if hideBar { return }
         // left items
-        let o_x: CGFloat = .zero
         var leftDistance: CGFloat = .zero
         for (_, item) in (self.leftItems ?? []).enumerated() {
             if let customView = item.customView {
-                switch item.constraintsType {
-                case .auto:
-                    let _size: CGSize = customView.intrinsicContentSize
-                    var _width: CGFloat = _size.width
-                    var _height: CGFloat = _size.height
-                    if _width.isLessThanOrEqualTo(.zero) {
-                        _width = .zero
-                    }
-                    if barHeight.isLessThanOrEqualTo(_height) {
-                        _height = self.barHeight
-                    }
-                    customView.frame = CGRect(x: leftDistance, y: (barHeight - _height) / 2.0, width: _width, height: _height)
-                    leftDistance += _width
-                    barView.addSubview(customView)
-                case .size(let width, let height):
-                    print("2")
-                    
+                let _size: CGSize = customView.intrinsicContentSize
+                var _width: CGFloat = item.width
+                var _height: CGFloat = item.height
+                if item.width.isAuto {
+                    _width = _size.width
                 }
+                if item.height.isAuto {
+                    _height = _size.height
+                }
+                if _width.isLessThanOrEqualTo(.zero) {
+                    _width = .zero
+                }
+                if barHeight.isLessThanOrEqualTo(_height) {
+                    _height = barHeight
+                }
+                
+                customView.frame = CGRect(x: leftDistance,
+                                          y: (barHeight - _height) / 2.0,
+                                          width: _width,
+                                          height: _height)
+                leftDistance += _width
+                barView.addSubview(customView)
             } else {
-                switch item.constraintsType {
-                case .auto:
-                    print("1")
-                case .size(let width, let height):
-                    print("2")
+                var _width: CGFloat = item.width
+                if _width.isAuto {
+                    _width = .zero
                 }
-            }
-            
-            
-            if let item = item as? GLCusNaviBarButtonItem, let view = item.view {
-                switch item.layoutType {
-                    case .custom(let width, let height):
-                        let y = (self.barHeight - height) / 2.0
-                        view.frame = CGRect(x: leftDistance, y: y, width: width, height: height)
-                        leftDistance += width
-                    case .auto:
-                        let _size: CGSize = view.intrinsicContentSize
-                        var _width: CGFloat = _size.width
-                        var _height: CGFloat = _size.height
-                        if _width.isLessThanOrEqualTo(.zero) {
-                            _width = .zero
-                        }
-                        if self.barHeight.isLessThanOrEqualTo(_height) {
-                            _height = self.barHeight
-                        }
-                        // item垂直居中显示。如果item的高度高于了`barHeight`，则取`barHeight`的高度
-                        view.frame = CGRect(x: leftDistance, y: (self.barHeight - _height) / 2.0, width: _width, height: _height)
-                        leftDistance += _width
+                if _width.isLessThanOrEqualTo(.zero) {
+                    _width = .zero
                 }
-                self.barView.addSubview(view)
-            } else if let item = item as? GLCusNaviBarSpace {
-                leftDistance += item.space
+                leftDistance += _width
             }
         }
         
@@ -307,48 +276,80 @@ extension NavigationBar {
         // right items
         var rightDistance: CGFloat = .zero
         for (_, item) in (self.rightItems ?? []).enumerated().reversed() {
-            if let item = item as? GLCusNaviBarButtonItem, let view = item.view {
-                switch item.layoutType {
-                    case .custom(let width, let height):
-                        let y = (self.barHeight - height) / 2.0
-                        view.frame = CGRect(x: barWidth - rightDistance - width, y: y, width: width, height: height)
-                        rightDistance += width
-                    case .auto:
-                        let _size: CGSize = view.intrinsicContentSize
-                        var _width: CGFloat = _size.width
-                        var _height: CGFloat = _size.height
-                        if _width.isLessThanOrEqualTo(.zero) {
-                            _width = .zero
-                        }
-                        if self.barHeight.isLessThanOrEqualTo(_height) {
-                            _height = self.barHeight
-                        }
-                        // item垂直居中显示。如果item的高度高于了`barHeight`，则取`barHeight`的高度
-                        view.frame = CGRect(x: barWidth - rightDistance - _width, y: (self.barHeight - _height) / 2.0, width: _width, height: _height)
-                        rightDistance += _width
+            if let customView = item.customView {
+                let _size: CGSize = customView.intrinsicContentSize
+                var _width: CGFloat = item.width
+                var _height: CGFloat = item.height
+                if item.width.isAuto {
+                    _width = _size.width
                 }
-                
-                self.barView.addSubview(view)
-                
-            } else if let item = item as? GLCusNaviBarSpace {
-                rightDistance += item.space
+                if item.height.isAuto {
+                    _height = _size.height
+                }
+                if _width.isLessThanOrEqualTo(.zero) {
+                    _width = .zero
+                }
+                if barHeight.isLessThanOrEqualTo(_height) {
+                    _height = barHeight
+                }
+                customView.frame = CGRect(x: containerWidth - rightDistance - _width,
+                                          y: (barHeight - _height) / 2.0,
+                                          width: _width,
+                                          height: _height)
+                rightDistance += _width
+                barView.addSubview(customView)
+            } else {
+                var _width: CGFloat = item.width
+                if _width.isAuto {
+                    _width = .zero
+                }
+                if _width.isLessThanOrEqualTo(.zero) {
+                    _width = .zero
+                }
+                rightDistance += _width
             }
         }
         
         
         // title view
-        let maxTitleWidth: CGFloat = (barWidth / 2.0 - max(leftDistance, rightDistance)) * 2.0;
-        if let title = self.title, let view = title.view, !maxTitleWidth.isLessThanOrEqualTo(.zero) {
-            switch title.layoutType {
-                case .center:
-                    let h: CGFloat = self.barHeight
-                    let w: CGFloat = maxTitleWidth
-                    view.center = CGPoint(x: barWidth / 2.0, y: (self.barHeight / 2.0))
-                    view.bounds = CGRect(x: 0, y: 0, width: w, height: h)
+        let maxTitleWidth: CGFloat = (containerWidth / 2.0 - max(leftDistance, rightDistance)) * 2.0;
+        
+        if let titleItem = titleItem,
+           let customView = titleItem.customView,
+           !maxTitleWidth.isLessThanOrEqualTo(.zero) {
+            switch titleItem.constraintsType {
+                case .center(let width, let height):
+                    let _size: CGSize = customView.intrinsicContentSize
+                    var _width: CGFloat = width
+                    var _height: CGFloat = height
+                    if width.isAuto {
+                        _width = _size.width
+                    }
+                    if height.isAuto {
+                        _height = _size.height
+                    }
+                    if _width.isLessThanOrEqualTo(.zero) {
+                        _width = .zero
+                    }
+                    if barHeight.isLessThanOrEqualTo(_height) {
+                        _height = barHeight
+                    }
+                    if maxTitleWidth.isLessThanOrEqualTo(_width) {
+                        _width = maxTitleWidth
+                    }
+                    customView.center = CGPoint(x: containerWidth / 2.0,
+                                                y: barHeight / 2.0)
+                    customView.bounds = CGRect(x: .zero,
+                                               y: .zero,
+                                               width: _width,
+                                               height: _height)
                 case .fill:
-                    view.frame = CGRect(x: leftDistance, y: 0, width: barWidth - leftDistance - rightDistance, height: self.barHeight)
+                    customView.frame = CGRect(x: leftDistance,
+                                              y: .zero,
+                                              width: containerWidth - leftDistance - rightDistance,
+                                              height: barHeight)
             }
-            self.barView.addSubview(view)
+            barView.addSubview(customView)
         }
     }
     
@@ -391,7 +392,8 @@ extension NavigationBar {
 extension NavigationBar {
     /// 刷新界面
     public func refresh() {
-        self.setNeedsLayout()
-        self.layoutIfNeeded()
+        invalidateIntrinsicContentSize()
+        setNeedsLayout()
+        layoutIfNeeded()
     }
 }

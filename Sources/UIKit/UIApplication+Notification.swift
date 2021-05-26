@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import UserNotifications
 
-extension GL where Base == UIApplication {
+extension GL where Base: UIApplication {
     /// 注册推送（支持本地推送和远程推送）
     public func registerNotification(completion: (() -> Void)? = nil) {
         if #available(iOS 10.0, *) {

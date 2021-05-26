@@ -53,3 +53,4 @@ extension Data: GalaxyCompatible { }
 extension String: GalaxyCompatible { }
 extension CTParagraphStyle: GalaxyCompatible { }
 extension Alamofire.NetworkReachabilityManager: GalaxyCompatible { }
+//extension UIViewController: GalaxyCompatible { }

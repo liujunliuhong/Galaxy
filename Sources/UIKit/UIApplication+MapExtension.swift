@@ -19,7 +19,7 @@ import CoreLocation
 ///         <string>baidumap</string>
 ///     </array>
 ///
-extension GL where Base == UIApplication {
+extension GL where Base: UIApplication {
     /// 百度地图坐标类型
     public enum BaiDuMapCoordinateType: String {
         case bd09ll = "bd09ll"  /// 百度经纬度坐标

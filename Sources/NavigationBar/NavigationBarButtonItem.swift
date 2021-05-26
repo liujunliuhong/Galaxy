@@ -24,6 +24,11 @@ public final class NavigationBarButtonItem {
     public var customView: UIView?
     public var constraintsType: ConstraintsType = .auto
     
+    /// 宽度。如果是`auto`，需要实现`customView`的`intrinsicContentSize`方法
+    public var width: NavigationSize = .auto
+    /// 宽度。如果是`auto`，需要实现`customView`的`intrinsicContentSize`方法，且是垂直居中显示
+    public var height: NavigationSize = .auto
+    
     public init(customView: UIView?, constraintsType: ConstraintsType) {
         self.customView = customView
         self.constraintsType = constraintsType

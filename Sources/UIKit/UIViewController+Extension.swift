@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-extension GL where Base == UIViewController {
+extension GL where Base: UIViewController {
     
     /// `present`
     /// - Parameters:

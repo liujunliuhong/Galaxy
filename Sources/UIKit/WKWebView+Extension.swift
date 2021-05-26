@@ -10,6 +10,6 @@ import Foundation
 import WebKit
 
 
-extension GL where Base == WKWebView {
+extension GL where Base: WKWebView {
     
 }

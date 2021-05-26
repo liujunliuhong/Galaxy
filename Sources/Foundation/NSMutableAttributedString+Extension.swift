@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import CoreText
 
-extension GL where Base == NSMutableAttributedString {
+extension GL where Base: NSMutableAttributedString {
     
     /// font
     @discardableResult

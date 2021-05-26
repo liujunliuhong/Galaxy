@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-extension GL where Base == UINavigationController {
+extension GL where Base: UINavigationController {
     /// push
     /// - Parameters:
     ///   - viewController: 控制器

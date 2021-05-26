@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-extension GL where Base == UIApplication {
+extension GL where Base: UIApplication {
     /// 打开手机设置页面
     public func openIphoneSettings() {
         _open(urlString: UIApplication.openSettingsURLString, completionHandler: nil)

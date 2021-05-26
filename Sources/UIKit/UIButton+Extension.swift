@@ -9,6 +9,6 @@
 import Foundation
 import UIKit
 
-extension GL where Base == UIButton {
+extension GL where Base: UIButton {
     
 }

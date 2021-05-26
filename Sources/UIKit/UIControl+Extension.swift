@@ -33,7 +33,7 @@ private func setAssociateObject<ValueType: AnyObject>(base: AnyObject,
 }
 
 
-extension GL where Base == UIControl {
+extension GL where Base: UIControl {
     /// 扩大点击区域(top)
     public var enlargeTop: Double  {
         set {

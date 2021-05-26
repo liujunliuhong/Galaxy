@@ -10,7 +10,7 @@ import Foundation
 import CoreText
 import UIKit
 
-extension GL where Base == NSParagraphStyle {
+extension GL where Base: NSParagraphStyle {
     
     public var stStyle: CTParagraphStyle {
         var settings = [CTParagraphStyleSetting]()

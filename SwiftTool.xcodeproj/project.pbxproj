@@ -33,6 +33,7 @@
 		85237B732652744B00162AC8 /* UIApplication+Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85237B722652744B00162AC8 /* UIApplication+Notification.swift */; };
 		85237B79265275E700162AC8 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85237B78265275E700162AC8 /* UIButton+Extension.swift */; };
 		85237B7D2652761400162AC8 /* UIControl+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85237B7C2652761400162AC8 /* UIControl+Extension.swift */; };
+		854C4EB7265E092C0024F506 /* UIViewController+NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854C4EB6265E092C0024F506 /* UIViewController+NavigationBar.swift */; };
 		855C461F265A351600893BE6 /* Galaxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C461E265A351600893BE6 /* Galaxy.swift */; };
 		855C4621265A91A900893BE6 /* CTParagraphStyle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C4620265A91A900893BE6 /* CTParagraphStyle+Extension.swift */; };
 		855C4622265A91A900893BE6 /* CTParagraphStyle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C4620265A91A900893BE6 /* CTParagraphStyle+Extension.swift */; };
@@ -125,6 +126,7 @@
 		85237B722652744B00162AC8 /* UIApplication+Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Notification.swift"; sourceTree = "<group>"; };
 		85237B78265275E700162AC8 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		85237B7C2652761400162AC8 /* UIControl+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+Extension.swift"; sourceTree = "<group>"; };
+		854C4EB6265E092C0024F506 /* UIViewController+NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+NavigationBar.swift"; sourceTree = "<group>"; };
 		855C461E265A351600893BE6 /* Galaxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Galaxy.swift; sourceTree = "<group>"; };
 		855C4620265A91A900893BE6 /* CTParagraphStyle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CTParagraphStyle+Extension.swift"; sourceTree = "<group>"; };
 		857D979026536AFF00B436E2 /* String+WordsSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+WordsSort.swift"; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 				85A12AF8265BF50F00AD2465 /* NavigationBarButtonItem.swift */,
 				85A12AFA265BF54C00AD2465 /* NavigationTitleItem.swift */,
 				85A12AFD265C005200AD2465 /* NavigationSize.swift */,
+				854C4EB6265E092C0024F506 /* UIViewController+NavigationBar.swift */,
 			);
 			path = NavigationBar;
 			sourceTree = "<group>";
@@ -557,6 +560,7 @@
 				8506CD75265B69BA00ACF112 /* CityPickerView.swift in Sources */,
 				857F879B2650DC25002D59AE /* NSParagraphStyle+Extension.swift in Sources */,
 				8506CD46265B40D300ACF112 /* AlertEngine.swift in Sources */,
+				854C4EB7265E092C0024F506 /* UIViewController+NavigationBar.swift in Sources */,
 				8506CD2C265B2EA300ACF112 /* SingleLocation.swift in Sources */,
 				85D755C6264F664F00C20D91 /* Numeric+Extension.swift in Sources */,
 				85EAA85226541BDB00AACCDC /* UIDevice+TypeExtension.swift in Sources */,

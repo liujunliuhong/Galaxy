@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-extension GL where Base == UIImage {
+extension GL where Base: UIImage {
     /// 图片的高宽比
     public var heightRatio: CGFloat {
         if base.size.width.isLessThanOrEqualTo(.zero) {

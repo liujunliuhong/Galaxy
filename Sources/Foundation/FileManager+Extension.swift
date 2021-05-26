@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension GL where Base == FileManager {
+extension GL where Base: FileManager {
     /// 获取`Document`文件夹路径
     public static var documentDirectory: String {
         return NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last ?? ""

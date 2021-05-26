@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-extension GL where Base == UIView {
+extension GL where Base: UIView {
     /// origin
     public var origin: CGPoint {
         get {

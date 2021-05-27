@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NextViewController: GLBaseViewController {
+class NextViewController: NavigationBarController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -23,29 +23,38 @@ class NextViewController: GLBaseViewController {
 
         self.view.backgroundColor = .white
         
-        self.cusNaviBar.hideNavigationBar = false
+        
         
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            let label = UILabel()
-            label.text = "测试"
-            label.textAlignment = .center
-            let titleView = GLCusNaviBarTitle(view: label, layoutType: .fill)
-            self.cusNaviBar.title = titleView
             
-            let space = GLCusNaviBarSpace(space: 20)
+            self.gl.navigationBar?.defaultTitleLabel.text = "lala"
             
+            let buttonItem = NavigationBarButtonItem.button(width: .auto, height: .auto) { [weak self] (button) in
+                guard let self = self else { return }
+                button.backgroundColor = .gray
+                button.setTitle("返回", for: .normal)
+                button.addTarget(self, action: #selector(self.backAction), for: .touchUpInside)
+            }
+            self.gl.navigationBar?.leftItems = [.fixedSpace(20), buttonItem]
             
-            let button = UIButton(type: .system)
-            button.backgroundColor = .gray
-            button.setTitle("button", for: .normal)
-            let leftItem1 = GLCusNaviBarButtonItem(view: button, layoutType: .custom(width: 80, height: self.cusNaviBar.barHeight))
-            self.cusNaviBar.leftItems = [space, leftItem1]
-            
+//            let graidentLayer = CAGradientLayer()
+//            graidentLayer.colors = [UIColor.red.cgColor, UIColor.orange.cgColor]
+//            graidentLayer.startPoint = CGPoint(x: 0, y: 0)
+//            graidentLayer.endPoint = CGPoint(x: 0, y: 1)
+//            self.gl.navigationBar?.backgroundLayer = graidentLayer
+//            
+//            self.gl.navigationBar?.toolHeight = 50.0
+//            self.gl.navigationBar?.hideToolBar = false
+//            self.gl.navigationBar?.toolView.backgroundColor = UIColor.cyan.withAlphaComponent(0.5)
         }
     }
     
     override var shouldAutorotate: Bool {
         return true
+    }
+    
+    @objc func backAction() {
+        self.navigationController?.gl.pop(to: nil, animated: true)
     }
 }

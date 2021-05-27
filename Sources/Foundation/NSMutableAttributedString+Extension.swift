@@ -121,7 +121,7 @@ extension GL where Base: NSMutableAttributedString {
     }
 }
 
-extension GL where Base == NSMutableAttributedString {
+extension GL where Base: NSMutableAttributedString {
     /// paragraphStyle
     @discardableResult
     public func add(paragraphStyle: NSParagraphStyle, range: NSRange? = nil) -> Self {
@@ -289,7 +289,7 @@ extension GL where Base == NSMutableAttributedString {
     }
 }
 
-extension GL where Base == NSMutableAttributedString {
+extension GL where Base: NSMutableAttributedString {
     @discardableResult
     public func addAttribute(key: NSAttributedString.Key, value: Any?, range: NSRange? = nil) -> Self {
         let _range = (range == nil) ? NSRange(location: 0, length: base.length) : range!

@@ -15,11 +15,14 @@ private struct AssociatedKeys {
 }
 
 /// 自定义导航栏
-open class NavigationBar: UIView {
+/// 系统的导航栏个人觉得太难用了，有时还会出现一些莫名其妙的`Bug`，还要去适配不同的版本
+/// 因此，我自定义了一个导航栏，原理不复杂，就是一个自定义`View`
+/// 放在`ViewController`的顶部，同时拓展了一些功能
+public final class NavigationBar: UIView {
     deinit {
         removeNotification()
         #if DEBUG
-        print("\(NSStringFromClass(self.classForCoder)) deinit")
+        //print("\(NSStringFromClass(self.classForCoder)) deinit")
         #endif
     }
     
@@ -34,6 +37,15 @@ open class NavigationBar: UIView {
         return lineView
     }()
     
+    /// 默认导航栏的`Title`，当外部设置了`titleItem`，该属性失效
+    public private(set) lazy var defaultTitleLabel: UILabel = {
+        let defaultTitleLabel = UILabel()
+        defaultTitleLabel.textColor = .black
+        defaultTitleLabel.font = .boldSystemFont(ofSize: 17)
+        return defaultTitleLabel
+    }()
+    
+    /// 工具栏`View`
     public private(set) lazy var toolView: UIView = {
         let toolView = UIView()
         toolView.backgroundColor = .clear
@@ -70,13 +82,13 @@ open class NavigationBar: UIView {
             refresh()
         }
     }
-    /// 背景Layer
+    /// 背景`Layer`
     public var backgroundLayer: CALayer? {
         didSet {
             refresh()
         }
     }
-    /// 背景View
+    /// 背景`View`
     public var backgroundView: UIView? {
         didSet {
             refresh()
@@ -108,24 +120,26 @@ open class NavigationBar: UIView {
         }
     }
     
-    public var seperateLineHeight: CGFloat = 0.5 {
+    public var seperateLineHeight: CGFloat = 1.0 / 3.0 {
         didSet {
             refresh()
         }
     }
     
     private var containerHeight: CGFloat = .zero
-    private var containerWidth: CGFloat = .zero
     
+    /// 关联的`viewController`
     public private(set) weak var viewController: UIViewController?
     
     public convenience init(viewController: UIViewController) {
         self.init(frame: .zero)
         self.viewController = viewController
-        containerWidth = viewController.view.bounds.width
         addNotification()
+        titleItem = NavigationTitleItem(customView: defaultTitleLabel, constraintsType: .center(width: .auto, height: .auto))
         setupUI()
     }
+    
+    
     
     private init() {
         super.init(frame: .zero)
@@ -164,20 +178,30 @@ extension NavigationBar {
 }
 
 extension NavigationBar {
-    open override func layoutIfNeeded() {
+    public override func layoutIfNeeded() {
         super.layoutIfNeeded()
         subviews.forEach { (view) in
             view.layoutIfNeeded()
         }
     }
     
-    open override var intrinsicContentSize: CGSize {
+    public override var intrinsicContentSize: CGSize {
+        let containerWidth = self.viewController?.view.bounds.size.width ?? .zero
         return CGSize(width: containerWidth, height: containerHeight)
+    }
+    
+    public override func didMoveToSuperview() {
+        guard let _ = superview else { return }
+        snp.makeConstraints { (make) in
+            make.left.top.equalToSuperview()
+        }
+        refresh()
     }
 }
 
 extension NavigationBar {
     private func reloadUI() {
+        let containerWidth = self.viewController?.view.bounds.size.width ?? .zero
         if hideNavigationBar || containerWidth.isLessThanOrEqualTo(.zero) {
             barView.subviews.forEach { (v) in
                 v.removeFromSuperview()
@@ -234,6 +258,8 @@ extension NavigationBar {
 extension NavigationBar {
     private func setupBar() {
         if hideBar { return }
+        //
+        let containerWidth = self.viewController?.view.bounds.size.width ?? .zero
         // left items
         var leftDistance: CGFloat = .zero
         for (_, item) in (self.leftItems ?? []).enumerated() {
@@ -318,42 +344,43 @@ extension NavigationBar {
            let customView = titleItem.customView,
            !maxTitleWidth.isLessThanOrEqualTo(.zero) {
             switch titleItem.constraintsType {
-                case .center(let width, let height):
-                    let _size: CGSize = customView.intrinsicContentSize
-                    var _width: CGFloat = width
-                    var _height: CGFloat = height
-                    if width.isAuto {
-                        _width = _size.width
-                    }
-                    if height.isAuto {
-                        _height = _size.height
-                    }
-                    if _width.isLessThanOrEqualTo(.zero) {
-                        _width = .zero
-                    }
-                    if barHeight.isLessThanOrEqualTo(_height) {
-                        _height = barHeight
-                    }
-                    if maxTitleWidth.isLessThanOrEqualTo(_width) {
-                        _width = maxTitleWidth
-                    }
-                    customView.center = CGPoint(x: containerWidth / 2.0,
-                                                y: barHeight / 2.0)
-                    customView.bounds = CGRect(x: .zero,
-                                               y: .zero,
-                                               width: _width,
-                                               height: _height)
-                case .fill:
-                    customView.frame = CGRect(x: leftDistance,
-                                              y: .zero,
-                                              width: containerWidth - leftDistance - rightDistance,
-                                              height: barHeight)
+            case .center(let width, let height):
+                let _size: CGSize = customView.intrinsicContentSize
+                var _width: CGFloat = width
+                var _height: CGFloat = height
+                if width.isAuto {
+                    _width = _size.width
+                }
+                if height.isAuto {
+                    _height = _size.height
+                }
+                if _width.isLessThanOrEqualTo(.zero) {
+                    _width = .zero
+                }
+                if barHeight.isLessThanOrEqualTo(_height) {
+                    _height = barHeight
+                }
+                if maxTitleWidth.isLessThanOrEqualTo(_width) {
+                    _width = maxTitleWidth
+                }
+                customView.center = CGPoint(x: containerWidth / 2.0,
+                                            y: barHeight / 2.0)
+                customView.bounds = CGRect(x: .zero,
+                                           y: .zero,
+                                           width: _width,
+                                           height: _height)
+            case .fill:
+                customView.frame = CGRect(x: leftDistance,
+                                          y: .zero,
+                                          width: containerWidth - leftDistance - rightDistance,
+                                          height: barHeight)
             }
             barView.addSubview(customView)
         }
     }
     
     private func setupSeperateLineView() {
+        let containerWidth = self.viewController?.view.bounds.size.width ?? .zero
         if !hideBar {
             seperateLineView.frame = CGRect(x: .zero,
                                             y: barView.gl.bottom - seperateLineHeight / 2.0,
@@ -365,6 +392,7 @@ extension NavigationBar {
     }
     
     private func setupBackgroundView() {
+        let containerWidth = self.viewController?.view.bounds.size.width ?? .zero
         let tmpBackgroundView = objc_getAssociatedObject(self, &AssociatedKeys.viewKey) as? UIView
         tmpBackgroundView?.removeFromSuperview()
         if let backgroundView = backgroundView {
@@ -392,6 +420,7 @@ extension NavigationBar {
 extension NavigationBar {
     /// 刷新界面
     public func refresh() {
+        reloadUI()
         invalidateIntrinsicContentSize()
         setNeedsLayout()
         layoutIfNeeded()

@@ -9,6 +9,15 @@
 import UIKit
 import FLEX
 
+private class _Navi: UINavigationController {
+    override var childForStatusBarHidden: UIViewController? {
+        return self.viewControllers.last
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return self.viewControllers.last?.prefersStatusBarHidden ?? false
+    }
+}
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -27,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()
         
         let vc = ViewController()
-        let navi = UINavigationController(rootViewController: vc)
+        let navi = _Navi(rootViewController: vc)
         self.window?.rootViewController = navi
         
         let size = 1024*1024+7100

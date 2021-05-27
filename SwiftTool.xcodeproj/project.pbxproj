@@ -16,7 +16,6 @@
 		183111FA2446A8D400155620 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 183111F92446A8D400155620 /* Test.m */; };
 		7ED1CA540CCEE052DF44FE7A /* Pods_SwiftTool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4806E0A8EE8767510EF2FD61 /* Pods_SwiftTool.framework */; };
 		85009A56265EAB9200DBE03F /* NavigationBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85009A55265EAB9200DBE03F /* NavigationBarController.swift */; };
-		8506641A2550493C00EB4188 /* GLCusNavigationBarDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850663F92550493C00EB4188 /* GLCusNavigationBarDemoViewController.swift */; };
 		8506CD2C265B2EA300ACF112 /* SingleLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8506CD2B265B2EA300ACF112 /* SingleLocation.swift */; };
 		8506CD30265B2EAE00ACF112 /* SingleLocationAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8506CD2F265B2EAE00ACF112 /* SingleLocationAuthorization.swift */; };
 		8506CD3E265B3FC300ACF112 /* WordsSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8506CD3D265B3FC300ACF112 /* WordsSort.swift */; };
@@ -36,6 +35,8 @@
 		855C461F265A351600893BE6 /* Galaxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C461E265A351600893BE6 /* Galaxy.swift */; };
 		855C4621265A91A900893BE6 /* CTParagraphStyle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C4620265A91A900893BE6 /* CTParagraphStyle+Extension.swift */; };
 		855C4622265A91A900893BE6 /* CTParagraphStyle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C4620265A91A900893BE6 /* CTParagraphStyle+Extension.swift */; };
+		85779837265F382B0010E5DC /* Base58.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85779836265F382B0010E5DC /* Base58.swift */; };
+		8577983D265F383C0010E5DC /* ETH.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8577983C265F383C0010E5DC /* ETH.swift */; };
 		857D979126536AFF00B436E2 /* String+WordsSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857D979026536AFF00B436E2 /* String+WordsSort.swift */; };
 		857D979726538A9400B436E2 /* Alamofire.NetworkReachabilityManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857D979626538A9400B436E2 /* Alamofire.NetworkReachabilityManager+Extension.swift */; };
 		857D97C326538F5500B436E2 /* WKWebView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857D97C226538F5500B436E2 /* WKWebView+Extension.swift */; };
@@ -108,7 +109,6 @@
 		425C6511002199BBE0183C7D /* Pods-SwiftTool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftTool.release.xcconfig"; path = "Target Support Files/Pods-SwiftTool/Pods-SwiftTool.release.xcconfig"; sourceTree = "<group>"; };
 		4806E0A8EE8767510EF2FD61 /* Pods_SwiftTool.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftTool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		85009A55265EAB9200DBE03F /* NavigationBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarController.swift; sourceTree = "<group>"; };
-		850663F92550493C00EB4188 /* GLCusNavigationBarDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLCusNavigationBarDemoViewController.swift; sourceTree = "<group>"; };
 		8506CD2B265B2EA300ACF112 /* SingleLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleLocation.swift; sourceTree = "<group>"; };
 		8506CD2F265B2EAE00ACF112 /* SingleLocationAuthorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleLocationAuthorization.swift; sourceTree = "<group>"; };
 		8506CD3D265B3FC300ACF112 /* WordsSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsSort.swift; sourceTree = "<group>"; };
@@ -127,6 +127,8 @@
 		854C4EB6265E092C0024F506 /* UIViewController+NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+NavigationBar.swift"; sourceTree = "<group>"; };
 		855C461E265A351600893BE6 /* Galaxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Galaxy.swift; sourceTree = "<group>"; };
 		855C4620265A91A900893BE6 /* CTParagraphStyle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CTParagraphStyle+Extension.swift"; sourceTree = "<group>"; };
+		85779836265F382B0010E5DC /* Base58.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base58.swift; sourceTree = "<group>"; };
+		8577983C265F383C0010E5DC /* ETH.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETH.swift; sourceTree = "<group>"; };
 		857D979026536AFF00B436E2 /* String+WordsSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+WordsSort.swift"; sourceTree = "<group>"; };
 		857D979626538A9400B436E2 /* Alamofire.NetworkReachabilityManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alamofire.NetworkReachabilityManager+Extension.swift"; sourceTree = "<group>"; };
 		857D97C226538F5500B436E2 /* WKWebView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WKWebView+Extension.swift"; sourceTree = "<group>"; };
@@ -247,6 +249,8 @@
 		850663DB2550492900EB4188 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				85779835265F381D0010E5DC /* Crypto */,
+				85779834265F37E60010E5DC /* BlockChain */,
 				855C461D265A34FA00893BE6 /* Galaxy */,
 				85B225E7257FB61100EF6ECD /* Location */,
 				85CC969F257933F4002B993F /* PickerView */,
@@ -294,7 +298,6 @@
 		850663F72550493C00EB4188 /* NavigationBar */ = {
 			isa = PBXGroup;
 			children = (
-				850663F92550493C00EB4188 /* GLCusNavigationBarDemoViewController.swift */,
 				85009A55265EAB9200DBE03F /* NavigationBarController.swift */,
 				8506CF63265BAE2000ACF112 /* NavigationBar.swift */,
 				85A12AF8265BF50F00AD2465 /* NavigationBarButtonItem.swift */,
@@ -331,6 +334,22 @@
 				855C461E265A351600893BE6 /* Galaxy.swift */,
 			);
 			path = Galaxy;
+			sourceTree = "<group>";
+		};
+		85779834265F37E60010E5DC /* BlockChain */ = {
+			isa = PBXGroup;
+			children = (
+				8577983C265F383C0010E5DC /* ETH.swift */,
+			);
+			path = BlockChain;
+			sourceTree = "<group>";
+		};
+		85779835265F381D0010E5DC /* Crypto */ = {
+			isa = PBXGroup;
+			children = (
+				85779836265F382B0010E5DC /* Base58.swift */,
+			);
+			path = Crypto;
 			sourceTree = "<group>";
 		};
 		85B225E7257FB61100EF6ECD /* Location */ = {
@@ -563,6 +582,7 @@
 				85EAA85226541BDB00AACCDC /* UIDevice+TypeExtension.swift in Sources */,
 				85A12AFB265BF54C00AD2465 /* NavigationTitleItem.swift in Sources */,
 				857D97E02653EADC00B436E2 /* UIApplication+MapExtension.swift in Sources */,
+				8577983D265F383C0010E5DC /* ETH.swift in Sources */,
 				85009A56265EAB9200DBE03F /* NavigationBarController.swift in Sources */,
 				B4746B7B2581BA7900E1CB2A /* GRDBDemoViewController.swift in Sources */,
 				85237B732652744B00162AC8 /* UIApplication+Notification.swift in Sources */,
@@ -592,11 +612,11 @@
 				859F2DC2264ECD5000A4575C /* Bundle+Extension.swift in Sources */,
 				85D755C9264F696400C20D91 /* Collection+Extension.swift in Sources */,
 				857F87982650D3FE002D59AE /* FileManager+Extension.swift in Sources */,
+				85779837265F382B0010E5DC /* Base58.swift in Sources */,
 				8506CD5B265B690700ACF112 /* CityData.swift in Sources */,
 				857D979126536AFF00B436E2 /* String+WordsSort.swift in Sources */,
 				8506CD55265B689900ACF112 /* PickerToolBar.swift in Sources */,
 				855C461F265A351600893BE6 /* Galaxy.swift in Sources */,
-				8506641A2550493C00EB4188 /* GLCusNavigationBarDemoViewController.swift in Sources */,
 				85237B79265275E700162AC8 /* UIButton+Extension.swift in Sources */,
 				8506CD30265B2EAE00ACF112 /* SingleLocationAuthorization.swift in Sources */,
 				859F2DBC264ECC4000A4575C /* Data+Extension.swift in Sources */,

@@ -14,7 +14,7 @@ extension GL where Base: UINavigationController {
     /// - Parameters:
     ///   - viewController: 控制器
     ///   - animated: 是否需要动画
-    public func gl_push(destination viewController: UIViewController?, animated: Bool) {
+    public func push(destination viewController: UIViewController?, animated: Bool) {
         guard let viewController = viewController else { return }
         viewController.hidesBottomBarWhenPushed = true
         base.pushViewController(viewController, animated: animated)
@@ -24,7 +24,7 @@ extension GL where Base: UINavigationController {
     /// - Parameters:
     ///   - vcName: 控制器名称，如果为`nil`，`pop`到上一个控制器
     ///   - animated: 是否需要动画
-    public func gl_pop(to vcName: String?, animated: Bool) {
+    public func pop(to vcName: String?, animated: Bool) {
         guard base.viewControllers.count > 0 else { return }
         if let vcName = vcName {
             for (_, vc) in base.viewControllers.reversed().enumerated() {

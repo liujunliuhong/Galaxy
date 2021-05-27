@@ -185,6 +185,9 @@ class ViewController: UIViewController {
 
 
 extension ViewController {
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         //let vc = SwiftyBMKLocationTestViewController(bmk_key: bmk_key)
         //let vc = SwiftyNativeLocationTestViewController()
@@ -195,7 +198,8 @@ extension ViewController {
         
         
         //print("\(UIDevice.YH_Width)")
-        
+        let vc = NextViewController()
+        self.navigationController?.gl.push(destination: vc, animated: true)
         
         
         
@@ -340,47 +344,47 @@ extension ViewController {
         
 //        ["1": 2].gl.jsonEncode
         
-        print(["1": "1"].gl.jsonEncode!)
-        
-        let cityPickerView = CityPickerView()
-//        cityPickerView.enableDebugLog = true
-        cityPickerView.cityPickerType = .province_city_district
-        cityPickerView.defaultSelectAreaNames = ["四川省", "成都市", "双流县"]
-        cityPickerView.show { [weak cityPickerView] selectIndexs in
-            print("selectIndexs:\(selectIndexs)")
-            guard let cityPickerView = cityPickerView else { return }
-            guard let currentSelectModel = cityPickerView.currentSelectModel else { return }
-            switch cityPickerView.cityPickerType {
-                case .province_city_district:
-                    let secondIndex = selectIndexs[1]
-                    let thirdIndex = selectIndexs[2]
-
-                    let province = currentSelectModel.areaName
-
-                    let cityModel = currentSelectModel.nexts[secondIndex]
-                    let city = cityModel.areaName
-
-                    let districtModel = cityModel.nexts[thirdIndex]
-                    let district = districtModel.areaName
-
-                    print("\(province) - \(city) - \(district)")
-                case .province_city:
-                    let secondIndex = selectIndexs[1]
-
-                    let province = currentSelectModel.areaName
-
-                    let cityModel = currentSelectModel.nexts[secondIndex]
-                    let city = cityModel.areaName
-
-                    print("\(province) - \(city)")
-                case .province:
-                    let province = currentSelectModel.areaName
-
-                    print("\(province)")
-            }
-        } currentSelectRowClosure: { indexes in
-            print("indexes: \(indexes)")
-        }
+//        print(["1": "1"].gl.jsonEncode!)
+//
+//        let cityPickerView = CityPickerView()
+////        cityPickerView.enableDebugLog = true
+//        cityPickerView.cityPickerType = .province_city_district
+//        cityPickerView.defaultSelectAreaNames = ["四川省", "成都市", "双流县"]
+//        cityPickerView.show { [weak cityPickerView] selectIndexs in
+//            print("selectIndexs:\(selectIndexs)")
+//            guard let cityPickerView = cityPickerView else { return }
+//            guard let currentSelectModel = cityPickerView.currentSelectModel else { return }
+//            switch cityPickerView.cityPickerType {
+//                case .province_city_district:
+//                    let secondIndex = selectIndexs[1]
+//                    let thirdIndex = selectIndexs[2]
+//
+//                    let province = currentSelectModel.areaName
+//
+//                    let cityModel = currentSelectModel.nexts[secondIndex]
+//                    let city = cityModel.areaName
+//
+//                    let districtModel = cityModel.nexts[thirdIndex]
+//                    let district = districtModel.areaName
+//
+//                    print("\(province) - \(city) - \(district)")
+//                case .province_city:
+//                    let secondIndex = selectIndexs[1]
+//
+//                    let province = currentSelectModel.areaName
+//
+//                    let cityModel = currentSelectModel.nexts[secondIndex]
+//                    let city = cityModel.areaName
+//
+//                    print("\(province) - \(city)")
+//                case .province:
+//                    let province = currentSelectModel.areaName
+//
+//                    print("\(province)")
+//            }
+//        } currentSelectRowClosure: { indexes in
+//            print("indexes: \(indexes)")
+//        }
     }
 }
 

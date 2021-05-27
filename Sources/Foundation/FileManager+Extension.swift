@@ -50,13 +50,13 @@ extension GL where Base: FileManager {
         }
         
         if (length < KB) {
-            return String(format: "%.2fB", length.gl.cgFloat)
+            return String(format: "%.2f B", length.gl.cgFloat)
         } else if (length >= KB && length < MB) {
-            return String(format: "%.2fKB", length.gl.cgFloat / KB.gl.cgFloat)
+            return String(format: "%.2f KB", length.gl.cgFloat / KB.gl.cgFloat)
         } else if (length >= MB && length < GB) {
-            return String(format: "%.2fMB", length.gl.cgFloat / MB.gl.cgFloat)
+            return String(format: "%.2f MB", length.gl.cgFloat / MB.gl.cgFloat)
         } else {
-            return String(format: "%.2fGB", length.gl.cgFloat / GB.gl.cgFloat)
+            return String(format: "%.2f GB", length.gl.cgFloat / GB.gl.cgFloat)
         }
     }
 }

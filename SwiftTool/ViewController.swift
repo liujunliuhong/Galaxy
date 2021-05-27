@@ -202,6 +202,13 @@ extension ViewController {
         self.navigationController?.gl.push(destination: vc, animated: true)
         
         
+        let string = "GJF"
+        let data = string.data(using: .utf8)!
+        var s: [UInt8] = Array(data)
+        s.insert(0, at: 0)
+        s.insert(0, at: 0)
+        
+        print(s.gl.bytesToString?.data(using: .utf8)!.gl_base58Encoding)
         
         /*
          let normalImages: [UIImage?] = [UIImage(named: "chats_normal"),

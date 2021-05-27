@@ -3,6 +3,7 @@ PODS:
   - AMapFoundation (1.6.7)
   - AMapLocation (2.6.8):
     - AMapFoundation (~> 1.6.4)
+  - BigInt (5.2.0)
   - BMKLocationKit (2.0.0)
   - CocoaLumberjack/Core (3.7.2)
   - CocoaLumberjack/Swift (3.7.2):
@@ -76,6 +77,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - AMapLocation
+  - BigInt
   - BMKLocationKit
   - CocoaLumberjack/Swift
   - FLEX
@@ -97,6 +99,7 @@ SPEC REPOS:
     - Alamofire
     - AMapFoundation
     - AMapLocation
+    - BigInt
     - BMKLocationKit
     - CocoaLumberjack
     - FLEX
@@ -122,6 +125,7 @@ SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
   AMapFoundation: c7da72b42a713f1429c88af1858d623dde88934b
   AMapLocation: dad27669c4ca68e395ce7532ff614b7d4d45f7b7
+  BigInt: f668a80089607f521586bbe29513d708491ef2f7
   BMKLocationKit: 097814ef672b1e57e86e6c1968d7892fb78002bf
   CocoaLumberjack: b7e05132ff94f6ae4dfa9d5bce9141893a21d9da
   FLEX: 7ca2c8cd3a435ff501ff6d2f2141e9bdc934eaab
@@ -143,6 +147,6 @@ SPEC CHECKSUMS:
   Texture: 2f109e937850d94d1d07232041c9c7313ccddb81
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 849c5c54be66005bad1e66b4fc3975b93c5fcd57
+PODFILE CHECKSUM: 5134bff85e2c2d04c4639f36e0a55f28a50188bb
 
 COCOAPODS: 1.10.1

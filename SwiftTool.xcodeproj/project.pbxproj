@@ -37,6 +37,7 @@
 		855C4622265A91A900893BE6 /* CTParagraphStyle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C4620265A91A900893BE6 /* CTParagraphStyle+Extension.swift */; };
 		85779837265F382B0010E5DC /* Base58.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85779836265F382B0010E5DC /* Base58.swift */; };
 		8577983D265F383C0010E5DC /* ETH.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8577983C265F383C0010E5DC /* ETH.swift */; };
+		85779841265F503C0010E5DC /* Timer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85779840265F503C0010E5DC /* Timer+Extension.swift */; };
 		857D979126536AFF00B436E2 /* String+WordsSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857D979026536AFF00B436E2 /* String+WordsSort.swift */; };
 		857D979726538A9400B436E2 /* Alamofire.NetworkReachabilityManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857D979626538A9400B436E2 /* Alamofire.NetworkReachabilityManager+Extension.swift */; };
 		857D97C326538F5500B436E2 /* WKWebView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857D97C226538F5500B436E2 /* WKWebView+Extension.swift */; };
@@ -129,6 +130,7 @@
 		855C4620265A91A900893BE6 /* CTParagraphStyle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CTParagraphStyle+Extension.swift"; sourceTree = "<group>"; };
 		85779836265F382B0010E5DC /* Base58.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base58.swift; sourceTree = "<group>"; };
 		8577983C265F383C0010E5DC /* ETH.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETH.swift; sourceTree = "<group>"; };
+		85779840265F503C0010E5DC /* Timer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timer+Extension.swift"; sourceTree = "<group>"; };
 		857D979026536AFF00B436E2 /* String+WordsSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+WordsSort.swift"; sourceTree = "<group>"; };
 		857D979626538A9400B436E2 /* Alamofire.NetworkReachabilityManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alamofire.NetworkReachabilityManager+Extension.swift"; sourceTree = "<group>"; };
 		857D97C226538F5500B436E2 /* WKWebView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WKWebView+Extension.swift"; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 				85D755E6264F89D300C20D91 /* Int+Extension.swift */,
 				859F2DB9264ECAF400A4575C /* String+Extension.swift */,
 				85D755F1264F9A4E00C20D91 /* URL+Extension.swift */,
+				85779840265F503C0010E5DC /* Timer+Extension.swift */,
 				857F87972650D3FE002D59AE /* FileManager+Extension.swift */,
 				857F879A2650DC25002D59AE /* NSParagraphStyle+Extension.swift */,
 				855C4620265A91A900893BE6 /* CTParagraphStyle+Extension.swift */,
@@ -581,6 +584,7 @@
 				85D755C6264F664F00C20D91 /* Numeric+Extension.swift in Sources */,
 				85EAA85226541BDB00AACCDC /* UIDevice+TypeExtension.swift in Sources */,
 				85A12AFB265BF54C00AD2465 /* NavigationTitleItem.swift in Sources */,
+				85779841265F503C0010E5DC /* Timer+Extension.swift in Sources */,
 				857D97E02653EADC00B436E2 /* UIApplication+MapExtension.swift in Sources */,
 				8577983D265F383C0010E5DC /* ETH.swift in Sources */,
 				85009A56265EAB9200DBE03F /* NavigationBarController.swift in Sources */,

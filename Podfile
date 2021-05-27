@@ -43,4 +43,6 @@ target 'SwiftTool' do
   pod 'GRDB.swift'
 
   pod 'FLEX'
+  
+  pod 'BigInt'
 end

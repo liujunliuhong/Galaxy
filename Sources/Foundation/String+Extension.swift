@@ -128,7 +128,7 @@ extension GL where Base == String {
         return validData
     }
     
-    /// 字符串转`Bytes`
+    /// 字符串转`Bytes<UInt8>`
     public var toBytes: Array<UInt8>? {
         guard let data = base.data(using: .utf8, allowLossyConversion: true) else { return nil }
         return data.gl.bytes

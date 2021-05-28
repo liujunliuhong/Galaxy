@@ -45,4 +45,5 @@ target 'SwiftTool' do
   pod 'FLEX'
   
   pod 'BigInt'
+  pod 'CryptoSwift'
 end

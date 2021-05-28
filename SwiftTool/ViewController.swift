@@ -202,15 +202,15 @@ extension ViewController {
         self.navigationController?.gl.push(destination: vc, animated: true)
         
         // GJF
-        let string = "GJF"
-        let data = string.data(using: .utf8)!
-
-        let newString = ([UInt8(0)] + data).gl.bytesToString!
-
-        let s1 = newString.gl.base58Encoding!
-        print("编码后:\(s1)")
-        let s2 = s1.gl.base58Decoding!
-        print("解码后:\(s2)")
+//        let string = "GJF"
+//        let data = string.data(using: .utf8)!
+//
+//        let newString = ([UInt8(0)] + data).gl.bytesToString!
+//
+//        let s1 = newString.gl.base58Encoding!
+//        print("编码后:\(s1)")
+//        let s2 = s1.gl.base58Decoding!
+//        print("解码后:\(s2)")
         
         //print(s.gl.bytesToString?.data(using: .utf8)!.gl.base58Encoding)
         

@@ -8,6 +8,7 @@ PODS:
   - CocoaLumberjack/Core (3.7.2)
   - CocoaLumberjack/Swift (3.7.2):
     - CocoaLumberjack/Core
+  - CryptoSwift (1.4.0)
   - FLEX (4.4.1)
   - GRDB.swift (5.7.4):
     - GRDB.swift/standard (= 5.7.4)
@@ -80,6 +81,7 @@ DEPENDENCIES:
   - BigInt
   - BMKLocationKit
   - CocoaLumberjack/Swift
+  - CryptoSwift
   - FLEX
   - GRDB.swift
   - MBProgressHUD
@@ -102,6 +104,7 @@ SPEC REPOS:
     - BigInt
     - BMKLocationKit
     - CocoaLumberjack
+    - CryptoSwift
     - FLEX
     - GRDB.swift
     - MBProgressHUD
@@ -128,6 +131,7 @@ SPEC CHECKSUMS:
   BigInt: f668a80089607f521586bbe29513d708491ef2f7
   BMKLocationKit: 097814ef672b1e57e86e6c1968d7892fb78002bf
   CocoaLumberjack: b7e05132ff94f6ae4dfa9d5bce9141893a21d9da
+  CryptoSwift: 7cc902df1784de3b389a387756c7d710f197730c
   FLEX: 7ca2c8cd3a435ff501ff6d2f2141e9bdc934eaab
   GRDB.swift: 2064e726141f130d0b8bd819b29086f2b1157597
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
@@ -147,6 +151,6 @@ SPEC CHECKSUMS:
   Texture: 2f109e937850d94d1d07232041c9c7313ccddb81
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 5134bff85e2c2d04c4639f36e0a55f28a50188bb
+PODFILE CHECKSUM: d7ac2e4d7cc17cd825ef4016eb7f291a87c48fcd
 
 COCOAPODS: 1.10.1

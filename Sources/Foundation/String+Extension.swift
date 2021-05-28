@@ -136,11 +136,7 @@ extension GL where Base == String {
     
     /// 将一个字符串`MD5`
     public var md5: String {
-        let ccharArray = base.cString(using: String.Encoding.utf8)
-        var uint8Array = [UInt8](repeating: 0, count: Int(CC_MD5_DIGEST_LENGTH))
-        CC_MD5(ccharArray, CC_LONG(ccharArray!.count - 1), &uint8Array)
-        let result = uint8Array.reduce("") { $0 + String(format: "%02X", $1) }
-        return result
+        return MD5.md5(string: self.base, upper: false)
     }
     
     /// 将一个字符串转为合法的`URL`

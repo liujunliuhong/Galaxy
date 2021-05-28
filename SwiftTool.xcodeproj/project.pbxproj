@@ -32,6 +32,8 @@
 		85237B732652744B00162AC8 /* UIApplication+Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85237B722652744B00162AC8 /* UIApplication+Notification.swift */; };
 		85237B79265275E700162AC8 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85237B78265275E700162AC8 /* UIButton+Extension.swift */; };
 		85237B7D2652761400162AC8 /* UIControl+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85237B7C2652761400162AC8 /* UIControl+Extension.swift */; };
+		85367DB02660ADBC00607E3A /* SHA256.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85367DAF2660ADBC00607E3A /* SHA256.swift */; };
+		85367DEA2660E23E00607E3A /* MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85367DE92660E23E00607E3A /* MD5.swift */; };
 		854C4EB7265E092C0024F506 /* UIViewController+NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854C4EB6265E092C0024F506 /* UIViewController+NavigationBar.swift */; };
 		855C461F265A351600893BE6 /* Galaxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C461E265A351600893BE6 /* Galaxy.swift */; };
 		855C4621265A91A900893BE6 /* CTParagraphStyle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C4620265A91A900893BE6 /* CTParagraphStyle+Extension.swift */; };
@@ -127,6 +129,8 @@
 		85237B722652744B00162AC8 /* UIApplication+Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Notification.swift"; sourceTree = "<group>"; };
 		85237B78265275E700162AC8 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		85237B7C2652761400162AC8 /* UIControl+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+Extension.swift"; sourceTree = "<group>"; };
+		85367DAF2660ADBC00607E3A /* SHA256.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHA256.swift; sourceTree = "<group>"; };
+		85367DE92660E23E00607E3A /* MD5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MD5.swift; sourceTree = "<group>"; };
 		854C4EB6265E092C0024F506 /* UIViewController+NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+NavigationBar.swift"; sourceTree = "<group>"; };
 		855C461E265A351600893BE6 /* Galaxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Galaxy.swift; sourceTree = "<group>"; };
 		855C4620265A91A900893BE6 /* CTParagraphStyle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CTParagraphStyle+Extension.swift"; sourceTree = "<group>"; };
@@ -362,6 +366,8 @@
 			isa = PBXGroup;
 			children = (
 				85779836265F382B0010E5DC /* Base58.swift */,
+				85367DAF2660ADBC00607E3A /* SHA256.swift */,
+				85367DE92660E23E00607E3A /* MD5.swift */,
 			);
 			path = Crypto;
 			sourceTree = "<group>";
@@ -637,11 +643,13 @@
 				8506CD30265B2EAE00ACF112 /* SingleLocationAuthorization.swift in Sources */,
 				859F2DBC264ECC4000A4575C /* Data+Extension.swift in Sources */,
 				859F2DBA264ECAF400A4575C /* String+Extension.swift in Sources */,
+				85367DEA2660E23E00607E3A /* MD5.swift in Sources */,
 				85BF96A4265927BD0030770F /* UINavigationController+Extension.swift in Sources */,
 				8506CD6D265B699B00ACF112 /* DatePickerView.swift in Sources */,
 				859F2DBE264ECD1C00A4575C /* Array+Extension.swift in Sources */,
 				1831114B24469EB700155620 /* AppDelegate.swift in Sources */,
 				85EAA850265419D500AACCDC /* UIDevice+Extension.swift in Sources */,
+				85367DB02660ADBC00607E3A /* SHA256.swift in Sources */,
 				857F879E2650DC74002D59AE /* NSMutableAttributedString+Extension.swift in Sources */,
 				859E67EE25455E22005F1115 /* NextViewController.swift in Sources */,
 				183111FA2446A8D400155620 /* Test.m in Sources */,

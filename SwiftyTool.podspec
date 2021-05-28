@@ -14,5 +14,10 @@ Pod::Spec.new do |s|
   s.ios.deployment_target      = '10.0'
   s.requires_arc               = true
   s.static_framework           = true
-  s.source_files               = 'Sources/*.swift' 'Sources/*.{h,m}'
+  s.source_files               = 'Sources/*/*.swift','Sources/*/*.{h,m}'
+  s.dependency 'CocoaLumberjack/Swift'
+  s.dependency 'SnapKit'
+  s.dependency 'Alamofire'
+  s.dependency 'BigInt'
+  s.dependency 'CryptoSwift'
 end

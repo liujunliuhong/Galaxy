@@ -9,10 +9,14 @@
 /* Begin PBXBuildFile section */
 		4D0AD6DDCA39835C93908E28 /* Pods_GalaxyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0401D45D631CE25FFBCB8B0 /* Pods_GalaxyTests.framework */; };
 		7FFE0C3417884794D68F8377 /* Pods_Galaxy_GalaxyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34768F1A238BBAF6ABEFD959 /* Pods_Galaxy_GalaxyUITests.framework */; };
+		85577B7926628E9E00A26039 /* BIP39Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85577B7826628E9E00A26039 /* BIP39Language.swift */; };
+		85577B7D26628FFA00A26039 /* BIP39MnemonicCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85577B7C26628FFA00A26039 /* BIP39MnemonicCount.swift */; };
+		85577B7F266290CE00A26039 /* BIP39.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85577B7E266290CE00A26039 /* BIP39.swift */; };
+		85577B832662912300A26039 /* BIP39+WordLists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85577B822662912300A26039 /* BIP39+WordLists.swift */; };
+		85577B862662ABA100A26039 /* UInt11.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85577B852662ABA100A26039 /* UInt11.swift */; };
 		855990C52661C9B800693AA1 /* AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855990C42661C9B800693AA1 /* AES.swift */; };
 		855990CA2661C9BD00693AA1 /* RSA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855990C92661C9BD00693AA1 /* RSA.swift */; };
 		855990CF2661C9CA00693AA1 /* Base64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855990CE2661C9CA00693AA1 /* Base64.swift */; };
-		855990EC26622EA700693AA1 /* Bip39.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855990EB26622EA700693AA1 /* Bip39.swift */; };
 		855990F12662406C00693AA1 /* BinaryInteger+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855990F02662406C00693AA1 /* BinaryInteger+Extension.swift */; };
 		85E63F7726611D3A0045ED87 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E63F7626611D3A0045ED87 /* AppDelegate.swift */; };
 		85E63F7B26611D3A0045ED87 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E63F7A26611D3A0045ED87 /* ViewController.swift */; };
@@ -99,10 +103,14 @@
 		01FEDD1F29C224D34B148E49 /* Pods-GalaxyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GalaxyTests.debug.xcconfig"; path = "Target Support Files/Pods-GalaxyTests/Pods-GalaxyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		34768F1A238BBAF6ABEFD959 /* Pods_Galaxy_GalaxyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Galaxy_GalaxyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		45CFC8955DD68FA9E5EC7D74 /* Pods-Galaxy-GalaxyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Galaxy-GalaxyUITests.debug.xcconfig"; path = "Target Support Files/Pods-Galaxy-GalaxyUITests/Pods-Galaxy-GalaxyUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		85577B7826628E9E00A26039 /* BIP39Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BIP39Language.swift; sourceTree = "<group>"; };
+		85577B7C26628FFA00A26039 /* BIP39MnemonicCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BIP39MnemonicCount.swift; sourceTree = "<group>"; };
+		85577B7E266290CE00A26039 /* BIP39.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BIP39.swift; sourceTree = "<group>"; };
+		85577B822662912300A26039 /* BIP39+WordLists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BIP39+WordLists.swift"; sourceTree = "<group>"; };
+		85577B852662ABA100A26039 /* UInt11.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UInt11.swift; sourceTree = "<group>"; };
 		855990C42661C9B800693AA1 /* AES.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AES.swift; sourceTree = "<group>"; };
 		855990C92661C9BD00693AA1 /* RSA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSA.swift; sourceTree = "<group>"; };
 		855990CE2661C9CA00693AA1 /* Base64.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base64.swift; sourceTree = "<group>"; };
-		855990EB26622EA700693AA1 /* Bip39.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bip39.swift; sourceTree = "<group>"; };
 		855990F02662406C00693AA1 /* BinaryInteger+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BinaryInteger+Extension.swift"; sourceTree = "<group>"; };
 		85E63F7326611D3A0045ED87 /* Galaxy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Galaxy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85E63F7626611D3A0045ED87 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -222,12 +230,16 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		855990EA26622E9100693AA1 /* Bip39 */ = {
+		855990EA26622E9100693AA1 /* BIP39 */ = {
 			isa = PBXGroup;
 			children = (
-				855990EB26622EA700693AA1 /* Bip39.swift */,
+				85577B7E266290CE00A26039 /* BIP39.swift */,
+				85577B7826628E9E00A26039 /* BIP39Language.swift */,
+				85577B822662912300A26039 /* BIP39+WordLists.swift */,
+				85577B7C26628FFA00A26039 /* BIP39MnemonicCount.swift */,
+				85577B852662ABA100A26039 /* UInt11.swift */,
 			);
-			path = Bip39;
+			path = BIP39;
 			sourceTree = "<group>";
 		};
 		85E63F6A26611D3A0045ED87 = {
@@ -288,7 +300,7 @@
 		85E63FA626611EA30045ED87 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				855990EA26622E9100693AA1 /* Bip39 */,
+				855990EA26622E9100693AA1 /* BIP39 */,
 				85E63FA726611EA30045ED87 /* Crypto */,
 				85E63FAB26611EA30045ED87 /* WeakProxy */,
 				85E63FAE26611EA30045ED87 /* Alert */,
@@ -725,15 +737,17 @@
 				85E63FF826611EA30045ED87 /* UINavigationController+Extension.swift in Sources */,
 				85E63FF626611EA30045ED87 /* UIApplication+Notification.swift in Sources */,
 				85E6402126611EA30045ED87 /* String+WordsSort.swift in Sources */,
+				85577B832662912300A26039 /* BIP39+WordLists.swift in Sources */,
 				85E6401826611EA30045ED87 /* NavigationBar.swift in Sources */,
 				85E63FFA26611EA30045ED87 /* UIViewController+Extension.swift in Sources */,
+				85577B7926628E9E00A26039 /* BIP39Language.swift in Sources */,
 				85E63FEF26611EA30045ED87 /* GLWeakProxy.m in Sources */,
 				85E63FFF26611EA30045ED87 /* SingleLocationAuthorization.swift in Sources */,
 				85E6400A26611EA30045ED87 /* FileManager+Extension.swift in Sources */,
 				85E63FF126611EA30045ED87 /* UIApplication+Extension.swift in Sources */,
 				85E6400226611EA30045ED87 /* CityModel.swift in Sources */,
 				85E6401F26611EA30045ED87 /* RPC.swift in Sources */,
-				855990EC26622EA700693AA1 /* Bip39.swift in Sources */,
+				85577B7D26628FFA00A26039 /* BIP39MnemonicCount.swift in Sources */,
 				85E63FF426611EA30045ED87 /* UIButton+Extension.swift in Sources */,
 				85E6401626611EA30045ED87 /* NavigationSize.swift in Sources */,
 				85E63FF026611EA30045ED87 /* AlertEngine.swift in Sources */,
@@ -745,6 +759,7 @@
 				85E6401C26611EA30045ED87 /* ETH.swift in Sources */,
 				85E63FF226611EA30045ED87 /* UIDevice+Extension.swift in Sources */,
 				85E6401126611EA30045ED87 /* Dictionary+Extension.swift in Sources */,
+				85577B862662ABA100A26039 /* UInt11.swift in Sources */,
 				85E63FF526611EA30045ED87 /* UIView+Extension.swift in Sources */,
 				85E63F7726611D3A0045ED87 /* AppDelegate.swift in Sources */,
 				85E6400926611EA30045ED87 /* Bundle+Extension.swift in Sources */,
@@ -755,6 +770,7 @@
 				85E6400626611EA30045ED87 /* Int+Extension.swift in Sources */,
 				85E63FED26611EA30045ED87 /* MD5.swift in Sources */,
 				85E6401226611EA30045ED87 /* Data+Extension.swift in Sources */,
+				85577B7F266290CE00A26039 /* BIP39.swift in Sources */,
 				85E6400E26611EA30045ED87 /* NSMutableAttributedString+Extension.swift in Sources */,
 				85E63FEE26611EA30045ED87 /* Base58.swift in Sources */,
 				85E6400826611EA30045ED87 /* Collection+Extension.swift in Sources */,

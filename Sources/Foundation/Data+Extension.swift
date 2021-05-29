@@ -19,8 +19,8 @@ extension GL where Base == Data {
     /// `Data`转`Bytes`
     ///
     /// `Byte`是`UInt8`类型
-    public var bytes: Array<UInt8> {
-        return Array(base)
+    public var bytes: [UInt8] {
+        return [UInt8](base)
     }
     
     /// `Data`转`16`进制字符串

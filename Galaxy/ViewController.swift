@@ -17,7 +17,28 @@ class ViewController: UIViewController {
         view.backgroundColor = .white
         
         
-        test()
+        //test()
+        let result1 = BIP39.generateMnemonics(count: .m12, language: .english)
+        let result2 = BIP39.generateMnemonics(count: .m15, language: .english)
+        let result3 = BIP39.generateMnemonics(count: .m18, language: .english)
+        let result4 = BIP39.generateMnemonics(count: .m21, language: .english)
+        let result5 = BIP39.generateMnemonics(count: .m24, language: .english)
+        print(result1)
+        print(result2)
+        print(result3)
+        print(result4)
+        print(result5)
+        
+        let isValid1 = BIP39.isValidMnemonics(mnemonics: result1)
+        let isValid2 = BIP39.isValidMnemonics(mnemonics: result2)
+        let isValid3 = BIP39.isValidMnemonics(mnemonics: result3)
+        let isValid4 = BIP39.isValidMnemonics(mnemonics: result4)
+        let isValid5 = BIP39.isValidMnemonics(mnemonics: result5)
+        print("isValid1: \(isValid1)")
+        print("isValid2: \(isValid2)")
+        print("isValid3: \(isValid3)")
+        print("isValid4: \(isValid4)")
+        print("isValid5: \(isValid5)")
     }
 
 
@@ -25,14 +46,45 @@ class ViewController: UIViewController {
 
 extension ViewController {
     func test() {
+        // 熵的位数
         let bitsOfEntropy: Int = 128
         // 熵
-        let entropy = Data.randomBytes(length: bitsOfEntropy/8)!
+        let entropy: Data = GL<Data>.randomData(length: bitsOfEntropy/8)!
         // 哈希
-        let hash = entropy.sha256()
+        let hash = SHA256.sha256(data: entropy)
+        // 熵的二进制
+        var binaryEntropyDescription = entropy.map { value in
+            return value.gl.binaryDescription(separator: "")
+        }.joined(separator: "")
+        // 哈希的二进制
+        let binaryHashDescription = hash.map { value in
+            return value.gl.binaryDescription(separator: "")
+        }.joined(separator: "")
+        // 取hash值的前面几位（熵长/32）
+        let checkSumStartIndex = binaryHashDescription.startIndex
+        let checkSumEndIndex = binaryHashDescription.index(checkSumStartIndex, offsetBy: bitsOfEntropy/32)
+        let checkSum: String = String(binaryHashDescription[checkSumStartIndex..<checkSumEndIndex])
+        // 拼接
+        binaryEntropyDescription += checkSum
         
+        // 每11位为一组
+        for index in 0..<binaryEntropyDescription.count/11 {
+            let originIndex = binaryHashDescription.startIndex
+            let startIndex = binaryHashDescription.index(originIndex, offsetBy: 11*index)
+            let endIndex = binaryHashDescription.index(startIndex, offsetBy: 11)
+            let subBinaryDescription = String(binaryHashDescription[startIndex..<endIndex])
+            //print(subBinaryDescription)
+            
+            //print(Int(subBinaryDescription, radix: 2))
+            
+            print(BIP39Language.english.words[Int(subBinaryDescription, radix: 2)!])
+        }
+        
+        print(binaryHashDescription)
+        //print(binaryEntropyDescription)
+        print("😁")
 //        print(Int8(truncatingIfNeeded: 257))
-        print(UInt8(11).gl.binaryDescription)
+        print(UInt8(11).gl.binaryDescription())
 //        let bits = entropy.map { (value) -> BigUInt in
 //            return BigUInt(UInt8(value), radix: 2)!
 //        }

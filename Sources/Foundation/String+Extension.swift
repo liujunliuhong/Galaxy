@@ -181,4 +181,16 @@ extension GL where Base == String {
         }
         return schemeType.rawValue + "://" + base
     }
+    
+    
+    public func split(intoChunksOf chunkSize: Int) -> [String] {
+        var output = [String]()
+        let splittedString = self.base.map{ $0 }.gl.makeGroups(perRowCount: chunkSize, isMakeUp: true) {
+            return "0"
+        }
+        splittedString.forEach {
+            output.append($0.map { String($0) }.joined(separator: ""))
+        }
+        return output
+    }
 }

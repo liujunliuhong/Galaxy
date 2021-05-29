@@ -21,7 +21,7 @@ extension GL where Base: BinaryInteger {
     ///
     ///     UInt8(10).gl.binaryDescription // 0000 1010
     ///
-    public var binaryDescription: String {
+    public func binaryDescription(separator: String = " ") -> String {
         var binaryString = ""
         var internalNumber = self.base
         for idx in 0..<self.base.bitWidth {
@@ -31,7 +31,7 @@ extension GL where Base: BinaryInteger {
             internalNumber >>= 1
             // 每隔`bitWidth`插入一个空格
             if idx.advanced(by: 1) % 4 == 0 && idx != self.base.bitWidth - 1 {
-                binaryString.insert(contentsOf: " ", at: binaryString.startIndex)
+                binaryString.insert(contentsOf: separator, at: binaryString.startIndex)
             }
         }
         return binaryString

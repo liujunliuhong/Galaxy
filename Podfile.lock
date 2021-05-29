@@ -12,14 +12,31 @@ PODS:
     - Alamofire (~> 5.0)
   - "NSObject+Rx (5.2.1)":
     - RxSwift (~> 6.0)
+  - PromiseKit (6.13.1):
+    - PromiseKit/CorePromise (= 6.13.1)
+    - PromiseKit/Foundation (= 6.13.1)
+    - PromiseKit/UIKit (= 6.13.1)
+  - PromiseKit/CorePromise (6.13.1)
+  - PromiseKit/Foundation (6.13.1):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (6.13.1):
+    - PromiseKit/CorePromise
   - RxCocoa (6.2.0):
     - RxRelay (= 6.2.0)
     - RxSwift (= 6.2.0)
   - RxRelay (6.2.0):
     - RxSwift (= 6.2.0)
   - RxSwift (6.2.0)
+  - secp256k1.c (0.1.2)
   - SnapKit (5.0.1)
+  - Starscream (4.0.4)
   - SwiftyJSON (5.0.1)
+  - web3swift (2.3.0):
+    - BigInt
+    - CryptoSwift
+    - PromiseKit
+    - secp256k1.c
+    - Starscream
 
 DEPENDENCIES:
   - Alamofire
@@ -33,6 +50,7 @@ DEPENDENCIES:
   - RxSwift
   - SnapKit
   - SwiftyJSON
+  - web3swift (from `https://github.com/liujunliuhong/web3swift.git`)
 
 SPEC REPOS:
   trunk:
@@ -43,11 +61,23 @@ SPEC REPOS:
     - FLEX
     - Moya
     - "NSObject+Rx"
+    - PromiseKit
     - RxCocoa
     - RxRelay
     - RxSwift
+    - secp256k1.c
     - SnapKit
+    - Starscream
     - SwiftyJSON
+
+EXTERNAL SOURCES:
+  web3swift:
+    :git: https://github.com/liujunliuhong/web3swift.git
+
+CHECKOUT OPTIONS:
+  web3swift:
+    :commit: 8e74297a480bb890e35e05cc8edc6b77c645859b
+    :git: https://github.com/liujunliuhong/web3swift.git
 
 SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
@@ -57,12 +87,16 @@ SPEC CHECKSUMS:
   FLEX: 7ca2c8cd3a435ff501ff6d2f2141e9bdc934eaab
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   "NSObject+Rx": 49ffbf55ad0bbc29a44547db63a9e33caf0c5d60
+  PromiseKit: 28fda91c973cc377875d8c0ea4f973013c05b6db
   RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
   RxRelay: e72dbfd157807478401ef1982e1c61c945c94b2f
   RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
+  secp256k1.c: db47b726585d80f027423682eb369729e61b3b20
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
+  web3swift: 06e2aed0607e71eb5535306336978d94cdff8919
 
-PODFILE CHECKSUM: 750a5969cb3478ee6229cfc73e304b51ff4cbe3c
+PODFILE CHECKSUM: e46af90f9cea89e9171c2c57a475a53dca4e2477
 
 COCOAPODS: 1.10.1

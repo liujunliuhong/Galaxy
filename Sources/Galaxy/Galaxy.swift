@@ -49,6 +49,14 @@ extension CGFloat: GalaxyCompatible { }
 extension Float: GalaxyCompatible { }
 extension Double: GalaxyCompatible { }
 extension Int: GalaxyCompatible { }
+extension UInt8: GalaxyCompatible { }
+extension UInt16: GalaxyCompatible { }
+extension UInt32: GalaxyCompatible { }
+extension UInt64: GalaxyCompatible { }
+extension Int8: GalaxyCompatible { }
+extension Int16: GalaxyCompatible { }
+extension Int32: GalaxyCompatible { }
+extension Int64: GalaxyCompatible { }
 extension Data: GalaxyCompatible { }
 extension String: GalaxyCompatible { }
 extension CTParagraphStyle: GalaxyCompatible { }

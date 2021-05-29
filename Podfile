@@ -23,6 +23,8 @@ target 'Galaxy' do
   pod 'BigInt'
   pod 'CryptoSwift'
   
+  
+  pod 'web3swift', :git => 'https://github.com/liujunliuhong/web3swift.git'
   # Pods for Galaxy
 
   target 'GalaxyTests' do

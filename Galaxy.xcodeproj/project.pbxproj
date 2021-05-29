@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		4D0AD6DDCA39835C93908E28 /* Pods_GalaxyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0401D45D631CE25FFBCB8B0 /* Pods_GalaxyTests.framework */; };
 		7FFE0C3417884794D68F8377 /* Pods_Galaxy_GalaxyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34768F1A238BBAF6ABEFD959 /* Pods_Galaxy_GalaxyUITests.framework */; };
+		855990C52661C9B800693AA1 /* AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855990C42661C9B800693AA1 /* AES.swift */; };
+		855990CA2661C9BD00693AA1 /* RSA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855990C92661C9BD00693AA1 /* RSA.swift */; };
+		855990CF2661C9CA00693AA1 /* Base64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855990CE2661C9CA00693AA1 /* Base64.swift */; };
+		855990EC26622EA700693AA1 /* Bip39.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855990EB26622EA700693AA1 /* Bip39.swift */; };
+		855990F12662406C00693AA1 /* BinaryInteger+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855990F02662406C00693AA1 /* BinaryInteger+Extension.swift */; };
 		85E63F7726611D3A0045ED87 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E63F7626611D3A0045ED87 /* AppDelegate.swift */; };
 		85E63F7B26611D3A0045ED87 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E63F7A26611D3A0045ED87 /* ViewController.swift */; };
 		85E63F7E26611D3A0045ED87 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85E63F7C26611D3A0045ED87 /* Main.storyboard */; };
@@ -94,6 +99,11 @@
 		01FEDD1F29C224D34B148E49 /* Pods-GalaxyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GalaxyTests.debug.xcconfig"; path = "Target Support Files/Pods-GalaxyTests/Pods-GalaxyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		34768F1A238BBAF6ABEFD959 /* Pods_Galaxy_GalaxyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Galaxy_GalaxyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		45CFC8955DD68FA9E5EC7D74 /* Pods-Galaxy-GalaxyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Galaxy-GalaxyUITests.debug.xcconfig"; path = "Target Support Files/Pods-Galaxy-GalaxyUITests/Pods-Galaxy-GalaxyUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		855990C42661C9B800693AA1 /* AES.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AES.swift; sourceTree = "<group>"; };
+		855990C92661C9BD00693AA1 /* RSA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSA.swift; sourceTree = "<group>"; };
+		855990CE2661C9CA00693AA1 /* Base64.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base64.swift; sourceTree = "<group>"; };
+		855990EB26622EA700693AA1 /* Bip39.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bip39.swift; sourceTree = "<group>"; };
+		855990F02662406C00693AA1 /* BinaryInteger+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BinaryInteger+Extension.swift"; sourceTree = "<group>"; };
 		85E63F7326611D3A0045ED87 /* Galaxy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Galaxy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85E63F7626611D3A0045ED87 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85E63F7A26611D3A0045ED87 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -212,6 +222,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		855990EA26622E9100693AA1 /* Bip39 */ = {
+			isa = PBXGroup;
+			children = (
+				855990EB26622EA700693AA1 /* Bip39.swift */,
+			);
+			path = Bip39;
+			sourceTree = "<group>";
+		};
 		85E63F6A26611D3A0045ED87 = {
 			isa = PBXGroup;
 			children = (
@@ -270,6 +288,7 @@
 		85E63FA626611EA30045ED87 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				855990EA26622E9100693AA1 /* Bip39 */,
 				85E63FA726611EA30045ED87 /* Crypto */,
 				85E63FAB26611EA30045ED87 /* WeakProxy */,
 				85E63FAE26611EA30045ED87 /* Alert */,
@@ -294,6 +313,9 @@
 				85E63FA826611EA30045ED87 /* SHA256.swift */,
 				85E63FA926611EA30045ED87 /* MD5.swift */,
 				85E63FAA26611EA30045ED87 /* Base58.swift */,
+				855990C42661C9B800693AA1 /* AES.swift */,
+				855990C92661C9BD00693AA1 /* RSA.swift */,
+				855990CE2661C9CA00693AA1 /* Base64.swift */,
 			);
 			path = Crypto;
 			sourceTree = "<group>";
@@ -363,6 +385,7 @@
 				85E63FC926611EA30045ED87 /* Int+Extension.swift */,
 				85E63FCA26611EA30045ED87 /* Date+Extension.swift */,
 				85E63FCB26611EA30045ED87 /* Collection+Extension.swift */,
+				855990F02662406C00693AA1 /* BinaryInteger+Extension.swift */,
 				85E63FCC26611EA30045ED87 /* Bundle+Extension.swift */,
 				85E63FCD26611EA30045ED87 /* FileManager+Extension.swift */,
 				85E63FCE26611EA30045ED87 /* Numeric+Extension.swift */,
@@ -690,8 +713,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				85E63F7B26611D3A0045ED87 /* ViewController.swift in Sources */,
+				855990C52661C9B800693AA1 /* AES.swift in Sources */,
 				85E63FFB26611EA30045ED87 /* UIDevice+TypeExtension.swift in Sources */,
 				85E6400326611EA30045ED87 /* CityData.swift in Sources */,
+				855990CA2661C9BD00693AA1 /* RSA.swift in Sources */,
 				85E63FFE26611EA30045ED87 /* SingleLocation.swift in Sources */,
 				85E63FF726611EA30045ED87 /* UIImage+Extension.swift in Sources */,
 				85E6401526611EA30045ED87 /* Galaxy.swift in Sources */,
@@ -708,6 +733,7 @@
 				85E63FF126611EA30045ED87 /* UIApplication+Extension.swift in Sources */,
 				85E6400226611EA30045ED87 /* CityModel.swift in Sources */,
 				85E6401F26611EA30045ED87 /* RPC.swift in Sources */,
+				855990EC26622EA700693AA1 /* Bip39.swift in Sources */,
 				85E63FF426611EA30045ED87 /* UIButton+Extension.swift in Sources */,
 				85E6401626611EA30045ED87 /* NavigationSize.swift in Sources */,
 				85E63FF026611EA30045ED87 /* AlertEngine.swift in Sources */,
@@ -722,6 +748,7 @@
 				85E63FF526611EA30045ED87 /* UIView+Extension.swift in Sources */,
 				85E63F7726611D3A0045ED87 /* AppDelegate.swift in Sources */,
 				85E6400926611EA30045ED87 /* Bundle+Extension.swift in Sources */,
+				855990F12662406C00693AA1 /* BinaryInteger+Extension.swift in Sources */,
 				85E6400F26611EA30045ED87 /* NSParagraphStyle+Extension.swift in Sources */,
 				85E6400526611EA30045ED87 /* DatePickerView.swift in Sources */,
 				85E63FF926611EA30045ED87 /* UIControl+Extension.swift in Sources */,
@@ -733,6 +760,7 @@
 				85E6400826611EA30045ED87 /* Collection+Extension.swift in Sources */,
 				85E6400D26611EA30045ED87 /* String+Extension.swift in Sources */,
 				85E63FFC26611EA30045ED87 /* WKWebView+Extension.swift in Sources */,
+				855990CF2661C9CA00693AA1 /* Base64.swift in Sources */,
 				85E6401726611EA30045ED87 /* NavigationBarController.swift in Sources */,
 				85E63FEC26611EA30045ED87 /* SHA256.swift in Sources */,
 				85E6401E26611EA30045ED87 /* Log.swift in Sources */,

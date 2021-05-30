@@ -182,12 +182,10 @@ extension GL where Base == String {
         return schemeType.rawValue + "://" + base
     }
     
-    
+    /// 字符串每`chunkSize`进行分组
     public func split(intoChunksOf chunkSize: Int) -> [String] {
         var output = [String]()
-        let splittedString = self.base.map{ $0 }.gl.makeGroups(perRowCount: chunkSize, isMakeUp: true) {
-            return "0"
-        }
+        let splittedString = self.base.map{ $0 }.gl.makeGroups(perRowCount: chunkSize, isMakeUp: false, defaultValueClosure: nil)
         splittedString.forEach {
             output.append($0.map { String($0) }.joined(separator: ""))
         }

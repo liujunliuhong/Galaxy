@@ -18,6 +18,8 @@
 		855990CA2661C9BD00693AA1 /* RSA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855990C92661C9BD00693AA1 /* RSA.swift */; };
 		855990CF2661C9CA00693AA1 /* Base64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855990CE2661C9CA00693AA1 /* Base64.swift */; };
 		855990F12662406C00693AA1 /* BinaryInteger+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855990F02662406C00693AA1 /* BinaryInteger+Extension.swift */; };
+		85D34BD9266380CC000A51E4 /* PBKDF2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D34BD8266380CC000A51E4 /* PBKDF2.swift */; };
+		85D34BDC2663D67D000A51E4 /* BIP32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D34BDB2663D67D000A51E4 /* BIP32.swift */; };
 		85E63F7726611D3A0045ED87 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E63F7626611D3A0045ED87 /* AppDelegate.swift */; };
 		85E63F7B26611D3A0045ED87 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E63F7A26611D3A0045ED87 /* ViewController.swift */; };
 		85E63F7E26611D3A0045ED87 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85E63F7C26611D3A0045ED87 /* Main.storyboard */; };
@@ -112,6 +114,8 @@
 		855990C92661C9BD00693AA1 /* RSA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSA.swift; sourceTree = "<group>"; };
 		855990CE2661C9CA00693AA1 /* Base64.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base64.swift; sourceTree = "<group>"; };
 		855990F02662406C00693AA1 /* BinaryInteger+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BinaryInteger+Extension.swift"; sourceTree = "<group>"; };
+		85D34BD8266380CC000A51E4 /* PBKDF2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBKDF2.swift; sourceTree = "<group>"; };
+		85D34BDB2663D67D000A51E4 /* BIP32.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BIP32.swift; sourceTree = "<group>"; };
 		85E63F7326611D3A0045ED87 /* Galaxy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Galaxy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85E63F7626611D3A0045ED87 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85E63F7A26611D3A0045ED87 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -242,6 +246,14 @@
 			path = BIP39;
 			sourceTree = "<group>";
 		};
+		85D34BDA2663D656000A51E4 /* BIP32 */ = {
+			isa = PBXGroup;
+			children = (
+				85D34BDB2663D67D000A51E4 /* BIP32.swift */,
+			);
+			path = BIP32;
+			sourceTree = "<group>";
+		};
 		85E63F6A26611D3A0045ED87 = {
 			isa = PBXGroup;
 			children = (
@@ -300,6 +312,7 @@
 		85E63FA626611EA30045ED87 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				85D34BDA2663D656000A51E4 /* BIP32 */,
 				855990EA26622E9100693AA1 /* BIP39 */,
 				85E63FA726611EA30045ED87 /* Crypto */,
 				85E63FAB26611EA30045ED87 /* WeakProxy */,
@@ -328,6 +341,7 @@
 				855990C42661C9B800693AA1 /* AES.swift */,
 				855990C92661C9BD00693AA1 /* RSA.swift */,
 				855990CE2661C9CA00693AA1 /* Base64.swift */,
+				85D34BD8266380CC000A51E4 /* PBKDF2.swift */,
 			);
 			path = Crypto;
 			sourceTree = "<group>";
@@ -740,6 +754,7 @@
 				85577B832662912300A26039 /* BIP39+WordLists.swift in Sources */,
 				85E6401826611EA30045ED87 /* NavigationBar.swift in Sources */,
 				85E63FFA26611EA30045ED87 /* UIViewController+Extension.swift in Sources */,
+				85D34BDC2663D67D000A51E4 /* BIP32.swift in Sources */,
 				85577B7926628E9E00A26039 /* BIP39Language.swift in Sources */,
 				85E63FEF26611EA30045ED87 /* GLWeakProxy.m in Sources */,
 				85E63FFF26611EA30045ED87 /* SingleLocationAuthorization.swift in Sources */,
@@ -760,6 +775,7 @@
 				85E63FF226611EA30045ED87 /* UIDevice+Extension.swift in Sources */,
 				85E6401126611EA30045ED87 /* Dictionary+Extension.swift in Sources */,
 				85577B862662ABA100A26039 /* UInt11.swift in Sources */,
+				85D34BD9266380CC000A51E4 /* PBKDF2.swift in Sources */,
 				85E63FF526611EA30045ED87 /* UIView+Extension.swift in Sources */,
 				85E63F7726611D3A0045ED87 /* AppDelegate.swift in Sources */,
 				85E6400926611EA30045ED87 /* Bundle+Extension.swift in Sources */,

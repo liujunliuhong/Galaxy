@@ -18,11 +18,11 @@ class ViewController: UIViewController {
         
         
         //test()
-        let result1 = BIP39.generateMnemonics(count: .m12, language: .english)
-        let result2 = BIP39.generateMnemonics(count: .m15, language: .english)
-        let result3 = BIP39.generateMnemonics(count: .m18, language: .english)
-        let result4 = BIP39.generateMnemonics(count: .m21, language: .english)
-        let result5 = BIP39.generateMnemonics(count: .m24, language: .english)
+        let result1 = BIP39.generateMnemonics(type: .m12, language: .english)
+        let result2 = BIP39.generateMnemonics(type: .m15, language: .english)
+        let result3 = BIP39.generateMnemonics(type: .m18, language: .english)
+        let result4 = BIP39.generateMnemonics(type: .m21, language: .english)
+        let result5 = BIP39.generateMnemonics(type: .m24, language: .english)
         print(result1)
         print(result2)
         print(result3)
@@ -39,6 +39,22 @@ class ViewController: UIViewController {
         print("isValid3: \(isValid3)")
         print("isValid4: \(isValid4)")
         print("isValid5: \(isValid5)")
+        
+        let input = "韩打算"
+        let salt = "我退热奥拓已森，发送"
+        
+        guard let result = PBKDF2.PBKDF2(input: input, salt: salt, algorithmType: .sha512, iterationsCount: 2048, dkLen: 64) else { return }
+        print(result.gl.toHexString)
+        
+        let s = try? CryptoSwift.PKCS5.PBKDF2(password: [UInt8](input.data(using: .utf8)!),
+                                              salt: [UInt8](salt.data(using: .utf8)!),
+                                              iterations: 2048,
+                                              keyLength: 64,
+                                              variant: HMAC.Variant.sha512).calculate()
+        print(s?.gl.bytesToHexString)
+        
+        // a1d687f158c0e2f08a065d5a82a06f5ca16d995c0a1783b16e3147367c9a467a09529571c5fee3519ab4a3172cfdc59026e57ba4bf0457a1de0f62fa85605d77
+        
     }
 
 

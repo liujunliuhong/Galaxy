@@ -7,8 +7,9 @@
 
 import Foundation
 
+/// 语言类型
 public enum BIP39Language {
-    case english
+    case english     /// 英语
 }
 
 extension BIP39Language {

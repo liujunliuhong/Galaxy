@@ -8,15 +8,15 @@
 import Foundation
 
 /// 助记词数目
-public enum BIP39MnemonicCount: Int, CaseIterable {
-    case m12 = 128 // 12位助记词（常用）
-    case m15 = 160 // 15位助记词
-    case m18 = 192 // 18位助记词
-    case m21 = 224 // 21位助记词
-    case m24 = 256 // 24位助记词
+public enum BIP39MnemonicType: Int, CaseIterable {
+    case m12 = 128   /// 12位助记词（常用）
+    case m15 = 160   /// 15位助记词
+    case m18 = 192   /// 18位助记词
+    case m21 = 224   /// 21位助记词
+    case m24 = 256   /// 24位助记词
 }
 
-extension BIP39MnemonicCount {
+extension BIP39MnemonicType {
     public var mnemonicCount: Int {
         switch self {
             case .m12:

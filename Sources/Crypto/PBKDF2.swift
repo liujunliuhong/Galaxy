@@ -55,29 +55,14 @@ public struct PBKDF2 {
         var saltBytes = [UInt8](saltData)
         
         var result: [UInt8] = Array<UInt8>(repeating: 0, count: dkLen)
-        result.reserveCapacity(dkLen)
         
-        // 使用网上的在线工具，会发现加密出来的和自己算得不一样，是因为网上的type是kCCHmacAlgSHA1
-        var type = CCPseudoRandomAlgorithm(kCCPRFHmacAlgSHA512)
-        switch algorithmType {
-            case .sha1:
-                type = CCPseudoRandomAlgorithm(kCCPRFHmacAlgSHA1)
-            case .sha256:
-                type = CCPseudoRandomAlgorithm(kCCPRFHmacAlgSHA256)
-            case .sha384:
-                type = CCPseudoRandomAlgorithm(kCCPRFHmacAlgSHA384)
-            case .sha512:
-                type = CCPseudoRandomAlgorithm(kCCPRFHmacAlgSHA512)
-            case .sha224:
-                type = CCPseudoRandomAlgorithm(kCCPRFHmacAlgSHA224)
-        }
-        
+        // 使用网上的在线工具，会发现加密出来的和自己算得不一样，是因为网上的type是kCCPRFHmacAlgSHA1
         let error = CCKeyDerivationPBKDF(CCPBKDFAlgorithm(kCCPBKDF2),
                                          &inputData,
                                          inputData.count,
                                          &saltBytes,
                                          saltBytes.count,
-                                         type,
+                                         CCPseudoRandomAlgorithm(algorithmType.algorithmType()),
                                          iterationsCount,
                                          &result,
                                          result.count)
@@ -86,5 +71,22 @@ public struct PBKDF2 {
         }
         
         return nil
+    }
+}
+
+extension PBKDF2.AlgorithmType {
+    public func algorithmType() -> Int {
+        switch self {
+        case .sha1:
+            return kCCPRFHmacAlgSHA1
+        case .sha256:
+            return kCCPRFHmacAlgSHA256
+        case .sha384:
+            return kCCPRFHmacAlgSHA384
+        case .sha512:
+            return kCCPRFHmacAlgSHA512
+        case .sha224:
+            return kCCPRFHmacAlgSHA224
+        }
     }
 }

@@ -40,18 +40,26 @@ class ViewController: UIViewController {
         print("isValid4: \(isValid4)")
         print("isValid5: \(isValid5)")
         
-        let input = "韩打算"
-        let salt = "我退热奥拓已森，发送"
+//        let input = "韩打算"
+//        let salt = "我退热奥拓已森，发送"
+//
+//        guard let result = PBKDF2.PBKDF2(input: input, salt: salt, algorithmType: .sha512, iterationsCount: 2048, dkLen: 64) else { return }
+//        print(result.gl.toHexString)
+//
+//        let s = try? CryptoSwift.PKCS5.PBKDF2(password: [UInt8](input.data(using: .utf8)!),
+//                                              salt: [UInt8](salt.data(using: .utf8)!),
+//                                              iterations: 2048,
+//                                              keyLength: 64,
+//                                              variant: CryptoSwift.HMAC.Variant.sha512).calculate()
+//        print(s?.gl.bytesToHexString)
         
-        guard let result = PBKDF2.PBKDF2(input: input, salt: salt, algorithmType: .sha512, iterationsCount: 2048, dkLen: 64) else { return }
-        print(result.gl.toHexString)
+        let key = "中国"
+        let dataString = "啦啦"
+        let result = HMAC.HMAC(key: key.gl.toBytes!, data: dataString.gl.toBytes!, algorithmType: .sha512)
+        print("😄\(result.gl.toHexString)")
         
-        let s = try? CryptoSwift.PKCS5.PBKDF2(password: [UInt8](input.data(using: .utf8)!),
-                                              salt: [UInt8](salt.data(using: .utf8)!),
-                                              iterations: 2048,
-                                              keyLength: 64,
-                                              variant: HMAC.Variant.sha512).calculate()
-        print(s?.gl.bytesToHexString)
+        
+        
         
         // a1d687f158c0e2f08a065d5a82a06f5ca16d995c0a1783b16e3147367c9a467a09529571c5fee3519ab4a3172cfdc59026e57ba4bf0457a1de0f62fa85605d77
         

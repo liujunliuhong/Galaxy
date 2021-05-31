@@ -14,8 +14,28 @@ import Foundation
 
 
 /// BIP39
-/// BIP39定义了助记词和种子
+/// BIP39定义了助记词和种子的创建方法
 /// https://learnblockchain.cn/2018/09/28/hdwallet/
+
+
+/// 生成助记词:
+/// 助记词是由钱包使用`BIP-39`中定义的标准化过程自动生成的。钱包从一个熵源开始，添加校验和，将熵映射到单词列表：
+/// 1.创建一个`128`到`256`位的随机序列（熵）
+/// 2.通过取其`SHA256`散列的第一个（熵长度/ 32）位创建随机序列的校验和
+/// 3.将校验和添加到随机序列的末尾
+/// 4.将结果拆分为`11`位长的多个段
+/// 5.将每个`11`位值映射到有`2048`个单词的预定义字典中的一个单词
+/// 6.助记词就是这些单词的序列
+/// https://github.com/inoutcode/bitcoin_book_2nd/blob/master/%E7%AC%AC%E4%BA%94%E7%AB%A0.asciidoc#generating_entropy_and_encoding
+
+
+
+
+/// 从助记符到种子:
+/// 助记词表示长度为`128`到`256`位的熵
+/// 然后使用熵通过使用密钥扩展函数`PBKDF2`来导出更长的（`512`位）种子
+/// 之后使用生成的种子构建确定性钱包并导出其密钥
+/// https://github.com/inoutcode/bitcoin_book_2nd/blob/master/%E7%AC%AC%E4%BA%94%E7%AB%A0.asciidoc#fig_5_7
 
 
 

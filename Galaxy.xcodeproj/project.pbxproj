@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4D0AD6DDCA39835C93908E28 /* Pods_GalaxyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0401D45D631CE25FFBCB8B0 /* Pods_GalaxyTests.framework */; };
 		7FFE0C3417884794D68F8377 /* Pods_Galaxy_GalaxyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34768F1A238BBAF6ABEFD959 /* Pods_Galaxy_GalaxyUITests.framework */; };
+		8513F2A3266488EC00702D8E /* HMAC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8513F2A2266488EC00702D8E /* HMAC.swift */; };
+		8513F2A82664BB4000702D8E /* SECP256K1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8513F2A72664BB4000702D8E /* SECP256K1.swift */; };
 		85577B7926628E9E00A26039 /* BIP39Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85577B7826628E9E00A26039 /* BIP39Language.swift */; };
 		85577B7D26628FFA00A26039 /* BIP39MnemonicCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85577B7C26628FFA00A26039 /* BIP39MnemonicCount.swift */; };
 		85577B7F266290CE00A26039 /* BIP39.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85577B7E266290CE00A26039 /* BIP39.swift */; };
@@ -105,6 +107,8 @@
 		01FEDD1F29C224D34B148E49 /* Pods-GalaxyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GalaxyTests.debug.xcconfig"; path = "Target Support Files/Pods-GalaxyTests/Pods-GalaxyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		34768F1A238BBAF6ABEFD959 /* Pods_Galaxy_GalaxyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Galaxy_GalaxyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		45CFC8955DD68FA9E5EC7D74 /* Pods-Galaxy-GalaxyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Galaxy-GalaxyUITests.debug.xcconfig"; path = "Target Support Files/Pods-Galaxy-GalaxyUITests/Pods-Galaxy-GalaxyUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		8513F2A2266488EC00702D8E /* HMAC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMAC.swift; sourceTree = "<group>"; };
+		8513F2A72664BB4000702D8E /* SECP256K1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SECP256K1.swift; sourceTree = "<group>"; };
 		85577B7826628E9E00A26039 /* BIP39Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BIP39Language.swift; sourceTree = "<group>"; };
 		85577B7C26628FFA00A26039 /* BIP39MnemonicCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BIP39MnemonicCount.swift; sourceTree = "<group>"; };
 		85577B7E266290CE00A26039 /* BIP39.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BIP39.swift; sourceTree = "<group>"; };
@@ -342,6 +346,8 @@
 				855990C92661C9BD00693AA1 /* RSA.swift */,
 				855990CE2661C9CA00693AA1 /* Base64.swift */,
 				85D34BD8266380CC000A51E4 /* PBKDF2.swift */,
+				8513F2A2266488EC00702D8E /* HMAC.swift */,
+				8513F2A72664BB4000702D8E /* SECP256K1.swift */,
 			);
 			path = Crypto;
 			sourceTree = "<group>";
@@ -751,6 +757,7 @@
 				85E63FF826611EA30045ED87 /* UINavigationController+Extension.swift in Sources */,
 				85E63FF626611EA30045ED87 /* UIApplication+Notification.swift in Sources */,
 				85E6402126611EA30045ED87 /* String+WordsSort.swift in Sources */,
+				8513F2A82664BB4000702D8E /* SECP256K1.swift in Sources */,
 				85577B832662912300A26039 /* BIP39+WordLists.swift in Sources */,
 				85E6401826611EA30045ED87 /* NavigationBar.swift in Sources */,
 				85E63FFA26611EA30045ED87 /* UIViewController+Extension.swift in Sources */,
@@ -760,6 +767,7 @@
 				85E63FFF26611EA30045ED87 /* SingleLocationAuthorization.swift in Sources */,
 				85E6400A26611EA30045ED87 /* FileManager+Extension.swift in Sources */,
 				85E63FF126611EA30045ED87 /* UIApplication+Extension.swift in Sources */,
+				8513F2A3266488EC00702D8E /* HMAC.swift in Sources */,
 				85E6400226611EA30045ED87 /* CityModel.swift in Sources */,
 				85E6401F26611EA30045ED87 /* RPC.swift in Sources */,
 				85577B7D26628FFA00A26039 /* BIP39MnemonicCount.swift in Sources */,

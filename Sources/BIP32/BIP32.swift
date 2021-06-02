@@ -49,6 +49,16 @@ import Foundation
 /// 未压缩的公钥的前缀为`04`，压缩的公钥以`02`或`03`前缀开头。
 
 
+/***************************************************************************
+Type                         Version prefix (hex)    Base58 result prefix
+Bitcoin Address                   0x00                      1
+Pay-to-Script-Hash Address        0x05                      3
+Bitcoin Testnet Address           0x6F                    m or n
+Private Key WIF                   0x80                  5, K, or L
+BIP-38 Encrypted Private Key     0x0142                     6P
+BIP-32 Extended Public Key     0x0488B21E                  xpub
+*****************************************************************************/
+
 
 /// 创建比特币地址的完整过程：从私钥到公钥（椭圆曲线上的一个点），再到双重哈希地址，最后是`Base58Check`编码
 /// https://github.com/inoutcode/bitcoin_book_2nd/blob/master/%E7%AC%AC%E5%9B%9B%E7%AB%A0.asciidoc#pubkey

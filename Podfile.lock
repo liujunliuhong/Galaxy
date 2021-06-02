@@ -48,6 +48,7 @@ DEPENDENCIES:
   - "NSObject+Rx"
   - RxCocoa
   - RxSwift
+  - secp256k1.c
   - SnapKit
   - SwiftyJSON
   - web3swift (from `https://github.com/liujunliuhong/web3swift.git`)
@@ -97,6 +98,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
   web3swift: 06e2aed0607e71eb5535306336978d94cdff8919
 
-PODFILE CHECKSUM: e46af90f9cea89e9171c2c57a475a53dca4e2477
+PODFILE CHECKSUM: 95b26b563363eb0b4b4511f46dedee7b23260862
 
 COCOAPODS: 1.10.1

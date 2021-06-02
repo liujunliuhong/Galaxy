@@ -22,6 +22,7 @@
 		855990F12662406C00693AA1 /* BinaryInteger+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855990F02662406C00693AA1 /* BinaryInteger+Extension.swift */; };
 		85D34BD9266380CC000A51E4 /* PBKDF2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D34BD8266380CC000A51E4 /* PBKDF2.swift */; };
 		85D34BDC2663D67D000A51E4 /* BIP32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D34BDB2663D67D000A51E4 /* BIP32.swift */; };
+		85E57D662667DBFF004EAFCE /* BIP38.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E57D652667DBFF004EAFCE /* BIP38.swift */; };
 		85E63F7726611D3A0045ED87 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E63F7626611D3A0045ED87 /* AppDelegate.swift */; };
 		85E63F7B26611D3A0045ED87 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E63F7A26611D3A0045ED87 /* ViewController.swift */; };
 		85E63F7E26611D3A0045ED87 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85E63F7C26611D3A0045ED87 /* Main.storyboard */; };
@@ -120,6 +121,7 @@
 		855990F02662406C00693AA1 /* BinaryInteger+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BinaryInteger+Extension.swift"; sourceTree = "<group>"; };
 		85D34BD8266380CC000A51E4 /* PBKDF2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBKDF2.swift; sourceTree = "<group>"; };
 		85D34BDB2663D67D000A51E4 /* BIP32.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BIP32.swift; sourceTree = "<group>"; };
+		85E57D652667DBFF004EAFCE /* BIP38.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BIP38.swift; sourceTree = "<group>"; };
 		85E63F7326611D3A0045ED87 /* Galaxy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Galaxy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85E63F7626611D3A0045ED87 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85E63F7A26611D3A0045ED87 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -258,6 +260,14 @@
 			path = BIP32;
 			sourceTree = "<group>";
 		};
+		85E57D642667DBED004EAFCE /* BIP38 */ = {
+			isa = PBXGroup;
+			children = (
+				85E57D652667DBFF004EAFCE /* BIP38.swift */,
+			);
+			path = BIP38;
+			sourceTree = "<group>";
+		};
 		85E63F6A26611D3A0045ED87 = {
 			isa = PBXGroup;
 			children = (
@@ -316,6 +326,7 @@
 		85E63FA626611EA30045ED87 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				85E57D642667DBED004EAFCE /* BIP38 */,
 				85D34BDA2663D656000A51E4 /* BIP32 */,
 				855990EA26622E9100693AA1 /* BIP39 */,
 				85E63FA726611EA30045ED87 /* Crypto */,
@@ -772,6 +783,7 @@
 				85E6401F26611EA30045ED87 /* RPC.swift in Sources */,
 				85577B7D26628FFA00A26039 /* BIP39MnemonicCount.swift in Sources */,
 				85E63FF426611EA30045ED87 /* UIButton+Extension.swift in Sources */,
+				85E57D662667DBFF004EAFCE /* BIP38.swift in Sources */,
 				85E6401626611EA30045ED87 /* NavigationSize.swift in Sources */,
 				85E63FF026611EA30045ED87 /* AlertEngine.swift in Sources */,
 				85E6400426611EA30045ED87 /* CityPickerView.swift in Sources */,

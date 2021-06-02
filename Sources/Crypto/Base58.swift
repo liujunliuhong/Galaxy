@@ -32,7 +32,7 @@ import CryptoSwift
 /// https://blog.csdn.net/luckydog612/article/details/81168276
 /// https://www.jianshu.com/p/9644fe5a06bc
 /// 地址前缀列表：https://en.bitcoin.it/wiki/List_of_address_prefixes
-/// WIF：Wallet Import Format
+
 
 
 

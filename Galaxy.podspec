@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.summary                    = 'Some useful tools'
   s.description                = 'Some useful tools, contains UIKit and Foundation'
   s.author                     = { 'liujunliuhong' => '1035841713@qq.com' }
-  s.version                    = '2.0.0'
+  s.version                    = '2.0.1'
   s.source                     = { :git => 'https://github.com/liujunliuhong/Galaxy.git', :tag => s.version.to_s }
   s.platform                   = :ios, '10.0'
   s.license                    = { :type => 'MIT', :file => 'LICENSE' }
@@ -20,4 +20,6 @@ Pod::Spec.new do |s|
   s.dependency 'Alamofire'
   s.dependency 'BigInt'
   s.dependency 'CryptoSwift'
+
+  s.framework  = "Sources/Vender/secp256k1.framework"
 end

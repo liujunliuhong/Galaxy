@@ -21,5 +21,5 @@ Pod::Spec.new do |s|
   s.dependency 'BigInt'
   s.dependency 'CryptoSwift'
 
-  s.framework  = "Sources/Vender/secp256k1.framework"
+  s.vendored_frameworks  = "Sources/Vender/*.framework"
 end

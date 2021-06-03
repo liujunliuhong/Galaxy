@@ -14,12 +14,12 @@ Pod::Spec.new do |s|
   s.ios.deployment_target      = '10.0'
   s.requires_arc               = true
   s.static_framework           = true
+  # s.vendored_frameworks        = 'Sources/Vender/*.framework'
   s.source_files               = 'Sources/*/*.swift','Sources/*/*.{h,m}'
+  # s.pod_target_xcconfig = { 'OTHER_LDFLAGS' => '-all_load' }
   s.dependency 'CocoaLumberjack/Swift'
   s.dependency 'SnapKit'
   s.dependency 'Alamofire'
   s.dependency 'BigInt'
   s.dependency 'CryptoSwift'
-
-  s.vendored_frameworks  = "Sources/Vender/*.framework"
 end

@@ -9,6 +9,5 @@
 #define Bridging_Header_h
 
 #import "GLWeakProxy.h"
-#import <secp256k1/secp256k1.h>
 
 #endif /* Bridging_Header_h */

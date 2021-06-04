@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 /// BIP32
 /// 分层确定性钱包（`Hierarchical Deterministic wallet`） (`HD Wallet`)
 /// 从单一个`seed`产生一树状结构储存多组私钥和公钥
@@ -117,9 +116,9 @@ public class BIP32 {
         // 右边256位是主链码
         let masterChainNode = hash[32..<64]
         // 用主私钥生成主公钥
+//        i2o_ECPublicKey(<#T##key: OpaquePointer!##OpaquePointer!#>, <#T##out: UnsafeMutablePointer<UnsafeMutablePointer<UInt8>?>!##UnsafeMutablePointer<UnsafeMutablePointer<UInt8>?>!#>)
         
-        
-        
+//        NID_secp256k1
     }
 }
 

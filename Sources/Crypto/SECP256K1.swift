@@ -45,7 +45,7 @@ import Foundation
 
 /// SECP256K1
 public struct SECP256K1 {
-    private static let context = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_SIGN | SECP256K1_CONTEXT_VERIFY))
+//    private static let context = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_SIGN | SECP256K1_CONTEXT_VERIFY))
 }
 
 extension SECP256K1 {

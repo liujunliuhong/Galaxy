@@ -101,6 +101,25 @@ BIP-32 Extended Public Key     0x0488B21E                  xpub
 
 /// BIP32
 public class BIP32 {
+    /// 私钥（未压缩私钥）
+    public private(set) var privateKey: Data?
+    /// 公钥（压缩的公钥）
+    public private(set) var publicKey: Data
+    /// 链码
+    public private(set) var chainCode: Data
+    /// 深度
+    public private(set) var depth: UInt8 = UInt8(0)
+    /// 索引
+    public private(set) var index: UInt32 = UInt32(0)
+    /// 压缩的私钥
+    public var compressedPrivateKey: Data? {
+        return nil
+    }
+    
+    
+    
+    
+    private let suffix = "'"
     
     public init?(seed: Data) {
         // 验证一下种子，种子是512位，即长度64
@@ -112,18 +131,88 @@ public class BIP32 {
         // 生成的hash应该是512位的，做一下验证
         guard hash.count == 64 else { return nil }
         // 左边256位是主秘钥
-        let masterPrivateKey = hash[0..<32]
+        let privateKey = hash[0..<32]
         // 右边256位是主链码
-        let masterChainNode = hash[32..<64]
-        // 用主私钥生成主公钥
-//        i2o_ECPublicKey(<#T##key: OpaquePointer!##OpaquePointer!#>, <#T##out: UnsafeMutablePointer<UnsafeMutablePointer<UInt8>?>!##UnsafeMutablePointer<UnsafeMutablePointer<UInt8>?>!#>)
-        
-//        NID_secp256k1
+        let chainCode = hash[32..<64]
+        // 私钥是否合法
+        guard SECP256K1.isValidPrivateKey(privateKey: privateKey) else { return nil }
+        // 根据私钥生成压缩公钥
+        guard let publicKey = SECP256K1.privateKeyToPublicKey(privateKey: privateKey, compressed: true) else { return nil }
+        // 压缩的公钥是0x02或者0x03开头
+        guard publicKey[0] == 0x02 || publicKey[0] == 0x03 else { return nil }
+        //
+        self.privateKey = privateKey
+        self.chainCode = chainCode
+        self.publicKey = publicKey
+        self.depth = 0
+        self.index = 0
     }
 }
 
+
+
+
 extension BIP32 {
+    public func derive(path: String?) -> BIP32? {
+        guard var path = path else { return nil }
+        // 判断
+        if path == "m" || path == "/" || path == "" {
+            return self
+        }
+        // 去除前面的'm/'
+        if path.hasPrefix("m/") {
+            path = String(path[path.startIndex..<(path.index(path.startIndex, offsetBy: 2))])
+        }
+        // 分组
+        let components = path.components(separatedBy: "/")
+        // 定义临时变量
+        var current: BIP32 = self
+        // for循环
+        for chunk in components {
+            if chunk.count == 0 { continue }
+            // 判断是否是强化派生
+            var hardened = false
+            if chunk.hasSuffix(suffix) { hardened = true }
+            // 转换为32位索引
+            guard let index = UInt32(chunk.trimmingCharacters(in: CharacterSet(charactersIn: suffix))) else { return nil }
+            // 开始派生
+            guard let newNode = current.derived(at: index, hardened: hardened) else { return nil }
+            // 赋值
+            current = newNode
+        }
+        return current
+    }
     
+    public func derived(at index: UInt32, hardened: Bool) -> BIP32? {
+        // 检查
+        if index & 0x80000000 != 0 { return nil }
+        if hardened && privateKey == nil { return nil }
+        //
+        let newIndex = UInt8("\(index)", radix: 32)!
+        //
+        var inputForHMAC: Data = Data()
+        //
+        if hardened {
+            // 如果是强化派生
+            inputForHMAC.append(0x00)
+            inputForHMAC.append(self.privateKey!)
+        } else {
+            // 如果是常规派生
+            inputForHMAC.append(self.publicKey)
+        }
+        inputForHMAC.append(newIndex)
+        // HMAC-SHA512
+        let hash = HMAC.HMAC(key: [UInt8](chainCode), data: [UInt8](inputForHMAC), algorithmType: .sha512)
+        // 生成的hash应该是512位的，做一下验证
+        guard hash.count == 64 else { return nil }
+        //
+        let I_L = hash[0..<32]
+        let I_R = hash[32..<64]
+        
+        
+        
+        return nil
+    }
 }
 
 extension BIP32 {

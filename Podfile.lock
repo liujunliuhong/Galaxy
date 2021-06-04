@@ -18,7 +18,7 @@ PODS:
   - RxRelay (6.2.0):
     - RxSwift (= 6.2.0)
   - RxSwift (6.2.0)
-  - secp256k1_gl_ios (1.0.2)
+  - secp256k1.c (0.1.2)
   - SnapKit (5.0.1)
   - SwiftyJSON (5.0.1)
 
@@ -32,13 +32,13 @@ DEPENDENCIES:
   - "NSObject+Rx"
   - RxCocoa
   - RxSwift
-  - secp256k1_gl_ios
+  - secp256k1.c
   - SnapKit
   - SwiftyJSON
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
-    - secp256k1_gl_ios
+    - secp256k1.c
   trunk:
     - Alamofire
     - BigInt
@@ -64,10 +64,10 @@ SPEC CHECKSUMS:
   RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
   RxRelay: e72dbfd157807478401ef1982e1c61c945c94b2f
   RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
-  secp256k1_gl_ios: a430eb2fb0db4d57b7dc55537ffc8ff598d3679c
+  secp256k1.c: db47b726585d80f027423682eb369729e61b3b20
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
 
-PODFILE CHECKSUM: b3f74a7f0857db2ac92b2ba0d7b6faa2f8434749
+PODFILE CHECKSUM: 3cb7051e5270e4b984bf8b2a2919346a87f00723
 
 COCOAPODS: 1.10.1

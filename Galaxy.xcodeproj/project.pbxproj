@@ -20,6 +20,7 @@
 		855990CA2661C9BD00693AA1 /* RSA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855990C92661C9BD00693AA1 /* RSA.swift */; };
 		855990CF2661C9CA00693AA1 /* Base64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855990CE2661C9CA00693AA1 /* Base64.swift */; };
 		855990F12662406C00693AA1 /* BinaryInteger+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855990F02662406C00693AA1 /* BinaryInteger+Extension.swift */; };
+		85CA72AA266A82A900650DA0 /* HDKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CA72A9266A82A900650DA0 /* HDKey.swift */; };
 		85D34BD9266380CC000A51E4 /* PBKDF2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D34BD8266380CC000A51E4 /* PBKDF2.swift */; };
 		85D34BDC2663D67D000A51E4 /* BIP32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D34BDB2663D67D000A51E4 /* BIP32.swift */; };
 		85E57D662667DBFF004EAFCE /* BIP38.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E57D652667DBFF004EAFCE /* BIP38.swift */; };
@@ -119,6 +120,7 @@
 		855990C92661C9BD00693AA1 /* RSA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSA.swift; sourceTree = "<group>"; };
 		855990CE2661C9CA00693AA1 /* Base64.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base64.swift; sourceTree = "<group>"; };
 		855990F02662406C00693AA1 /* BinaryInteger+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BinaryInteger+Extension.swift"; sourceTree = "<group>"; };
+		85CA72A9266A82A900650DA0 /* HDKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDKey.swift; sourceTree = "<group>"; };
 		85D34BD8266380CC000A51E4 /* PBKDF2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBKDF2.swift; sourceTree = "<group>"; };
 		85D34BDB2663D67D000A51E4 /* BIP32.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BIP32.swift; sourceTree = "<group>"; };
 		85E57D652667DBFF004EAFCE /* BIP38.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BIP38.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				85D34BDB2663D67D000A51E4 /* BIP32.swift */,
+				85CA72A9266A82A900650DA0 /* HDKey.swift */,
 			);
 			path = BIP32;
 			sourceTree = "<group>";
@@ -816,6 +819,7 @@
 				85E6401726611EA30045ED87 /* NavigationBarController.swift in Sources */,
 				85E63FEC26611EA30045ED87 /* SHA256.swift in Sources */,
 				85E6401E26611EA30045ED87 /* Log.swift in Sources */,
+				85CA72AA266A82A900650DA0 /* HDKey.swift in Sources */,
 				85E6400126611EA30045ED87 /* PickerView.swift in Sources */,
 				85E6401426611EA30045ED87 /* Array+Extension.swift in Sources */,
 				85E63FFD26611EA30045ED87 /* UIApplication+MapExtension.swift in Sources */,

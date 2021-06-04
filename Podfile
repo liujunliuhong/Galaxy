@@ -23,7 +23,8 @@ target 'Galaxy' do
   
   pod 'BigInt'
   pod 'CryptoSwift'
-  pod 'secp256k1_gl_ios'
+#  pod 'secp256k1_gl_ios'
+  pod 'secp256k1.c'
   
   #pod 'web3swift', :git => 'https://github.com/liujunliuhong/web3swift.git'
   # Pods for Galaxy

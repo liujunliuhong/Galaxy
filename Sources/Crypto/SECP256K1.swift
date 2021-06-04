@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import secp256k1
+
 /// Hash
 /// Hash，一般翻译做散列、杂凑，或音译为哈希
 /// 是把任意长度的输入（又叫做预映射pre-image）通过散列算法变换成固定长度的输出，该输出就是散列值。
@@ -45,12 +47,56 @@ import Foundation
 
 /// SECP256K1
 public struct SECP256K1 {
-//    private static let context = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_SIGN | SECP256K1_CONTEXT_VERIFY))
+    private static let context = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_SIGN | SECP256K1_CONTEXT_VERIFY))
 }
 
 extension SECP256K1 {
-    func asdas() {
-        
+    /// 根据私钥生成公钥
+    public static func privateKeyToPublicKey(privateKey: Data?, compressed: Bool) -> Data? {
+        let publicKey = SECP256K1.privateKeyToPublicKey(privateKey: privateKey)
+        return SECP256K1.serializePublicKey(publicKey: publicKey, compressed: compressed)
+    }
+    
+    /// 是否是合法的私钥
+    public static func isValidPrivateKey(privateKey: Data?) -> Bool {
+        guard let context = context else { return false }
+        guard let privateKey = privateKey else { return false }
+        var seckey = [UInt8](privateKey)
+        let result = secp256k1_ec_seckey_verify(context, &seckey)
+        return result == 1
+    }
+    
+    
+    /// 序列化公钥
+    public static func serializePublicKey(publicKey: secp256k1_pubkey?, compressed: Bool) -> Data? {
+        guard let context = context else { return nil }
+        guard var publicKey = publicKey else { return nil }
+        var outputLength: Int = compressed ? 33 : 65
+        let output = Data(repeating: 0x00, count: outputLength)
+        let flags = UInt32(compressed ? SECP256K1_EC_COMPRESSED : SECP256K1_EC_UNCOMPRESSED)
+        //
+        var outputPtr = [UInt8](output)
+        //
+        let result = secp256k1_ec_pubkey_serialize(context, &outputPtr, &outputLength, &publicKey, flags)
+        if result == 1 {
+            return output
+        }
+        return nil
+    }
+}
+
+extension SECP256K1 {
+    /// 根据私钥生成公钥
+    private static func privateKeyToPublicKey(privateKey: Data?) -> secp256k1_pubkey? {
+        guard let privateKey = privateKey else { return nil }
+        guard let context = context else { return nil }
+        var publicKey = secp256k1_pubkey()
+        var seckey = [UInt8](privateKey)
+        let result = secp256k1_ec_pubkey_create(context, &publicKey, &seckey)
+        if result == 1 {
+            return publicKey
+        }
+        return nil
     }
 }
 

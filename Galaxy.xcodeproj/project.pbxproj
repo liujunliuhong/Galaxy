@@ -19,7 +19,11 @@
 		855990C52661C9B800693AA1 /* AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855990C42661C9B800693AA1 /* AES.swift */; };
 		855990CA2661C9BD00693AA1 /* RSA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855990C92661C9BD00693AA1 /* RSA.swift */; };
 		855990CF2661C9CA00693AA1 /* Base64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855990CE2661C9CA00693AA1 /* Base64.swift */; };
-		855990F12662406C00693AA1 /* BinaryInteger+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855990F02662406C00693AA1 /* BinaryInteger+Extension.swift */; };
+		8582EF14266B5ECF00CB15F1 /* FixedWidthInteger+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8582EF13266B5ECF00CB15F1 /* FixedWidthInteger+Extension.swift */; };
+		8582EF16266B70D800CB15F1 /* BinaryInteger+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8582EF15266B70D800CB15F1 /* BinaryInteger+Extension.swift */; };
+		8582EF18266B714E00CB15F1 /* UnsignedInteger+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8582EF17266B714E00CB15F1 /* UnsignedInteger+Extension.swift */; };
+		8582EF1A266B715F00CB15F1 /* SignedInteger+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8582EF19266B715F00CB15F1 /* SignedInteger+Extension.swift */; };
+		8582EF1C266BDCD300CB15F1 /* RIPEMD160.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8582EF1B266BDCD300CB15F1 /* RIPEMD160.swift */; };
 		85CA72AA266A82A900650DA0 /* HDKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CA72A9266A82A900650DA0 /* HDKey.swift */; };
 		85D34BD9266380CC000A51E4 /* PBKDF2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D34BD8266380CC000A51E4 /* PBKDF2.swift */; };
 		85D34BDC2663D67D000A51E4 /* BIP32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D34BDB2663D67D000A51E4 /* BIP32.swift */; };
@@ -119,7 +123,11 @@
 		855990C42661C9B800693AA1 /* AES.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AES.swift; sourceTree = "<group>"; };
 		855990C92661C9BD00693AA1 /* RSA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSA.swift; sourceTree = "<group>"; };
 		855990CE2661C9CA00693AA1 /* Base64.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base64.swift; sourceTree = "<group>"; };
-		855990F02662406C00693AA1 /* BinaryInteger+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BinaryInteger+Extension.swift"; sourceTree = "<group>"; };
+		8582EF13266B5ECF00CB15F1 /* FixedWidthInteger+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FixedWidthInteger+Extension.swift"; sourceTree = "<group>"; };
+		8582EF15266B70D800CB15F1 /* BinaryInteger+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BinaryInteger+Extension.swift"; sourceTree = "<group>"; };
+		8582EF17266B714E00CB15F1 /* UnsignedInteger+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UnsignedInteger+Extension.swift"; sourceTree = "<group>"; };
+		8582EF19266B715F00CB15F1 /* SignedInteger+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SignedInteger+Extension.swift"; sourceTree = "<group>"; };
+		8582EF1B266BDCD300CB15F1 /* RIPEMD160.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RIPEMD160.swift; sourceTree = "<group>"; };
 		85CA72A9266A82A900650DA0 /* HDKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDKey.swift; sourceTree = "<group>"; };
 		85D34BD8266380CC000A51E4 /* PBKDF2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBKDF2.swift; sourceTree = "<group>"; };
 		85D34BDB2663D67D000A51E4 /* BIP32.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BIP32.swift; sourceTree = "<group>"; };
@@ -362,6 +370,7 @@
 				85D34BD8266380CC000A51E4 /* PBKDF2.swift */,
 				8513F2A2266488EC00702D8E /* HMAC.swift */,
 				8513F2A72664BB4000702D8E /* SECP256K1.swift */,
+				8582EF1B266BDCD300CB15F1 /* RIPEMD160.swift */,
 			);
 			path = Crypto;
 			sourceTree = "<group>";
@@ -431,7 +440,10 @@
 				85E63FC926611EA30045ED87 /* Int+Extension.swift */,
 				85E63FCA26611EA30045ED87 /* Date+Extension.swift */,
 				85E63FCB26611EA30045ED87 /* Collection+Extension.swift */,
-				855990F02662406C00693AA1 /* BinaryInteger+Extension.swift */,
+				8582EF13266B5ECF00CB15F1 /* FixedWidthInteger+Extension.swift */,
+				8582EF15266B70D800CB15F1 /* BinaryInteger+Extension.swift */,
+				8582EF17266B714E00CB15F1 /* UnsignedInteger+Extension.swift */,
+				8582EF19266B715F00CB15F1 /* SignedInteger+Extension.swift */,
 				85E63FCC26611EA30045ED87 /* Bundle+Extension.swift */,
 				85E63FCD26611EA30045ED87 /* FileManager+Extension.swift */,
 				85E63FCE26611EA30045ED87 /* Numeric+Extension.swift */,
@@ -772,6 +784,7 @@
 				85E63FF626611EA30045ED87 /* UIApplication+Notification.swift in Sources */,
 				85E6402126611EA30045ED87 /* String+WordsSort.swift in Sources */,
 				8513F2A82664BB4000702D8E /* SECP256K1.swift in Sources */,
+				8582EF14266B5ECF00CB15F1 /* FixedWidthInteger+Extension.swift in Sources */,
 				85577B832662912300A26039 /* BIP39+WordLists.swift in Sources */,
 				85E6401826611EA30045ED87 /* NavigationBar.swift in Sources */,
 				85E63FFA26611EA30045ED87 /* UIViewController+Extension.swift in Sources */,
@@ -795,6 +808,7 @@
 				85E6401926611EA30045ED87 /* NavigationTitleItem.swift in Sources */,
 				85E6401326611EA30045ED87 /* CTParagraphStyle+Extension.swift in Sources */,
 				85E6401C26611EA30045ED87 /* ETH.swift in Sources */,
+				8582EF1A266B715F00CB15F1 /* SignedInteger+Extension.swift in Sources */,
 				85E63FF226611EA30045ED87 /* UIDevice+Extension.swift in Sources */,
 				85E6401126611EA30045ED87 /* Dictionary+Extension.swift in Sources */,
 				85577B862662ABA100A26039 /* UInt11.swift in Sources */,
@@ -802,13 +816,15 @@
 				85E63FF526611EA30045ED87 /* UIView+Extension.swift in Sources */,
 				85E63F7726611D3A0045ED87 /* AppDelegate.swift in Sources */,
 				85E6400926611EA30045ED87 /* Bundle+Extension.swift in Sources */,
-				855990F12662406C00693AA1 /* BinaryInteger+Extension.swift in Sources */,
 				85E6400F26611EA30045ED87 /* NSParagraphStyle+Extension.swift in Sources */,
 				85E6400526611EA30045ED87 /* DatePickerView.swift in Sources */,
 				85E63FF926611EA30045ED87 /* UIControl+Extension.swift in Sources */,
+				8582EF18266B714E00CB15F1 /* UnsignedInteger+Extension.swift in Sources */,
+				8582EF1C266BDCD300CB15F1 /* RIPEMD160.swift in Sources */,
 				85E6400626611EA30045ED87 /* Int+Extension.swift in Sources */,
 				85E63FED26611EA30045ED87 /* MD5.swift in Sources */,
 				85E6401226611EA30045ED87 /* Data+Extension.swift in Sources */,
+				8582EF16266B70D800CB15F1 /* BinaryInteger+Extension.swift in Sources */,
 				85577B7F266290CE00A26039 /* BIP39.swift in Sources */,
 				85E6400E26611EA30045ED87 /* NSMutableAttributedString+Extension.swift in Sources */,
 				85E63FEE26611EA30045ED87 /* Base58.swift in Sources */,

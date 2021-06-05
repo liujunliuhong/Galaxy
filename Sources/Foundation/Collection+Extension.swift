@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 extension GL where Base: MutableCollection {
     /// 数组打乱顺序
     public var shuffle: Base {

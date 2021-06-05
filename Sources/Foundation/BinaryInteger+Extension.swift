@@ -2,7 +2,7 @@
 //  BinaryInteger+Extension.swift
 //  Galaxy
 //
-//  Created by liujun on 2021/5/29.
+//  Created by galaxy on 2021/6/5.
 //
 
 import Foundation
@@ -17,7 +17,7 @@ import Foundation
 
 
 extension GL where Base: BinaryInteger {
-    /// 获取对应的二进制
+    /// 获取对应的二进制（big-endian）
     ///
     ///     UInt8(10).gl.binaryDescription // 0000 1010
     ///
@@ -35,5 +35,32 @@ extension GL where Base: BinaryInteger {
             }
         }
         return binaryString
+    }
+    
+    /// 序列化(big-endian)
+    /// - Parameters:
+    ///   - type: 转换为什么类型
+    ///   - keepLeadingZero: 是否保留头部的0
+    /// - Returns: 目标类型数组
+    public func serialize<T: FixedWidthInteger>(to type: T.Type, keepLeadingZero: Bool) -> [T] {
+        let zero: String = [UInt8](repeating: 0, count: type.bitWidth).map{ "\($0)" }
+            .joined()
+        var output = [T]()
+        let splittedStrings = binaryDescription(separator: "")
+            .map{ "\($0)" }
+            .gl.makeGroups(perRowCount: type.bitWidth, isMakeUp: false, defaultValueClosure: nil)
+        for (i, v) in splittedStrings.enumerated() {
+            let vaule = v.map { String($0) }.joined(separator: "")
+            if i == 0 && vaule == zero && !keepLeadingZero { continue }
+            output.append(T(vaule, radix: 2)!)
+        }
+        return output
+        //        var bigEndian = self.base.bigEndian
+        //        let count = MemoryLayout<Base>.size
+        //        let result = withUnsafePointer(to: &bigEndian) { ptr in
+        //            ptr.withMemoryRebound(to: type.self, capacity: count) { b in
+        //                UnsafeBufferPointer<T>(start: b, count: count)
+        //            }
+        //        }
     }
 }

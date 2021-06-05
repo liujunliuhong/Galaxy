@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import BigInt
 
 /// BIP32
 /// 分层确定性钱包（`Hierarchical Deterministic wallet`） (`HD Wallet`)
@@ -101,25 +102,43 @@ BIP-32 Extended Public Key     0x0488B21E                  xpub
 
 /// BIP32
 public class BIP32 {
-    /// 私钥（未压缩私钥）
-    public private(set) var privateKey: Data?
-    /// 公钥（压缩的公钥）
-    public private(set) var publicKey: Data
+    /// 未压缩的私钥
+    public private(set) var uncompressedPrivateKey: Data?
+    /// 压缩的公钥
+    public private(set) var compressedPublicKey: Data
     /// 链码
     public private(set) var chainCode: Data
     /// 深度
     public private(set) var depth: UInt8 = UInt8(0)
     /// 索引
     public private(set) var index: UInt32 = UInt32(0)
+    /// path
+    public private(set) var path: String = "m"
+    /// 指纹
+    public private(set) var parentFingerprint: Data = Data(repeating: 0, count: 4)
     /// 压缩的私钥
     public var compressedPrivateKey: Data? {
         return nil
+    }
+    /// 未压缩的公钥
+    public var uncompressedPublicKey: Data? {
+        return SECP256K1.privateKeyToPublicKey(privateKey: uncompressedPrivateKey, compressed: false)
     }
     
     
     
     
     private let suffix = "'"
+    /// secp256k1 order
+    private let curveOrder = BigUInt("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141", radix: 16)!
+    
+    public init() {
+        self.uncompressedPrivateKey = nil
+        self.compressedPublicKey = Data()
+        self.chainCode = Data()
+        self.depth = 0
+        self.index = 0
+    }
     
     public init?(seed: Data) {
         // 验证一下种子，种子是512位，即长度64
@@ -131,25 +150,23 @@ public class BIP32 {
         // 生成的hash应该是512位的，做一下验证
         guard hash.count == 64 else { return nil }
         // 左边256位是主秘钥
-        let privateKey = hash[0..<32]
+        let I_L = hash[0..<32]
         // 右边256位是主链码
-        let chainCode = hash[32..<64]
+        let I_R = hash[32..<64]
         // 私钥是否合法
-        guard SECP256K1.isValidPrivateKey(privateKey: privateKey) else { return nil }
+        guard SECP256K1.isValidPrivateKey(privateKey: I_L) else { return nil }
         // 根据私钥生成压缩公钥
-        guard let publicKey = SECP256K1.privateKeyToPublicKey(privateKey: privateKey, compressed: true) else { return nil }
+        guard let publicKey = SECP256K1.privateKeyToPublicKey(privateKey: I_L, compressed: true) else { return nil }
         // 压缩的公钥是0x02或者0x03开头
         guard publicKey[0] == 0x02 || publicKey[0] == 0x03 else { return nil }
         //
-        self.privateKey = privateKey
-        self.chainCode = chainCode
-        self.publicKey = publicKey
+        self.uncompressedPrivateKey = I_L
+        self.chainCode = I_R
+        self.compressedPublicKey = publicKey
         self.depth = 0
         self.index = 0
     }
 }
-
-
 
 
 extension BIP32 {
@@ -185,22 +202,31 @@ extension BIP32 {
     
     public func derived(at index: UInt32, hardened: Bool) -> BIP32? {
         // 检查
-        if index & 0x80000000 != 0 { return nil }
-        if hardened && privateKey == nil { return nil }
-        //
-        let newIndex = UInt8("\(index)", radix: 32)!
+        guard depth < UInt8.max else { return nil }
+        if hardened && uncompressedPrivateKey == nil { return nil }
+        // 索引值做个判断
+        // 0到2^31-1（0x0到0x7FFFFFFF）之间的索引号仅用于常规推导
+        // 2^31到2^32-1（0x80000000到0xFFFFFFFF）之间的索引号仅用于硬化派生
+        var trueIndex: UInt32 = index
+        if hardened && index < (UInt32(1) << 31) {
+            trueIndex = trueIndex + (UInt32(1) << 31)
+        }
+        // 判断下trueIndex
+        guard trueIndex < UInt32.max else { return nil }
+        // 把32位索引值序列化为UInt8数组
+        let indexBytes = trueIndex.gl.serialize(to: UInt8.self, keepLeadingZero: true)
         //
         var inputForHMAC: Data = Data()
         //
         if hardened {
             // 如果是强化派生
             inputForHMAC.append(0x00)
-            inputForHMAC.append(self.privateKey!)
+            inputForHMAC.append(uncompressedPrivateKey!)
         } else {
             // 如果是常规派生
-            inputForHMAC.append(self.publicKey)
+            inputForHMAC.append(compressedPublicKey)
         }
-        inputForHMAC.append(newIndex)
+        inputForHMAC.append(Data(indexBytes))
         // HMAC-SHA512
         let hash = HMAC.HMAC(key: [UInt8](chainCode), data: [UInt8](inputForHMAC), algorithmType: .sha512)
         // 生成的hash应该是512位的，做一下验证
@@ -208,6 +234,45 @@ extension BIP32 {
         //
         let I_L = hash[0..<32]
         let I_R = hash[32..<64]
+        //
+        let _I_L = BigUInt(I_L)
+        // 检查
+        if _I_L > curveOrder {
+            if trueIndex < UInt32.max {
+                return derived(at: index + 1, hardened: hardened)
+            } else {
+                return nil
+            }
+        }
+        //
+        if uncompressedPrivateKey != nil {
+            let privateKeyCandidate = (_I_L + BigUInt(uncompressedPrivateKey!)) % curveOrder
+            if privateKeyCandidate == BigUInt(0) {
+                if trueIndex < UInt32.max {
+                    return derived(at: index + 1, hardened: hardened)
+                } else {
+                    return nil
+                }
+            }
+            let newPrivateKeyBytes = privateKeyCandidate.gl.serialize(to: UInt8.self, keepLeadingZero: true)
+            let newPrivateKey = Data(newPrivateKeyBytes)
+            // 验证私钥是否合法
+            guard SECP256K1.isValidPrivateKey(privateKey: newPrivateKey) else { return nil }
+            // 根据私钥生成压缩公钥
+            guard let newPublicKey = SECP256K1.privateKeyToPublicKey(privateKey: newPrivateKey, compressed: true) else { return nil }
+            // 压缩的公钥是0x02或者0x03开头
+            guard newPublicKey[0] == 0x02 || newPublicKey[0] == 0x03 else { return nil }
+            //
+            let newNode = BIP32()
+            newNode.uncompressedPrivateKey = newPrivateKey
+            newNode.chainCode = Data(I_R)
+            newNode.compressedPublicKey = newPublicKey
+            newNode.depth = depth + 1
+            newNode.index = trueIndex
+            
+            
+        }
+        
         
         
         

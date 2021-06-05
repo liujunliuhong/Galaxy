@@ -16,8 +16,6 @@ import secp256k1
 /// 简单的说就是一种将任意长度的消息压缩到某一固定长度的消息摘要的函数。
 
 
-
-
 /// `ECDSA`（`Elliptic Curve Digital Signature Algorithm`）
 /// 椭圆曲线数字签名算法  `y² = (x³ + a.x + b) mod p`
 /// `ECDSA`用于对数据（比如一个文件）创建数字签名，以便于你在不破坏它的安全性的前提下对它的真实性进行验证。
@@ -29,14 +27,9 @@ import secp256k1
 /// https://zhuanlan.zhihu.com/p/97953640
 
 
-
-
-
-
 /// SECP256K1
 /// 比特币使用基于椭圆曲线加密的椭圆曲线数字签名算法（`ECDSA`）
 /// 特定的椭圆曲线称为`secp256k1`，即曲线`y² = x³ + 7`
-
 
 
 /// 椭圆曲线乘法是密码学家称为“陷阱门”的一种函数：在一个方向（乘法）很容易做到，而在相反方向（除法）不可能做到。
@@ -66,7 +59,6 @@ extension SECP256K1 {
         return result == 1
     }
     
-    
     /// 序列化公钥
     public static func serializePublicKey(publicKey: secp256k1_pubkey?, compressed: Bool) -> Data? {
         guard let context = context else { return nil }
@@ -83,6 +75,39 @@ extension SECP256K1 {
         }
         return nil
     }
+    
+    /// 将多个公钥添加在一起并序列化
+    public static func combineSerializedPublicKeys(keys: [Data], compressed: Bool) -> Data? {
+        guard let context = context else { return nil }
+        guard keys.count >= 1 else { return nil }
+        
+        var publicKey = secp256k1_pubkey()
+        
+        var storage = ContiguousArray<secp256k1_pubkey>()
+        for key in keys {
+            guard let pubkey = SECP256K1.parsePublicKey(serializedKey: key) else {return nil}
+            storage.append(pubkey)
+        }
+        
+        let arrayOfPointers = UnsafeMutablePointer<UnsafePointer<secp256k1_pubkey>?>.allocate(capacity: keys.count)
+        defer {
+            arrayOfPointers.deinitialize(count: keys.count)
+            arrayOfPointers.deallocate()
+        }
+        for i in 0 ..< keys.count {
+            withUnsafePointer(to: &storage[i]) { (ptr) -> Void in
+                arrayOfPointers.advanced(by: i).pointee = ptr
+            }
+        }
+        let immutablePointer = UnsafePointer(arrayOfPointers)
+        
+        let result = secp256k1_ec_pubkey_combine(context, &publicKey, immutablePointer, keys.count)
+        
+        if result != 1 {
+            return nil
+        }
+        return SECP256K1.serializePublicKey(publicKey: publicKey, compressed: compressed)
+    }
 }
 
 extension SECP256K1 {
@@ -93,6 +118,19 @@ extension SECP256K1 {
         var publicKey = secp256k1_pubkey()
         var seckey = [UInt8](privateKey)
         let result = secp256k1_ec_pubkey_create(context, &publicKey, &seckey)
+        if result == 1 {
+            return publicKey
+        }
+        return nil
+    }
+    
+    /// 反序列化公钥
+    private static func parsePublicKey(serializedKey: Data?) -> secp256k1_pubkey? {
+        guard let serializedKey = serializedKey else { return nil }
+        guard let context = context else { return nil }
+        var publicKey = secp256k1_pubkey()
+        var input = [UInt8](serializedKey)
+        let result = secp256k1_ec_pubkey_parse(context, &publicKey, &input, serializedKey.count)
         if result == 1 {
             return publicKey
         }

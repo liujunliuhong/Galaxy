@@ -41,6 +41,60 @@ class ViewController: UIViewController {
         print("isValid4: \(isValid4)")
         print("isValid5: \(isValid5)")
         
+        let newIndex: UInt32 = 0x123456
+//        let a = BigUInt(newIndex)
+//        print(a.serialize() == newIndex.aaa_serialize32())
+//        print(a.serialize() as NSData)
+//        print(newIndex.aaa_serialize32() as NSData)
+//        print(newIndex.aaa_serialize32().gl.bytes)
+//        print(newIndex.bigEndian)
+//        print(newIndex.littleEndian)
+//        print(newIndex.gl.binaryDescription(separator: ""))
+        
+//        var maxValue = UInt8(1 << 7)
+//        let sss = ~maxValue
+//        maxValue = maxValue ^ ~maxValue
+//        print(maxValue)
+        
+        
+        /// 位运算规则
+        /// `&`    与     两个位都为1时，结果才为1
+        /// `|`    或     两个位都为0时，结果才为0
+        /// `^`    异或   两个位相同为0，相异为1
+        /// `~`    取反   0变1，1变0
+        /// `<<`   左移   各二进位全部左移若干位，高位丢弃，低位补0
+        /// `>>`   右移
+        
+        // 目标：取得最右边的8位  10001 1000
+        
+        
+        /*
+         1001 1000 1000 0000 0111 1110 0101 1100    value
+         0000 0000 1001 1000 1000 0000 0111 1110    value >> 8
+         1001 1000 1000 0000 0111 1110 0000 0000    (value >> 8) << 8
+         
+         
+         
+         1111 1111 0110 0111 0111 1111 1000 0001    ~(value >> 8)
+         0110 0111 0111 1111 1000 0001 0000 0000    (~(value >> 8)) << 8
+         
+         
+         */
+        let value: UInt16 = 0x1
+        let s = value.gl.serialize(to: UInt8.self, keepLeadingZero: false)
+        print(s)
+        print(BigUInt("aaaaafffffa2321ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff", radix: 16)!.gl.serialize(to: UInt8.self, keepLeadingZero: true))
+        print(BigUInt("aaaafffffa2321ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff", radix: 16)!.serialize().gl.bytes)
+        print(BigUInt(value).serialize().gl.bytes)
+        
+        
+        /// 1001 1000
+        /// 1000 0000
+        //print(UInt8(newIndex.gl.binaryDescription(separator: ""), radix: 2))
+        // 18    0001 0010
+        // 52    0011 0100
+        // 86    0101 0110
+        
 //        let input = "韩打算"
 //        let salt = "我退热奥拓已森，发送"
 //
@@ -54,10 +108,10 @@ class ViewController: UIViewController {
 //                                              variant: CryptoSwift.HMAC.Variant.sha512).calculate()
 //        print(s?.gl.bytesToHexString)
         
-        let key = "中国"
-        let dataString = "啦啦"
-        let result = HMAC.HMAC(key: key.gl.toBytes!, data: dataString.gl.toBytes!, algorithmType: .sha512)
-        print("😄\(result.gl.toHexString)")
+//        let key = "中国"
+//        let dataString = "啦啦"
+//        let result = HMAC.HMAC(key: key.gl.toBytes!, data: dataString.gl.toBytes!, algorithmType: .sha512)
+//        print("😄\(result.gl.toHexString)")
         
         
         
@@ -68,7 +122,20 @@ class ViewController: UIViewController {
 
 
 }
-
+extension UInt32 {
+    public func aaa_serialize32() -> Data {
+        let uint32 = UInt32(self)
+        var bigEndian = uint32.bigEndian
+        let count = MemoryLayout<UInt32>.size
+        let bytePtr = withUnsafePointer(to: &bigEndian) {
+            $0.withMemoryRebound(to: UInt8.self, capacity: count) {
+                UnsafeBufferPointer(start: $0, count: count)
+            }
+        }
+        let byteArray = Array(bytePtr)
+        return Data(byteArray)
+    }
+}
 extension ViewController {
     func test() {
         // 熵的位数

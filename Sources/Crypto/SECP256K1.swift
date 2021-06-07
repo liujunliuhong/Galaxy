@@ -71,12 +71,12 @@ extension SECP256K1 {
         //
         let result = secp256k1_ec_pubkey_serialize(context, &outputPtr, &outputLength, &publicKey, flags)
         if result == 1 {
-            return output
+            return Data(outputPtr)
         }
         return nil
     }
     
-    /// 将多个公钥添加在一起并序列化
+    /// 将多个公钥添加在一起并序列化（A+B）
     public static func combineSerializedPublicKeys(keys: [Data], compressed: Bool) -> Data? {
         guard let context = context else { return nil }
         guard keys.count >= 1 else { return nil }

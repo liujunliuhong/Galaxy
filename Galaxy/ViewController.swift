@@ -19,105 +19,52 @@ class ViewController: UIViewController {
         
         
         //test()
-        let result1 = BIP39.generateMnemonics(type: .m12, language: .english)
-        let result2 = BIP39.generateMnemonics(type: .m15, language: .english)
-        let result3 = BIP39.generateMnemonics(type: .m18, language: .english)
-        let result4 = BIP39.generateMnemonics(type: .m21, language: .english)
-        let result5 = BIP39.generateMnemonics(type: .m24, language: .english)
-        print(result1)
-        print(result2)
-        print(result3)
-        print(result4)
-        print(result5)
-        
-        let isValid1 = BIP39.isValidMnemonics(mnemonics: result1)
-        let isValid2 = BIP39.isValidMnemonics(mnemonics: result2)
-        let isValid3 = BIP39.isValidMnemonics(mnemonics: result3)
-        let isValid4 = BIP39.isValidMnemonics(mnemonics: result4)
-        let isValid5 = BIP39.isValidMnemonics(mnemonics: result5)
-        print("isValid1: \(isValid1)")
-        print("isValid2: \(isValid2)")
-        print("isValid3: \(isValid3)")
-        print("isValid4: \(isValid4)")
-        print("isValid5: \(isValid5)")
-        
-        let newIndex: UInt32 = 0x123456
-//        let a = BigUInt(newIndex)
-//        print(a.serialize() == newIndex.aaa_serialize32())
-//        print(a.serialize() as NSData)
-//        print(newIndex.aaa_serialize32() as NSData)
-//        print(newIndex.aaa_serialize32().gl.bytes)
-//        print(newIndex.bigEndian)
-//        print(newIndex.littleEndian)
-//        print(newIndex.gl.binaryDescription(separator: ""))
-        
-//        var maxValue = UInt8(1 << 7)
-//        let sss = ~maxValue
-//        maxValue = maxValue ^ ~maxValue
-//        print(maxValue)
-        
-        
-        /// 位运算规则
-        /// `&`    与     两个位都为1时，结果才为1
-        /// `|`    或     两个位都为0时，结果才为0
-        /// `^`    异或   两个位相同为0，相异为1
-        /// `~`    取反   0变1，1变0
-        /// `<<`   左移   各二进位全部左移若干位，高位丢弃，低位补0
-        /// `>>`   右移
-        
-        // 目标：取得最右边的8位  10001 1000
-        
-        
-        /*
-         1001 1000 1000 0000 0111 1110 0101 1100    value
-         0000 0000 1001 1000 1000 0000 0111 1110    value >> 8
-         1001 1000 1000 0000 0111 1110 0000 0000    (value >> 8) << 8
-         
-         
-         
-         1111 1111 0110 0111 0111 1111 1000 0001    ~(value >> 8)
-         0110 0111 0111 1111 1000 0001 0000 0000    (~(value >> 8)) << 8
-         
-         
-         */
-        let value: UInt16 = 0x1
-        let s = value.gl.serialize(to: UInt8.self, keepLeadingZero: false)
-        print(s)
-        print(BigUInt("aaaaafffffa2321ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff", radix: 16)!.gl.serialize(to: UInt8.self, keepLeadingZero: true))
-        print(BigUInt("aaaafffffa2321ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff", radix: 16)!.serialize().gl.bytes)
-        print(BigUInt(value).serialize().gl.bytes)
-        
-        
-        /// 1001 1000
-        /// 1000 0000
-        //print(UInt8(newIndex.gl.binaryDescription(separator: ""), radix: 2))
-        // 18    0001 0010
-        // 52    0011 0100
-        // 86    0101 0110
-        
-//        let input = "韩打算"
-//        let salt = "我退热奥拓已森，发送"
+//        let result1 = BIP39.generateMnemonics(type: .m12, language: .english)
+//        let result2 = BIP39.generateMnemonics(type: .m15, language: .english)
+//        let result3 = BIP39.generateMnemonics(type: .m18, language: .english)
+//        let result4 = BIP39.generateMnemonics(type: .m21, language: .english)
+//        let result5 = BIP39.generateMnemonics(type: .m24, language: .english)
+//        print(result1)
+//        print(result2)
+//        print(result3)
+//        print(result4)
+//        print(result5)
 //
-//        guard let result = PBKDF2.PBKDF2(input: input, salt: salt, algorithmType: .sha512, iterationsCount: 2048, dkLen: 64) else { return }
-//        print(result.gl.toHexString)
-//
-//        let s = try? CryptoSwift.PKCS5.PBKDF2(password: [UInt8](input.data(using: .utf8)!),
-//                                              salt: [UInt8](salt.data(using: .utf8)!),
-//                                              iterations: 2048,
-//                                              keyLength: 64,
-//                                              variant: CryptoSwift.HMAC.Variant.sha512).calculate()
-//        print(s?.gl.bytesToHexString)
-        
-//        let key = "中国"
-//        let dataString = "啦啦"
-//        let result = HMAC.HMAC(key: key.gl.toBytes!, data: dataString.gl.toBytes!, algorithmType: .sha512)
-//        print("😄\(result.gl.toHexString)")
+//        let isValid1 = BIP39.isValidMnemonics(mnemonics: result1)
+//        let isValid2 = BIP39.isValidMnemonics(mnemonics: result2)
+//        let isValid3 = BIP39.isValidMnemonics(mnemonics: result3)
+//        let isValid4 = BIP39.isValidMnemonics(mnemonics: result4)
+//        let isValid5 = BIP39.isValidMnemonics(mnemonics: result5)
+//        print("isValid1: \(isValid1)")
+//        print("isValid2: \(isValid2)")
+//        print("isValid3: \(isValid3)")
+//        print("isValid4: \(isValid4)")
+//        print("isValid5: \(isValid5)")
         
         
-        
-        
-        // a1d687f158c0e2f08a065d5a82a06f5ca16d995c0a1783b16e3147367c9a467a09529571c5fee3519ab4a3172cfdc59026e57ba4bf0457a1de0f62fa85605d77
-        
+        guard let mnemonics = BIP39.generateMnemonics(type: .m12, language: .english) else {
+            return
+        }
+        print("mnemonics: \(mnemonics)")
+        guard let seed = BIP39.seedFromMmemonics(mnemonics: mnemonics) else {
+            return
+        }
+        print("seed: \(seed.gl.toHexString)")
+        let node = BIP32(seed: seed)
+        guard let ethNode = node?.derive(path: "m/44'/60'/0'/0/0") else {
+            return
+        }
+        guard let privateKey = ethNode.uncompressedPrivateKey else {
+            return
+        }
+        print("uncompressedPrivateKey: \(privateKey.gl.toHexString)")
+        print("compressedPublicKey: \(ethNode.compressedPublicKey.gl.toHexString)")
+        print("uncompressedPublicKey: \(ethNode.uncompressedPublicKey?.gl.toHexString ?? "")")
+        print("depth: \(ethNode.depth)")
+        print("trueIndex: \(ethNode.trueIndex)")
+        print("parentFingerprint: \(ethNode.parentFingerprint.gl.toHexString)")
+        print("chainCode: \(ethNode.chainCode.gl.toHexString)")
+        print("path: \(ethNode.path)")
     }
 
 

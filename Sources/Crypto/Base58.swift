@@ -109,18 +109,18 @@ public struct Base58 {
     }
     
     /// `Base 58 Check`编码
-    public static func base58CheckEncoded(prefix: UInt8, data: Data) -> Data {
-        var bytes = [UInt8](Array(data))
+    public static func base58CheckEncoded(prefix: Data, data: Data) -> Data {
+        var result = Data()
         // 在首位添加`prefix`
-        bytes.insert(prefix, at: 0)
+        result += prefix
         // 连续两次`SHA256`
-        let checksums = bytes.sha256().sha256()
+        let checksums = data.sha256().sha256()
         // 取前4位得到`checksum`
         let checksum = Array(checksums[0..<4])
         // 得到完整的`bytes`
-        bytes += checksum
+        result += checksum
         // Base58编码
-        return Base58.base58Encoded(data: Data(bytes))
+        return Base58.base58Encoded(data: result)
     }
     
     /// `Base 58 Check`解码

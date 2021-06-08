@@ -11,6 +11,7 @@
 		7FFE0C3417884794D68F8377 /* Pods_Galaxy_GalaxyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34768F1A238BBAF6ABEFD959 /* Pods_Galaxy_GalaxyUITests.framework */; };
 		8513F2A3266488EC00702D8E /* HMAC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8513F2A2266488EC00702D8E /* HMAC.swift */; };
 		8513F2A82664BB4000702D8E /* SECP256K1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8513F2A72664BB4000702D8E /* SECP256K1.swift */; };
+		852B153A266F9A22005D3FC9 /* BTC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852B1539266F9A22005D3FC9 /* BTC.swift */; };
 		85577B7926628E9E00A26039 /* BIP39Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85577B7826628E9E00A26039 /* BIP39Language.swift */; };
 		85577B7D26628FFA00A26039 /* BIP39MnemonicCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85577B7C26628FFA00A26039 /* BIP39MnemonicCount.swift */; };
 		85577B7F266290CE00A26039 /* BIP39.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85577B7E266290CE00A26039 /* BIP39.swift */; };
@@ -115,6 +116,7 @@
 		45CFC8955DD68FA9E5EC7D74 /* Pods-Galaxy-GalaxyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Galaxy-GalaxyUITests.debug.xcconfig"; path = "Target Support Files/Pods-Galaxy-GalaxyUITests/Pods-Galaxy-GalaxyUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8513F2A2266488EC00702D8E /* HMAC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMAC.swift; sourceTree = "<group>"; };
 		8513F2A72664BB4000702D8E /* SECP256K1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SECP256K1.swift; sourceTree = "<group>"; };
+		852B1539266F9A22005D3FC9 /* BTC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTC.swift; sourceTree = "<group>"; };
 		85577B7826628E9E00A26039 /* BIP39Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BIP39Language.swift; sourceTree = "<group>"; };
 		85577B7C26628FFA00A26039 /* BIP39MnemonicCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BIP39MnemonicCount.swift; sourceTree = "<group>"; };
 		85577B7E266290CE00A26039 /* BIP39.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BIP39.swift; sourceTree = "<group>"; };
@@ -248,6 +250,22 @@
 				E8AADC529A5DA35E10FF8541 /* Pods-GalaxyTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		852B153E266F9A5B005D3FC9 /* BTC */ = {
+			isa = PBXGroup;
+			children = (
+				852B1539266F9A22005D3FC9 /* BTC.swift */,
+			);
+			path = BTC;
+			sourceTree = "<group>";
+		};
+		852B153F266F9A62005D3FC9 /* ETH */ = {
+			isa = PBXGroup;
+			children = (
+				85E63FE226611EA30045ED87 /* ETH.swift */,
+			);
+			path = ETH;
 			sourceTree = "<group>";
 		};
 		855990EA26622E9100693AA1 /* BIP39 */ = {
@@ -484,7 +502,8 @@
 		85E63FE126611EA30045ED87 /* BlockChain */ = {
 			isa = PBXGroup;
 			children = (
-				85E63FE226611EA30045ED87 /* ETH.swift */,
+				852B153F266F9A62005D3FC9 /* ETH */,
+				852B153E266F9A5B005D3FC9 /* BTC */,
 			);
 			path = BlockChain;
 			sourceTree = "<group>";
@@ -827,6 +846,7 @@
 				8582EF16266B70D800CB15F1 /* BinaryInteger+Extension.swift in Sources */,
 				85577B7F266290CE00A26039 /* BIP39.swift in Sources */,
 				85E6400E26611EA30045ED87 /* NSMutableAttributedString+Extension.swift in Sources */,
+				852B153A266F9A22005D3FC9 /* BTC.swift in Sources */,
 				85E63FEE26611EA30045ED87 /* Base58.swift in Sources */,
 				85E6400826611EA30045ED87 /* Collection+Extension.swift in Sources */,
 				85E6400D26611EA30045ED87 /* String+Extension.swift in Sources */,

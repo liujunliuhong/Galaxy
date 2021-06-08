@@ -45,22 +45,25 @@ extension GL where Base: BinaryInteger {
     public func serialize<T: FixedWidthInteger>(to type: T.Type, keepLeadingZero: Bool) -> [T] {
         let zero: String = [UInt8](repeating: 0, count: type.bitWidth).map{ "\($0)" }
             .joined()
+        let binaryStirng = binaryDescription(separator: "")
         var output = [T]()
-        let splittedStrings = binaryDescription(separator: "")
+        let splittedStrings = binaryStirng
+            .reversed()
             .map{ "\($0)" }
-            .gl.makeGroups(perRowCount: type.bitWidth, isMakeUp: false, defaultValueClosure: nil)
+            .gl
+            .makeGroups(perRowCount: type.bitWidth, isMakeUp: true) { return "0" }
+            .joined()
+            .joined()
+            .reversed()
+            .map{ "\($0)" }
+            .gl
+            .makeGroups(perRowCount: type.bitWidth, isMakeUp: false, defaultValueClosure: nil)
+        
         for (i, v) in splittedStrings.enumerated() {
             let vaule = v.map { String($0) }.joined(separator: "")
             if i == 0 && vaule == zero && !keepLeadingZero { continue }
             output.append(T(vaule, radix: 2)!)
         }
         return output
-        //        var bigEndian = self.base.bigEndian
-        //        let count = MemoryLayout<Base>.size
-        //        let result = withUnsafePointer(to: &bigEndian) { ptr in
-        //            ptr.withMemoryRebound(to: type.self, capacity: count) { b in
-        //                UnsafeBufferPointer<T>(start: b, count: count)
-        //            }
-        //        }
     }
 }

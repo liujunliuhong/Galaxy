@@ -113,8 +113,10 @@ public struct Base58 {
         var result = Data()
         // 在首位添加`prefix`
         result += prefix
+        // 再拼接data
+        result += data
         // 连续两次`SHA256`
-        let checksums = data.sha256().sha256()
+        let checksums = result.sha256().sha256()
         // 取前4位得到`checksum`
         let checksum = Array(checksums[0..<4])
         // 得到完整的`bytes`

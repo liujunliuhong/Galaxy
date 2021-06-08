@@ -42,47 +42,36 @@ class ViewController: UIViewController {
 //        print("isValid5: \(isValid5)")
         
         
-        guard let mnemonics = BIP39.generateMnemonics(type: .m12, language: .english) else {
-            return
-        }
+//        guard let mnemonics = BIP39.generateMnemonics(type: .m12, language: .english) else {
+//            return
+//        }
+        let mnemonics = "monkey pencil polar hand mimic trouble voice suit sunset fabric chief left"
+        
         print("mnemonics: \(mnemonics)")
         guard let seed = BIP39.seedFromMmemonics(mnemonics: mnemonics) else {
             return
         }
         print("seed: \(seed.gl.toHexString)")
-        let node = BIP32(seed: seed)
-        guard let ethNode = node?.derive(path: "m/44'/60'/0'/0/0") else {
+        guard let node = BIP32(seed: seed) else { return }
+        guard let ethNode = node.derive(path: "m/44'/0'/0'/0") else {
             return
         }
-        guard let privateKey = ethNode.uncompressedPrivateKey else {
-            return
-        }
-        print("uncompressedPrivateKey: \(privateKey.gl.toHexString)")
-        print("compressedPublicKey: \(ethNode.compressedPublicKey.gl.toHexString)")
-        print("uncompressedPublicKey: \(ethNode.uncompressedPublicKey?.gl.toHexString ?? "")")
-        print("depth: \(ethNode.depth)")
-        print("trueIndex: \(ethNode.trueIndex)")
-        print("parentFingerprint: \(ethNode.parentFingerprint.gl.toHexString)")
-        print("chainCode: \(ethNode.chainCode.gl.toHexString)")
-        print("path: \(ethNode.path)")
-    }
-
-
-}
-extension UInt32 {
-    public func aaa_serialize32() -> Data {
-        let uint32 = UInt32(self)
-        var bigEndian = uint32.bigEndian
-        let count = MemoryLayout<UInt32>.size
-        let bytePtr = withUnsafePointer(to: &bigEndian) {
-            $0.withMemoryRebound(to: UInt8.self, capacity: count) {
-                UnsafeBufferPointer(start: $0, count: count)
-            }
-        }
-        let byteArray = Array(bytePtr)
-        return Data(byteArray)
+//        print("uncompressedPrivateKey: \(ethNode.uncompressedPrivateKey?.gl.toHexString ?? "")")
+//        print("compressedPrivateKey: \(ethNode.compressedPrivateKey?.gl.toHexString ?? "")")
+//        print("compressedPublicKey: \(ethNode.compressedPublicKey.gl.toHexString)")
+//        print("uncompressedPublicKey: \(ethNode.uncompressedPublicKey?.gl.toHexString ?? "")")
+//        print("depth: \(ethNode.depth)")
+//        print("trueIndex: \(ethNode.trueIndex)")
+//        print("parentFingerprint: \(ethNode.parentFingerprint.gl.toHexString)")
+//        print("chainCode: \(ethNode.chainCode.gl.toHexString)")
+//        print("path: \(ethNode.path)")
+//
+        print(ethNode.WIF(hexPrefix: "0x80", compressed: true)) // 比特币私钥(压缩的私钥并且base58 check encode)
+        print(ethNode.extendedPrivateKeyString(isMainNet: true) ?? "")
+        print(ethNode.extendedPublicKeyString(isMainNet: true) ?? "")
     }
 }
+
 extension ViewController {
     func test() {
         // 熵的位数

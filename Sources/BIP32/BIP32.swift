@@ -211,11 +211,12 @@ public class BIP32 {
     /// 33 bytes: the public key or private key data (serP(K) for public keys, 0x00 || ser256(k) for private keys)
     /// This 78 byte structure can be encoded like other Bitcoin data in Base58, by first adding 32 checksum bits (derived from the double SHA-256 checksum), and then converting to the Base58 representation. This results in a Base58-encoded string of up to 112 characters. Because of the choice of the version bytes, the Base58 representation will start with "xprv" or "xpub" on mainnet, "tprv" or "tpub" on testnet.
     public init?(extendedKeyData: Data) {
-        if extendedKeyData.count < 78 || extendedKeyData.count > 82 { return nil }
+        let valid = extendedKeyData.count == 78 || extendedKeyData.count == 82
+        if !valid { return nil }
         let version = extendedKeyData[0..<4].gl.toHexString.gl.add0xHexPrefix
         let depth = extendedKeyData[4]
         let parentFingerprint = extendedKeyData[5..<9]
-        let index = UInt32(extendedKeyData[9..<13].gl.toHexString, radix: 16)!
+        guard let index = UInt32(extendedKeyData[9..<13].gl.toHexString, radix: 16) else { return nil }
         let chainCode = extendedKeyData[13..<45]
         
         var privateKey: Data?
@@ -304,13 +305,10 @@ extension BIP32 {
         let indexBytes = trueIndex.gl.serialize(to: UInt8.self, keepLeadingZero: true)
         //
         var inputForHMAC: Data = Data()
-        //
         if hardened {
-            // 如果是强化派生
             inputForHMAC.append(0x00)
             inputForHMAC.append(uncompressedPrivateKey!)
         } else {
-            // 如果是常规派生
             inputForHMAC.append(compressedPublicKey)
         }
         inputForHMAC.append(Data(indexBytes))
@@ -331,10 +329,9 @@ extension BIP32 {
                 return nil
             }
         }
-        //
-        var privateKeyCandidate = _I_L
+        
         if uncompressedPrivateKey != nil {
-            privateKeyCandidate = (_I_L + BigUInt(uncompressedPrivateKey!)) % curveOrder
+            let privateKeyCandidate = (_I_L + BigUInt(uncompressedPrivateKey!)) % curveOrder
             if privateKeyCandidate == BigUInt(0) {
                 if trueIndex < UInt32.max {
                     return derived(at: index + 1, hardened: hardened)
@@ -342,66 +339,99 @@ extension BIP32 {
                     return nil
                 }
             }
-        }
-        //
-        let newPrivateKeyBytes = privateKeyCandidate.gl.serialize(to: UInt8.self, keepLeadingZero: true)
-        let newPrivateKey = Data(newPrivateKeyBytes)
-        // 验证私钥是否合法
-        guard SECP256K1.isValidPrivateKey(privateKey: newPrivateKey) else { return nil }
-        // 根据私钥生成压缩公钥
-        guard let newPublicKey = SECP256K1.privateKeyToPublicKey(privateKey: newPrivateKey, compressed: true) else { return nil }
-        // 压缩的公钥是0x02或者0x03开头
-        guard newPublicKey[0] == 0x02 || newPublicKey[0] == 0x03 else { return nil }
-        // 获取指纹（取前4位）
-        let ripemdHash = RIPEMD160.hash(message: SHA256.sha256(data: newPublicKey))
-        guard ripemdHash.count >= 4 else { return nil }
-        let fingerprint = ripemdHash[0..<4]
-        //
-        let newNode = BIP32()
-        newNode.depth = depth + 1
-        newNode.trueIndex = trueIndex
-        newNode.parentFingerprint = fingerprint
-        newNode.chainCode = Data(I_R)
-        // 生成path
-        var newPath = path
-        if trueIndex >= hardenedStartIndex {
-            newPath = newPath + "/"
-            newPath = newPath + "\(trueIndex % hardenedStartIndex)"
-            newPath = newPath + hardenedSuffix
-        } else {
-            newPath = newPath + "/"
-            newPath = newPath + "\(trueIndex)"
-        }
-        newNode.path = newPath
-        // 秘钥赋值
-        if uncompressedPrivateKey != nil {
-            // 如果私钥存在
+            //
+            let newPrivateKeyBytes = privateKeyCandidate.gl.serialize(to: UInt8.self, keepLeadingZero: true)
+            let newPrivateKey = Data(newPrivateKeyBytes)
+            // 验证私钥是否合法
+            guard SECP256K1.isValidPrivateKey(privateKey: newPrivateKey) else { return nil }
+            // 根据私钥生成压缩公钥
+            guard let newPublicKey = SECP256K1.privateKeyToPublicKey(privateKey: newPrivateKey, compressed: true) else { return nil }
+            // 压缩的公钥是0x02或者0x03开头
+            guard newPublicKey[0] == 0x02 || newPublicKey[0] == 0x03 else { return nil }
+            // 获取指纹（取前4位）
+            let ripemdHash = RIPEMD160.hash(message: SHA256.sha256(data: compressedPublicKey))
+            guard ripemdHash.count >= 4 else { return nil }
+            let fingerprint = ripemdHash[0..<4]
+            //
+            let newNode = BIP32()
+            newNode.depth = depth + 1
+            newNode.trueIndex = trueIndex
+            newNode.parentFingerprint = fingerprint
+            newNode.chainCode = Data(I_R)
             newNode.uncompressedPrivateKey = newPrivateKey
             newNode.compressedPublicKey = newPublicKey
+            // 生成path
+            var newPath = path
+            if trueIndex >= hardenedStartIndex {
+                newPath = newPath + "/"
+                newPath = newPath + "\(trueIndex % hardenedStartIndex)"
+                newPath = newPath + hardenedSuffix
+            } else {
+                newPath = newPath + "/"
+                newPath = newPath + "\(trueIndex)"
+            }
+            newNode.path = newPath
+            return newNode
         } else {
-            // 如果私钥不存在
-            newNode.uncompressedPrivateKey = nil
+            let newPrivateKeyBytes = _I_L.gl.serialize(to: UInt8.self, keepLeadingZero: true)
+            let newPrivateKey = Data(newPrivateKeyBytes)
+            // 验证私钥是否合法
+            guard SECP256K1.isValidPrivateKey(privateKey: newPrivateKey) else { return nil }
+            // 根据私钥生成压缩公钥
+            guard let newPublicKey = SECP256K1.privateKeyToPublicKey(privateKey: newPrivateKey, compressed: true) else { return nil }
+            // 压缩的公钥是0x02或者0x03开头
+            guard newPublicKey[0] == 0x02 || newPublicKey[0] == 0x03 else { return nil }
+            //
             guard let _newPublicKey = SECP256K1.combineSerializedPublicKeys(keys: [compressedPublicKey, newPublicKey], compressed: true) else { return nil }
             guard _newPublicKey[0] == 0x02 || _newPublicKey[0] == 0x03 else { return nil }
+            // 获取指纹（取前4位）
+            let ripemdHash = RIPEMD160.hash(message: SHA256.sha256(data: compressedPublicKey))
+            guard ripemdHash.count >= 4 else { return nil }
+            let fingerprint = ripemdHash[0..<4]
+            //
+            let newNode = BIP32()
+            newNode.depth = depth + 1
+            newNode.trueIndex = trueIndex
+            newNode.parentFingerprint = fingerprint
+            newNode.chainCode = Data(I_R)
+            newNode.uncompressedPrivateKey = nil
             newNode.compressedPublicKey = _newPublicKey
+            // 生成path
+            var newPath = path
+            if trueIndex >= hardenedStartIndex {
+                newPath = newPath + "/"
+                newPath = newPath + "\(trueIndex % hardenedStartIndex)"
+                newPath = newPath + hardenedSuffix
+            } else {
+                newPath = newPath + "/"
+                newPath = newPath + "\(trueIndex)"
+            }
+            newNode.path = newPath
+            return newNode
         }
-        return newNode
     }
 }
 
 extension BIP32 {
-    public func extendedKeyString(extendedPublic: Bool, extendedVersion: ExtendedVersion) -> String? {
-        guard let data = extendedKeyData(extendedPublic: extendedPublic, extendedVersion: extendedVersion) else { return nil }
-        return Base58.base58Encoded(data: data).gl.toHexString
+    public func extendedPrivateKeyString(isMainNet: Bool) -> String? {
+        guard let data = extendedPrivateKeyData(isMainNet: isMainNet) else { return nil }
+        let base58Data = Base58.base58Encoded(data: data)
+        return String(data: base58Data, encoding: .utf8)
     }
     
-    public func extendedKeyData(extendedPublic: Bool, extendedVersion: ExtendedVersion) -> Data? {
-        // 检查
-        if !extendedPublic && uncompressedPrivateKey == nil { return nil }
+    public func extendedPublicKeyString(isMainNet: Bool) -> String? {
+        guard let data = extendedPublicKeyData(isMainNet: isMainNet) else { return nil }
+        let base58Data = Base58.base58Encoded(data: data)
+        return String(data: base58Data, encoding: .utf8)
+    }
+    
+    public func extendedPrivateKeyData(isMainNet: Bool) -> Data? {
+        if uncompressedPrivateKey == nil { return nil }
+        let version: ExtendedVersion = isMainNet ? .mainnetPrivateVersion : .testnetPrivateVersion
+        guard let extendedVersionData = version.rawValue.gl.toHexData else { return nil }
         //
         var data: Data = Data()
         // append version
-        guard let extendedVersionData = extendedVersion.rawValue.gl.toHexData else { return nil }
         data.append(extendedVersionData)
         // append depth
         data.append(depth)
@@ -412,13 +442,37 @@ extension BIP32 {
         data.append(contentsOf: indexBytes)
         // append chain code
         data.append(chainCode)
-        // append key
-        if extendedPublic {
-            data.append(compressedPublicKey)
-        } else {
-            data.append(0x00)
-            data.append(uncompressedPrivateKey!)
-        }
+        // append privateKey
+        data.append(0x00)
+        data.append(uncompressedPrivateKey!)
+        // append check sum
+        var hash = SHA256.sha256(data: data)
+        hash = SHA256.sha256(data: hash)
+        let checkSum = hash[0..<4]
+        data.append(checkSum)
+        // 最终数据长度为82
+        guard data.count == 82 else { return nil }
+        return data
+    }
+    
+    public func extendedPublicKeyData(isMainNet: Bool) -> Data? {
+        let version: ExtendedVersion = isMainNet ? .mainnetPublicVersion : .testnetPublicVersion
+        guard let extendedVersionData = version.rawValue.gl.toHexData else { return nil }
+        //
+        var data: Data = Data()
+        // append version
+        data.append(extendedVersionData)
+        // append depth
+        data.append(depth)
+        // append parentFingerprint
+        data.append(parentFingerprint)
+        // append index
+        let indexBytes = trueIndex.gl.serialize(to: UInt8.self, keepLeadingZero: true)
+        data.append(contentsOf: indexBytes)
+        // append chain code
+        data.append(chainCode)
+        // append publicKey
+        data.append(compressedPublicKey)
         // append check sum
         var hash = SHA256.sha256(data: data)
         hash = SHA256.sha256(data: hash)
@@ -432,8 +486,8 @@ extension BIP32 {
 
 extension BIP32 {
     /// 生成WIF
-    public func WIF(prefix: String, compressed: Bool) -> String? {
-        guard let prefixData = prefix.gl.toHexData else { return nil }
+    public func WIF(hexPrefix: String, compressed: Bool) -> String? {
+        guard let prefixData = hexPrefix.gl.toHexData else { return nil }
         if compressed {
             // 压缩的私钥生成压缩的公钥
             guard let compressedPrivateKey = compressedPrivateKey else { return nil }

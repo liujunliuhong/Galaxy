@@ -109,7 +109,9 @@ public struct Base58 {
     }
     
     /// `Base 58 Check`编码
-    public static func base58CheckEncoded(prefix: Data, data: Data) -> Data {
+    public static func base58CheckEncoded(prefix: Data?, data: Data?) -> Data? {
+        guard let prefix = prefix else { return nil }
+        guard let data = data else { return nil }
         var result = Data()
         // 在首位添加`prefix`
         result += prefix
@@ -124,6 +126,13 @@ public struct Base58 {
         result += checksum
         // Base58编码
         return Base58.base58Encoded(data: result)
+    }
+    
+    public static func base58CheckEncoded(hexPrefix: String?, data: Data?) -> String? {
+        guard let hexPrefix = hexPrefix else { return nil }
+        guard let data = data else { return nil }
+        guard let result = Base58.base58CheckEncoded(prefix: hexPrefix.gl.toHexData, data: data) else { return nil }
+        return String(data: result, encoding: .utf8)
     }
     
     /// `Base 58 Check`解码

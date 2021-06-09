@@ -113,7 +113,7 @@ public class BIP32 {
     /// 未压缩的私钥
     public private(set) var uncompressedPrivateKey: Data?
     
-    /// 压缩的公钥
+    /// 压缩的公钥（02或者03开头）
     public private(set) var compressedPublicKey: Data
     
     /// 链码
@@ -131,7 +131,7 @@ public class BIP32 {
     /// 指纹
     public private(set) var parentFingerprint: Data = Data(repeating: 0, count: 4)
     
-    /// 压缩的私钥
+    /// 压缩的私钥（在未压缩私钥尾部添加0x01）
     public var compressedPrivateKey: Data? {
         guard let uncompressedPrivateKey = uncompressedPrivateKey else { return nil }
         var bytes = uncompressedPrivateKey.gl.bytes
@@ -139,7 +139,7 @@ public class BIP32 {
         return Data(bytes)
     }
     
-    /// 未压缩的公钥
+    /// 未压缩的公钥（04开头）
     public var uncompressedPublicKey: Data? {
         return SECP256K1.privateKeyToPublicKey(privateKey: uncompressedPrivateKey, compressed: false)
     }

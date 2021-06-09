@@ -25,6 +25,7 @@
 		8582EF18266B714E00CB15F1 /* UnsignedInteger+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8582EF17266B714E00CB15F1 /* UnsignedInteger+Extension.swift */; };
 		8582EF1A266B715F00CB15F1 /* SignedInteger+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8582EF19266B715F00CB15F1 /* SignedInteger+Extension.swift */; };
 		8582EF1C266BDCD300CB15F1 /* RIPEMD160.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8582EF1B266BDCD300CB15F1 /* RIPEMD160.swift */; };
+		85B8854E267117E900D09A40 /* BIP49.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B8854D267117E900D09A40 /* BIP49.swift */; };
 		85CB19382670B67600A15859 /* EOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB19372670B67600A15859 /* EOS.swift */; };
 		85CB19412670B6E900A15859 /* BIP44.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB19402670B6E900A15859 /* BIP44.swift */; };
 		85D34BD9266380CC000A51E4 /* PBKDF2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D34BD8266380CC000A51E4 /* PBKDF2.swift */; };
@@ -131,6 +132,7 @@
 		8582EF17266B714E00CB15F1 /* UnsignedInteger+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UnsignedInteger+Extension.swift"; sourceTree = "<group>"; };
 		8582EF19266B715F00CB15F1 /* SignedInteger+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SignedInteger+Extension.swift"; sourceTree = "<group>"; };
 		8582EF1B266BDCD300CB15F1 /* RIPEMD160.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RIPEMD160.swift; sourceTree = "<group>"; };
+		85B8854D267117E900D09A40 /* BIP49.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BIP49.swift; sourceTree = "<group>"; };
 		85CB19372670B67600A15859 /* EOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EOS.swift; sourceTree = "<group>"; };
 		85CB19402670B6E900A15859 /* BIP44.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BIP44.swift; sourceTree = "<group>"; };
 		85D34BD8266380CC000A51E4 /* PBKDF2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBKDF2.swift; sourceTree = "<group>"; };
@@ -282,6 +284,14 @@
 			path = BIP39;
 			sourceTree = "<group>";
 		};
+		85B8854C267117DB00D09A40 /* BIP49 */ = {
+			isa = PBXGroup;
+			children = (
+				85B8854D267117E900D09A40 /* BIP49.swift */,
+			);
+			path = BIP49;
+			sourceTree = "<group>";
+		};
 		85CB19362670B66C00A15859 /* EOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -372,6 +382,7 @@
 		85E63FA626611EA30045ED87 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				85B8854C267117DB00D09A40 /* BIP49 */,
 				85CB193F2670B6DB00A15859 /* BIP44 */,
 				85E57D642667DBED004EAFCE /* BIP38 */,
 				85D34BDA2663D656000A51E4 /* BIP32 */,
@@ -884,6 +895,7 @@
 				85E6400C26611EA30045ED87 /* URL+Extension.swift in Sources */,
 				85E63FF326611EA30045ED87 /* UIColor+Extension.swift in Sources */,
 				85E6402026611EA30045ED87 /* WordsSort.swift in Sources */,
+				85B8854E267117E900D09A40 /* BIP49.swift in Sources */,
 				85E6401D26611EA30045ED87 /* Alamofire.NetworkReachabilityManager+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

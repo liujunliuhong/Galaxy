@@ -9,35 +9,40 @@ import Foundation
 
 public class BTC {
     
+    /// 压缩私钥的Base58Check
     public var compressedWIF: String? {
-        guard let prefixData = "0x80".gl.toHexData else { return nil }
-        guard let compressedPrivateKey = bip32.compressedPrivateKey else { return nil }
-        let result = Base58.base58CheckEncoded(prefix: prefixData, data: compressedPrivateKey)
-        return String(data: result, encoding: .utf8)
+        return Base58.base58CheckEncoded(hexPrefix: "0x80", data: bip32.compressedPrivateKey)
     }
     
+    /// 未压缩私钥的Base58Check
     public var uncompressedWIF: String? {
-        guard let prefixData = "0x80".gl.toHexData else { return nil }
-        guard let uncompressedPrivateKey = bip32.uncompressedPrivateKey else { return nil }
-        let result = Base58.base58CheckEncoded(prefix: prefixData, data: uncompressedPrivateKey)
-        return String(data: result, encoding: .utf8)
+        return Base58.base58CheckEncoded(hexPrefix: "0x80", data: bip32.uncompressedPrivateKey)
     }
     
+    /// 压缩私钥测试网的Base58Check
     public var compressedWIFTestnet: String? {
-        guard let prefixData = "0x6F".gl.toHexData else { return nil }
-        guard let compressedPrivateKey = bip32.compressedPrivateKey else { return nil }
-        let result = Base58.base58CheckEncoded(prefix: prefixData, data: compressedPrivateKey)
-        return String(data: result, encoding: .utf8)
+        return Base58.base58CheckEncoded(hexPrefix: "0x6F", data: bip32.compressedPrivateKey)
     }
     
+    /// 未压缩私钥测试网的Base58Check
     public var uncompressedWIFTestnet: String? {
-        guard let prefixData = "0x6F".gl.toHexData else { return nil }
-        guard let uncompressedPrivateKey = bip32.uncompressedPrivateKey else { return nil }
-        let result = Base58.base58CheckEncoded(prefix: prefixData, data: uncompressedPrivateKey)
-        return String(data: result, encoding: .utf8)
+        return Base58.base58CheckEncoded(hexPrefix: "0x6F", data: bip32.uncompressedPrivateKey)
     }
     
+    /// 由压缩公钥生成的BTC地址
+    public var compressedAddress: String? {
+        var hash = SHA256.sha256(data: bip32.compressedPublicKey)
+        hash = RIPEMD160.hash(message: hash)
+        return Base58.base58CheckEncoded(hexPrefix: "0x00", data: hash)
+    }
     
+    /// 由未压缩公钥生成的BTC地址
+    public var uncompressedAddress: String? {
+        guard let uncompressedPublicKey = bip32.uncompressedPublicKey else { return nil }
+        var hash = SHA256.sha256(data: uncompressedPublicKey)
+        hash = RIPEMD160.hash(message: hash)
+        return Base58.base58CheckEncoded(hexPrefix: "0x00", data: hash)
+    }
     
     public let bip32: BIP32
     

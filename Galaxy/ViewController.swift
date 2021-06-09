@@ -49,7 +49,7 @@ class ViewController: UIViewController {
         
         
         
-        let path = "m/44'/0'/0'/0"
+        let path = "m/44'/0'/0'/0/0"
         let mnemonics = "monkey pencil polar hand mimic trouble voice suit sunset fabric chief left"
         
         print("mnemonics: \(mnemonics)")
@@ -100,7 +100,11 @@ class ViewController: UIViewController {
         print("扩展公钥 - compressedPublicKey: \(extendedPublicKeyNode?.compressedPublicKey.gl.toHexString ?? "nil")")
 //        
         
-        
+        print("😄😄😄😄😄😄😄😄😄😄😄😄😄😄")
+        let btc = BTC(bip32: ethNode)
+        print("btc compressedAddress: \(btc.compressedAddress ?? "")")
+        print("btc uncompressedAddress: \(btc.uncompressedAddress ?? "")")
+        print("btc compressedWIF: \(btc.compressedWIF ?? "")")
     }
 }
 

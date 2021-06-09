@@ -57,7 +57,7 @@ import Foundation
 /// Wallet software should warn when the user is trying to exceed the gap limit on an external chain by generating a new address.
 
 
-
+/// https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki
 
 
 

@@ -97,7 +97,7 @@ public struct Base58 {
             }
         }
         // 序列化
-        var resultData = result.serialize()
+        var resultData = result.gl.serialize(to: UInt8.self, keepLeadingZero: true)
         //
         let zeroBytes = bytes.prefix { value in
             return value == base58AlphaBytes.first! // 1
@@ -105,7 +105,7 @@ public struct Base58 {
         //
         resultData = Data(zeroBytes) + resultData
         
-        return resultData
+        return Data(resultData)
     }
     
     /// `Base 58 Check`编码
@@ -116,7 +116,8 @@ public struct Base58 {
         // 再拼接data
         result += data
         // 连续两次`SHA256`
-        let checksums = result.sha256().sha256()
+        var checksums = SHA256.sha256(data: result)
+        checksums = SHA256.sha256(data: checksums)
         // 取前4位得到`checksum`
         let checksum = Array(checksums[0..<4])
         // 得到完整的`bytes`
@@ -131,16 +132,16 @@ public struct Base58 {
         guard let data = Base58.base58Decoded(data: data) else { return nil }
         // 如果长度小于4，这届return nil
         guard data.count >= 4 else { return nil }
-        // 转换为字节数组
-        let bytes = [UInt8](Array(data))
         // 得到原始数据
-        let resultBytes = Array(bytes[0..<(bytes.count - 4)])
+        let resultData = data[0..<(data.count-4)]
         // 取后4位得到checksum
-        let checksum = Array(bytes[(bytes.count - 4)..<bytes.count])
+        let checksum = data[(data.count-4)...]
         // 作对比
-        if Array(resultBytes.sha256().sha256()[0..<4]) != checksum {
+        var checksums = SHA256.sha256(data: resultData)
+        checksums = SHA256.sha256(data: checksums)
+        if checksums[0..<4] != checksum {
             return nil
         }
-        return Data(resultBytes)
+        return resultData
     }
 }

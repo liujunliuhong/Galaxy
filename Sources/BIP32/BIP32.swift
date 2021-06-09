@@ -96,7 +96,7 @@ import BigInt
 /// 第一个子公钥是`M/0`
 /// https://github.com/inoutcode/bitcoin_book_2nd/blob/master/%E7%AC%AC%E4%BA%94%E7%AB%A0.asciidoc
 /// https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki#child-key-derivation-ckd-functions
-
+/// https://github.com/guoshijiang/blockchain-wallet/blob/master/chapter/readme.md
 
 
 
@@ -160,7 +160,6 @@ public class BIP32 {
     private let seedKey = "Bitcoin seed"
     
     
-    
     public init() {
         self.uncompressedPrivateKey = nil
         self.compressedPublicKey = Data()
@@ -200,8 +199,17 @@ public class BIP32 {
         self.parentFingerprint = Data(repeating: 0, count: 4)
     }
     
+    
+    /// 扩展秘钥初始化
+    /// - Parameter extendedKeyString: 扩展秘钥（Base58 encode string）
+    public convenience init?(extendedKeyString: String) {
+        guard let data = extendedKeyString.data(using: .utf8) else { return nil }
+        guard let extendedKeyData = Base58.base58Decoded(data: data) else { return nil }
+        self.init(extendedKeyData: extendedKeyData)
+    }
+    
     /// 根据`扩展秘钥`初始化
-    /// - Parameter extendedKeyData: 扩展秘钥
+    /// - Parameter extendedKeyData: 扩展秘钥（Base58 encode data）
     ///
     /// 4 byte: version bytes (mainnet: 0x0488B21E public, 0x0488ADE4 private; testnet: 0x043587CF public, 0x04358394 private)
     /// 1 byte: depth: 0x00 for master nodes, 0x01 for level-1 derived keys, ....
@@ -213,7 +221,7 @@ public class BIP32 {
     public init?(extendedKeyData: Data) {
         let valid = extendedKeyData.count == 78 || extendedKeyData.count == 82
         if !valid { return nil }
-        let version = extendedKeyData[0..<4].gl.toHexString.gl.add0xHexPrefix
+        let version = extendedKeyData[0..<4].gl.toHexString.gl.add0xHexPrefix.lowercased()
         let depth = extendedKeyData[4]
         let parentFingerprint = extendedKeyData[5..<9]
         guard let index = UInt32(extendedKeyData[9..<13].gl.toHexString, radix: 16) else { return nil }
@@ -222,13 +230,15 @@ public class BIP32 {
         var privateKey: Data?
         var publicKey: Data = Data()
         
-        if version == ExtendedVersion.mainnetPrivateVersion.rawValue || version == ExtendedVersion.testnetPublicVersion.rawValue {
+        if version == ExtendedVersion.mainnetPrivateVersion.rawValue.lowercased() ||
+            version == ExtendedVersion.testnetPrivateVersion.rawValue.lowercased() {
             let privateKeyPrefix = extendedKeyData[45]
             guard privateKeyPrefix == 0x00 else { return nil }
             privateKey = extendedKeyData[46..<78]
             guard let tmpPublicKey = SECP256K1.privateKeyToPublicKey(privateKey: privateKey, compressed: true) else { return nil }
             publicKey = tmpPublicKey
-        } else if version == ExtendedVersion.mainnetPrivateVersion.rawValue || version == ExtendedVersion.testnetPrivateVersion.rawValue {
+        } else if version == ExtendedVersion.mainnetPublicVersion.rawValue.lowercased() ||
+                    version == ExtendedVersion.testnetPublicVersion.rawValue.lowercased() {
             publicKey = extendedKeyData[45..<78]
         }
         if extendedKeyData.count == 82 {
@@ -481,23 +491,5 @@ extension BIP32 {
         // 最终数据长度为82
         guard data.count == 82 else { return nil }
         return data
-    }
-}
-
-extension BIP32 {
-    /// 生成WIF
-    public func WIF(hexPrefix: String, compressed: Bool) -> String? {
-        guard let prefixData = hexPrefix.gl.toHexData else { return nil }
-        if compressed {
-            // 压缩的私钥生成压缩的公钥
-            guard let compressedPrivateKey = compressedPrivateKey else { return nil }
-            let result = Base58.base58CheckEncoded(prefix: prefixData, data: compressedPrivateKey)
-            return String(data: result, encoding: .utf8)
-        } else {
-            // 未压缩的私钥生成未压缩的公钥
-            guard let uncompressedPrivateKey = uncompressedPrivateKey else { return nil }
-            let result = Base58.base58CheckEncoded(prefix: prefixData, data: uncompressedPrivateKey)
-            return String(data: result, encoding: .utf8)
-        }
     }
 }

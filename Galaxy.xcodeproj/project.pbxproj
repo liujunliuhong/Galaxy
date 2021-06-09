@@ -25,7 +25,8 @@
 		8582EF18266B714E00CB15F1 /* UnsignedInteger+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8582EF17266B714E00CB15F1 /* UnsignedInteger+Extension.swift */; };
 		8582EF1A266B715F00CB15F1 /* SignedInteger+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8582EF19266B715F00CB15F1 /* SignedInteger+Extension.swift */; };
 		8582EF1C266BDCD300CB15F1 /* RIPEMD160.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8582EF1B266BDCD300CB15F1 /* RIPEMD160.swift */; };
-		85CA72AA266A82A900650DA0 /* HDKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CA72A9266A82A900650DA0 /* HDKey.swift */; };
+		85CB19382670B67600A15859 /* EOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB19372670B67600A15859 /* EOS.swift */; };
+		85CB19412670B6E900A15859 /* BIP44.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB19402670B6E900A15859 /* BIP44.swift */; };
 		85D34BD9266380CC000A51E4 /* PBKDF2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D34BD8266380CC000A51E4 /* PBKDF2.swift */; };
 		85D34BDC2663D67D000A51E4 /* BIP32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D34BDB2663D67D000A51E4 /* BIP32.swift */; };
 		85E57D662667DBFF004EAFCE /* BIP38.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E57D652667DBFF004EAFCE /* BIP38.swift */; };
@@ -130,7 +131,8 @@
 		8582EF17266B714E00CB15F1 /* UnsignedInteger+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UnsignedInteger+Extension.swift"; sourceTree = "<group>"; };
 		8582EF19266B715F00CB15F1 /* SignedInteger+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SignedInteger+Extension.swift"; sourceTree = "<group>"; };
 		8582EF1B266BDCD300CB15F1 /* RIPEMD160.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RIPEMD160.swift; sourceTree = "<group>"; };
-		85CA72A9266A82A900650DA0 /* HDKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDKey.swift; sourceTree = "<group>"; };
+		85CB19372670B67600A15859 /* EOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EOS.swift; sourceTree = "<group>"; };
+		85CB19402670B6E900A15859 /* BIP44.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BIP44.swift; sourceTree = "<group>"; };
 		85D34BD8266380CC000A51E4 /* PBKDF2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBKDF2.swift; sourceTree = "<group>"; };
 		85D34BDB2663D67D000A51E4 /* BIP32.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BIP32.swift; sourceTree = "<group>"; };
 		85E57D652667DBFF004EAFCE /* BIP38.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BIP38.swift; sourceTree = "<group>"; };
@@ -280,11 +282,26 @@
 			path = BIP39;
 			sourceTree = "<group>";
 		};
+		85CB19362670B66C00A15859 /* EOS */ = {
+			isa = PBXGroup;
+			children = (
+				85CB19372670B67600A15859 /* EOS.swift */,
+			);
+			path = EOS;
+			sourceTree = "<group>";
+		};
+		85CB193F2670B6DB00A15859 /* BIP44 */ = {
+			isa = PBXGroup;
+			children = (
+				85CB19402670B6E900A15859 /* BIP44.swift */,
+			);
+			path = BIP44;
+			sourceTree = "<group>";
+		};
 		85D34BDA2663D656000A51E4 /* BIP32 */ = {
 			isa = PBXGroup;
 			children = (
 				85D34BDB2663D67D000A51E4 /* BIP32.swift */,
-				85CA72A9266A82A900650DA0 /* HDKey.swift */,
 			);
 			path = BIP32;
 			sourceTree = "<group>";
@@ -355,6 +372,7 @@
 		85E63FA626611EA30045ED87 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				85CB193F2670B6DB00A15859 /* BIP44 */,
 				85E57D642667DBED004EAFCE /* BIP38 */,
 				85D34BDA2663D656000A51E4 /* BIP32 */,
 				855990EA26622E9100693AA1 /* BIP39 */,
@@ -502,6 +520,7 @@
 		85E63FE126611EA30045ED87 /* BlockChain */ = {
 			isa = PBXGroup;
 			children = (
+				85CB19362670B66C00A15859 /* EOS */,
 				852B153F266F9A62005D3FC9 /* ETH */,
 				852B153E266F9A5B005D3FC9 /* BTC */,
 			);
@@ -828,6 +847,7 @@
 				85E6401326611EA30045ED87 /* CTParagraphStyle+Extension.swift in Sources */,
 				85E6401C26611EA30045ED87 /* ETH.swift in Sources */,
 				8582EF1A266B715F00CB15F1 /* SignedInteger+Extension.swift in Sources */,
+				85CB19412670B6E900A15859 /* BIP44.swift in Sources */,
 				85E63FF226611EA30045ED87 /* UIDevice+Extension.swift in Sources */,
 				85E6401126611EA30045ED87 /* Dictionary+Extension.swift in Sources */,
 				85577B862662ABA100A26039 /* UInt11.swift in Sources */,
@@ -855,8 +875,8 @@
 				85E6401726611EA30045ED87 /* NavigationBarController.swift in Sources */,
 				85E63FEC26611EA30045ED87 /* SHA256.swift in Sources */,
 				85E6401E26611EA30045ED87 /* Log.swift in Sources */,
-				85CA72AA266A82A900650DA0 /* HDKey.swift in Sources */,
 				85E6400126611EA30045ED87 /* PickerView.swift in Sources */,
+				85CB19382670B67600A15859 /* EOS.swift in Sources */,
 				85E6401426611EA30045ED87 /* Array+Extension.swift in Sources */,
 				85E63FFD26611EA30045ED87 /* UIApplication+MapExtension.swift in Sources */,
 				85E6401026611EA30045ED87 /* Timer+Extension.swift in Sources */,

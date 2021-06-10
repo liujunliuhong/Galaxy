@@ -7,6 +7,12 @@
 
 import Foundation
 
+
+/// OP: Operator
+/// DUP: Duplicates(复制)
+
+
+
 /// https://blog.csdn.net/harwey_it/article/details/103921184
 /// https://github.com/bitcoin/bips/blob/master/bip-0049.mediawiki
 

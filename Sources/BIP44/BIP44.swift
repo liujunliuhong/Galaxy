@@ -64,22 +64,6 @@ import Foundation
 
 /// BIP44
 public struct BIP44 {
-    
     /// Purpose，常量，固定值为44
     public static let purpose: String = "44"
-    
-    
-    /// CoinType
-    ///
-    ///     只显示了部分
-    ///     https://github.com/satoshilabs/slips/blob/master/slip-0044.md
-    public enum CoinType: String {
-        case bitcoin          = "0"     /// Bitcoin（BTC）
-        case testnet          = "1"     /// Testnet (all coins)
-        case eth              = "60"    /// Ether（ETH）
-        case eos              = "194"   /// EOS（EOS）
-        case tron             = "195"   /// Tron（TRX）
-        case omni             = "200"   /// Omni（OMNI）
-        case iost             = "291"   /// IOST（IOST）
-    }
 }

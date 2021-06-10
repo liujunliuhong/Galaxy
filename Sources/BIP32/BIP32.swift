@@ -103,12 +103,37 @@ import BigInt
 /// BIP32
 public class BIP32 {
     
-    public enum ExtendedVersion: String {
-        case mainnetPublicVersion    = "0x0488B21E"
-        case mainnetPrivateVersion   = "0x0488ADE4"
-        case testnetPublicVersion    = "0x043587CF"
-        case testnetPrivateVersion   = "0x04358394"
+    /// CoinType（只显示了部分）
+    /// https://github.com/satoshilabs/slips/blob/master/slip-0044.md
+    public enum CoinType: String {
+        case bitcoin          = "0"     /// Bitcoin（BTC）
+        case testnet          = "1"     /// Testnet (all coins)
+        case eth              = "60"    /// Ether（ETH）
+        case eos              = "194"   /// EOS（EOS）
+        case tron             = "195"   /// Tron（TRX）
+        case omni             = "200"   /// Omni（OMNI）
+        case iost             = "291"   /// IOST（IOST）
     }
+    
+    public enum ExtendedVersionType {
+        case legacy             /// 传统
+        case segregatedWitness  /// 隔离见证
+        
+        enum LegacyVersion: String {
+            case mainnetPublicVersion    = "0x0488B21E" /// xprv
+            case mainnetPrivateVersion   = "0x0488ADE4" /// xpub
+            case testnetPublicVersion    = "0x043587CF" /// tprv
+            case testnetPrivateVersion   = "0x04358394" /// tpub
+        }
+        
+        enum SegregatedWitnessVersion: String {
+            case mainnetPublicVersion    = "0x049d7cb2" /// ypub
+            case mainnetPrivateVersion   = "0x049d7878" /// yprv
+            case testnetPublicVersion    = "0x044a5262" /// upub
+            case testnetPrivateVersion   = "0x044a4e28" /// uprv
+        }
+    }
+    
     
     /// 未压缩的私钥
     public private(set) var uncompressedPrivateKey: Data?
@@ -230,15 +255,19 @@ public class BIP32 {
         var privateKey: Data?
         var publicKey: Data = Data()
         
-        if version == ExtendedVersion.mainnetPrivateVersion.rawValue.lowercased() ||
-            version == ExtendedVersion.testnetPrivateVersion.rawValue.lowercased() {
+        if version == ExtendedVersionType.LegacyVersion.mainnetPrivateVersion.rawValue.lowercased() ||
+            version == ExtendedVersionType.LegacyVersion.testnetPrivateVersion.rawValue.lowercased() ||
+            version == ExtendedVersionType.SegregatedWitnessVersion.mainnetPrivateVersion.rawValue.lowercased() ||
+            version == ExtendedVersionType.SegregatedWitnessVersion.testnetPrivateVersion.rawValue.lowercased() {
             let privateKeyPrefix = extendedKeyData[45]
             guard privateKeyPrefix == 0x00 else { return nil }
             privateKey = extendedKeyData[46..<78]
             guard let tmpPublicKey = SECP256K1.privateKeyToPublicKey(privateKey: privateKey, compressed: true) else { return nil }
             publicKey = tmpPublicKey
-        } else if version == ExtendedVersion.mainnetPublicVersion.rawValue.lowercased() ||
-                    version == ExtendedVersion.testnetPublicVersion.rawValue.lowercased() {
+        } else if version == ExtendedVersionType.LegacyVersion.mainnetPublicVersion.rawValue.lowercased() ||
+                    version == ExtendedVersionType.LegacyVersion.testnetPublicVersion.rawValue.lowercased() ||
+                    version == ExtendedVersionType.SegregatedWitnessVersion.mainnetPublicVersion.rawValue.lowercased() ||
+                    version == ExtendedVersionType.SegregatedWitnessVersion.testnetPublicVersion.rawValue.lowercased() {
             publicKey = extendedKeyData[45..<78]
         }
         if extendedKeyData.count == 82 {
@@ -423,22 +452,28 @@ extension BIP32 {
 }
 
 extension BIP32 {
-    public func extendedPrivateKeyString(isMainNet: Bool) -> String? {
-        guard let data = extendedPrivateKeyData(isMainNet: isMainNet) else { return nil }
+    public func extendedPrivateKeyString(versionType: ExtendedVersionType, isMainNet: Bool) -> String? {
+        guard let data = extendedPrivateKeyData(versionType: versionType, isMainNet: isMainNet) else { return nil }
         let base58Data = Base58.base58Encoded(data: data)
         return String(data: base58Data, encoding: .utf8)
     }
     
-    public func extendedPublicKeyString(isMainNet: Bool) -> String? {
-        guard let data = extendedPublicKeyData(isMainNet: isMainNet) else { return nil }
+    public func extendedPublicKeyString(versionType: ExtendedVersionType, isMainNet: Bool) -> String? {
+        guard let data = extendedPublicKeyData(versionType: versionType, isMainNet: isMainNet) else { return nil }
         let base58Data = Base58.base58Encoded(data: data)
         return String(data: base58Data, encoding: .utf8)
     }
     
-    public func extendedPrivateKeyData(isMainNet: Bool) -> Data? {
+    public func extendedPrivateKeyData(versionType: ExtendedVersionType, isMainNet: Bool) -> Data? {
         if uncompressedPrivateKey == nil { return nil }
-        let version: ExtendedVersion = isMainNet ? .mainnetPrivateVersion : .testnetPrivateVersion
-        guard let extendedVersionData = version.rawValue.gl.toHexData else { return nil }
+        var version: String = ""
+        switch versionType {
+        case .legacy:
+            version = isMainNet ? ExtendedVersionType.LegacyVersion.mainnetPrivateVersion.rawValue : ExtendedVersionType.LegacyVersion.testnetPrivateVersion.rawValue
+        case .segregatedWitness:
+            version = isMainNet ? ExtendedVersionType.SegregatedWitnessVersion.mainnetPrivateVersion.rawValue : ExtendedVersionType.SegregatedWitnessVersion.testnetPrivateVersion.rawValue
+        }
+        guard let extendedVersionData = version.gl.toHexData else { return nil }
         //
         var data: Data = Data()
         // append version
@@ -465,9 +500,15 @@ extension BIP32 {
         return data
     }
     
-    public func extendedPublicKeyData(isMainNet: Bool) -> Data? {
-        let version: ExtendedVersion = isMainNet ? .mainnetPublicVersion : .testnetPublicVersion
-        guard let extendedVersionData = version.rawValue.gl.toHexData else { return nil }
+    public func extendedPublicKeyData(versionType: ExtendedVersionType, isMainNet: Bool) -> Data? {
+        var version: String = ""
+        switch versionType {
+        case .legacy:
+            version = isMainNet ? ExtendedVersionType.LegacyVersion.mainnetPublicVersion.rawValue : ExtendedVersionType.LegacyVersion.testnetPublicVersion.rawValue
+        case .segregatedWitness:
+            version = isMainNet ? ExtendedVersionType.SegregatedWitnessVersion.mainnetPublicVersion.rawValue : ExtendedVersionType.SegregatedWitnessVersion.testnetPublicVersion.rawValue
+        }
+        guard let extendedVersionData = version.gl.toHexData else { return nil }
         //
         var data: Data = Data()
         // append version

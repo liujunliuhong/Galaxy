@@ -7,6 +7,10 @@
 
 import Foundation
 
+/// https://github.com/inoutcode/bitcoin_book_2nd/blob/master/%E7%AC%AC%E5%85%AD%E7%AB%A0.asciidoc#simplemath_script
+
+
+/// BTC
 public class BTC {
     
     /// 压缩私钥的Base58Check

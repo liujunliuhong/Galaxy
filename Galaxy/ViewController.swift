@@ -49,7 +49,7 @@ class ViewController: UIViewController {
         
         
         
-        let path = "m/44'/0'/0'/0/0"
+        let path = "m/49'/0'/0'/0/0"
         let mnemonics = "monkey pencil polar hand mimic trouble voice suit sunset fabric chief left"
         
         print("mnemonics: \(mnemonics)")
@@ -72,14 +72,8 @@ class ViewController: UIViewController {
         print("path: \(ethNode.path)")
 
         print("😄😄😄😄😄😄😄😄😄😄😄😄😄😄")
-//        print("BTC compressed WIF: \(ethNode.WIF(hexPrefix: "0x80", compressed: true) ?? "nil")") // 比特币私钥(压缩的私钥并且base58 check encode)
-        print("BTC extendedPrivateKeyString: \(ethNode.extendedPrivateKeyString(isMainNet: true) ?? "nil")")
-        print("BTC extendedPublicKeyString: \(ethNode.extendedPublicKeyString(isMainNet: true) ?? "nil")")
-        
-        
-        print("😄😄😄😄😄😄😄😄😄😄😄😄😄😄")
-        guard let extendedPrivateKeyString = ethNode.extendedPrivateKeyString(isMainNet: true) else { return }
-        guard let extendedPublicKeyString = ethNode.extendedPublicKeyString(isMainNet: true) else { return }
+        guard let extendedPrivateKeyString = ethNode.extendedPrivateKeyString(versionType: .segregatedWitness, isMainNet: true) else { return }
+        guard let extendedPublicKeyString = ethNode.extendedPublicKeyString(versionType: .segregatedWitness, isMainNet: true) else { return }
         print("扩展私钥: \(extendedPrivateKeyString)")
         print("扩展公钥: \(extendedPublicKeyString)")
         
@@ -131,8 +125,8 @@ extension ViewController {
         print("root parentFingerprint: \(bip.parentFingerprint.gl.toHexString)")
         print("root chainCode: \(bip.chainCode.gl.toHexString)")
         print("root path: \(bip.path)")
-        let rootExtendedPrivateKeyString = bip.extendedPrivateKeyString(isMainNet: true)
-        let rootExtendedPublicKeyString = bip.extendedPublicKeyString(isMainNet: true)
+        let rootExtendedPrivateKeyString = bip.extendedPrivateKeyString(versionType: .segregatedWitness, isMainNet: true)
+        let rootExtendedPublicKeyString = bip.extendedPublicKeyString(versionType: .segregatedWitness, isMainNet: true)
         print("root extendedPrivateKeyString: \(rootExtendedPrivateKeyString ?? "nil")")
         print("root extendedPublicKeyString: \(rootExtendedPublicKeyString ?? "nil")")
         
@@ -151,8 +145,8 @@ extension ViewController {
 
         print("😄😄😄😄😄😄😄😄😄😄😄😄😄😄")
 //        print("BTC compressed WIF: \(ethNode.WIF(hexPrefix: "0x80", compressed: true) ?? "nil")") // 比特币私钥(压缩的私钥并且base58 check encode)
-        print("BTC extendedPrivateKeyString: \(ethNode.extendedPrivateKeyString(isMainNet: true) ?? "nil")")
-        print("BTC extendedPublicKeyString: \(ethNode.extendedPublicKeyString(isMainNet: true) ?? "nil")")
+        print("BTC extendedPrivateKeyString: \(ethNode.extendedPrivateKeyString(versionType: .segregatedWitness, isMainNet: true) ?? "nil")")
+        print("BTC extendedPublicKeyString: \(ethNode.extendedPublicKeyString(versionType: .segregatedWitness, isMainNet: true) ?? "nil")")
         
         
         

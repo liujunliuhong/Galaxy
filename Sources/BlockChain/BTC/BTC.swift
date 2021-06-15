@@ -7,7 +7,18 @@
 
 import Foundation
 
+/// `UTXO`(Unspent Transaction Output)
+/// 未被花费的交易输出
+
+
+/// 比特币并不是基于账户的方案，而是基于`UTXO`方案。这个和传统银行账户的思维完全不一样。
+/// 张三拥有`10`个`btc`，其实就是当前区块链账本中，有若干笔交易的输出（`UTXO`）收款人都是张三的地址，而这些`UXTO`的总额为`10`。
+/// 这个地址一共收了多少`UTXO`，则是要通过比特币钱包代为跟踪计算，所以钱包里显示的余额其实是有多少价值`btc`的输出指向你的地址。
+
+
+
 /// https://github.com/inoutcode/bitcoin_book_2nd/blob/master/%E7%AC%AC%E5%85%AD%E7%AB%A0.asciidoc#simplemath_script
+/// https://www.jianshu.com/p/ed92cd055c40
 
 
 /// BTC

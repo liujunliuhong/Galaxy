@@ -47,58 +47,59 @@ class ViewController: UIViewController {
 //        }
         
         
+        BTCRequest.getUnspentTransactionOutputsWithAddresses(addresses: ["1CBtcGivXmHQ8ZqdPgeMfcpQNJrqTrSAcG"])
         
         
-        let path = "m/49'/0'/0'/0/0"
-        let mnemonics = "monkey pencil polar hand mimic trouble voice suit sunset fabric chief left"
-        
-        print("mnemonics: \(mnemonics)")
-        print("😄😄😄😄😄😄😄😄😄😄😄😄😄😄")
-        guard let seed = BIP39.seedFromMmemonics(mnemonics: mnemonics) else {
-            return
-        }
-        print("seed: \(seed.gl.toHexString)")
-        print("😄😄😄😄😄😄😄😄😄😄😄😄😄😄")
-        guard let ethNode = BIP32(seed: seed)?.derive(path: path) else { return }
-        
-        print("uncompressedPrivateKey: \(ethNode.uncompressedPrivateKey?.gl.toHexString ?? "nil")")
-        print("compressedPrivateKey: \(ethNode.compressedPrivateKey?.gl.toHexString ?? "nil")")
-        print("compressedPublicKey: \(ethNode.compressedPublicKey.gl.toHexString)")
-        print("uncompressedPublicKey: \(ethNode.uncompressedPublicKey?.gl.toHexString ?? "nil")")
-        print("depth: \(ethNode.depth)")
-        print("trueIndex: \(ethNode.trueIndex)")
-        print("parentFingerprint: \(ethNode.parentFingerprint.gl.toHexString)")
-        print("chainCode: \(ethNode.chainCode.gl.toHexString)")
-        print("path: \(ethNode.path)")
-
-        print("😄😄😄😄😄😄😄😄😄😄😄😄😄😄")
-        guard let extendedPrivateKeyString = ethNode.extendedPrivateKeyString(versionType: .segregatedWitness, isMainNet: true) else { return }
-        guard let extendedPublicKeyString = ethNode.extendedPublicKeyString(versionType: .segregatedWitness, isMainNet: true) else { return }
-        print("扩展私钥: \(extendedPrivateKeyString)")
-        print("扩展公钥: \(extendedPublicKeyString)")
-        
-        
-        print("😄😄😄😄😄😄😄😄😄😄😄😄😄😄")
-        let extendedPrivateNode = BIP32(extendedKeyString: extendedPrivateKeyString)
-        print("扩展私钥 - uncompressedPrivateKey: \(extendedPrivateNode?.uncompressedPrivateKey?.gl.toHexString ?? "nil")")
-        print("扩展私钥 - compressedPrivateKey: \(extendedPrivateNode?.compressedPrivateKey?.gl.toHexString ?? "nil")")
-        print("扩展私钥 - uncompressedPublicKey: \(extendedPrivateNode?.uncompressedPublicKey?.gl.toHexString ?? "nil")")
-        print("扩展私钥 - compressedPublicKey: \(extendedPrivateNode?.compressedPublicKey.gl.toHexString ?? "nil")")
-        
-        
-        print("😄😄😄😄😄😄😄😄😄😄😄😄😄😄")
-        let extendedPublicKeyNode = BIP32(extendedKeyString: extendedPublicKeyString)
-        print("扩展公钥 - uncompressedPrivateKey: \(extendedPublicKeyNode?.uncompressedPrivateKey?.gl.toHexString ?? "nil")")
-        print("扩展公钥 - compressedPrivateKey: \(extendedPublicKeyNode?.compressedPrivateKey?.gl.toHexString ?? "nil")")
-        print("扩展公钥 - uncompressedPublicKey: \(extendedPublicKeyNode?.uncompressedPublicKey?.gl.toHexString ?? "nil")")
-        print("扩展公钥 - compressedPublicKey: \(extendedPublicKeyNode?.compressedPublicKey.gl.toHexString ?? "nil")")
-//        
-        
-        print("😄😄😄😄😄😄😄😄😄😄😄😄😄😄")
-        let btc = BTC(bip32: ethNode)
-        print("btc compressedAddress: \(btc.compressedAddress ?? "")")
-        print("btc uncompressedAddress: \(btc.uncompressedAddress ?? "")")
-        print("btc compressedWIF: \(btc.compressedWIF ?? "")")
+//        let path = "m/49'/0'/0'/0/0"
+//        let mnemonics = "monkey pencil polar hand mimic trouble voice suit sunset fabric chief left"
+//
+//        print("mnemonics: \(mnemonics)")
+//        print("😄😄😄😄😄😄😄😄😄😄😄😄😄😄")
+//        guard let seed = BIP39.seedFromMmemonics(mnemonics: mnemonics) else {
+//            return
+//        }
+//        print("seed: \(seed.gl.toHexString)")
+//        print("😄😄😄😄😄😄😄😄😄😄😄😄😄😄")
+//        guard let ethNode = BIP32(seed: seed)?.derive(path: path) else { return }
+//
+//        print("uncompressedPrivateKey: \(ethNode.uncompressedPrivateKey?.gl.toHexString ?? "nil")")
+//        print("compressedPrivateKey: \(ethNode.compressedPrivateKey?.gl.toHexString ?? "nil")")
+//        print("compressedPublicKey: \(ethNode.compressedPublicKey.gl.toHexString)")
+//        print("uncompressedPublicKey: \(ethNode.uncompressedPublicKey?.gl.toHexString ?? "nil")")
+//        print("depth: \(ethNode.depth)")
+//        print("trueIndex: \(ethNode.trueIndex)")
+//        print("parentFingerprint: \(ethNode.parentFingerprint.gl.toHexString)")
+//        print("chainCode: \(ethNode.chainCode.gl.toHexString)")
+//        print("path: \(ethNode.path)")
+//
+//        print("😄😄😄😄😄😄😄😄😄😄😄😄😄😄")
+//        guard let extendedPrivateKeyString = ethNode.extendedPrivateKeyString(versionType: .segregatedWitness, isMainNet: true) else { return }
+//        guard let extendedPublicKeyString = ethNode.extendedPublicKeyString(versionType: .segregatedWitness, isMainNet: true) else { return }
+//        print("扩展私钥: \(extendedPrivateKeyString)")
+//        print("扩展公钥: \(extendedPublicKeyString)")
+//
+//
+//        print("😄😄😄😄😄😄😄😄😄😄😄😄😄😄")
+//        let extendedPrivateNode = BIP32(extendedKeyString: extendedPrivateKeyString)
+//        print("扩展私钥 - uncompressedPrivateKey: \(extendedPrivateNode?.uncompressedPrivateKey?.gl.toHexString ?? "nil")")
+//        print("扩展私钥 - compressedPrivateKey: \(extendedPrivateNode?.compressedPrivateKey?.gl.toHexString ?? "nil")")
+//        print("扩展私钥 - uncompressedPublicKey: \(extendedPrivateNode?.uncompressedPublicKey?.gl.toHexString ?? "nil")")
+//        print("扩展私钥 - compressedPublicKey: \(extendedPrivateNode?.compressedPublicKey.gl.toHexString ?? "nil")")
+//
+//
+//        print("😄😄😄😄😄😄😄😄😄😄😄😄😄😄")
+//        let extendedPublicKeyNode = BIP32(extendedKeyString: extendedPublicKeyString)
+//        print("扩展公钥 - uncompressedPrivateKey: \(extendedPublicKeyNode?.uncompressedPrivateKey?.gl.toHexString ?? "nil")")
+//        print("扩展公钥 - compressedPrivateKey: \(extendedPublicKeyNode?.compressedPrivateKey?.gl.toHexString ?? "nil")")
+//        print("扩展公钥 - uncompressedPublicKey: \(extendedPublicKeyNode?.uncompressedPublicKey?.gl.toHexString ?? "nil")")
+//        print("扩展公钥 - compressedPublicKey: \(extendedPublicKeyNode?.compressedPublicKey.gl.toHexString ?? "nil")")
+////
+//
+//        print("😄😄😄😄😄😄😄😄😄😄😄😄😄😄")
+//        let btc = BTC(bip32: ethNode)
+//        print("btc compressedAddress: \(btc.compressedAddress ?? "")")
+//        print("btc uncompressedAddress: \(btc.uncompressedAddress ?? "")")
+//        print("btc compressedWIF: \(btc.compressedWIF ?? "")")
     }
 }
 

@@ -10,7 +10,7 @@ import Alamofire
 import SwiftyJSON
 
 /// https://www.blockchain.com/api/blockchain_api
-private let BTCBlockChainURL: String = "https://blockchain.info"
+public let BTCBlockChainURL: String = "https://blockchain.info"
 
 
 public struct BTCRequest {

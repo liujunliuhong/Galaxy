@@ -45,7 +45,7 @@ class ViewController: UIViewController {
 //        guard let mnemonics = BIP39.generateMnemonics(type: .m12, language: .english) else {
 //            return
 //        }
-        
+        let s = BTCOPCodeForNameDictionary()
         
         BTCRequest.getUnspentTransactionOutputsWithAddresses(addresses: ["1CBtcGivXmHQ8ZqdPgeMfcpQNJrqTrSAcG"])
         

@@ -20,8 +20,8 @@
 		855990C52661C9B800693AA1 /* AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855990C42661C9B800693AA1 /* AES.swift */; };
 		855990CA2661C9BD00693AA1 /* RSA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855990C92661C9BD00693AA1 /* RSA.swift */; };
 		855990CF2661C9CA00693AA1 /* Base64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855990CE2661C9CA00693AA1 /* Base64.swift */; };
+		8572C031267B9AB500308B59 /* BTCScriptChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8572C030267B9AB500308B59 /* BTCScriptChunk.swift */; };
 		85745821267ADACC00A5A46C /* BTCScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85745820267ADACC00A5A46C /* BTCScript.swift */; };
-		8574589F267B528F00A5A46C /* BTCOPCodeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8574589E267B528F00A5A46C /* BTCOPCodeHelper.swift */; };
 		8582EF14266B5ECF00CB15F1 /* FixedWidthInteger+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8582EF13266B5ECF00CB15F1 /* FixedWidthInteger+Extension.swift */; };
 		8582EF16266B70D800CB15F1 /* BinaryInteger+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8582EF15266B70D800CB15F1 /* BinaryInteger+Extension.swift */; };
 		8582EF18266B714E00CB15F1 /* UnsignedInteger+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8582EF17266B714E00CB15F1 /* UnsignedInteger+Extension.swift */; };
@@ -132,8 +132,8 @@
 		855990C42661C9B800693AA1 /* AES.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AES.swift; sourceTree = "<group>"; };
 		855990C92661C9BD00693AA1 /* RSA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSA.swift; sourceTree = "<group>"; };
 		855990CE2661C9CA00693AA1 /* Base64.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base64.swift; sourceTree = "<group>"; };
+		8572C030267B9AB500308B59 /* BTCScriptChunk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTCScriptChunk.swift; sourceTree = "<group>"; };
 		85745820267ADACC00A5A46C /* BTCScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTCScript.swift; sourceTree = "<group>"; };
-		8574589E267B528F00A5A46C /* BTCOPCodeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTCOPCodeHelper.swift; sourceTree = "<group>"; };
 		857458A9267B52E000A5A46C /* BTCOPCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTCOPCode.h; sourceTree = "<group>"; };
 		8582EF13266B5ECF00CB15F1 /* FixedWidthInteger+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FixedWidthInteger+Extension.swift"; sourceTree = "<group>"; };
 		8582EF15266B70D800CB15F1 /* BinaryInteger+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BinaryInteger+Extension.swift"; sourceTree = "<group>"; };
@@ -275,7 +275,7 @@
 				85BE80252679E26900B15A8D /* BTCError.swift */,
 				85745820267ADACC00A5A46C /* BTCScript.swift */,
 				85A254DE267330CB00C434F0 /* BTCOPCode.swift */,
-				8574589E267B528F00A5A46C /* BTCOPCodeHelper.swift */,
+				8572C030267B9AB500308B59 /* BTCScriptChunk.swift */,
 				857458A9267B52E000A5A46C /* BTCOPCode.h */,
 			);
 			path = BTC;
@@ -882,7 +882,6 @@
 				85E6401126611EA30045ED87 /* Dictionary+Extension.swift in Sources */,
 				85577B862662ABA100A26039 /* UInt11.swift in Sources */,
 				85D34BD9266380CC000A51E4 /* PBKDF2.swift in Sources */,
-				8574589F267B528F00A5A46C /* BTCOPCodeHelper.swift in Sources */,
 				85E63FF526611EA30045ED87 /* UIView+Extension.swift in Sources */,
 				85E63F7726611D3A0045ED87 /* AppDelegate.swift in Sources */,
 				85E6400926611EA30045ED87 /* Bundle+Extension.swift in Sources */,
@@ -902,6 +901,7 @@
 				85E63FEE26611EA30045ED87 /* Base58.swift in Sources */,
 				85E6400826611EA30045ED87 /* Collection+Extension.swift in Sources */,
 				85E6400D26611EA30045ED87 /* String+Extension.swift in Sources */,
+				8572C031267B9AB500308B59 /* BTCScriptChunk.swift in Sources */,
 				85E63FFC26611EA30045ED87 /* WKWebView+Extension.swift in Sources */,
 				855990CF2661C9CA00693AA1 /* Base64.swift in Sources */,
 				85E6401726611EA30045ED87 /* NavigationBarController.swift in Sources */,

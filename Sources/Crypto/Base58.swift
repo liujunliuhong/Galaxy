@@ -97,7 +97,7 @@ public struct Base58 {
             }
         }
         // 序列化
-        var resultData = result.gl.serialize(to: UInt8.self, keepLeadingZero: true)
+        var resultData = result.serialize()
         //
         let zeroBytes = bytes.prefix { value in
             return value == base58AlphaBytes.first! // 1

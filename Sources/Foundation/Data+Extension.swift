@@ -51,3 +51,38 @@ extension GL where Base == Data {
         return nil
     }
 }
+
+
+extension GL where Base == Data {
+    /// 左边补齐数据
+    public func setLengthLeft(toCount: UInt64, isNegative: Bool) -> Data {
+        let existingLength = UInt64(self.base.count)
+        if (existingLength >= toCount) {
+            return self.base
+        }
+        var data: Data
+        if (isNegative) {
+            data = Data(repeating: UInt8(255), count: Int(toCount - existingLength))
+        } else {
+            data = Data(repeating: UInt8(0), count: Int(toCount - existingLength))
+        }
+        data.append(self.base)
+        return data
+    }
+    
+    /// 右边补齐数据
+    public func setLengthRight(toCount: UInt64, isNegative: Bool) -> Data {
+        let existingLength = UInt64(self.base.count)
+        if (existingLength >= toCount) {
+            return self.base
+        }
+        var data: Data = Data()
+        data.append(self.base)
+        if (isNegative) {
+            data.append(Data(repeating: UInt8(255), count: Int(toCount - existingLength)))
+        } else {
+            data.append(Data(repeating: UInt8(0), count:Int(toCount - existingLength)))
+        }
+        return data
+    }
+}

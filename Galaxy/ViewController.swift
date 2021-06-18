@@ -56,22 +56,29 @@ class ViewController: UIViewController {
 //        print(data[range] as NSData)
         
         
-        let value: UInt16 = 1
-        print(value.bigEndian)
-        print(value.littleEndian)
-        print(MemoryLayout.size(ofValue: UInt32(1)))
-        print(value.bigEndian.gl.serialize(to: UInt8.self, keepLeadingZero: true))
-        print(value.littleEndian.gl.serialize(to: UInt8.self, keepLeadingZero: true))
-        print(value.serialize16().gl.bytes)
+        let value: UInt16 = 10
         
-        print(CFByteOrderGetCurrent() == CFByteOrderLittleEndian.rawValue)
+//        print("bigEndian: \(value.bigEndian)")
+//        print("littleEndian: \(value.littleEndian)")
+//        print(value.gl.littleEndianSerialize(to: UInt8.self))
+//        print(value.gl.bigEndianSerialize(to: UInt8.self))
+//
+//        print(CFByteOrderGetCurrent() == CFByteOrderLittleEndian.rawValue)
+//
+//        let scriptData = NSMutableData()
+//
+//        var len = CFSwapInt16HostToLittle(value);
+//        scriptData.append(&len, length: MemoryLayout.size(ofValue: len))
+//        print((scriptData as Data).gl.bytes)
         
-        let scriptData = NSMutableData()
+        print(value.gl.littleEndianSerialize(to: UInt32.self))
+        print(value.gl.bigEndianSerialize(to: UInt32.self))
+        print(UInt32.max)
         
-        let value1: UInt16 = 1
-        var len = CFSwapInt16HostToLittle(value1);
-        scriptData.append(&len, length: MemoryLayout.size(ofValue: len))
-        print((scriptData as Data).gl.bytes)
+        // 0000 0000 0000 0000      0000 0000 0000 1010
+        
+        // 1010 0000 0000 0000
+        
         
 //        let path = "m/49'/0'/0'/0/0"
 //        let mnemonics = "monkey pencil polar hand mimic trouble voice suit sunset fabric chief left"

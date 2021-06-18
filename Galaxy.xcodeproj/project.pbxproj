@@ -39,6 +39,8 @@
 		85CB19412670B6E900A15859 /* BIP44.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB19402670B6E900A15859 /* BIP44.swift */; };
 		85D34BD9266380CC000A51E4 /* PBKDF2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D34BD8266380CC000A51E4 /* PBKDF2.swift */; };
 		85D34BDC2663D67D000A51E4 /* BIP32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D34BDB2663D67D000A51E4 /* BIP32.swift */; };
+		85D6BAF3267CF233009529D4 /* BigUInt+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D6BAF2267CF233009529D4 /* BigUInt+Extension.swift */; };
+		85D6BAF5267CF416009529D4 /* BigInt+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D6BAF4267CF416009529D4 /* BigInt+Extension.swift */; };
 		85E57D662667DBFF004EAFCE /* BIP38.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E57D652667DBFF004EAFCE /* BIP38.swift */; };
 		85E63F7726611D3A0045ED87 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E63F7626611D3A0045ED87 /* AppDelegate.swift */; };
 		85E63F7B26611D3A0045ED87 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E63F7A26611D3A0045ED87 /* ViewController.swift */; };
@@ -156,6 +158,8 @@
 		85CB19402670B6E900A15859 /* BIP44.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BIP44.swift; sourceTree = "<group>"; };
 		85D34BD8266380CC000A51E4 /* PBKDF2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBKDF2.swift; sourceTree = "<group>"; };
 		85D34BDB2663D67D000A51E4 /* BIP32.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BIP32.swift; sourceTree = "<group>"; };
+		85D6BAF2267CF233009529D4 /* BigUInt+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BigUInt+Extension.swift"; sourceTree = "<group>"; };
+		85D6BAF4267CF416009529D4 /* BigInt+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BigInt+Extension.swift"; sourceTree = "<group>"; };
 		85E57D652667DBFF004EAFCE /* BIP38.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BIP38.swift; sourceTree = "<group>"; };
 		85E63F7326611D3A0045ED87 /* Galaxy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Galaxy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85E63F7626611D3A0045ED87 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -517,6 +521,8 @@
 				85C53C04267CA8DB009B369A /* UInt16+Extension.swift */,
 				85C53C09267CA8E5009B369A /* UInt32+Extension.swift */,
 				85C53C0E267CA8F4009B369A /* UInt64+Extension.swift */,
+				85D6BAF2267CF233009529D4 /* BigUInt+Extension.swift */,
+				85D6BAF4267CF416009529D4 /* BigInt+Extension.swift */,
 				8582EF15266B70D800CB15F1 /* BinaryInteger+Extension.swift */,
 				8582EF17266B714E00CB15F1 /* UnsignedInteger+Extension.swift */,
 				8582EF19266B715F00CB15F1 /* SignedInteger+Extension.swift */,
@@ -859,6 +865,7 @@
 				85E6401A26611EA30045ED87 /* UIViewController+NavigationBar.swift in Sources */,
 				85E6400726611EA30045ED87 /* Date+Extension.swift in Sources */,
 				85E63FF826611EA30045ED87 /* UINavigationController+Extension.swift in Sources */,
+				85D6BAF5267CF416009529D4 /* BigInt+Extension.swift in Sources */,
 				85E63FF626611EA30045ED87 /* UIApplication+Notification.swift in Sources */,
 				85A254DF267330CB00C434F0 /* BTCOPCode.swift in Sources */,
 				85E6402126611EA30045ED87 /* String+WordsSort.swift in Sources */,
@@ -900,6 +907,7 @@
 				85E63F7726611D3A0045ED87 /* AppDelegate.swift in Sources */,
 				85E6400926611EA30045ED87 /* Bundle+Extension.swift in Sources */,
 				85E6400F26611EA30045ED87 /* NSParagraphStyle+Extension.swift in Sources */,
+				85D6BAF3267CF233009529D4 /* BigUInt+Extension.swift in Sources */,
 				85E6400526611EA30045ED87 /* DatePickerView.swift in Sources */,
 				85E63FF926611EA30045ED87 /* UIControl+Extension.swift in Sources */,
 				8582EF18266B714E00CB15F1 /* UnsignedInteger+Extension.swift in Sources */,

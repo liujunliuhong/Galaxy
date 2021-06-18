@@ -210,14 +210,14 @@ extension BTCScriptChunk {
             let len: UInt16 = UInt16(data.count)
             var resultData = Data()
             resultData += Data([BTCOPCode.OP_PUSHDATA2.rawValue]) // 操作码
-            resultData += len.littleEndian.gl.serialize(to: UInt8.self, keepLeadingZero: true) // 长度(小端模式)
+            resultData += len.gl.littleEndianSerialize(to: UInt8.self) // 长度(小端模式)
             resultData += data // 数据
             return resultData
         } else if data.count <= 0xffffffff {
             let len: UInt32 = UInt32(data.count)
             var resultData = Data()
             resultData += Data([BTCOPCode.OP_PUSHDATA4.rawValue]) // 操作码
-            resultData += len.littleEndian.gl.serialize(to: UInt8.self, keepLeadingZero: true) // 长度(小端模式)
+            resultData += len.gl.littleEndianSerialize(to: UInt8.self) // 长度(小端模式)
             resultData += data // 数据
             return resultData
         }

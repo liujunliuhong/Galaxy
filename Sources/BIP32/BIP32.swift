@@ -341,7 +341,7 @@ extension BIP32 {
         // 判断下trueIndex
         guard trueIndex < UInt32.max else { return nil }
         // 把32位索引值序列化为UInt8数组
-        let indexBytes = trueIndex.gl.serialize(to: UInt8.self, keepLeadingZero: true)
+        let indexBytes = trueIndex.gl.bigEndianSerialize(to: UInt8.self)
         //
         var inputForHMAC: Data = Data()
         if hardened {
@@ -379,8 +379,7 @@ extension BIP32 {
                 }
             }
             //
-            let newPrivateKeyBytes = privateKeyCandidate.gl.serialize(to: UInt8.self, keepLeadingZero: true)
-            let newPrivateKey = Data(newPrivateKeyBytes)
+            let newPrivateKey = privateKeyCandidate.serialize().gl.setLengthLeft(toCount: 32, isNegative: false)
             // 验证私钥是否合法
             guard SECP256K1.isValidPrivateKey(privateKey: newPrivateKey) else { return nil }
             // 根据私钥生成压缩公钥
@@ -412,8 +411,7 @@ extension BIP32 {
             newNode.path = newPath
             return newNode
         } else {
-            let newPrivateKeyBytes = _I_L.gl.serialize(to: UInt8.self, keepLeadingZero: true)
-            let newPrivateKey = Data(newPrivateKeyBytes)
+            let newPrivateKey = _I_L.serialize().gl.setLengthLeft(toCount: 32, isNegative: false)
             // 验证私钥是否合法
             guard SECP256K1.isValidPrivateKey(privateKey: newPrivateKey) else { return nil }
             // 根据私钥生成压缩公钥
@@ -483,7 +481,7 @@ extension BIP32 {
         // append parentFingerprint
         data.append(parentFingerprint)
         // append index
-        let indexBytes = trueIndex.gl.serialize(to: UInt8.self, keepLeadingZero: true)
+        let indexBytes = trueIndex.gl.bigEndianSerialize(to: UInt8.self)
         data.append(contentsOf: indexBytes)
         // append chain code
         data.append(chainCode)
@@ -518,7 +516,7 @@ extension BIP32 {
         // append parentFingerprint
         data.append(parentFingerprint)
         // append index
-        let indexBytes = trueIndex.gl.serialize(to: UInt8.self, keepLeadingZero: true)
+        let indexBytes = trueIndex.gl.bigEndianSerialize(to: UInt8.self)
         data.append(contentsOf: indexBytes)
         // append chain code
         data.append(chainCode)

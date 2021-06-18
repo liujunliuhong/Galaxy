@@ -17,7 +17,7 @@ import Foundation
 
 
 extension GL where Base: BinaryInteger {
-    /// 获取对应的二进制（big-endian）
+    /// 获取对应的二进制（big-endian）从左往右
     ///
     ///     UInt8(10).gl.binaryDescription // 0000 1010
     ///
@@ -37,7 +37,7 @@ extension GL where Base: BinaryInteger {
         return binaryString
     }
     
-    /// 序列化(big-endian)
+    /// 序列化(big-endian)从左往右
     /// - Parameters:
     ///   - type: 转换为什么类型
     ///   - keepLeadingZero: 是否保留头部的0

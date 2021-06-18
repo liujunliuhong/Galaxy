@@ -31,6 +31,10 @@
 		85B8854E267117E900D09A40 /* BIP49.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B8854D267117E900D09A40 /* BIP49.swift */; };
 		85BE80262679E26900B15A8D /* BTCError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BE80252679E26900B15A8D /* BTCError.swift */; };
 		85BE802B2679F97B00B15A8D /* BTCRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BE802A2679F97B00B15A8D /* BTCRequest.swift */; };
+		85C53C00267CA8D0009B369A /* UInt8+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C53BFF267CA8D0009B369A /* UInt8+Extension.swift */; };
+		85C53C05267CA8DB009B369A /* UInt16+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C53C04267CA8DB009B369A /* UInt16+Extension.swift */; };
+		85C53C0A267CA8E5009B369A /* UInt32+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C53C09267CA8E5009B369A /* UInt32+Extension.swift */; };
+		85C53C0F267CA8F4009B369A /* UInt64+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C53C0E267CA8F4009B369A /* UInt64+Extension.swift */; };
 		85CB19382670B67600A15859 /* EOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB19372670B67600A15859 /* EOS.swift */; };
 		85CB19412670B6E900A15859 /* BIP44.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB19402670B6E900A15859 /* BIP44.swift */; };
 		85D34BD9266380CC000A51E4 /* PBKDF2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D34BD8266380CC000A51E4 /* PBKDF2.swift */; };
@@ -144,6 +148,10 @@
 		85B8854D267117E900D09A40 /* BIP49.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BIP49.swift; sourceTree = "<group>"; };
 		85BE80252679E26900B15A8D /* BTCError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTCError.swift; sourceTree = "<group>"; };
 		85BE802A2679F97B00B15A8D /* BTCRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTCRequest.swift; sourceTree = "<group>"; };
+		85C53BFF267CA8D0009B369A /* UInt8+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UInt8+Extension.swift"; sourceTree = "<group>"; };
+		85C53C04267CA8DB009B369A /* UInt16+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UInt16+Extension.swift"; sourceTree = "<group>"; };
+		85C53C09267CA8E5009B369A /* UInt32+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UInt32+Extension.swift"; sourceTree = "<group>"; };
+		85C53C0E267CA8F4009B369A /* UInt64+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UInt64+Extension.swift"; sourceTree = "<group>"; };
 		85CB19372670B67600A15859 /* EOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EOS.swift; sourceTree = "<group>"; };
 		85CB19402670B6E900A15859 /* BIP44.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BIP44.swift; sourceTree = "<group>"; };
 		85D34BD8266380CC000A51E4 /* PBKDF2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBKDF2.swift; sourceTree = "<group>"; };
@@ -505,6 +513,10 @@
 				85E63FCA26611EA30045ED87 /* Date+Extension.swift */,
 				85E63FCB26611EA30045ED87 /* Collection+Extension.swift */,
 				8582EF13266B5ECF00CB15F1 /* FixedWidthInteger+Extension.swift */,
+				85C53BFF267CA8D0009B369A /* UInt8+Extension.swift */,
+				85C53C04267CA8DB009B369A /* UInt16+Extension.swift */,
+				85C53C09267CA8E5009B369A /* UInt32+Extension.swift */,
+				85C53C0E267CA8F4009B369A /* UInt64+Extension.swift */,
 				8582EF15266B70D800CB15F1 /* BinaryInteger+Extension.swift */,
 				8582EF17266B714E00CB15F1 /* UnsignedInteger+Extension.swift */,
 				8582EF19266B715F00CB15F1 /* SignedInteger+Extension.swift */,
@@ -852,6 +864,7 @@
 				85E6402126611EA30045ED87 /* String+WordsSort.swift in Sources */,
 				8513F2A82664BB4000702D8E /* SECP256K1.swift in Sources */,
 				8582EF14266B5ECF00CB15F1 /* FixedWidthInteger+Extension.swift in Sources */,
+				85C53C00267CA8D0009B369A /* UInt8+Extension.swift in Sources */,
 				85577B832662912300A26039 /* BIP39+WordLists.swift in Sources */,
 				85E6401826611EA30045ED87 /* NavigationBar.swift in Sources */,
 				85E63FFA26611EA30045ED87 /* UIViewController+Extension.swift in Sources */,
@@ -870,6 +883,7 @@
 				85E6401626611EA30045ED87 /* NavigationSize.swift in Sources */,
 				85E63FF026611EA30045ED87 /* AlertEngine.swift in Sources */,
 				85E6400426611EA30045ED87 /* CityPickerView.swift in Sources */,
+				85C53C05267CA8DB009B369A /* UInt16+Extension.swift in Sources */,
 				85E6400B26611EA30045ED87 /* Numeric+Extension.swift in Sources */,
 				85E6401B26611EA30045ED87 /* NavigationBarButtonItem.swift in Sources */,
 				85745821267ADACC00A5A46C /* BTCScript.swift in Sources */,
@@ -894,6 +908,7 @@
 				85E63FED26611EA30045ED87 /* MD5.swift in Sources */,
 				85E6401226611EA30045ED87 /* Data+Extension.swift in Sources */,
 				85BE802B2679F97B00B15A8D /* BTCRequest.swift in Sources */,
+				85C53C0A267CA8E5009B369A /* UInt32+Extension.swift in Sources */,
 				8582EF16266B70D800CB15F1 /* BinaryInteger+Extension.swift in Sources */,
 				85577B7F266290CE00A26039 /* BIP39.swift in Sources */,
 				85E6400E26611EA30045ED87 /* NSMutableAttributedString+Extension.swift in Sources */,
@@ -916,6 +931,7 @@
 				85E6400C26611EA30045ED87 /* URL+Extension.swift in Sources */,
 				85BE80262679E26900B15A8D /* BTCError.swift in Sources */,
 				85E63FF326611EA30045ED87 /* UIColor+Extension.swift in Sources */,
+				85C53C0F267CA8F4009B369A /* UInt64+Extension.swift in Sources */,
 				85E6402026611EA30045ED87 /* WordsSort.swift in Sources */,
 				85B8854E267117E900D09A40 /* BIP49.swift in Sources */,
 				85E6401D26611EA30045ED87 /* Alamofire.NetworkReachabilityManager+Extension.swift in Sources */,

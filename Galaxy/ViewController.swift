@@ -45,10 +45,33 @@ class ViewController: UIViewController {
 //        guard let mnemonics = BIP39.generateMnemonics(type: .m12, language: .english) else {
 //            return
 //        }
-        let s = BTCOPCodeForNameDictionary()
         
-        BTCRequest.getUnspentTransactionOutputsWithAddresses(addresses: ["1CBtcGivXmHQ8ZqdPgeMfcpQNJrqTrSAcG"])
         
+        //BTCRequest.getUnspentTransactionOutputsWithAddresses(addresses: ["1CBtcGivXmHQ8ZqdPgeMfcpQNJrqTrSAcG"])
+//        let data = "hellohellohello".data(using: .utf8)!
+//        print(data as NSData)
+//        let range: ClosedRange<Int> = 14...14
+//        print(range.lowerBound)
+//        print(range.upperBound)
+//        print(data[range] as NSData)
+        
+        
+        let value: UInt16 = 1
+        print(value.bigEndian)
+        print(value.littleEndian)
+        print(MemoryLayout.size(ofValue: UInt32(1)))
+        print(value.bigEndian.gl.serialize(to: UInt8.self, keepLeadingZero: true))
+        print(value.littleEndian.gl.serialize(to: UInt8.self, keepLeadingZero: true))
+        print(value.serialize16().gl.bytes)
+        
+        print(CFByteOrderGetCurrent() == CFByteOrderLittleEndian.rawValue)
+        
+        let scriptData = NSMutableData()
+        
+        let value1: UInt16 = 1
+        var len = CFSwapInt16HostToLittle(value1);
+        scriptData.append(&len, length: MemoryLayout.size(ofValue: len))
+        print((scriptData as Data).gl.bytes)
         
 //        let path = "m/49'/0'/0'/0/0"
 //        let mnemonics = "monkey pencil polar hand mimic trouble voice suit sunset fabric chief left"
@@ -100,6 +123,35 @@ class ViewController: UIViewController {
 //        print("btc compressedAddress: \(btc.compressedAddress ?? "")")
 //        print("btc uncompressedAddress: \(btc.uncompressedAddress ?? "")")
 //        print("btc compressedWIF: \(btc.compressedWIF ?? "")")
+    }
+}
+extension UInt32 {
+    fileprivate func serialize32() -> Data {
+        let uint32 = UInt32(self)
+        var bigEndian = uint32.bigEndian
+        let count = MemoryLayout<UInt32>.size
+        let bytePtr = withUnsafePointer(to: &bigEndian) {
+            $0.withMemoryRebound(to: UInt8.self, capacity: count) {
+                UnsafeBufferPointer(start: $0, count: count)
+            }
+        }
+        let byteArray = Array(bytePtr)
+        return Data(byteArray)
+    }
+}
+
+extension UInt16 {
+    fileprivate func serialize16() -> Data {
+        let uint16 = UInt16(self)
+        var bigEndian = uint16.littleEndian
+        let count = MemoryLayout<UInt16>.size
+        let bytePtr = withUnsafePointer(to: &bigEndian) {
+            $0.withMemoryRebound(to: UInt8.self, capacity: count) {
+                UnsafeBufferPointer(start: $0, count: count)
+            }
+        }
+        let byteArray = Array(bytePtr)
+        return Data(byteArray)
     }
 }
 

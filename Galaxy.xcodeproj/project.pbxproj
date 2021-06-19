@@ -20,6 +20,8 @@
 		855990C52661C9B800693AA1 /* AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855990C42661C9B800693AA1 /* AES.swift */; };
 		855990CA2661C9BD00693AA1 /* RSA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855990C92661C9BD00693AA1 /* RSA.swift */; };
 		855990CF2661C9CA00693AA1 /* Base64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855990CE2661C9CA00693AA1 /* Base64.swift */; };
+		855C955F267D916E00A5F4DB /* Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C955E267D916E00A5F4DB /* Type.swift */; };
+		855C9564267D93DC00A5F4DB /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 855C9563267D93DC00A5F4DB /* Test.m */; };
 		8572C031267B9AB500308B59 /* BTCScriptChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8572C030267B9AB500308B59 /* BTCScriptChunk.swift */; };
 		85745821267ADACC00A5A46C /* BTCScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85745820267ADACC00A5A46C /* BTCScript.swift */; };
 		8582EF14266B5ECF00CB15F1 /* FixedWidthInteger+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8582EF13266B5ECF00CB15F1 /* FixedWidthInteger+Extension.swift */; };
@@ -138,6 +140,9 @@
 		855990C42661C9B800693AA1 /* AES.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AES.swift; sourceTree = "<group>"; };
 		855990C92661C9BD00693AA1 /* RSA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSA.swift; sourceTree = "<group>"; };
 		855990CE2661C9CA00693AA1 /* Base64.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base64.swift; sourceTree = "<group>"; };
+		855C955E267D916E00A5F4DB /* Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Type.swift; sourceTree = "<group>"; };
+		855C9562267D93DC00A5F4DB /* Test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
+		855C9563267D93DC00A5F4DB /* Test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
 		8572C030267B9AB500308B59 /* BTCScriptChunk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTCScriptChunk.swift; sourceTree = "<group>"; };
 		85745820267ADACC00A5A46C /* BTCScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTCScript.swift; sourceTree = "<group>"; };
 		857458A9267B52E000A5A46C /* BTCOPCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTCOPCode.h; sourceTree = "<group>"; };
@@ -381,6 +386,8 @@
 			children = (
 				85E63F7626611D3A0045ED87 /* AppDelegate.swift */,
 				85E63F7A26611D3A0045ED87 /* ViewController.swift */,
+				855C9562267D93DC00A5F4DB /* Test.h */,
+				855C9563267D93DC00A5F4DB /* Test.m */,
 				85E6402B26611FC30045ED87 /* Bridging-Header.h */,
 				85E63F7C26611D3A0045ED87 /* Main.storyboard */,
 				85E63F7F26611D3A0045ED87 /* Assets.xcassets */,
@@ -546,6 +553,7 @@
 			isa = PBXGroup;
 			children = (
 				85E63FD926611EA30045ED87 /* Galaxy.swift */,
+				855C955E267D916E00A5F4DB /* Type.swift */,
 			);
 			path = Galaxy;
 			sourceTree = "<group>";
@@ -889,9 +897,11 @@
 				85E57D662667DBFF004EAFCE /* BIP38.swift in Sources */,
 				85E6401626611EA30045ED87 /* NavigationSize.swift in Sources */,
 				85E63FF026611EA30045ED87 /* AlertEngine.swift in Sources */,
+				855C955F267D916E00A5F4DB /* Type.swift in Sources */,
 				85E6400426611EA30045ED87 /* CityPickerView.swift in Sources */,
 				85C53C05267CA8DB009B369A /* UInt16+Extension.swift in Sources */,
 				85E6400B26611EA30045ED87 /* Numeric+Extension.swift in Sources */,
+				855C9564267D93DC00A5F4DB /* Test.m in Sources */,
 				85E6401B26611EA30045ED87 /* NavigationBarButtonItem.swift in Sources */,
 				85745821267ADACC00A5A46C /* BTCScript.swift in Sources */,
 				85E6401926611EA30045ED87 /* NavigationTitleItem.swift in Sources */,

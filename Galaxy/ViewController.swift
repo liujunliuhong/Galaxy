@@ -56,8 +56,6 @@ class ViewController: UIViewController {
 //        print(data[range] as NSData)
         
         
-        let value: UInt16 = 10
-        
 //        print("bigEndian: \(value.bigEndian)")
 //        print("littleEndian: \(value.littleEndian)")
 //        print(value.gl.littleEndianSerialize(to: UInt8.self))
@@ -71,10 +69,32 @@ class ViewController: UIViewController {
 //        scriptData.append(&len, length: MemoryLayout.size(ofValue: len))
 //        print((scriptData as Data).gl.bytes)
         
-        print(value.gl.littleEndianSerialize(to: UInt32.self))
-        print(value.gl.bigEndianSerialize(to: UInt32.self))
-        print(UInt32.max)
+//        print(value.gl.littleEndianSerialize(to: UInt32.self))
+//        print(value.gl.bigEndianSerialize(to: UInt32.self))
+//        print(UInt32.max)
+        //let _ = Test()
         
+        //print(Int(UInt8(0xff)) << 8)
+        
+        let str = "00abadaeaf"
+        let bytes = str.gl.toHexData?.gl.bytes ?? []
+        print(bytes)
+        
+        let range = 0...4
+        print(bytes[range])
+        
+        
+        let dataLength: UInt32 = UInt32(bytes[4]) << 24 + UInt32(bytes[3]) << 16 + UInt32(bytes[2]) << 8 + UInt32(bytes[1])
+        print(dataLength)
+        print(dataLength.gl.littleEndianSerialize(to: UInt8.self))
+        
+//        var rt: Data = Data()
+//        let str = "1"
+//        let data = str.data(using: .utf8)!
+//        let len = UInt8(data.count)
+//        rt.append(Data(len.gl.bigEndianSerialize(to: UInt8.self)))
+//        print(rt as NSData)
+//        print(MemoryLayout.size(ofValue: len))
         // 0000 0000 0000 0000      0000 0000 0000 1010
         
         // 1010 0000 0000 0000

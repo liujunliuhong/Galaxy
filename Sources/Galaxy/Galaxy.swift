@@ -30,18 +30,6 @@ extension GalaxyCompatible {
     }
 }
 
-/// Scheme类型
-public enum SchemeType: String, CaseIterable {
-    case http = "http"    /// http
-    case https = "https"  /// https
-}
-
-/// 文件类型
-public enum FileType: String {
-    case json = "json"    /// json
-    case plist = "plist"  /// plist
-}
-
 
 extension NSObject: GalaxyCompatible { }
 extension Array: GalaxyCompatible { }

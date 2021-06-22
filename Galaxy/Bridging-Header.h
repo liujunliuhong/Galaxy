@@ -9,7 +9,6 @@
 #define Bridging_Header_h
 
 #import "GLWeakProxy.h"
-#import "BTCOPCode.h"
 #import "Test.h"
 
 #endif /* Bridging_Header_h */

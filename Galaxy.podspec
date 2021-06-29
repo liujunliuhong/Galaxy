@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.requires_arc               = true
   s.static_framework           = true
   s.source_files               = 'Sources/*/*.swift','Sources/*/*.{h,m}'
-  s.exclude_files              = 'Sources/Crypto/*.swift'
+  s.exclude_files              = 'Sources/Crypto/SECP256K1.swift'
   s.dependency 'CocoaLumberjack/Swift'
   s.dependency 'SnapKit'
   s.dependency 'Alamofire'

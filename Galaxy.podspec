@@ -21,4 +21,5 @@ Pod::Spec.new do |s|
   s.dependency 'Alamofire'
   s.dependency 'BigInt'
   s.dependency 'CryptoSwift'
+  s.dependency 'secp256k1.c'
 end

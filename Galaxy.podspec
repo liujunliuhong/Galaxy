@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.summary                    = 'Some useful tools'
   s.description                = 'Some useful tools, contains UIKit and Foundation'
   s.author                     = { 'liujunliuhong' => '1035841713@qq.com' }
-  s.version                    = '2.0.1'
+  s.version                    = '2.0.2'
   s.source                     = { :git => 'https://github.com/liujunliuhong/Galaxy.git', :tag => s.version.to_s }
   s.platform                   = :ios, '10.0'
   s.license                    = { :type => 'MIT', :file => 'LICENSE' }
@@ -14,9 +14,8 @@ Pod::Spec.new do |s|
   s.ios.deployment_target      = '10.0'
   s.requires_arc               = true
   s.static_framework           = true
-  # s.vendored_frameworks        = 'Sources/Vender/*.framework'
   s.source_files               = 'Sources/*/*.swift','Sources/*/*.{h,m}'
-  # s.pod_target_xcconfig = { 'OTHER_LDFLAGS' => '-all_load' }
+  s.exclude_files              = 'Sources/Crypto/*.swift'
   s.dependency 'CocoaLumberjack/Swift'
   s.dependency 'SnapKit'
   s.dependency 'Alamofire'

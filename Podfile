@@ -18,6 +18,7 @@ target 'Galaxy' do
   
   pod 'SnapKit'
   
+  pod 'MBProgressHUD'
   
   pod 'FLEX'
   

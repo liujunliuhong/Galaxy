@@ -50,6 +50,23 @@ extension GL where Base: UIApplication {
             _open(urlString: urlString, completionHandler: nil)
         }
     }
+    
+    
+    /// 获取最顶层的控制器
+    /// - Parameter base: base
+    /// - Returns: 最顶层的控制器
+    public func topViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        if let nav = base as? UINavigationController {
+            return topViewController(base: nav.visibleViewController)
+            
+        } else if let tab = base as? UITabBarController, let selected = tab.selectedViewController {
+            return topViewController(base: selected)
+            
+        } else if let presented = base?.presentedViewController {
+            return topViewController(base: presented)
+        }
+        return base
+    }
 }
 
 

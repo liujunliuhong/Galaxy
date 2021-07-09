@@ -96,16 +96,12 @@ extension GL where Base == UIColor {
 extension GL where Base == UIColor {
     /// 颜色转图片
     public func toImage(size: CGSize = CGSize(width: 1.0, height: 1.0)) -> UIImage? {
-        let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
-        UIGraphicsBeginImageContext(size)
-        let context = UIGraphicsGetCurrentContext()
-        defer {
-            UIGraphicsEndImageContext()
-        }
-        context?.setFillColor(base.cgColor)
-        context?.fill(rect)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        return image
+        UIGraphicsBeginImageContextWithOptions(size, false, 1)
+        defer { UIGraphicsEndImageContext() }
+        base.setFill()
+        UIRectFill(CGRect(origin: .zero, size: size))
+        guard let aCgImage = UIGraphicsGetImageFromCurrentImageContext()?.cgImage else { return nil }
+        return UIImage(cgImage: aCgImage)
     }
 }
 

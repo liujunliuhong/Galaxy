@@ -10,18 +10,18 @@ import Foundation
 
 extension GL where Base: FileManager {
     /// 获取`Document`文件夹路径
-    public static var documentDirectory: String {
-        return NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last ?? ""
+    public var documentDirectory: String? {
+        return NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last
     }
     
     /// 获取`Library`文件夹路径
-    public static var libraryDirectory: String {
-        return NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true).last ?? ""
+    public var libraryDirectory: String? {
+        return NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true).last
     }
     
     /// 获取`Caches`文件夹路径
-    public static var cachesDirectory: String {
-        return NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).last ?? ""
+    public var cachesDirectory: String? {
+        return NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).last
     }
     
     /// 创建文件夹
@@ -39,14 +39,14 @@ extension GL where Base: FileManager {
     /// 格式化尺寸
     ///
     /// `length`单位是`B`
-    public func formatSize(length: Int) -> String {
-        let KB = 1024
-        let MB = 1024 * 1024
-        let GB = 1024 * 1024 * 1024
+    public func formatSize(length: Int64) -> String {
+        let KB: Int64 = 1024
+        let MB: Int64 = 1024 * 1024
+        let GB: Int64 = 1024 * 1024 * 1024
         
         var length = length
-        if length >= Int.max - 1 {
-            length = Int.max - 1
+        if length >= Int64.max - 1 {
+            length = Int64.max - 1
         }
         
         if (length < KB) {
@@ -57,6 +57,25 @@ extension GL where Base: FileManager {
             return String(format: "%.2f MB", length.gl.cgFloat / MB.gl.cgFloat)
         } else {
             return String(format: "%.2f GB", length.gl.cgFloat / GB.gl.cgFloat)
+        }
+    }
+    
+    /// 获取文件大小，支持文件夹
+    ///
+    ///     返回的单位是`B`
+    public func fileSize(at path: String) -> Int64? {
+        var isDirectory: ObjCBool = false
+        guard base.fileExists(atPath: path, isDirectory: &isDirectory) else {
+            return nil
+        }
+        
+        if isDirectory.boolValue {
+            return base.subpaths(atPath: path)?.reduce(into: 0) {
+                $0 += (fileSize(at: path + "/" + $1) ?? 0)
+            }
+        } else {
+            let attributes = try? base.attributesOfItem(atPath: path)
+            return attributes?[.size] as? Int64
         }
     }
 }

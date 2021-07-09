@@ -7,13 +7,20 @@
 //
 
 import Foundation
-import CommonCrypto
+import UIKit
+import CoreText
 
 extension GL where Base == String {
     /// `json`解析
     public var jsonDecode: Any? {
         guard let data = base.data(using: .utf8) else { return nil }
-        return try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+        return try? JSONSerialization.jsonObject(with: data, options: [.mutableContainers, .allowFragments])
+    }
+    
+    /// `json`解析到指定模型
+    public func jsonDecodeTo<T>(type: T.Type) -> T? where T: Decodable {
+        guard let data = base.data(using: .utf8) else { return nil }
+        return try? JSONDecoder().decode(type, from: data)
     }
     
     /// If it is Chinese, then unicode is displayed on the console, which affects reading, so convert it.
@@ -134,11 +141,6 @@ extension GL where Base == String {
         return data.gl.bytes
     }
     
-    /// 将一个字符串`MD5`
-    public var md5: String {
-        return MD5.md5(string: self.base, upper: false)
-    }
-    
     /// 将一个字符串转为合法的`URL`
     ///
     /// 有些链接，比如`www.baidu.com`，在`iOS`里面，这不是一个合法的`URL`
@@ -190,5 +192,43 @@ extension GL where Base == String {
             output.append($0.map { String($0) }.joined(separator: ""))
         }
         return output
+    }
+    
+    /// 字符串转`Date`
+    public func toDate(format: String, locale: Locale = .current) -> Date? {
+        String.formatter.locale = locale
+        String.formatter.dateFormat = format
+        return String.formatter.date(from: base)
+    }
+}
+
+extension String {
+    fileprivate static let formatter = DateFormatter()
+}
+
+
+extension GL where Base == String {
+    /// 文字转图片
+    public func toImage(size: CGFloat, font: UIFont, scale: CGFloat = UIScreen.main.scale) -> UIImage? {
+        guard !base.isEmpty, scale >= 1 else { return nil }
+        let attributedString = NSAttributedString(string: base, attributes: [.font : font, .foregroundColor: UIColor.white.cgColor])
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let bitmapInfo = CGImageAlphaInfo.premultipliedFirst.rawValue | CGImageByteOrderInfo.orderDefault.rawValue
+        guard let context = CGContext(data: nil,
+                                      width: Int(size * scale),
+                                      height: Int(size * scale),
+                                      bitsPerComponent: 8,
+                                      bytesPerRow: 0,
+                                      space: colorSpace,
+                                      bitmapInfo: bitmapInfo) else {
+            return nil
+        }
+        context.interpolationQuality = .high
+        let line = CTLineCreateWithAttributedString(attributedString)
+        let frame = CTLineGetBoundsWithOptions(line, .useGlyphPathBounds)
+        context.textPosition = CGPoint(x: 0, y: -frame.origin.y)
+        CTLineDraw(line, context)
+        guard let cgImage = context.makeImage() else { return nil }
+        return UIImage(cgImage: cgImage, scale: scale, orientation: .up)
     }
 }

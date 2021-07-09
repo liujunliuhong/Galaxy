@@ -30,4 +30,11 @@ extension GL where Base: UIViewController {
     public func dismiss(animated: Bool, completion: (() -> Void)? = nil) {
         base.dismiss(animated: animated, completion: completion)
     }
+    
+    /// 从父控制器移除
+    public func removeFromParentController() {
+        base.willMove(toParent: nil)
+        base.view.removeFromSuperview()
+        base.removeFromParent()
+    }
 }

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreGraphics
 
 /// 位运算规则
 /// `&`    与     两个位都为1时，结果才为1
@@ -66,4 +67,16 @@ extension GL where Base: BinaryInteger {
 //        }
 //        return output
 //    }
+}
+
+extension GL where Base: BinaryInteger {
+    /// `BinaryInteger`转`Float`
+    public var float: Float {
+        return Float(base)
+    }
+    
+    /// `BinaryInteger`转`CGFloat`
+    public var cgFloat: CGFloat {
+        return CGFloat(base)
+    }
 }

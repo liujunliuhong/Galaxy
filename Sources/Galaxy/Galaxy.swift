@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreGraphics
 import UIKit
 import CoreText
 import Alamofire
@@ -52,3 +53,4 @@ extension Data: GalaxyCompatible { }
 extension String: GalaxyCompatible { }
 extension CTParagraphStyle: GalaxyCompatible { }
 extension Alamofire.NetworkReachabilityManager: GalaxyCompatible { }
+extension CATransform3D: GalaxyCompatible { }

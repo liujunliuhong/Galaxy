@@ -171,22 +171,54 @@ extension GL where Base == UIView {
         targetRect = CGRect(x: targetRect.origin.x * scale, y: targetRect.origin.y * scale, width: targetRect.width * scale, height: targetRect.height * scale)
         //
         UIGraphicsBeginImageContextWithOptions(base.frame.size, true, scale)
+        defer { UIGraphicsEndImageContext() }
         // This code cannot be written in front of `UIGraphicsBeginImageContextWithOptions`.
         // Otherwise `context` is nil.
-        guard let context = UIGraphicsGetCurrentContext() else {
-            return nil
+        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+        base.layer.render(in: context)
+        guard let image = UIGraphicsGetImageFromCurrentImageContext() else { return nil }
+        guard let cgImage = image.cgImage?.cropping(to: targetRect) else { return nil }
+        return UIImage(cgImage: cgImage)
+    }
+    
+    
+    /// 获取某一点颜色
+    public func toColor(point: CGPoint) -> UIColor {
+        var pixel = [UInt8](repeatElement(0, count: 4))
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
+        let context = CGContext(
+            data: &pixel,
+            width: 1,
+            height: 1,
+            bitsPerComponent: 8,
+            bytesPerRow: 4,
+            space: colorSpace,
+            bitmapInfo: bitmapInfo.rawValue
+        )
+        guard let temp = context else {
+            return .clear
         }
         
-        base.layer.render(in: context)
-        defer {
-            UIGraphicsEndImageContext()
-        }
-        guard let image = UIGraphicsGetImageFromCurrentImageContext() else {
-            return nil
-        }
-        guard let cgImage = image.cgImage?.cropping(to: targetRect) else {
-            return nil
-        }
-        return UIImage(cgImage: cgImage)
+        temp.translateBy(x: -point.x, y: -point.y)
+        
+        base.layer.render(in: temp)
+        
+        let r = pixel[0]
+        let g = pixel[1]
+        let b = pixel[2]
+        let a = pixel[3]
+        
+        return GL<UIColor>.rgba(R: CGFloat(r), G: CGFloat(g), B: CGFloat(b), A: CGFloat(a))
+    }
+}
+
+extension GL where Base: UIView {
+    public static func loadNib(bundle: Bundle = .main) -> UINib {
+        return UINib(nibName: String(describing: Base.self), bundle: bundle)
+    }
+    
+    public static func loadViewFromNib(bundle: Bundle = .main) -> Base {
+        return bundle.loadNibNamed(String(describing: Base.self), owner: nil, options: nil)?.first as! Base
     }
 }

@@ -91,6 +91,19 @@ extension GL where Base == UIColor {
         }
         return hexColor ?? GL.clear
     }
+    
+    /// 获取某个路径下的颜色
+    public static func color(keyPath: String?, path: String?) -> UIColor {
+        guard
+            let data = try? Data(contentsOf: URL(fileURLWithPath: path ?? "")),
+            let json = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed),
+            let jsonDict = json as? NSDictionary else {
+            // path所对应的文件必须是字典
+            return GL.clear
+        }
+        let color = jsonDict.value(forKeyPath: keyPath ?? "") as? String
+        return GL<UIColor>.color(string: color)
+    }
 }
 
 extension GL where Base == UIColor {

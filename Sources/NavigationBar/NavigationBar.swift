@@ -114,7 +114,7 @@ public final class NavigationBar: UIView {
         }
     }
     
-    public var seperateLineColor: UIColor = GL.rgba(R: 162, G: 168, B: 195, A: 0.7) {
+    public var seperateLineColor: UIColor? = GL.rgba(R: 162, G: 168, B: 195, A: 0.7) {
         didSet {
             seperateLineView.backgroundColor = seperateLineColor
         }

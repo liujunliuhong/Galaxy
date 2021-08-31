@@ -67,8 +67,8 @@ extension GL where Base: MutableCollection {
 
 extension GL where Base: Collection {
     /// json编码
-    public var jsonEncode: String? {
-        guard let data = try? JSONSerialization.data(withJSONObject: base, options: []) else { return nil }
+    public func jsonEncode(options: JSONSerialization.WritingOptions = []) -> String? {
+        guard let data = try? JSONSerialization.data(withJSONObject: base, options: options) else { return nil }
         return String(data: data, encoding: .utf8)
     }
 }

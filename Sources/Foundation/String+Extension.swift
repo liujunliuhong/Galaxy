@@ -9,12 +9,13 @@
 import Foundation
 import UIKit
 import CoreText
+import BigInt
 
 extension GL where Base == String {
     /// `json`解析
-    public var jsonDecode: Any? {
+    public func jsonDecode(options: JSONSerialization.ReadingOptions = []) -> Any? {
         guard let data = base.data(using: .utf8) else { return nil }
-        return try? JSONSerialization.jsonObject(with: data, options: [.mutableContainers, .allowFragments])
+        return try? JSONSerialization.jsonObject(with: data, options: options)
     }
     
     /// `json`解析到指定模型
@@ -199,6 +200,65 @@ extension GL where Base == String {
         String.formatter.locale = locale
         String.formatter.dateFormat = format
         return String.formatter.date(from: base)
+    }
+    
+    /// 大单位转小单位
+    ///
+    ///     "1.1".block.parseToBigUInt(5) => 110000
+    public func parseToBigUInt(decimals: Int) -> BigUInt? {
+        var string = base.replacingOccurrences(of: ",", with: "")
+        string = string.replacingOccurrences(of: "_", with: "")
+        let components = string.components(separatedBy: ".")
+        guard components.count == 1 || components.count == 2 else { return nil }
+        let unitDecimals = decimals
+        guard let beforeDecPoint = BigUInt(components[0], radix: 10) else { return nil }
+        var mainPart = beforeDecPoint*BigUInt(10).power(unitDecimals)
+        if (components.count == 2) {
+            var value = components[1]
+            if value.count > unitDecimals {
+                value = String(value.prefix(unitDecimals))
+            }
+            let numDigits = value.count
+            guard let afterDecPoint = BigUInt(value, radix: 10) else { return nil }
+            let extraPart = afterDecPoint*BigUInt(10).power(unitDecimals-numDigits)
+            mainPart = mainPart + extraPart
+        }
+        return mainPart
+    }
+    
+    /// 小数后面补齐`0`
+    ///
+    ///     "1.2".block.decimalRightPadding(toLength: 5, withPad: "0") => 1.20000
+    public func decimalRightPadding(toLength: UInt, withPad character: Character, decimalSeparator: String = ".") -> String {
+        let groups = base.components(separatedBy: decimalSeparator)
+        if groups.count == 1, let _ = BigInt(base, radix: 10) {
+            return (base + decimalSeparator + "0").gl.decimalRightPadding(toLength: toLength, withPad: character, decimalSeparator: decimalSeparator)
+        } else if groups.count == 2 {
+            let before = groups[0]
+            var after = groups[1]
+            guard let _ = BigInt(before, radix: 10) else { return base }
+            guard let _ = BigInt(after, radix: 10) else { return base }
+            if toLength <= 0 {
+                return before
+            }
+            if after.count >= toLength {
+                after = String(after.prefix(Int(toLength)))
+            } else {
+                after = after + String(repeating: character, count: Int(toLength) - after.count)
+            }
+            return before + decimalSeparator + after
+        }
+        return base
+    }
+    
+    /// 字符串的整个范围
+    public var fullRange: Range<String.Index> {
+        return base.startIndex..<base.endIndex
+    }
+    
+    /// 字符串的整个范围
+    public var fullNSRange: NSRange {
+        return NSRange(fullRange, in: base)
     }
 }
 

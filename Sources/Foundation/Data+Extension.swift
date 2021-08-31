@@ -55,10 +55,12 @@ extension GL where Base == Data {
 
 extension GL where Base == Data {
     /// 左边补齐数据
-    public func setLengthLeft(toCount: UInt64, isNegative: Bool) -> Data {
+    public func setLengthLeft(toCount: UInt64, isNegative: Bool) -> Data? {
         let existingLength = UInt64(self.base.count)
-        if (existingLength >= toCount) {
+        if (existingLength == toCount) {
             return self.base
+        } else if (existingLength > toCount) {
+            return nil
         }
         var data: Data
         if (isNegative) {
@@ -71,10 +73,12 @@ extension GL where Base == Data {
     }
     
     /// 右边补齐数据
-    public func setLengthRight(toCount: UInt64, isNegative: Bool) -> Data {
+    public func setLengthRight(toCount: UInt64, isNegative: Bool) -> Data? {
         let existingLength = UInt64(self.base.count)
-        if (existingLength >= toCount) {
+        if (existingLength == toCount) {
             return self.base
+        } else if (existingLength > toCount) {
+            return nil
         }
         var data: Data = Data()
         data.append(self.base)

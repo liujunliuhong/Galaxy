@@ -10,6 +10,11 @@ import Foundation
 import UIKit
 
 /*
+ iPhone 13 Pro Max    428 x 926             3x
+ iPhone 13 Pro        390 x 844             3x
+ iPhone 13            390 x 844             3x
+ iPhone 13 mini       360 x 780             3x
+ 
  iPhone 12 Pro Max    428 x 926             3x
  iPhone 12 Pro        390 x 844             3x
  iPhone 12            390 x 844             3x
@@ -43,17 +48,20 @@ import UIKit
  iPhone 5s            320 x 568             2x
  */
 extension GL where Base == UIDevice {
+    /// https://www.theiphonewiki.com/wiki/Models#iPhone
     public enum DeviceType: CaseIterable, Equatable {
         // AirPods
         case AirPods_1st_generation
         case AirPods_2nd_generation
         case AirPods_Pro
+        case AirPods_Max
         // Apple TV
         case Apple_TV_1st_generation
         case Apple_TV_2nd_generation
         case Apple_TV_3rd_generation
         case Apple_TV_4th_generation
         case Apple_TV_4K
+        case Apple_TV_4K_2nd_generation
         // Apple Watch
         case Apple_Watch_1st_generation
         case Apple_Watch_Series_1
@@ -65,6 +73,7 @@ extension GL where Base == UIDevice {
         case Apple_Watch_Series_6
         // HomePod
         case HomePod
+        case HomePod_mini
         // iPad
         case iPad
         case iPad_2
@@ -74,6 +83,7 @@ extension GL where Base == UIDevice {
         case iPad_6th_generation
         case iPad_7th_generation
         case iPad_8th_generation
+        case iPad_9th_generation
         // iPad Air
         case iPad_Air
         case iPad_Air_2
@@ -88,12 +98,15 @@ extension GL where Base == UIDevice {
         case iPad_Pro_12_9_inch_3rd_generation
         case iPad_Pro_11_inch_2nd_generation
         case iPad_Pro_12_9_inch_4th_generation
+        case iPad_Pro_11_inch_3nd_generation
+        case iPad_Pro_12_9_inch_5th_generation
         // iPad mini
         case iPad_mini
         case iPad_mini_2
         case iPad_mini_3
         case iPad_mini_4
         case iPad_mini_5th_generation
+        case iPad_mini_6th_generation
         // iPod touch
         case iPod_touch
         case iPod_touch_2nd_generation
@@ -102,6 +115,8 @@ extension GL where Base == UIDevice {
         case iPod_touch_5th_generation
         case iPod_touch_6th_generation
         case iPod_touch_7th_generation
+        // AirTag
+        case AirTag
         // iPhone
         case iPhone
         case iPhone_3G
@@ -132,6 +147,17 @@ extension GL where Base == UIDevice {
         case iPhone_12
         case iPhone_12_Pro
         case iPhone_12_Pro_Max
+        case iPhone_13_mini
+        case iPhone_13
+        case iPhone_13_Pro
+        case iPhone_13_Pro_Max
+        // iMac
+        case iMac_24_inch_M1_2021
+        // MacBook Air
+        case Mac_mini_M1_2020
+        case MacBook_Air_Late_2020
+        // MacBook Pro
+        case MacBook_Pro_13_inch_M1_2020
         // Simulator
         case simulator
     }
@@ -144,17 +170,19 @@ extension GalaxyWrapper.DeviceType: CustomStringConvertible, CustomDebugStringCo
     
     public var description: String {
         switch self {
-            // AirPods
+                // AirPods
             case .AirPods_1st_generation:                return "AirPods (1st generation)"
             case .AirPods_2nd_generation:                return "AirPods (2nd generation)"
             case .AirPods_Pro:                           return "AirPods Pro"
-            // Apple TV
+            case .AirPods_Max:                           return "AirPods Max"
+                // Apple TV
             case .Apple_TV_1st_generation:               return "Apple TV (1st generation)"
             case .Apple_TV_2nd_generation:               return "Apple TV (2nd generation)"
             case .Apple_TV_3rd_generation:               return "Apple TV (3rd generation)"
             case .Apple_TV_4th_generation:               return "Apple TV (4th generation)"
             case .Apple_TV_4K:                           return "Apple TV 4K"
-            // Apple Watch
+            case .Apple_TV_4K_2nd_generation:            return "Apple TV 4K (2nd generation)"
+                // Apple Watch
             case .Apple_Watch_1st_generation:            return "Apple Watch (1st generation)"
             case .Apple_Watch_Series_1:                  return "Apple Watch Series 1"
             case .Apple_Watch_Series_2:                  return "Apple Watch Series 2"
@@ -163,9 +191,10 @@ extension GalaxyWrapper.DeviceType: CustomStringConvertible, CustomDebugStringCo
             case .Apple_Watch_Series_5:                  return "Apple Watch Series 5"
             case .Apple_Watch_SE:                        return "Apple Watch SE"
             case .Apple_Watch_Series_6:                  return "Apple Watch Series 6"
-            // HomePod
+                // HomePod
             case .HomePod:                               return "HomePod"
-            // iPad
+            case .HomePod_mini:                          return "HomePod mini"
+                // iPad
             case .iPad:                                  return "iPad"
             case .iPad_2:                                return "iPad 2"
             case .iPad_3rd_generation:                   return "iPad (3rd generation)"
@@ -174,12 +203,13 @@ extension GalaxyWrapper.DeviceType: CustomStringConvertible, CustomDebugStringCo
             case .iPad_6th_generation:                   return "iPad (6th generation)"
             case .iPad_7th_generation:                   return "iPad (7th generation)"
             case .iPad_8th_generation:                   return "iPad (8th generation)"
-            // iPad Air
+            case .iPad_9th_generation:                   return "iPad (9th generation)"
+                // iPad Air
             case .iPad_Air:                              return "iPad Air"
             case .iPad_Air_2:                            return "iPad Air 2"
             case .iPad_Air_3rd_generation:               return "iPad Air (3rd generation)"
             case .iPad_Air_4th_generation:               return "iPad Air (4th generation)"
-            // iPad Pro
+                // iPad Pro
             case .iPad_Pro_12_9_inch:                    return "iPad Pro (12.9-inch)"
             case .iPad_Pro_9_7_inch:                     return "iPad Pro (9.7-inch)"
             case .iPad_Pro_12_9_inch_2nd_generation:     return "iPad Pro (12.9-inch) (2nd generation)"
@@ -188,13 +218,16 @@ extension GalaxyWrapper.DeviceType: CustomStringConvertible, CustomDebugStringCo
             case .iPad_Pro_12_9_inch_3rd_generation:     return "iPad Pro (12.9-inch) (3rd generation)"
             case .iPad_Pro_11_inch_2nd_generation:       return "iPad Pro (11-inch) (2nd generation)"
             case .iPad_Pro_12_9_inch_4th_generation:     return "iPad Pro (12.9-inch) (4th generation)"
-            // iPad mini
+            case .iPad_Pro_11_inch_3nd_generation:       return "iPad Pro (11-inch) (3rd generation)"
+            case .iPad_Pro_12_9_inch_5th_generation:     return "iPad Pro (12.9-inch) (5th generation)"
+                // iPad mini
             case .iPad_mini:                             return "iPad mini"
             case .iPad_mini_2:                           return "iPad mini 2"
             case .iPad_mini_3:                           return "iPad mini 3"
             case .iPad_mini_4:                           return "iPad mini 4"
             case .iPad_mini_5th_generation:              return "iPad mini (5th generation)"
-            // iPod touch
+            case .iPad_mini_6th_generation:              return "iPad mini (6th generation)"
+                // iPod touch
             case .iPod_touch:                            return "iPod touch"
             case .iPod_touch_2nd_generation:             return "iPod touch (2nd generation)"
             case .iPod_touch_3rd_generation:             return "iPod touch (3rd generation)"
@@ -202,7 +235,9 @@ extension GalaxyWrapper.DeviceType: CustomStringConvertible, CustomDebugStringCo
             case .iPod_touch_5th_generation:             return "iPod touch (5th generation)"
             case .iPod_touch_6th_generation:             return "iPod touch (6th generation)"
             case .iPod_touch_7th_generation:             return "iPod touch (7th generation)"
-            // iPhone
+                // AirTag
+            case .AirTag:                                return "AirTag"
+                // iPhone
             case .iPhone:                                return "iPhone"
             case .iPhone_3G:                             return "iPhone 3G"
             case .iPhone_3GS:                            return "iPhone 3GS"
@@ -232,24 +267,37 @@ extension GalaxyWrapper.DeviceType: CustomStringConvertible, CustomDebugStringCo
             case .iPhone_12:                             return "iPhone 12"
             case .iPhone_12_Pro:                         return "iPhone 12 Pro"
             case .iPhone_12_Pro_Max:                     return "iPhone 12 Pro Max"
-            // Simulator
+            case .iPhone_13_mini:                        return "iPhone 13 mini"
+            case .iPhone_13:                             return "iPhone 13"
+            case .iPhone_13_Pro:                         return "iPhone 13 Pro"
+            case .iPhone_13_Pro_Max:                     return "iPhone 13 Pro Max"
+                // iMac
+            case .iMac_24_inch_M1_2021:                  return "iMac (24-inch, M1, 2021)"
+                // MacBook Air
+            case .Mac_mini_M1_2020:                      return "Mac mini (M1, 2020)"
+            case .MacBook_Air_Late_2020:                 return "MacBook Air (Late 2020)"
+                // MacBook Pro
+            case .MacBook_Pro_13_inch_M1_2020:           return "MacBook Pro (13-inch, M1, 2020)"
+                // Simulator
             case .simulator:                             return "Simulator"
         }
     }
     
     public var identifiers: [String] {
         switch self {
-            // AirPods
+                // AirPods
             case .AirPods_1st_generation:                return ["AirPods1,1"]
             case .AirPods_2nd_generation:                return ["AirPods2,1"]
-            case .AirPods_Pro:                           return ["iProd8,1"]
-            // Apple TV
+            case .AirPods_Pro:                           return ["iProd8,1", "AirPods2,2"]
+            case .AirPods_Max:                           return ["iProd8,6"]
+                // Apple TV
             case .Apple_TV_1st_generation:               return ["AppleTV1,1"]
             case .Apple_TV_2nd_generation:               return ["AppleTV2,1"]
             case .Apple_TV_3rd_generation:               return ["AppleTV3,1", "AppleTV3,2"]
             case .Apple_TV_4th_generation:               return ["AppleTV5,3"]
             case .Apple_TV_4K:                           return ["AppleTV6,2"]
-            // Apple Watch
+            case .Apple_TV_4K_2nd_generation:            return ["AppleTV11,1"]
+                // Apple Watch
             case .Apple_Watch_1st_generation:            return ["Watch1,1", "Watch1,2"]
             case .Apple_Watch_Series_1:                  return ["Watch2,6", "Watch2,7"]
             case .Apple_Watch_Series_2:                  return ["Watch2,3", "Watch2,4"]
@@ -258,9 +306,10 @@ extension GalaxyWrapper.DeviceType: CustomStringConvertible, CustomDebugStringCo
             case .Apple_Watch_Series_5:                  return ["Watch5,1", "Watch5,2", "Watch5,3", "Watch5,4"]
             case .Apple_Watch_SE:                        return ["Watch5,9", "Watch5,10", "Watch5,11", "Watch5,12"]
             case .Apple_Watch_Series_6:                  return ["Watch6,1", "Watch6,2", "Watch6,3", "Watch6,4"]
-            // HomePod
+                // HomePod
             case .HomePod:                               return ["AudioAccessory1,1", "AudioAccessory1,2"]
-            // iPad
+            case .HomePod_mini:                          return ["AudioAccessory5,1"]
+                // iPad
             case .iPad:                                  return ["iPad1,1"]
             case .iPad_2:                                return ["iPad2,1", "iPad2,2", "iPad2,3", "iPad2,4"]
             case .iPad_3rd_generation:                   return ["iPad3,1", "iPad3,2", "iPad3,3"]
@@ -269,12 +318,13 @@ extension GalaxyWrapper.DeviceType: CustomStringConvertible, CustomDebugStringCo
             case .iPad_6th_generation:                   return ["iPad7,5", "iPad7,6"]
             case .iPad_7th_generation:                   return ["iPad7,11", "iPad7,12"]
             case .iPad_8th_generation:                   return ["iPad11,6", "iPad11,7"]
-            // iPad Air
+            case .iPad_9th_generation:                   return ["iPad12,1", "iPad12,2"]
+                // iPad Air
             case .iPad_Air:                              return ["iPad4,1", "iPad4,2", "iPad4,3"]
             case .iPad_Air_2:                            return ["iPad5,3", "iPad5,4"]
             case .iPad_Air_3rd_generation:               return ["iPad11,3", "iPad11,4"]
             case .iPad_Air_4th_generation:               return ["iPad13,1", "iPad13,2"]
-            // iPad Pro
+                // iPad Pro
             case .iPad_Pro_12_9_inch:                    return ["iPad6,7", "iPad6,8"]
             case .iPad_Pro_9_7_inch:                     return ["iPad6,3", "iPad6,4"]
             case .iPad_Pro_12_9_inch_2nd_generation:     return ["iPad7,1", "iPad7,2"]
@@ -283,13 +333,16 @@ extension GalaxyWrapper.DeviceType: CustomStringConvertible, CustomDebugStringCo
             case .iPad_Pro_12_9_inch_3rd_generation:     return ["iPad8,5", "iPad8,6", "iPad8,7", "iPad8,8"]
             case .iPad_Pro_11_inch_2nd_generation:       return ["iPad8,9", "iPad8,10"]
             case .iPad_Pro_12_9_inch_4th_generation:     return ["iPad8,11", "iPad8,12"]
-            // iPad mini
+            case .iPad_Pro_11_inch_3nd_generation:       return ["iPad13,4", "iPad13,5", "iPad13,6", "iPad13,7"]
+            case .iPad_Pro_12_9_inch_5th_generation:     return ["iPad13,8", "iPad13,9", "iPad13,10", "iPad13,11"]
+                // iPad mini
             case .iPad_mini:                             return ["iPad2,5", "iPad2,6", "iPad2,7"]
             case .iPad_mini_2:                           return ["iPad4,4", "iPad4,5", "iPad4,6"]
             case .iPad_mini_3:                           return ["iPad4,7", "iPad4,8", "iPad4,9"]
             case .iPad_mini_4:                           return ["iPad5,1", "iPad5,2"]
             case .iPad_mini_5th_generation:              return ["iPad11,1", "iPad11,2"]
-            // iPod touch
+            case .iPad_mini_6th_generation:              return ["iPad14,1", "iPad14,2"]
+                // iPod touch
             case .iPod_touch:                            return ["iPod1,1"]
             case .iPod_touch_2nd_generation:             return ["iPod2,1"]
             case .iPod_touch_3rd_generation:             return ["iPod3,1"]
@@ -297,7 +350,9 @@ extension GalaxyWrapper.DeviceType: CustomStringConvertible, CustomDebugStringCo
             case .iPod_touch_5th_generation:             return ["iPod5,1"]
             case .iPod_touch_6th_generation:             return ["iPod7,1"]
             case .iPod_touch_7th_generation:             return ["iPod9,1"]
-            // iPhone
+                // AirTag
+            case .AirTag:                                return ["AirTag1,1"]
+                // iPhone
             case .iPhone:                                return ["iPhone1,1"]
             case .iPhone_3G:                             return ["iPhone1,2"]
             case .iPhone_3GS:                            return ["iPhone2,1"]
@@ -327,7 +382,18 @@ extension GalaxyWrapper.DeviceType: CustomStringConvertible, CustomDebugStringCo
             case .iPhone_12:                             return ["iPhone13,2"]
             case .iPhone_12_Pro:                         return ["iPhone13,3"]
             case .iPhone_12_Pro_Max:                     return ["iPhone13,4"]
-            // Simulator
+            case .iPhone_13_mini:                        return ["iPhone14,4"]
+            case .iPhone_13:                             return ["iPhone14,5"]
+            case .iPhone_13_Pro:                         return ["iPhone14,2"]
+            case .iPhone_13_Pro_Max:                     return ["iPhone14,3"]
+                // iMac
+            case .iMac_24_inch_M1_2021:                  return ["iMac21,1", "iMac21,2"]
+                // MacBook Air
+            case .Mac_mini_M1_2020:                      return ["Macmini9,1"]
+            case .MacBook_Air_Late_2020:                 return ["MacBookAir10,1"]
+                // MacBook Pro
+            case .MacBook_Pro_13_inch_M1_2020:           return ["MacBookPro17,1"]
+                // Simulator
             case .simulator:                             return ["i386", "x86_64"]
         }
     }

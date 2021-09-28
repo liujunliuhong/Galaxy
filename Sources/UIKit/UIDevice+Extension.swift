@@ -35,26 +35,25 @@ extension GL where Base == UIDevice {
     
     /// 获取设备基本信息
     public static var deviceInformation: String {
-        return
-            "\n"
-            +
-            "*******************************************************************"
-            + "\n"
-            + "Sysname:          \(UIDevice._sysname)"
-            + "\n"
-            + "Release:          \(UIDevice._release)"
-            + "\n"
-            + "Version:          \(UIDevice._version)"
-            + "\n"
-            + "Machine:          \(UIDevice._machine)"
-            + "\n"
-            + "SystemVersion:    \(UIDevice.current.systemVersion)"
-            + "\n"
-            + "MachineName:      \(GL.deviceMachineName)"
-            + "\n"
-            + "DeviceName:       \(UIDevice.current.name)"
-            + "\n"
-            + "*******************************************************************"
+        return "\n"
+        +
+        "*******************************************************************"
+        + "\n"
+        + "Sysname:          \(UIDevice._sysname)"
+        + "\n"
+        + "Release:          \(UIDevice._release)"
+        + "\n"
+        + "Version:          \(UIDevice._version)"
+        + "\n"
+        + "Machine:          \(UIDevice._machine)"
+        + "\n"
+        + "SystemVersion:    \(UIDevice.current.systemVersion)"
+        + "\n"
+        + "MachineName:      \(GL.deviceMachineName)"
+        + "\n"
+        + "DeviceName:       \(UIDevice.current.name)"
+        + "\n"
+        + "*******************************************************************"
     }
     
     /// 是否是模拟器
@@ -70,6 +69,19 @@ extension GL where Base == UIDevice {
         return isSimulator
     }
     
+    /// 获取`window`
+    public static var window: UIWindow {
+        if #available(iOS 13.0, *) {
+            if let w = UIApplication.shared.connectedScenes.filter({$0.activationState == .foregroundActive}).map({$0 as? UIWindowScene}).compactMap({$0}).first?.windows.filter({$0.isKeyWindow}).first {
+                return w
+            } else {
+                return UIApplication.shared.keyWindow!
+            }
+        } else {
+            return UIApplication.shared.keyWindow!
+        }
+    }
+    
     /// 是否是刘海屏手机，兼容真机和模拟器
     ///
     /// 模拟器通过判断`safeAreaInsets.bottom`是否大于`0`
@@ -78,16 +90,14 @@ extension GL where Base == UIDevice {
         var isNotchiPhone: Bool = false
         if GL.deviceIsSimulator {
             if #available(iOS 11.0, *) { // `safeAreaInsets`是在`iOS 11`开始提出的概念
-                if let delegate = UIApplication.shared.delegate, let _window = delegate.window, let window = _window {
-                    isNotchiPhone = window.safeAreaInsets.bottom > 0
-                }
+                isNotchiPhone = GL.window.safeAreaInsets.bottom > 0
             }
         } else {
             let machine = UIDevice._machine
             for (_, type) in GalaxyWrapper.DeviceType.allCases.enumerated() {
                 if (type == .iPhone_X || type == .iPhone_XR || type == .iPhone_XS || type == .iPhone_XS_Max ||
-                        type == .iPhone_11 || type == .iPhone_11_Pro || type == .iPhone_11_Pro_Max ||
-                        type == .iPhone_12 || type == .iPhone_12_Pro || type == .iPhone_12_mini || type == .iPhone_12_Pro_Max) &&
+                    type == .iPhone_11 || type == .iPhone_11_Pro || type == .iPhone_11_Pro_Max ||
+                    type == .iPhone_12 || type == .iPhone_12_Pro || type == .iPhone_12_mini || type == .iPhone_12_Pro_Max || type == .iPhone_13 || type == .iPhone_13_Pro || type == .iPhone_13_mini || type == .iPhone_13_Pro_Max) &&
                     type.identifiers.contains(machine) {
                     isNotchiPhone = true
                     break
@@ -146,9 +156,7 @@ extension GL where Base == UIDevice {
     public static var deviceHomeIndicatorHeight: CGFloat {
         var homeIndicatorHeight: CGFloat = .zero
         if #available(iOS 11.0, *) {
-            if let delegate = UIApplication.shared.delegate, let _window = delegate.window, let window = _window {
-                homeIndicatorHeight = window.safeAreaInsets.bottom
-            }
+            homeIndicatorHeight = GL.window.safeAreaInsets.bottom
         }
         return homeIndicatorHeight
     }

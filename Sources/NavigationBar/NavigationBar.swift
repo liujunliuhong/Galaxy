@@ -215,6 +215,7 @@ extension NavigationBar {
             barView.frame = .zero
             toolView.frame = .zero
             seperateLineView.frame = .zero
+            containerHeight = .zero
             return
         }
         //

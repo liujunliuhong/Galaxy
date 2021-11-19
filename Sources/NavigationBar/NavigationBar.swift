@@ -163,11 +163,12 @@ extension NavigationBar {
     }
     
     private func addNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(orientationDidChange), name: UIDevice.orientationDidChangeNotification, object: nil)
+        // 屏幕旋转的通知不需要，由开发者自己去实现
+        //NotificationCenter.default.addObserver(self, selector: #selector(orientationDidChange), name: UIDevice.orientationDidChangeNotification, object: nil)
     }
     
     private func removeNotification() {
-        NotificationCenter.default.removeObserver(self, name: UIDevice.orientationDidChangeNotification, object: nil)
+        //NotificationCenter.default.removeObserver(self, name: UIDevice.orientationDidChangeNotification, object: nil)
     }
 }
 

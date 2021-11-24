@@ -77,6 +77,8 @@ extension HUD {
                 let imageView = UIImageView(image: image)
                 hud?.mode = .customView
                 hud?.customView = imageView
+            } else {
+                hud?.mode = .text
             }
             hud?.hide(animated: true, afterDelay: afterDelay)
             hud?.completionBlock = hideCompletionClosure

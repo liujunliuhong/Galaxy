@@ -15,7 +15,6 @@ public struct Log {
     #if canImport(CocoaLumberjack)
     /// Log初始化，添加控制台打印和沙盒日志保存.(依赖`CocoaLumberjack/Swift`)
     /// - Parameter saveToSandbox: 日志是否报保存到本地沙盒
-    @available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
     public static func setup(saveToSandbox: Bool) {
         #if DEBUG
         // DEBUG模式下，开启控制台输出打印
@@ -56,6 +55,8 @@ public func MyLog<T>(_ message: T, file: String = #file, line: Int = #line) {
     #if canImport(CocoaLumberjack)
     DDLogDebug(msg)
     #else
+#if DEBUG
     print(msg)
+#endif
     #endif
 }

@@ -309,6 +309,7 @@ extension PickerView {
     ///     pickerView.show { (selectIndexs) in
     ///         print("selectIndexs: \(selectIndexs)")
     ///     }
+    @available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
     public func show(doneClosure: (([Int])->())?, currentSelectRowClosure: (([Int])->())? = nil) {
         guard let window = UIApplication.shared.keyWindow else { return }
         //

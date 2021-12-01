@@ -80,6 +80,7 @@ public class AlertEngine {
 }
 
 extension AlertEngine {
+    @available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
     public func show(parentView: UIView?, alertView: UIView?, options: AlertEngine.Options) {
         //
         guard let alertView = alertView else { return }

@@ -94,7 +94,7 @@ extension HUD {
     }
 }
 
-
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 @discardableResult
 fileprivate func _getHUD(message: String?,
                          configuration:((MBProgressHUD?)->())? = nil,
@@ -109,7 +109,7 @@ fileprivate func _getHUD(message: String?,
     if view == nil {
         return nil
     }
-    
+    // @property(class, nonatomic, readonly) UIApplication *sharedApplication NS_EXTENSION_UNAVAILABLE_IOS("Use view controller based solutions where appropriate instead.");
     let hud = MBProgressHUD.showAdded(to: view! , animated: true)
     hud.minSize = CGSize(width: 100.0, height: 40.0)
     hud.label.text = message ?? ""

@@ -161,6 +161,7 @@ extension DatePickerView {
     ///     DatePickerView.show(pickerView: datePickerView) { selectDate in
     ///
     ///     }
+    @available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
     public static func show(pickerView: DatePickerView, doneClosure: ((Date) -> ())?) {
         guard let window = UIApplication.shared.keyWindow else { return }
         

@@ -55,6 +55,7 @@ extension GL where Base: UIApplication {
     /// 获取最顶层的控制器
     /// - Parameter base: base
     /// - Returns: 最顶层的控制器
+    @available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
     public func topViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
         if let nav = base as? UINavigationController {
             return topViewController(base: nav.visibleViewController)
@@ -69,7 +70,7 @@ extension GL where Base: UIApplication {
     }
 }
 
-
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 fileprivate func _open(urlString: String?, completionHandler: ((Bool) -> ())?) {
     DispatchQueue.main.async {
         guard let urlString = urlString else {

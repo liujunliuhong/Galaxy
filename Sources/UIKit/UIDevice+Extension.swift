@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 extension GL where Base == UIDevice {
     /// 获取屏幕宽
     public static var deviceWidth: CGFloat {

@@ -18,6 +18,7 @@ private struct AssociatedKeys {
 /// 系统的导航栏个人觉得太难用了，有时还会出现一些莫名其妙的`Bug`，还要去适配不同的版本
 /// 因此，我自定义了一个导航栏，原理不复杂，就是一个自定义`View`
 /// 放在`ViewController`的顶部，同时拓展了一些功能
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 public final class NavigationBar: UIView {
     deinit {
         removeNotification()

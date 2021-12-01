@@ -20,6 +20,7 @@ public typealias HUDHideCompletionClosure = () -> ()
 
 private class _HUD_: NSObject {}
 
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 public class HUD {
     public enum HUDType {
         case success
@@ -40,6 +41,7 @@ extension HUD {
 extension HUD {
     
     /// 显示loading
+    @available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
     @discardableResult
     public static func showLoading(message: String?,
                                    configuration:((MBProgressHUD?)->())? = nil,
@@ -49,6 +51,7 @@ extension HUD {
     }
     
     /// 显示一段提示信息
+    @available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
     public static func showTips(message: String?,
                                 configuration:((MBProgressHUD?)->())? = nil,
                                 type: HUD.HUDType?,
@@ -87,6 +90,7 @@ extension HUD {
     }
     
     /// 隐藏hud
+    @available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
     public static func hide(hud: MBProgressHUD?) {
         DispatchQueue.main.async {
             hud?.hide(animated: true)

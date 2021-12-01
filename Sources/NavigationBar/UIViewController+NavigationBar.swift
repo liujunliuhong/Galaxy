@@ -13,6 +13,7 @@ private struct AssociatedKeys {
     static var navigation = "com.galaxy.navigationBar.navigation.key"
 }
 
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 extension GL where Base: UIViewController {
     public func addNavigationBar() {
         if let _ = objc_getAssociatedObject(self.base, &AssociatedKeys.navigation) as? NavigationBar {

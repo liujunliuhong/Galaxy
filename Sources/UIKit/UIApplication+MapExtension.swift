@@ -19,6 +19,7 @@ import CoreLocation
 ///         <string>baidumap</string>
 ///     </array>
 ///
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 extension GL where Base: UIApplication {
     /// 百度地图坐标类型
     public enum BaiDuMapCoordinateType: String {

@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 import UserNotifications
 
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 extension GL where Base: UIApplication {
     /// 注册推送（支持本地推送和远程推送）
-    @available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
     public func registerNotification(completion: (() -> Void)? = nil) {
         if #available(iOS 10.0, *) {
             let center = UNUserNotificationCenter.current()
@@ -33,7 +33,6 @@ extension GL where Base: UIApplication {
     }
     
     /// 清除角标
-    @available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
     public func clearBadgeNumber() {
         UIApplication.shared.applicationIconBadgeNumber = 0
     }

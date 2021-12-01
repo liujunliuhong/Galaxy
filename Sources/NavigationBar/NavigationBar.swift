@@ -155,6 +155,7 @@ public final class NavigationBar: UIView {
     }
 }
 
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 extension NavigationBar {
     private func setupUI() {
         addSubview(seperateLineView)
@@ -173,12 +174,14 @@ extension NavigationBar {
     }
 }
 
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 extension NavigationBar {
     @objc private func orientationDidChange() {
         refresh()
     }
 }
 
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 extension NavigationBar {
     public override func layoutIfNeeded() {
         super.layoutIfNeeded()
@@ -201,6 +204,7 @@ extension NavigationBar {
     }
 }
 
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 extension NavigationBar {
     private func reloadUI() {
         let containerWidth = self.viewController?.view.bounds.size.width ?? .zero
@@ -258,6 +262,7 @@ extension NavigationBar {
     }
 }
 
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 extension NavigationBar {
     private func setupBar() {
         if hideBar { return }
@@ -420,6 +425,7 @@ extension NavigationBar {
     }
 }
 
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 extension NavigationBar {
     /// 刷新界面
     public func refresh() {

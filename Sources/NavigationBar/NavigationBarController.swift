@@ -14,6 +14,7 @@ import SnapKit
 /// 3、`TARGETS`的`Main Interfac`e里面的`Main`去掉(很重要，否则会出现界面没旋转，但是状态栏旋转的情况)
 /// 4、接下来就可以根据页面结构设置旋转了
 /// 这个`Controller`是一个包含了我自定义导航栏的`Controller`，在实际开发中，不是非必须
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 open class NavigationBarController: UIViewController {
     
     public lazy var safeAreaView: UIView = {
@@ -86,6 +87,7 @@ open class NavigationBarController: UIViewController {
 }
 
 // MARK: - Override
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 extension NavigationBarController {
     @objc open func initData() { }
     @objc open func setupUI() { }

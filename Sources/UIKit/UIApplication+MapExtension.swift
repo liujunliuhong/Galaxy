@@ -47,14 +47,12 @@ extension GL where Base: UIApplication {
     }
     
     /// 是否可以打开百度地图app
-    @available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
     public func canOpenBaiDuMapApp() -> Bool {
         guard let url = URL(string: "baidumap://") else { return false }
         return UIApplication.shared.canOpenURL(url)
     }
     
     /// 是否可以打开高德地图app
-    @available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
     public func canOpenGaoDeMapApp() -> Bool {
         guard let url = URL(string: "iosamap://") else { return false }
         return UIApplication.shared.canOpenURL(url)
@@ -149,7 +147,6 @@ extension GL where Base: UIApplication {
     ///   - destinationName: 目的地名称，可以为空
     ///   - coordinateType: 坐标类型
     ///   - navigationType: 导航模式
-    @available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
     public func openBaiDuMap(currentPlace: CLLocationCoordinate2D?,
                              currentPlaceName: String?,
                              destination: CLLocationCoordinate2D?,
@@ -202,7 +199,6 @@ extension GL where Base: UIApplication {
     ///   - destination: 目的地，可以为空。如果为空，拉不起导航
     ///   - destinationName: 目的地名称，可以为空
     ///   - navigationType: 导航类型
-    @available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
     public func openGaoDeMap(currentPlace: CLLocationCoordinate2D?,
                              currentPlaceName: String?,
                              destination: CLLocationCoordinate2D?,

@@ -9,9 +9,16 @@ import Foundation
 import UIKit
 import MBProgressHUD
 
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 fileprivate let successImage: UIImage? = HUD.bundle()?.gl.image(name: "success")
+
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 fileprivate let errorImage: UIImage? = HUD.bundle()?.gl.image(name: "error")
+
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 fileprivate let infoImage: UIImage? = HUD.bundle()?.gl.image(name: "info")
+
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 fileprivate let warnImage: UIImage? = HUD.bundle()?.gl.image(name: "warn")
 
 
@@ -31,6 +38,7 @@ public class HUD {
     }
 }
 
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 extension HUD {
     fileprivate static func bundle() -> Bundle? {
         guard let path = Bundle(for: _HUD_.classForCoder()).path(forResource: "HUD", ofType: "bundle") else { return nil }
@@ -38,10 +46,10 @@ extension HUD {
     }
 }
 
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 extension HUD {
     
     /// 显示loading
-    @available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
     @discardableResult
     public static func showLoading(message: String?,
                                    configuration:((MBProgressHUD?)->())? = nil,
@@ -51,7 +59,6 @@ extension HUD {
     }
     
     /// 显示一段提示信息
-    @available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
     public static func showTips(message: String?,
                                 configuration:((MBProgressHUD?)->())? = nil,
                                 type: HUD.HUDType?,
@@ -90,7 +97,6 @@ extension HUD {
     }
     
     /// 隐藏hud
-    @available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
     public static func hide(hud: MBProgressHUD?) {
         DispatchQueue.main.async {
             hud?.hide(animated: true)

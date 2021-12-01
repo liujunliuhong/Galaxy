@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import SnapKit
 
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 public final class DatePickerView: UIView {
     deinit {
         removeNotification()
@@ -105,6 +106,7 @@ public final class DatePickerView: UIView {
     }
 }
 
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 extension DatePickerView {
     private func setupUI() {
         backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1) // 白色
@@ -150,6 +152,7 @@ extension DatePickerView {
     }
 }
 
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 extension DatePickerView {
     
     /// 显示`DatePickerView`
@@ -177,6 +180,7 @@ extension DatePickerView {
     }
 }
 
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 extension DatePickerView {
     private func update() {
         if let toolBar = toolBar {
@@ -208,6 +212,7 @@ extension DatePickerView {
     }
 }
 
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 extension DatePickerView {
     @objc private func orientationDidChange() {
         invalidateIntrinsicContentSize()

@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 public final class PickerView: UIView {
     deinit {
         removeNotification()
@@ -134,7 +135,7 @@ public final class PickerView: UIView {
     }
 }
 
-
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 extension PickerView {
     private func setupUI() {
         backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1) // 白色
@@ -217,6 +218,7 @@ extension PickerView {
     }
 }
 
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 extension PickerView {
     /// 刷新所有列
     public func reloadAllComponents() {
@@ -346,6 +348,7 @@ extension PickerView {
     }
 }
 
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 extension PickerView {
     @objc private func orientationDidChange() {
         invalidateIntrinsicContentSize()
@@ -362,6 +365,7 @@ extension PickerView {
     }
 }
 
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 extension PickerView: UIPickerViewDataSource, UIPickerViewDelegate {
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         if let attributeTitlesForComponents = self.attributeTitlesForComponents {

@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 /// 内置的ToolBar
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 public class PickerToolBar: UIView {
     
     public private(set) lazy var cancelButton: UIButton = {
@@ -89,7 +90,7 @@ public class PickerToolBar: UIView {
     }
 }
 
-
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 extension PickerToolBar {
     private func setupUI() {
         addSubview(cancelButton)

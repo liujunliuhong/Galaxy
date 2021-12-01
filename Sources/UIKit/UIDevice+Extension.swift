@@ -71,7 +71,6 @@ extension GL where Base == UIDevice {
     }
     
     /// 获取`window`
-    @available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
     public static var window: UIWindow {
         if #available(iOS 13.0, *) {
             if let w = UIApplication.shared.connectedScenes.filter({$0.activationState == .foregroundActive}).map({$0 as? UIWindowScene}).compactMap({$0}).first?.windows.filter({$0.isKeyWindow}).first {
@@ -110,7 +109,6 @@ extension GL where Base == UIDevice {
     }
     
     /// 获取状态栏高度
-    @available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
     public static var deviceStatusBarHeight: CGFloat {
         var statusBarHeight: CGFloat = UIApplication.shared.statusBarFrame.height
         if #available(iOS 13.0, *) {
@@ -126,7 +124,6 @@ extension GL where Base == UIDevice {
     }
     
     /// 是否隐藏了状态栏
-    @available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
     public static var deviceIsStatusBarHidden: Bool {
         var isStatusBarHidden: Bool = UIApplication.shared.isStatusBarHidden
         if #available(iOS 13.0, *) {
@@ -142,7 +139,6 @@ extension GL where Base == UIDevice {
     }
     
     /// 获取状态栏样式
-    @available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
     public static var deviceStatusBarStyle: UIStatusBarStyle {
         var statusBarStyle: UIStatusBarStyle = UIApplication.shared.statusBarStyle
         if #available(iOS 13.0, *) {
@@ -167,6 +163,7 @@ extension GL where Base == UIDevice {
     }
 }
 
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 extension UIDevice {
     fileprivate static var _sys: utsname {
         var sys: utsname = utsname()

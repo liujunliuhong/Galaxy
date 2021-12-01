@@ -15,6 +15,7 @@ fileprivate struct _SelectionLocation {
     let thirdSelectedIndex: Int
 }
 
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 public final class CityPickerView: UIView {
     deinit {
         removeNotification()
@@ -157,6 +158,7 @@ public final class CityPickerView: UIView {
     }
 }
 
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 extension CityPickerView {
     private func setupUI() {
         backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1) // 白色
@@ -467,6 +469,7 @@ extension CityPickerView {
     }
 }
 
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 extension CityPickerView {
     /// 显示城市选择器
     ///
@@ -521,6 +524,7 @@ extension CityPickerView {
     }
 }
 
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 extension CityPickerView {
     @objc private func sureAction() {
         getResult()
@@ -537,6 +541,7 @@ extension CityPickerView {
     }
 }
 
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 extension CityPickerView {
     /// 刷新所有列
     public func reloadAllComponents() {
@@ -593,6 +598,7 @@ extension CityPickerView {
     }
 }
 
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 extension CityPickerView: UIPickerViewDataSource, UIPickerViewDelegate {
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         if let titlesForComponents = self.titlesForComponents {

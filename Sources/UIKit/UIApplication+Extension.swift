@@ -12,13 +12,11 @@ import UIKit
 @available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 extension GL where Base: UIApplication {
     /// 打开手机设置页面
-    @available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
     public func openIphoneSettings() {
         _open(urlString: UIApplication.openSettingsURLString, completionHandler: nil)
     }
     
     /// 打开`App Store`
-    @available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
     public func openAppStore(with appID: String?) {
         guard let appID = appID else { return }
         let urlString = "https://itunes.apple.com/app/id\(appID)"
@@ -26,7 +24,6 @@ extension GL where Base: UIApplication {
     }
     
     /// 打开`App Store`的评论页面
-    @available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
     public func openAppStoreReview(appID: String?) {
         guard let appID = appID else { return }
         let urlString = "https://itunes.apple.com/cn/app/id\(appID)?action=write-review"
@@ -34,7 +31,6 @@ extension GL where Base: UIApplication {
     }
     
     /// 打电话
-    @available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
     public func makeCall(tel: String?) {
         guard let tel = tel else { return }
         let urlString = "tel://\(tel)"
@@ -47,7 +43,6 @@ extension GL where Base: UIApplication {
     ///   - schemeType: schemeType
     ///
     /// 先尝试用浏览器打开给定的链接，如果打开失败，会用给定的`schemeType`对链接进行改造，再尝试打开
-    @available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
     public func openSafari(urlString: String?, schemeType: SchemeType) {
         var urlString = urlString
         _open(urlString: urlString) { (isSuccess) in
@@ -61,7 +56,6 @@ extension GL where Base: UIApplication {
     /// 获取最顶层的控制器
     /// - Parameter base: base
     /// - Returns: 最顶层的控制器
-    @available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
     public func topViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
         if let nav = base as? UINavigationController {
             return topViewController(base: nav.visibleViewController)

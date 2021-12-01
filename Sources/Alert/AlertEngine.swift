@@ -13,7 +13,7 @@ import SnapKit
 fileprivate struct Keys {
     static var associatedKey = "com.galaxy.alertengine.key"
 }
-
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 public class AlertEngine {
     public class Options {
         public var fromPosition: AlertEngine.FromPosition = .rightCenter(left: .zero)
@@ -79,8 +79,8 @@ public class AlertEngine {
     }
 }
 
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 extension AlertEngine {
-    @available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
     public func show(parentView: UIView?, alertView: UIView?, options: AlertEngine.Options) {
         //
         guard let alertView = alertView else { return }
@@ -175,6 +175,7 @@ extension AlertEngine {
     }
 }
 
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 extension AlertEngine {
     @objc private func tapDismissAction() {
         dismiss()
@@ -194,6 +195,7 @@ extension AlertEngine {
     }
 }
 
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 extension AlertEngine {
     private func release() {
         if let currentAlertView = self.currentAlertView {
@@ -210,6 +212,7 @@ extension AlertEngine {
     }
 }
 
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 private func setFromPositionConstraints(view: UIView?, fromPosition: AlertEngine.FromPosition) {
     guard let view = view else { return }
     guard let superview = view.superview else { return }
@@ -284,6 +287,7 @@ private func setFromPositionConstraints(view: UIView?, fromPosition: AlertEngine
     }
 }
 
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 private func setToPositionConstraints(view: UIView?, toPosition: AlertEngine.ToPostion) {
     guard let view = view else { return }
     guard let _ = view.superview else { return }
@@ -336,6 +340,7 @@ private func setToPositionConstraints(view: UIView?, toPosition: AlertEngine.ToP
     }
 }
 
+@available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 private func setDismissPositionConstraints(view: UIView?, dismissPosition: AlertEngine.FromPosition) {
     guard let view = view else { return }
     guard let superview = view.superview else { return }

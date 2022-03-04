@@ -161,16 +161,16 @@ extension GL where Base: UIView {
     }
 }
 
-extension GL where Base == UIView {
+extension GL where Base: UIView {
     /// 对一个`View`的指定`Rect`截图
     public func snapshot(targetRect: CGRect?) -> UIImage? {
         // Setting the screen magnification can guarantee the quality of screenshots
         let scale: CGFloat = UIScreen.main.scale
         //
-        var targetRect = targetRect ?? base.frame
+        var targetRect = targetRect ?? base.bounds
         targetRect = CGRect(x: targetRect.origin.x * scale, y: targetRect.origin.y * scale, width: targetRect.width * scale, height: targetRect.height * scale)
         //
-        UIGraphicsBeginImageContextWithOptions(base.frame.size, true, scale)
+        UIGraphicsBeginImageContextWithOptions(base.bounds.size, true, scale)
         defer { UIGraphicsEndImageContext() }
         // This code cannot be written in front of `UIGraphicsBeginImageContextWithOptions`.
         // Otherwise `context` is nil.

@@ -89,6 +89,7 @@ public final class PickerView: UIView {
     
     //
     private var doneClosure: (([Int])->())?
+    private var dismissClosure: (()->())?
     //
     private var currentSelectIndexs: [Int] = []
     
@@ -312,7 +313,7 @@ extension PickerView {
     ///         print("selectIndexs: \(selectIndexs)")
     ///     }
     @available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
-    public func show(doneClosure: (([Int])->())?, currentSelectRowClosure: (([Int])->())? = nil) {
+    public func show(doneClosure: (([Int])->())?, currentSelectRowClosure: (([Int])->())? = nil, dismissClosure: (()->())? = nil) {
         guard let window = UIApplication.shared.keyWindow else { return }
         //
         if self.titlesForComponents == nil && self.attributeTitlesForComponents == nil {
@@ -337,6 +338,7 @@ extension PickerView {
         //
         self.doneClosure = doneClosure
         self.currentSelectRowClosure = currentSelectRowClosure
+        self.dismissClosure = dismissClosure
         //
         let options = AlertEngine.Options()
         options.fromPosition = .bottomCenter(top: .zero)
@@ -358,10 +360,12 @@ extension PickerView {
     @objc private func sureAction() {
         self.getResult()
         AlertEngine.default.dismiss()
+        self.dismissClosure?()
     }
     
     @objc private func cancelAction() {
         AlertEngine.default.dismiss()
+        self.dismissClosure?()
     }
 }
 

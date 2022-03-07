@@ -21,12 +21,30 @@ public final class PickerView: UIView {
     /// 数据源
     ///
     /// 数据源的设置要在其他属性设置的最前面
-    public var titlesForComponents: [[String]]?
+    public var titlesForComponents: [[String]]? {
+        didSet {
+            if titlesForComponents?.count ?? 0 != currentSelectIndexs.count {
+                currentSelectIndexs.removeAll()
+                for _ in 0..<(titlesForComponents?.count ?? 0) {
+                    currentSelectIndexs.append(0)
+                }
+            }
+        }
+    }
     
     /// 富文本数据源
     ///
     /// 优先级最高。数据源的设置要在其他属性设置的最前面
-    public var attributeTitlesForComponents: [[NSAttributedString]]?
+    public var attributeTitlesForComponents: [[NSAttributedString]]? {
+        didSet {
+            if attributeTitlesForComponents?.count ?? 0 != currentSelectIndexs.count {
+                currentSelectIndexs.removeAll()
+                for _ in 0..<(attributeTitlesForComponents?.count ?? 0) {
+                    currentSelectIndexs.append(0)
+                }
+            }
+        }
+    }
     
     /// 文本颜色
     ///
@@ -340,17 +358,6 @@ extension PickerView {
             return
         } else if let titlesForComponents = self.titlesForComponents, titlesForComponents.count <= 0 {
             return
-        }
-        if let attributeTitlesForComponents = self.attributeTitlesForComponents {
-            for _ in 0..<attributeTitlesForComponents.count {
-                currentSelectIndexs.append(0)
-                //selectRow(0, inComponent: component, animated: true)
-            }
-        } else if let titlesForComponents = self.titlesForComponents{
-            for _ in 0..<titlesForComponents.count {
-                currentSelectIndexs.append(0)
-                //selectRow(0, inComponent: component, animated: true)
-            }
         }
         //
         self.doneClosure = doneClosure

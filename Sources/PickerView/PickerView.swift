@@ -342,14 +342,14 @@ extension PickerView {
             return
         }
         if let attributeTitlesForComponents = self.attributeTitlesForComponents {
-            for component in 0..<attributeTitlesForComponents.count {
+            for _ in 0..<attributeTitlesForComponents.count {
                 currentSelectIndexs.append(0)
-                selectRow(0, inComponent: component, animated: true)
+                //selectRow(0, inComponent: component, animated: true)
             }
         } else if let titlesForComponents = self.titlesForComponents{
-            for component in 0..<titlesForComponents.count {
+            for _ in 0..<titlesForComponents.count {
                 currentSelectIndexs.append(0)
-                selectRow(0, inComponent: component, animated: true)
+                //selectRow(0, inComponent: component, animated: true)
             }
         }
         //

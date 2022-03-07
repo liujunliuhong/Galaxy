@@ -13,9 +13,9 @@ import UIKit
 public final class PickerView: UIView {
     deinit {
         removeNotification()
-        #if DEBUG
+#if DEBUG
         print("\(NSStringFromClass(self.classForCoder)) deinit")
-        #endif
+#endif
     }
     
     /// 数据源
@@ -89,7 +89,6 @@ public final class PickerView: UIView {
     
     //
     private var doneClosure: (([Int])->())?
-    private var dismissClosure: (()->())?
     //
     private var currentSelectIndexs: [Int] = []
     
@@ -338,13 +337,13 @@ extension PickerView {
         //
         self.doneClosure = doneClosure
         self.currentSelectRowClosure = currentSelectRowClosure
-        self.dismissClosure = dismissClosure
         //
         let options = AlertEngine.Options()
         options.fromPosition = .bottomCenter(top: .zero)
         options.toPosition = .bottomCenter(bottom: .zero)
         options.dismissPosition = .bottomCenter(top: .zero)
         options.translucentColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0).withAlphaComponent(0.4)
+        options.dismissClosure = dismissClosure
         //
         AlertEngine.default.show(parentView: window, alertView: self, options: options)
     }
@@ -360,12 +359,10 @@ extension PickerView {
     @objc private func sureAction() {
         self.getResult()
         AlertEngine.default.dismiss()
-        self.dismissClosure?()
     }
     
     @objc private func cancelAction() {
         AlertEngine.default.dismiss()
-        self.dismissClosure?()
     }
 }
 

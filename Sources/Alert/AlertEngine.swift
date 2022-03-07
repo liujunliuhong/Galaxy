@@ -27,6 +27,8 @@ public class AlertEngine {
         public var translucentColor: UIColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1).withAlphaComponent(0.6)
         public var animationOptions: UIView.AnimationOptions = [.curveEaseInOut]
         //
+        public var dismissClosure: (()->())?
+        //
         public init() {}
     }
     
@@ -160,6 +162,7 @@ extension AlertEngine {
         if let currentAlertView = self.currentAlertView,
            let options = objc_getAssociatedObject(currentAlertView, &Keys.associatedKey) as? AlertEngine.Options,
            options.dismissPosition != .none {
+            options.dismissClosure?()
             self.maskView?.isUserInteractionEnabled = false
             setDismissPositionConstraints(view: currentAlertView, dismissPosition: options.dismissPosition)
             UIView.animate(withDuration: options.duration, delay: 0, options: options.animationOptions) {
@@ -217,73 +220,73 @@ private func setFromPositionConstraints(view: UIView?, fromPosition: AlertEngine
     guard let view = view else { return }
     guard let superview = view.superview else { return }
     switch fromPosition {
-    case .topLeft(let bottom, let left):
-        view.snp.makeConstraints({ (make) in
-            make.left.equalToSuperview().offset(left)
-            make.bottom.equalTo(superview.snp.top).offset(-bottom)
-        })
-    case .topCenter(let bottom):
-        view.snp.makeConstraints({ (make) in
-            make.centerX.equalToSuperview()
-            make.bottom.equalTo(superview.snp.top).offset(-bottom)
-        })
-    case .topRight(let bottom, let right):
-        view.snp.makeConstraints({ (make) in
-            make.right.equalToSuperview().offset(-right)
-            make.bottom.equalTo(superview.snp.top).offset(-bottom)
-        })
-    case .leftTop(let right, let top):
-        view.snp.makeConstraints({ (make) in
-            make.top.equalToSuperview().offset(top)
-            make.right.equalTo(superview.snp.left).offset(-right)
-        })
-    case .leftCenter(let right):
-        view.snp.makeConstraints({ (make) in
-            make.centerY.equalToSuperview()
-            make.right.equalTo(superview.snp.left).offset(-right)
-        })
-    case .leftBottom(let right, let bottom):
-        view.snp.makeConstraints({ (make) in
-            make.bottom.equalToSuperview().offset(-bottom)
-            make.right.equalTo(superview.snp.left).offset(-right)
-        })
-    case .bottomLeft(let top, let left):
-        view.snp.makeConstraints({ (make) in
-            make.top.equalTo(superview.snp.bottom).offset(top)
-            make.left.equalToSuperview().offset(left)
-        })
-    case .bottomCenter(let top):
-        view.snp.makeConstraints({ (make) in
-            make.top.equalTo(superview.snp.bottom).offset(top)
-            make.centerX.equalToSuperview()
-        })
-    case .bottomRight(let top, let right):
-        view.snp.makeConstraints({ (make) in
-            make.top.equalTo(superview.snp.bottom).offset(top)
-            make.right.equalToSuperview().offset(-right)
-        })
-    case .rightTop(let left, let top):
-        view.snp.makeConstraints({ (make) in
-            make.top.equalTo(superview.snp.bottom).offset(top)
-            make.left.equalTo(superview.snp.right).offset(left)
-        })
-    case .rightCenter(let left):
-        view.snp.makeConstraints({ (make) in
-            make.centerY.equalToSuperview()
-            make.left.equalTo(superview.snp.right).offset(left)
-        })
-    case .rightBottom(let left, let bottom):
-        view.snp.makeConstraints({ (make) in
-            make.bottom.equalToSuperview().offset(-bottom)
-            make.left.equalTo(superview.snp.right).offset(left)
-        })
-    case .center:
-        view.snp.makeConstraints({ (make) in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-        })
-    case .none:
-        fatalError()
+        case .topLeft(let bottom, let left):
+            view.snp.makeConstraints({ (make) in
+                make.left.equalToSuperview().offset(left)
+                make.bottom.equalTo(superview.snp.top).offset(-bottom)
+            })
+        case .topCenter(let bottom):
+            view.snp.makeConstraints({ (make) in
+                make.centerX.equalToSuperview()
+                make.bottom.equalTo(superview.snp.top).offset(-bottom)
+            })
+        case .topRight(let bottom, let right):
+            view.snp.makeConstraints({ (make) in
+                make.right.equalToSuperview().offset(-right)
+                make.bottom.equalTo(superview.snp.top).offset(-bottom)
+            })
+        case .leftTop(let right, let top):
+            view.snp.makeConstraints({ (make) in
+                make.top.equalToSuperview().offset(top)
+                make.right.equalTo(superview.snp.left).offset(-right)
+            })
+        case .leftCenter(let right):
+            view.snp.makeConstraints({ (make) in
+                make.centerY.equalToSuperview()
+                make.right.equalTo(superview.snp.left).offset(-right)
+            })
+        case .leftBottom(let right, let bottom):
+            view.snp.makeConstraints({ (make) in
+                make.bottom.equalToSuperview().offset(-bottom)
+                make.right.equalTo(superview.snp.left).offset(-right)
+            })
+        case .bottomLeft(let top, let left):
+            view.snp.makeConstraints({ (make) in
+                make.top.equalTo(superview.snp.bottom).offset(top)
+                make.left.equalToSuperview().offset(left)
+            })
+        case .bottomCenter(let top):
+            view.snp.makeConstraints({ (make) in
+                make.top.equalTo(superview.snp.bottom).offset(top)
+                make.centerX.equalToSuperview()
+            })
+        case .bottomRight(let top, let right):
+            view.snp.makeConstraints({ (make) in
+                make.top.equalTo(superview.snp.bottom).offset(top)
+                make.right.equalToSuperview().offset(-right)
+            })
+        case .rightTop(let left, let top):
+            view.snp.makeConstraints({ (make) in
+                make.top.equalTo(superview.snp.bottom).offset(top)
+                make.left.equalTo(superview.snp.right).offset(left)
+            })
+        case .rightCenter(let left):
+            view.snp.makeConstraints({ (make) in
+                make.centerY.equalToSuperview()
+                make.left.equalTo(superview.snp.right).offset(left)
+            })
+        case .rightBottom(let left, let bottom):
+            view.snp.makeConstraints({ (make) in
+                make.bottom.equalToSuperview().offset(-bottom)
+                make.left.equalTo(superview.snp.right).offset(left)
+            })
+        case .center:
+            view.snp.makeConstraints({ (make) in
+                make.centerX.equalToSuperview()
+                make.centerY.equalToSuperview()
+            })
+        case .none:
+            fatalError()
     }
 }
 
@@ -292,51 +295,51 @@ private func setToPositionConstraints(view: UIView?, toPosition: AlertEngine.ToP
     guard let view = view else { return }
     guard let _ = view.superview else { return }
     switch toPosition {
-    case .topLeft(let top, let left):
-        view.snp.remakeConstraints { (make) in
-            make.top.equalToSuperview().offset(top)
-            make.left.equalToSuperview().offset(left)
-        }
-    case .topCenter(let top):
-        view.snp.remakeConstraints { (make) in
-            make.top.equalToSuperview().offset(top)
-            make.centerX.equalToSuperview()
-        }
-    case .topRight(let top, let right):
-        view.snp.remakeConstraints { (make) in
-            make.top.equalToSuperview().offset(top)
-            make.right.equalToSuperview().offset(-right)
-        }
-    case .leftCenter(let left):
-        view.snp.remakeConstraints { (make) in
-            make.centerY.equalToSuperview()
-            make.left.equalToSuperview().offset(left)
-        }
-    case .bottomLeft(let bottom, let left):
-        view.snp.remakeConstraints { (make) in
-            make.bottom.equalToSuperview().offset(-bottom)
-            make.left.equalToSuperview().offset(left)
-        }
-    case .bottomCenter(let bottom):
-        view.snp.remakeConstraints { (make) in
-            make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-bottom)
-        }
-    case .bottomRight(let bottom, let right):
-        view.snp.remakeConstraints { (make) in
-            make.right.equalToSuperview().offset(-right)
-            make.bottom.equalToSuperview().offset(-bottom)
-        }
-    case .rightCenter(let right):
-        view.snp.remakeConstraints { (make) in
-            make.centerY.equalToSuperview()
-            make.right.equalToSuperview().offset(-right)
-        }
-    case .center:
-        view.snp.remakeConstraints { (make) in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-        }
+        case .topLeft(let top, let left):
+            view.snp.remakeConstraints { (make) in
+                make.top.equalToSuperview().offset(top)
+                make.left.equalToSuperview().offset(left)
+            }
+        case .topCenter(let top):
+            view.snp.remakeConstraints { (make) in
+                make.top.equalToSuperview().offset(top)
+                make.centerX.equalToSuperview()
+            }
+        case .topRight(let top, let right):
+            view.snp.remakeConstraints { (make) in
+                make.top.equalToSuperview().offset(top)
+                make.right.equalToSuperview().offset(-right)
+            }
+        case .leftCenter(let left):
+            view.snp.remakeConstraints { (make) in
+                make.centerY.equalToSuperview()
+                make.left.equalToSuperview().offset(left)
+            }
+        case .bottomLeft(let bottom, let left):
+            view.snp.remakeConstraints { (make) in
+                make.bottom.equalToSuperview().offset(-bottom)
+                make.left.equalToSuperview().offset(left)
+            }
+        case .bottomCenter(let bottom):
+            view.snp.remakeConstraints { (make) in
+                make.centerX.equalToSuperview()
+                make.bottom.equalToSuperview().offset(-bottom)
+            }
+        case .bottomRight(let bottom, let right):
+            view.snp.remakeConstraints { (make) in
+                make.right.equalToSuperview().offset(-right)
+                make.bottom.equalToSuperview().offset(-bottom)
+            }
+        case .rightCenter(let right):
+            view.snp.remakeConstraints { (make) in
+                make.centerY.equalToSuperview()
+                make.right.equalToSuperview().offset(-right)
+            }
+        case .center:
+            view.snp.remakeConstraints { (make) in
+                make.centerX.equalToSuperview()
+                make.centerY.equalToSuperview()
+            }
     }
 }
 
@@ -345,73 +348,73 @@ private func setDismissPositionConstraints(view: UIView?, dismissPosition: Alert
     guard let view = view else { return }
     guard let superview = view.superview else { return }
     switch dismissPosition {
-    case .topLeft(let bottom, let left):
-        view.snp.remakeConstraints({ (make) in
-            make.left.equalToSuperview().offset(left)
-            make.bottom.equalTo(superview.snp.top).offset(-bottom)
-        })
-    case .topCenter(let bottom):
-        view.snp.remakeConstraints({ (make) in
-            make.centerX.equalToSuperview()
-            make.bottom.equalTo(superview.snp.top).offset(-bottom)
-        })
-    case .topRight(let bottom, let right):
-        view.snp.remakeConstraints({ (make) in
-            make.right.equalToSuperview().offset(-right)
-            make.bottom.equalTo(superview.snp.top).offset(-bottom)
-        })
-    case .leftTop(let right, let top):
-        view.snp.remakeConstraints({ (make) in
-            make.top.equalToSuperview().offset(top)
-            make.right.equalTo(superview.snp.left).offset(-right)
-        })
-    case .leftCenter(let right):
-        view.snp.remakeConstraints({ (make) in
-            make.centerY.equalToSuperview()
-            make.right.equalTo(superview.snp.left).offset(-right)
-        })
-    case .leftBottom(let right, let bottom):
-        view.snp.remakeConstraints({ (make) in
-            make.bottom.equalToSuperview().offset(-bottom)
-            make.right.equalTo(superview.snp.left).offset(-right)
-        })
-    case .bottomLeft(let top, let left):
-        view.snp.remakeConstraints({ (make) in
-            make.top.equalTo(superview.snp.bottom).offset(top)
-            make.left.equalToSuperview().offset(left)
-        })
-    case .bottomCenter(let top):
-        view.snp.remakeConstraints({ (make) in
-            make.top.equalTo(superview.snp.bottom).offset(top)
-            make.centerX.equalToSuperview()
-        })
-    case .bottomRight(let top, let right):
-        view.snp.remakeConstraints({ (make) in
-            make.top.equalTo(superview.snp.bottom).offset(top)
-            make.right.equalToSuperview().offset(-right)
-        })
-    case .rightTop(let left, let top):
-        view.snp.remakeConstraints({ (make) in
-            make.top.equalTo(superview.snp.bottom).offset(top)
-            make.left.equalTo(superview.snp.right).offset(left)
-        })
-    case .rightCenter(let left):
-        view.snp.remakeConstraints({ (make) in
-            make.centerY.equalToSuperview()
-            make.left.equalTo(superview.snp.right).offset(left)
-        })
-    case .rightBottom(let left, let bottom):
-        view.snp.remakeConstraints({ (make) in
-            make.bottom.equalToSuperview().offset(-bottom)
-            make.left.equalTo(superview.snp.right).offset(left)
-        })
-    case .center:
-        view.snp.remakeConstraints({ (make) in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-        })
-    case .none:
-        fatalError()
+        case .topLeft(let bottom, let left):
+            view.snp.remakeConstraints({ (make) in
+                make.left.equalToSuperview().offset(left)
+                make.bottom.equalTo(superview.snp.top).offset(-bottom)
+            })
+        case .topCenter(let bottom):
+            view.snp.remakeConstraints({ (make) in
+                make.centerX.equalToSuperview()
+                make.bottom.equalTo(superview.snp.top).offset(-bottom)
+            })
+        case .topRight(let bottom, let right):
+            view.snp.remakeConstraints({ (make) in
+                make.right.equalToSuperview().offset(-right)
+                make.bottom.equalTo(superview.snp.top).offset(-bottom)
+            })
+        case .leftTop(let right, let top):
+            view.snp.remakeConstraints({ (make) in
+                make.top.equalToSuperview().offset(top)
+                make.right.equalTo(superview.snp.left).offset(-right)
+            })
+        case .leftCenter(let right):
+            view.snp.remakeConstraints({ (make) in
+                make.centerY.equalToSuperview()
+                make.right.equalTo(superview.snp.left).offset(-right)
+            })
+        case .leftBottom(let right, let bottom):
+            view.snp.remakeConstraints({ (make) in
+                make.bottom.equalToSuperview().offset(-bottom)
+                make.right.equalTo(superview.snp.left).offset(-right)
+            })
+        case .bottomLeft(let top, let left):
+            view.snp.remakeConstraints({ (make) in
+                make.top.equalTo(superview.snp.bottom).offset(top)
+                make.left.equalToSuperview().offset(left)
+            })
+        case .bottomCenter(let top):
+            view.snp.remakeConstraints({ (make) in
+                make.top.equalTo(superview.snp.bottom).offset(top)
+                make.centerX.equalToSuperview()
+            })
+        case .bottomRight(let top, let right):
+            view.snp.remakeConstraints({ (make) in
+                make.top.equalTo(superview.snp.bottom).offset(top)
+                make.right.equalToSuperview().offset(-right)
+            })
+        case .rightTop(let left, let top):
+            view.snp.remakeConstraints({ (make) in
+                make.top.equalTo(superview.snp.bottom).offset(top)
+                make.left.equalTo(superview.snp.right).offset(left)
+            })
+        case .rightCenter(let left):
+            view.snp.remakeConstraints({ (make) in
+                make.centerY.equalToSuperview()
+                make.left.equalTo(superview.snp.right).offset(left)
+            })
+        case .rightBottom(let left, let bottom):
+            view.snp.remakeConstraints({ (make) in
+                make.bottom.equalToSuperview().offset(-bottom)
+                make.left.equalTo(superview.snp.right).offset(left)
+            })
+        case .center:
+            view.snp.remakeConstraints({ (make) in
+                make.centerX.equalToSuperview()
+                make.centerY.equalToSuperview()
+            })
+        case .none:
+            fatalError()
     }
 }
 

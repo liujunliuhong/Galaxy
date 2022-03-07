@@ -51,7 +51,13 @@ public final class PickerView: UIView {
     /// `toolBar`
     ///
     /// 可以传入自定义的`view`，当为`nil`时，将使用`defaultToolBar`
-    public var toolBar: UIView?
+    public var toolBar: UIView? {
+        didSet {
+            invalidateIntrinsicContentSize()
+            AlertEngine.default.refresh()
+            update()
+        }
+    }
     
     /// 框架默认的`toolBar`
     public private(set) lazy var defaultToolBar: PickerToolBar = {
@@ -193,6 +199,12 @@ extension PickerView {
     
     private func update() {
         if let toolBar = toolBar {
+            toolBar.removeFromSuperview()
+            defaultToolBar.removeFromSuperview()
+            pickerView.removeFromSuperview()
+            
+            addSubview(toolBar)
+            addSubview(pickerView)
             toolBar.snp.remakeConstraints { make in
                 make.left.top.equalToSuperview()
                 make.width.equalTo(GL.deviceWidth)
@@ -204,6 +216,12 @@ extension PickerView {
                 make.top.equalTo(toolBar.snp.bottom)
             }
         } else {
+            toolBar?.removeFromSuperview()
+            defaultToolBar.removeFromSuperview()
+            pickerView.removeFromSuperview()
+            
+            addSubview(defaultToolBar)
+            addSubview(pickerView)
             defaultToolBar.snp.remakeConstraints { make in
                 make.left.top.equalToSuperview()
                 make.width.equalTo(GL.deviceWidth)

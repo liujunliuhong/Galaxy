@@ -165,10 +165,10 @@ extension DatePickerView {
     ///
     ///     }
     @available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
-    public static func show(pickerView: DatePickerView, doneClosure: ((Date) -> ())?, dismissClosure: (()->())? = nil) {
+    public func show(doneClosure: ((Date) -> ())?, dismissClosure: (()->())? = nil) {
         guard let window = UIApplication.shared.keyWindow else { return }
         
-        pickerView.doneClosure = doneClosure
+        self.doneClosure = doneClosure
         
         let options = AlertEngine.Options()
         options.fromPosition = .bottomCenter(top: .zero)
@@ -177,7 +177,7 @@ extension DatePickerView {
         options.translucentColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0).withAlphaComponent(0.4)
         options.dismissClosure = dismissClosure
         
-        AlertEngine.default.show(parentView: window, alertView: pickerView, options: options)
+        AlertEngine.default.show(parentView: window, alertView: self, options: options)
     }
 }
 

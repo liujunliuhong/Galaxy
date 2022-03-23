@@ -34,6 +34,19 @@ extension GL where Base == UIDevice {
         return machineName
     }
     
+    /// 获取设备机器类型，例如`iPhone_6s_Plus`.
+    public static var deviceType: GalaxyWrapper.DeviceType {
+        let machine = UIDevice._machine
+        var t: GalaxyWrapper.DeviceType = .simulator
+        for (_, type) in GalaxyWrapper.DeviceType.allCases.enumerated() {
+            if type.identifiers.contains(machine) {
+                t = type
+                break
+            }
+        }
+        return t
+    }
+    
     /// 获取设备基本信息
     public static var deviceInformation: String {
         return "\n"

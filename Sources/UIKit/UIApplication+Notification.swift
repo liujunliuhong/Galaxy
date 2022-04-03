@@ -22,12 +22,33 @@ extension GL where Base: UIApplication {
                     completion?(granted)
                 }
             }
+            UIApplication.shared.registerForRemoteNotifications()
         } else {
             let types: UIUserNotificationType = [.alert, .sound, .badge]
             let settings = UIUserNotificationSettings(types: types, categories: nil)
             UIApplication.shared.registerUserNotificationSettings(settings)
             DispatchQueue.main.async {
                 completion?(UIApplication.shared.currentUserNotificationSettings != nil)
+            }
+        }
+    }
+    
+    /// 检查推送
+    public func checkNotification(completion: ((_ granted: Bool) -> Void)? = nil) {
+        if #available(iOS 10.0, *) {
+            let center = UNUserNotificationCenter.current()
+            center.getNotificationSettings { settings in
+                DispatchQueue.main.async {
+                    completion?(settings.notificationCenterSetting == .enabled)
+                }
+            }
+        } else {
+            DispatchQueue.main.async {
+                if let settings = UIApplication.shared.currentUserNotificationSettings {
+                    completion?(settings.types != [])
+                } else {
+                    completion?(false)
+                }
             }
         }
     }

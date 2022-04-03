@@ -13,13 +13,13 @@ import UserNotifications
 @available(iOSApplicationExtension, unavailable, message: "This method is NS_EXTENSION_UNAVAILABLE.")
 extension GL where Base: UIApplication {
     /// 注册推送（支持本地推送和远程推送）
-    public func registerNotification(completion: (() -> Void)? = nil) {
+    public func registerNotification(completion: ((_ granted: Bool) -> Void)? = nil) {
         if #available(iOS 10.0, *) {
             let center = UNUserNotificationCenter.current()
             let options: UNAuthorizationOptions = [.badge, .alert, .sound]
             center.requestAuthorization(options: options) { (granted, error) in
                 DispatchQueue.main.async {
-                    completion?()
+                    completion?(granted)
                 }
             }
         } else {
@@ -27,7 +27,7 @@ extension GL where Base: UIApplication {
             let settings = UIUserNotificationSettings(types: types, categories: nil)
             UIApplication.shared.registerUserNotificationSettings(settings)
             DispatchQueue.main.async {
-                completion?()
+                completion?(UIApplication.shared.currentUserNotificationSettings != nil)
             }
         }
     }

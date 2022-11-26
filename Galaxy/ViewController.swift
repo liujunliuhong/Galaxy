@@ -14,7 +14,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .purple
         
         
         
@@ -219,3 +219,18 @@ class ViewController: UIViewController {
 //    }
 //}
 //
+
+extension ViewController {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        print("最小: \(FtHeight.minimumHeight)")
+        
+        let ftHeight = FtHeight(ft: 100, in: 20)
+        
+        
+        
+        
+        print("最大: \(ftHeight)")
+        print(ftHeight.cmHeight)
+//        print("默认: \(FtHeight.defaultHeight)")
+    }
+}

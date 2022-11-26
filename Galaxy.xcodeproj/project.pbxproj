@@ -11,6 +11,12 @@
 		7FFE0C3417884794D68F8377 /* Pods_Galaxy_GalaxyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34768F1A238BBAF6ABEFD959 /* Pods_Galaxy_GalaxyUITests.framework */; };
 		8500C5FE268C1D030035D313 /* HUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8500C5FD268C1D030035D313 /* HUD.bundle */; };
 		8500C603268C1D2F0035D313 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8500C602268C1D2F0035D313 /* HUD.swift */; };
+		85231BA82931F7140060E865 /* HeightPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85231BA72931F7140060E865 /* HeightPickerView.swift */; };
+		85231BAA2931FA9E0060E865 /* HeightUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85231BA92931FA9D0060E865 /* HeightUnit.swift */; };
+		85231BAC2931FD9C0060E865 /* HeightConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85231BAB2931FD9C0060E865 /* HeightConfiguration.swift */; };
+		85231BAE2931FE740060E865 /* Height.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85231BAD2931FE740060E865 /* Height.swift */; };
+		85231BB02931FE890060E865 /* Height+Ft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85231BAF2931FE890060E865 /* Height+Ft.swift */; };
+		85231BB22931FF7D0060E865 /* Height+Cm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85231BB12931FF7D0060E865 /* Height+Cm.swift */; };
 		855C955F267D916E00A5F4DB /* Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C955E267D916E00A5F4DB /* Type.swift */; };
 		855C9564267D93DC00A5F4DB /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 855C9563267D93DC00A5F4DB /* Test.m */; };
 		8560CCB22697DBCF007F3C1A /* Int64+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8560CCB12697DBCF007F3C1A /* Int64+Extension.swift */; };
@@ -109,6 +115,12 @@
 		45CFC8955DD68FA9E5EC7D74 /* Pods-Galaxy-GalaxyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Galaxy-GalaxyUITests.debug.xcconfig"; path = "Target Support Files/Pods-Galaxy-GalaxyUITests/Pods-Galaxy-GalaxyUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8500C5FD268C1D030035D313 /* HUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = HUD.bundle; sourceTree = "<group>"; };
 		8500C602268C1D2F0035D313 /* HUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
+		85231BA72931F7140060E865 /* HeightPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeightPickerView.swift; sourceTree = "<group>"; };
+		85231BA92931FA9D0060E865 /* HeightUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeightUnit.swift; sourceTree = "<group>"; };
+		85231BAB2931FD9C0060E865 /* HeightConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeightConfiguration.swift; sourceTree = "<group>"; };
+		85231BAD2931FE740060E865 /* Height.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Height.swift; sourceTree = "<group>"; };
+		85231BAF2931FE890060E865 /* Height+Ft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Height+Ft.swift"; sourceTree = "<group>"; };
+		85231BB12931FF7D0060E865 /* Height+Cm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Height+Cm.swift"; sourceTree = "<group>"; };
 		855C955E267D916E00A5F4DB /* Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Type.swift; sourceTree = "<group>"; };
 		855C9562267D93DC00A5F4DB /* Test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
 		855C9563267D93DC00A5F4DB /* Test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
@@ -248,6 +260,19 @@
 			path = HUD;
 			sourceTree = "<group>";
 		};
+		85231BA62931F6CE0060E865 /* Height Picker */ = {
+			isa = PBXGroup;
+			children = (
+				85231BA72931F7140060E865 /* HeightPickerView.swift */,
+				85231BA92931FA9D0060E865 /* HeightUnit.swift */,
+				85231BAD2931FE740060E865 /* Height.swift */,
+				85231BB12931FF7D0060E865 /* Height+Cm.swift */,
+				85231BAF2931FE890060E865 /* Height+Ft.swift */,
+				85231BAB2931FD9C0060E865 /* HeightConfiguration.swift */,
+			);
+			path = "Height Picker";
+			sourceTree = "<group>";
+		};
 		8560CCBA2697F68A007F3C1A /* QuartzCore */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,6 +310,7 @@
 			children = (
 				85E63F7626611D3A0045ED87 /* AppDelegate.swift */,
 				85E63F7A26611D3A0045ED87 /* ViewController.swift */,
+				85231BA62931F6CE0060E865 /* Height Picker */,
 				855C9562267D93DC00A5F4DB /* Test.h */,
 				855C9563267D93DC00A5F4DB /* Test.m */,
 				85E6402B26611FC30045ED87 /* Bridging-Header.h */,
@@ -744,6 +770,7 @@
 				85E63FEF26611EA30045ED87 /* GLWeakProxy.m in Sources */,
 				85E63FFF26611EA30045ED87 /* SingleLocationAuthorization.swift in Sources */,
 				85E6400A26611EA30045ED87 /* FileManager+Extension.swift in Sources */,
+				85231BB02931FE890060E865 /* Height+Ft.swift in Sources */,
 				85E63FF126611EA30045ED87 /* UIApplication+Extension.swift in Sources */,
 				85E6400226611EA30045ED87 /* CityModel.swift in Sources */,
 				85E63FF426611EA30045ED87 /* UIButton+Extension.swift in Sources */,
@@ -761,6 +788,7 @@
 				8582EF1A266B715F00CB15F1 /* SignedInteger+Extension.swift in Sources */,
 				85E63FF226611EA30045ED87 /* UIDevice+Extension.swift in Sources */,
 				85E6401126611EA30045ED87 /* Dictionary+Extension.swift in Sources */,
+				85231BAC2931FD9C0060E865 /* HeightConfiguration.swift in Sources */,
 				85E63FF526611EA30045ED87 /* UIView+Extension.swift in Sources */,
 				85E63F7726611D3A0045ED87 /* AppDelegate.swift in Sources */,
 				85E6400926611EA30045ED87 /* Bundle+Extension.swift in Sources */,
@@ -775,8 +803,10 @@
 				85C53C0A267CA8E5009B369A /* UInt32+Extension.swift in Sources */,
 				8582EF16266B70D800CB15F1 /* BinaryInteger+Extension.swift in Sources */,
 				85E6400E26611EA30045ED87 /* NSMutableAttributedString+Extension.swift in Sources */,
+				85231BAA2931FA9E0060E865 /* HeightUnit.swift in Sources */,
 				85E6400826611EA30045ED87 /* Collection+Extension.swift in Sources */,
 				85E6400D26611EA30045ED87 /* String+Extension.swift in Sources */,
+				85231BAE2931FE740060E865 /* Height.swift in Sources */,
 				85E63FFC26611EA30045ED87 /* WKWebView+Extension.swift in Sources */,
 				85E6401726611EA30045ED87 /* NavigationBarController.swift in Sources */,
 				8560CCBC2697F6A0007F3C1A /* CALayer+Extension.swift in Sources */,
@@ -789,8 +819,10 @@
 				85E6400C26611EA30045ED87 /* URL+Extension.swift in Sources */,
 				85E63FF326611EA30045ED87 /* UIColor+Extension.swift in Sources */,
 				85C53C0F267CA8F4009B369A /* UInt64+Extension.swift in Sources */,
+				85231BB22931FF7D0060E865 /* Height+Cm.swift in Sources */,
 				85E6402026611EA30045ED87 /* WordsSort.swift in Sources */,
 				85E6401D26611EA30045ED87 /* Alamofire.NetworkReachabilityManager+Extension.swift in Sources */,
+				85231BA82931F7140060E865 /* HeightPickerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

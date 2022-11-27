@@ -7,7 +7,8 @@
 
 import Foundation
 
-public enum HeightUnit {
-    case cm  // 厘米
-    case ft  // 英尺
+public enum HeightUnit: String, Equatable {
+    case cm = "cm"
+    case ft = "ft"
+    case `in` = "in"
 }

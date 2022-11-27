@@ -8,7 +8,10 @@
 import UIKit
 import CryptoSwift
 import BigInt
-
+import SnapKit
+import RxSwift
+import RxCocoa
+import NSObject_Rx
 
 class ViewController: UIViewController {
 
@@ -16,7 +19,21 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .purple
         
+        let heightPickerView = HeightPickerView(defaultWidth: nil, defaultHeight: nil)
+        heightPickerView.backgroundColor = .cyan
+        view.addSubview(heightPickerView)
         
+        heightPickerView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+        
+        heightPickerView.result
+            .subscribe(onNext: { result in
+                print("=======================")
+                print(result?.cmHeight)
+                print(result?.ftHeight)
+                print("=======================")
+            }).disposed(by: rx.disposeBag)
         
 //        test()
 //        let result1 = BIP39.generateMnemonics(type: .m12, language: .english)
@@ -224,13 +241,14 @@ extension ViewController {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 //        print("最小: \(FtHeight.minimumHeight)")
         
-        let ftHeight = FtHeight(ft: 100, in: 20)
+//        let ftHeight = FtHeight(ftDescription: "10.95")
         
         
         
         
-        print("最大: \(ftHeight)")
-        print(ftHeight.cmHeight)
+        
+//        print(ftHeight)
+//        print(ftHeight?.cmHeight)
 //        print("默认: \(FtHeight.defaultHeight)")
     }
 }

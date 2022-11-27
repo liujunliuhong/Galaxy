@@ -11,17 +11,15 @@ import Foundation
 public final class CmHeight: CustomStringConvertible {
     public let cm: UInt64
     
+    public var ftHeight: FtHeight {
+        return FtHeight(cmHeight: self)
+    }
+    
     public init(cm: UInt64) {
         self.cm = cm
     }
     
     public var description: String {
-        return cm.description + "cm"
+        return "Height: " + cm.description + "\(HeightUnit.cm.rawValue)"
     }
-}
-
-extension CmHeight {
-    public static let maximumHeight = CmHeight(cm: 270)
-    public static let minimumHeight = CmHeight(cm: 120)
-    public static let defaultHeight = CmHeight(cm: 165)
 }

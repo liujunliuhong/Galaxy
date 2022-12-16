@@ -13,13 +13,28 @@ import RxSwift
 import RxCocoa
 import NSObject_Rx
 
+
+extension ViewController: HeightPickerViewDelegate {
+    func pickerView(_ pickerView: HeightPickerView, didSelect height: Height) {
+        print("=======================")
+        print(height.cm)
+        print(height.ft)
+        print(height.in)
+        print("=======================")
+    }
+}
+
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .purple
         
-        let heightPickerView = HeightPickerView(defaultWidth: nil, defaultHeight: nil)
+        let heightPickerView = HeightPickerView(minimumHeight: Height(cm: 40), maximumHeight: Height(cm: 270))
+//        heightPickerView.setDefault(cm: 171)
+        heightPickerView.setDefault(cm: 500)
+        heightPickerView.delegate = self
+        heightPickerView.showsFtComponents = true
         heightPickerView.backgroundColor = .cyan
         view.addSubview(heightPickerView)
         
@@ -27,13 +42,7 @@ class ViewController: UIViewController {
             make.center.equalToSuperview()
         }
         
-        heightPickerView.result
-            .subscribe(onNext: { result in
-                print("=======================")
-                print(result?.cmHeight)
-                print(result?.ftHeight)
-                print("=======================")
-            }).disposed(by: rx.disposeBag)
+        
         
 //        test()
 //        let result1 = BIP39.generateMnemonics(type: .m12, language: .english)

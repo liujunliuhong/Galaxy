@@ -12,11 +12,9 @@
 		8500C5FE268C1D030035D313 /* HUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8500C5FD268C1D030035D313 /* HUD.bundle */; };
 		8500C603268C1D2F0035D313 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8500C602268C1D2F0035D313 /* HUD.swift */; };
 		850B7AD129334DA6008910E6 /* HeightPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850B7AD029334DA6008910E6 /* HeightPickerViewModel.swift */; };
-		850B7AD329336241008910E6 /* HeightResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850B7AD229336241008910E6 /* HeightResult.swift */; };
 		85231BA82931F7140060E865 /* HeightPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85231BA72931F7140060E865 /* HeightPickerView.swift */; };
 		85231BAA2931FA9E0060E865 /* HeightUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85231BA92931FA9D0060E865 /* HeightUnit.swift */; };
-		85231BB02931FE890060E865 /* Height+Ft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85231BAF2931FE890060E865 /* Height+Ft.swift */; };
-		85231BB22931FF7D0060E865 /* Height+Cm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85231BB12931FF7D0060E865 /* Height+Cm.swift */; };
+		854341CD293B2B640063E8EF /* Height.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854341CC293B2B640063E8EF /* Height.swift */; };
 		855C955F267D916E00A5F4DB /* Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C955E267D916E00A5F4DB /* Type.swift */; };
 		855C9564267D93DC00A5F4DB /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 855C9563267D93DC00A5F4DB /* Test.m */; };
 		8560CCB22697DBCF007F3C1A /* Int64+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8560CCB12697DBCF007F3C1A /* Int64+Extension.swift */; };
@@ -27,6 +25,7 @@
 		8582EF16266B70D800CB15F1 /* BinaryInteger+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8582EF15266B70D800CB15F1 /* BinaryInteger+Extension.swift */; };
 		8582EF18266B714E00CB15F1 /* UnsignedInteger+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8582EF17266B714E00CB15F1 /* UnsignedInteger+Extension.swift */; };
 		8582EF1A266B715F00CB15F1 /* SignedInteger+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8582EF19266B715F00CB15F1 /* SignedInteger+Extension.swift */; };
+		85A9410F294C5A4300A2FB3B /* HeightComponentsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A9410E294C5A4300A2FB3B /* HeightComponentsObject.swift */; };
 		85C53C00267CA8D0009B369A /* UInt8+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C53BFF267CA8D0009B369A /* UInt8+Extension.swift */; };
 		85C53C05267CA8DB009B369A /* UInt16+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C53C04267CA8DB009B369A /* UInt16+Extension.swift */; };
 		85C53C0A267CA8E5009B369A /* UInt32+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C53C09267CA8E5009B369A /* UInt32+Extension.swift */; };
@@ -116,11 +115,9 @@
 		8500C5FD268C1D030035D313 /* HUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = HUD.bundle; sourceTree = "<group>"; };
 		8500C602268C1D2F0035D313 /* HUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
 		850B7AD029334DA6008910E6 /* HeightPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeightPickerViewModel.swift; sourceTree = "<group>"; };
-		850B7AD229336241008910E6 /* HeightResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeightResult.swift; sourceTree = "<group>"; };
 		85231BA72931F7140060E865 /* HeightPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeightPickerView.swift; sourceTree = "<group>"; };
 		85231BA92931FA9D0060E865 /* HeightUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeightUnit.swift; sourceTree = "<group>"; };
-		85231BAF2931FE890060E865 /* Height+Ft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Height+Ft.swift"; sourceTree = "<group>"; };
-		85231BB12931FF7D0060E865 /* Height+Cm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Height+Cm.swift"; sourceTree = "<group>"; };
+		854341CC293B2B640063E8EF /* Height.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Height.swift; sourceTree = "<group>"; };
 		855C955E267D916E00A5F4DB /* Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Type.swift; sourceTree = "<group>"; };
 		855C9562267D93DC00A5F4DB /* Test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
 		855C9563267D93DC00A5F4DB /* Test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
@@ -132,6 +129,7 @@
 		8582EF15266B70D800CB15F1 /* BinaryInteger+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BinaryInteger+Extension.swift"; sourceTree = "<group>"; };
 		8582EF17266B714E00CB15F1 /* UnsignedInteger+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UnsignedInteger+Extension.swift"; sourceTree = "<group>"; };
 		8582EF19266B715F00CB15F1 /* SignedInteger+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SignedInteger+Extension.swift"; sourceTree = "<group>"; };
+		85A9410E294C5A4300A2FB3B /* HeightComponentsObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeightComponentsObject.swift; sourceTree = "<group>"; };
 		85C53BFF267CA8D0009B369A /* UInt8+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UInt8+Extension.swift"; sourceTree = "<group>"; };
 		85C53C04267CA8DB009B369A /* UInt16+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UInt16+Extension.swift"; sourceTree = "<group>"; };
 		85C53C09267CA8E5009B369A /* UInt32+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UInt32+Extension.swift"; sourceTree = "<group>"; };
@@ -265,10 +263,9 @@
 			children = (
 				85231BA72931F7140060E865 /* HeightPickerView.swift */,
 				850B7AD029334DA6008910E6 /* HeightPickerViewModel.swift */,
+				85A9410E294C5A4300A2FB3B /* HeightComponentsObject.swift */,
 				85231BA92931FA9D0060E865 /* HeightUnit.swift */,
-				850B7AD229336241008910E6 /* HeightResult.swift */,
-				85231BB12931FF7D0060E865 /* Height+Cm.swift */,
-				85231BAF2931FE890060E865 /* Height+Ft.swift */,
+				854341CC293B2B640063E8EF /* Height.swift */,
 			);
 			path = "Height Picker";
 			sourceTree = "<group>";
@@ -758,6 +755,7 @@
 				85E6401A26611EA30045ED87 /* UIViewController+NavigationBar.swift in Sources */,
 				85E6400726611EA30045ED87 /* Date+Extension.swift in Sources */,
 				85E63FF826611EA30045ED87 /* UINavigationController+Extension.swift in Sources */,
+				85A9410F294C5A4300A2FB3B /* HeightComponentsObject.swift in Sources */,
 				85D6BAF5267CF416009529D4 /* BigInt+Extension.swift in Sources */,
 				85E63FF626611EA30045ED87 /* UIApplication+Notification.swift in Sources */,
 				85E6402126611EA30045ED87 /* String+WordsSort.swift in Sources */,
@@ -770,8 +768,6 @@
 				85E63FEF26611EA30045ED87 /* GLWeakProxy.m in Sources */,
 				85E63FFF26611EA30045ED87 /* SingleLocationAuthorization.swift in Sources */,
 				85E6400A26611EA30045ED87 /* FileManager+Extension.swift in Sources */,
-				850B7AD329336241008910E6 /* HeightResult.swift in Sources */,
-				85231BB02931FE890060E865 /* Height+Ft.swift in Sources */,
 				85E63FF126611EA30045ED87 /* UIApplication+Extension.swift in Sources */,
 				85E6400226611EA30045ED87 /* CityModel.swift in Sources */,
 				85E63FF426611EA30045ED87 /* UIButton+Extension.swift in Sources */,
@@ -790,6 +786,7 @@
 				85E63FF226611EA30045ED87 /* UIDevice+Extension.swift in Sources */,
 				85E6401126611EA30045ED87 /* Dictionary+Extension.swift in Sources */,
 				85E63FF526611EA30045ED87 /* UIView+Extension.swift in Sources */,
+				854341CD293B2B640063E8EF /* Height.swift in Sources */,
 				85E63F7726611D3A0045ED87 /* AppDelegate.swift in Sources */,
 				85E6400926611EA30045ED87 /* Bundle+Extension.swift in Sources */,
 				8500C603268C1D2F0035D313 /* HUD.swift in Sources */,
@@ -819,7 +816,6 @@
 				85E6400C26611EA30045ED87 /* URL+Extension.swift in Sources */,
 				85E63FF326611EA30045ED87 /* UIColor+Extension.swift in Sources */,
 				85C53C0F267CA8F4009B369A /* UInt64+Extension.swift in Sources */,
-				85231BB22931FF7D0060E865 /* Height+Cm.swift in Sources */,
 				85E6402026611EA30045ED87 /* WordsSort.swift in Sources */,
 				85E6401D26611EA30045ED87 /* Alamofire.NetworkReachabilityManager+Extension.swift in Sources */,
 				85231BA82931F7140060E865 /* HeightPickerView.swift in Sources */,

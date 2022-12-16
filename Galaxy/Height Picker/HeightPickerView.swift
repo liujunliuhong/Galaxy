@@ -6,17 +6,13 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
-import NSObject_Rx
 import SnapKit
 
-public final class HeightPickerView: UIView {
-    
-    private lazy var viewModel: HeightPickerViewModel = {
-        let viewModel = HeightPickerViewModel()
-        return viewModel
-    }()
+public protocol HeightPickerViewDelegate: NSObjectProtocol {
+    func pickerView(_ pickerView: HeightPickerView, didSelect height: Height)
+}
+
+public final class HeightPickerView: UIView, UITableViewDelegate {
     
     private lazy var pickerView: UIPickerView = {
         let pickerView = UIPickerView()
@@ -27,24 +23,39 @@ public final class HeightPickerView: UIView {
     
     public var font: UIFont = .boldSystemFont(ofSize: 17) {
         didSet {
-            viewModel.currentUint.accept(viewModel.currentUint.value)
+            updateAll()
         }
     }
     
     public var color: UIColor = .black {
         didSet {
-            viewModel.currentUint.accept(viewModel.currentUint.value)
+            updateAll()
+        }
+    }
+    
+    public var showsFtComponents: Bool = true {
+        didSet {
+            updateAll()
+        }
+    }
+    
+    public weak var delegate: HeightPickerViewDelegate? {
+        didSet {
+            getCurrentResult()
         }
     }
     
     private let defaultWidth: CGFloat?
     private let defaultHeight: CGFloat?
+    private let viewModel: HeightPickerViewModel
     
-    public let result = BehaviorRelay<HeightResult?>(value: nil)
-    
-    public init(defaultWidth: CGFloat?, defaultHeight: CGFloat?) {
+    public init(defaultWidth: CGFloat? = nil,
+                defaultHeight: CGFloat? = nil,
+                minimumHeight: Height,
+                maximumHeight: Height) {
         self.defaultWidth = defaultWidth
         self.defaultHeight = defaultHeight
+        self.viewModel = HeightPickerViewModel(minimumHeight: minimumHeight, maximumHeight: maximumHeight)
         super.init(frame: .zero)
         initUI()
         setupUI()
@@ -77,75 +88,66 @@ extension HeightPickerView {
     }
     
     private func bindViewModel() {
-        viewModel.currentUint
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] unit in
-                guard let self = self else { return }
-                
-                self.getCurrentResult()
-                
-                self.pickerView.reloadAllComponents()
-                
-                switch unit {
-                    case .cm:
-                        self.pickerView.selectRow(self.viewModel.cmComponentsObject.selectedIndex, inComponent: 0, animated: true)
-                        self.pickerView.selectRow(self.viewModel.unitComponentsObject.selectedIndex, inComponent: 1, animated: true)
-                    case .in:
-                        self.pickerView.selectRow(self.viewModel.ftComponentsObject.selectedIndex, inComponent: 0, animated: true)
-                        self.pickerView.selectRow(self.viewModel.inComponentsObject.selectedIndex, inComponent: 2, animated: true)
-                        self.pickerView.selectRow(self.viewModel.unitComponentsObject.selectedIndex, inComponent: 3, animated: true)
-                    default:
-                        break
-                }
-            }).disposed(by: rx.disposeBag)
-        
+        updateAll()
         getCurrentResult()
     }
 }
 
 extension HeightPickerView {
     public func setDefault(cm: UInt64) {
-        let cmHeight = CmHeight(cm: cm)
-        viewModel.updateCmSelected(cmHeight: cmHeight)
+        let height = Height(cm: cm)
+        viewModel.updateCmSelected(height: height)
         viewModel.updateUnitSelected(unit: .cm)
-        viewModel.currentUint.accept(.cm)
+        updateAll()
+        getCurrentResult()
     }
     
     public func setDefault(ft: UInt64, in: UInt64) {
-        let ftHeight = FtHeight(ft: ft, in: `in`)
-        viewModel.updateFtSelected(ftHeight: ftHeight)
+        let height = Height(ft: ft, in: `in`)
+        viewModel.updateFtSelected(height: height)
         viewModel.updateUnitSelected(unit: .ft)
-        viewModel.currentUint.accept(.ft)
+        updateAll()
+        getCurrentResult()
     }
 }
 
 extension HeightPickerView {
-    private func getCurrentResult() {
-        let unit = viewModel.currentUint.value
-        switch unit {
+    private func updateAll() {
+        guard let selectedUnit = viewModel.unitComponentsObject.selectedObeject else { return }
+        
+        pickerView.reloadAllComponents()
+        
+        switch selectedUnit {
             case .cm:
-                guard let cm = viewModel.cmComponentsObject.selectedObeject else {
-                    self.result.accept(nil)
-                    return
-                }
-                let cmHeight = CmHeight(cm: cm)
-                let ftHeight = FtHeight(cmHeight: cmHeight)
-                
-                let result = HeightResult(cmHeight: cmHeight, ftHeight: ftHeight)
-                self.result.accept(result)
+                pickerView.selectRow(viewModel.cmComponentsObject.selectedIndex, inComponent: 0, animated: true)
+                pickerView.selectRow(viewModel.unitComponentsObject.selectedIndex, inComponent: 1, animated: false)
             case .in:
-                guard let ft = viewModel.ftComponentsObject.selectedObeject else {
-                    self.result.accept(nil)
-                    return
+                if showsFtComponents {
+                    pickerView.selectRow(viewModel.ftComponentsObject.selectedIndex, inComponent: 0, animated: true)
+                    pickerView.selectRow(viewModel.inComponentsObject.selectedIndex, inComponent: 2, animated: true)
+                    pickerView.selectRow(viewModel.unitComponentsObject.selectedIndex, inComponent: 3, animated: false)
+                } else {
+                    pickerView.selectRow(viewModel.ftComponentsObject.selectedIndex, inComponent: 0, animated: true)
+                    pickerView.selectRow(viewModel.inComponentsObject.selectedIndex, inComponent: 1, animated: true)
+                    pickerView.selectRow(viewModel.unitComponentsObject.selectedIndex, inComponent: 2, animated: false)
                 }
-                guard let `in` = viewModel.inComponentsObject.selectedObeject else {
-                    self.result.accept(nil)
-                    return
-                }
-                let ftHeight = FtHeight(ft: ft, in: `in`)
-                let cmHeight = ftHeight.cmHeight
-                let result = HeightResult(cmHeight: cmHeight, ftHeight: ftHeight)
-                self.result.accept(result)
+            default:
+                break
+        }
+    }
+    
+    private func getCurrentResult() {
+        guard let selectedUnit = viewModel.unitComponentsObject.selectedObeject else { return }
+        switch selectedUnit {
+            case .cm:
+                guard let cm = viewModel.cmComponentsObject.selectedObeject else { return }
+                let height = Height(cm: cm)
+                delegate?.pickerView(self, didSelect: height)
+            case .in:
+                guard let ft = viewModel.ftComponentsObject.selectedObeject else { return }
+                guard let `in` = viewModel.inComponentsObject.selectedObeject else { return }
+                let height = Height(ft: ft, in: `in`)
+                delegate?.pickerView(self, didSelect: height)
             default:
                 break
         }
@@ -154,20 +156,24 @@ extension HeightPickerView {
 
 extension HeightPickerView: UIPickerViewDataSource {
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        let unit = viewModel.currentUint.value
-        switch unit {
+        guard let selectedUnit = viewModel.unitComponentsObject.selectedObeject else { return 0 }
+        switch selectedUnit {
             case .cm:
                 return 2
             case .in:
-                return 4
+                if showsFtComponents {
+                    return 4
+                } else {
+                    return 3
+                }
             default:
                 return 0
         }
     }
     
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        let unit = viewModel.currentUint.value
-        switch unit {
+        guard let selectedUnit = viewModel.unitComponentsObject.selectedObeject else { return 0 }
+        switch selectedUnit {
             case .cm:
                 if component == 0 {
                     return viewModel.cmComponentsObject.datasource.count
@@ -175,14 +181,24 @@ extension HeightPickerView: UIPickerViewDataSource {
                     return viewModel.unitComponentsObject.datasource.count
                 }
             case .in:
-                if component == 0 {
-                    return viewModel.ftComponentsObject.datasource.count
-                } else if component == 1 {
-                    return 1
-                } else if component == 2 {
-                    return viewModel.inComponentsObject.datasource.count
-                } else if component == 3 {
-                    return viewModel.unitComponentsObject.datasource.count
+                if showsFtComponents {
+                    if component == 0 {
+                        return viewModel.ftComponentsObject.datasource.count
+                    } else if component == 1 {
+                        return 1 // 显示`ft`
+                    } else if component == 2 {
+                        return viewModel.inComponentsObject.datasource.count
+                    } else if component == 3 {
+                        return viewModel.unitComponentsObject.datasource.count
+                    }
+                } else {
+                    if component == 0 {
+                        return viewModel.ftComponentsObject.datasource.count
+                    } else if component == 1 {
+                        return viewModel.inComponentsObject.datasource.count
+                    } else if component == 2 {
+                        return viewModel.unitComponentsObject.datasource.count
+                    }
                 }
             default:
                 break
@@ -193,110 +209,137 @@ extension HeightPickerView: UIPickerViewDataSource {
 
 extension HeightPickerView: UIPickerViewDelegate {
     public func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        guard let selectedUnit = viewModel.unitComponentsObject.selectedObeject else { return nil }
+        
         var title: String?
         
-        let unit = viewModel.currentUint.value
-        switch unit {
+        switch selectedUnit {
             case .cm:
                 if component == 0 {
                     if row >= 0 && row <= viewModel.cmComponentsObject.datasource.count - 1 {
                         title = viewModel.cmComponentsObject.datasource[row].description
-                    } else {
-                        title = nil
                     }
                 } else if component == 1 {
                     if row >= 0 && row <= viewModel.unitComponentsObject.datasource.count - 1 {
                         title = viewModel.unitComponentsObject.datasource[row].rawValue
-                    } else {
-                        title = nil
                     }
                 }
             case .in:
-                if component == 0 {
-                    if row >= 0 && row <= viewModel.ftComponentsObject.datasource.count - 1 {
-                        title = viewModel.ftComponentsObject.datasource[row].description + "’"
-                    } else {
-                        title = nil
+                if showsFtComponents {
+                    if component == 0 {
+                        if row >= 0 && row <= viewModel.ftComponentsObject.datasource.count - 1 {
+                            title = viewModel.ftComponentsObject.datasource[row].description + "’"
+                        }
+                    } else if component == 1 {
+                        title = HeightUnit.ft.rawValue
+                    } else if component == 2 {
+                        if row >= 0 && row <= viewModel.inComponentsObject.datasource.count - 1 {
+                            title = viewModel.inComponentsObject.datasource[row].description + "“"
+                        }
+                    } else if component == 3 {
+                        if row >= 0 && row <= viewModel.unitComponentsObject.datasource.count - 1 {
+                            title = viewModel.unitComponentsObject.datasource[row].rawValue
+                        }
                     }
-                } else if component == 1 {
-                    title = HeightUnit.ft.rawValue
-                } else if component == 2 {
-                    if row >= 0 && row <= viewModel.inComponentsObject.datasource.count - 1 {
-                        title = viewModel.inComponentsObject.datasource[row].description + "“"
-                    } else {
-                        title = nil
-                    }
-                } else if component == 3 {
-                    if row >= 0 && row <= viewModel.unitComponentsObject.datasource.count - 1 {
-                        title = viewModel.unitComponentsObject.datasource[row].rawValue
-                    } else {
-                        title = nil
+                } else {
+                    if component == 0 {
+                        if row >= 0 && row <= viewModel.ftComponentsObject.datasource.count - 1 {
+                            title = viewModel.ftComponentsObject.datasource[row].description + "’"
+                        }
+                    } else if component == 1 {
+                        if row >= 0 && row <= viewModel.inComponentsObject.datasource.count - 1 {
+                            title = viewModel.inComponentsObject.datasource[row].description + "“"
+                        }
+                    } else if component == 2 {
+                        if row >= 0 && row <= viewModel.unitComponentsObject.datasource.count - 1 {
+                            title = viewModel.unitComponentsObject.datasource[row].rawValue
+                        }
                     }
                 }
             default:
                 break
         }
-        if title != nil {
-            let atr = NSMutableAttributedString(string: title!, attributes: [.foregroundColor: color, .font: font])
-            return atr
-        } else {
-            return nil
-        }
+        
+        if title == nil { return nil }
+        
+        let atr = NSMutableAttributedString(string: title!, attributes: [.foregroundColor: color, .font: font])
+        return atr
     }
     
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let unit = viewModel.currentUint.value
-        switch unit {
+        guard let selectedUnit = viewModel.unitComponentsObject.selectedObeject else { return }
+        
+        switch selectedUnit {
             case .cm:
                 if component == 0 {
-                    if row >= 0 && row <= viewModel.cmComponentsObject.datasource.count - 1 {
-                        viewModel.cmComponentsObject.selectedIndex = row
-                        getCurrentResult()
-                    }
+                    if row < 0 || row >= viewModel.cmComponentsObject.datasource.count { return }
+                    viewModel.cmComponentsObject.selectedIndex = row
+                    getCurrentResult()
                 } else if component == 1 {
-                    if row >= 0 && row <= viewModel.unitComponentsObject.datasource.count - 1 {
-                        let selectedUnit = viewModel.unitComponentsObject.datasource[row]
-                        
-                        if selectedUnit == unit {
-                            return
-                        }
-                        
-                        let cm = viewModel.cmComponentsObject.datasource[viewModel.cmComponentsObject.selectedIndex]
-                        let cmHeight = CmHeight(cm: cm)
-                        viewModel.updateFtSelected(cmHeight: cmHeight)
-                        
-                        viewModel.updateUnitSelected(unit: selectedUnit)
-                        
-                        viewModel.currentUint.accept(selectedUnit)
-                    }
+                    if row < 0 || row >= viewModel.unitComponentsObject.datasource.count { return }
+                    
+                    let willSelectedUnit = viewModel.unitComponentsObject.datasource[row]
+                    
+                    if selectedUnit == willSelectedUnit { return }
+                    
+                    guard let cm = viewModel.cmComponentsObject.selectedObeject else { return }
+                    
+                    let height = Height(cm: cm)
+                    viewModel.updateFtSelected(height: height)
+                    
+                    viewModel.updateUnitSelected(unit: willSelectedUnit)
+                    
+                    updateAll()
+                    getCurrentResult()
                 }
             case .in:
-                if component == 0 {
-                    if row >= 0 && row <= viewModel.ftComponentsObject.datasource.count - 1 {
-                        viewModel.ftComponentsObject.selectedIndex = row
-                        getCurrentResult()
+                func _updateFt() {
+                    if row < 0 || row >= viewModel.ftComponentsObject.datasource.count { return }
+                    viewModel.ftComponentsObject.selectedIndex = row
+                    getCurrentResult()
+                }
+                func _updateIn() {
+                    if row < 0 || row >= viewModel.inComponentsObject.datasource.count { return }
+                    viewModel.inComponentsObject.selectedIndex = row
+                    getCurrentResult()
+                }
+                func _updateUnit() {
+                    if row < 0 || row >= viewModel.unitComponentsObject.datasource.count { return }
+                    
+                    let willSelectedUnit = viewModel.unitComponentsObject.datasource[row]
+                    
+                    if selectedUnit == willSelectedUnit { return }
+                    
+                    guard let ft = viewModel.ftComponentsObject.selectedObeject else { return }
+                    
+                    guard let `in` = viewModel.inComponentsObject.selectedObeject else { return }
+                    
+                    let height = Height(ft: ft, in: `in`)
+                    viewModel.updateCmSelected(height: height)
+                    
+                    viewModel.updateUnitSelected(unit: willSelectedUnit)
+                    
+                    updateAll()
+                    getCurrentResult()
+                }
+                
+                if showsFtComponents {
+                    if component == 0 {
+                        _updateFt()
+                    } else if component == 1 {
+                        // nothing
+                    } else if component == 2 {
+                        _updateIn()
+                    } else if component == 3 {
+                        _updateUnit()
                     }
-                } else if component == 2 {
-                    if row >= 0 && row <= viewModel.inComponentsObject.datasource.count - 1 {
-                        viewModel.inComponentsObject.selectedIndex = row
-                        getCurrentResult()
-                    }
-                } else if component == 3 {
-                    if row >= 0 && row <= viewModel.unitComponentsObject.datasource.count - 1 {
-                        let selectedUnit = viewModel.unitComponentsObject.datasource[row]
-                        
-                        if selectedUnit == unit {
-                            return
-                        }
-                        
-                        let ft = viewModel.ftComponentsObject.datasource[viewModel.ftComponentsObject.selectedIndex]
-                        let `in` = viewModel.inComponentsObject.datasource[viewModel.inComponentsObject.selectedIndex]
-                        let ftHeight = FtHeight(ft: ft, in: `in`)
-                        viewModel.updateCmSelected(ftHeight: ftHeight)
-                        
-                        viewModel.updateUnitSelected(unit: selectedUnit)
-                        
-                        viewModel.currentUint.accept(selectedUnit)
+                } else {
+                    if component == 0 {
+                        _updateFt()
+                    } else if component == 1 {
+                        _updateIn()
+                    } else if component == 2 {
+                        _updateUnit()
                     }
                 }
             default:

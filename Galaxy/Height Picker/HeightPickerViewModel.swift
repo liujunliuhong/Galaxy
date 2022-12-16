@@ -6,52 +6,30 @@
 //
 
 import Foundation
-import RxSwift
-import RxCocoa
-
-internal class ComponentsObject<T> {
-    let datasource: [T]
-    var selectedIndex: Int = 0
-    
-    init(datasource: [T]) {
-        self.datasource = datasource
-    }
-    
-    var selectedObeject: T? {
-        if selectedIndex >= 0 && selectedIndex <= datasource.count - 1 {
-            return datasource[selectedIndex]
-        }
-        return nil
-    }
-}
-
-
 
 internal final class HeightPickerViewModel {
     
-    let cmComponentsObject: ComponentsObject<UInt64>
+    let cmComponentsObject: HeightComponentsObject<UInt64>
     
-    let ftComponentsObject: ComponentsObject<UInt64>
-    let inComponentsObject: ComponentsObject<UInt64>
+    let ftComponentsObject: HeightComponentsObject<UInt64>
+    let inComponentsObject: HeightComponentsObject<UInt64>
     
-    let unitComponentsObject: ComponentsObject<HeightUnit>
+    let unitComponentsObject: HeightComponentsObject<HeightUnit>
     
-    let currentUint = BehaviorRelay<HeightUnit>(value: .cm)
-    
-    init() {
+    init(minimumHeight: Height, maximumHeight: Height) {
         do {
-            self.unitComponentsObject = ComponentsObject(datasource: [.cm, .in])
+            self.unitComponentsObject = HeightComponentsObject(datasource: [.cm, .in])
         }
         do {
-            let cmHeights: [UInt64] = (40...280).map{ UInt64($0) }
-            self.cmComponentsObject = ComponentsObject(datasource: cmHeights)
+            let cmHeights: [UInt64] = (minimumHeight.cm...maximumHeight.cm).map{ UInt64($0) }
+            self.cmComponentsObject = HeightComponentsObject(datasource: cmHeights)
         }
         do {
-            let fts: [UInt64] = (3...9).map{ UInt64($0) }
-            self.ftComponentsObject = ComponentsObject(datasource: fts)
+            let fts: [UInt64] = (minimumHeight.ft...maximumHeight.ft).map{ UInt64($0) }
+            self.ftComponentsObject = HeightComponentsObject(datasource: fts)
             
             let ins = (0...11).map{ UInt64($0) }
-            self.inComponentsObject = ComponentsObject(datasource: ins)
+            self.inComponentsObject = HeightComponentsObject(datasource: ins)
         }
     }
 }
@@ -66,21 +44,13 @@ extension HeightPickerViewModel {
         }
     }
     
-    func updateFtSelected(cmHeight: CmHeight?) {
-        var ftHeight: FtHeight?
-        if let cmHeight = cmHeight {
-            ftHeight = FtHeight(cmHeight: cmHeight)
-        }
-        updateFtSelected(ftHeight: ftHeight)
-    }
-    
-    func updateFtSelected(ftHeight: FtHeight?) {
+    func updateFtSelected(height: Height) {
         for (i, value) in ftComponentsObject.datasource.enumerated() {
-            if ftHeight?.ft == value {
+            if height.ft == value {
                 ftComponentsObject.selectedIndex = i
                 
                 for (i, value) in inComponentsObject.datasource.enumerated() {
-                    if ftHeight?.in == value {
+                    if height.in == value {
                         inComponentsObject.selectedIndex = i
                         break
                     }
@@ -91,17 +61,9 @@ extension HeightPickerViewModel {
         }
     }
     
-    func updateCmSelected(ftHeight: FtHeight?) {
-        var cmHeight: CmHeight?
-        if let ftHeight = ftHeight {
-            cmHeight = ftHeight.cmHeight
-        }
-        updateCmSelected(cmHeight: cmHeight)
-    }
-    
-    func updateCmSelected(cmHeight: CmHeight?) {
+    func updateCmSelected(height: Height) {
         for (i, value) in cmComponentsObject.datasource.enumerated() {
-            if cmHeight?.cm == value {
+            if height.cm == value {
                 cmComponentsObject.selectedIndex = i
                 break
             }

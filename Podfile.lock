@@ -1,26 +1,26 @@
 PODS:
-  - Alamofire (5.4.3)
+  - Alamofire (5.8.0)
   - BigInt (5.2.0)
-  - CocoaLumberjack/Core (3.7.2)
-  - CocoaLumberjack/Swift (3.7.2):
+  - CocoaLumberjack/Core (3.8.1)
+  - CocoaLumberjack/Swift (3.8.1):
     - CocoaLumberjack/Core
-  - CryptoSwift (1.4.0)
-  - FLEX (4.4.1)
+  - CryptoSwift (1.8.0)
+  - FLEX (5.22.10)
   - MBProgressHUD (1.2.0)
-  - Moya (14.0.0):
-    - Moya/Core (= 14.0.0)
-  - Moya/Core (14.0.0):
+  - Moya (15.0.0):
+    - Moya/Core (= 15.0.0)
+  - Moya/Core (15.0.0):
     - Alamofire (~> 5.0)
-  - "NSObject+Rx (5.2.1)":
-    - RxSwift (~> 6.0)
-  - RxCocoa (6.2.0):
-    - RxRelay (= 6.2.0)
-    - RxSwift (= 6.2.0)
-  - RxRelay (6.2.0):
-    - RxSwift (= 6.2.0)
-  - RxSwift (6.2.0)
+  - "NSObject+Rx (5.2.2)":
+    - RxSwift (~> 6.2)
+  - RxCocoa (6.6.0):
+    - RxRelay (= 6.6.0)
+    - RxSwift (= 6.6.0)
+  - RxRelay (6.6.0):
+    - RxSwift (= 6.6.0)
+  - RxSwift (6.6.0)
   - secp256k1.c (0.1.2)
-  - SnapKit (5.0.1)
+  - SnapKit (5.6.0)
   - SwiftyJSON (5.0.1)
 
 DEPENDENCIES:
@@ -40,38 +40,37 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
-    - MBProgressHUD
-    - secp256k1.c
-  trunk:
     - Alamofire
     - BigInt
     - CocoaLumberjack
     - CryptoSwift
     - FLEX
+    - MBProgressHUD
     - Moya
     - "NSObject+Rx"
     - RxCocoa
     - RxRelay
     - RxSwift
+    - secp256k1.c
     - SnapKit
     - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  Alamofire: 0e92e751b3e9e66d7982db43919d01f313b8eb91
   BigInt: f668a80089607f521586bbe29513d708491ef2f7
-  CocoaLumberjack: b7e05132ff94f6ae4dfa9d5bce9141893a21d9da
-  CryptoSwift: 7cc902df1784de3b389a387756c7d710f197730c
-  FLEX: 7ca2c8cd3a435ff501ff6d2f2141e9bdc934eaab
+  CocoaLumberjack: 5c7e64cdb877770859bddec4d3d5a0d7c9299df9
+  CryptoSwift: 52aaf3fce7337552863b1d952e408085f0e65030
+  FLEX: f21ee4f498eed3f8a1eded66b21939fd3b7a22ce
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
-  Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
-  "NSObject+Rx": 49ffbf55ad0bbc29a44547db63a9e33caf0c5d60
-  RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
-  RxRelay: e72dbfd157807478401ef1982e1c61c945c94b2f
-  RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
+  Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
+  "NSObject+Rx": 61cf1f7306a73dcef8b36649198af0813ec18dfd
+  RxCocoa: 44a80de90e25b739b5aeaae3c8c371a32e3343cc
+  RxRelay: 45eaa5db8ee4fb50e5ebd57deec0159e97fa51e6
+  RxSwift: a4b44f7d24599f674deebd1818eab82e58410632
   secp256k1.c: db47b726585d80f027423682eb369729e61b3b20
-  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
 
-PODFILE CHECKSUM: c491477a6871ca9fe2f1c37bd85112d137648d54
+PODFILE CHECKSUM: 1addb6b11540103523979ed960a25394f8707cf4
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.13.0

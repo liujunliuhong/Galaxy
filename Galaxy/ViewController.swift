@@ -42,6 +42,9 @@ class ViewController: UIViewController {
             make.center.equalToSuperview()
         }
         
+        if #available(iOS 13.0, *) {
+            print("☺️:\(GL<UIDevice>.window)")
+        }
         
         
 //        test()

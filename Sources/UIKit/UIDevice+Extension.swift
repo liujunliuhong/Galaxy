@@ -113,7 +113,8 @@ extension GL where Base == UIDevice {
                     type == .iPhone_11 || type == .iPhone_11_Pro || type == .iPhone_11_Pro_Max ||
                     type == .iPhone_12 || type == .iPhone_12_Pro || type == .iPhone_12_mini || type == .iPhone_12_Pro_Max || 
                     type == .iPhone_13 || type == .iPhone_13_Pro || type == .iPhone_13_mini || type == .iPhone_13_Pro_Max ||
-                    type == .iPhone_14 || type == .iPhone_14_Pro || type == .iPhone_14_Plus || type == .iPhone_14_Pro_Max) &&
+                    type == .iPhone_14 || type == .iPhone_14_Pro || type == .iPhone_14_Plus || type == .iPhone_14_Pro_Max ||
+                    type == .iPhone_15 || type == .iPhone_15_Pro || type == .iPhone_15_Plus || type == .iPhone_15_Pro_Max) &&
                     type.identifiers.contains(machine) {
                     isNotchiPhone = true
                     break

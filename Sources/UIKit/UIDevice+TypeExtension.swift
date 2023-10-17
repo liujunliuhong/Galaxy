@@ -10,6 +10,11 @@ import Foundation
 import UIKit
 
 /*
+ iPhone 15            393 x 852             3x
+ iPhone 15 Plus       430 x 932             3x
+ iPhone 15 Pro        393 x 852             3x
+ iPhone 15 Pro Max    430 x 932             3x
+ 
  iPhone 14            390 x 844             3x
  iPhone 14 Plus       428 x 926             3x
  iPhone 14 Pro        393 x 852             3x
@@ -56,6 +61,7 @@ import UIKit
  */
 extension GL where Base == UIDevice {
     /// https://www.theiphonewiki.com/wiki/Models#iPhone
+    /// https://theapplewiki.com/wiki/Models#iPhone
     public enum DeviceType: CaseIterable, Equatable {
         // AirPods
         case AirPods_1st_generation
@@ -71,6 +77,7 @@ extension GL where Base == UIDevice {
         case Apple_TV_4th_generation
         case Apple_TV_4K
         case Apple_TV_4K_2nd_generation
+        case Apple_TV_4K_3rd_generation
         // Apple Watch
         case Apple_Watch_1st_generation
         case Apple_Watch_Series_1
@@ -84,9 +91,12 @@ extension GL where Base == UIDevice {
         case Apple_Watch_SE_2nd_generation
         case Apple_Watch_Series_8
         case Apple_Watch_Ultra
+        case Apple_Watch_Series_9
+        case Apple_Watch_Ultra_2
         // HomePod
         case HomePod
         case HomePod_mini
+        case HomePod_2nd_generation
         // iPad
         case iPad
         case iPad_2
@@ -171,6 +181,10 @@ extension GL where Base == UIDevice {
         case iPhone_14_Plus
         case iPhone_14_Pro
         case iPhone_14_Pro_Max
+        case iPhone_15
+        case iPhone_15_Plus
+        case iPhone_15_Pro
+        case iPhone_15_Pro_Max
         // iMac
         case iMac_24_inch_M1_2021
         // Mac mini
@@ -207,6 +221,7 @@ extension GalaxyWrapper.DeviceType: CustomStringConvertible, CustomDebugStringCo
             case .Apple_TV_4th_generation:               return "Apple TV (4th generation)"
             case .Apple_TV_4K:                           return "Apple TV 4K"
             case .Apple_TV_4K_2nd_generation:            return "Apple TV 4K (2nd generation)"
+            case .Apple_TV_4K_3rd_generation:            return "Apple TV 4K (3rd generation)"
                 // Apple Watch
             case .Apple_Watch_1st_generation:            return "Apple Watch (1st generation)"
             case .Apple_Watch_Series_1:                  return "Apple Watch Series 1"
@@ -220,9 +235,12 @@ extension GalaxyWrapper.DeviceType: CustomStringConvertible, CustomDebugStringCo
             case .Apple_Watch_SE_2nd_generation:         return "Apple Watch SE (2nd generation)"
             case .Apple_Watch_Series_8:                  return "Apple Watch Series 8"
             case .Apple_Watch_Ultra:                     return "Apple Watch Ultra"
+            case .Apple_Watch_Series_9:                  return "Apple Watch Series 9"
+            case .Apple_Watch_Ultra_2:                   return "Apple Watch Ultra 2"
                 // HomePod
             case .HomePod:                               return "HomePod"
             case .HomePod_mini:                          return "HomePod mini"
+            case .HomePod_2nd_generation:                return "HomePod (2nd generation)"
                 // iPad
             case .iPad:                                  return "iPad"
             case .iPad_2:                                return "iPad 2"
@@ -307,6 +325,10 @@ extension GalaxyWrapper.DeviceType: CustomStringConvertible, CustomDebugStringCo
             case .iPhone_14_Plus:                        return "iPhone 14 Plus"
             case .iPhone_14_Pro:                         return "iPhone 14 Pro"
             case .iPhone_14_Pro_Max:                     return "iPhone 14 Pro Max"
+            case .iPhone_15:                             return "iPhone 15"
+            case .iPhone_15_Plus:                        return "iPhone 15 Plus"
+            case .iPhone_15_Pro:                         return "iPhone 15 Pro"
+            case .iPhone_15_Pro_Max:                     return "iPhone 15 Pro Max"
                 // iMac
             case .iMac_24_inch_M1_2021:                  return "iMac (24-inch, M1, 2021)"
                 // MacBook Air
@@ -337,6 +359,7 @@ extension GalaxyWrapper.DeviceType: CustomStringConvertible, CustomDebugStringCo
             case .Apple_TV_4th_generation:               return ["AppleTV5,3"]
             case .Apple_TV_4K:                           return ["AppleTV6,2"]
             case .Apple_TV_4K_2nd_generation:            return ["AppleTV11,1"]
+            case .Apple_TV_4K_3rd_generation:            return ["AppleTV14,1"]
                 // Apple Watch
             case .Apple_Watch_1st_generation:            return ["Watch1,1", "Watch1,2"]
             case .Apple_Watch_Series_1:                  return ["Watch2,6", "Watch2,7"]
@@ -350,9 +373,12 @@ extension GalaxyWrapper.DeviceType: CustomStringConvertible, CustomDebugStringCo
             case .Apple_Watch_SE_2nd_generation:         return ["Watch6,10", "Watch6,11", "Watch6,12", "Watch6,13"]
             case .Apple_Watch_Series_8:                  return ["Watch6,14", "Watch6,15", "Watch6,16", "Watch6,17"]
             case .Apple_Watch_Ultra:                     return ["Watch6,18"]
+            case .Apple_Watch_Series_9:                  return ["Watch7,1", "Watch7,2", "Watch7,3", "Watch7,4"]
+            case .Apple_Watch_Ultra_2:                   return ["Watch7,5"]
                 // HomePod
             case .HomePod:                               return ["AudioAccessory1,1", "AudioAccessory1,2"]
             case .HomePod_mini:                          return ["AudioAccessory5,1"]
+            case .HomePod_2nd_generation:                return ["AudioAccessory6,1"]
                 // iPad
             case .iPad:                                  return ["iPad1,1"]
             case .iPad_2:                                return ["iPad2,1", "iPad2,2", "iPad2,3", "iPad2,4"]
@@ -437,6 +463,10 @@ extension GalaxyWrapper.DeviceType: CustomStringConvertible, CustomDebugStringCo
             case .iPhone_14_Plus:                        return ["iPhone14,8"]
             case .iPhone_14_Pro:                         return ["iPhone15,2"]
             case .iPhone_14_Pro_Max:                     return ["iPhone15,3"]
+            case .iPhone_15:                             return ["iPhone15,4"]
+            case .iPhone_15_Plus:                        return ["iPhone15,5"]
+            case .iPhone_15_Pro:                         return ["iPhone16,1"]
+            case .iPhone_15_Pro_Max:                     return ["iPhone16,2"]
                 // iMac
             case .iMac_24_inch_M1_2021:                  return ["iMac21,1", "iMac21,2"]
                 // Mac mini

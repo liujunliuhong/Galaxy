@@ -86,10 +86,14 @@ extension GL where Base == UIDevice {
     /// 获取`window`
     public static var window: UIWindow {
         if #available(iOS 13.0, *) {
-            if let w = UIApplication.shared.connectedScenes.filter({$0.activationState == .foregroundActive}).map({$0 as? UIWindowScene}).compactMap({$0}).first?.windows.filter({$0.isKeyWindow}).first {
+            if let w = UIApplication.shared.connectedScenes.filter({$0.activationState == .foregroundActive}).map({$0 as? UIWindowScene}).compactMap({$0}).map({ $0.windows }).flatMap({$0}).filter({ $0.isKeyWindow }).first {
                 return w
             } else {
-                return UIApplication.shared.keyWindow!
+                if let w = UIApplication.shared.windows.filter({$0.isKeyWindow}).first {
+                    return w
+                } else {
+                    return UIApplication.shared.keyWindow!
+                }
             }
         } else {
             return UIApplication.shared.keyWindow!

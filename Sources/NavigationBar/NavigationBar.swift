@@ -102,12 +102,20 @@ public final class NavigationBar: UIView {
         }
     }
     
+    /// 是否隐藏状态栏，默认false
+    public var hideStatusBar: Bool = false {
+        didSet {
+            refresh()
+        }
+    }
+    
     /// 是否隐藏bar，默认false
     public var hideBar: Bool = false {
         didSet {
             refresh()
         }
     }
+    
     /// 是否隐藏工具栏
     public var hideToolBar: Bool = false {
         didSet {
@@ -227,7 +235,12 @@ extension NavigationBar {
         //
         seperateLineView.isHidden = false
         //
-        var sumHeight: CGFloat = GL.deviceStatusBarHeight
+        var sumHeight: CGFloat
+        if hideStatusBar {
+            sumHeight = GL.deviceStatusBarHeight
+        } else {
+            sumHeight = .zero
+        }
         // bar view
         barView.subviews.forEach { (view) in
             view.removeFromSuperview() // remove

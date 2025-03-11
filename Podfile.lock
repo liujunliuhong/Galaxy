@@ -1,10 +1,10 @@
 PODS:
-  - Alamofire (5.8.0)
+  - Alamofire (5.10.2)
   - BigInt (5.2.0)
-  - CocoaLumberjack/Core (3.8.1)
-  - CocoaLumberjack/Swift (3.8.1):
+  - CocoaLumberjack/Core (3.8.5)
+  - CocoaLumberjack/Swift (3.8.5):
     - CocoaLumberjack/Core
-  - CryptoSwift (1.8.0)
+  - CryptoSwift (1.8.4)
   - FLEX (5.22.10)
   - MBProgressHUD (1.2.0)
   - Moya (15.0.0):
@@ -13,15 +13,14 @@ PODS:
     - Alamofire (~> 5.0)
   - "NSObject+Rx (5.2.2)":
     - RxSwift (~> 6.2)
-  - RxCocoa (6.6.0):
-    - RxRelay (= 6.6.0)
-    - RxSwift (= 6.6.0)
-  - RxRelay (6.6.0):
-    - RxSwift (= 6.6.0)
-  - RxSwift (6.6.0)
-  - secp256k1.c (0.1.2)
-  - SnapKit (5.6.0)
-  - SwiftyJSON (5.0.1)
+  - RxCocoa (6.9.0):
+    - RxRelay (= 6.9.0)
+    - RxSwift (= 6.9.0)
+  - RxRelay (6.9.0):
+    - RxSwift (= 6.9.0)
+  - RxSwift (6.9.0)
+  - SnapKit (5.7.1)
+  - SwiftyJSON (5.0.2)
 
 DEPENDENCIES:
   - Alamofire
@@ -34,7 +33,6 @@ DEPENDENCIES:
   - "NSObject+Rx"
   - RxCocoa
   - RxSwift
-  - secp256k1.c
   - SnapKit
   - SwiftyJSON
 
@@ -51,26 +49,24 @@ SPEC REPOS:
     - RxCocoa
     - RxRelay
     - RxSwift
-    - secp256k1.c
     - SnapKit
     - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Alamofire: 0e92e751b3e9e66d7982db43919d01f313b8eb91
+  Alamofire: 7193b3b92c74a07f85569e1a6c4f4237291e7496
   BigInt: f668a80089607f521586bbe29513d708491ef2f7
-  CocoaLumberjack: 5c7e64cdb877770859bddec4d3d5a0d7c9299df9
-  CryptoSwift: 52aaf3fce7337552863b1d952e408085f0e65030
+  CocoaLumberjack: 6a459bc897d6d80bd1b8c78482ec7ad05dffc3f0
+  CryptoSwift: e64e11850ede528a02a0f3e768cec8e9d92ecb90
   FLEX: f21ee4f498eed3f8a1eded66b21939fd3b7a22ce
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   "NSObject+Rx": 61cf1f7306a73dcef8b36649198af0813ec18dfd
-  RxCocoa: 44a80de90e25b739b5aeaae3c8c371a32e3343cc
-  RxRelay: 45eaa5db8ee4fb50e5ebd57deec0159e97fa51e6
-  RxSwift: a4b44f7d24599f674deebd1818eab82e58410632
-  secp256k1.c: db47b726585d80f027423682eb369729e61b3b20
-  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
-  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
+  RxCocoa: ac16414696ae706516be3e1ab00fcce5bdc9be8a
+  RxRelay: 6b0c930e5cef57d5fe2032571e5e65b78e3cbdb1
+  RxSwift: 31649ace6aceeb422e16ff71c60804f9c3281ed9
+  SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
+  SwiftyJSON: f5b1bf1cd8dd53cd25887ac0eabcfd92301c6a5a
 
-PODFILE CHECKSUM: 1addb6b11540103523979ed960a25394f8707cf4
+PODFILE CHECKSUM: edf3678aef9882500b835eb11ddff178896e8230
 
-COCOAPODS: 1.15.2
+COCOAPODS: 1.16.2

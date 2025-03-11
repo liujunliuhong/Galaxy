@@ -236,7 +236,7 @@ extension NavigationBar {
         seperateLineView.isHidden = false
         //
         var sumHeight: CGFloat
-        if hideStatusBar {
+        if !hideStatusBar {
             sumHeight = GL.deviceStatusBarHeight
         } else {
             sumHeight = .zero
